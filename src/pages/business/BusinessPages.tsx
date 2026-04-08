@@ -301,6 +301,38 @@ export function OfficeSpaces() {
 }
 
 
+
+/* ── Vertical Transportation data ───────────── */
+const ASCENT = [
+  {
+    floor: "G",
+    label: "Ground — Arrival",
+    body: "Main lobby entry. Express elevators depart for Sky Lobby 30 and Sky Lobby 55. Local low-rise service begins from Level 6.",
+  },
+  {
+    floor: "30",
+    label: "Sky Lobby 1",
+    body: "Mid-rise transfer hub. Fully equipped business centre, executive lounge with 7m ceilings, and panoramic Gulf views from 120 metres.",
+  },
+  {
+    floor: "55",
+    label: "Sky Lobby 2",
+    body: "High-rise transfer hub. Second business lounge, breakout facilities, and express VIP elevator access to the executive crown.",
+  },
+  {
+    floor: "80",
+    label: "Executive Crown",
+    body: "The highest business address in Kuwait. VIP floor with dedicated reception, panoramic observation, and the At The Top restaurant.",
+  },
+];
+
+const LOBBY_FEATURES = [
+  { number: "01", title: "Two Sky Lobbies",       body: "Transfer floors at Level 30 and Level 55 — each a fully equipped business centre with panoramic views and executive lounge facilities." },
+  { number: "02", title: "VIP Direct Access",     body: "Dedicated VIP elevators run non-stop from the ground lobby to the crown. Separate from general tenant traffic." },
+  { number: "03", title: "8 Express Units",       body: "High-speed express elevators at 6 m/s connect the ground floor directly to sky lobby transfer points." },
+  { number: "04", title: "Zero-Wait Strategy",    body: "Staggered destination dispatch across three elevator zones — low, mid, and high rise — minimises lobby congestion at peak hours." },
+];
+
 export function VerticalTransportation() {
   return (
     <PageLayout>
