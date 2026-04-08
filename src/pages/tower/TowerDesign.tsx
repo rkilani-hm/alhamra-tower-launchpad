@@ -6,7 +6,7 @@ import { StatsBar, FeatureGrid, SpecTable, Section, Tag, H2, Body, Rv, DarkBand 
 
 const STATS = [
   { number: "412",     unit: "m",  label: "Building Height"  },
-  { number: "74",             label: "Stories"          },
+  { number: "80",             label: "Stories"          },
   { number: "195,000", unit: "m²", label: "Gross Area"       },
   { number: "10,000",  unit: "m²", label: "Site Area"        },
 ];
@@ -20,7 +20,7 @@ const FEATURES = [
 
 const SPECS = [
   { label: "Building Height",    value: "412m — Kuwait's tallest structure"   },
-  { label: "Number of Stories",  value: "74 — Plus mechanical floors"         },
+  { label: "Number of Stories",  value: "80 — Plus mechanical floors"         },
   { label: "Foundation Mat",     value: "5,800m² — Spanning full footprint"   },
   { label: "Gross Area",         value: "195,000m² — Office & retail space"   },
   { label: "Concrete Volume",    value: "85,000m³ — High-performance mix"     },
@@ -42,7 +42,7 @@ const FLOOR_LEVELS = [
   { level: "Level 20 — 16°", desc: "Rotation continues counter-clockwise" },
   { level: "Level 40 — 32°", desc: "Mid-tower rotation"  },
   { level: "Level 55 — 44°", desc: "Upper tower rotation" },
-  { level: "Level 74 — 60°", desc: "Crown — full counter-clockwise rotation achieved" },
+  { level: "Level 80 — 60°", desc: "Crown — full counter-clockwise rotation achieved" },
 ];
 
 export default function TowerDesign() {
@@ -87,7 +87,7 @@ export default function TowerDesign() {
       <Section bg="#FAFAFA">
         <Rv><Tag>Interactive Visualization</Tag></Rv>
         <Rv delay={0.1}><H2>Spiraling Floor Geometry</H2></Rv>
-        <Rv delay={0.2}><Body style={{ maxWidth: 560, marginBottom: 48 }}>Explore how the carved quadrant rotates 60° from base to crown. The carved south wall shifts from west at ground level to east at the crown — a total 60° counter-clockwise rotation over 74 stories.</Body></Rv>
+        <Rv delay={0.2}><Body style={{ maxWidth: 560, marginBottom: 48 }}>Explore how the carved quadrant rotates 60° from base to crown. The carved south wall shifts from west at ground level to east at the crown — a total 60° counter-clockwise rotation over 80 stories.</Body></Rv>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
           {/* Level selector */}

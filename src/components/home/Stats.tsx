@@ -2,7 +2,7 @@ import { ScrollReveal } from "../shared/ScrollReveal";
 
 const STATS = [
   { number: "412", unit: "m",  label: "Landmark Height" },
-  { number: "74",  unit: "",   label: "Stories of Premium Office Space" },
+  { number: "80",  unit: "",   label: "Stories of Premium Office Space" },
   { number: "#23", unit: "",   label: "World Ranking at Completion" },
   { number: "52",  unit: "",   label: "Elevators · 6 m/s Express" },
 ];

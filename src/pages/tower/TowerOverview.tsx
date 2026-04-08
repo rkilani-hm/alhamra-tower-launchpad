@@ -15,7 +15,7 @@ const TAB_CONTENT = {
   "The Apex": {
     heading: "The Crown — 412–413 Metres",
     body: "One of the tallest towers in the region. The crown features the distinctive carved geometry that defines Al Hamra's silhouette against the Arabian Gulf skyline. The asymmetrical spiral terminates in a razor-sharp apex — simultaneously shelter and statement.",
-    stats: [{ number: "412", unit: "m", label: "Apex Height" }, { number: "74", label: "Total Stories" }, { number: "60°", label: "Floor Rotation Crown" }],
+    stats: [{ number: "412", unit: "m", label: "Apex Height" }, { number: "80", label: "Total Stories" }, { number: "60°", label: "Floor Rotation Crown" }],
   },
   "The Core": {
     heading: "Structural Intelligence",

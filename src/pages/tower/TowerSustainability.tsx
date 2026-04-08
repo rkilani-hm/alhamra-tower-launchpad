@@ -3,7 +3,7 @@ import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 
 const PERF_STATS = [
-  { number: "74",   label: "Floors Monitored"      },
+  { number: "80",   label: "Floors Monitored"      },
   { number: "100%", label: "Power Redundancy"       },
   { number: "5",    label: "Electrical Substations" },
   { number: "25%",  label: "Solar Heat Reduction"   },
@@ -19,7 +19,7 @@ const PERFORMANCE = [
 ];
 
 const SAFETY = [
-  { number: "01", title: "Siemens FireFinder XLSV",  body: "State-of-the-art firefighting system specifically designed for supertall structures, providing comprehensive fire detection and suppression throughout all 74 floors." },
+  { number: "01", title: "Siemens FireFinder XLSV",  body: "State-of-the-art firefighting system specifically designed for supertall structures, providing comprehensive fire detection and suppression throughout all 80 floors." },
   { number: "02", title: "Dedicated Refuge Floors",  body: "Two refuge floors on levels 29 and 54 provide protected areas for evacuation during emergencies, equipped with enhanced fire-resistant construction." },
   { number: "03", title: "100% Power Redundancy",    body: "Five electrical substations across levels B2, 4, 27, 52, and 76 ensure uninterrupted power distribution with full redundancy." },
   { number: "04", title: "Smart Building Management",body: "Advanced BMS and IT telecom networking with fiber optic backbone enables real-time monitoring and automated response systems." },
@@ -32,7 +32,7 @@ const SUBSTATION_MAP = [
   { level: "Level 29",  type: "Refuge Floor 1", desc: "Emergency evacuation zone"           },
   { level: "Level 52",  type: "Substation 4",   desc: "Upper tower power distribution"      },
   { level: "Level 54",  type: "Refuge Floor 2", desc: "High-rise emergency shelter"         },
-  { level: "Level 76",  type: "Substation 5",   desc: "Crown level power management"        },
+  { level: "Level 80",  type: "Substation 5",   desc: "Crown level power management"        },
 ];
 
 export default function TowerSustainability() {

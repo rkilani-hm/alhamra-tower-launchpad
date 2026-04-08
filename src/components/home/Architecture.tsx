@@ -11,7 +11,7 @@ const FEATURES = [
 ];
 
 const CALLOUTS = [
-  { id: "crown",  top: "8%",  left: "52%", title: "Crown",       sub: "412m · Level 74",      delay: 2700 },
+  { id: "crown",  top: "8%",  left: "52%", title: "Crown",       sub: "412m · Level 80",      delay: 2700 },
   { id: "sky55",  top: "34%", left: "56%", title: "Sky Lobby",   sub: "Level 55 · High-Rise", delay: 2100 },
   { id: "sky30",  top: "57%", left: "59%", title: "Sky Lobby",   sub: "Level 30 · Mid-Rise",  delay: 1400 },
   { id: "lobby",  top: "86%", left: "56%", title: "Grand Lobby", sub: "24m · Column-Free",    delay: 600  },

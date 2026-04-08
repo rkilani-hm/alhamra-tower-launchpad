@@ -115,7 +115,7 @@ const ASCENT = [
   { floor: "Floor G", label: "Grand Arrival",     body: "The tower's dramatic lobby welcomes visitors with soaring ceilings, cascading water, and immediate access to express elevators." },
   { floor: "Floor 30", label: "Mid-Rise Transfer", body: "The first sky lobby offers panoramic orientation and connects express service to local elevators serving floors 20–40." },
   { floor: "Floor 55", label: "High-Rise Gateway", body: "The second sky lobby serves as the gateway to executive floors, with unobstructed Gulf views and refined waiting areas." },
-  { floor: "Floor 77", label: "Executive Floors",  body: "The tower's premium office levels — where industry leaders operate with commanding views across Kuwait City and beyond." },
+  { floor: "Floor 80", label: "Executive Floors",  body: "The tower's premium office levels — where industry leaders operate with commanding views across Kuwait City and beyond." },
 ];
 
 const LOBBY_FEATURES = [
@@ -164,7 +164,7 @@ export function VerticalTransportation() {
               { name: "Express to Sky Lobby 30", floors: "G → 30", speed: "6 m/s", cap: "24 persons" },
               { name: "Low-Rise Local",          floors: "G → 20", speed: "4 m/s", cap: "16 persons" },
               { name: "Mid-Rise Local",          floors: "30 → 50",speed: "4 m/s", cap: "16 persons" },
-              { name: "High-Rise Local",         floors: "55 → 77",speed: "4 m/s", cap: "16 persons" },
+              { name: "High-Rise Local",         floors: "55 → 80",speed: "4 m/s", cap: "16 persons" },
             ].map(({ name, floors, speed, cap }, i) => (
               <div key={name} style={{
                 display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr",

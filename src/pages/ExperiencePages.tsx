@@ -8,7 +8,7 @@ import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/c
 ══════════════════════════════════════════════════ */
 const SYSTEMS = [
   { number: "01", title: "Electrical Systems",       body: "Five dedicated substations deliver uninterrupted power. Full generator redundancy ensures zero-downtime continuity for every tenanted floor." },
-  { number: "02", title: "Water Supply & Plumbing",  body: "Centralised water distribution with booster pump stations serving all 77 floors. 24-hour leak response maintains consistent pressure and quality." },
+  { number: "02", title: "Water Supply & Plumbing",  body: "Centralised water distribution with booster pump stations serving all 80 floors. 24-hour leak response maintains consistent pressure and quality." },
   { number: "03", title: "Air Conditioning & HVAC",  body: "District-cooled chilled water system with variable air volume units. Individual zone control per floor — tenants regulate temperature independently." },
   { number: "04", title: "ICT & Telecommunications", body: "Fiber-optic backbone with structured cabling to every floor. Multiple carrier access, dedicated server rooms, and centralised BMS." },
   { number: "05", title: "Security & Access Control",body: "Round-the-clock manned security, CCTV surveillance, smart card access, visitor management, and direct coordination with civil defense authorities." },
