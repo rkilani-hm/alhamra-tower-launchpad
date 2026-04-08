@@ -153,24 +153,33 @@ export default function TowerDesign() {
 
       {/* Lobby */}
       <Section bg="#FAFAFA">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
           <div>
             <Rv><Tag>Arrival Experience</Tag></Rv>
             <Rv delay={0.1}><H2>The 24-Metre Grand Lobby</H2></Rv>
             <Rv delay={0.2}><Body>A 24-metre-high column-free lobby establishes immediate presence and spatial clarity. The grand lobby on the north side of the tower extends from the core to its perimeter frame. The lobby's dramatic scale and carefully orchestrated light create an arrival experience befitting Kuwait's tallest building.</Body></Rv>
-          </div>
-          <div>
-            <Rv delay={0.15}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
-                {[{ n: "24m", l: "Lobby Height" }, { n: "7.6m", l: "Column Offset" }, { n: "130ft", l: "Observation Height" }, { n: "360°", l: "Panoramic Views" }].map(({ n, l }) => (
-                  <div key={l} style={{ background: "#fff", padding: "36px 28px" }}>
-                    <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 40, fontWeight: 300, color: "#1D1D1B", lineHeight: 1 }}>{n}</div>
+            <Rv delay={0.3}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 36 }}>
+                {[{ n: "24m", l: "Lobby Height" }, { n: "7.6m", l: "Column Offset" }, { n: "130ft", l: "Sky Deck Height" }, { n: "360°", l: "Panoramic Views" }].map(({ n, l }) => (
+                  <div key={l} style={{ background: "#fff", padding: "28px 22px" }}>
+                    <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1 }}>{n}</div>
                     <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#B2B2B2", marginTop: 8 }}>{l}</div>
                   </div>
                 ))}
               </div>
             </Rv>
           </div>
+          <Rv delay={0.15}>
+            <div style={{ position: "relative", overflow: "hidden" }}>
+              <img src="/assets/tower-street.jpg" alt="Al Hamra Tower from street level"
+                style={{ width: "100%", height: 480, objectFit: "cover", objectPosition: "center top", display: "block" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "20px 20px 16px" }}>
+                <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
+                  Photo: Dave Burk · SOM Architecture
+                </span>
+              </div>
+            </div>
+          </Rv>
         </div>
       </Section>
 

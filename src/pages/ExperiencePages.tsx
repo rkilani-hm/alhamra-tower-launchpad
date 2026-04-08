@@ -82,19 +82,37 @@ export function Location() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Experience", href: "/services" }, { label: "Location", href: "/location" }]}
       />
       <StatsBar stats={[
-        { number: "5",   unit: " min", label: "To Government District" },
-        { number: "2,000+", label: "Parking Spaces" },
-        { number: "Sharq", label: "Kuwait City District" },
+        { number: "5",      unit: " min", label: "To Government District" },
+        { number: "2,000+",              label: "Parking Spaces"          },
+        { number: "Sharq",               label: "Kuwait City District"    },
       ]} />
+
+      {/* Full-bleed waterfront photo */}
+      <div style={{ position: "relative", height: 520, overflow: "hidden" }}>
+        <img src="/assets/kuwait-waterfront.jpg" alt="Kuwait City waterfront and skyline"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
+        <div style={{ position: "absolute", bottom: 40, left: 80, right: 80, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+          <div>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>Al Hamra Tower · Sharq · Kuwait City</div>
+            <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.5vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.2 }}>
+              Kuwait City's<br /><strong style={{ fontWeight: 500 }}>Commercial Heart</strong>
+            </h3>
+          </div>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
+            Photo: Dave Burk · SOM
+          </div>
+        </div>
+      </div>
 
       <Section>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
           <div>
             <Rv><Tag>Sharq District · Kuwait City</Tag></Rv>
-            <Rv delay={0.1}><H2>Kuwait City's Commercial Heart</H2></Rv>
-            <Rv delay={0.2}><Body>The tower is situated at 29.3759° N, 47.9774° E in Sharq — Kuwait City's central business district where governance, commerce, and culture converge. Direct access to major arterial roads and Kuwait City's central transport corridors.</Body></Rv>
+            <Rv delay={0.1}><H2>Where Governance, Commerce and Culture Converge</H2></Rv>
+            <Rv delay={0.2}><Body>The tower is situated at 29.3759° N, 47.9774° E in Sharq — Kuwait City's central business district. Direct access to major arterial roads, government ministries, embassies, and the financial corridor.</Body></Rv>
             <Rv delay={0.3}>
-              <div style={{ marginTop: 40, display: "flex", flexDirection: "column" as const, gap: 0 }}>
+              <div style={{ marginTop: 40 }}>
                 {[
                   { label: "Address",     value: "Al Hamra Tower, Sharq, Kuwait City, Kuwait" },
                   { label: "Coordinates", value: "29.3759° N, 47.9774° E" },
@@ -110,22 +128,15 @@ export function Location() {
             </Rv>
           </div>
           <Rv delay={0.15}>
-            {/* Map placeholder */}
-            <div style={{
-              width: "100%", height: 420,
-              background: "#F7F6F4",
-              border: "1px solid rgba(29,29,27,0.09)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              flexDirection: "column" as const, gap: 12,
-            }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="rgba(29,29,27,0.2)"/>
-              </svg>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.25em", textTransform: "uppercase", color: "#B2B2B2" }}>Sharq, Kuwait City</div>
-              <a href="https://maps.google.com/?q=Al+Hamra+Tower+Kuwait" target="_blank" rel="noreferrer"
-                style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#1D1D1B", textDecoration: "none", borderBottom: "1px solid rgba(29,29,27,0.3)", paddingBottom: 2 }}>
-                Get Directions
-              </a>
+            <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 380 }}>
+              <img src="/assets/kuwait-skyline.jpg" alt="Kuwait City skyline with Al Hamra Tower"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "24px 24px 20px" }}>
+                <a href="https://maps.google.com/?q=Al+Hamra+Tower+Kuwait" target="_blank" rel="noreferrer"
+                  style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#fff", textDecoration: "none" }}>
+                  Get Directions
+                </a>
+              </div>
             </div>
           </Rv>
         </div>
@@ -135,15 +146,6 @@ export function Location() {
     </PageLayout>
   );
 }
-
-/* ══════════════════════════════════════════════════
-   LEASING OPPORTUNITIES  /leasing
-══════════════════════════════════════════════════ */
-const LEASING_CONFIGS = [
-  { code: "01", title: "Executive Suite",  size: "250–500 m²",     bullets: ["Corner office configuration","Panoramic city views","Private meeting room"] },
-  { code: "02", title: "Full Floor",       size: "1,200–1,800 m²", bullets: ["Entire floor exclusivity","Private elevator access","Dedicated reception"] },
-  { code: "03", title: "Corporate HQ",    size: "3,000+ m²",      bullets: ["Multiple floors available","Building signage rights","Dedicated parking levels"] },
-];
 
 export function LeasingOpportunities() {
   return (

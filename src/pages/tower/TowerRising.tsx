@@ -5,27 +5,18 @@ import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 
 const TIMELINE = [
-  { year: "1950s", title: "The Traditional Souq",  era: "Heritage Era",    body: "Kuwait's bustling souqs served as the heart of commerce and community — the living centre of trade and culture in the region." },
-  { year: "1960s", title: "The Cinema District",   era: "Cultural Dawn",   body: "Al Hamra Cinema opened as Kuwait's first entertainment venue, giving this district its name and cultural identity." },
-  { year: "1970s", title: "A City Transformed",    era: "Urban Growth",    body: "Oil wealth enabled rapid modernisation, with Kuwait City expanding from a traditional port into a regional capital of ambition and influence." },
-  { year: "2005",  title: "Breaking Ground",        era: "Visionary Leap",  body: "Construction began on what would become Kuwait's tallest building — a structural challenge that required rethinking construction methodology from the ground up." },
-  { year: "2011",  title: "Tower Completion",       era: "Achievement",     body: "Al Hamra Tower opens, becoming Kuwait's most recognised built achievement and an immediate addition to the world's distinguished skylines." },
-  { year: "Today", title: "A Global Landmark",      era: "Living Legacy",   body: "Internationally celebrated, home to Kuwait's leading enterprises, and a permanent presence in global architectural discourse." },
+  { year: "1950s", title: "The Traditional Souq",  era: "Heritage Era",   body: "Kuwait's bustling souqs served as the heart of commerce and community — the living centre of trade and culture in the region." },
+  { year: "1960s", title: "The Cinema District",   era: "Cultural Dawn",  body: "Al Hamra Cinema opened as Kuwait's first entertainment venue, giving this district its name and cultural identity." },
+  { year: "1970s", title: "A City Transformed",    era: "Urban Growth",   body: "Oil wealth enabled rapid modernisation, with Kuwait City expanding from a traditional port into a regional capital of ambition and influence." },
+  { year: "2005",  title: "Breaking Ground",        era: "Visionary Leap", body: "Construction began on what would become Kuwait's tallest building — a structural challenge requiring entirely new construction methodology." },
+  { year: "2011",  title: "Tower Completion",       era: "Achievement",    body: "Al Hamra Tower opens, becoming Kuwait's most recognised built achievement and an immediate addition to the world's distinguished skylines." },
+  { year: "Today", title: "A Global Landmark",      era: "Living Legacy",  body: "Internationally celebrated, home to Kuwait's leading enterprises, and a permanent presence in global architectural discourse." },
 ];
 
 const QUOTES = [
-  {
-    org: "Al Hamra Real Estate Co.",
-    quote: "We wanted to create something that would stand as a testament to Kuwait's capabilities — not just in height, but in architectural innovation and engineering excellence.",
-  },
-  {
-    org: "Skidmore, Owings & Merrill",
-    quote: "The twisting form emerged from our analysis of Kuwait's harsh sun. Every degree of rotation serves a purpose — reducing solar gain while maximising natural light.",
-  },
-  {
-    org: "Samsung Engineering",
-    quote: "Building the world's tallest carved concrete tower required us to rethink construction methodology from the ground up. Every pour, every cure was choreographed.",
-  },
+  { org: "Al Hamra Real Estate Co.",   quote: "We wanted to create something that would stand as a testament to Kuwait's capabilities — not just in height, but in architectural innovation and engineering excellence." },
+  { org: "Skidmore, Owings & Merrill", quote: "The twisting form emerged from our analysis of Kuwait's harsh sun. Every degree of rotation serves a purpose — reducing solar gain while maximising natural light." },
+  { org: "Samsung Engineering",        quote: "Building the world's tallest carved concrete tower required us to rethink construction methodology from the ground up. Every pour, every cure was choreographed." },
 ];
 
 const TABS = ["Purposeful Design", "The Site's Heritage", "Present Day"];
@@ -42,7 +33,7 @@ export default function TowerRising() {
         crumbs={[{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }, { label: "Rising with Purpose", href: "/tower/rising" }]}
       />
 
-      {/* Tabs */}
+      {/* Tab nav */}
       <div style={{ display: "flex", borderBottom: "1px solid rgba(29,29,27,0.09)", padding: "0 80px", background: "#fff" }}>
         {TABS.map(t => (
           <button key={t} onClick={() => setTab(t)}
@@ -58,53 +49,82 @@ export default function TowerRising() {
       </div>
 
       <AnimatePresence mode="wait">
+
+        {/* ── PURPOSEFUL DESIGN ── */}
         {tab === "Purposeful Design" && (
           <motion.div key="design" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-            <Section>
-              <Rv><Tag>Design Philosophy</Tag></Rv>
-              <Rv delay={0.1}><H2>A Tower Shaped by Climate, Craft, and Ambition</H2></Rv>
-              <Rv delay={0.2}>
-                <Body style={{ maxWidth: 720, marginBottom: 28 }}>
-                  Designed by Skidmore, Owings & Merrill, its asymmetrical form is generated by a simple operation of removal — creating a dynamic silhouette that maximises waterfront views and minimises heat exposure. The solid southern façade, clad in limestone, acts as a passive shield against intense sun, while glazed elevations frame dramatic vistas of Kuwait City and the Arabian Gulf.
-                </Body>
-              </Rv>
-              <Rv delay={0.3}>
-                <Body style={{ maxWidth: 720, marginBottom: 28 }}>
-                  Construction began in 2005 and concluded in 2011, resulting in a tower that stands as both an architectural icon and a centre for business excellence.
-                </Body>
-              </Rv>
-              <Rv delay={0.4}>
-                <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "24px", fontStyle: "italic", fontWeight: 300, color: "#B2B2B2", lineHeight: 1.6, maxWidth: 560 }}>
-                  "A tower shaped by climate, craft, and ambition."
-                </p>
-              </Rv>
-            </Section>
 
-            {/* Light & Vision */}
-            <Section bg="#FAFAFA">
+            {/* Full-bleed photo hero */}
+            <div style={{ position: "relative", height: 560, overflow: "hidden" }}>
+              <img
+                src="/assets/tower-street.jpg"
+                alt="Al Hamra Tower — street view"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "60px 80px" }}>
+                <Rv>
+                  <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 16 }}>
+                    Purposeful Design · SOM Architecture
+                  </p>
+                  <h2 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(28px,3.5vw,52px)", fontWeight: 200, color: "#fff", lineHeight: 1.12, maxWidth: 560 }}>
+                    A Tower Shaped by<br /><strong style={{ fontWeight: 500 }}>Climate, Craft</strong><br />and Ambition
+                  </h2>
+                </Rv>
+              </div>
+              <div style={{ position: "absolute", bottom: 16, right: 24, fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
+                Photo: Dave Burk · SOM
+              </div>
+            </div>
+
+            <Section>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
                 <div>
-                  <Rv><Tag>Light Meets Horizon</Tag></Rv>
-                  <Rv delay={0.1}><H2>Designed to See Further</H2></Rv>
+                  <Rv><Tag>Design Philosophy</Tag></Rv>
+                  <Rv delay={0.1}><H2>Form Generated by Removal</H2></Rv>
                   <Rv delay={0.2}>
                     <Body>
-                      From its height, the tower commands both sun and sea. As dawn breaks over the Arabian Gulf and dusk descends upon the city, light traverses its sculpted form, casting measured brilliance across glass and stone.
+                      Designed by Skidmore, Owings & Merrill, its asymmetrical form is generated by a simple operation of removal — creating a dynamic silhouette that maximises waterfront views and minimises heat exposure. The solid southern façade, clad in limestone, acts as a passive shield against intense sun, while glazed elevations frame dramatic vistas of Kuwait City and the Arabian Gulf.
                     </Body>
                   </Rv>
                   <Rv delay={0.3}>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginTop: 40 }}>
-                      <span style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 56, fontWeight: 300, color: "#1D1D1B" }}>80+</span>
-                      <span style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2" }}>km visibility range</span>
-                    </div>
+                    <Body style={{ marginTop: 16 }}>
+                      Construction began in 2005 and concluded in 2011, resulting in a tower that stands as both an architectural icon and a centre for business excellence.
+                    </Body>
+                  </Rv>
+                  <Rv delay={0.4}>
+                    <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "22px", fontStyle: "italic", fontWeight: 300, color: "#B2B2B2", lineHeight: 1.6, maxWidth: 480, marginTop: 36 }}>
+                      "A tower shaped by climate, craft, and ambition."
+                    </p>
                   </Rv>
                 </div>
                 <div>
-                  <Rv delay={0.15}><Tag>Legacy in the Heart of the City</Tag></Rv>
-                  <Rv delay={0.25}><H2>2005–2011</H2></Rv>
-                  <Rv delay={0.35}>
-                    <Body>
-                      Situated in the commercial heart of Kuwait City, Al Hamra Tower anchors business, culture, and panoramic views of the Arabian Gulf — bridging past and present while pointing toward an ambitious future. Its sculpted geometry is not decorative — it is performance-driven.
-                    </Body>
+                  {/* Stats + drone video */}
+                  <Rv delay={0.15}>
+                    <div style={{ display: "flex", gap: 1, background: "rgba(29,29,27,0.09)", marginBottom: 1 }}>
+                      {[{ n: "80+", u: "km", l: "Visibility Range" }, { n: "2005", u: "–2011", l: "Construction Period" }].map(({ n, u, l }) => (
+                        <div key={l} style={{ background: "#fff", padding: "32px 28px", flex: 1 }}>
+                          <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 44, fontWeight: 300, color: "#1D1D1B", lineHeight: 1 }}>
+                            {n}<span style={{ fontFamily: "Jost,sans-serif", fontSize: 16, fontWeight: 200, color: "#B2B2B2" }}>{u}</span>
+                          </div>
+                          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#B2B2B2", marginTop: 8 }}>{l}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </Rv>
+                  {/* Drone video */}
+                  <Rv delay={0.25}>
+                    <div style={{ position: "relative", overflow: "hidden", background: "#0a0a09" }}>
+                      <video
+                        autoPlay muted loop playsInline preload="metadata"
+                        style={{ width: "100%", height: 260, objectFit: "cover", objectPosition: "center", display: "block", opacity: 0.92 }}
+                      >
+                        <source src="/assets/tower-drone.mp4" type="video/mp4" />
+                      </video>
+                      <div style={{ position: "absolute", bottom: 12, left: 16, fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
+                        Drone footage · Al Hamra Tower · Kuwait City
+                      </div>
+                    </div>
                   </Rv>
                 </div>
               </div>
@@ -112,25 +132,18 @@ export default function TowerRising() {
           </motion.div>
         )}
 
+        {/* ── HERITAGE ── */}
         {tab === "The Site's Heritage" && (
           <motion.div key="heritage" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
             <Section>
               <Rv><Tag>Site Heritage · Timeline</Tag></Rv>
               <Rv delay={0.1}><H2>From Souq to Skyline</H2></Rv>
               <Rv delay={0.2}><Body style={{ maxWidth: 600, marginBottom: 60 }}>The site of Al Hamra Tower carries decades of Kuwaiti cultural identity — from the original Al Hamra Cinema district to today's global landmark.</Body></Rv>
-
-              {/* Timeline */}
-              <div style={{ borderLeft: "1px solid rgba(29,29,27,0.12)", paddingLeft: 48, display: "flex", flexDirection: "column", gap: 0 }}>
+              <div style={{ borderLeft: "1px solid rgba(29,29,27,0.12)", paddingLeft: 48, display: "flex", flexDirection: "column" }}>
                 {TIMELINE.map(({ year, title, era, body }, i) => (
                   <Rv key={year} delay={i * 0.1}>
                     <div style={{ display: "flex", gap: 32, paddingBottom: 48, position: "relative" }}>
-                      {/* Dot */}
-                      <div style={{
-                        position: "absolute", left: -57, top: 4,
-                        width: 10, height: 10, borderRadius: "50%",
-                        background: "#fff", border: "1.5px solid #1D1D1B",
-                        flexShrink: 0,
-                      }} />
+                      <div style={{ position: "absolute", left: -57, top: 4, width: 10, height: 10, borderRadius: "50%", background: "#fff", border: "1.5px solid #1D1D1B" }} />
                       <div style={{ minWidth: 80 }}>
                         <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 32, fontWeight: 300, color: "#1D1D1B", lineHeight: 1 }}>{year}</div>
                         <div style={{ fontFamily: "Jost,sans-serif", fontSize: "8.5px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B2B2B2", marginTop: 4 }}>{era}</div>
@@ -147,6 +160,7 @@ export default function TowerRising() {
           </motion.div>
         )}
 
+        {/* ── PRESENT DAY ── */}
         {tab === "Present Day" && (
           <motion.div key="present" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
             <Section>
@@ -156,9 +170,7 @@ export default function TowerRising() {
                 {QUOTES.map(({ org, quote }, i) => (
                   <Rv key={org} delay={i * 0.12}>
                     <div style={{ background: "#fff", padding: "40px 36px" }}>
-                      <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "18px", fontStyle: "italic", fontWeight: 300, color: "#1D1D1B", lineHeight: 1.7, marginBottom: 24 }}>
-                        "{quote}"
-                      </div>
+                      <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "18px", fontStyle: "italic", fontWeight: 300, color: "#1D1D1B", lineHeight: 1.7, marginBottom: 24 }}>"{quote}"</div>
                       <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B2B2B2" }}>{org}</div>
                     </div>
                   </Rv>
@@ -169,12 +181,7 @@ export default function TowerRising() {
         )}
       </AnimatePresence>
 
-      <DarkBand
-        title="Explore the Design &amp; Engineering"
-        subtitle="See how SOM's engineering precision transformed this bold vision into a permanent skyline landmark."
-        ctaLabel="Design That Performs"
-        ctaHref="/tower/design"
-      />
+      <DarkBand title="Explore the Design &amp; Engineering" subtitle="See how SOM's engineering precision transformed this bold vision into a permanent skyline landmark." ctaLabel="Design That Performs" ctaHref="/tower/design" />
     </PageLayout>
   );
 }
