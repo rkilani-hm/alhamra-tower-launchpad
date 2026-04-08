@@ -64,14 +64,21 @@ export function Architecture() {
     <section id="arch" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 900 }}>
 
       {/* LEFT — sketch + callouts */}
-      <div ref={ref} style={{ background: "#F7F6F4", position: "relative", display: "flex", alignItems: "flex-end", justifyContent: "center", padding: "80px 40px 0", borderRight: "1px solid rgba(29,29,27,0.09)", overflow: "hidden" }}>
+      <div ref={ref} style={{ background: "#F7F6F4", position: "relative", borderRight: "1px solid rgba(29,29,27,0.09)", overflow: "hidden" }}>
+        {/* Dot grid */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle,rgba(29,29,27,0.05) 1px,transparent 1px)", backgroundSize: "30px 30px", pointerEvents: "none" }} />
-        <div style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+        {/* Image — fills full container height, width scales proportionally */}
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "hidden" }}>
           <img
             src="/assets/arch-sketch.jpg"
             alt="Al Hamra Tower — Architecture Drawing"
             style={{
-              maxWidth: "82%", maxHeight: "88vh", objectFit: "contain", objectPosition: "bottom center", display: "block",
+              height: "100%",
+              width: "auto",
+              maxWidth: "none",
+              objectFit: "contain",
+              objectPosition: "bottom center",
+              display: "block",
               clipPath: revealed ? "inset(0% 0 0 0)" : "inset(100% 0 0 0)",
               transition: "clip-path 3s cubic-bezier(0.4, 0, 0.15, 1)",
             }}
