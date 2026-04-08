@@ -144,6 +144,94 @@ export default function TowerDesign() {
         </div>
       </Section>
 
+      {/* Architectural section drawing */}
+      <Section bg="#FAFAFA">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+          {/* Left — label + legend */}
+          <div>
+            <Rv><Tag>Architectural Section · Floor Distribution</Tag></Rv>
+            <Rv delay={0.1}><H2>80 Floors. Three Distinct Zones.</H2></Rv>
+            <Rv delay={0.2}>
+              <Body>
+                The tower is organised into three vertical zones — Low Rise, Mid Rise, and High Rise — each served by dedicated sky lobbies and elevator banks. Mechanical and refuge floors punctuate the ascent, while executive and sky lounge levels crown the structure at the summit.
+              </Body>
+            </Rv>
+
+            <Rv delay={0.3}>
+              <div style={{ marginTop: 40, display: "flex", flexDirection: "column" as const, gap: 0 }}>
+                {[
+                  { zone: "Low Rise",  floors: "G – 29",  color: "#F5E6D0", desc: "Office floors + Sky Lobby 1 at Level 30" },
+                  { zone: "Mid Rise",  floors: "30 – 53", color: "#F0C8A0", desc: "Office floors + Sky Lobby 2 at Level 53" },
+                  { zone: "High Rise", floors: "55 – 75", color: "#E8B080", desc: "Office floors + Executive levels" },
+                  { zone: "Executive", floors: "74 – 75", color: "#1D1D1B", desc: "Executive suites — pinnacle of the tower" },
+                  { zone: "Mechanical",floors: "27 · 52 · 77", color: "#888", desc: "Dedicated mechanical plant rooms" },
+                  { zone: "Refuge",    floors: "29 · 54",    color: "#B2B2B2", desc: "Emergency evacuation refuge floors" },
+                ].map(({ zone, floors, color, desc }) => (
+                  <div key={zone} style={{
+                    display: "flex", alignItems: "flex-start", gap: 16,
+                    padding: "14px 0",
+                    borderBottom: "1px solid rgba(29,29,27,0.07)",
+                  }}>
+                    <div style={{
+                      width: 14, height: 14, background: color, flexShrink: 0,
+                      border: "1px solid rgba(29,29,27,0.15)", marginTop: 2,
+                    }} />
+                    <div>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
+                        <span style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", fontWeight: 500, color: "#1D1D1B" }}>{zone}</span>
+                        <span style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "16px", fontWeight: 300, color: "#B2B2B2" }}>Floors {floors}</span>
+                      </div>
+                      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#6B6B6B", marginTop: 3 }}>{desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Rv>
+
+            {/* Legend */}
+            <Rv delay={0.4}>
+              <div style={{ display: "flex", gap: 24, marginTop: 32 }}>
+                {[
+                  { color: "#F5D5B0", label: "Single Tenant" },
+                  { color: "#E8907A", label: "3 Tenants" },
+                ].map(({ color, label }) => (
+                  <div key={label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ width: 20, height: 14, background: color, border: "1px solid rgba(29,29,27,0.15)" }} />
+                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10.5px", color: "#6B6B6B" }}>{label}</span>
+                  </div>
+                ))}
+              </div>
+            </Rv>
+          </div>
+
+          {/* Right — the actual architectural drawing */}
+          <Rv delay={0.2}>
+            <div style={{
+              background: "#fff",
+              border: "1px solid rgba(29,29,27,0.09)",
+              padding: "32px 24px",
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "center",
+            }}>
+              <img
+                src="/assets/arch-section.png"
+                alt="Al Hamra Tower — Architectural Section Drawing showing all 80 floors"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  objectFit: "contain",
+                }}
+              />
+            </div>
+            <div style={{ marginTop: 12, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#B2B2B2", textAlign: "center" }}>
+              Architectural Section · Al Hamra Business Tower · SOM · Kuwait City
+            </div>
+          </Rv>
+        </div>
+      </Section>
+
       {/* Technical specs */}
       <Section>
         <Rv><Tag>Technical Specifications</Tag></Rv>
