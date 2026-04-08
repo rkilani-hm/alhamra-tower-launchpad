@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FloorPlanViewer } from "@/components/shared/FloorPlanViewer";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
@@ -241,6 +242,24 @@ export function LeasingOpportunities() {
           ))}
         </div>
       </Section>
+
+      {/* Floor Plan Viewer */}
+      <div>
+        <div style={{ padding: "64px 80px 0" }}>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 16 }}>
+            Floor Plans · Al Hamra Complex
+          </div>
+          <h2 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
+            Ground, Mezzanine &amp; Basement Plans
+          </h2>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "14px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.85, maxWidth: 560 }}>
+            Full floor plans for the Al Hamra complex retail and parking levels. Contact the leasing team for office floor configurations.
+          </p>
+        </div>
+        <div style={{ marginTop: 40 }}>
+          <FloorPlanViewer />
+        </div>
+      </div>
 
       <DarkBand title="Secure Your Position" subtitle="Contact our leasing team for availability, floor plans, and pricing." ctaLabel="Submit Inquiry" ctaHref="/leasing/inquiry" />
     </PageLayout>
