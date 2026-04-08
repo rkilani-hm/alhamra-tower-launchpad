@@ -42,7 +42,7 @@ export function Services() {
       <StatsBar stats={[{ number: "24/7", label: "Operations" }, { number: "365", label: "Days Per Year" }, { number: "6", label: "Core Building Systems" }]} />
 
       {/* Lobby entrance corridor — full bleed */}
-      <div style={{ position: "relative", style={{ height:"clamp(240px,35vw,440px)", overflow:"hidden" }} }}>
+      <div style={{ position: "relative", height:"clamp(240px,35vw,440px)", overflow: "hidden" }}>
         <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance corridor"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
@@ -121,7 +121,7 @@ export function Location() {
       ]} />
 
       {/* Full-bleed waterfront photo */}
-      <div style={{ position: "relative", style={{ height:"clamp(260px,40vw,520px)", overflow:"hidden" }} }}>
+      <div style={{ position: "relative", height:"clamp(260px,40vw,520px)", overflow: "hidden" }}>
         <img src="/assets/kuwait-waterfront.jpg" alt="Kuwait City waterfront and skyline"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
@@ -192,7 +192,7 @@ export function LeasingOpportunities() {
       <StatsBar stats={[{ number: "3.2", unit: "m", label: "Ceiling Height" }, { number: "360°", label: "Views" }, { number: "4", label: "Premium Amenities" }]} />
 
       {/* City view from office floor */}
-      <div style={{ position: "relative", style={{ height:"clamp(220px,32vw,400px)", overflow:"hidden" }} }}>
+      <div style={{ position: "relative", height:"clamp(220px,32vw,400px)", overflow: "hidden" }}>
         <img src="/assets/city-view-office.jpg" alt="Kuwait City panoramic view from office floor"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
