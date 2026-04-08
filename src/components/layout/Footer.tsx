@@ -1,30 +1,31 @@
 import { Link } from "react-router-dom";
+import { SocialIcons } from "@/components/shared/SocialIcons";
 
 const NAV = [
   {
     title: "The Tower",
     links: [
-      { label: "Overview",            href: "/tower"                   },
-      { label: "Rising with Purpose", href: "/tower/rising"            },
-      { label: "Design & Engineering",href: "/tower/design"            },
-      { label: "Awards & Recognition",href: "/tower/recognition"       },
-      { label: "Sustainability",      href: "/tower/sustainability"    },
+      { label: "Overview",             href: "/tower"                  },
+      { label: "Rising with Purpose",  href: "/tower/rising"           },
+      { label: "Design & Engineering", href: "/tower/design"           },
+      { label: "Awards & Recognition", href: "/tower/recognition"      },
+      { label: "Sustainability",       href: "/tower/sustainability"   },
     ],
   },
   {
     title: "Business",
     links: [
-      { label: "Workplace Experience",   href: "/business"                          },
-      { label: "Office Spaces",          href: "/business/office-spaces"            },
-      { label: "Vertical Transportation",href: "/business/vertical-transportation"  },
-      { label: "Connectivity",           href: "/business/connectivity"             },
+      { label: "Workplace Experience",    href: "/business"                          },
+      { label: "Office Spaces",           href: "/business/office-spaces"            },
+      { label: "Vertical Transportation", href: "/business/vertical-transportation"  },
+      { label: "Connectivity",            href: "/business/connectivity"             },
     ],
   },
   {
     title: "Experience",
     links: [
-      { label: "Services & Facilities",  href: "/services"  },
-      { label: "Location & Access",      href: "/location"  },
+      { label: "Services & Facilities", href: "/services"  },
+      { label: "Location & Access",     href: "/location"  },
     ],
   },
   {
@@ -38,15 +39,7 @@ const NAV = [
   },
 ];
 
-const SOCIAL = [
-  { name: "Instagram", url: "https://www.instagram.com/alhamratower"                         },
-  { name: "Facebook",  url: "https://www.facebook.com/AlHamraTowerofficial"                  },
-  { name: "X",         url: "https://x.com/AlHamraTower"                                     },
-  { name: "LinkedIn",  url: "https://www.linkedin.com/company/al-hamra-real-estate-company"  },
-  { name: "YouTube",   url: "https://www.youtube.com/@alhamratower"                          },
-];
-
-const link: React.CSSProperties = {
+const navLink: React.CSSProperties = {
   display: "block",
   fontFamily: "Jost, sans-serif",
   fontSize: "11.5px",
@@ -60,39 +53,37 @@ const link: React.CSSProperties = {
 export function Footer() {
   return (
     <footer style={{ borderTop: "1px solid rgba(29,29,27,0.09)", background: "#fff" }}>
+
+      {/* Sitemap grid */}
       <div className="footer-sitemap">
-        {/* Logo + tagline */}
+        {/* Logo + tagline + social icons */}
         <div>
           <img
-            src="/assets/logo.jpg"
-            alt="Al Hamra"
+            src="/assets/logo.jpg" alt="Al Hamra"
             style={{ height: 44, width: "auto", objectFit: "contain", marginBottom: 20 }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+            onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#B2B2B2", lineHeight: 1.8, maxWidth: 200 }}>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#B2B2B2", lineHeight: 1.8, maxWidth: 200, marginBottom: 24 }}>
             Kuwait's most iconic commercial landmark. 412 metres. Sharq, Kuwait City.
           </p>
-          <div style={{ display: "flex", gap: 16, marginTop: 24, flexWrap: "wrap" }}>
-            {SOCIAL.map(({ name, url }) => (
-              <a key={name} href={url} target="_blank" rel="noreferrer"
-                style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B2B2B2", textDecoration: "none", transition: "color 0.2s" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#B2B2B2")}
-              >{name}</a>
-            ))}
-          </div>
+          {/* Social icons row */}
+          <SocialIcons variant="footer" color="#B2B2B2" hoverColor="#1D1D1B" />
         </div>
 
         {/* Nav columns */}
         {NAV.map(({ title, links }) => (
           <div key={title}>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#1D1D1B", fontWeight: 500, marginBottom: 20 }}>{title}</div>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#1D1D1B", fontWeight: 500, marginBottom: 20 }}>
+              {title}
+            </div>
             {links.map(({ label, href }) => (
               <Link key={label} to={href}
-                style={link}
+                style={navLink}
                 onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
                 onMouseLeave={e => (e.currentTarget.style.color = "#B2B2B2")}
-              >{label}</Link>
+              >
+                {label}
+              </Link>
             ))}
           </div>
         ))}
@@ -103,7 +94,7 @@ export function Footer() {
         <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#B2B2B2", letterSpacing: "0.1em" }}>
           © 2026 Al Hamra Tower. All rights reserved. — Kuwait City, Kuwait
         </span>
-        <div style={{ display: "flex", gap: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
           {["Privacy Policy", "Terms of Use"].map(l => (
             <Link key={l} to="#"
               style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#B2B2B2", textDecoration: "none", transition: "color 0.2s" }}

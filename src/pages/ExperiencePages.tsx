@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FloorPlanViewer } from "@/components/shared/FloorPlanViewer";
+import { SocialIcons } from "@/components/shared/SocialIcons";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
@@ -458,27 +459,7 @@ export function Contact() {
           <Rv>
             <Tag>Social Media</Tag>
             <H2>Follow Al Hamra Tower</H2>
-            {[
-              { name: "Instagram", url: "https://www.instagram.com/alhamratower"                          },
-              { name: "Facebook",  url: "https://www.facebook.com/AlHamraTowerofficial"                   },
-              { name: "X (Twitter)",url: "https://x.com/AlHamraTower"                                    },
-              { name: "LinkedIn",  url: "https://www.linkedin.com/company/al-hamra-real-estate-company"  },
-              { name: "YouTube",   url: "https://www.youtube.com/@alhamratower"                           },
-            ].map(({ name, url }) => (
-              <a key={name} href={url} target="_blank" rel="noreferrer"
-                style={{
-                  display: "flex", alignItems: "center", gap: 16, padding: "16px 0",
-                  borderBottom: "1px solid rgba(29,29,27,0.07)", textDecoration: "none",
-                  fontFamily: "Jost,sans-serif", fontSize: "13px", color: "#1D1D1B",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#B2B2B2")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#1D1D1B")}
-              >
-                <span style={{ width: 20, height: 1, background: "rgba(29,29,27,0.15)" }} />
-                {name}
-              </a>
-            ))}
+            <SocialIcons variant="contact" />
           </Rv>
           <Rv delay={0.15}>
             <Tag>Leasing Team</Tag>
