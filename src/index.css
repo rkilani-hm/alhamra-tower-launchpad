@@ -358,3 +358,12 @@
     order: -1;
   }
 }
+
+/* ── Hero (full-viewport cinematic) ─────── */
+/* Hero is now full-bleed — no grid split needed */
+/* Mobile: hide decorative elements, keep text + CTAs */
+@media (max-width: 768px) {
+  .hero-stat-strip  { display: none !important; }
+  .hero-side-label  { display: none !important; }
+  .hero-credit      { display: none !important; }
+}
