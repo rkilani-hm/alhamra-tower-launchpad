@@ -44,7 +44,7 @@ const navLink: React.CSSProperties = {
   fontFamily: "Jost, sans-serif",
   fontSize: "11.5px",
   fontWeight: 300,
-  color: "#B2B2B2",
+  color: "#767676",
   textDecoration: "none",
   marginBottom: 10,
   transition: "color 0.2s",
@@ -63,24 +63,24 @@ export function Footer() {
             style={{ height: 44, width: "auto", objectFit: "contain", marginBottom: 20 }}
             onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#B2B2B2", lineHeight: 1.8, maxWidth: 200, marginBottom: 24 }}>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#767676", lineHeight: 1.8, maxWidth: 200, marginBottom: 24 }}>
             Kuwait's most iconic commercial landmark. 412 metres. Sharq, Kuwait City.
           </p>
           {/* Social icons row */}
-          <SocialIcons variant="footer" color="#B2B2B2" hoverColor="#1D1D1B" />
+          <SocialIcons variant="footer" color="#767676" hoverColor="#1D1D1B" />
         </div>
 
         {/* Nav columns */}
         {NAV.map(({ title, links }) => (
           <div key={title}>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#1D1D1B", fontWeight: 500, marginBottom: 20 }}>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#1D1D1B", fontWeight: 500, marginBottom: 20 }}>
               {title}
             </div>
             {links.map(({ label, href }) => (
               <Link key={label} to={href}
                 style={navLink}
                 onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#B2B2B2")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#767676")}
               >
                 {label}
               </Link>
@@ -91,15 +91,15 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="footer-bottom" style={{ borderTop: "1px solid rgba(29,29,27,0.07)" }}>
-        <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#B2B2B2", letterSpacing: "0.1em" }}>
+        <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#767676", letterSpacing: "0.1em" }}>
           © 2026 Al Hamra Tower. All rights reserved. — Kuwait City, Kuwait
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
           {["Privacy Policy", "Terms of Use"].map(l => (
-            <Link key={l} to="#"
-              style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#B2B2B2", textDecoration: "none", transition: "color 0.2s" }}
+            <Link key={l} to={l === "Privacy Policy" ? "/privacy" : "/terms"}
+              style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#767676", textDecoration: "none", transition: "color 0.2s" }}
               onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#B2B2B2")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#767676")}
             >{l}</Link>
           ))}
         </div>

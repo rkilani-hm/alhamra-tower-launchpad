@@ -77,7 +77,7 @@ export default function TowerSustainability() {
                 }}>
                   <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 22, fontWeight: 300, color: "#1D1D1B", minWidth: 90 }}>{level}</div>
                   <div style={{
-                    fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase",
+                    fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
                     padding: "4px 12px", background: isRefuge ? "#1D1D1B" : "rgba(29,29,27,0.07)",
                     color: isRefuge ? "#fff" : "#6B6B6B", minWidth: 130, textAlign: "center",
                   }}>{type}</div>

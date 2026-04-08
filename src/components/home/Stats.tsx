@@ -39,7 +39,7 @@ export function Stats() {
                     fontFamily: "Jost, sans-serif",
                     fontSize: 24,
                     fontWeight: 200,
-                    color: "#B2B2B2",
+                    color: "#767676",
                   }}
                 >
                   {unit}
@@ -49,10 +49,10 @@ export function Stats() {
             <div
               style={{
                 fontFamily: "Jost, sans-serif",
-                fontSize: "9.5px",
+                fontSize: "10.5px",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                color: "#B2B2B2",
+                color: "#767676",
               }}
             >
               {label}

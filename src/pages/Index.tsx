@@ -15,7 +15,7 @@ export default function Index() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <Stats />
         <Marquee />

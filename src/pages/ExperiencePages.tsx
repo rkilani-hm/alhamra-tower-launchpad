@@ -48,7 +48,7 @@ export function Services() {
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
         <div style={{ position: "absolute", bottom: 44, left: 80, right: 80 }}>
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
             Al Hamra Business Tower · Grand Lobby · 24/7 Operations
           </p>
           <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,34px)", fontWeight: 200, color: "#fff", lineHeight: 1.3 }}>
@@ -84,7 +84,7 @@ export function Services() {
               onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
             />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "14px 18px 12px" }}>
-              <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</span>
+              <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</span>
             </div>
           </div>
         ))}
@@ -128,12 +128,12 @@ export function Location() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, left: 80, right: 80, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>Al Hamra Tower · Sharq · Kuwait City</div>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>Al Hamra Tower · Sharq · Kuwait City</div>
             <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.5vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.2 }}>
               Kuwait City's<br /><strong style={{ fontWeight: 500 }}>Commercial Heart</strong>
             </h3>
           </div>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
             Photo: Dave Burk · SOM
           </div>
         </div>
@@ -154,7 +154,7 @@ export function Location() {
                   { label: "Transport",   value: "Direct access to major arterial roads" },
                 ].map(({ label, value }, i) => (
                   <div key={label} style={{ display: "flex", gap: 24, padding: "14px 0", borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#B2B2B2", minWidth: 110, flexShrink: 0, paddingTop: 2 }}>{label}</div>
+                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676", minWidth: 110, flexShrink: 0, paddingTop: 2 }}>{label}</div>
                     <div style={{ fontFamily: "Jost,sans-serif", fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
                   </div>
                 ))}
@@ -249,12 +249,12 @@ export function LeasingOpportunities() {
           {LEASING_CONFIGS.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 14 }}>Configuration {code}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>Configuration {code}</div>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "36px", fontWeight: 300, color: "#B2B2B2", lineHeight: 1, marginBottom: 20 }}>{size}</div>
+                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "36px", fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 20 }}>{size}</div>
                 {bullets.map(b => (
                   <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                    <span style={{ color: "#B2B2B2" }}>—</span>
+                    <span style={{ color: "#767676" }}>—</span>
                     <span style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
                   </div>
                 ))}
@@ -285,7 +285,7 @@ export function LeasingOpportunities() {
       {/* Floor Plan Viewer */}
       <div>
         <div style={{ padding: "64px 80px 0" }}>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 16 }}>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>
             Floor Plans · Al Hamra Complex
           </div>
           <h2 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
@@ -348,20 +348,37 @@ export function LeasingInquiry() {
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }}>
                 {(["name","email","subject"] as const).map(field => (
                   <div key={field}>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 8 }}>{field}</div>
+                    <label
+                      htmlFor={`inquiry-${field}`}
+                      style={{ display: "block", fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
+                    >
+                      {field}
+                    </label>
                     <input
+                      id={`inquiry-${field}`}
+                      name={field}
                       type={field === "email" ? "email" : "text"}
                       required
+                      autoComplete={field === "email" ? "email" : field === "name" ? "name" : "off"}
                       value={form[field]}
                       onChange={e => setForm(p => ({ ...p, [field]: e.target.value }))}
                       style={inputStyle}
+                      aria-required="true"
                     />
                   </div>
                 ))}
                 <div>
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 8 }}>Message</div>
+                  <label
+                    htmlFor="inquiry-message"
+                    style={{ display: "block", fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
+                  >
+                    Message
+                  </label>
                   <textarea
+                    id="inquiry-message"
+                    name="message"
                     required rows={5}
+                    aria-required="true"
                     value={form.message}
                     onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                     style={{ ...inputStyle, resize: "none" }}
@@ -392,7 +409,7 @@ export function LeasingInquiry() {
                 { label: "Hours",   value: "Sunday – Thursday · 8:00 AM – 6:00 PM" },
               ].map(({ label, value }) => (
                 <div key={label} style={{ padding: "18px 0", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 6 }}>{label}</div>
+                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#767676", marginBottom: 6 }}>{label}</div>
                   <div style={{ fontFamily: "Jost,sans-serif", fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
                 </div>
               ))}
@@ -438,7 +455,7 @@ export function Downloads() {
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
                     <span style={{ fontFamily: "Jost,sans-serif", fontSize: "15px", fontWeight: 500, color: "#1D1D1B" }}>{title}</span>
-                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B2B2B2", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}>{format} · {size}</span>
+                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}>{format} · {size}</span>
                   </div>
                   <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12.5px", color: "#6B6B6B" }}>{desc}</div>
                 </div>
@@ -488,7 +505,7 @@ export function Contact() {
             { label: "Address", value: "Al Hamra Tower, Sharq, Kuwait City, Kuwait" },
           ].map(({ label, value }) => (
             <div key={label} style={{ background: "#fff", padding: "44px 36px" }}>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 14 }}>{label}</div>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>{label}</div>
               <div style={{ fontFamily: "Jost,sans-serif", fontSize: "15px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
             </div>
           ))}

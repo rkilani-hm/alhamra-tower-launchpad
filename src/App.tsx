@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes }     from "react-router-dom";
+import { MotionConfig }                       from "framer-motion";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { Toaster }         from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -33,36 +34,43 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          {/* Homepage */}
-          <Route path="/"                              element={<Index />} />
+        {/* W1: Skip to main content — keyboard accessibility */}
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
+        {/* C4: Respect OS reduced-motion preference for all Framer Motion */}
+        <MotionConfig reducedMotion="user">
+          <ScrollToTop />
+          <Routes>
+            {/* Homepage */}
+            <Route path="/"                               element={<Index />} />
 
-          {/* Tower */}
-          <Route path="/tower"                         element={<TowerOverview />} />
-          <Route path="/tower/rising"                  element={<TowerRising />} />
-          <Route path="/tower/design"                  element={<TowerDesign />} />
-          <Route path="/tower/recognition"             element={<TowerAwards />} />
-          <Route path="/tower/sustainability"          element={<TowerSustainability />} />
+            {/* Tower */}
+            <Route path="/tower"                          element={<TowerOverview />} />
+            <Route path="/tower/rising"                   element={<TowerRising />} />
+            <Route path="/tower/design"                   element={<TowerDesign />} />
+            <Route path="/tower/recognition"              element={<TowerAwards />} />
+            <Route path="/tower/sustainability"           element={<TowerSustainability />} />
 
-          {/* Business */}
-          <Route path="/business"                      element={<WorkplaceExperience />} />
-          <Route path="/business/office-spaces"        element={<OfficeSpaces />} />
-          <Route path="/business/vertical-transportation" element={<VerticalTransportation />} />
-          <Route path="/business/connectivity"         element={<Connectivity />} />
+            {/* Business */}
+            <Route path="/business"                       element={<WorkplaceExperience />} />
+            <Route path="/business/office-spaces"         element={<OfficeSpaces />} />
+            <Route path="/business/vertical-transportation" element={<VerticalTransportation />} />
+            <Route path="/business/connectivity"          element={<Connectivity />} />
 
-          {/* Experience */}
-          <Route path="/services"                      element={<Services />} />
-          <Route path="/location"                      element={<Location />} />
+            {/* Experience */}
+            <Route path="/services"                       element={<Services />} />
+            <Route path="/location"                       element={<Location />} />
 
-          {/* Leasing */}
-          <Route path="/leasing"                       element={<LeasingOpportunities />} />
-          <Route path="/leasing/inquiry"               element={<LeasingInquiry />} />
-          <Route path="/leasing/downloads"             element={<Downloads />} />
-          <Route path="/leasing/contact"               element={<Contact />} />
+            {/* Leasing */}
+            <Route path="/leasing"                        element={<LeasingOpportunities />} />
+            <Route path="/leasing/inquiry"                element={<LeasingInquiry />} />
+            <Route path="/leasing/downloads"              element={<Downloads />} />
+            <Route path="/leasing/contact"                element={<Contact />} />
 
-          <Route path="*"                              element={<NotFound />} />
-        </Routes>
+            <Route path="*"                               element={<NotFound />} />
+          </Routes>
+        </MotionConfig>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

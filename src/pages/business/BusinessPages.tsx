@@ -36,7 +36,7 @@ export function WorkplaceExperience() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.15) 0%, rgba(29,29,27,0.65) 100%)" }} />
         <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
           <Rv>
-            <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>Grand Lobby · 24m Column-Free</p>
+            <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>Grand Lobby · 24m Column-Free</p>
             <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, maxWidth: 560 }}>
               An arrival experience<br /><strong style={{ fontWeight: 500 }}>befitting Kuwait's tallest building</strong>
             </h3>
@@ -65,7 +65,7 @@ export function WorkplaceExperience() {
                 <img src="/assets/office-corridor.jpg" alt="Al Hamra office corridor — limestone finishes"
                   style={{ width: "100%", height: 320, objectFit: "cover", objectPosition: "center center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "16px 20px 14px" }}>
-                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
                     Office Corridor · Jura Limestone Finishes
                   </span>
                 </div>
@@ -74,7 +74,7 @@ export function WorkplaceExperience() {
                 <img src="/assets/city-view-office.jpg" alt="Kuwait City view from office floor"
                   style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "12px 20px 12px" }}>
-                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
                     360° Views · Kuwait City & Arabian Gulf
                   </span>
                 </div>
@@ -126,7 +126,7 @@ export function OfficeSpaces() {
               <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(28px,4vw,40px)", fontWeight: 300, color: "#fff", lineHeight: 1 }}>
                 {n}<span style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(11px,1.3vw,14px)", fontWeight: 200, color: "rgba(255,255,255,0.55)" }}>{u}</span>
               </div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "8.5px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 6 }}>{l}</div>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 6 }}>{l}</div>
             </div>
           ))}
         </div>
@@ -140,12 +140,12 @@ export function OfficeSpaces() {
           {CONFIGS.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 14 }}>Configuration {code}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>Configuration {code}</div>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "36px", fontWeight: 300, color: "#B2B2B2", lineHeight: 1, marginBottom: 20 }}>{size}</div>
+                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "36px", fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 20 }}>{size}</div>
                 {bullets.map(b => (
                   <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                    <span style={{ color: "#B2B2B2" }}>—</span>
+                    <span style={{ color: "#767676" }}>—</span>
                     <span style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
                   </div>
                 ))}
@@ -162,7 +162,7 @@ export function OfficeSpaces() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
         <div className="ah-section" style={{ position: "absolute", top: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column", justifyContent: "center", background: "transparent" }}>
           <Rv>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>Arrival Experience</div>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>Arrival Experience</div>
             <h2 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,3vw,44px)", fontWeight: 200, color: "#fff", lineHeight: 1.12, maxWidth: 480, marginBottom: 20 }}>
               A 24-metre column-free lobby.<br /><strong style={{ fontWeight: 500 }}>Kuwait's most prestigious address.</strong>
             </h2>
@@ -171,7 +171,7 @@ export function OfficeSpaces() {
             </p>
           </Rv>
         </div>
-        <div style={{ position: "absolute", bottom: 16, right: 24, fontFamily: "Jost,sans-serif", fontSize: "7.5px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
+        <div style={{ position: "absolute", bottom: 16, right: 24, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
           Grand Lobby · Al Hamra Tower
         </div>
       </div>
@@ -192,7 +192,7 @@ export function OfficeSpaces() {
                 onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
               />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(29,29,27,0.65) 0%, transparent 55%)" }} />
-              <div style={{ position: "absolute", bottom: 12, left: 14, fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</div>
+              <div style={{ position: "absolute", bottom: 12, left: 14, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</div>
             </div>
           </Rv>
         ))}
@@ -207,7 +207,7 @@ export function OfficeSpaces() {
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "24px 20px 18px" }}>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>South Corridor</div>
-                <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
+                <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
                   Jura Limestone Finishes · Sky-Bridge Level
                 </span>
               </div>
@@ -218,7 +218,7 @@ export function OfficeSpaces() {
             <Rv delay={0.1}><H2>Workspaces Designed to Adapt</H2></Rv>
             <Rv delay={0.2}><FeatureGrid features={FLEX_FEATURES} /></Rv>
             <Rv delay={0.3}>
-              <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#B2B2B2", marginTop: 20, fontStyle: "italic" }}>
+              <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#767676", marginTop: 20, fontStyle: "italic" }}>
                 All configurations subject to availability. Contact the leasing team for detailed floor plans.
               </p>
             </Rv>
@@ -233,7 +233,7 @@ export function OfficeSpaces() {
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Night Presence</div>
-            <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
+            <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
               North Entrance · After Hours
             </span>
           </div>
@@ -243,7 +243,7 @@ export function OfficeSpaces() {
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Lamella Vault</div>
-            <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
+            <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
               Lobby Ceiling · Concrete Barrel Vault
             </span>
           </div>
@@ -253,7 +253,7 @@ export function OfficeSpaces() {
       {/* Floor Plan Viewer */}
       <div>
         <div className="ah-section" style={{ paddingBottom: 0 }}>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 16 }}>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>
             Floor Plans · Al Hamra Complex
           </div>
           <h2 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
@@ -350,7 +350,7 @@ export function VerticalTransportation() {
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
         <div className="photo-overlay-text" style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>
             Lobby Level · VIP Elevator Hall
           </p>
           <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.25 }}>
@@ -367,7 +367,7 @@ export function VerticalTransportation() {
             <Rv key={floor} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "36px 28px", height: "100%" }}>
                 <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1, marginBottom: 8 }}>{floor}</div>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 12 }}>{label}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>{label}</div>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
               </div>
             </Rv>
@@ -451,20 +451,20 @@ export function Connectivity() {
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
                 onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
               >
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", color: "#B2B2B2", letterSpacing: "0.2em", marginBottom: 10 }}>{number}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#767676", letterSpacing: "0.2em", marginBottom: 10 }}>{number}</div>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8, letterSpacing: "0.04em" }}>{title}</div>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.8, marginBottom: url ? 14 : 0 }}>{body}</div>
                 {url && (
                   <a href={url} target="_blank" rel="noreferrer"
                     style={{
                       display: "inline-flex", alignItems: "center", gap: 8,
-                      fontFamily: "Jost,sans-serif", fontSize: "9.5px",
+                      fontFamily: "Jost,sans-serif", fontSize: "10.5px",
                       letterSpacing: "0.2em", textTransform: "uppercase",
                       color: "#1D1D1B", textDecoration: "none",
                       borderBottom: "1px solid rgba(29,29,27,0.25)",
                       paddingBottom: 2, transition: "border-color 0.2s, color 0.2s",
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.color = "#B2B2B2"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.1)"; }}
+                    onMouseEnter={e => { e.currentTarget.style.color = "#767676"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.1)"; }}
                     onMouseLeave={e => { e.currentTarget.style.color = "#1D1D1B"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.25)"; }}
                   >
                     Visit alhamracenter.com

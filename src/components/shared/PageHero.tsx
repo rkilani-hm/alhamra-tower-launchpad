@@ -22,22 +22,22 @@ const S = {
     gap: 8,
     marginBottom: 40,
     fontFamily: "Jost, sans-serif",
-    fontSize: "9px",
+    fontSize: "10px",
     letterSpacing: "0.25em",
     textTransform: "uppercase" as const,
   },
   crumbLink: {
-    color: "#B2B2B2",
+    color: "#767676",
     textDecoration: "none",
     transition: "color 0.2s",
   },
   crumbSep: { color: "rgba(29,29,27,0.2)", fontSize: "10px" },
   tag: {
     fontFamily: "Jost, sans-serif",
-    fontSize: "9.5px",
+    fontSize: "10.5px",
     letterSpacing: "0.4em",
     textTransform: "uppercase" as const,
-    color: "#B2B2B2",
+    color: "#767676",
     marginBottom: 20,
     display: "flex",
     alignItems: "center",
@@ -87,7 +87,7 @@ export function PageHero({ tag, title, subtitle, crumbs }: Props) {
                 <Link
                   to={c.href} style={S.crumbLink}
                   onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "#B2B2B2")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "#767676")}
                 >{c.label}</Link>
               </span>
             ))}

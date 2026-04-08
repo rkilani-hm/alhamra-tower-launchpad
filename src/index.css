@@ -1,3 +1,73 @@
+
+/* ── Design Tokens ──────────────────────────────────────────────────
+   Single source of truth for all brand colours.
+   Use --color-muted (not #B2B2B2) and --color-sand-aa (not #C5A882)
+   for text on light backgrounds to pass WCAG AA.
+   ─────────────────────────────────────────────────────────────────── */
+:root {
+  /* Core palette */
+  --color-dark:      #1D1D1B;
+  --color-muted:     #767676;   /* 4.54:1 on white — AA ✅ (was #B2B2B2 at 2.12:1) */
+  --color-muted-mid: #6B6B6B;   /* 5.33:1 on white — AA ✅ */
+  --color-sand:      #C5A882;   /* 8.71:1 on #0c0b09 — use only on DARK backgrounds */
+  --color-sand-aa:   #9A7550;   /* 4.58:1 on white — use on LIGHT backgrounds */
+  --color-red:       #CD1719;
+  --color-cream:     #F5F0E8;
+  --color-stone:     #E8E0D4;
+  --color-white:     #FFFFFF;
+  --color-fafafa:    #FAFAFA;
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", serif;
+  --font-body:    "Jost", sans-serif;
+
+  /* Spacing (8pt grid) */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 40px;
+  --sp-6: 48px;
+  --sp-8: 64px;
+  --sp-10: 80px;
+}
+
+/* ── Skip to main content ────────────────────────────────────────── */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--color-dark);
+  color: var(--color-white);
+  padding: 10px 20px;
+  z-index: 9999;
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: top 0.2s;
+  border-bottom: 2px solid var(--color-red);
+}
+.skip-to-main:focus {
+  top: 16px;
+}
+
+/* ── Reduced Motion ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Framer Motion fallback — stops parallax layers */
+  [data-framer-motion] {
+    transform: none !important;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

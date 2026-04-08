@@ -28,9 +28,9 @@ export function StatsBar({ stats }: { stats: Stat[] }) {
             onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
           >
             <div style={{ fontFamily:"Cormorant Garamond,serif", fontSize:"clamp(36px,4vw,52px)", fontWeight:300, lineHeight:1, color:"#1D1D1B", marginBottom:8 }}>
-              {number}{unit && <span style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#B2B2B2" }}>{unit}</span>}
+              {number}{unit && <span style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#767676" }}>{unit}</span>}
             </div>
-            <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#B2B2B2" }}>{label}</div>
+            <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#767676" }}>{label}</div>
           </div>
         </Rv>
       ))}
@@ -48,7 +48,7 @@ export function FeatureGrid({ features }: { features: Feature[] }) {
           onMouseEnter={e=>((e.currentTarget as HTMLDivElement).style.background="#FAFAFA")}
           onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
         >
-          <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9px", color:"#B2B2B2", letterSpacing:"0.2em", marginBottom:10 }}>{number}</div>
+          <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", color:"#767676", letterSpacing:"0.2em", marginBottom:10 }}>{number}</div>
           <div style={{ fontFamily:"Jost,sans-serif", fontSize:"13px", fontWeight:500, color:"#1D1D1B", marginBottom:8, letterSpacing:"0.04em" }}>{title}</div>
           <div style={{ fontFamily:"Jost,sans-serif", fontSize:"12px", color:"#6B6B6B", lineHeight:1.8 }}>{body}</div>
         </div>
@@ -64,7 +64,7 @@ export function SpecTable({ specs }: { specs: Spec[] }) {
     <div>
       {specs.map(({ label, value }, i) => (
         <div key={label} style={{ display:"flex", flexWrap:"wrap", alignItems:"baseline", gap:"8px 24px", padding:"14px 0", borderBottom: i<specs.length-1 ? "1px solid rgba(29,29,27,0.07)":"none" }}>
-          <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9.5px", letterSpacing:"0.22em", textTransform:"uppercase", color:"#B2B2B2", minWidth:"clamp(130px,20vw,200px)", flexShrink:0 }}>{label}</div>
+          <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10.5px", letterSpacing:"0.22em", textTransform:"uppercase", color:"#767676", minWidth:"clamp(130px,20vw,200px)", flexShrink:0 }}>{label}</div>
           <div style={{ fontFamily:"Jost,sans-serif", fontSize:"14px", fontWeight:300, color:"#1D1D1B" }}>{value}</div>
         </div>
       ))}
@@ -94,7 +94,7 @@ export function Section({ children, bg="#fff", style }: SWProps) {
 
 /* ── SECTION TAG ─────────────────────────── */
 export function Tag({ children }: { children: ReactNode }) {
-  return <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9.5px", letterSpacing:"0.4em", textTransform:"uppercase", color:"#B2B2B2", marginBottom:20 }}>{children}</div>;
+  return <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10.5px", letterSpacing:"0.4em", textTransform:"uppercase", color:"#767676", marginBottom:20 }}>{children}</div>;
 }
 
 /* ── HEADING ─────────────────────────────── */
@@ -113,7 +113,7 @@ export function DarkBand({ title, subtitle, ctaLabel, ctaHref }: DarkBandProps) 
   return (
     <section className="dark-band" style={{ background:"#1D1D1B" }}>
       <div>
-        <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", marginBottom:16 }}>Next Step</div>
+        <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", marginBottom:16 }}>Next Step</div>
         <h3 style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(20px,2.5vw,38px)", fontWeight:200, color:"#fff", lineHeight:1.3 }} dangerouslySetInnerHTML={{ __html:title }} />
         {subtitle && <p style={{ fontFamily:"Jost,sans-serif", fontSize:"14px", fontWeight:300, color:"rgba(255,255,255,0.45)", lineHeight:1.8, marginTop:12, maxWidth:480 }}>{subtitle}</p>}
       </div>
@@ -136,7 +136,7 @@ export function AwardTable({ awards }: { awards: Award[] }) {
     <div style={{ borderTop:"1px solid rgba(29,29,27,0.09)" }}>
       <div className="award-table-row" style={{ padding:"14px 0", borderBottom:"1px solid rgba(29,29,27,0.09)" }}>
         {["Year","Award","Organisation","Notes"].map(h => (
-          <div key={h} className={h==="Notes"?"award-table-notes":h==="Organisation"?"award-table-org":""} style={{ fontFamily:"Jost,sans-serif", fontSize:"9px", letterSpacing:"0.25em", textTransform:"uppercase", color:"#B2B2B2" }}>{h}</div>
+          <div key={h} className={h==="Notes"?"award-table-notes":h==="Organisation"?"award-table-org":""} style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.25em", textTransform:"uppercase", color:"#767676" }}>{h}</div>
         ))}
       </div>
       {awards.map(({ year, award, org, notes }) => (
@@ -149,7 +149,7 @@ export function AwardTable({ awards }: { awards: Award[] }) {
             <div style={{ fontFamily:"Cormorant Garamond,serif", fontSize:"22px", fontWeight:300, color:"#1D1D1B" }}>{year}</div>
             <div style={{ fontFamily:"Jost,sans-serif", fontSize:"13px", fontWeight:400, color:"#1D1D1B" }}>{award}</div>
             <div className="award-table-org" style={{ fontFamily:"Jost,sans-serif", fontSize:"12px", color:"#6B6B6B" }}>{org}</div>
-            <div className="award-table-notes" style={{ fontFamily:"Jost,sans-serif", fontSize:"11.5px", color:"#B2B2B2", fontStyle:"italic" }}>{notes}</div>
+            <div className="award-table-notes" style={{ fontFamily:"Jost,sans-serif", fontSize:"11.5px", color:"#767676", fontStyle:"italic" }}>{notes}</div>
           </div>
         </Rv>
       ))}

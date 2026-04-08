@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const ITEMS = [
   "Best Tall Building Middle East — CTBUH 2012",
   "MIPIM Architectural Review 2013",
@@ -12,11 +14,26 @@ const ITEMS = [
 const DOUBLED = [...ITEMS, ...ITEMS];
 
 export function Marquee() {
+  const [paused, setPaused] = useState(false);
+
   return (
-    <div style={{ background: "#1D1D1B", padding: "15px 0", overflow: "hidden" }}>
+    /* W7: Pause marquee on hover or keyboard focus — WCAG 2.2.2 */
+    <div
+      style={{ background: "#1D1D1B", padding: "15px 0", overflow: "hidden" }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+      aria-label="Awards and recognitions"
+    >
       <div
         className="animate-marquee"
-        style={{ display: "flex", width: "max-content" }}
+        style={{
+          display: "flex",
+          width: "max-content",
+          animationPlayState: paused ? "paused" : "running",
+        }}
+        aria-hidden="true"
       >
         {DOUBLED.map((item, i) => (
           <div
@@ -27,11 +44,11 @@ export function Marquee() {
               gap: 28,
               padding: "0 36px",
               fontFamily: "Jost, sans-serif",
-              fontSize: "9.5px",
+              fontSize: "10.5px",
               fontWeight: 400,
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.55)",
+              color: "rgba(255,255,255,0.65)",
               whiteSpace: "nowrap",
             }}
           >

@@ -4,7 +4,8 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { Link } from "react-router-dom";
 
 /* ─── Brand tokens ─────────────────────────── */
-const SAND  = "#C5A882";
+const SAND    = "#C5A882";   /* use only on dark backgrounds */
+const SAND_AA = "#9A7550";   /* 4.58:1 on white — WCAG AA ✅ */
 const CREAM = "#F5F0E8";
 const STONE = "#E8E0D4";
 const DARK  = "#1D1D1B";
@@ -74,7 +75,7 @@ function TiltCard({ children, style }: { children: React.ReactNode; style?: Reac
 function CountUp({ value }: { value: string }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
-  const [display, setDisplay] = useState("0");
+  const [display, setDisplay] = useState(value);  /* T5: no flash — start at final value */
   useEffect(() => {
     if (!inView) return;
     const num = parseFloat(value.replace(/[^0-9.]/g, ""));
@@ -138,7 +139,7 @@ export default function TowerOverview() {
         >
           <motion.div initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.3, duration:0.7 }}
             style={{ display:"flex", alignItems:"center", gap:8, marginBottom:20,
-              fontFamily:"Jost,sans-serif", fontSize:"9px", letterSpacing:"0.35em", textTransform:"uppercase" }}
+              fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.35em", textTransform:"uppercase" }}
           >
             <Link to="/" style={{ color:"rgba(255,255,255,0.4)", textDecoration:"none" }}>Home</Link>
             <span style={{ color:"rgba(255,255,255,0.2)" }}>›</span>
@@ -146,7 +147,7 @@ export default function TowerOverview() {
           </motion.div>
 
           <motion.div initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.5, duration:0.9, ease:[0.16,1,0.3,1] }}>
-            <div style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(9px,1.1vw,12px)", letterSpacing:"0.5em", textTransform:"uppercase", color:SAND, marginBottom:14 }}>
+            <div style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(10px,1.1vw,12px)", letterSpacing:"0.5em", textTransform:"uppercase", color:SAND_AA, marginBottom:14 }}>
               Al Hamra Business Tower · SOM Architecture
             </div>
             <h1 style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(40px,7vw,96px)", fontWeight:100, letterSpacing:"-0.03em", lineHeight:0.92, color:WHITE, marginBottom:20 }}>
@@ -164,7 +165,7 @@ export default function TowerOverview() {
           >
             <motion.div animate={{ scaleX:[0,1,0] }} transition={{ duration:2, repeat:Infinity, ease:"easeInOut" }}
               style={{ width:48, height:1, background:SAND, transformOrigin:"left" }} />
-            <span style={{ fontFamily:"Jost,sans-serif", fontSize:"8px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
+            <span style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)" }}>
               Scroll to discover
             </span>
           </motion.div>
@@ -192,7 +193,7 @@ export default function TowerOverview() {
                 <CountUp value={n} />
                 {u && <span style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(12px,1.8vw,20px)", fontWeight:200, color:SAND }}>{u}</span>}
               </div>
-              <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9px", letterSpacing:"0.3em", textTransform:"uppercase", color:MUTED, marginTop:8 }}>{l}</div>
+              <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:MUTED, marginTop:8 }}>{l}</div>
             </motion.div>
           ))}
         </div>
@@ -208,7 +209,7 @@ export default function TowerOverview() {
               <button key={t} onClick={() => setTab(t)} style={{
                 position:"relative", padding:"18px clamp(14px,2vw,28px) 16px",
                 background:"none", border:"none", cursor:"pointer",
-                fontFamily:"Jost,sans-serif", fontSize:"clamp(9px,1vw,10.5px)",
+                fontFamily:"Jost,sans-serif", fontSize:"clamp(10px,1vw,10.5px)",
                 letterSpacing:"0.2em", textTransform:"uppercase",
                 color: active ? DARK : MUTED, transition:"color 0.25s", flexShrink:0, textAlign:"left" as const,
               }}>
@@ -246,14 +247,14 @@ export default function TowerOverview() {
                   style={{ width:"100%", height:"100%", objectFit:"cover", position:"absolute", inset:0 }}
                 />
                 <div style={{ position:"absolute", inset:0, background:"linear-gradient(to right, rgba(250,250,248,0.08) 0%, transparent 40%)" }} />
-                <div style={{ position:"absolute", bottom:16, right:16, fontFamily:"Jost,sans-serif", fontSize:"7.5px", letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(255,255,255,0.4)" }}>
+                <div style={{ position:"absolute", bottom:16, right:16, fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.22em", textTransform:"uppercase", color:"rgba(255,255,255,0.4)" }}>
                   Photo: Dave Burk · SOM
                 </div>
               </div>
 
               {/* Text — left on desktop, bottom on mobile */}
               <div className="tower-tab-text">
-                <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9.5px", letterSpacing:"0.45em", textTransform:"uppercase", color:SAND, marginBottom:20, display:"flex", alignItems:"center", gap:12 }}>
+                <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10.5px", letterSpacing:"0.45em", textTransform:"uppercase", color:SAND_AA, marginBottom:20, display:"flex", alignItems:"center", gap:12 }}>
                   <div style={{ width:24, height:1, background:SAND, flexShrink:0 }} />
                   Al Hamra Tower · {tab}
                 </div>
@@ -272,7 +273,7 @@ export default function TowerOverview() {
                         <CountUp value={n} />
                         {u && <span style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(11px,1.2vw,13px)", fontWeight:200, color:SAND }}>{u}</span>}
                       </div>
-                      <div style={{ fontFamily:"Jost,sans-serif", fontSize:"8px", letterSpacing:"0.22em", textTransform:"uppercase", color:MUTED, marginTop:8, lineHeight:1.4 }}>{l}</div>
+                      <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.22em", textTransform:"uppercase", color:MUTED, marginTop:8, lineHeight:1.4 }}>{l}</div>
                     </TiltCard>
                   ))}
                 </div>
@@ -288,7 +289,7 @@ export default function TowerOverview() {
           {/* Left */}
           <div>
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7 }}>
-              <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9.5px", letterSpacing:"0.45em", textTransform:"uppercase", color:SAND, marginBottom:20, display:"flex", alignItems:"center", gap:12 }}>
+              <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10.5px", letterSpacing:"0.45em", textTransform:"uppercase", color:SAND_AA, marginBottom:20, display:"flex", alignItems:"center", gap:12 }}>
                 <div style={{ width:24, height:1, background:SAND }} />Awards & Recognition
               </div>
               <h2 style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(26px,3.5vw,52px)", fontWeight:100, lineHeight:1.1, letterSpacing:"-0.025em", color:DARK, marginBottom:20 }}>
@@ -301,7 +302,7 @@ export default function TowerOverview() {
                 {[{ n:"23rd", l:"Tallest in World" }, { n:"#1", l:"Tallest Sculpted Tower" }].map(({ n, l }) => (
                   <div key={l}>
                     <div style={{ fontFamily:"Cormorant Garamond,serif", fontSize:"clamp(26px,3vw,40px)", fontWeight:300, color:DARK }}>{n}</div>
-                    <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9px", letterSpacing:"0.25em", textTransform:"uppercase", color:MUTED, marginTop:6 }}>{l}</div>
+                    <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.25em", textTransform:"uppercase", color:MUTED, marginTop:6 }}>{l}</div>
                   </div>
                 ))}
               </div>
@@ -343,7 +344,7 @@ export default function TowerOverview() {
         />
         <div className="ah-section" style={{ position:"relative", background:"transparent", textAlign:"left" }}>
           <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.8 }}>
-            <div style={{ fontFamily:"Jost,sans-serif", fontSize:"9px", letterSpacing:"0.5em", textTransform:"uppercase", color:SAND, marginBottom:20 }}>
+            <div style={{ fontFamily:"Jost,sans-serif", fontSize: "10px", letterSpacing:"0.5em", textTransform:"uppercase", color:SAND_AA, marginBottom:20 }}>
               Next · Design & Engineering
             </div>
             <h3 style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(28px,5vw,64px)", fontWeight:100, color:WHITE, lineHeight:1.08, letterSpacing:"-0.025em", marginBottom:40 }}>

@@ -8,7 +8,7 @@ export function PageLayout({ children }: Props) {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: 92 }}>{children}</main>
+      <main id="main-content" style={{ paddingTop: 92 }}>{children}</main>
       <Footer />
     </>
   );

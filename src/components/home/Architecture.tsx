@@ -32,8 +32,8 @@ function Callout({ top, left, title, sub, visible }: { top: string; left: string
           </div>
           <div style={{ width: 44, height: 1, background: "rgba(29,29,27,0.22)" }} />
           <div style={{ paddingLeft: 10 }}>
-            <span style={{ display: "block", fontFamily: "Jost, sans-serif", fontSize: "9.5px", fontWeight: 500, color: "rgba(29,29,27,0.75)", letterSpacing: "0.18em", textTransform: "uppercase" }}>{title}</span>
-            <span style={{ display: "block", fontFamily: "Jost, sans-serif", fontSize: "7.5px", color: "rgba(29,29,27,0.4)", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: 2 }}>{sub}</span>
+            <span style={{ display: "block", fontFamily: "Jost, sans-serif", fontSize: "10.5px", fontWeight: 500, color: "rgba(29,29,27,0.75)", letterSpacing: "0.18em", textTransform: "uppercase" }}>{title}</span>
+            <span style={{ display: "block", fontFamily: "Jost, sans-serif", fontSize: "10px", color: "rgba(29,29,27,0.4)", letterSpacing: "0.15em", textTransform: "uppercase", marginTop: 2 }}>{sub}</span>
           </div>
         </motion.div>
       )}
@@ -93,7 +93,7 @@ export function Architecture() {
         </div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: labelVisible ? 1 : 0 }} transition={{ duration: 0.8 }}
-          style={{ position: "absolute", bottom: 20, left: 0, right: 0, textAlign: "center", zIndex: 3, fontFamily: "Jost, sans-serif", fontSize: "7.5px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(29,29,27,0.3)" }}>
+          style={{ position: "absolute", bottom: 20, left: 0, right: 0, textAlign: "center", zIndex: 3, fontFamily: "Jost, sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(29,29,27,0.3)" }}>
           Al Hamra Business Tower · SOM Architecture · 2011
         </motion.div>
       </div>
@@ -101,7 +101,7 @@ export function Architecture() {
       {/* RIGHT — text */}
       <div className="arch-right ah-section" style={{ display:"flex", flexDirection:"column", justifyContent:"center" }}>
         <ScrollReveal>
-          <p style={{ fontFamily: "Jost, sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 24 }}>
+          <p style={{ fontFamily: "Jost, sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676", marginBottom: 24 }}>
             Architecture · Skidmore, Owings &amp; Merrill
           </p>
         </ScrollReveal>
@@ -129,7 +129,7 @@ export function Architecture() {
               background: "linear-gradient(transparent, rgba(29,29,27,0.6))",
               padding: "20px 20px 16px",
             }}>
-              <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>
+              <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>
                 Photo Credit: Nick Merrick © Hedrich Blessing
               </span>
             </div>
@@ -144,7 +144,7 @@ export function Architecture() {
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
                 onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
               >
-                <div style={{ fontFamily: "Jost, sans-serif", fontSize: 9, color: "#B2B2B2", letterSpacing: "0.2em", marginBottom: 10 }}>{n}</div>
+                <div style={{ fontFamily: "Jost, sans-serif", fontSize: 10, color: "#767676", letterSpacing: "0.2em", marginBottom: 10 }}>{n}</div>
                 <div style={{ fontFamily: "Jost, sans-serif", fontSize: 13, fontWeight: 500, color: "#1D1D1B", marginBottom: 7, letterSpacing: "0.04em" }}>{title}</div>
                 <div style={{ fontFamily: "Jost, sans-serif", fontSize: "11.5px", color: "#6B6B6B", lineHeight: 1.75 }}>{desc}</div>
               </div>

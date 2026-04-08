@@ -113,7 +113,7 @@ export default function TowerRising() {
           <button key={t} onClick={() => setTab(t)}
             style={{
               fontFamily: "Jost,sans-serif", fontSize: "10.5px", letterSpacing: "0.2em", textTransform: "uppercase",
-              padding: "20px clamp(14px,2vw,28px) 18px", color: tab === t ? "#1D1D1B" : "#B2B2B2",
+              padding: "20px clamp(14px,2vw,28px) 18px", color: tab === t ? "#1D1D1B" : "#767676",
               background: "none", border: "none", cursor: "pointer", flexShrink: 0,
               borderBottom: tab === t ? "2px solid #1D1D1B" : "2px solid transparent",
               transition: "color 0.2s, border-color 0.2s",
@@ -135,7 +135,7 @@ export default function TowerRising() {
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.72) 0%, rgba(29,29,27,0.15) 55%, transparent 100%)" }} />
               <div className="tower-rising-overlay">
                 <Rv>
-                  <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 16 }}>
+                  <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 16 }}>
                     Purposeful Design · SOM Architecture
                   </p>
                   <h2 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(24px,3.5vw,52px)", fontWeight: 200, color: "#fff", lineHeight: 1.12, maxWidth: 520 }}>
@@ -143,7 +143,7 @@ export default function TowerRising() {
                   </h2>
                 </Rv>
               </div>
-              <div style={{ position: "absolute", bottom: 16, right: 24, fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
+              <div style={{ position: "absolute", bottom: 16, right: 24, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
                 Photo: Dave Burk · SOM
               </div>
             </div>
@@ -160,7 +160,7 @@ export default function TowerRising() {
                   </Rv>
                   <Rv delay={0.3}><Body style={{ marginTop: 16 }}>Construction began in 2005 and concluded in 2011, resulting in a tower that stands as both an architectural icon and a centre for business excellence.</Body></Rv>
                   <Rv delay={0.4}>
-                    <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(18px,2vw,22px)", fontStyle: "italic", fontWeight: 300, color: "#B2B2B2", lineHeight: 1.6, maxWidth: 480, marginTop: 36 }}>
+                    <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(18px,2vw,22px)", fontStyle: "italic", fontWeight: 300, color: "#767676", lineHeight: 1.6, maxWidth: 480, marginTop: 36 }}>
                       "A tower shaped by climate, craft, and ambition."
                     </p>
                   </Rv>
@@ -174,9 +174,9 @@ export default function TowerRising() {
                       ].map(({ n, u, l, img }) => (
                         <div key={l} style={{ background: "#F7F6F4", padding: "28px 24px" }}>
                           <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(32px,4vw,44px)", fontWeight: 300, color: "#1D1D1B", lineHeight: 1 }}>
-                            {n}<span style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(13px,1.5vw,16px)", fontWeight: 200, color: "#B2B2B2" }}>{u}</span>
+                            {n}<span style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(13px,1.5vw,16px)", fontWeight: 200, color: "#767676" }}>{u}</span>
                           </div>
-                          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#B2B2B2", marginTop: 8 }}>{l}</div>
+                          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#767676", marginTop: 8 }}>{l}</div>
                         </div>
                       ))}
                     </div>
@@ -187,7 +187,7 @@ export default function TowerRising() {
                         style={{ width: "100%", height: "clamp(160px,20vw,260px)", objectFit: "cover", display: "block", opacity: 0.92 }}>
                         <source src="/assets/tower-drone.mp4" type="video/mp4" />
                       </video>
-                      <div style={{ position: "absolute", bottom: 12, left: 16, fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
+                      <div style={{ position: "absolute", bottom: 12, left: 16, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
                         Drone footage · Al Hamra Tower
                       </div>
                     </div>
@@ -234,7 +234,7 @@ export default function TowerRising() {
                         {/* Year */}
                         <div style={{ minWidth: "clamp(44px,5vw,70px)", flexShrink: 0 }}>
                           <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(20px,2.5vw,28px)", fontWeight: 300, color: isActive ? "#1D1D1B" : "#EDEDED", lineHeight: 1 }}>{year}</div>
-                          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "7.5px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#B2B2B2", marginTop: 4 }}>{era}</div>
+                          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#767676", marginTop: 4 }}>{era}</div>
                         </div>
                         <div>
                           <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: isActive ? 500 : 400, color: "#1D1D1B", marginBottom: 6 }}>{title}</div>
@@ -277,7 +277,7 @@ export default function TowerRising() {
                         <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(11px,1vw,13px)", color: "rgba(255,255,255,0.7)", marginTop: 8 }}>
                           {HERITAGE_IMAGES[activeYear]?.caption}
                         </div>
-                        <div style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: 6 }}>
+                        <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: 6 }}>
                           {HERITAGE_IMAGES[activeYear]?.credit}
                         </div>
                       </div>
@@ -302,7 +302,7 @@ export default function TowerRising() {
                   <Rv key={org} delay={i * 0.1}>
                     <div style={{ background: "#fff", padding: "clamp(24px,3vw,40px)" }}>
                       <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(15px,1.5vw,18px)", fontStyle: "italic", fontWeight: 300, color: "#1D1D1B", lineHeight: 1.7, marginBottom: 20 }}>"{quote}"</div>
-                      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#B2B2B2" }}>{org}</div>
+                      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676" }}>{org}</div>
                     </div>
                   </Rv>
                 ))}
@@ -327,7 +327,7 @@ export default function TowerRising() {
                     <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(16px,2.5vw,32px)" }}>
                       <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.2vw,15px)", fontWeight: 500, color: "#fff", marginBottom: 8 }}>{title}</div>
                       <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 300, color: "rgba(255,255,255,0.65)", lineHeight: 1.7 }}>{body}</div>
-                      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "7.5px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: 10 }}>{credit}</div>
+                      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: 10 }}>{credit}</div>
                     </div>
                   </motion.div>
                 ))}

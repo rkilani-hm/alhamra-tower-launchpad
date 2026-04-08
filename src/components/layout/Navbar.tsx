@@ -118,16 +118,19 @@ export function Navbar() {
                 onMouseEnter={() => openDropdown(label)}
                 onMouseLeave={closeDropdown}
               >
-                <Link to={href} style={{
-                  display: "inline-flex", alignItems: "center", gap: 5,
-                  fontFamily: "Jost, sans-serif", fontSize: "10.5px",
-                  letterSpacing: "0.22em", textTransform: "uppercase",
-                  color: isActive ? "#1D1D1B" : isOpen ? "#1D1D1B" : "#B2B2B2",
-                  textDecoration: "none", padding: "8px 16px",
-                  transition: "color 0.2s",
-                }}>
+                <Link to={href}
+                  aria-haspopup="true"
+                  aria-expanded={isOpen}
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 5,
+                    fontFamily: "Jost, sans-serif", fontSize: "10.5px",
+                    letterSpacing: "0.22em", textTransform: "uppercase",
+                    color: isActive ? "#1D1D1B" : isOpen ? "#1D1D1B" : "#767676",
+                    textDecoration: "none", padding: "8px 16px",
+                    transition: "color 0.2s",
+                  }}>
                   {label}
-                  <svg width="9" height="6" viewBox="0 0 9 6" fill="none"
+                  <svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"
                     style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s ease", opacity: 0.5 }}>
                     <path d="M1 1L4.5 5L8 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -262,7 +265,7 @@ export function Navbar() {
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.22, ease: "easeOut" }}
                       >
-                        <path d="M1 1L7 7L13 1" stroke={isActive ? "#1D1D1B" : "#B2B2B2"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M1 1L7 7L13 1" stroke={isActive ? "#1D1D1B" : "#767676"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </motion.svg>
                     </button>
 
@@ -271,6 +274,7 @@ export function Navbar() {
                       {isExpanded && (
                         <motion.div
                           key="content"
+                          id={`mobile-section-${label.replace(/\s/g, "-").toLowerCase()}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}

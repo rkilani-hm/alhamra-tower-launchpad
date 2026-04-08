@@ -103,7 +103,7 @@ export default function TowerDesign() {
                   transition: "all 0.2s",
                 }}
               >
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px", fontWeight: 500, color: activeLevel === i ? "#1D1D1B" : "#B2B2B2", letterSpacing: "0.1em" }}>{level}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px", fontWeight: 500, color: activeLevel === i ? "#1D1D1B" : "#767676", letterSpacing: "0.1em" }}>{level}</div>
                 {activeLevel === i && (
                   <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ duration: 0.2 }}>
                     <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", marginTop: 6 }}>{desc}</div>
@@ -133,7 +133,7 @@ export default function TowerDesign() {
                       fill={i <= activeLevel ? "#1D1D1B" : "rgba(29,29,27,0.15)"}/>
                     <text x={100 + 88 * Math.cos(rad)} y={100 + 88 * Math.sin(rad)}
                       textAnchor="middle" dominantBaseline="middle"
-                      style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", fill: "rgba(29,29,27,0.45)" }}>
+                      style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", fill: "rgba(29,29,27,0.45)" }}>
                       {deg}°
                     </text>
                   </g>
@@ -165,7 +165,7 @@ export default function TowerDesign() {
                   { zone: "High Rise", floors: "55 – 75", color: "#E8B080", desc: "Office floors + Executive levels" },
                   { zone: "Executive", floors: "74 – 75", color: "#1D1D1B", desc: "Executive suites — pinnacle of the tower" },
                   { zone: "Mechanical",floors: "27 · 52 · 77", color: "#888", desc: "Dedicated mechanical plant rooms" },
-                  { zone: "Refuge",    floors: "29 · 54",    color: "#B2B2B2", desc: "Emergency evacuation refuge floors" },
+                  { zone: "Refuge",    floors: "29 · 54",    color: "#767676", desc: "Emergency evacuation refuge floors" },
                 ].map(({ zone, floors, color, desc }) => (
                   <div key={zone} style={{
                     display: "flex", alignItems: "flex-start", gap: 16,
@@ -179,7 +179,7 @@ export default function TowerDesign() {
                     <div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
                         <span style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", fontWeight: 500, color: "#1D1D1B" }}>{zone}</span>
-                        <span style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "16px", fontWeight: 300, color: "#B2B2B2" }}>Floors {floors}</span>
+                        <span style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "16px", fontWeight: 300, color: "#767676" }}>Floors {floors}</span>
                       </div>
                       <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#6B6B6B", marginTop: 3 }}>{desc}</div>
                     </div>
@@ -225,7 +225,7 @@ export default function TowerDesign() {
                 }}
               />
             </div>
-            <div style={{ marginTop: 12, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#B2B2B2", textAlign: "center" }}>
+            <div style={{ marginTop: 12, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676", textAlign: "center" }}>
               Architectural Section · Al Hamra Business Tower · SOM · Kuwait City
             </div>
           </Rv>
@@ -251,7 +251,7 @@ export default function TowerDesign() {
                 {[{ n: "24m", l: "Lobby Height" }, { n: "7.6m", l: "Column Offset" }, { n: "130ft", l: "Sky Deck Height" }, { n: "360°", l: "Panoramic Views" }].map(({ n, l }) => (
                   <div key={l} style={{ background: "#fff", padding: "28px 22px" }}>
                     <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1 }}>{n}</div>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#B2B2B2", marginTop: 8 }}>{l}</div>
+                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#767676", marginTop: 8 }}>{l}</div>
                   </div>
                 ))}
               </div>
@@ -265,7 +265,7 @@ export default function TowerDesign() {
                 <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Grand Lobby entrance corridor"
                   style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "20px 20px 14px" }}>
-                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Grand Lobby · 24m Column-Free Height</span>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Grand Lobby · 24m Column-Free Height</span>
                 </div>
               </div>
               {/* Elevator hall wide */}
@@ -274,7 +274,7 @@ export default function TowerDesign() {
                   style={{ width: "100%", height: 96, objectFit: "cover", objectPosition: "center 60%", display: "block" }} />
                 <div style={{ position: "absolute", inset: 0, background: "rgba(29,29,27,0.1)" }} />
                 <div style={{ position: "absolute", bottom: 8, left: 14 }}>
-                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>VIP Elevator Hall · Levels 30–51</span>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>VIP Elevator Hall · Levels 30–51</span>
                 </div>
               </div>
             </div>

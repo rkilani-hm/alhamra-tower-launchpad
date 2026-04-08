@@ -25,8 +25,8 @@ const ICONS: Record<string, React.ReactNode> = {
     </svg>
   ),
   X: (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4l16 16M4 20L20 4"/>
     </svg>
   ),
   LinkedIn: (
@@ -54,7 +54,7 @@ interface Props {
   hoverColor?: string;
 }
 
-export function SocialIcons({ variant = "footer", color = "#B2B2B2", hoverColor = "#1D1D1B" }: Props) {
+export function SocialIcons({ variant = "footer", color = "#767676", hoverColor = "#1D1D1B" }: Props) {
   if (variant === "contact") {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -67,7 +67,7 @@ export function SocialIcons({ variant = "footer", color = "#B2B2B2", hoverColor 
               textDecoration: "none", color: "#1D1D1B",
               transition: "color 0.2s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#B2B2B2")}
+            onMouseEnter={e => (e.currentTarget.style.color = "#767676")}
             onMouseLeave={e => (e.currentTarget.style.color = "#1D1D1B")}
           >
             {/* Icon square */}

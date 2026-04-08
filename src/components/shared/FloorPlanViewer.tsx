@@ -53,13 +53,19 @@ export function FloorPlanViewer() {
         {PLANS.map(({ id, label, level }) => {
           const isActive = active === id;
           return (
-            <button key={id} onClick={() => setActive(id)}
+            <button
+              key={id}
+              role="tab"
+              aria-selected={active === id}
+              aria-controls={`floorplan-panel-${id}`}
+              id={`floorplan-tab-${id}`}
+              onClick={() => setActive(id)}
               style={{
                 display: "flex", alignItems: "center", gap: 10,
                 padding: "18px 32px",
                 fontFamily: "Jost,sans-serif", fontSize: "10.5px",
                 letterSpacing: "0.2em", textTransform: "uppercase",
-                color: isActive ? "#1D1D1B" : "#B2B2B2",
+                color: isActive ? "#1D1D1B" : "#767676",
                 background: "none", border: "none", cursor: "pointer",
                 borderBottom: isActive ? "2px solid #1D1D1B" : "2px solid transparent",
                 transition: "color 0.2s, border-color 0.2s",
@@ -111,7 +117,7 @@ export function FloorPlanViewer() {
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 32 }}>
                 {plan.tags.map(tag => (
                   <span key={tag} style={{
-                    fontFamily: "Jost,sans-serif", fontSize: "9px",
+                    fontFamily: "Jost,sans-serif", fontSize: "10px",
                     letterSpacing: "0.2em", textTransform: "uppercase",
                     color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)",
                     padding: "5px 12px",
@@ -121,7 +127,7 @@ export function FloorPlanViewer() {
 
               {/* Legend */}
               <div style={{ marginTop: 36 }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 12 }}>Legend</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>Legend</div>
                 {[
                   { color: "#F5C842", label: "Occupied — Retail" },
                   { color: "#5BB8E8", label: "F&B — Food & Beverage" },
@@ -135,7 +141,7 @@ export function FloorPlanViewer() {
               </div>
 
               <div style={{ marginTop: "auto", paddingTop: 32 }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#B2B2B2" }}>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676" }}>
                   Al Hamra Business Tower · Kuwait City
                 </div>
               </div>
