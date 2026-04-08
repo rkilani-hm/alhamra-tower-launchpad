@@ -46,7 +46,7 @@ export function WorkplaceExperience() {
 
       {/* Two-col: text + corridor photo */}
       <Section>
-        <div className="grid-2col">
+        <div className="grid-2col media-right">
           <div>
             <Rv><Tag>Premium Workspace Features</Tag></Rv>
             <Rv delay={0.1}><H2>Space That Adapts to the Way You Work</H2></Rv>

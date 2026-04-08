@@ -146,7 +146,7 @@ export default function TowerDesign() {
 
       {/* Architectural section drawing */}
       <Section bg="#FAFAFA">
-        <div className="grid-2col" style={{ alignItems:"start" }}>
+        <div className="grid-2col media-right" style={{ alignItems:"start" }}>
           {/* Left — label + legend */}
           <div>
             <Rv><Tag>Architectural Section · Floor Distribution</Tag></Rv>
@@ -241,7 +241,7 @@ export default function TowerDesign() {
 
       {/* Lobby */}
       <Section bg="#FAFAFA">
-        <div className="grid-2col" style={{ alignItems:"start" }}>
+        <div className="grid-2col media-right" style={{ alignItems:"start" }}>
           <div>
             <Rv><Tag>Arrival Experience</Tag></Rv>
             <Rv delay={0.1}><H2>The 24-Metre Grand Lobby</H2></Rv>

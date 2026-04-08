@@ -140,7 +140,7 @@ export function Location() {
       </div>
 
       <Section>
-        <div className="grid-2col">
+        <div className="grid-2col media-right">
           <div>
             <Rv><Tag>Sharq District · Kuwait City</Tag></Rv>
             <Rv delay={0.1}><H2>Where Governance, Commerce and Culture Converge</H2></Rv>

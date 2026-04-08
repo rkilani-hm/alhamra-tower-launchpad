@@ -329,3 +329,32 @@
 @media (max-width: 640px) {
   .hide-mobile { display: none !important; }
 }
+
+/* ── Media-first on mobile ────────────────────────
+   .media-right: grid-2col where media is 2nd child
+   On mobile stack → pull media to top via order:-1
+   ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hero — video column above text */
+  .hero-right {
+    order: -1;
+    max-height: 55vw;
+    min-height: 220px;
+  }
+  .hero-left {
+    order: 1;
+    justify-content: flex-start;
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  /* Any grid-2col where media is the RIGHT (2nd) child */
+  .media-right > *:last-child {
+    order: -1;
+  }
+
+  /* Any grid-2col where text is the RIGHT (2nd) child — media LEFT stays first */
+  .media-left > *:first-child {
+    order: -1;
+  }
+}
