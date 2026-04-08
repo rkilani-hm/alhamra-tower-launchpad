@@ -15,6 +15,8 @@ export function Hero() {
         height: "100vh",
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
+        gridTemplateRows: "1fr",
+        alignItems: "stretch",
         overflow: "hidden",
         background: "#fff",
         paddingTop: 92,
@@ -44,7 +46,8 @@ export function Hero() {
           padding: "60px 60px 88px 80px",
           position: "relative",
           zIndex: 2,
-          height: "100%",
+          minHeight: 0,
+          alignSelf: "stretch",
         }}
       >
         {/* Tag */}
@@ -182,7 +185,8 @@ export function Hero() {
           overflow: "hidden",
           background: "#0a0a09",
           borderLeft: "1px solid rgba(255,255,255,0.08)",
-          height: "100%",
+          minHeight: 0,
+          alignSelf: "stretch",
         }}
       >
         <motion.video
@@ -196,11 +200,15 @@ export function Hero() {
           preload="auto"
           style={{
             position: "absolute",
-            inset: 0,
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center",
+            objectPosition: "center center",
+            display: "block",
           }}
         >
           <source src="/assets/hero.mp4" type="video/mp4" />
