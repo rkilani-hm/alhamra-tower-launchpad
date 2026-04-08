@@ -282,10 +282,15 @@ export function VerticalTransportation() {
    CONNECTIVITY  /business/connectivity
 ══════════════════════════════════════════════════ */
 const CONNECTIVITY_FEATURES = [
-  { number: "01", title: "Al Hamra Shopping Center",  body: "Direct internal access to a premium retail destination featuring international brands, dining, and lifestyle services — all within the Al Hamra complex." },
-  { number: "02", title: "On-Site Amenities",         body: "Ground-floor cafés, restaurants, banking services, and business support facilities ensure daily convenience without leaving the complex." },
-  { number: "03", title: "Transport Links",           body: "Proximity to major arterial roads and Kuwait's developing public transit infrastructure. 11-level car park with 2,000+ spaces and dedicated VIP access." },
-  { number: "04", title: "District Integration",      body: "Positioned in Sharq, Kuwait City's central business district, within walking distance of government ministries, embassies, and the financial corridor." },
+  {
+    number: "01",
+    title: "Al Hamra Shopping Center",
+    body: "Direct internal access to a premium retail destination featuring international brands, dining, and lifestyle services — all within the Al Hamra complex.",
+    url: "https://www.alhamracenter.com",
+  },
+  { number: "02", title: "On-Site Amenities",    body: "Ground-floor cafés, restaurants, banking services, and business support facilities ensure daily convenience without leaving the complex." },
+  { number: "03", title: "Transport Links",      body: "Proximity to major arterial roads and Kuwait's developing public transit infrastructure. 11-level car park with 2,000+ spaces and dedicated VIP access." },
+  { number: "04", title: "District Integration", body: "Positioned in Sharq, Kuwait City's central business district, within walking distance of government ministries, embassies, and the financial corridor." },
 ];
 
 export function Connectivity() {
@@ -307,7 +312,40 @@ export function Connectivity() {
         <Rv><Tag>The Sharq District · Kuwait City's Commercial Heart</Tag></Rv>
         <Rv delay={0.1}><H2>Integrated Ecosystem</H2></Rv>
         <Rv delay={0.2}><Body style={{ maxWidth: 640, marginBottom: 48 }}>The Al Hamra complex integrates a premier shopping center, extensive car parking, and direct connections to Kuwait City's central business corridor — creating a self-contained environment for professionals.</Body></Rv>
-        <Rv delay={0.3}><FeatureGrid features={CONNECTIVITY_FEATURES} /></Rv>
+        <Rv delay={0.3}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
+            {CONNECTIVITY_FEATURES.map(({ number, title, body, url }: { number: string; title: string; body: string; url?: string }) => (
+              <div key={number}
+                style={{ background: "#fff", padding: "28px 26px", transition: "background 0.3s" }}
+                onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
+                onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
+              >
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", color: "#B2B2B2", letterSpacing: "0.2em", marginBottom: 10 }}>{number}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8, letterSpacing: "0.04em" }}>{title}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.8, marginBottom: url ? 14 : 0 }}>{body}</div>
+                {url && (
+                  <a href={url} target="_blank" rel="noreferrer"
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: 8,
+                      fontFamily: "Jost,sans-serif", fontSize: "9.5px",
+                      letterSpacing: "0.2em", textTransform: "uppercase",
+                      color: "#1D1D1B", textDecoration: "none",
+                      borderBottom: "1px solid rgba(29,29,27,0.25)",
+                      paddingBottom: 2, transition: "border-color 0.2s, color 0.2s",
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.color = "#B2B2B2"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.1)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.color = "#1D1D1B"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.25)"; }}
+                  >
+                    Visit alhamracenter.com
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                      <path d="M1 9L9 1M9 1H4M9 1V6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </Rv>
       </Section>
       <DarkBand title="Ready to Secure Your Space?" subtitle="Contact our leasing team for availability aligned to your business needs." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry" />
     </PageLayout>
