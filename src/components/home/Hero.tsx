@@ -187,6 +187,7 @@ export function Hero() {
           borderLeft: "1px solid rgba(255,255,255,0.08)",
           minHeight: 0,
           alignSelf: "stretch",
+          maxHeight: "calc((100vh - 92px) * 0.80)",
         }}
       >
         <motion.video
