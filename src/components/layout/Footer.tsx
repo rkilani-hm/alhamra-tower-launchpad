@@ -32,7 +32,7 @@ const NAV = [
     title: "Leasing",
     links: [
       { label: "Opportunities", href: "/leasing"           },
-      { label: "Inquiry",       href: "/leasing/inquiry"   },
+      { label: "Inquiry",       href: "/leasing/inquiry#inquiry-form"   },
       { label: "Downloads",     href: "/leasing/downloads" },
       { label: "Contact",       href: "/leasing/contact"   },
     ],

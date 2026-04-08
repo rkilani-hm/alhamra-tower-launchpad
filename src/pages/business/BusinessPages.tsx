@@ -199,7 +199,7 @@ export function OfficeSpaces() {
         </div>
       </div>
 
-      <DarkBand title="Ready to Enquire?" subtitle="Contact our leasing team for availability, floor plans, and pricing aligned to your requirements." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry" />
+      <DarkBand title="Ready to Enquire?" subtitle="Contact our leasing team for availability, floor plans, and pricing aligned to your requirements." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry#inquiry-form" />
     </PageLayout>
   );
 }
@@ -366,7 +366,7 @@ export function Connectivity() {
           </div>
         </Rv>
       </Section>
-      <DarkBand title="Ready to Secure Your Space?" subtitle="Contact our leasing team for availability aligned to your business needs." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry" />
+      <DarkBand title="Ready to Secure Your Space?" subtitle="Contact our leasing team for availability aligned to your business needs." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry#inquiry-form" />
     </PageLayout>
   );
 }

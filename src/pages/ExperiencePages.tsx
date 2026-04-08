@@ -98,7 +98,7 @@ export function Services() {
         </Rv>
       </Section>
 
-      <DarkBand title="Secure Your Position" subtitle="Ready to experience Al Hamra Tower's world-class environment? Speak with our leasing team today." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry" />
+      <DarkBand title="Secure Your Position" subtitle="Ready to experience Al Hamra Tower's world-class environment? Speak with our leasing team today." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry#inquiry-form" />
     </PageLayout>
   );
 }
@@ -176,7 +176,7 @@ export function Location() {
         </div>
       </Section>
 
-      <DarkBand title="Secure Your Position in Sharq" subtitle="Contact our leasing team to discuss available configurations at Kuwait City's premier business address." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry" />
+      <DarkBand title="Secure Your Position in Sharq" subtitle="Contact our leasing team to discuss available configurations at Kuwait City's premier business address." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry#inquiry-form" />
     </PageLayout>
   );
 }
@@ -262,7 +262,7 @@ export function LeasingOpportunities() {
         </div>
       </div>
 
-      <DarkBand title="Secure Your Position" subtitle="Contact our leasing team for availability, floor plans, and pricing." ctaLabel="Submit Inquiry" ctaHref="/leasing/inquiry" />
+      <DarkBand title="Secure Your Position" subtitle="Contact our leasing team for availability, floor plans, and pricing." ctaLabel="Submit Inquiry" ctaHref="/leasing/inquiry#inquiry-form" />
     </PageLayout>
   );
 }
@@ -293,10 +293,11 @@ export function LeasingInquiry() {
         tag="Leasing · Inquiry"
         title="Leasing & General Inquiries"
         subtitle="Share your requirements and timeline. Our leasing team will respond with options aligned to your business needs."
-        crumbs={[{ label: "Home", href: "/" }, { label: "Leasing", href: "/leasing" }, { label: "Inquiry", href: "/leasing/inquiry" }]}
+        crumbs={[{ label: "Home", href: "/" }, { label: "Leasing", href: "/leasing" }, { label: "Inquiry", href: "/leasing/inquiry#inquiry-form" }]}
       />
 
       <Section>
+        <div id="inquiry-form" style={{ scrollMarginTop: "100px" }}>
         <div className="grid-2col">
           {/* Form */}
           <Rv>
@@ -360,6 +361,7 @@ export function LeasingInquiry() {
             </div>
           </Rv>
         </div>
+        </div>{/* closes id="inquiry-form" */}
       </Section>
     </PageLayout>
   );
@@ -422,7 +424,7 @@ export function Downloads() {
           ))}
         </div>
       </Section>
-      <DarkBand title="Ready to Enquire?" ctaLabel="Submit Inquiry" ctaHref="/leasing/inquiry" />
+      <DarkBand title="Ready to Enquire?" ctaLabel="Submit Inquiry" ctaHref="/leasing/inquiry#inquiry-form" />
     </PageLayout>
   );
 }
@@ -465,7 +467,7 @@ export function Contact() {
             <Tag>Leasing Team</Tag>
             <H2>Dedicated Support</H2>
             <Body>Our leasing team is available to discuss available configurations, floor plans, pricing, and customisation options. Contact us directly for a response within one business day.</Body>
-            <a href="/leasing/inquiry" style={{
+            <a href="/leasing/inquiry#inquiry-form" style={{
               display: "inline-flex", alignItems: "center", gap: 12, marginTop: 36,
               background: "#1D1D1B", color: "#fff",
               fontFamily: "Jost,sans-serif", fontSize: "10.5px", fontWeight: 500,

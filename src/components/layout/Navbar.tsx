@@ -37,7 +37,7 @@ const NAV = [
     href:  "/leasing",
     children: [
       { label: "Opportunities", href: "/leasing"           },
-      { label: "Inquiry",       href: "/leasing/inquiry"   },
+      { label: "Inquiry",       href: "/leasing/inquiry#inquiry-form"   },
       { label: "Downloads",     href: "/leasing/downloads" },
       { label: "Contact",       href: "/leasing/contact"   },
     ],
@@ -183,7 +183,7 @@ export function Navbar() {
 
         {/* Right — CTA + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link to="/leasing/inquiry" className="nav-cta-desktop" style={{
+          <Link to="/leasing/inquiry#inquiry-form" className="nav-cta-desktop" style={{
             fontFamily: "Jost, sans-serif", fontSize: "10px", letterSpacing: "0.22em",
             textTransform: "uppercase", color: "#1D1D1B", textDecoration: "none",
             border: "1px solid #1D1D1B", padding: "10px 24px", transition: "background 0.3s, color 0.3s",
@@ -310,7 +310,7 @@ export function Navbar() {
 
               {/* Mobile leasing CTA */}
               <div style={{ padding: "32px 28px 0" }}>
-                <Link to="/leasing/inquiry"
+                <Link to="/leasing/inquiry#inquiry-form"
                   style={{
                     display: "block", textAlign: "center",
                     background: "#1D1D1B", color: "#fff",
