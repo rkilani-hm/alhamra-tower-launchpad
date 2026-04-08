@@ -51,15 +51,15 @@ export default function TowerOverview() {
       />
 
       {/* Dual photo + text intro */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderBottom: "1px solid rgba(29,29,27,0.09)" }}>
+      <div className="grid-2col" style={{ borderBottom:"1px solid rgba(29,29,27,0.09)" }}>
         {/* Large photo */}
-        <div style={{ position: "relative", overflow: "hidden", height: 500 }}>
+        <div style={{ position: "relative", overflow: "hidden", height:"clamp(240px,35vw,500px)" }}>
           <img src="/assets/tower-sunset.jpg" alt="Al Hamra Tower at sunset"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(29,29,27,0.35) 0%, transparent 50%)" }} />
         </div>
         {/* Skyline photo */}
-        <div style={{ position: "relative", overflow: "hidden", height: 500 }}>
+        <div style={{ position: "relative", overflow: "hidden", height:"clamp(240px,35vw,500px)" }}>
           <img src="/assets/tower-facade-up.jpg" alt="Al Hamra Tower facade looking up"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(29,29,27,0.35) 0%, transparent 50%)" }} />

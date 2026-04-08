@@ -60,8 +60,7 @@ const link: React.CSSProperties = {
 export function Footer() {
   return (
     <footer style={{ borderTop: "1px solid rgba(29,29,27,0.09)", background: "#fff" }}>
-      {/* Sitemap */}
-      <div style={{ padding: "60px 80px 48px", display: "grid", gridTemplateColumns: "1fr repeat(4, auto)", gap: "40px 60px", alignItems: "start" }}>
+      <div className="footer-sitemap">
         {/* Logo + tagline */}
         <div>
           <img
@@ -100,11 +99,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div style={{
-        padding: "18px 80px",
-        borderTop: "1px solid rgba(29,29,27,0.07)",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-      }}>
+      <div className="footer-bottom" style={{ borderTop: "1px solid rgba(29,29,27,0.07)" }}>
         <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#B2B2B2", letterSpacing: "0.1em" }}>
           © 2026 Al Hamra Tower. All rights reserved. — Kuwait City, Kuwait
         </span>

@@ -80,7 +80,7 @@ export function Navbar() {
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: scrolled ? "14px 64px" : "22px 64px",
+          padding: scrolled ? "clamp(12px,1.5vh,14px) clamp(20px,5vw,64px)" : "clamp(16px,2vh,22px) clamp(20px,5vw,64px)",
           background: scrolled || openMenu || mobileOpen
             ? "rgba(255,255,255,0.97)" : "transparent",
           backdropFilter: scrolled || openMenu || mobileOpen ? "blur(20px)" : "none",

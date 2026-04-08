@@ -10,7 +10,7 @@ const PERSP = [
 
 export function Perspectives() {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", borderTop: "1px solid rgba(29,29,27,0.09)", borderBottom: "1px solid rgba(29,29,27,0.09)" }}>
+    <div style={{ /* grid-3col */ }}>
       {PERSP.map(({ n, title, body }, i) => (
         <ScrollReveal key={n} delay={i * 0.1}>
           <div
@@ -37,7 +37,7 @@ const FLOORS = [
 
 export function FloorConfigs() {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", background: "#FAFAFA" }}>
+    <div className="grid-3col" style={{ background:"#FAFAFA" }}>
       {FLOORS.map(({ code, title, size, body }, i) => (
         <ScrollReveal key={code} delay={i * 0.1}>
           <div
@@ -70,7 +70,7 @@ export function LeasingBand() {
   return (
     <section
       id="leasing"
-      style={{ background: "#1D1D1B", padding: "100px 80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 80 }}
+      className="leasing-band" style={{ background:"#1D1D1B" }}
     >
       <ScrollReveal>
         <div style={{ maxWidth: 500 }}>
@@ -137,10 +137,10 @@ const CONTACTS = [
 
 export function ContactStrip() {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
+    <div className="grid-4col" style={{ borderTop:"1px solid rgba(29,29,27,0.09)" }}>
       {CONTACTS.map(({ label, value }, i) => (
         <ScrollReveal key={label} delay={i * 0.1}>
-          <div style={{ padding: "44px 48px", borderRight: i < 3 ? "1px solid rgba(29,29,27,0.09)" : "none", height: "100%" }}>
+          <div style={{ padding: "44px 48px", borderRight: "1px solid rgba(29,29,27,0.09)", height: "100%" }}>
             <div style={{ fontFamily: "Jost, sans-serif", fontSize: 9, letterSpacing: "0.3em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 12 }}>{label}</div>
             <div style={{ fontFamily: "Jost, sans-serif", fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
           </div>

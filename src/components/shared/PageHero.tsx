@@ -13,7 +13,6 @@ const S = {
   section: {
     background: "#fff",
     borderBottom: "1px solid rgba(29,29,27,0.09)",
-    padding: "80px 80px 72px",
     position: "relative" as const,
     overflow: "hidden" as const,
   },
@@ -66,7 +65,7 @@ const S = {
 
 export function PageHero({ tag, title, subtitle, crumbs }: Props) {
   return (
-    <section style={S.section}>
+    <section className="page-hero" style={S.section}>
       {/* Subtle dot grid */}
       <div style={{
         position: "absolute", inset: 0,

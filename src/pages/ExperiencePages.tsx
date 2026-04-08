@@ -42,7 +42,7 @@ export function Services() {
       <StatsBar stats={[{ number: "24/7", label: "Operations" }, { number: "365", label: "Days Per Year" }, { number: "6", label: "Core Building Systems" }]} />
 
       {/* Lobby entrance corridor — full bleed */}
-      <div style={{ position: "relative", height: 440, overflow: "hidden" }}>
+      <div style={{ position: "relative", style={{ height:"clamp(240px,35vw,440px)", overflow:"hidden" }} }}>
         <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance corridor"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
@@ -70,7 +70,7 @@ export function Services() {
       </Section>
 
             {/* Interior photo gallery */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
+      <div className="grid-3col-photo">
         {[
           { src: "/assets/lobby-elevator-hall.jpg",   alt: "VIP elevator hall",        cap: "VIP Elevator Hall · Levels 30–51"   },
           { src: "/assets/lobby-ceiling-day.jpg",     alt: "Lobby ceiling structure",  cap: "Lamella Ceiling · Daylight"         },
@@ -121,7 +121,7 @@ export function Location() {
       ]} />
 
       {/* Full-bleed waterfront photo */}
-      <div style={{ position: "relative", height: 520, overflow: "hidden" }}>
+      <div style={{ position: "relative", style={{ height:"clamp(260px,40vw,520px)", overflow:"hidden" }} }}>
         <img src="/assets/kuwait-waterfront.jpg" alt="Kuwait City waterfront and skyline"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
@@ -139,7 +139,7 @@ export function Location() {
       </div>
 
       <Section>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+        <div className="grid-2col">
           <div>
             <Rv><Tag>Sharq District · Kuwait City</Tag></Rv>
             <Rv delay={0.1}><H2>Where Governance, Commerce and Culture Converge</H2></Rv>
@@ -192,7 +192,7 @@ export function LeasingOpportunities() {
       <StatsBar stats={[{ number: "3.2", unit: "m", label: "Ceiling Height" }, { number: "360°", label: "Views" }, { number: "4", label: "Premium Amenities" }]} />
 
       {/* City view from office floor */}
-      <div style={{ position: "relative", height: 400, overflow: "hidden" }}>
+      <div style={{ position: "relative", style={{ height:"clamp(220px,32vw,400px)", overflow:"hidden" }} }}>
         <img src="/assets/city-view-office.jpg" alt="Kuwait City panoramic view from office floor"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
@@ -206,7 +206,7 @@ export function LeasingOpportunities() {
       <Section>
         <Rv><Tag>Available Configurations</Tag></Rv>
         <Rv delay={0.1}><H2>Premium Office Spaces</H2></Rv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 48 }}>
+        <div className="grid-3col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:48 }}>
           {LEASING_CONFIGS.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
@@ -228,7 +228,7 @@ export function LeasingOpportunities() {
       <Section bg="#FAFAFA">
         <Rv><Tag>Premium Amenities</Tag></Rv>
         <Rv delay={0.1}><H2>Included with Every Configuration</H2></Rv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 40 }}>
+        <div className="grid-4col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:40 }}>
           {[
             { label: "Grand Lobby Access", desc: "24m column-free arrival experience" },
             { label: "3.2m Ceiling Height", desc: "Generous floor-to-ceiling proportions" },
@@ -296,7 +296,7 @@ export function LeasingInquiry() {
       />
 
       <Section>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 100 }}>
+        <div className="grid-2col">
           {/* Form */}
           <Rv>
             {sent ? (
@@ -439,7 +439,7 @@ export function Contact() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Leasing", href: "/leasing" }, { label: "Contact", href: "/leasing/contact" }]}
       />
       <Section>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "rgba(29,29,27,0.09)" }}>
+        <div className="grid-4col" style={{ gap:1, background:"rgba(29,29,27,0.09)" }}>
           {[
             { label: "Phone",   value: "+965 2227 0000" },
             { label: "Email",   value: "info@alhamratower.com" },
@@ -454,7 +454,7 @@ export function Contact() {
         </div>
       </Section>
       <Section bg="#FAFAFA">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 100 }}>
+        <div className="grid-2col">
           <Rv>
             <Tag>Social Media</Tag>
             <H2>Follow Al Hamra Tower</H2>

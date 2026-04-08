@@ -86,11 +86,11 @@ export function FloorPlanViewer() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 3fr", borderBottom: "1px solid rgba(29,29,27,0.09)" }}>
+          <div className="floorplan-viewer" style={{ borderBottom: "1px solid rgba(29,29,27,0.09)" }}>
 
             {/* Left — info panel */}
             <div style={{
-              padding: "48px 40px",
+              padding: "clamp(24px,4vw,48px) clamp(20px,3vw,40px)",
               borderRight: "1px solid rgba(29,29,27,0.09)",
               display: "flex", flexDirection: "column", justifyContent: "space-between",
               background: "#fff",
@@ -156,7 +156,7 @@ export function FloorPlanViewer() {
                 style={{
                   width: "100%",
                   height: "auto",
-                  maxHeight: 600,
+                  maxHeight: "min(600px, 70vw)",
                   objectFit: "contain",
                   display: "block",
                 }}

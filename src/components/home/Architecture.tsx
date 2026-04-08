@@ -61,10 +61,10 @@ export function Architecture() {
   }, [inView, revealed]);
 
   return (
-    <section id="arch" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 900 }}>
+    <section id="arch" className="arch-section">
 
       {/* LEFT — sketch + callouts */}
-      <div ref={ref} style={{ background: "#F7F6F4", position: "relative", borderRight: "1px solid rgba(29,29,27,0.09)", overflow: "hidden" }}>
+      <div ref={ref} className="arch-left" style={{ background:"#F7F6F4", position:"relative", borderRight:"1px solid rgba(29,29,27,0.09)", overflow:"hidden" }}>
         {/* Dot grid */}
         <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle,rgba(29,29,27,0.05) 1px,transparent 1px)", backgroundSize: "30px 30px", pointerEvents: "none" }} />
         {/* Image — fills full container height, width scales proportionally */}
@@ -99,7 +99,7 @@ export function Architecture() {
       </div>
 
       {/* RIGHT — text */}
-      <div style={{ padding: "80px 72px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      <div className="arch-right ah-section" style={{ display:"flex", flexDirection:"column", justifyContent:"center" }}>
         <ScrollReveal>
           <p style={{ fontFamily: "Jost, sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 24 }}>
             Architecture · Skidmore, Owings &amp; Merrill

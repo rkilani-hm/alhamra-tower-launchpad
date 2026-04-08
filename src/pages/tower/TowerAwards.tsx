@@ -85,7 +85,7 @@ export function TowerAwards() {
         <Rv><Tag>Project Collaborators</Tag></Rv>
         <Rv delay={0.1}><H2>The Team Behind the Tower</H2></Rv>
         <Rv delay={0.2}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 40 }}>
+          <div className="grid-4col">
             {COLLABORATORS.map(({ role, org }) => (
               <div key={org} style={{ background: "#fff", padding: "32px 28px" }}>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#B2B2B2", marginBottom: 12 }}>{role}</div>

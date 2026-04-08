@@ -62,7 +62,7 @@ export default function TowerDesign() {
 
       {/* Defining Elements */}
       <Section>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+        <div className="grid-2col">
           <div>
             <Rv><Tag>Architectural Concept</Tag></Rv>
             <Rv delay={0.1}><H2>A Timeless, Elegant Marker</H2></Rv>
@@ -89,7 +89,7 @@ export default function TowerDesign() {
         <Rv delay={0.1}><H2>Spiraling Floor Geometry</H2></Rv>
         <Rv delay={0.2}><Body style={{ maxWidth: 560, marginBottom: 48 }}>Explore how the carved quadrant rotates 60° from base to crown. The carved south wall shifts from west at ground level to east at the crown — a total 60° counter-clockwise rotation over 80 stories.</Body></Rv>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+        <div className="grid-2col" style={{ alignItems:"center" }}>
           {/* Level selector */}
           <div>
             {FLOOR_LEVELS.map(({ level, desc }, i) => (
@@ -146,7 +146,7 @@ export default function TowerDesign() {
 
       {/* Architectural section drawing */}
       <Section bg="#FAFAFA">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+        <div className="grid-2col" style={{ alignItems:"start" }}>
           {/* Left — label + legend */}
           <div>
             <Rv><Tag>Architectural Section · Floor Distribution</Tag></Rv>
@@ -241,7 +241,7 @@ export default function TowerDesign() {
 
       {/* Lobby */}
       <Section bg="#FAFAFA">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+        <div className="grid-2col" style={{ alignItems:"start" }}>
           <div>
             <Rv><Tag>Arrival Experience</Tag></Rv>
             <Rv delay={0.1}><H2>The 24-Metre Grand Lobby</H2></Rv>

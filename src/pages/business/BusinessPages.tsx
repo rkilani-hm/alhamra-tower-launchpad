@@ -30,7 +30,7 @@ export function WorkplaceExperience() {
       ]} />
 
       {/* Full-bleed lobby entrance corridor */}
-      <div style={{ position: "relative", height: 540, overflow: "hidden" }}>
+      <div style={{ position: "relative", style={{ height:"clamp(280px,40vw,540px)", overflow:"hidden" }} }}>
         <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.15) 0%, rgba(29,29,27,0.65) 100%)" }} />
@@ -46,7 +46,7 @@ export function WorkplaceExperience() {
 
       {/* Two-col: text + corridor photo */}
       <Section>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+        <div className="grid-2col">
           <div>
             <Rv><Tag>Premium Workspace Features</Tag></Rv>
             <Rv delay={0.1}><H2>Space That Adapts to the Way You Work</H2></Rv>
@@ -116,7 +116,7 @@ export function OfficeSpaces() {
       />
 
       {/* City view hero */}
-      <div style={{ position: "relative", height: 460, overflow: "hidden" }}>
+      <div style={{ position: "relative", style={{ height:"clamp(240px,35vw,460px)", overflow:"hidden" }} }}>
         <img src="/assets/city-view-office.jpg" alt="Office floor — panoramic Kuwait City view"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
@@ -135,7 +135,7 @@ export function OfficeSpaces() {
       <Section>
         <Rv><Tag>Space Configurations</Tag></Rv>
         <Rv delay={0.1}><H2>Flexible Configurations Designed for Every Scale</H2></Rv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 48 }}>
+        <div className="grid-3col feature-grid" style={{ marginTop:48 }}>
           {CONFIGS.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
@@ -156,7 +156,7 @@ export function OfficeSpaces() {
 
       {/* Corridor interior + flexibility features */}
       <Section bg="#FAFAFA">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+        <div className="grid-2col">
           <Rv>
             <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 380 }}>
               <img src="/assets/office-corridor.jpg" alt="Office corridor — premium limestone finishes"
@@ -233,11 +233,11 @@ export function VerticalTransportation() {
       <StatsBar stats={[{ number: "52", label: "Total Elevators" }, { number: "8", label: "Express Units" }, { number: "6", unit: "m/s", label: "Max Speed" }]} />
 
       {/* Elevator hall — wide shot with VIP signage visible */}
-      <div style={{ position: "relative", height: 480, overflow: "hidden" }}>
+      <div style={{ position: "relative", style={{ height:"clamp(260px,38vw,480px)", overflow:"hidden" }} }}>
         <img src="/assets/lobby-elevator-hall.jpg" alt="Al Hamra Tower VIP elevator hall"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "60px 80px" }}>
+        <div style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", className="photo-overlay-text" }}>
           <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>
             Lobby Level · VIP Elevator Hall
           </p>
@@ -250,7 +250,7 @@ export function VerticalTransportation() {
       <Section>
         <Rv><Tag>Sky Lobby Transfer Points</Tag></Rv>
         <Rv delay={0.1}><H2>The Vertical Journey</H2></Rv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 48 }}>
+        <div className="grid-4col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:48 }}>
           {ASCENT.map(({ floor, label, body }, i) => (
             <Rv key={floor} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "36px 28px", height: "100%" }}>

@@ -9,14 +9,7 @@ const STATS = [
 
 export function Stats() {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        borderTop: "1px solid rgba(29,29,27,0.09)",
-        borderBottom: "1px solid rgba(29,29,27,0.09)",
-      }}
-    >
+    <div className="stats-bar grid-4col">
       {STATS.map(({ number, unit, label }, i) => (
         <ScrollReveal key={label} delay={i * 0.1}>
           <div
