@@ -28,11 +28,11 @@ export function WorkplaceExperience() {
         { number: "24/7", label: "Building Operations" },
       ]} />
 
-      {/* Full-bleed lobby interior */}
+      {/* Full-bleed lobby entrance corridor */}
       <div style={{ position: "relative", height: 540, overflow: "hidden" }}>
-        <img src="/assets/lobby-interior.jpg" alt="Al Hamra Tower Grand Lobby"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 25%" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.6) 100%)" }} />
+        <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.15) 0%, rgba(29,29,27,0.65) 100%)" }} />
         <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
           <Rv>
             <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>Grand Lobby · 24m Column-Free</p>
@@ -213,16 +213,16 @@ export function VerticalTransportation() {
       />
       <StatsBar stats={[{ number: "52", label: "Total Elevators" }, { number: "8", label: "Express Units" }, { number: "6", unit: "m/s", label: "Max Speed" }]} />
 
-      {/* Lobby interior as visual anchor */}
-      <div style={{ position: "relative", height: 420, overflow: "hidden" }}>
-        <img src="/assets/lobby-interior.jpg" alt="Al Hamra Tower Grand Lobby interior"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 15%" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.1) 0%, rgba(29,29,27,0.6) 100%)" }} />
-        <div style={{ position: "absolute", bottom: 40, left: 80 }}>
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
-            The Grand Lobby · Floor G · Your Journey Begins Here
+      {/* Elevator hall — wide shot with VIP signage visible */}
+      <div style={{ position: "relative", height: 480, overflow: "hidden" }}>
+        <img src="/assets/lobby-elevator-hall.jpg" alt="Al Hamra Tower VIP elevator hall"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "60px 80px" }}>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>
+            Lobby Level · VIP Elevator Hall
           </p>
-          <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,34px)", fontWeight: 200, color: "#fff", lineHeight: 1.3 }}>
+          <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.25 }}>
             52 elevators.<br /><strong style={{ fontWeight: 500 }}>One seamless ascent.</strong>
           </h3>
         </div>

@@ -172,20 +172,21 @@ export default function TowerDesign() {
           <Rv delay={0.15}>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               {/* Full lobby interior */}
+              {/* Lobby entrance corridor — portrait */}
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/lobby-interior.jpg" alt="Al Hamra Tower Grand Lobby"
-                  style={{ width: "100%", height: 340, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "20px 20px 14px" }}>
+                <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Grand Lobby entrance corridor"
+                  style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center center", display: "block" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "20px 20px 14px" }}>
                   <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Grand Lobby · 24m Column-Free Height</span>
                 </div>
               </div>
-              {/* Ceiling detail */}
+              {/* Elevator hall wide */}
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/lobby-ceiling-portrait.jpg" alt="Lamella lobby ceiling structure"
-                  style={{ width: "100%", height: 136, objectFit: "cover", objectPosition: "center 40%", display: "block" }} />
-                <div style={{ position: "absolute", inset: 0, background: "rgba(29,29,27,0.15)" }} />
-                <div style={{ position: "absolute", bottom: 10, left: 14 }}>
-                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>Lamella Structure Detail</span>
+                <img src="/assets/lobby-elevator-hall.jpg" alt="VIP elevator hall — Al Hamra Tower"
+                  style={{ width: "100%", height: 96, objectFit: "cover", objectPosition: "center 60%", display: "block" }} />
+                <div style={{ position: "absolute", inset: 0, background: "rgba(29,29,27,0.1)" }} />
+                <div style={{ position: "absolute", bottom: 8, left: 14 }}>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>VIP Elevator Hall · Levels 30–51</span>
                 </div>
               </div>
             </div>

@@ -40,6 +40,21 @@ export function Services() {
       />
       <StatsBar stats={[{ number: "24/7", label: "Operations" }, { number: "365", label: "Days Per Year" }, { number: "6", label: "Core Building Systems" }]} />
 
+      {/* Lobby entrance corridor — full bleed */}
+      <div style={{ position: "relative", height: 440, overflow: "hidden" }}>
+        <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance corridor"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
+        <div style={{ position: "absolute", bottom: 44, left: 80, right: 80 }}>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
+            Al Hamra Business Tower · Grand Lobby · 24/7 Operations
+          </p>
+          <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,34px)", fontWeight: 200, color: "#fff", lineHeight: 1.3 }}>
+            Every service designed to<br /><strong style={{ fontWeight: 500 }}>anticipate. Remove friction. Perform.</strong>
+          </h3>
+        </div>
+      </div>
+
       <Section>
         <Rv><Tag>Building Systems · Continuous Operation</Tag></Rv>
         <Rv delay={0.1}><H2>Six Systems. One Standard.</H2></Rv>
@@ -56,7 +71,7 @@ export function Services() {
             {/* Interior photo gallery */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
         {[
-          { src: "/assets/entrance-night.jpg",        alt: "Tower entrance at night",  cap: "Main Entrance · Blue Hour"          },
+          { src: "/assets/lobby-elevator-hall.jpg",   alt: "VIP elevator hall",        cap: "VIP Elevator Hall · Levels 30–51"   },
           { src: "/assets/lobby-ceiling-day.jpg",     alt: "Lobby ceiling structure",  cap: "Lamella Ceiling · Daylight"         },
           { src: "/assets/lobby-ceiling-portrait.jpg",alt: "Lobby ceiling portrait",   cap: "Grand Lobby Structure · 24m Height" },
         ].map(({ src, alt, cap }) => (
