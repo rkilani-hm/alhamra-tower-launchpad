@@ -181,6 +181,44 @@ export function Location() {
   );
 }
 
+
+/* ── Leasing Configurations ─────────────────── */
+const LEASING_CONFIGS = [
+  {
+    code: "A",
+    title: "Executive Suite",
+    size: "250–500 m²",
+    bullets: [
+      "Ideal for boutique firms & embassies",
+      "Pre-fitted premium interiors available",
+      "Private reception & waiting area",
+      "Direct elevator access options",
+    ],
+  },
+  {
+    code: "B",
+    title: "Full Floor",
+    size: "2,300 m²",
+    bullets: [
+      "Complete floor plate — undivided",
+      "270° panoramic Gulf & city views",
+      "Sky lobby access on floors 30 & 55",
+      "Dedicated server room allocation",
+    ],
+  },
+  {
+    code: "C",
+    title: "Corporate HQ",
+    size: "4,600+ m²",
+    bullets: [
+      "Multi-floor consolidated headquarters",
+      "Private internal staircase between floors",
+      "Bespoke fit-out consultation included",
+      "VIP entrance & lobby branding rights",
+    ],
+  },
+];
+
 export function LeasingOpportunities() {
   return (
     <PageLayout>
