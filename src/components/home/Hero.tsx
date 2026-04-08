@@ -65,7 +65,7 @@ export function Hero() {
           autoPlay muted loop playsInline preload="auto"
           style={{ position:"absolute", top:0, left:0, right:0, bottom:0, width:"100%", height:"100%", objectFit:"cover", objectPosition:"center center", display:"block" }}
         >
-          <source src="/assets/hero.mp4" type="video/mp4" />
+          <source src="/assets/tower-drone.mp4" type="video/mp4" />
         </motion.video>
         <div style={{ position:"absolute", top:0, left:0, bottom:0, width:60, background:"linear-gradient(to right,#ffffff,transparent)", zIndex:2, pointerEvents:"none" }} />
         <motion.div
