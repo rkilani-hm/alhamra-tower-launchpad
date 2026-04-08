@@ -53,12 +53,29 @@ export function Services() {
         <Rv delay={0.2}><FeatureGrid features={FACILITY} /></Rv>
       </Section>
 
+            {/* Interior photo gallery */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
+        {[
+          { src: "/assets/entrance-night.jpg",        alt: "Tower entrance at night",  cap: "Main Entrance · Blue Hour"          },
+          { src: "/assets/lobby-ceiling-day.jpg",     alt: "Lobby ceiling structure",  cap: "Lamella Ceiling · Daylight"         },
+          { src: "/assets/lobby-ceiling-portrait.jpg",alt: "Lobby ceiling portrait",   cap: "Grand Lobby Structure · 24m Height" },
+        ].map(({ src, alt, cap }) => (
+          <div key={src} style={{ position: "relative", overflow: "hidden", height: 300 }}>
+            <img src={src} alt={alt}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", transition: "transform 0.6s ease" }}
+              onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
+              onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
+            />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "14px 18px 12px" }}>
+              <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <Section>
-        <Rv><Tag>Tenant Support · Comprehensive Daily Support</Tag></Rv>
-        <Rv delay={0.1}><H2>Present When You Need It</H2></Rv>
-        <Rv delay={0.2}><FeatureGrid features={TENANT} /></Rv>
-        <Rv delay={0.4}>
-          <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(18px,2vw,26px)", fontStyle: "italic", fontWeight: 300, color: "#B2B2B2", lineHeight: 1.65, maxWidth: 720, marginTop: 60 }}>
+        <Rv>
+          <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(18px,2vw,26px)", fontStyle: "italic", fontWeight: 300, color: "#1D1D1B", lineHeight: 1.65, maxWidth: 720 }}>
             "Behind every seamless day at Al Hamra Tower stands an infrastructure of precision — engineering teams, monitoring systems, and service protocols working in concert."
           </p>
         </Rv>
@@ -157,6 +174,18 @@ export function LeasingOpportunities() {
         crumbs={[{ label: "Home", href: "/" }, { label: "Leasing", href: "/leasing" }]}
       />
       <StatsBar stats={[{ number: "3.2", unit: "m", label: "Ceiling Height" }, { number: "360°", label: "Views" }, { number: "4", label: "Premium Amenities" }]} />
+
+      {/* City view from office floor */}
+      <div style={{ position: "relative", height: 400, overflow: "hidden" }}>
+        <img src="/assets/city-view-office.jpg" alt="Kuwait City panoramic view from office floor"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
+        <div style={{ position: "absolute", bottom: 40, right: 80, textAlign: "right" }}>
+          <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(20px,2.5vw,32px)", fontStyle: "italic", fontWeight: 300, color: "#fff", lineHeight: 1.4 }}>
+            "Every office.<br />Every corner.<br />An unbroken horizon."
+          </p>
+        </div>
+      </div>
 
       <Section>
         <Rv><Tag>Available Configurations</Tag></Rv>

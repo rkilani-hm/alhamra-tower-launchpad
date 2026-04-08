@@ -170,13 +170,23 @@ export default function TowerDesign() {
             </Rv>
           </div>
           <Rv delay={0.15}>
-            <div style={{ position: "relative", overflow: "hidden" }}>
-              <img src="/assets/tower-street.jpg" alt="Al Hamra Tower from street level"
-                style={{ width: "100%", height: 480, objectFit: "cover", objectPosition: "center top", display: "block" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "20px 20px 16px" }}>
-                <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                  Photo: Dave Burk · SOM Architecture
-                </span>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              {/* Full lobby interior */}
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <img src="/assets/lobby-interior.jpg" alt="Al Hamra Tower Grand Lobby"
+                  style={{ width: "100%", height: 340, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "20px 20px 14px" }}>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Grand Lobby · 24m Column-Free Height</span>
+                </div>
+              </div>
+              {/* Ceiling detail */}
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <img src="/assets/lobby-ceiling-portrait.jpg" alt="Lamella lobby ceiling structure"
+                  style={{ width: "100%", height: 136, objectFit: "cover", objectPosition: "center 40%", display: "block" }} />
+                <div style={{ position: "absolute", inset: 0, background: "rgba(29,29,27,0.15)" }} />
+                <div style={{ position: "absolute", bottom: 10, left: 14 }}>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>Lamella Structure Detail</span>
+                </div>
               </div>
             </div>
           </Rv>

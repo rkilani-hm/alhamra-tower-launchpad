@@ -60,7 +60,7 @@ export default function TowerOverview() {
         </div>
         {/* Skyline photo */}
         <div style={{ position: "relative", overflow: "hidden", height: 500 }}>
-          <img src="/assets/kuwait-skyline.jpg" alt="Kuwait City skyline"
+          <img src="/assets/tower-facade-up.jpg" alt="Al Hamra Tower facade looking up"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(29,29,27,0.35) 0%, transparent 50%)" }} />
           <div style={{ position: "absolute", bottom: 24, left: 24 }}>

@@ -1,6 +1,6 @@
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
-import { StatsBar, FeatureGrid, SpecTable, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 
 /* ══════════════════════════════════════════════════
    WORKPLACE EXPERIENCE  /business
@@ -21,21 +21,68 @@ export function WorkplaceExperience() {
         subtitle="Al Hamra Business Tower provides an environment defined by discretion, efficiency, and professional clarity."
         crumbs={[{ label: "Home", href: "/" }, { label: "Business", href: "/business" }]}
       />
+
       <StatsBar stats={[
         { number: "50+",  label: "Leading Companies"   },
         { number: "95%",  label: "Occupancy Rate"      },
         { number: "24/7", label: "Building Operations" },
       ]} />
+
+      {/* Full-bleed lobby interior */}
+      <div style={{ position: "relative", height: 540, overflow: "hidden" }}>
+        <img src="/assets/lobby-interior.jpg" alt="Al Hamra Tower Grand Lobby"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 25%" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.6) 100%)" }} />
+        <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
+          <Rv>
+            <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>Grand Lobby · 24m Column-Free</p>
+            <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, maxWidth: 560 }}>
+              An arrival experience<br /><strong style={{ fontWeight: 500 }}>befitting Kuwait's tallest building</strong>
+            </h3>
+          </Rv>
+        </div>
+      </div>
+
+      {/* Two-col: text + corridor photo */}
       <Section>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
           <div>
             <Rv><Tag>Premium Workspace Features</Tag></Rv>
             <Rv delay={0.1}><H2>Space That Adapts to the Way You Work</H2></Rv>
-            <Rv delay={0.2}><Body>Efficient floor plates allow flexible configurations suitable for single-tenant headquarters or multi-tenant layouts. Everything you need — close, connected, effortless. Retail, dining, and service amenities within the Al Hamra complex reinforce the tower as a complete professional environment.</Body></Rv>
+            <Rv delay={0.2}>
+              <Body>Efficient floor plates allow flexible configurations suitable for single-tenant headquarters or multi-tenant layouts. Everything you need — close, connected, effortless. Retail, dining, and service amenities within the Al Hamra complex reinforce the tower as a complete professional environment.</Body>
+            </Rv>
+            <Rv delay={0.3}>
+              <FeatureGrid features={WORKPLACE_FEATURES} />
+            </Rv>
           </div>
-          <Rv delay={0.15}><FeatureGrid features={WORKPLACE_FEATURES} /></Rv>
+
+          {/* Interior corridor photo */}
+          <Rv delay={0.15}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <img src="/assets/office-corridor.jpg" alt="Al Hamra office corridor — limestone finishes"
+                  style={{ width: "100%", height: 320, objectFit: "cover", objectPosition: "center center", display: "block" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "16px 20px 14px" }}>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
+                    Office Corridor · Jura Limestone Finishes
+                  </span>
+                </div>
+              </div>
+              <div style={{ position: "relative", overflow: "hidden" }}>
+                <img src="/assets/city-view-office.jpg" alt="Kuwait City view from office floor"
+                  style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "12px 20px 12px" }}>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
+                    360° Views · Kuwait City & Arabian Gulf
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Rv>
         </div>
       </Section>
+
       <DarkBand title="Explore Office Spaces &amp; Floor Plans" ctaLabel="View Configurations" ctaHref="/business/office-spaces" />
     </PageLayout>
   );
@@ -66,9 +113,24 @@ export function OfficeSpaces() {
         subtitle="Flexible configurations from executive suites to full-floor headquarters. Every layout is designed around natural light, panoramic views, and operational efficiency."
         crumbs={[{ label: "Home", href: "/" }, { label: "Business", href: "/business" }, { label: "Office Spaces", href: "/business/office-spaces" }]}
       />
-      <StatsBar stats={[{ number: "3.2", unit: "m", label: "Ceiling Height" }, { number: "360°", label: "Views" }, { number: "1,750", unit: "m²", label: "Typical Leasable Floor" }]} />
 
-      {/* Configurations */}
+      {/* City view hero */}
+      <div style={{ position: "relative", height: 460, overflow: "hidden" }}>
+        <img src="/assets/city-view-office.jpg" alt="Office floor — panoramic Kuwait City view"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
+        <div style={{ position: "absolute", bottom: 40, left: 80, display: "flex", gap: 40 }}>
+          {[{ n: "3.2m", l: "Ceiling Height" }, { n: "360°", l: "Views" }, { n: "1,750", u: "m²", l: "Typical Leasable Floor" }].map(({ n, u, l }) => (
+            <div key={l}>
+              <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 36, fontWeight: 300, color: "#fff", lineHeight: 1 }}>
+                {n}<span style={{ fontFamily: "Jost,sans-serif", fontSize: 14, fontWeight: 200, color: "rgba(255,255,255,0.6)" }}>{u}</span>
+              </div>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "8.5px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginTop: 6 }}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <Section>
         <Rv><Tag>Space Configurations</Tag></Rv>
         <Rv delay={0.1}><H2>Flexible Configurations Designed for Every Scale</H2></Rv>
@@ -81,7 +143,7 @@ export function OfficeSpaces() {
                 <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "36px", fontWeight: 300, color: "#B2B2B2", lineHeight: 1, marginBottom: 20 }}>{size}</div>
                 {bullets.map(b => (
                   <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                    <span style={{ color: "#B2B2B2", marginTop: 1 }}>—</span>
+                    <span style={{ color: "#B2B2B2" }}>—</span>
                     <span style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
                   </div>
                 ))}
@@ -89,18 +151,33 @@ export function OfficeSpaces() {
             </Rv>
           ))}
         </div>
-        <Rv delay={0.4}>
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#B2B2B2", marginTop: 20, fontStyle: "italic" }}>
-            All configurations are subject to availability and can be customised to meet specific operational requirements. Contact the leasing team for detailed floor plans.
-          </p>
-        </Rv>
       </Section>
 
-      {/* Flexibility */}
+      {/* Corridor interior + flexibility features */}
       <Section bg="#FAFAFA">
-        <Rv><Tag>Flexibility & Fit-Out</Tag></Rv>
-        <Rv delay={0.1}><H2>Workspaces Designed to Adapt</H2></Rv>
-        <Rv delay={0.2}><FeatureGrid features={FLEX_FEATURES} /></Rv>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+          <Rv>
+            <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 380 }}>
+              <img src="/assets/office-corridor.jpg" alt="Office corridor — premium limestone finishes"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.45))", padding: "20px 20px 16px" }}>
+                <span style={{ fontFamily: "Jost,sans-serif", fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
+                  South Corridor · Jura Limestone Finishes
+                </span>
+              </div>
+            </div>
+          </Rv>
+          <div>
+            <Rv><Tag>Flexibility & Fit-Out</Tag></Rv>
+            <Rv delay={0.1}><H2>Workspaces Designed to Adapt</H2></Rv>
+            <Rv delay={0.2}><FeatureGrid features={FLEX_FEATURES} /></Rv>
+            <Rv delay={0.3}>
+              <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#B2B2B2", marginTop: 20, fontStyle: "italic" }}>
+                All configurations are subject to availability. Contact the leasing team for detailed floor plans.
+              </p>
+            </Rv>
+          </div>
+        </div>
       </Section>
 
       <DarkBand title="Ready to Enquire?" subtitle="Contact our leasing team for availability, floor plans, and pricing aligned to your requirements." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry" />
@@ -112,7 +189,7 @@ export function OfficeSpaces() {
    VERTICAL TRANSPORTATION  /business/vertical-transportation
 ══════════════════════════════════════════════════ */
 const ASCENT = [
-  { floor: "Floor G", label: "Grand Arrival",     body: "The tower's dramatic lobby welcomes visitors with soaring ceilings, cascading water, and immediate access to express elevators." },
+  { floor: "Floor G",  label: "Grand Arrival",    body: "The tower's dramatic lobby welcomes visitors with soaring ceilings, cascading water, and immediate access to express elevators." },
   { floor: "Floor 30", label: "Mid-Rise Transfer", body: "The first sky lobby offers panoramic orientation and connects express service to local elevators serving floors 20–40." },
   { floor: "Floor 55", label: "High-Rise Gateway", body: "The second sky lobby serves as the gateway to executive floors, with unobstructed Gulf views and refined waiting areas." },
   { floor: "Floor 80", label: "Executive Floors",  body: "The tower's premium office levels — where industry leaders operate with commanding views across Kuwait City and beyond." },
@@ -136,7 +213,21 @@ export function VerticalTransportation() {
       />
       <StatsBar stats={[{ number: "52", label: "Total Elevators" }, { number: "8", label: "Express Units" }, { number: "6", unit: "m/s", label: "Max Speed" }]} />
 
-      {/* Sky lobbies */}
+      {/* Lobby interior as visual anchor */}
+      <div style={{ position: "relative", height: 420, overflow: "hidden" }}>
+        <img src="/assets/lobby-interior.jpg" alt="Al Hamra Tower Grand Lobby interior"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 15%" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.1) 0%, rgba(29,29,27,0.6) 100%)" }} />
+        <div style={{ position: "absolute", bottom: 40, left: 80 }}>
+          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
+            The Grand Lobby · Floor G · Your Journey Begins Here
+          </p>
+          <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,34px)", fontWeight: 200, color: "#fff", lineHeight: 1.3 }}>
+            52 elevators.<br /><strong style={{ fontWeight: 500 }}>One seamless ascent.</strong>
+          </h3>
+        </div>
+      </div>
+
       <Section>
         <Rv><Tag>Sky Lobby Transfer Points</Tag></Rv>
         <Rv delay={0.1}><H2>The Vertical Journey</H2></Rv>
@@ -153,7 +244,6 @@ export function VerticalTransportation() {
         </div>
       </Section>
 
-      {/* Elevator routes */}
       <Section bg="#FAFAFA">
         <Rv><Tag>Elevator System Architecture</Tag></Rv>
         <Rv delay={0.1}><H2>Elevator Routes</H2></Rv>
@@ -166,11 +256,7 @@ export function VerticalTransportation() {
               { name: "Mid-Rise Local",          floors: "30 → 50",speed: "4 m/s", cap: "16 persons" },
               { name: "High-Rise Local",         floors: "55 → 80",speed: "4 m/s", cap: "16 persons" },
             ].map(({ name, floors, speed, cap }, i) => (
-              <div key={name} style={{
-                display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr",
-                padding: "18px 0", borderBottom: i < 4 ? "1px solid rgba(29,29,27,0.07)" : "none",
-                gap: 24,
-              }}>
+              <div key={name} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", padding: "18px 0", borderBottom: i < 4 ? "1px solid rgba(29,29,27,0.07)" : "none", gap: 24 }}>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "13px", fontWeight: 400, color: "#1D1D1B" }}>{name}</div>
                 <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "22px", fontWeight: 300, color: "#1D1D1B" }}>{floors}</div>
                 <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B" }}>{speed}</div>
@@ -181,7 +267,6 @@ export function VerticalTransportation() {
         </Rv>
       </Section>
 
-      {/* Sky lobby features */}
       <Section>
         <Rv><Tag>Sky Lobby Features</Tag></Rv>
         <Rv delay={0.1}><H2>Vertical Connectivity for Business</H2></Rv>

@@ -54,14 +54,14 @@ export default function TowerRising() {
         {tab === "Purposeful Design" && (
           <motion.div key="design" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
 
-            {/* Full-bleed photo hero */}
+            {/* Full-bleed entrance night photo */}
             <div style={{ position: "relative", height: 560, overflow: "hidden" }}>
               <img
-                src="/assets/tower-street.jpg"
-                alt="Al Hamra Tower — street view"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }}
+                src="/assets/entrance-night-wide.jpg"
+                alt="Al Hamra Tower entrance at night"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
               />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.72) 0%, rgba(29,29,27,0.2) 55%, transparent 100%)" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "60px 80px" }}>
                 <Rv>
                   <p style={{ fontFamily: "Jost,sans-serif", fontSize: "9.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 16 }}>
