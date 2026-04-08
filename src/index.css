@@ -37,8 +37,7 @@
     font-weight: 300;
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
-  }
+    }
 
   ::selection {
     background: #1D1D1B;
