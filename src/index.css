@@ -11,7 +11,13 @@
   --color-muted-mid: #6B6B6B;   /* 5.33:1 on white — AA ✅ */
   --color-sand:      #C5A882;   /* 8.71:1 on #0c0b09 — use only on DARK backgrounds */
   --color-sand-aa:   #9A7550;   /* 4.58:1 on white — use on LIGHT backgrounds */
-  --color-red:       #CD1719;
+  --color-red:       #CD1719;   /* kept for bg use only */
+  --color-pearl:     #C8B99A;   /* warm pearl — accent on dark */
+  --color-pearl-mid: #D4CFC9;   /* cool silver pearl */
+  --color-pearl-aa:  #9A7550;   /* accessible pearl for text */
+  --color-gulf:      #2A5F7A;   /* Arabian Gulf blue — dusk */
+  --color-gulf-mid:  #3D7A96;   /* Gulf highlight */
+  --color-mashrabiya: rgba(197,168,130,0.04); /* geometric texture tint */
   --color-cream:     #F5F0E8;
   --color-stone:     #E8E0D4;
   --color-white:     #FFFFFF;
@@ -436,4 +442,58 @@
   .hero-stat-strip  { display: none !important; }
   .hero-side-label  { display: none !important; }
   .hero-credit      { display: none !important; }
+}
+/* ── Pearl Gradient Accent ────────────────────────────────────────── */
+.pearl-rule {
+  background: linear-gradient(to bottom,
+    var(--color-pearl),
+    var(--color-pearl-mid) 50%,
+    var(--color-pearl) 100%
+  );
+}
+.pearl-rule-h {
+  background: linear-gradient(to right,
+    transparent,
+    var(--color-pearl) 20%,
+    var(--color-pearl-mid) 50%,
+    var(--color-pearl) 80%,
+    transparent
+  );
+}
+
+/* ── Gulf Blue Utilities ───────────────────────────────────────────── */
+.text-gulf   { color: var(--color-gulf); }
+.bg-gulf     { background: var(--color-gulf); }
+
+/* ── Mashrabiya Texture ────────────────────────────────────────────── */
+/* Applied via SVG data-uri background on sections */
+.mashrabiya-bg {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%23C5A882' stroke-width='0.4' opacity='0.18'%3E%3Cpolygon points='30,2 52,16 52,44 30,58 8,44 8,16'/%3E%3Cpolygon points='30,12 46,21 46,39 30,48 14,39 14,21'/%3E%3Cline x1='30' y1='2' x2='30' y2='12'/%3E%3Cline x1='52' y1='16' x2='46' y2='21'/%3E%3Cline x1='52' y1='44' x2='46' y2='39'/%3E%3Cline x1='30' y1='58' x2='30' y2='48'/%3E%3Cline x1='8' y1='44' x2='14' y2='39'/%3E%3Cline x1='8' y1='16' x2='14' y2='21'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* ── Coordinate Text Style ────────────────────────────────────────── */
+.coordinate-text {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-gulf);
+  font-weight: 300;
+}
+
+/* ── Pearl Section Divider ────────────────────────────────────────── */
+.pearl-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    var(--color-pearl) 20%,
+    var(--color-pearl-mid) 50%,
+    var(--color-pearl) 80%,
+    transparent 100%
+  );
+  margin: 0;
+  border: none;
+  opacity: 0.6;
 }

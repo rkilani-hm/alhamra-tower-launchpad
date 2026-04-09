@@ -30,9 +30,9 @@ export function Perspectives() {
 
 // ── FLOOR CONFIGURATIONS ──────────────────────────────────
 const FLOORS = [
-  { code: "Configuration 01", title: "Executive Suite", size: "250–500 m²", body: "Corner office configuration with panoramic city views and private meeting room. Ideal for regional offices and professional firms." },
-  { code: "Configuration 02", title: "Full Floor",      size: "1,200–1,800 m²", body: "Entire floor exclusivity with private elevator access and dedicated reception. 3.2m ceiling height with 360° views." },
-  { code: "Configuration 03", title: "Corporate HQ",   size: "3,000+ m²", body: "Multiple floors with building signage rights and dedicated parking levels. Kuwait's premier headquarters address." },
+  { code: "Configuration 01", title: "Ministerial Suite", size: "250–500 m²", body: "Corner office configuration with panoramic city views and private meeting room. Ideal for regional offices and professional firms." },
+  { code: "Configuration 02", title: "Sovereign Floor",      size: "1,200–1,800 m²", body: "Entire floor exclusivity with private elevator access and dedicated reception. 3.2m ceiling height with 360° views." },
+  { code: "Configuration 03", title: "Flagship Headquarters",   size: "3,000+ m²", body: "Multiple floors with building signage rights and dedicated parking levels. Kuwait's premier headquarters address." },
 ];
 
 export function FloorConfigs() {

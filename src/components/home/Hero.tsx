@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 const SAND = "#C5A882";
 const DARK = "#1D1D1B";
 const RED  = "#CD1719";
+const PEARL = "#C8B99A";
+const GULF  = "#2A5F7A";
 
 export function Hero() {
   const ref      = useRef<HTMLElement>(null);
@@ -84,7 +86,7 @@ export function Hero() {
         initial={{ scaleY: 0 }} animate={{ scaleY: 1 }}
         transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
         style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3,
-          background: RED, transformOrigin: "top", zIndex: 10 }}
+          background: `linear-gradient(to bottom, ${PEARL}, #D4CFC9 50%, ${PEARL})`, transformOrigin: "top", zIndex: 10 }}
       />
 
       {/* W4: Video pause button — WCAG 2.1.2 */}
@@ -156,7 +158,7 @@ export function Hero() {
           aria-hidden="true"
         >
           <span style={{ width: 36, height: 1, background: SAND, flexShrink: 0 }} />
-          Al Hamra Business Tower · SOM Architecture · Kuwait City
+          Sharq District  ·  Kuwait City  ·  412m  ·  Est. 2011
         </motion.div>
 
         {/* Heading */}
@@ -203,8 +205,8 @@ export function Hero() {
             fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.85,
             maxWidth: 420, marginBottom: 48 }}
         >
-          A sculptural landmark rising 412 metres above the Arabian Gulf —
-          designed by SOM for performance, prestige, and permanence.
+          The address that defines Kuwait's most distinguished institutions,
+          sovereign tenants, and global luxury brands.
         </motion.p>
 
         {/* CTAs */}
@@ -222,7 +224,7 @@ export function Hero() {
             onMouseEnter={e => { e.currentTarget.style.background = SAND; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = DARK; }}
           >
-            Explore the Tower
+            Discover the Tower
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
               <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -238,7 +240,7 @@ export function Hero() {
             onMouseEnter={e => { e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)"; }}
             onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.85)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"; }}
           >
-            Leasing Inquiry
+            Enquire by appointment
           </Link>
         </motion.div>
       </motion.div>
