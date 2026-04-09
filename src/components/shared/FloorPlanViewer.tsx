@@ -148,14 +148,18 @@ export function FloorPlanViewer() {
             </div>
 
             {/* Right — floor plan image */}
-            <div style={{
-              background: "#F7F6F4",
-              padding: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: 560,
-            }}>
+            <div
+              role="tabpanel"
+              id={`floorplan-panel-${active}`}
+              aria-labelledby={`floorplan-tab-${active}`}
+              style={{
+                background: "#F7F6F4",
+                padding: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: 560,
+              }}>
               <img
                 src={plan.src}
                 alt={`Al Hamra Tower — ${plan.label}`}

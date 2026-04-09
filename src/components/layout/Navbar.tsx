@@ -241,6 +241,8 @@ export function Navbar() {
                     {/* Section header — tap to expand */}
                     <button
                       onClick={() => toggleSection(label)}
+                      aria-expanded={isExpanded}
+                      aria-controls={`mobile-nav-${label.replace(/\s+/g, "-").toLowerCase()}`}
                       style={{
                         width: "100%", display: "flex", alignItems: "center",
                         justifyContent: "space-between",
