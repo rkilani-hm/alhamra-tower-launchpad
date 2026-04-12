@@ -100,7 +100,7 @@ export function Navbar() {
           <img
             src="/assets/al-hamra-logo.png" alt="Al Hamra"
             style={{
-              height: 48, width: "auto", objectFit: "contain",
+              height: 64, width: "auto", objectFit: "contain",
               filter: scrolled || openMenu || mobileOpen ? "none" : "brightness(0) invert(1)",
               transition: "filter 0.4s ease",
             }}
