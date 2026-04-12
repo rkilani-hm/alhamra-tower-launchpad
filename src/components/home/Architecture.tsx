@@ -7,11 +7,11 @@ const FEATURES = [
   { n: "01", title: "Carved Form",            desc: "Solar-responsive asymmetrical profile. Quarter of each floor strategically removed for performance." },
   { n: "02", title: "Solar Response",          desc: "Limestone south façade as passive thermal shield against Kuwait's desert climate." },
   { n: "03", title: "24m Grand Lobby",         desc: "Column-free arrival hall. One of the region's most dramatic entrance volumes." },
-  { n: "04", title: "Structural Innovation",   desc: "Hyperbolic paraboloid walls spanning 412m. Unprecedented at this scale globally." },
+  { n: "04", title: "Structural Innovation",   desc: "Hyperbolic paraboloid walls spanning 413m. Unprecedented at this scale globally." },
 ];
 
 const CALLOUTS = [
-  { id: "crown",  top: "8%",  left: "52%", title: "Crown",       sub: "412m · Level 80",      delay: 2700 },
+  { id: "crown",  top: "8%",  left: "52%", title: "Crown",       sub: "413m · Level 80",      delay: 2700 },
   { id: "sky55",  top: "34%", left: "56%", title: "Sky Lobby",   sub: "Level 55 · High-Rise", delay: 2100 },
   { id: "sky30",  top: "57%", left: "59%", title: "Sky Lobby",   sub: "Level 30 · Mid-Rise",  delay: 1400 },
   { id: "lobby",  top: "86%", left: "56%", title: "Grand Lobby", sub: "24m · Column-Free",    delay: 600  },

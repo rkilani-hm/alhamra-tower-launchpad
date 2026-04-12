@@ -64,7 +64,7 @@ export function Footer() {
             onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
           <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#767676", lineHeight: 1.8, maxWidth: 200, marginBottom: 24 }}>
-            Kuwait's most iconic commercial landmark. 412 metres. Sharq, Kuwait City.
+            Kuwait's most iconic commercial landmark. 413 metres. Sharq, Kuwait City.
           </p>
           {/* Social icons row */}
           <SocialIcons variant="footer" color="#767676" hoverColor="#1D1D1B" />
