@@ -9,7 +9,7 @@ import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/c
    SERVICES & FACILITIES  /services
 ══════════════════════════════════════════════════ */
 const SYSTEMS = [
-  { number: "01", title: "Electrical Systems",       body: "Five dedicated substations deliver uninterrupted power. Full generator redundancy ensures zero-downtime continuity for every tenanted floor." },
+  { number: "01", title: "Electrical Systems",       body: "Five dedicated electrical substations located at basement-2, floors 4, 27, 52, and 76 deliver uninterrupted power. 100% generator redundancy ensures zero-downtime continuity across all 62 office floors." },
   { number: "02", title: "Water Supply & Plumbing",  body: "Centralised water distribution with booster pump stations serving all 80 floors. 24-hour leak response maintains consistent pressure and quality." },
   { number: "03", title: "Air Conditioning & HVAC",  body: "District-cooled chilled water system with variable air volume units. Individual zone control per floor — tenants regulate temperature independently." },
   { number: "04", title: "ICT & Telecommunications", body: "Fiber-optic backbone with structured cabling to every floor. Multiple carrier access, dedicated server rooms, and centralised BMS." },
@@ -40,7 +40,7 @@ export function Services() {
         subtitle="Al Hamra Tower operates as a fully managed environment. A resident engineering and facilities team delivers round-the-clock support across every building system."
         crumbs={[{ label: "Home", href: "/" }, { label: "Experience", href: "/services" }]}
       />
-      <StatsBar stats={[{ number: "24/7", label: "Operations" }, { number: "365", label: "Days Per Year" }, { number: "6", label: "Core Building Systems" }]} />
+      <StatsBar stats={[{ number: "24/7", label: "Operations" }, { number: "351m", label: "Sky Lounge Elevation" }, { number: "100%", label: "Power Redundancy" }, { number: "9", label: "Cinema Screens" }]} />
 
       {/* Lobby entrance corridor — full bleed */}
       <div style={{ position: "relative", height:"clamp(240px,35vw,440px)", overflow: "hidden" }}>
@@ -96,6 +96,74 @@ export function Services() {
             "Behind every seamless day at Al Hamra Tower stands an infrastructure of precision — engineering teams, monitoring systems, and service protocols working in concert."
           </p>
         </Rv>
+      </Section>
+
+      {/* ── Luxury Centre ──────────────────────────────────── */}
+      <Section title="Al Hamra Luxury Centre" tag="The Mall · 5 Levels · 24,000 m²">
+        <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+          fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9,
+          maxWidth: 720, marginBottom: 40 }}>
+          Directly connected to the tower, the Al Hamra Luxury Centre spans 24,000m² across 
+          five levels. Its façade is designed to be continuous with and complement the tower's 
+          limestone and glass cladding — a single architectural statement from ground to sky.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2,
+          marginBottom: 48 }} className="grid-3col">
+          {[
+            { category: "Luxury Fashion", brands: "Hermès · Gucci · Saint Laurent · Bottega Veneta · Salvatore Ferragamo · Bally · Ted Baker · Mont Blanc" },
+            { category: "Jewellery & Watches", brands: "Officine Panerai · Cartier · Alma · Behbehani Luxury Boutique · Al Arbash" },
+            { category: "Dining & Cafés", brands: "Piccola Milano · Bice · Entrecôte · Angelina · L'Eto · Café Bateel · Costa Coffee" },
+          ].map(({ category, brands }) => (
+            <div key={category} style={{ background: "#FAFAFA",
+              padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #C8B99A" }}>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                letterSpacing: "0.3em", textTransform: "uppercase",
+                color: "#9A7550", marginBottom: 12 }}>{category}</div>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1vw,13px)",
+                color: "#767676", lineHeight: 1.9 }}>{brands}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mall atrium image */}
+        <div style={{ position: "relative", height: "clamp(220px,30vw,400px)",
+          overflow: "hidden", background: "#0c0b09" }}>
+          <img src="/assets/mall-atrium-skylight.jpg"
+            alt="Al Hamra Luxury Centre — circular atrium with geometric skylight"
+            style={{ width: "100%", height: "100%", objectFit: "cover",
+              objectPosition: "center", display: "block", opacity: 0.9 }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
+            background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)",
+            pointerEvents: "none" }} />
+          <div style={{ position: "absolute", bottom: 20, left: 24,
+            fontFamily: "Jost,sans-serif", fontSize: "10px",
+            letterSpacing: "0.3em", textTransform: "uppercase",
+            color: "#C8B99A" }}>
+            Al Hamra Luxury Centre · Circular atrium
+          </div>
+        </div>
+
+        {/* Additional amenities */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)",
+          gap: 1, marginTop: 2 }} className="grid-4col">
+          {[
+            { icon: "◈", label: "9-Screen Cinema",    desc: "Grand Cinemas on the uppermost level" },
+            { icon: "◈", label: "Health Club & Spa",  desc: "Al Hamra Thermae between tower and mall" },
+            { icon: "◈", label: "Outdoor Roof Garden", desc: "6,000m² landscaped plaza" },
+            { icon: "◈", label: "2,000 Parking Spaces", desc: "11-level car park with pedestrian bridges" },
+          ].map(({ icon, label, desc }) => (
+            <div key={label} style={{ background: "#FAFAFA",
+              padding: "clamp(20px,2.5vw,28px)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
+              <div style={{ fontFamily: "Cormorant Garamond,serif",
+                fontSize: 20, color: "#C8B99A", marginBottom: 8 }}>{icon}</div>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px",
+                fontWeight: 500, color: "#1D1D1B", marginBottom: 6,
+                letterSpacing: "0.04em" }}>{label}</div>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px",
+                color: "#767676", lineHeight: 1.7 }}>{desc}</div>
+            </div>
+          ))}
+        </div>
       </Section>
 
       <DarkBand title="Secure Your Position" subtitle="Ready to experience Al Hamra Tower's world-class environment? Speak with our leasing team today." ctaLabel="Leasing Inquiry" ctaHref="/leasing/inquiry#inquiry-form" />
@@ -185,36 +253,36 @@ export function Location() {
 /* ── Leasing Configurations ─────────────────── */
 const LEASING_CONFIGS = [
   {
-    code: "A",
-    title: "Executive Suite",
-    size: "250–500 m²",
+    code: "LOW RISE",
+    title: "Ministerial Suite",
+    size: "450 – 1,750 m²",
     bullets: [
-      "Ideal for boutique firms & embassies",
-      "Pre-fitted premium interiors available",
-      "Private reception & waiting area",
-      "Direct elevator access options",
+      "Floors 6 – 26 · Three dedicated elevator zones",
+      "2,300 m² built-up area per floor",
+      "No south-facing offices — every tenant faces the Gulf",
+      "Ideal for ministries, sovereign institutions, embassies",
     ],
   },
   {
-    code: "B",
-    title: "Full Floor",
-    size: "2,300 m²",
+    code: "MID RISE",
+    title: "Sovereign Floor",
+    size: "450 – 1,750 m²",
     bullets: [
-      "Complete floor plate — undivided",
-      "270° panoramic Gulf & city views",
-      "Sky lobby access on floors 30 & 55",
-      "Dedicated server room allocation",
+      "Floors 27 – 51 · Sky Lobby 1 at Floor 30",
+      "Business centre + 7m-ceiling lounge at sky lobby",
+      "Panoramic Gulf and Kuwait Bay views above city roofline",
+      "Ideal for GCC financial institutions and law firms",
     ],
   },
   {
-    code: "C",
-    title: "Corporate HQ",
-    size: "4,600+ m²",
+    code: "HIGH RISE",
+    title: "Flagship Headquarters",
+    size: "450 – 1,750 m²",
     bullets: [
-      "Multi-floor consolidated headquarters",
-      "Private internal staircase between floors",
-      "Bespoke fit-out consultation included",
-      "VIP entrance & lobby branding rights",
+      "Floors 52 – 75 · Sky Lobby 2 at Floor 55",
+      "Executive floors 74–75 — Kuwait's highest business address",
+      "VIP elevator direct from lobby to Sky Lounge at 351m",
+      "Ideal for global luxury brands and corporate HQs",
     ],
   },
 ];
@@ -228,7 +296,7 @@ export function LeasingOpportunities() {
         subtitle="Al Hamra Business Tower offers premium office spaces with flexible configurations suitable for corporate headquarters, regional offices, and professional operations."
         crumbs={[{ label: "Home", href: "/" }, { label: "Leasing", href: "/leasing" }]}
       />
-      <StatsBar stats={[{ number: "3.2", unit: "m", label: "Ceiling Height" }, { number: "360°", label: "Views" }, { number: "4", label: "Premium Amenities" }]} />
+      <StatsBar stats={[{ number: "450", unit: "–", label: "Min office size (m²)" }, { number: "1,750", unit: "m²", label: "Maximum floor plate" }, { number: "2,300", unit: "m²", label: "BUA per floor" }, { number: "62", label: "Dedicated office floors" }]} />
 
       {/* City view from office floor */}
       <div style={{ position: "relative", height:"clamp(220px,32vw,400px)", overflow: "hidden" }}>

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 // ── PERSPECTIVES ──────────────────────────────────────────
 const PERSP = [
-  { n: "01", title: "Recognition",   body: "CTBUH Best Tall Building, MIPIM Architectural Review, Emirates Glass LEAF Award, and multiple international accolades affirming engineering and aesthetic legacy." },
-  { n: "02", title: "Business Value",body: "Flexible floor plates, efficient vertical circulation, professional building systems, and integration with daily services — a cohesive ecosystem for business excellence." },
-  { n: "03", title: "Location",      body: "Sharq, Kuwait City's central business district. Direct proximity to financial institutions, government entities, and 2,000+ parking spaces across 11 levels." },
+  { n: "01", title: "Global Recognition",   body: "Cityscape Award 2010 · Chicago Athenaeum · MIPIM Architectural Review · Miami Architectural Biennial 2007. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — engineered by SOM San Francisco." },
+  { n: "02", title: "Unmatched Address",    body: "62 office floors from 35m to 368m above ground. No south-facing offices — every tenant faces the Arabian Gulf, Kuwait Bay, or the city. Sky Lobby 1 at Floor 30. Sky Lobby 2 at Floor 55. Sky Lounge at 351m." },
+  { n: "03", title: "The Capital's Hub",    body: "Sharq District — Kuwait's financial and government quarter. Direct access to the National Bank of Kuwait, major ministries, and the waterfront. 2,000 parking spaces across 11 levels. Fibre optic smart building. 100% power redundancy." },
 ];
 
 export function Perspectives() {

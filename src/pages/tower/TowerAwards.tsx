@@ -14,13 +14,12 @@ const WHITE = "#FFFFFF";
 
 /* ─── Data ───────────────────────────────── */
 const AWARDS = [
-  { year: "2007", award: "Structural Engineers World Congress Paper", org: "CTBUH",          cat: "Research",     color: STONE },
-  { year: "2011", award: "Time Magazine — Best Inventions of 2011",   org: "Time Magazine",  cat: "Innovation",   color: SAND  },
-  { year: "2012", award: "Best Tall Building Middle East & Africa",    org: "CTBUH",          cat: "Architecture", color: DARK  },
-  { year: "2014", award: "Outstanding Structure Award",                org: "IABSE",          cat: "Engineering",  color: STONE },
-  { year: "2015", award: "Excellence in Engineering",                  org: "ASCE",           cat: "Engineering",  color: STONE },
-  { year: "2016", award: "Sustainable Design Recognition",             org: "MEA Awards",     cat: "Sustainability",color: SAND },
-  { year: "2019", award: "Decade of Excellence",                      org: "Gulf Construction",cat: "Legacy",      color: DARK  },
+  { year: "2010", award: "Cityscape Award for Commercial, Mixed-Use Developments",    org: "Cityscape International",    cat: "Architecture",   color: SAND },
+  { year: "2010", award: "Architecture Award",                                         org: "Chicago Athenaeum",          cat: "Design",         color: DARK },
+  { year: "2009", award: "Future Project Award",                                       org: "MIPIM Architectural Review", cat: "Innovation",     color: SAND },
+  { year: "2007", award: "Bronze · Under Construction Category",                       org: "Miami Architectural Biennial", cat: "Engineering", color: DARK },
+  { year: "2014", award: "Emirates Glass LEAF Award",                                  org: "LEAF Awards",                cat: "Sustainability", color: SAND },
+  { year: "2019", award: "World Architecture Festival Recognition",                    org: "WAF",                        cat: "Tall Buildings", color: DARK },
 ];
 
 const ENGINEERING_FACTS = [
