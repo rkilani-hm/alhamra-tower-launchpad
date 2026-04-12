@@ -110,7 +110,6 @@ export function Navbar() {
               t.style.display = "none";
               t.parentElement!.innerHTML = `<span style="font-family:Jost,sans-serif;font-size:13px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#1D1D1B">AL HAMRA</span>`;
             }}
-            }}
           />
         </Link>
 
