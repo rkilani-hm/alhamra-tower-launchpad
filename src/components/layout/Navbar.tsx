@@ -98,11 +98,11 @@ export function Navbar() {
         {/* Logo */}
         <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img
-            src="/assets/al-hamra-logo.png" alt="Al Hamra"
+            src={scrolled || openMenu || mobileOpen ? "/assets/al-hamra-logo.png" : "/assets/al-hamra-logo-white.png"}
+            alt="Al Hamra"
             style={{
               height: 64, width: "auto", objectFit: "contain",
-              filter: scrolled || openMenu || mobileOpen ? "none" : "brightness(0) invert(1)",
-              transition: "filter 0.4s ease",
+              transition: "opacity 0.4s ease",
             }}
             onError={e => {
               const t = e.currentTarget as HTMLImageElement;
