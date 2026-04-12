@@ -50,7 +50,7 @@ export function GulfSection() {
             width: "100%",
             height: "115%",
             objectFit: "cover",
-            objectPosition: "center 30%",
+            objectPosition: "center 55%",
             display: "block",
           }}
         />

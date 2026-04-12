@@ -1,109 +1,143 @@
-import { PageLayout }  from "@/components/layout/PageLayout";
-import { PageHero }    from "@/components/shared/PageHero";
-import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { PageLayout } from "@/components/layout/PageLayout";
+import { PageHero }   from "@/components/shared/PageHero";
+import { MashrabiyaDivider } from "@/components/shared/MashrabiyaDivider";
 
-const PERF_STATS = [
-  { number: "80",   label: "Floors Monitored"      },
-  { number: "100%", label: "Power Redundancy"       },
-  { number: "5",    label: "Electrical Substations" },
-  { number: "25%",  label: "Solar Heat Reduction"   },
-];
+const PEARL = "#C8B99A";
+const DARK  = "#1D1D1B";
 
-const PERFORMANCE = [
-  { number: "01", title: "Passive Solar Design",       body: "The tower's asymmetrical form reduces solar heat gain by removing a quarter of each floor plate from the south side, naturally cooling interior spaces while maximising Arabian Gulf views." },
-  { number: "02", title: "Thermal Mass Shielding",     body: "The south-facing core is clad in 40mm thick Jura limestone, acting as a natural thermal barrier against Kuwait's intense desert sun." },
-  { number: "03", title: "High-Performance Glazing",   body: "East, north, and west elevations feature unitised Low-E coated insulated glass units that minimise heat transfer while optimising natural daylight penetration." },
-  { number: "04", title: "Sustainable Blinds",         body: "SilverScreen Enviro roller blinds are 100% recyclable, highly reflective, and hold both Oeko-Tex and Cradle to Cradle certifications." },
-  { number: "05", title: "EV Charging Infrastructure", body: "The 11-level car park includes dedicated electric vehicle charging stations, supporting Kuwait's transition to sustainable transportation." },
-  { number: "06", title: "Climate-Responsive Form",    body: "Recognised by Time Magazine's 50 Best Inventions for its innovative solar-responsive design that harmonises architecture with environment." },
-];
-
-const SAFETY = [
-  { number: "01", title: "Siemens FireFinder XLSV",  body: "State-of-the-art firefighting system specifically designed for supertall structures, providing comprehensive fire detection and suppression throughout all 80 floors." },
-  { number: "02", title: "Dedicated Refuge Floors",  body: "Two refuge floors on levels 29 and 54 provide protected areas for evacuation during emergencies, equipped with enhanced fire-resistant construction." },
-  { number: "03", title: "100% Power Redundancy",    body: "Five electrical substations across levels B2, 4, 27, 52, and 76 ensure uninterrupted power distribution with full redundancy." },
-  { number: "04", title: "Smart Building Management",body: "Advanced BMS and IT telecom networking with fiber optic backbone enables real-time monitoring and automated response systems." },
-];
-
-const SUBSTATION_MAP = [
-  { level: "Level B2",  type: "Substation 1",   desc: "Underground power distribution hub"  },
-  { level: "Level 4",   type: "Substation 2",   desc: "Lower tower power management"        },
-  { level: "Level 27",  type: "Substation 3",   desc: "Mid-tower power relay"               },
-  { level: "Level 29",  type: "Refuge Floor 1", desc: "Emergency evacuation zone"           },
-  { level: "Level 52",  type: "Substation 4",   desc: "Upper tower power distribution"      },
-  { level: "Level 54",  type: "Refuge Floor 2", desc: "High-rise emergency shelter"         },
-  { level: "Level 80",  type: "Substation 5",   desc: "Crown level power management"        },
+const PILLARS = [
+  {
+    n: "01", title: "The Desert Wall",
+    body: "The solid south wall — 258,000 m² of Jura limestone — is the building's primary environmental strategy. Its geometry responds directly to Kuwait's solar path. Openings are positioned based on the envelope's relationship to the sun at each floor level, ensuring that direct solar radiation never enters an office space.",
+    stat: "Zero south-facing offices in 62 floors",
+  },
+  {
+    n: "02", title: "The Spiraling Form",
+    body: "Removing a quarter of each floor plate on the south side does two things simultaneously: it maximises Gulf views for every tenant, and it reduces the total surface area exposed to desert sun. SOM describes it as a 'purely formal operation' — architecture and environmental engineering solved by the same geometric act.",
+    stat: "30% less south-facing surface than a conventional tower of equal area",
+  },
+  {
+    n: "03", title: "Low-E Insulating Glass",
+    body: "55,000 m² of curtain wall on the north, east, and west facades uses insulating glass with low-emissivity coating. Approximately 30% of the glass units are curved — manufactured to wrap the tower's corners — with bending and coating processes designed to work in tandem.",
+    stat: "55,000 m² insulating curtain wall",
+  },
+  {
+    n: "04", title: "Trencadis — Weight Reduced Stone",
+    body: "The upper floors of the limestone cladding use trencadis — a mesh coated with crushed limestone — rather than full tiles. This significantly reduces the facade weight at height while maintaining the visual continuity of the monolithic stone wall. A material innovation driven by structural necessity.",
+    stat: "Significant weight reduction at height — same visual appearance",
+  },
+  {
+    n: "05", title: "Smart Building Infrastructure",
+    body: "A fibre optic backbone and advanced Building Automation System (BAS) managed by a world-leading facility management company monitors and controls all building systems across every floor. Five electrical substations located at strategic levels (B2, 4, 27, 52, 76) ensure 100% power supply redundancy.",
+    stat: "100% power supply redundancy across 5 substations",
+  },
+  {
+    n: "06", title: "Concrete Over Steel",
+    body: "Al Hamra is one of the few reinforced concrete supertall buildings — a choice with long-term sustainability implications. Concrete's thermal mass moderates internal temperature swings. Its compressive strength allows efficient use of material. The 289 piles were designed for the specific chemistry of Kuwait's silty-sand geology to resist sulphate attack without corrosion.",
+    stat: "195,000 m³ reinforced concrete — structural longevity by design",
+  },
 ];
 
 export default function TowerSustainability() {
   return (
     <PageLayout>
       <PageHero
-        tag="The Tower · Sustainability"
-        title="Sustainability & Innovation"
-        subtitle="The tower's design integrates climate-responsive features that reduce heat gain and optimise occupant comfort through passive shading and thoughtful façade engineering."
-        crumbs={[{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }, { label: "Sustainability", href: "/tower/sustainability" }]}
+        title="Sustainability"
+        subtitle="Al Hamra's environmental performance was not engineered into the building after the form was set. It was the form itself — every design decision that gave the tower its identity also solved an environmental problem."
+        image="/assets/tower-facade-up.jpg"
+        crumbs={[{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }]}
       />
 
-      <StatsBar stats={PERF_STATS} />
-
-      {/* Performance */}
-      <Section>
-        <Rv><Tag>Operational Intelligence · Real-World Efficiency</Tag></Rv>
-        <Rv delay={0.1}><H2>Form Follows Climate</H2></Rv>
-        <Rv delay={0.2}><Body style={{ maxWidth: 640, marginBottom: 48 }}>Building systems are designed to support performance, comfort, and long-term asset value. The tower's asymmetrical sculpting reduces heat gain while the solid stone core acts as a thermal shield.</Body></Rv>
-        <Rv delay={0.3}><FeatureGrid features={PERFORMANCE} /></Rv>
-      </Section>
-
-      {/* Safety */}
-      <Section bg="#FAFAFA">
-        <Rv><Tag>Safety & Life Systems</Tag></Rv>
-        <Rv delay={0.1}><H2>Built for Continuity</H2></Rv>
-        <Rv delay={0.2}><FeatureGrid features={SAFETY} /></Rv>
-      </Section>
-
-      {/* Substation map */}
-      <Section>
-        <Rv><Tag>Infrastructure Map</Tag></Rv>
-        <Rv delay={0.1}><H2>Substation & Refuge Floor Locations</H2></Rv>
-        <Rv delay={0.2}>
-          <div style={{ marginTop: 40 }}>
-            {SUBSTATION_MAP.map(({ level, type, desc }, i) => {
-              const isRefuge = type.includes("Refuge");
-              return (
-                <div key={level} style={{
-                  display: "flex", alignItems: "center", gap: 24,
-                  padding: "18px 0", borderBottom: i < SUBSTATION_MAP.length - 1 ? "1px solid rgba(29,29,27,0.07)" : "none",
-                }}>
-                  <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 22, fontWeight: 300, color: "#1D1D1B", minWidth: 90 }}>{level}</div>
-                  <div style={{
-                    fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                    padding: "4px 12px", background: isRefuge ? "#1D1D1B" : "rgba(29,29,27,0.07)",
-                    color: isRefuge ? "#fff" : "#6B6B6B", minWidth: 130, textAlign: "center",
-                  }}>{type}</div>
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "13px", fontWeight: 300, color: "#6B6B6B" }}>{desc}</div>
-                </div>
-              );
-            })}
+      {/* ── Intro statement ─────────────────────────────────────── */}
+      <div style={{ background: "#fff", padding: "clamp(64px,10vh,100px) clamp(28px,6vw,96px)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(48px,6vw,100px)",
+          alignItems: "start" }} className="sust-intro-grid">
+          <div>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+              Environmental philosophy
+            </div>
+            <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+              fontWeight: 300, fontSize: "clamp(26px,3.5vw,50px)",
+              color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 0 }}>
+              The form is the strategy.
+            </h2>
           </div>
-        </Rv>
-      </Section>
+          <div>
+            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
+              lineHeight: 1.9, marginBottom: 20 }}>
+              In most buildings, sustainability features are layered on after the architecture 
+              is resolved — solar panels, shading devices, green roofs. At Al Hamra Tower, 
+              the environmental response generated the architecture. The spiraling form that 
+              makes the building unmistakable is the same act that removes the south-facing 
+              glass. The stone wall that defines the skyline is also the primary solar shield.
+            </p>
+            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9 }}>
+              SOM's structural engineers describe the process as 'symbiotic evolution' — 
+              the structural system and the exterior form developed together. Neither could 
+              exist without the other. The flared walls are both the building's visual 
+              signature and its lateral force-resisting system.
+            </p>
+          </div>
+        </div>
+      </div>
 
-      {/* Closing statement */}
-      <Section bg="#FAFAFA">
-        <Rv>
-          <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(20px,2.5vw,32px)", fontStyle: "italic", fontWeight: 300, color: "#1D1D1B", lineHeight: 1.6, maxWidth: 820 }}>
-            "Al Hamra Tower demonstrates that iconic architecture and environmental responsibility are not competing values — they are complementary forces that, when unified, create structures worthy of their place in the world."
-          </p>
-        </Rv>
-      </Section>
+      {/* ── Six sustainability pillars ──────────────────────────── */}
+      <div style={{ background: "#FAFAFA", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
+        <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
+          Six environmental design principles
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1,
+          background: "rgba(29,29,27,0.07)" }} className="sust-pillars-grid">
+          {PILLARS.map(({ n, title, body, stat }, i) => {
+            const ref = useRef<HTMLDivElement>(null);
+            const inView = useInView(ref, { once: true, margin: "-40px" });
+            return (
+              <motion.div key={n} ref={ref}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.7, delay: (i % 3) * 0.1 }}
+                style={{ background: "#fff", padding: "clamp(28px,4vh,44px) clamp(24px,3vw,36px)" }}>
+                <div style={{ fontFamily: "Cormorant Garamond,serif",
+                  fontSize: "clamp(28px,3vw,44px)", fontWeight: 300,
+                  color: "rgba(29,29,27,0.1)", lineHeight: 1, marginBottom: 20 }}>{n}</div>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1vw,14px)",
+                  fontWeight: 500, color: DARK, marginBottom: 16, letterSpacing: "0.03em" }}>{title}</div>
+                <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                  fontSize: "clamp(12px,0.95vw,13px)", color: "#767676",
+                  lineHeight: 1.85, marginBottom: 20 }}>{body}</p>
+                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                  letterSpacing: "0.2em", textTransform: "uppercase", color: PEARL,
+                  paddingTop: 16, borderTop: "1px solid rgba(200,185,154,0.3)" }}>{stat}</div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
 
-      <DarkBand
-        title="Explore the Business Experience"
-        subtitle="Discover how Al Hamra Tower's performance infrastructure translates into an exceptional workplace environment."
-        ctaLabel="Workplace Experience"
-        ctaHref="/business"
-      />
+      <MashrabiyaDivider count={9} />
+
+      {/* ── Quote ───────────────────────────────────────────────── */}
+      <div style={{ background: "#fff", padding: "clamp(64px,10vh,100px) clamp(28px,6vw,96px)" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+          <div style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+            fontWeight: 300, fontSize: "clamp(22px,3vw,42px)",
+            color: DARK, lineHeight: 1.4, marginBottom: 28 }}>
+            "The solid south wall, and flared geometry, is generated in order to decrease 
+            the absorption of solar radiation. This wall not only protects the building from 
+            critical environmental conditions — it also assumes the role of structural backbone."
+          </div>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+            letterSpacing: "0.35em", textTransform: "uppercase", color: PEARL }}>
+            Skidmore, Owings & Merrill LLP — Structural Sustainability Statement
+          </div>
+        </div>
+      </div>
     </PageLayout>
   );
 }

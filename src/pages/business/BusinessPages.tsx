@@ -342,7 +342,7 @@ export function VerticalTransportation() {
         subtitle="The tower's vertical transportation strategy ensures efficient flow for tenants and visitors with multiple elevators and strategically placed transfer floors."
         crumbs={[{ label: "Home", href: "/" }, { label: "Business", href: "/business" }, { label: "Vertical Transportation", href: "/business/vertical-transportation" }]}
       />
-      <StatsBar stats={[{ number: "52", label: "Total Elevators" }, { number: "8", label: "Express Units" }, { number: "6", unit: "m/s", label: "Max Speed" }]} />
+      <StatsBar stats={[{ number: "43", label: "Total Elevators" }, { number: "8", label: "Express Units" }, { number: "6", unit: "m/s", label: "Max Speed" }]} />
 
       {/* Elevator hall — wide shot with VIP signage visible */}
       <div style={{ position: "relative", height:"clamp(260px,38vw,480px)", overflow: "hidden" }}>
@@ -354,7 +354,7 @@ export function VerticalTransportation() {
             Lobby Level · VIP Elevator Hall
           </p>
           <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.25 }}>
-            52 elevators.<br /><strong style={{ fontWeight: 500 }}>One seamless ascent.</strong>
+            43 elevators.<br /><strong style={{ fontWeight: 500 }}>One seamless ascent.</strong>
           </h3>
         </div>
       </div>

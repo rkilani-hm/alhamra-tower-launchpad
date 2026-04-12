@@ -1,300 +1,291 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
-import { StatsBar, FeatureGrid, SpecTable, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { MashrabiyaDivider } from "@/components/shared/MashrabiyaDivider";
 
-const STATS = [
-  { number: "413",     unit: "m",  label: "Building Height"  },
-  { number: "80",             label: "Stories"          },
-  { number: "195,000", unit: "m²", label: "Gross Area"       },
-  { number: "10,000",  unit: "m²", label: "Site Area"        },
-];
-
-const FEATURES = [
-  { number: "01", title: "Carved Form",     body: "The tower's asymmetrical, carved form is a purposeful response to solar exposure. A quarter of each floor plate is strategically removed to reduce heat gain while enhancing views." },
-  { number: "02", title: "Solar Response",  body: "The south facade's limestone cladding acts as a passive performance measure against the desert sun, reducing interior thermal stress." },
-  { number: "03", title: "Façade & Structure", body: "Glass facades on three sides frame sweeping vistas, while engineered concrete structure supports the sculpted mass." },
-  { number: "04", title: "Lobby & Arrival", body: "A dramatic column-free lobby of approximately 24 metres height defines the arrival experience." },
-];
+const PEARL  = "#C8B99A";
+const GULF   = "#2A5F7A";
+const DARK   = "#1D1D1B";
+const SAND_AA = "#9A7550";
 
 const SPECS = [
-  { label: "Building Height",    value: "413m — Kuwait's tallest structure"   },
-  { label: "Number of Stories",  value: "80 — Plus mechanical floors"         },
-  { label: "Foundation Mat",     value: "5,800m² — Spanning full footprint"   },
-  { label: "Gross Area",         value: "195,000m² — Office & retail space"   },
-  { label: "Concrete Volume",    value: "85,000m³ — High-performance mix"     },
-  { label: "Concrete Strength",  value: "50–80 MPa — Cube strength range"     },
-  { label: "Shear Wall",         value: "1,200mm — Maximum thickness"         },
-  { label: "Perimeter Columns",  value: "700–1,200mm — Square sections"       },
-  { label: "Floor Slab",         value: "160mm × 6.0m span"                   },
+  { cat: "Height",          rows: [
+    ["Height to tip",            "412.6 m"],
+    ["Occupied height",          "371.4 m"],
+    ["Top floor height",         "368 m"],
+    ["Sky Lounge elevation",     "351 m"],
+  ]},
+  { cat: "Structure",       rows: [
+    ["Structural type",          "RC shear wall core + perimeter MRF"],
+    ["Foundation",               "289 piles × 1,200mm dia."],
+    ["Pile depth range",         "22–27 m"],
+    ["Raft thickness",           "4.0 m"],
+    ["Structural steel",         "6,000 tons"],
+    ["Reinforcing steel",        "38,000 tons"],
+    ["Concrete poured",          "195,000 m³ / 500,000 tons"],
+    ["Core wall thickness",      "300 mm – 1,200 mm"],
+  ]},
+  { cat: "Facade",          rows: [
+    ["South wall limestone",     "258,000 m² (world record)"],
+    ["Curtain wall glass",       "55,000 m²"],
+    ["Glass type",               "Insulated low-emissivity coating"],
+    ["Curved glass units",       "~30% of total glass area"],
+    ["Stone type (lower)",       "Jura limestone tiles"],
+    ["Stone type (upper)",       "Trencadis (mesh + crushed limestone)"],
+  ]},
+  { cat: "Floors",          rows: [
+    ["Total levels",             "80"],
+    ["Office floors",            "62"],
+    ["Office floor BUA",         "2,300 m² per floor"],
+    ["Tenantable range",         "450 m² – 1,750 m²"],
+    ["South-facing offices",     "Zero — none"],
+    ["Sky Lobby 1",              "Floor 30 (7m ceiling)"],
+    ["Sky Lobby 2",              "Floor 55 (7m ceiling)"],
+    ["Executive floors",         "74–75"],
+    ["Sky Lounge",               "Floors 78–80"],
+  ]},
+  { cat: "Services",        rows: [
+    ["Elevators (tower)",        "43"],
+    ["Escalators",               "16"],
+    ["Elevator zones",           "3 — Low / Mid / High rise"],
+    ["VIP elevator",             "Direct lobby → crown"],
+    ["Power supply",             "100% redundancy"],
+    ["Electrical substations",   "5 (Floors B2, 4, 27, 52, 76)"],
+    ["IT backbone",              "Fibre optic smart building"],
+  ]},
+  { cat: "Engineering Team", rows: [
+    ["Architect",                "Skidmore, Owings & Merrill LLP"],
+    ["Structural engineer",      "SOM San Francisco"],
+    ["MEP engineer",             "SOM Chicago"],
+    ["Local architect",          "Al Jazera Consultants, Kuwait"],
+    ["Wind engineer",            "BMT Fluid Mechanics, London"],
+    ["Geotechnical engineer",    "Consultancy Group Company, Beirut"],
+    ["Client",                   "Ajial Real Estate & Entertainment Co."],
+    ["Contractor",               "Ahmadiah Contracting & Trading Co."],
+    ["Design code",              "IBC 2003 + ACI 318-02M"],
+    ["Construction",             "2006–2011"],
+  ]},
 ];
 
-const STRUCTURAL = [
-  { number: "01", title: "Hyperbolic Paraboloid Walls",  body: "Two reinforced-concrete flared walls extend the full 413m height. The southeast wall leans INTO the building (lightly loaded), while the southwest wall leans AWAY, carrying enormous concentrated loads — unprecedented at this scale." },
-  { number: "02", title: "Torsional Gravity Response",   body: "The tower twists elastically under gravity loads alone. Counter-clockwise circumferential forces create cumulative torsional moment from zero at top to maximum at base." },
-  { number: "03", title: "Cantilevered Truss System",    body: "The observation deck's curtain wall is supported by an innovative cantilevered truss system that eliminates the need for columns, providing unobstructed 360-degree views." },
-  { number: "04", title: "Sloped Perimeter Columns",     body: "Columns along the exterior slope inwards at the base, defining the street-level appearance while efficiently transferring loads to the foundation." },
-];
-
-const FLOOR_LEVELS = [
-  { level: "Ground — 0°",  desc: "Base floor plate — the cut begins on the west side of the south facade"  },
-  { level: "Level 20 — 16°", desc: "Rotation continues counter-clockwise" },
-  { level: "Level 40 — 32°", desc: "Mid-tower rotation"  },
-  { level: "Level 55 — 44°", desc: "Upper tower rotation" },
-  { level: "Level 80 — 60°", desc: "Crown — full counter-clockwise rotation achieved" },
-];
+function SpecTable({ cat, rows }: { cat: string; rows: string[][] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <div ref={ref} style={{ marginBottom: 40 }}>
+      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+        letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL,
+        marginBottom: 16, paddingBottom: 12,
+        borderBottom: `1px solid rgba(200,185,154,0.25)` }}>{cat}</div>
+      {rows.map(([label, value], i) => (
+        <motion.div key={label}
+          initial={{ opacity: 0, x: -10 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, delay: i * 0.04 }}
+          style={{ display: "flex", gap: 16,
+            padding: "11px 0", borderBottom: i < rows.length-1 ? "1px solid rgba(29,29,27,0.06)" : "none" }}>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            color: "#767676", minWidth: 200, flexShrink: 0, letterSpacing: "0.05em" }}>{label}</div>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            color: DARK, fontWeight: 400 }}>{value}</div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
 
 export default function TowerDesign() {
-  const [activeLevel, setActiveLevel] = useState(0);
+  const facadeRef = useRef<HTMLDivElement>(null);
+  const facadeInView = useInView(facadeRef, { once: true, margin: "-80px" });
 
   return (
     <PageLayout>
       <PageHero
-        tag="The Tower · Design"
-        title="Design That Performs"
-        subtitle="Form, climate, and engineering in service of architecture — by Skidmore, Owings & Merrill."
-        crumbs={[{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }, { label: "Design", href: "/tower/design" }]}
+        title="Design & Engineering"
+        subtitle="How a single formal act — subtracting a spiraling quadrant from a prismatic volume — created both the architectural identity and the structural system of Kuwait's most ambitious building."
+        image="/assets/tower-facade-up.jpg"
+        crumbs={[{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }]}
       />
 
-      {/* Key stats */}
-      <StatsBar stats={STATS} />
-
-      {/* Defining Elements */}
-      <Section>
-        <div className="grid-2col">
-          <div>
-            <Rv><Tag>Architectural Concept</Tag></Rv>
-            <Rv delay={0.1}><H2>A Timeless, Elegant Marker</H2></Rv>
-            <Rv delay={0.2}>
-              <Body>
-                The tower's asymmetrical carved profile responds directly to solar exposure, optimising comfort while shaping a distinctive skyline identity. The massing reduces heat gain and enhances shading, transforming environmental constraints into architectural advantage.
-              </Body>
-            </Rv>
-            <Rv delay={0.3}>
-              <Body style={{ marginTop: 16 }}>
-                Glass curtain wall systems combined with stone cladding on solar-exposed surfaces ensure durability and performance across Kuwait's demanding climate.
-              </Body>
-            </Rv>
+      {/* ── The Dual Facade ─────────────────────────────────────── */}
+      <div style={{ background: "#fff" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "60vh" }}
+          className="design-grid-1">
+          {/* Left — image: tower from street against blue sky (right half of composite) */}
+          <div style={{ position: "relative", overflow: "hidden", background: "#0c0b09", minHeight: 360 }}>
+            <img src="/assets/tower-day-sky.jpg"
+              alt="Al Hamra Tower facade against Kuwait blue sky — stone south wall and glass north face"
+              style={{ width: "100%", height: "100%", objectFit: "cover",
+                objectPosition: "right center", display: "block" }} />
+            <div style={{ position: "absolute", inset: 0,
+              background: "linear-gradient(to right, rgba(12,11,9,0.5) 0%, transparent 50%)",
+              pointerEvents: "none" }} />
           </div>
-          <Rv delay={0.15}>
-            <FeatureGrid features={FEATURES} />
-          </Rv>
-        </div>
-      </Section>
-
-      {/* Floor rotation visualization */}
-      <Section bg="#FAFAFA">
-        <Rv><Tag>Interactive Visualization</Tag></Rv>
-        <Rv delay={0.1}><H2>Spiraling Floor Geometry</H2></Rv>
-        <Rv delay={0.2}><Body style={{ maxWidth: 560, marginBottom: 48 }}>Explore how the carved quadrant rotates 60° from base to crown. The carved south wall shifts from west at ground level to east at the crown — a total 60° counter-clockwise rotation over 80 stories.</Body></Rv>
-
-        <div className="grid-2col" style={{ alignItems:"center" }}>
-          {/* Level selector */}
-          <div>
-            {FLOOR_LEVELS.map(({ level, desc }, i) => (
-              <motion.div key={level}
-                onClick={() => setActiveLevel(i)}
-                style={{
-                  padding: "20px 24px",
-                  borderLeft: `3px solid ${activeLevel === i ? "#1D1D1B" : "rgba(29,29,27,0.1)"}`,
-                  marginBottom: 4, cursor: "pointer",
-                  background: activeLevel === i ? "#fff" : "transparent",
-                  transition: "all 0.2s",
-                }}
-              >
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px", fontWeight: 500, color: activeLevel === i ? "#1D1D1B" : "#767676", letterSpacing: "0.1em" }}>{level}</div>
-                {activeLevel === i && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ duration: 0.2 }}>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", marginTop: 6 }}>{desc}</div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Visual rotation diagram */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg viewBox="0 0 200 200" style={{ width: 200, height: 200 }}>
-              <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(29,29,27,0.08)" strokeWidth="1"/>
-              <circle cx="100" cy="100" r="2" fill="#1D1D1B"/>
-              {[0, 12, 24, 36, 48, 60].map((deg, i) => {
-                const rad = (deg - 90) * Math.PI / 180;
-                return (
-                  <g key={deg}>
-                    <line
-                      x1="100" y1="100"
-                      x2={100 + 70 * Math.cos(rad)}
-                      y2={100 + 70 * Math.sin(rad)}
-                      stroke={i <= activeLevel ? "#1D1D1B" : "rgba(29,29,27,0.1)"}
-                      strokeWidth={i === activeLevel ? 2 : 1}
-                    />
-                    <circle cx={100 + 70 * Math.cos(rad)} cy={100 + 70 * Math.sin(rad)} r="4"
-                      fill={i <= activeLevel ? "#1D1D1B" : "rgba(29,29,27,0.15)"}/>
-                    <text x={100 + 88 * Math.cos(rad)} y={100 + 88 * Math.sin(rad)}
-                      textAnchor="middle" dominantBaseline="middle"
-                      style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", fill: "rgba(29,29,27,0.45)" }}>
-                      {deg}°
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
-          </div>
-        </div>
-      </Section>
-
-      {/* Architectural section drawing */}
-      <Section bg="#FAFAFA">
-        <div className="grid-2col media-right" style={{ alignItems:"start" }}>
-          {/* Left — label + legend */}
-          <div>
-            <Rv><Tag>Architectural Section · Floor Distribution</Tag></Rv>
-            <Rv delay={0.1}><H2>80 Floors. Three Distinct Zones.</H2></Rv>
-            <Rv delay={0.2}>
-              <Body>
-                The tower is organised into three vertical zones — Low Rise, Mid Rise, and High Rise — each served by dedicated sky lobbies and elevator banks. Mechanical and refuge floors punctuate the ascent, while executive and sky lounge levels crown the structure at the summit.
-              </Body>
-            </Rv>
-
-            <Rv delay={0.3}>
-              <div style={{ marginTop: 40, display: "flex", flexDirection: "column" as const, gap: 0 }}>
+          {/* Right — text */}
+          <div ref={facadeRef}
+            style={{ padding: "clamp(48px,8vh,96px) clamp(32px,5vw,80px)",
+              display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={facadeInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+                letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+                The Dual Façade
+              </div>
+              <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+                fontWeight: 300, fontSize: "clamp(26px,3.5vw,48px)",
+                color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24 }}>
+                Glass toward the Gulf.<br />Stone toward the desert.
+              </h2>
+              <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
+                lineHeight: 1.9, marginBottom: 20 }}>
+                Three facades face north, east, and west — fully glazed with insulating 
+                low-emissivity glass, maximising views across Kuwait Bay and the Arabian Gulf. 
+                <strong style={{ color: DARK, fontWeight: 400 }}> Not a single office in the building faces south.</strong>
+              </p>
+              <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58", lineHeight: 1.9, marginBottom: 32 }}>
+                The south wall is 258,000 m² of Jura limestone — the world's largest area of stone 
+                cladding on any single building. Deep angled windows carved into the stone frame 
+                oblique city and peninsula views while completely blocking direct solar radiation.
+              </p>
+              <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
                 {[
-                  { zone: "Low Rise",  floors: "G – 29",  color: "#F5E6D0", desc: "Office floors + Sky Lobby 1 at Level 30" },
-                  { zone: "Mid Rise",  floors: "30 – 53", color: "#F0C8A0", desc: "Office floors + Sky Lobby 2 at Level 53" },
-                  { zone: "High Rise", floors: "55 – 75", color: "#E8B080", desc: "Office floors + Executive levels" },
-                  { zone: "Executive", floors: "74 – 75", color: "#1D1D1B", desc: "Executive suites — pinnacle of the tower" },
-                  { zone: "Mechanical",floors: "27 · 52 · 77", color: "#888", desc: "Dedicated mechanical plant rooms" },
-                  { zone: "Refuge",    floors: "29 · 54",    color: "#767676", desc: "Emergency evacuation refuge floors" },
-                ].map(({ zone, floors, color, desc }) => (
-                  <div key={zone} style={{
-                    display: "flex", alignItems: "flex-start", gap: 16,
-                    padding: "14px 0",
-                    borderBottom: "1px solid rgba(29,29,27,0.07)",
-                  }}>
-                    <div style={{
-                      width: 14, height: 14, background: color, flexShrink: 0,
-                      border: "1px solid rgba(29,29,27,0.15)", marginTop: 2,
-                    }} />
-                    <div>
-                      <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
-                        <span style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", fontWeight: 500, color: "#1D1D1B" }}>{zone}</span>
-                        <span style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "16px", fontWeight: 300, color: "#767676" }}>Floors {floors}</span>
-                      </div>
-                      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#6B6B6B", marginTop: 3 }}>{desc}</div>
+                  { n: "258,000", u: "m²", l: "World record limestone cladding" },
+                  { n: "55,000",  u: "m²", l: "Low-E curtain wall glass" },
+                  { n: "0",       u: "",   l: "South-facing offices" },
+                ].map(({ n, u, l }) => (
+                  <div key={l}>
+                    <div style={{ fontFamily: "Cormorant Garamond,serif",
+                      fontSize: "clamp(24px,3vw,38px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
+                      {n}{u && <span style={{ fontFamily: "Jost,sans-serif",
+                        fontSize: "0.4em", color: PEARL, marginLeft: 3, fontWeight: 200 }}>{u}</span>}
                     </div>
+                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                      letterSpacing: "0.2em", textTransform: "uppercase",
+                      color: "#767676", marginTop: 6 }}>{l}</div>
                   </div>
                 ))}
               </div>
-            </Rv>
-
-            {/* Legend */}
-            <Rv delay={0.4}>
-              <div style={{ display: "flex", gap: 24, marginTop: 32 }}>
-                {[
-                  { color: "#F5D5B0", label: "Single Tenant" },
-                  { color: "#E8907A", label: "3 Tenants" },
-                ].map(({ color, label }) => (
-                  <div key={label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ width: 20, height: 14, background: color, border: "1px solid rgba(29,29,27,0.15)" }} />
-                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10.5px", color: "#6B6B6B" }}>{label}</span>
-                  </div>
-                ))}
-              </div>
-            </Rv>
+            </motion.div>
           </div>
-
-          {/* Right — the actual architectural drawing */}
-          <Rv delay={0.2}>
-            <div style={{
-              background: "#fff",
-              border: "1px solid rgba(29,29,27,0.09)",
-              padding: "32px 24px",
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "center",
-            }}>
-              <img
-                src="/assets/arch-section.png"
-                alt="Al Hamra Tower — Architectural Section Drawing showing all 80 floors"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  objectFit: "contain",
-                }}
-              />
-            </div>
-            <div style={{ marginTop: 12, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676", textAlign: "center" }}>
-              Architectural Section · Al Hamra Business Tower · SOM · Kuwait City
-            </div>
-          </Rv>
         </div>
-      </Section>
+      </div>
 
-      {/* Technical specs */}
-      <Section>
-        <Rv><Tag>Technical Specifications</Tag></Rv>
-        <Rv delay={0.1}><H2>Engineering Data</H2></Rv>
-        <Rv delay={0.2}><SpecTable specs={SPECS} /></Rv>
-      </Section>
-
-      {/* Lobby */}
-      <Section bg="#FAFAFA">
-        <div className="grid-2col media-right" style={{ alignItems:"start" }}>
+      {/* ── The Lamella Lobby ───────────────────────────────────── */}
+      <div style={{ background: "#FAFAFA", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(48px,6vw,100px)" }}
+          className="design-grid-2">
           <div>
-            <Rv><Tag>Arrival Experience</Tag></Rv>
-            <Rv delay={0.1}><H2>The 24-Metre Grand Lobby</H2></Rv>
-            <Rv delay={0.2}><Body>A 24-metre-high column-free lobby establishes immediate presence and spatial clarity. The grand lobby on the north side of the tower extends from the core to its perimeter frame. The lobby's dramatic scale and carefully orchestrated light create an arrival experience befitting Kuwait's tallest building.</Body></Rv>
-            <Rv delay={0.3}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 36 }}>
-                {[{ n: "24m", l: "Lobby Height" }, { n: "7.6m", l: "Column Offset" }, { n: "130ft", l: "Sky Deck Height" }, { n: "360°", l: "Panoramic Views" }].map(({ n, l }) => (
-                  <div key={l} style={{ background: "#fff", padding: "28px 22px" }}>
-                    <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1 }}>{n}</div>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#767676", marginTop: 8 }}>{l}</div>
-                  </div>
-                ))}
-              </div>
-            </Rv>
-          </div>
-          <Rv delay={0.15}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              {/* Full lobby interior */}
-              {/* Lobby entrance corridor — portrait */}
-              <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Grand Lobby entrance corridor"
-                  style={{ width: "100%", height: 380, objectFit: "cover", objectPosition: "center center", display: "block" }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "20px 20px 14px" }}>
-                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Grand Lobby · 24m Column-Free Height</span>
-                </div>
-              </div>
-              {/* Elevator hall wide */}
-              <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/lobby-elevator-hall.jpg" alt="VIP elevator hall — Al Hamra Tower"
-                  style={{ width: "100%", height: 96, objectFit: "cover", objectPosition: "center 60%", display: "block" }} />
-                <div style={{ position: "absolute", inset: 0, background: "rgba(29,29,27,0.1)" }} />
-                <div style={{ position: "absolute", bottom: 8, left: 14 }}>
-                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>VIP Elevator Hall · Levels 30–51</span>
-                </div>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+              The Lamella Structure
+            </div>
+            <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+              fontWeight: 300, fontSize: "clamp(24px,3.2vw,44px)",
+              color: DARK, lineHeight: 1.1, marginBottom: 24 }}>
+              24 metres. No columns.<br />Engineered to be impossible.
+            </h2>
+            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
+              lineHeight: 1.9, marginBottom: 16 }}>
+              The main lobby rises 24 metres without a single column — achieved through 
+              the lamella bracing system. The north tower columns, vertical from Level 12 
+              upward, slope outward following a circular arch from 60 metres high, 
+              intercepting the ground slab 7.6 metres further north than a vertical column would.
+            </p>
+            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
+              lineHeight: 1.9, marginBottom: 28 }}>
+              Five interlocking element types — A, B, C, D, E — form a three-dimensional 
+              web. Non-linear buckling analysis confirmed the system: adding the D elements 
+              alone increased buckling resistance by a factor of two. All fiberglass formwork 
+              moulds were fabricated directly from parametric 3D models — an early milestone 
+              in computational construction.
+            </p>
+            <div style={{ borderLeft: `2px solid ${PEARL}`, paddingLeft: 20 }}>
+              <p style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+                fontSize: "clamp(14px,1.3vw,18px)", color: DARK, lineHeight: 1.7, margin: 0 }}>
+                "The geometry of this area is generated by the application of the principles 
+                of the laminar structure supporting the tower above and below articulates space."
+              </p>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL, marginTop: 10 }}>
+                SOM / Skidmore, Owings & Merrill
               </div>
             </div>
-          </Rv>
+          </div>
+          <div style={{ position: "relative", overflow: "hidden", minHeight: 480 }}>
+            <img src="/assets/lobby-ceiling-day.jpg"
+              alt="Al Hamra Tower lobby lamella ceiling structure — curved steel elements forming geometric web"
+              style={{ width: "100%", height: "100%", objectFit: "cover",
+                objectPosition: "center", display: "block", borderRadius: 0 }} />
+          </div>
         </div>
-      </Section>
+      </div>
 
-      {/* Structural innovations */}
-      <Section>
-        <Rv><Tag>Structural Innovation</Tag></Rv>
-        <Rv delay={0.1}><H2>Engineering the Impossible</H2></Rv>
-        <Rv delay={0.2}><FeatureGrid features={STRUCTURAL} /></Rv>
-      </Section>
+      <MashrabiyaDivider count={7} />
 
-      <DarkBand
-        title="Awards &amp; Recognition"
-        subtitle="Al Hamra Tower's design has earned international recognition from the world's leading architectural institutions."
-        ctaLabel="View Awards"
-        ctaHref="/tower/recognition"
-      />
+      {/* ── Full Specification Table ────────────────────────────── */}
+      <div style={{ background: "#fff", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 16 }}>
+            Technical Specification
+          </div>
+          <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+            fontWeight: 300, fontSize: "clamp(26px,3.5vw,48px)",
+            color: DARK, lineHeight: 1.1 }}>
+            The numbers behind the form.
+          </h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,80px)" }}
+          className="spec-table-grid">
+          <div>
+            {SPECS.slice(0,3).map(s => <SpecTable key={s.cat} {...s} />)}
+          </div>
+          <div>
+            {SPECS.slice(3).map(s => <SpecTable key={s.cat} {...s} />)}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Architecture sketches ───────────────────────────────── */}
+      <div style={{ background: "#FAFAFA", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)" }}>
+        <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
+          Drawings & Documentation
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}
+          className="design-drawing-grid">
+          {[
+            { src: "/assets/arch-sketch.jpg", label: "SOM — Architectural sketch" },
+            { src: "/assets/arch-section.png", label: "Structural section — lobby lamella" },
+          ].map(({ src, label }) => (
+            <motion.div key={label}
+              initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.7 }}>
+              <img src={src} alt={label}
+                style={{ width: "100%", display: "block",
+                  border: "1px solid rgba(29,29,27,0.08)" }} />
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                letterSpacing: "0.2em", textTransform: "uppercase",
+                color: "#767676", marginTop: 12 }}>{label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .design-grid-1, .design-grid-2 { grid-template-columns: 1fr 1fr !important; }
+        .spec-table-grid { grid-template-columns: 1fr 1fr !important; }
+        .design-drawing-grid { grid-template-columns: 1fr 1fr !important; }
+        @media (max-width: 768px) {
+          .design-grid-1, .design-grid-2 { grid-template-columns: 1fr !important; }
+          .spec-table-grid { grid-template-columns: 1fr !important; }
+          .design-drawing-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </PageLayout>
   );
 }

@@ -14,9 +14,9 @@ const GULF  = "#2A5F7A";
 const DARK  = "#1D1D1B";
 
 const TENANTS = [
-  { label: "Government & Sovereign",  desc: "Kuwait's leading ministries and GCC institutions"  },
-  { label: "Luxury Retail",           desc: "The world's most recognised luxury houses"          },
-  { label: "Financial & Professional", desc: "Regional headquarters of global firms"             },
+  { label: "Government & Sovereign",  desc: "Kuwait's leading ministries, sovereign wealth funds and GCC institutions"  },
+  { label: "Luxury Retail",           desc: "Hermès · Gucci · Bottega Veneta · YSL · Ferragamo · Mont Blanc · Panerai"},
+  { label: "Financial & Professional", desc: "Regional and international financial institutions and professional services firms"},
 ];
 
 export function InvitationSection() {
@@ -127,8 +127,8 @@ export function InvitationSection() {
               maxWidth: 360, marginBottom: 48,
             }}
           >
-            Home to Kuwait's most distinguished institutions
-            and the world's foremost luxury brands.
+            Home to Kuwait's leading ministries, Hermès, Gucci, Bottega Veneta
+            and the world's most recognised luxury houses.
             Now welcoming a select group of new tenants.
           </motion.p>
 

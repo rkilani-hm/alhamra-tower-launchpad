@@ -40,7 +40,7 @@ export function Services() {
         subtitle="Al Hamra Tower operates as a fully managed environment. A resident engineering and facilities team delivers round-the-clock support across every building system."
         crumbs={[{ label: "Home", href: "/" }, { label: "Experience", href: "/services" }]}
       />
-      <StatsBar stats={[{ number: "24/7", label: "Operations" }, { number: "351m", label: "Sky Lounge Elevation" }, { number: "100%", label: "Power Redundancy" }, { number: "9", label: "Cinema Screens" }]} />
+      <StatsBar stats={[{ number: "24/7", label: "Operations" }, { number: "351m", label: "Sky Lounge (351m) Elevation" }, { number: "100%", label: "Power Redundancy" }, { number: "9", label: "Cinema Screens" }]} />
 
       {/* Lobby entrance corridor — full bleed */}
       <div style={{ position: "relative", height:"clamp(240px,35vw,440px)", overflow: "hidden" }}>
@@ -281,7 +281,7 @@ const LEASING_CONFIGS = [
     bullets: [
       "Floors 52 – 75 · Sky Lobby 2 at Floor 55",
       "Executive floors 74–75 — Kuwait's highest business address",
-      "VIP elevator direct from lobby to Sky Lounge at 351m",
+      "VIP elevator direct from lobby to Sky Lounge (351m) at 351m",
       "Ideal for global luxury brands and corporate HQs",
     ],
   },

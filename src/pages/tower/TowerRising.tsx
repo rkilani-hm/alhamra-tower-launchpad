@@ -15,7 +15,7 @@ const ERAS = [
     year: "2004",
     title: "The Site is Set",
     body: "A mixed-use complex with a 200m tower is designed by Al Jazera Consultants. Excavation begins — 289 cast-in-place bored piles are sunk 22–27 metres into Kuwait's silty sand. The foundation work cannot stop.",
-    img: "/assets/tower-construction.jpg",
+    img: "/assets/tower-render-dusk.jpg",
   },
   {
     year: "2005",
@@ -40,6 +40,7 @@ const ERAS = [
     title: "Kuwait's Skyline Changes",
     body: "Al Hamra Tower tops out at 412.6 metres. At completion it ranks among the ten tallest buildings in the world. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — stands complete in Sharq District. Kuwait City has a new landmark.",
     img: "/assets/tower-aerial-night.jpg",
+    img2: "/assets/skyline-gulf-night.jpg",
   },
 ];
 
@@ -64,7 +65,7 @@ export default function TowerRising() {
         subtitle="The construction of Al Hamra Tower"
         tag="2006 – 2011"
         crumbs={[{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }]}
-        image="/assets/tower-entrance-lit.jpg"
+        image="/assets/office-interior.jpg"
       />
 
       {/* ── SECTION 1: Construction Timeline ───────────────────────── */}
