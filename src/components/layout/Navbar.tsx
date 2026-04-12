@@ -98,7 +98,7 @@ export function Navbar() {
         {/* Logo */}
         <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img
-            src="/assets/logo.jpg" alt="Al Hamra"
+            src="/assets/al-hamra-logo.png" alt="Al Hamra"
             style={{ height: 48, width: "auto", objectFit: "contain" }}
             onError={e => {
               const t = e.currentTarget as HTMLImageElement;
