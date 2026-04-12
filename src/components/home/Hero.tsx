@@ -136,7 +136,7 @@ export function Hero() {
           whiteSpace: "nowrap", zIndex: 8, pointerEvents: "none",
         }}
       >
-        Sharq District · Kuwait City · 412m · SOM Architecture
+        Sharq District · Kuwait City · 413m · SOM Architecture
       </motion.div>
 
       {/* Main content — TOP-aligned */}
@@ -158,7 +158,7 @@ export function Hero() {
           aria-hidden="true"
         >
           <span style={{ width: 36, height: 1, background: SAND, flexShrink: 0 }} />
-          Sharq District  ·  Kuwait City  ·  412m  ·  Est. 2011
+          Sharq District  ·  Kuwait City  ·  413m  ·  Est. 2011
         </motion.div>
 
         {/* Heading */}
@@ -261,7 +261,7 @@ export function Hero() {
         aria-label="Tower statistics"
       >
         {[
-          { n: "412", u: "m",  l: "Height"           },
+          { n: "413", u: "m",  l: "Height"           },
           { n: "80",  u: "",   l: "Office Floors"     },
           { n: "#1",  u: "",   l: "Tallest in Kuwait" },
           { n: "52",  u: "",   l: "Elevators"         },

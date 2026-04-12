@@ -18,14 +18,14 @@ const TABS = ["Overview", "The Apex", "The Core", "The Foundation"];
 const TAB_DATA = {
   Overview: {
     heading: "Kuwait's Landmark of Precision",
-    body: "Al Hamra Business Tower rises 412 metres above Kuwait City — a permanent fixture on the Gulf skyline and a symbol of architectural ambition. Designed by Skidmore, Owings & Merrill, it stands as the world's tallest sculpted concrete tower, combining environmental intelligence with structural innovation.",
+    body: "Al Hamra Business Tower rises 413 metres above Kuwait City — a permanent fixture on the Gulf skyline and a symbol of architectural ambition. Designed by Skidmore, Owings & Merrill, it stands as the world's tallest sculpted concrete tower, combining environmental intelligence with structural innovation.",
     stats: [{ n: "~413", u: "m", l: "Total Height" }, { n: "#1", u: "", l: "Tallest in Kuwait" }, { n: "24", u: "m", l: "Lobby Height" }],
     img: "/assets/kuwait-skyline.jpg",
   },
   "The Apex": {
-    heading: "The Crown — 412–413 Metres",
+    heading: "The Crown — 413 Metres",
     body: "One of the tallest towers in the region. The crown features the distinctive carved geometry that defines Al Hamra's silhouette against the Arabian Gulf skyline. The asymmetrical spiral terminates in a razor-sharp apex — simultaneously shelter and statement.",
-    stats: [{ n: "412", u: "m", l: "Apex Height" }, { n: "80", u: "", l: "Total Stories" }, { n: "60°", u: "", l: "Floor Rotation Crown" }],
+    stats: [{ n: "413", u: "m", l: "Apex Height" }, { n: "80", u: "", l: "Total Stories" }, { n: "60°", u: "", l: "Floor Rotation Crown" }],
     img: "/assets/tower-sunset.jpg",
   },
   "The Core": {
@@ -151,7 +151,7 @@ export default function TowerOverview() {
               Al Hamra Business Tower · SOM Architecture
             </div>
             <h1 style={{ fontFamily:"Jost,sans-serif", fontSize:"clamp(40px,7vw,96px)", fontWeight:100, letterSpacing:"-0.03em", lineHeight:0.92, color:WHITE, marginBottom:20 }}>
-              412<span style={{ fontFamily:"Cormorant Garamond,serif", fontStyle:"italic", fontWeight:300, color:SAND }}>m</span>
+              413<span style={{ fontFamily:"Cormorant Garamond,serif", fontStyle:"italic", fontWeight:300, color:SAND }}>m</span>
               <br />
               <span style={{ fontWeight:300, fontSize:"0.75em" }}>Above the Gulf</span>
             </h1>
@@ -178,7 +178,7 @@ export default function TowerOverview() {
       <section style={{ background:"#FAFAF8", padding:"0" }}>
         <div className="tower-stats-grid">
           {[
-            { n:"412", u:"m",  l:"Landmark Height",          icon:"↑" },
+            { n:"413", u:"m",  l:"Landmark Height",          icon:"↑" },
             { n:"80",  u:"",   l:"Stories of Office Space",  icon:"⬡" },
             { n:"#23", u:"",   l:"World Rank at Completion", icon:"◎" },
           ].map(({ n, u, l, icon }, i) => (
