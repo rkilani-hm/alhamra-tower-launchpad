@@ -5,7 +5,7 @@ import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, SpecTable, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 
 const STATS = [
-  { number: "412",     unit: "m",  label: "Building Height"  },
+  { number: "413",     unit: "m",  label: "Building Height"  },
   { number: "80",             label: "Stories"          },
   { number: "195,000", unit: "m²", label: "Gross Area"       },
   { number: "10,000",  unit: "m²", label: "Site Area"        },
@@ -19,7 +19,7 @@ const FEATURES = [
 ];
 
 const SPECS = [
-  { label: "Building Height",    value: "412m — Kuwait's tallest structure"   },
+  { label: "Building Height",    value: "413m — Kuwait's tallest structure"   },
   { label: "Number of Stories",  value: "80 — Plus mechanical floors"         },
   { label: "Foundation Mat",     value: "5,800m² — Spanning full footprint"   },
   { label: "Gross Area",         value: "195,000m² — Office & retail space"   },
@@ -31,7 +31,7 @@ const SPECS = [
 ];
 
 const STRUCTURAL = [
-  { number: "01", title: "Hyperbolic Paraboloid Walls",  body: "Two reinforced-concrete flared walls extend the full 412m height. The southeast wall leans INTO the building (lightly loaded), while the southwest wall leans AWAY, carrying enormous concentrated loads — unprecedented at this scale." },
+  { number: "01", title: "Hyperbolic Paraboloid Walls",  body: "Two reinforced-concrete flared walls extend the full 413m height. The southeast wall leans INTO the building (lightly loaded), while the southwest wall leans AWAY, carrying enormous concentrated loads — unprecedented at this scale." },
   { number: "02", title: "Torsional Gravity Response",   body: "The tower twists elastically under gravity loads alone. Counter-clockwise circumferential forces create cumulative torsional moment from zero at top to maximum at base." },
   { number: "03", title: "Cantilevered Truss System",    body: "The observation deck's curtain wall is supported by an innovative cantilevered truss system that eliminates the need for columns, providing unobstructed 360-degree views." },
   { number: "04", title: "Sloped Perimeter Columns",     body: "Columns along the exterior slope inwards at the base, defining the street-level appearance while efficiently transferring loads to the foundation." },
