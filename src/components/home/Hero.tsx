@@ -193,7 +193,7 @@ export function Hero() {
               fontSize: "clamp(24px,4.5vw,72px)", color: "#fff",
               letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 36 }}
           >
-            Business Addresses
+            Business Address
           </motion.span>
         </h1>
 
