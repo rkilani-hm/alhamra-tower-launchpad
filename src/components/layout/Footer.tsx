@@ -59,7 +59,7 @@ export function Footer() {
         {/* Logo + tagline + social icons */}
         <div>
           <img
-            src="/assets/logo.jpg" alt="Al Hamra"
+            src="/assets/al-hamra-logo.png" alt="Al Hamra"
             style={{ height: 44, width: "auto", objectFit: "contain", marginBottom: 20 }}
             onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
