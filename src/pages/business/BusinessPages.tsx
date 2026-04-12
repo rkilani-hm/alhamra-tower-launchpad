@@ -29,14 +29,14 @@ export function WorkplaceExperience() {
         { number: "24/7", label: "Building Operations" },
       ]} />
 
-      {/* Full-bleed lobby entrance corridor */}
-      <div style={{ position: "relative", height:"clamp(280px,40vw,540px)", overflow: "hidden" }}>
-        <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance"
+      {/* Full-bleed lobby — H51: grand lamella lobby, white arches, full daylight */}
+      <div style={{ position: "relative", height:"clamp(340px,48vw,640px)", overflow: "hidden" }}>
+        <img src="/assets/lobby-grand-lamella.jpg" alt="Al Hamra Tower Grand Lobby — lamella arches"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.15) 0%, rgba(29,29,27,0.65) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.05) 0%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
           <Rv>
-            <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>Grand Lobby · 24m Column-Free</p>
+            <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>Grand Lobby · 24m Column-Free · Lamella Bracing</p>
             <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, maxWidth: 560 }}>
               An arrival experience<br /><strong style={{ fontWeight: 500 }}>befitting Kuwait's tallest building</strong>
             </h3>
@@ -62,11 +62,11 @@ export function WorkplaceExperience() {
           <Rv delay={0.15}>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/office-corridor.jpg" alt="Al Hamra office corridor — limestone finishes"
+                <img src="/assets/lobby-elevator-corridor.jpg" alt="Al Hamra elevator corridor — travertine and lamella"
                   style={{ width: "100%", height: 320, objectFit: "cover", objectPosition: "center center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "16px 20px 14px" }}>
                   <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
-                    Office Corridor · Jura Limestone Finishes
+                    Elevator Hall · Travertine & Lamella Framing
                   </span>
                 </div>
               </div>
@@ -155,9 +155,9 @@ export function OfficeSpaces() {
         </div>
       </Section>
 
-      {/* Full-bleed lobby arrival experience */}
+      {/* Full-bleed lobby arrival experience — using lobby-elevator-corridor-2 (warm gold ambiance) */}
       <div style={{ position: "relative", height: "clamp(300px,42vw,560px)", overflow: "hidden" }}>
-        <img src="/assets/lobby-interior.jpg" alt="Al Hamra Tower — grand lobby arrival"
+        <img src="/assets/lobby-elevator-corridor-2.jpg" alt="Al Hamra Tower — elevator corridor lamella"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
         <div className="ah-section" style={{ position: "absolute", top: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column", justifyContent: "center", background: "transparent" }}>
@@ -167,7 +167,7 @@ export function OfficeSpaces() {
               A 24-metre column-free lobby.<br /><strong style={{ fontWeight: 500 }}>Kuwait's most prestigious address.</strong>
             </h2>
             <p style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.85, maxWidth: 400 }}>
-              Every tenants' day begins in a grand, column-free lobby with a 24-metre vaulted lamella ceiling — an architectural statement that sets the tone for the floors above.
+              Every tenant's day begins in a grand, column-free lobby with a 24-metre vaulted lamella ceiling — an architectural statement that sets the tone for the floors above.
             </p>
           </Rv>
         </div>
@@ -176,13 +176,13 @@ export function OfficeSpaces() {
         </div>
       </div>
 
-      {/* 4-image interior gallery strip */}
+      {/* 4-image interior gallery strip — upgraded with premium new images */}
       <div className="office-gallery-strip">
         {[
-          { src: "/assets/lobby-ceiling-day.jpg",      cap: "Lamella Ceiling · Natural Light",          pos: "center"    },
-          { src: "/assets/lobby-entrance-corridor.jpg", cap: "Entrance Corridor · Limestone Finishes",  pos: "center"    },
-          { src: "/assets/lobby-elevator-hall.jpg",     cap: "VIP Elevator Hall · Executive Level",     pos: "center"    },
-          { src: "/assets/entrance-night-wide.jpg",     cap: "North Entrance · Blue Hour",              pos: "center"    },
+          { src: "/assets/lobby-grand-lamella.jpg",      cap: "Grand Lobby · White Lamella Arches",       pos: "center"    },
+          { src: "/assets/lobby-elevator-corridor.jpg",  cap: "Elevator Hall · Travertine & Lamella",     pos: "center"    },
+          { src: "/assets/offices-south-corridor.jpg",   cap: "Office Corridor · Travertine Finishes",    pos: "center"    },
+          { src: "/assets/entrance-night-wide.jpg",      cap: "North Entrance · Blue Hour",               pos: "center"    },
         ].map(({ src, cap, pos }, i) => (
           <Rv key={cap} delay={i * 0.08}>
             <div style={{ position: "relative", overflow: "hidden", height: "clamp(200px,24vw,320px)" }}>
@@ -344,14 +344,14 @@ export function VerticalTransportation() {
       />
       <StatsBar stats={[{ number: "43", label: "Total Elevators" }, { number: "8", label: "Express Units" }, { number: "6", unit: "m/s", label: "Max Speed" }]} />
 
-      {/* Elevator hall — wide shot with VIP signage visible */}
+      {/* Elevator corridor — new: lobby-elevator-corridor.jpg (warm travertine + lamella framing) */}
       <div style={{ position: "relative", height:"clamp(260px,38vw,480px)", overflow: "hidden" }}>
-        <img src="/assets/lobby-elevator-hall.jpg" alt="Al Hamra Tower VIP elevator hall"
+        <img src="/assets/lobby-elevator-corridor.jpg" alt="Al Hamra Tower — elevator corridor with lamella structure"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
         <div className="photo-overlay-text" style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
           <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>
-            Lobby Level · VIP Elevator Hall
+            Lobby Level · Elevator Hall · Lamella Structure
           </p>
           <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.25 }}>
             43 elevators.<br /><strong style={{ fontWeight: 500 }}>One seamless ascent.</strong>

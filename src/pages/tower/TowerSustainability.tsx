@@ -46,7 +46,7 @@ export default function TowerSustainability() {
       <PageHero
         title="Sustainability"
         subtitle="Al Hamra's environmental performance was not engineered into the building after the form was set. It was the form itself — every design decision that gave the tower its identity also solved an environmental problem."
-        image="/assets/tower-facade-up.jpg"
+        image="/assets/tower-foggy.jpg"
         crumbs={[{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }]}
       />
 

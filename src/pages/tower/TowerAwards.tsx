@@ -25,19 +25,19 @@ const AWARDS = [
 const ENGINEERING_FACTS = [
   {
     stat: "#1",
-    label: "Tallest Sculpted Tower",
-    body: "The world's tallest curved concrete structure — a distinction held since 2011. No other tower of comparable height achieves this degree of sculptural mass removal from its own structural body.",
-    img: "/assets/tower-facade-up.jpg",
-    imgCaption: "Looking up · Carved limestone façade rising 412m",
+    label: "Tallest Stone-Clad Tower",
+    body: "258,000 m² of Jura limestone — the world's largest area of stone cladding on a single building. A world record held since 2011 and the first asymmetrical skyscraper ever built. No other tower of comparable height achieves this degree of sculptural mass removal from its own structural body.",
+    img: "/assets/facade-dual-glass-stone.jpg",
+    imgCaption: "Dual facade · Glass meets limestone",
     credit: "Photo: Dave Burk · SOM",
   },
   {
     stat: "24m",
     label: "Column-Free Lobby",
     body: "The lamella structure — a web of curved concrete members inspired by Middle Eastern vault architecture — prevents the sloping perimeter columns from buckling. Without it, those columns would need to be three times larger.",
-    img: "/assets/lobby-ceiling-portrait.jpg",
-    imgCaption: "Lamella ceiling · The engineering made visible",
-    credit: "Al Hamra Tower Archives",
+    img: "/assets/lobby-grand-lamella.jpg",
+    imgCaption: "Grand lobby · White lamella arches, Kuwait flag, 24m height",
+    credit: "Al Hamra Tower",
   },
   {
     stat: "289",
@@ -72,17 +72,17 @@ export function TowerAwards() {
   return (
     <PageLayout>
 
-      {/* ══ HERO ═══════════════════════════════════════════ */}
+      {/* ══ HERO — tower-render-dusk.jpg: official SOM/CTBUH render, purple dusk sky ═══ */}
       <div style={{ position: "relative", height: "clamp(360px,55vw,680px)", overflow: "hidden", background: DARK }}>
         <motion.img
-          src="/assets/tower-facade-up.jpg"
-          alt="Al Hamra Tower — limestone façade looking up"
+          src="/assets/tower-render-dusk.jpg"
+          alt="Al Hamra Tower — official SOM architectural render at dusk"
           initial={{ scale: 1.06 }} animate={{ scale: 1 }}
           transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "brightness(0.6) saturate(0.9)" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", filter: "brightness(0.75) saturate(1.1)" }}
         />
         {/* Gradient overlays */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.2) 0%, transparent 40%, rgba(29,29,27,0.7) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.1) 0%, transparent 40%, rgba(29,29,27,0.75) 100%)" }} />
         <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, rgba(197,168,130,0.15) 0%, transparent 60%)` }} />
 
         {/* Text overlay */}
@@ -95,7 +95,7 @@ export function TowerAwards() {
               Global<br /><span style={{ fontWeight: 400 }}>Acknowledgement</span>
             </h1>
             <p style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.55)", maxWidth: 440, lineHeight: 1.8 }}>
-              The world's tallest curved concrete tower — recognised by leading engineering, architecture, and sustainability institutions for over a decade.
+              The world's tallest stone-clad tower and first asymmetrical skyscraper — recognised by leading engineering, architecture, and sustainability institutions for over a decade.
             </p>
           </motion.div>
         </div>

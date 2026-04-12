@@ -111,15 +111,12 @@ export default function TowerDesign() {
       <div style={{ background: "#fff" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "60vh" }}
           className="design-grid-1">
-          {/* Left — image: tower from street against blue sky (right half of composite) */}
+          {/* Left — image: H39 dual facade: glass curtain wall LEFT, limestone RIGHT — perfect editorial shot */}
           <div style={{ position: "relative", overflow: "hidden", background: "#0c0b09", minHeight: 360 }}>
-            <img src="/assets/tower-day-sky.jpg"
-              alt="Al Hamra Tower facade against Kuwait blue sky — stone south wall and glass north face"
+            <img src="/assets/facade-dual-glass-stone.jpg"
+              alt="Al Hamra Tower dual facade — glass curtain wall and Jura limestone side by side"
               style={{ width: "100%", height: "100%", objectFit: "cover",
-                objectPosition: "right center", display: "block" }} />
-            <div style={{ position: "absolute", inset: 0,
-              background: "linear-gradient(to right, rgba(12,11,9,0.5) 0%, transparent 50%)",
-              pointerEvents: "none" }} />
+                objectPosition: "center", display: "block" }} />
           </div>
           {/* Right — text */}
           <div ref={facadeRef}
@@ -215,11 +212,27 @@ export default function TowerDesign() {
               </div>
             </div>
           </div>
-          <div style={{ position: "relative", overflow: "hidden", minHeight: 480 }}>
-            <img src="/assets/lobby-ceiling-day.jpg"
-              alt="Al Hamra Tower lobby lamella ceiling structure — curved steel elements forming geometric web"
-              style={{ width: "100%", height: "100%", objectFit: "cover",
-                objectPosition: "center", display: "block", borderRadius: 0 }} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 4, position: "relative", minHeight: 480 }}>
+            <div style={{ position: "relative", overflow: "hidden", flex: 2 }}>
+              <img src="/assets/lobby-grand-lamella.jpg"
+                alt="Al Hamra Tower lobby — white lamella arches, 24m column-free atrium"
+                style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: 360,
+                  objectPosition: "center", display: "block" }} />
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
+              <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
+                <img src="/assets/lobby-escalator-art.jpg"
+                  alt="Al Hamra escalator and sculptural steel ceiling installation"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Escalator Hall · Steel Sculpture</div>
+              </div>
+              <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
+                <img src="/assets/facade-trencadis-detail.jpg"
+                  alt="Al Hamra Tower facade — limestone and trencadis mosaic detail"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,185,154,0.8)" }}>Trencadis Façade · Upper Floors</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

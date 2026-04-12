@@ -34,6 +34,14 @@ export function InvitationSection() {
         overflow: "hidden",
       }}
     >
+      {/* Ambient background — tower-aerial-night.jpg at 8% opacity */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden",
+      }}>
+        <img src="/assets/tower-aerial-night.jpg" alt=""
+          style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.08, filter: "grayscale(30%)" }} />
+      </div>
+
       {/* Gulf blue glow — top right corner atmosphere */}
       <div style={{
         position: "absolute", top: 0, right: 0,

@@ -98,6 +98,45 @@ export function Services() {
         </Rv>
       </Section>
 
+      {/* ── Sky Lounge ─────────────────────────────────────── */}
+      <div style={{ position: "relative", overflow: "hidden" }}>
+        {/* Full-bleed sky lounge image */}
+        <div style={{ position: "relative", height: "clamp(320px,45vw,580px)", overflow: "hidden", background: "#0c0b09" }}>
+          <img src="/assets/sky-lounge-view.jpg"
+            alt="Al Hamra Sky Lounge — 351m dining with panoramic Kuwait views"
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", filter: "brightness(0.75)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px,5vh,56px) clamp(28px,6vw,96px)" }}>
+            <Rv>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 12 }}>
+                Floors 78 – 80 · 351 Metres
+              </div>
+              <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(26px,4vw,58px)", color: "#fff", lineHeight: 1.1, marginBottom: 16 }}>
+                The Sky Lounge.<br />Kuwait's highest dining experience.
+              </h2>
+              <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300, fontSize: "clamp(12px,1.1vw,14px)", color: "rgba(255,255,255,0.6)", maxWidth: 560, lineHeight: 1.85 }}>
+                Starting at 351 metres above Kuwait City, the Al Hamra Sky Lounge occupies Floors 78–80 — the crown of the tower. VIP elevators connect directly from the ground lobby. No other venue in Kuwait begins this high.
+              </p>
+            </Rv>
+          </div>
+        </div>
+        {/* Two-image strip: dining interior + city view */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#0c0b09" }}>
+          <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
+            <img src="/assets/sky-corridor.jpg"
+              alt="Sky Lounge dining room — chandelier, round tables, piano bar"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Fine Dining · Piano Bar</div>
+          </div>
+          <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
+            <img src="/assets/city-view-office.jpg"
+              alt="Kuwait City panorama from high floor"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
+            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Panoramic Views · Arabian Gulf</div>
+          </div>
+        </div>
+      </div>
+
       {/* ── Luxury Centre ──────────────────────────────────── */}
       <Section title="Al Hamra Luxury Centre" tag="The Mall · 5 Levels · 24,000 m²">
         <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
@@ -125,21 +164,28 @@ export function Services() {
           ))}
         </div>
 
-        {/* Mall atrium image */}
-        <div style={{ position: "relative", height: "clamp(220px,30vw,400px)",
-          overflow: "hidden", background: "#0c0b09" }}>
-          <img src="/assets/mall-atrium-skylight.jpg"
-            alt="Al Hamra Luxury Centre — circular atrium with geometric skylight"
-            style={{ width: "100%", height: "100%", objectFit: "cover",
-              objectPosition: "center", display: "block", opacity: 0.9 }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
-            background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)",
-            pointerEvents: "none" }} />
-          <div style={{ position: "absolute", bottom: 20, left: 24,
-            fontFamily: "Jost,sans-serif", fontSize: "10px",
-            letterSpacing: "0.3em", textTransform: "uppercase",
-            color: "#C8B99A" }}>
-            Al Hamra Luxury Centre · Circular atrium
+        {/* Mall atrium + cinema in two columns */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, marginBottom: 2 }}>
+          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
+            <img src="/assets/mall-atrium-skylight.jpg"
+              alt="Al Hamra Luxury Centre — circular atrium with geometric skylight"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
+              background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A" }}>
+              Luxury Centre · Circular Atrium
+            </div>
+          </div>
+          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
+            <img src="/assets/tower-entrance-lit.jpg"
+              alt="Al Hamra Grand Cinema — 9-screen multiplex, leather recliners"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
+              background: "linear-gradient(to top, rgba(12,11,9,0.8), transparent)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: 16, left: 20 }}>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 6 }}>Grand Cinema · 9 Screens</div>
+              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>Premium recliners on the<br />uppermost mall level</div>
+            </div>
           </div>
         </div>
 
