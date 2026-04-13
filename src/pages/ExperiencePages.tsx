@@ -102,7 +102,7 @@ export function Services() {
       <div style={{ position: "relative", overflow: "hidden" }}>
         {/* Full-bleed sky lounge image */}
         <div style={{ position: "relative", height: "clamp(320px,45vw,580px)", overflow: "hidden", background: "#0c0b09" }}>
-          <img src="/assets/sky-lounge-view.jpg"
+          <img src="/assets/sky-lobby-panoramic.jpg"
             alt="Al Hamra Sky Lounge — 351m dining with panoramic Kuwait views"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", filter: "brightness(0.75)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
@@ -123,16 +123,16 @@ export function Services() {
         {/* Two-image strip: dining interior + city view */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#0c0b09" }}>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <img src="/assets/sky-corridor.jpg"
+            <img src="/assets/sky-lobby-lounge.jpg"
               alt="Sky Lounge dining room — chandelier, round tables, piano bar"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
             <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Fine Dining · Piano Bar</div>
           </div>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <img src="/assets/city-view-office.jpg"
-              alt="Kuwait City panorama from high floor"
+            <img src="/assets/lounge-at-window.jpg"
+              alt="Sky Lobby lounge — cream sofas, Kuwait City through full-height windows"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
-            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Panoramic Views · Arabian Gulf</div>
+            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Sky Lobby Lounge · Panoramic Views</div>
           </div>
         </div>
       </div>

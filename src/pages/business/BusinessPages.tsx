@@ -71,7 +71,7 @@ export function WorkplaceExperience() {
                 </div>
               </div>
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/city-view-office.jpg" alt="Kuwait City view from office floor"
+                <img src="/assets/lounge-at-window.jpg" alt="Sky Lobby lounge — panoramic Kuwait City view"
                   style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "12px 20px 12px" }}>
                   <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
@@ -117,7 +117,7 @@ export function OfficeSpaces() {
 
       {/* Hero — city view with overlay stats */}
       <div style={{ position: "relative", height:"clamp(280px,40vw,520px)", overflow: "hidden" }}>
-        <img src="/assets/city-view-office.jpg" alt="Office floor — panoramic Kuwait City view"
+        <img src="/assets/sky-lobby-corridor.jpg" alt="Al Hamra Sky Lobby — travertine corridor with chandelier and Gulf views"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.68) 100%)" }} />
         <div className="office-hero-stats">
@@ -202,14 +202,26 @@ export function OfficeSpaces() {
       <Section bg="#FAFAFA">
         <div className="grid-2col">
           <Rv>
-            <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 420 }}>
-              <img src="/assets/office-corridor.jpg" alt="Office corridor — premium limestone finishes"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "24px 20px 18px" }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>South Corridor</div>
-                <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                  Jura Limestone Finishes · Sky-Bridge Level
-                </span>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, height: "100%", minHeight: 420 }}>
+              <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
+                <img src="/assets/floor-reception-desk.jpg" alt="Al Hamra floor reception — travertine and steel fins"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
+                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Floor Reception</div>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
+                    Limestone · Steel Fin Screen
+                  </span>
+                </div>
+              </div>
+              <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
+                <img src="/assets/tenant-lobby.jpg" alt="Al Hamra tenant lobby — warm timber and leather"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
+                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Tenant Lobby</div>
+                  <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
+                    Timber Panelling · Al Hamra Branding
+                  </span>
+                </div>
               </div>
             </div>
           </Rv>
@@ -239,12 +251,12 @@ export function OfficeSpaces() {
           </div>
         </div>
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img src="/assets/lobby-ceiling-portrait.jpg" alt="Lamella ceiling — portrait view"
+          <img src="/assets/boardroom-meeting-room.jpg" alt="Al Hamra boardroom — 14-seat table, Kuwait City view, awards"
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Lamella Vault</div>
+            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Executive Boardroom</div>
             <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-              Lobby Ceiling · Concrete Barrel Vault
+              14-Seat Table · Award Plaques · Gulf Views
             </span>
           </div>
         </div>
