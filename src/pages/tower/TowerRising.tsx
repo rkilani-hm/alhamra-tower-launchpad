@@ -301,7 +301,7 @@ export default function TowerRising() {
               { src: "/assets/tower-facade-stone.jpg",  alt: "Jura limestone facade — the stone south wall" },
               { src: "/assets/tower-entrance-lit.jpg",  alt: "Tower entrance lit at night" },
               { src: "/assets/offices_south_corridor.jpg", alt: "Office south corridor" },
-              { src: "/assets/sky-corridor.jpg",        alt: "Sky corridor between tower wings" },
+              { src: "/assets/sky-lobby-corridor.jpg",   alt: "Sky Lobby corridor — travertine, chandelier rings, Gulf views" },
               { src: "/assets/mall-atrium-skylight.jpg", alt: "Al Hamra Luxury Centre atrium" },
             ].map(({ src, alt }, i) => (
               <motion.div

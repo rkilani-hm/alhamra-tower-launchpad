@@ -204,7 +204,7 @@ export function OfficeSpaces() {
           <Rv>
             <div style={{ display: "flex", flexDirection: "column", gap: 4, height: "100%", minHeight: 420 }}>
               <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
-                <img src="/assets/floor-reception-desk.jpg" alt="Al Hamra floor reception — travertine and steel fins"
+                <img src="/assets/floor-reception.jpg" alt="Al Hamra floor reception — travertine and steel fins"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
                   <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Floor Reception</div>
@@ -251,7 +251,7 @@ export function OfficeSpaces() {
           </div>
         </div>
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img src="/assets/boardroom-meeting-room.jpg" alt="Al Hamra boardroom — 14-seat table, Kuwait City view, awards"
+          <img src="/assets/boardroom-enhanced.jpg" alt="Al Hamra boardroom — 14-seat table, Kuwait City view, awards"
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Executive Boardroom</div>

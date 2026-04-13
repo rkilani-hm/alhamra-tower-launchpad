@@ -344,10 +344,10 @@ export function LeasingOpportunities() {
       />
       <StatsBar stats={[{ number: "450", unit: "–", label: "Min office size (m²)" }, { number: "1,750", unit: "m²", label: "Maximum floor plate" }, { number: "2,300", unit: "m²", label: "BUA per floor" }, { number: "62", label: "Dedicated office floors" }]} />
 
-      {/* City view from office floor */}
+      {/* City view — upgraded to enhanced sky lobby panoramic (Kuwait Bay clearly visible) */}
       <div style={{ position: "relative", height:"clamp(220px,32vw,400px)", overflow: "hidden" }}>
-        <img src="/assets/city-view-office.jpg" alt="Kuwait City panoramic view from office floor"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
+        <img src="/assets/sky-lobby-panoramic.jpg" alt="Kuwait City and Arabian Gulf panoramic view from Al Hamra Sky Lobby"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, right: 80, textAlign: "right" }}>
           <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(20px,2.5vw,32px)", fontStyle: "italic", fontWeight: 300, color: "#fff", lineHeight: 1.4 }}>
