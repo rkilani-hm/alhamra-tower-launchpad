@@ -38,8 +38,8 @@ export function ViewSection() {
       {/* ── Image ─────────────────────────────────────────────── */}
       <motion.div style={{ position: "absolute", inset: 0, y: imgY, scale }}>
         <img
-          src="/assets/city-view-office.jpg"
-          alt="The view from Al Hamra Tower floor 55 — Kuwait City and the Arabian Gulf"
+          src="/assets/sky-lobby-logo-wall.jpg"
+          alt="Al Hamra Tower Sky Lobby — logo sculpture, Gulf views, amber pendant lamps"
           style={{
             width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center 40%",
