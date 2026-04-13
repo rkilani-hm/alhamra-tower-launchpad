@@ -60,7 +60,7 @@ export function Footer() {
         <div>
           <img
             src="/assets/al-hamra-logo.png" alt="Al Hamra"
-            style={{ height: 55, width: "auto", objectFit: "contain", marginBottom: 20 }}
+            style={{ height: 61, width: "auto", objectFit: "contain", marginBottom: 20 }}
             onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
           <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#767676", lineHeight: 1.8, maxWidth: 200, marginBottom: 24 }}>
