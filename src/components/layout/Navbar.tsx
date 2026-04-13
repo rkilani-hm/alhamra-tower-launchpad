@@ -98,7 +98,7 @@ export function Navbar() {
         {/* Logo */}
         <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img
-            src={scrolled || openMenu || mobileOpen ? "/assets/al-hamra-logo.png" : "/assets/al-hamra-logo-white.png"}
+            src="/assets/al-hamra-logo.png"
             alt="Al Hamra"
             style={{
               height: 64, width: "auto", objectFit: "contain",
