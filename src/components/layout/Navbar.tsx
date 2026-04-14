@@ -123,11 +123,12 @@ export function Navbar() {
                 onMouseLeave={closeDropdown}
               >
                 <Link to={href}
+                  className="text-base"
                   aria-haspopup="true"
                   aria-expanded={isOpen}
                   style={{
                     display: "inline-flex", alignItems: "center", gap: 5,
-                    fontFamily: "Jost, sans-serif", fontSize: "16.5px",
+                    fontFamily: "Jost, sans-serif",
                     textDecoration: "none", padding: "8px 16px",
                     transition: "color 0.2s",
                   }}>
@@ -157,16 +158,18 @@ export function Navbar() {
                       {children.map(({ label: cl, href: ch }, i) => {
                         const isChildActive = location.pathname === ch;
                         return (
-                          <Link key={ch} to={ch} style={{
-                            display: "flex", alignItems: "center", gap: 12,
-                            padding: "11px 20px",
-                            fontFamily: "Jost, sans-serif", fontSize: "16.5px",
-                            color: isChildActive ? "#1D1D1B" : "#6B6B6B",
-                            textDecoration: "none",
-                            borderLeft: isChildActive ? "2px solid #1D1D1B" : "2px solid transparent",
-                            background: isChildActive ? "#FAFAFA" : "transparent",
-                            transition: "color 0.2s, background 0.2s, border-color 0.2s",
-                          }}
+                          <Link key={ch} to={ch}
+                            className="text-sm"
+                            style={{
+                              display: "flex", alignItems: "center", gap: 12,
+                              padding: "11px 20px",
+                              fontFamily: "Jost, sans-serif",
+                              color: isChildActive ? "#1D1D1B" : "#6B6B6B",
+                              textDecoration: "none",
+                              borderLeft: isChildActive ? "2px solid #1D1D1B" : "2px solid transparent",
+                              background: isChildActive ? "#FAFAFA" : "transparent",
+                              transition: "color 0.2s, background 0.2s, border-color 0.2s",
+                            }}
                             onMouseEnter={e => { if (!isChildActive) { e.currentTarget.style.color="#1D1D1B"; e.currentTarget.style.background="#FAFAFA"; } }}
                             onMouseLeave={e => { if (!isChildActive) { e.currentTarget.style.color="#6B6B6B"; e.currentTarget.style.background="transparent"; } }}
                           >
