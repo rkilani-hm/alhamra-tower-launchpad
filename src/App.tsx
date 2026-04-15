@@ -1,10 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes }     from "react-router-dom";
-import { MotionConfig }                       from "framer-motion";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { MotionConfig, AnimatePresence, motion } from "framer-motion";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { Toaster }         from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { pageVariants }    from "@/lib/motion";
 
 /* Pages */
 import Index               from "./pages/Index";
@@ -28,6 +29,58 @@ import {
 
 const qc = new QueryClient();
 
+/* ── AnimatedRoutes ─────────────────────────────────────────────────────
+   Wraps all routes in AnimatePresence so page transitions play on
+   route change. Each page slides up on enter, fades down on exit.
+   useLocation() must be called inside BrowserRouter — hence this component.
+──────────────────────────────────────────────────────────────────────── */
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={location.pathname}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        style={{ willChange: "opacity, transform" }}
+      >
+        <Routes location={location}>
+          {/* Homepage */}
+          <Route path="/"                               element={<Index />} />
+
+          {/* Tower */}
+          <Route path="/tower"                          element={<TowerOverview />} />
+          <Route path="/tower/rising"                   element={<TowerRising />} />
+          <Route path="/tower/design"                   element={<TowerDesign />} />
+          <Route path="/tower/recognition"              element={<TowerAwards />} />
+          <Route path="/tower/sustainability"           element={<TowerSustainability />} />
+
+          {/* Business */}
+          <Route path="/business"                       element={<WorkplaceExperience />} />
+          <Route path="/business/office-spaces"         element={<OfficeSpaces />} />
+          <Route path="/business/vertical-transportation" element={<VerticalTransportation />} />
+          <Route path="/business/connectivity"          element={<Connectivity />} />
+
+          {/* Experience */}
+          <Route path="/services"                       element={<Services />} />
+          <Route path="/location"                       element={<Location />} />
+
+          {/* Leasing */}
+          <Route path="/leasing"                        element={<LeasingOpportunities />} />
+          <Route path="/leasing/inquiry"                element={<LeasingInquiry />} />
+          <Route path="/leasing/downloads"              element={<Downloads />} />
+          <Route path="/leasing/contact"                element={<Contact />} />
+
+          <Route path="*"                               element={<NotFound />} />
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={qc}>
     <TooltipProvider>
@@ -41,35 +94,7 @@ const App = () => (
         {/* C4: Respect OS reduced-motion preference for all Framer Motion */}
         <MotionConfig reducedMotion="user">
           <ScrollToTop />
-          <Routes>
-            {/* Homepage */}
-            <Route path="/"                               element={<Index />} />
-
-            {/* Tower */}
-            <Route path="/tower"                          element={<TowerOverview />} />
-            <Route path="/tower/rising"                   element={<TowerRising />} />
-            <Route path="/tower/design"                   element={<TowerDesign />} />
-            <Route path="/tower/recognition"              element={<TowerAwards />} />
-            <Route path="/tower/sustainability"           element={<TowerSustainability />} />
-
-            {/* Business */}
-            <Route path="/business"                       element={<WorkplaceExperience />} />
-            <Route path="/business/office-spaces"         element={<OfficeSpaces />} />
-            <Route path="/business/vertical-transportation" element={<VerticalTransportation />} />
-            <Route path="/business/connectivity"          element={<Connectivity />} />
-
-            {/* Experience */}
-            <Route path="/services"                       element={<Services />} />
-            <Route path="/location"                       element={<Location />} />
-
-            {/* Leasing */}
-            <Route path="/leasing"                        element={<LeasingOpportunities />} />
-            <Route path="/leasing/inquiry"                element={<LeasingInquiry />} />
-            <Route path="/leasing/downloads"              element={<Downloads />} />
-            <Route path="/leasing/contact"                element={<Contact />} />
-
-            <Route path="*"                               element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </MotionConfig>
       </BrowserRouter>
     </TooltipProvider>

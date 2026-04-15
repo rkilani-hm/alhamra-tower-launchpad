@@ -123,7 +123,7 @@ export function Navbar() {
                 onMouseLeave={closeDropdown}
               >
                 <Link to={href}
-                  className="text-base"
+                  className={`text-base ah-nav-link${location.pathname === href || location.pathname.startsWith(href + "/") ? " active" : ""}`}
                   aria-haspopup="true"
                   aria-expanded={isOpen}
                   style={{

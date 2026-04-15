@@ -563,3 +563,216 @@
   border: none;
   opacity: 0.6;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PHASE 3 — FRAMER MOTION ANIMATION SYSTEM
+   Al Hamra Tower · Design Enhancement · April 2026
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Button shimmer — gold light sweep on hover ──────────────────────── */
+@keyframes ah-btn-shimmer {
+  0%   { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(220%)  skewX(-12deg); }
+}
+
+.ah-btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.ah-btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(201,169,110,0.25) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%) skewX(-12deg);
+  pointer-events: none;
+  transition: none;
+}
+.ah-btn-shimmer:hover::after {
+  animation: ah-btn-shimmer 0.65s ease-out forwards;
+}
+
+/* ── Card hover lift ─────────────────────────────────────────────────── */
+.ah-card-hover {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background  0.25s ease;
+  will-change: transform;
+}
+.ah-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(29,29,27,0.09);
+}
+
+/* ── Gold underline draw — on section headings ───────────────────────── */
+.ah-heading-underline {
+  position: relative;
+  display: inline-block;
+}
+.ah-heading-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 100%; height: 1px;
+  background: linear-gradient(to right, #C8B99A 0%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ah-heading-underline.in-view::after,
+.ah-heading-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Image reveal — scale + unblur on inView ─────────────────────────── */
+@keyframes ah-img-reveal {
+  from { opacity: 0; transform: scale(1.04); filter: blur(4px); }
+  to   { opacity: 1; transform: scale(1);    filter: blur(0px); }
+}
+.ah-img-reveal {
+  animation: ah-img-reveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ah-img-reveal { animation: none; opacity: 1; }
+}
+
+/* ── Stats count-up number — pulse on arrival ────────────────────────── */
+@keyframes ah-num-arrive {
+  0%   { opacity: 0; transform: translateY(10px); }
+  60%  { opacity: 1; transform: translateY(-2px); }
+  100% { opacity: 1; transform: translateY(0);    }
+}
+.ah-num-arrive {
+  animation: ah-num-arrive 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Stagger container — CSS-only fallback for reduced-motion users ──── */
+@media (prefers-reduced-motion: reduce) {
+  [data-stagger-child] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── Marquee — smooth infinite horizontal scroll ─────────────────────── */
+@keyframes ah-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ah-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ah-marquee 28s linear infinite;
+  will-change: transform;
+}
+.ah-marquee-track:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ah-marquee-track {
+    animation: none;
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* ── Page transition layer ───────────────────────────────────────────── */
+.ah-page-wrap {
+  will-change: opacity, transform;
+}
+
+/* ── Gold rule grow — ::after line that grows on scroll ──────────────── */
+.ah-gold-rule {
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, #C8B99A 0%, rgba(200,185,154,0.3) 60%, transparent 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: 16px 0 28px;
+}
+.ah-gold-rule.visible {
+  transform: scaleX(1);
+}
+
+/* ── Section entrance — apply to direct section children ─────────────── */
+.ah-section-enter > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ah-section-enter.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.00s; }
+.ah-section-enter.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.09s; }
+.ah-section-enter.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.18s; }
+.ah-section-enter.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.27s; }
+.ah-section-enter.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.36s; }
+.ah-section-enter.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.45s; }
+
+/* ── InvitationSection text blur-reveal ─────────────────────────────── */
+@keyframes ah-blur-in {
+  from { opacity: 0; filter: blur(6px); transform: translateY(12px); }
+  to   { opacity: 1; filter: blur(0);   transform: translateY(0); }
+}
+.ah-blur-reveal {
+  animation: ah-blur-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ah-blur-reveal { animation: none; opacity: 1; }
+}
+
+/* ── Navbar link underline — gold draw on hover ──────────────────────── */
+.ah-nav-link {
+  position: relative;
+  display: inline-block;
+}
+.ah-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: #C8B99A;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ah-nav-link:hover::after,
+.ah-nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Parallax image containers — overflow clip for parallax children ─── */
+.ah-parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+.ah-parallax-img {
+  will-change: transform;
+  transform-origin: center;
+}
+
+/* ── ViewSection / GulfSection ambient overlay ───────────────────────── */
+@keyframes ah-gold-pulse {
+  0%, 100% { opacity: 0.08; }
+  50%       { opacity: 0.18; }
+}
+.ah-gold-ambient {
+  animation: ah-gold-pulse 6s ease-in-out infinite;
+}
+
+/* ── Spec table row — fade in left on scroll ─────────────────────────── */
+.ah-spec-row {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ah-spec-row.visible {
+  opacity: 1;
+  transform: translateX(0);
+}

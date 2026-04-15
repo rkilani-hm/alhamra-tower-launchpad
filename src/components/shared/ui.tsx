@@ -1,19 +1,25 @@
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import { motion }    from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useInView } from "framer-motion";
+import { stagger, fadeUp } from "@/lib/motion";
+
+const CG = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
 /* ── SCROLL REVEAL ───────────────────────── */
 interface RvProps { children: ReactNode; delay?: number; style?: React.CSSProperties; className?: string; }
 export function Rv({ children, delay=0, style, className }: RvProps) {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const ref    = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" as Parameters<typeof useInView>[1]["margin"] });
   return (
     <motion.div ref={ref} style={style} className={className}
-      initial={{ opacity:0, y:22 }}
-      animate={inView ? { opacity:1, y:0 } : {}}
-      transition={{ duration:0.75, ease:"easeOut", delay }}
+      variants={fadeUp}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay }}
     >{children}</motion.div>
   );
 }
+
 
 /* ── STATS BAR ───────────────────────────── */
 interface Stat { number: string; unit?: string; label: string; }
@@ -44,7 +50,7 @@ export function FeatureGrid({ features }: { features: Feature[] }) {
   return (
     <div className="feature-grid">
       {features.map(({ number, title, body }) => (
-        <div key={number} style={{ background:"#fff", padding:"clamp(20px,2vw,28px) clamp(16px,2vw,26px)", transition:"background 0.3s" }}
+        <div key={number} className="ah-card-hover" style={{ background:"#fff", padding:"clamp(20px,2vw,28px) clamp(16px,2vw,26px)" }}
           onMouseEnter={e=>((e.currentTarget as HTMLDivElement).style.background="#FAFAFA")}
           onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
         >
@@ -94,12 +100,45 @@ export function Section({ children, bg="#fff", style }: SWProps) {
 
 /* ── SECTION TAG ─────────────────────────── */
 export function Tag({ children }: { children: ReactNode }) {
-  return <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing:"0.4em", textTransform:"uppercase", color:"#767676", marginBottom:20 }}>{children}</div>;
+  const ref    = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" as Parameters<typeof useInView>[1]["margin"] });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: -16 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}
+    >
+      <motion.span
+        initial={{ scaleX: 0 }}
+        animate={inView ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        style={{ display: "block", width: 24, height: 1, background: "#C8B99A", transformOrigin: "left", flexShrink: 0 }}
+        aria-hidden="true"
+      />
+      <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676" }}>
+        {children}
+      </span>
+    </motion.div>
+  );
 }
 
 /* ── HEADING ─────────────────────────────── */
 export function H2({ children }: { children: ReactNode }) {
-  return <h2 style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(20px,2.5vw,40px)", fontWeight:200, lineHeight:1.22, letterSpacing:"-0.015em", color:"#1D1D1B", marginBottom:20 }}>{children}</h2>;
+  const ref    = useRef<HTMLHeadingElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" as Parameters<typeof useInView>[1]["margin"] });
+  return (
+    <motion.h2
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+      style={{ fontFamily: CG, fontSize: "clamp(20px,2.5vw,40px)", fontWeight: 200, lineHeight: 1.22, letterSpacing: "-0.015em", color: "#1D1D1B", marginBottom: 16 }}
+    >
+      {children}
+    </motion.h2>
+  );
 }
 
 /* ── BODY TEXT ───────────────────────────── */
