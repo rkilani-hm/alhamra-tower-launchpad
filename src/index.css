@@ -504,41 +504,14 @@
    For animated dividers, use the <PatternBand> React component
    from @/components/shared/PatternBand instead.
 ──────────────────────────────────────────────────────────────────── */
+/* Dark sections — white ornaments on transparent */
 .pattern-band,
 .mashrabiya-bg {
-  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
+  background-image: url("/assets/patterns/al-hamra-pattern-white.png");
   background-repeat: repeat-x;
   background-size: auto 100%;
   background-position: center;
-  /* Dark sections: screen blend makes black vanish, ornaments glow light */
-  mix-blend-mode: screen;
-  opacity: 0.55;
-}
-
-.pattern-band-light {
-  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-  background-position: center;
-  filter: invert(1) sepia(0.2) brightness(0.85);
-  opacity: 0.22;
-}
-
-.pattern-band-gold {
-  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-  background-position: center;
-  filter: sepia(1) saturate(2.5) hue-rotate(5deg) brightness(0.9);
-  opacity: 0.55;
-}
-
-.pattern-band-subtle {
-  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-  background-position: center;
-  opacity: 0.12;
+  opacity: 0.5;
 }
 
 /* ── Coordinate Text Style ────────────────────────────────────────── */
