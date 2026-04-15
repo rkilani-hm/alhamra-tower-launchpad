@@ -93,7 +93,7 @@ export function ViewSection() {
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16,1,0.3,1] }}
             >
               <div style={{
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.45em", textTransform: "uppercase",
                 color: PEARL, marginBottom: 12,
@@ -101,8 +101,8 @@ export function ViewSection() {
                 The view from Floor 55
               </div>
               <div style={{
-                fontFamily: "Cormorant Garamond,serif",
-                fontStyle: "italic", fontWeight: 300,
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+, fontWeight: 300,
                 fontSize: "clamp(22px,3.5vw,48px)",
                 color: "#fff", lineHeight: 1.1,
                 letterSpacing: "-0.01em",
@@ -126,19 +126,19 @@ export function ViewSection() {
               style={{ textAlign: "right" }}
             >
               <div style={{
-                fontFamily: "Cormorant Garamond,serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(36px,6vw,84px)",
                 fontWeight: 300, color: "#fff",
                 lineHeight: 1, letterSpacing: "-0.03em",
               }}>
                 237<span style={{
-                  fontFamily: "Jost,sans-serif",
+                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontSize: "0.35em", fontWeight: 200,
                   color: PEARL, marginLeft: 4, letterSpacing: "0.1em",
                 }}>m</span>
               </div>
               <div style={{
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(10px,0.8vw,11px)",
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: "rgba(255,255,255,0.35)", marginTop: 6,

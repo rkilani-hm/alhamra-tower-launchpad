@@ -145,21 +145,21 @@ export default function TowerOverview() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20,
-              fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL }}>
             <span style={{ width: 32, height: 1, background: `linear-gradient(to right,${PEARL},#D4CFC9)`, flexShrink: 0 }} />
             The Tower · Skidmore, Owings & Merrill · 2006–2011
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.9, ease: [0.16,1,0.3,1] }}
-            style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+            style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontWeight: 300, fontSize: "clamp(36px,6vw,88px)", color: "#fff",
               letterSpacing: "-0.02em", lineHeight: 1.0, margin: "0 0 12px" }}>
             The Tower
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.75, duration: 0.8 }}
-            style={{ fontFamily: "Jost,sans-serif", fontWeight: 200,
+            style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 200,
               fontSize: "clamp(13px,1.3vw,18px)", color: "rgba(255,255,255,0.6)",
               maxWidth: 480, lineHeight: 1.7, margin: 0 }}>
             412 metres. First asymmetrical skyscraper in the world.<br />
@@ -167,7 +167,7 @@ export default function TowerOverview() {
           </motion.p>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.6 }}
-            style={{ marginTop: 8, fontFamily: "Jost,sans-serif", fontSize: "10px",
+            style={{ marginTop: 8, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
               letterSpacing: "0.2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase" }}>
             © SOM / CTBUH — Architectural render
           </motion.div>
@@ -185,17 +185,17 @@ export default function TowerOverview() {
                 borderRight: [0,1,3,4].includes(i) ? "1px solid rgba(29,29,27,0.07)" : "none",
                 borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none",
                 display: "flex", flexDirection: "column", gap: 6 }}>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                 color: PEARL, letterSpacing: "0.3em", marginBottom: 4 }}>{icon}</div>
-              <div style={{ fontFamily: "Cormorant Garamond,serif",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(22px,3vw,42px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                 <CountUp value={n} delay={i * 0.1} />
-                {u && <span style={{ fontFamily: "Jost,sans-serif",
+                {u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: PEARL, marginLeft: 4 }}>{u}</span>}
               </div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.2em", textTransform: "uppercase", color: DARK, fontWeight: 400 }}>{l}</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.82vw,11px)",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.82vw,11px)",
                 color: "#767676" }}>{sub}</div>
             </motion.div>
           ))}
@@ -211,7 +211,7 @@ export default function TowerOverview() {
             <button key={tab.id} onClick={() => setActiveTab(tab.id)}
               style={{ position: "relative", background: "none", border: "none",
                 padding: "14px 28px", cursor: "pointer",
-                fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.3em", textTransform: "uppercase", whiteSpace: "nowrap",
                 color: activeTab === tab.id ? DARK : "#767676",
                 fontWeight: activeTab === tab.id ? 500 : 300,
@@ -234,35 +234,35 @@ export default function TowerOverview() {
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px,6vw,100px)" }}
             className="tab-content-grid">
             <div>
-              <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+              <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontWeight: 300, fontSize: "clamp(24px,3vw,42px)", color: DARK,
                 lineHeight: 1.1, marginBottom: 28, letterSpacing: "-0.01em" }}>
                 {activeContent.heading}
               </h2>
               {activeContent.body.map((p, i) => (
-                <p key={i} style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                <p key={i} style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
                   fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
                   lineHeight: 1.9, marginBottom: 16 }}>{p}</p>
               ))}
             </div>
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div style={{ borderLeft: `2px solid ${PEARL}`, paddingLeft: 24, marginBottom: 40 }}>
-                <p style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+                <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontStyle: "italic",
                   fontSize: "clamp(15px,1.4vw,19px)", color: DARK, lineHeight: 1.7, margin: "0 0 12px" }}>
                   "{activeContent.quote}"
                 </p>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                   letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL }}>
                   {activeContent.credit}
                 </div>
               </div>
               <TiltCard>
                 <div style={{ background: STONE, padding: "clamp(24px,3vh,36px) clamp(20px,3vw,36px)" }}>
-                  <div style={{ fontFamily: "Cormorant Garamond,serif",
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                     fontSize: "clamp(36px,5vw,68px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                     {activeContent.stat.n}
                   </div>
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
                     letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", marginTop: 8 }}>
                     {activeContent.stat.l}
                   </div>
@@ -276,7 +276,7 @@ export default function TowerOverview() {
       {/* ── Awards strip ───────────────────────────────────────────── */}
       <div style={{ background: "#fff", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)",
         borderTop: "1px solid rgba(29,29,27,0.07)" }}>
-        <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+        <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
           letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
           Awards & Recognition
         </div>
@@ -295,13 +295,13 @@ export default function TowerOverview() {
               initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.06 }}
               style={{ borderLeft: `1px solid rgba(200,185,154,0.4)`, paddingLeft: 20 }}>
-              <div style={{ fontFamily: "Cormorant Garamond,serif",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(20px,2vw,28px)", fontWeight: 300, color: DARK, lineHeight: 1, marginBottom: 6 }}>
                 {year}
               </div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(11px,0.9vw,13px)",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,0.9vw,13px)",
                 fontWeight: 400, color: DARK, marginBottom: 4 }}>{title}</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.8vw,11px)",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.8vw,11px)",
                 color: "#767676" }}>{sub}</div>
             </motion.div>
           ))}
@@ -311,7 +311,7 @@ export default function TowerOverview() {
       {/* ── CTA ────────────────────────────────────────────────────── */}
       <div style={{ background: DARK, padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)",
         textAlign: "center" }}>
-        <div style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+        <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
           fontWeight: 300, fontSize: "clamp(28px,4vw,56px)", color: "#fff",
           letterSpacing: "-0.01em", marginBottom: 40 }}>
           Every office. Every view. The Gulf.
@@ -319,7 +319,7 @@ export default function TowerOverview() {
         <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
           <Link to="/tower/design" style={{ display: "inline-flex", alignItems: "center", gap: 12,
             background: "none", border: `1px solid rgba(200,185,154,0.4)`, color: PEARL,
-            fontFamily: "Jost,sans-serif", fontSize: "10.5px", letterSpacing: "0.25em",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.25em",
             textTransform: "uppercase", padding: "15px 32px", textDecoration: "none",
             transition: "all 0.3s" }}
             onMouseEnter={e=>{e.currentTarget.style.borderColor=PEARL;e.currentTarget.style.color="#fff";}}
@@ -327,7 +327,7 @@ export default function TowerOverview() {
             Design & Engineering
           </Link>
           <Link to="/leasing/inquiry#inquiry-form" style={{ display: "inline-flex", alignItems: "center", gap: 12,
-            background: "#fff", color: DARK, fontFamily: "Jost,sans-serif",
+            background: "#fff", color: DARK, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
             fontSize: "10.5px", letterSpacing: "0.25em", textTransform: "uppercase",
             padding: "15px 32px", textDecoration: "none", transition: "all 0.3s" }}
             onMouseEnter={e=>{e.currentTarget.style.background=PEARL;e.currentTarget.style.color="#fff";}}

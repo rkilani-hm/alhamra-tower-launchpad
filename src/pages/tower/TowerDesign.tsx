@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
-import { MashrabiyaDivider } from "@/components/shared/MashrabiyaDivider";
+import { PatternBand } from "@/components/shared/PatternBand";
 
 const PEARL  = "#C8B99A";
 const GULF   = "#2A5F7A";
@@ -73,7 +73,7 @@ function SpecTable({ cat, rows }: { cat: string; rows: string[][] }) {
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <div ref={ref} style={{ marginBottom: 40 }}>
-      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+      <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
         letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL,
         marginBottom: 16, paddingBottom: 12,
         borderBottom: `1px solid rgba(200,185,154,0.25)` }}>{cat}</div>
@@ -84,9 +84,9 @@ function SpecTable({ cat, rows }: { cat: string; rows: string[][] }) {
           transition={{ duration: 0.5, delay: i * 0.04 }}
           style={{ display: "flex", gap: 16,
             padding: "11px 0", borderBottom: i < rows.length-1 ? "1px solid rgba(29,29,27,0.06)" : "none" }}>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             color: "#767676", minWidth: 200, flexShrink: 0, letterSpacing: "0.05em" }}>{label}</div>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             color: DARK, fontWeight: 400 }}>{value}</div>
         </motion.div>
       ))}
@@ -124,23 +124,23 @@ export default function TowerDesign() {
               display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={facadeInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
                 The Dual Façade
               </div>
-              <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+              <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontWeight: 300, fontSize: "clamp(26px,3.5vw,48px)",
                 color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24 }}>
                 Glass toward the Gulf.<br />Stone toward the desert.
               </h2>
-              <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
                 fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
                 lineHeight: 1.9, marginBottom: 20 }}>
                 Three facades face north, east, and west — fully glazed with insulating 
                 low-emissivity glass, maximising views across Kuwait Bay and the Arabian Gulf. 
                 <strong style={{ color: DARK, fontWeight: 400 }}> Not a single office in the building faces south.</strong>
               </p>
-              <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
                 fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58", lineHeight: 1.9, marginBottom: 32 }}>
                 The south wall is 258,000 m² of Jura limestone — the world's largest area of stone 
                 cladding on any single building. Deep angled windows carved into the stone frame 
@@ -153,12 +153,12 @@ export default function TowerDesign() {
                   { n: "0",       u: "",   l: "South-facing offices" },
                 ].map(({ n, u, l }) => (
                   <div key={l}>
-                    <div style={{ fontFamily: "Cormorant Garamond,serif",
+                    <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                       fontSize: "clamp(24px,3vw,38px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
-                      {n}{u && <span style={{ fontFamily: "Jost,sans-serif",
+                      {n}{u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                         fontSize: "0.4em", color: PEARL, marginLeft: 3, fontWeight: 200 }}>{u}</span>}
                     </div>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                    <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                       letterSpacing: "0.2em", textTransform: "uppercase",
                       color: "#767676", marginTop: 6 }}>{l}</div>
                   </div>
@@ -174,16 +174,16 @@ export default function TowerDesign() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(48px,6vw,100px)" }}
           className="design-grid-2">
           <div>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
               The Lamella Structure
             </div>
-            <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+            <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontWeight: 300, fontSize: "clamp(24px,3.2vw,44px)",
               color: DARK, lineHeight: 1.1, marginBottom: 24 }}>
               24 metres. No columns.<br />Engineered to be impossible.
             </h2>
-            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+            <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 16 }}>
               The main lobby rises 24 metres without a single column — achieved through 
@@ -191,7 +191,7 @@ export default function TowerDesign() {
               upward, slope outward following a circular arch from 60 metres high, 
               intercepting the ground slab 7.6 metres further north than a vertical column would.
             </p>
-            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+            <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 28 }}>
               Five interlocking element types — A, B, C, D, E — form a three-dimensional 
@@ -201,12 +201,12 @@ export default function TowerDesign() {
               in computational construction.
             </p>
             <div style={{ borderLeft: `2px solid ${PEARL}`, paddingLeft: 20 }}>
-              <p style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontStyle: "italic",
                 fontSize: "clamp(14px,1.3vw,18px)", color: DARK, lineHeight: 1.7, margin: 0 }}>
                 "The geometry of this area is generated by the application of the principles 
                 of the laminar structure supporting the tower above and below articulates space."
               </p>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                 letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL, marginTop: 10 }}>
                 SOM / Skidmore, Owings & Merrill
               </div>
@@ -224,29 +224,29 @@ export default function TowerDesign() {
                 <img src="/assets/lobby-escalator-art.jpg"
                   alt="Al Hamra escalator and sculptural steel ceiling installation"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Escalator Hall · Steel Sculpture</div>
+                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>Escalator Hall · Steel Sculpture</div>
               </div>
               <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
                 <img src="/assets/facade-trencadis-detail.jpg"
                   alt="Al Hamra Tower facade — limestone and trencadis mosaic detail"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,185,154,0.8)" }}>Trencadis Façade · Upper Floors</div>
+                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,185,154,0.8)" }}>Trencadis Façade · Upper Floors</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <MashrabiyaDivider count={7} />
+      <PatternBand mode="divider" variant="dark" padding="clamp(28px,4vw,56px) 0" />
 
       {/* ── Full Specification Table ────────────────────────────── */}
       <div style={{ background: "#fff", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ marginBottom: 56 }}>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 16 }}>
             Technical Specification
           </div>
-          <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+          <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
             fontWeight: 300, fontSize: "clamp(26px,3.5vw,48px)",
             color: DARK, lineHeight: 1.1 }}>
             The numbers behind the form.
@@ -265,7 +265,7 @@ export default function TowerDesign() {
 
       {/* ── Architecture sketches ───────────────────────────────── */}
       <div style={{ background: "#FAFAFA", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)" }}>
-        <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+        <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
           letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
           Drawings & Documentation
         </div>
@@ -281,7 +281,7 @@ export default function TowerDesign() {
               <img src={src} alt={label}
                 style={{ width: "100%", display: "block",
                   border: "1px solid rgba(29,29,27,0.08)" }} />
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                 letterSpacing: "0.2em", textTransform: "uppercase",
                 color: "#767676", marginTop: 12 }}>{label}</div>
             </motion.div>

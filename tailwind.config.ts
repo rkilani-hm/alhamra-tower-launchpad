@@ -11,8 +11,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        jost: ["Jost", "sans-serif"],
-        cormorant: ["Cormorant Garamond", "serif"],
+        // Al Hamra Brand Font — Century Gothic system stack
+        century: ["'Century Gothic'", "'AppleGothic'", "'Gill Sans MT'", "'Gill Sans'", "Futura", "'Trebuchet MS'", "sans-serif"],
+        // Legacy aliases (both now map to Century Gothic)
+        jost:      ["'Century Gothic'", "'AppleGothic'", "'Gill Sans MT'", "sans-serif"],
+        cormorant: ["'Century Gothic'", "'AppleGothic'", "'Gill Sans MT'", "sans-serif"],
+        sans:      ["'Century Gothic'", "'AppleGothic'", "'Gill Sans MT'", "'Gill Sans'", "Futura", "'Trebuchet MS'", "sans-serif"],
+        serif:     ["'Century Gothic'", "'AppleGothic'", "'Gill Sans MT'", "'Gill Sans'", "Futura", "'Trebuchet MS'", "sans-serif"],
       },
       colors: {
         "ah-red":   "#CD1719",

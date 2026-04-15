@@ -79,7 +79,7 @@ export function SocialIcons({ variant = "footer", color = "#767676", hoverColor 
             }}>
               {ICONS[name]}
             </div>
-            <span style={{ fontFamily: "Jost,sans-serif", fontSize: "13px", fontWeight: 300 }}>
+            <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13px", fontWeight: 300 }}>
               {name === "X" ? "X (Twitter)" : name}
             </span>
           </a>

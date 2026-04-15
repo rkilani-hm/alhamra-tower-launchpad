@@ -7,7 +7,7 @@ import { Architecture }        from "@/components/home/Architecture";
 import { GulfSection }         from "@/components/home/GulfSection";
 import { ViewSection }         from "@/components/home/ViewSection";
 import { InvitationSection }   from "@/components/home/InvitationSection";
-import { MashrabiyaDivider }   from "@/components/shared/MashrabiyaDivider";
+import { PatternBand }         from "@/components/shared/PatternBand";
 import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sections";
 
 /*
@@ -15,11 +15,11 @@ import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sect
   ─────────────────────────────
   Beat 1  ARRIVAL      → Hero (full-viewport cinematic, tower)
   Beat 2  THE CITY     → GulfSection (aerial photo, coordinates, Gulf)
-          ── Mashrabiya divider ──
+          ── Pattern Band divider ──
   Beat 3  THE TOWER    → Stats → Marquee → Architecture
-          ── Mashrabiya divider ──
+          ── Pattern Band divider (light/gold variant) ──
   Beat 4  THE VIEW     → ViewSection (floor 55 view, warmth)
-          ── Mashrabiya divider ──
+          ── Pattern Band divider ──
   Beat 5  THE ADDRESS  → Perspectives → FloorConfigs → InvitationSection
   ────── ContactStrip → Footer ──────────────────────────────────────────
 */
@@ -36,22 +36,22 @@ export default function Index() {
         {/* ── Beat 2: The City (Gulf, coordinates) ─────────────── */}
         <GulfSection />
 
-        {/* ── Mashrabiya geometric divider ─────────────────────── */}
-        <MashrabiyaDivider count={9} />
+        {/* ── Al Hamra pattern band — primary section separator ── */}
+        <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
 
         {/* ── Beat 3: The Tower ────────────────────────────────── */}
         <Stats />
         <Marquee />
         <Architecture />
 
-        {/* ── Mashrabiya divider ───────────────────────────────── */}
-        <MashrabiyaDivider count={7} light />
+        {/* ── Pattern band — gold tint between tower/view beats ── */}
+        <PatternBand mode="divider" variant="gold" opacity={0.45} padding="clamp(28px,4vw,56px) 0" />
 
         {/* ── Beat 4: The View ─────────────────────────────────── */}
         <ViewSection />
 
-        {/* ── Mashrabiya divider ───────────────────────────────── */}
-        <MashrabiyaDivider count={9} />
+        {/* ── Pattern band — before the address finale ─────────── */}
+        <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
 
         {/* ── Beat 5: The Address ──────────────────────────────── */}
         <Perspectives />

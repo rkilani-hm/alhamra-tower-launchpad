@@ -24,8 +24,12 @@
   --color-fafafa:    #FAFAFA;
 
   /* Typography */
-  --font-display: "Cormorant Garamond", serif;
-  --font-body:    "Jost", sans-serif;
+  /* Century Gothic — Al Hamra Brand Typography
+     Geometric sans: wide O/Q/C circles, tall x-height, no-nonsense precision.
+     Matches the tower's clean stone facade and SOM's architectural geometry. */
+  --font-century: 'Century Gothic', 'AppleGothic', 'Gill Sans MT', 'Gill Sans', Futura, 'Trebuchet MS', sans-serif;
+  --font-display: var(--font-century);
+  --font-body:    var(--font-century);
 
   /* Spacing (8pt grid) */
   --sp-1: 8px;
@@ -109,9 +113,9 @@
 
   body {
     @apply bg-white text-[#1D1D1B];
-    font-family: 'Jost', sans-serif;
+    font-family: 'Century Gothic', 'AppleGothic', 'Gill Sans MT', 'Gill Sans', Futura, 'Trebuchet MS', sans-serif;
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.65;
     overflow-x: hidden;
     }
 
@@ -119,15 +123,37 @@
     background: #1D1D1B;
     color: #fff;
   }
+
+  /* ── Century Gothic Type System ─────────────────────────────────────
+     Century Gothic's geometry: tall x-height, wide circular bowls,
+     uniform stroke weight. Requires:
+     - Lower weights (200–400) for elegance at large sizes
+     - Slightly wider tracking at small sizes (10–12px)
+     - Tighter line-height vs Jost (1.55–1.7 vs 1.8–1.95)
+     ─────────────────────────────────────────────────────────────────── */
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-century);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  p {
+    font-family: var(--font-century);
+    line-height: 1.7;
+  }
 }
 
 @layer utilities {
   .font-serif-display {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-century);
+    font-weight: 300;
+    letter-spacing: 0.02em;
   }
 
   .font-jost {
-    font-family: 'Jost', sans-serif;
+    font-family: var(--font-century);
   }
 
   .ah-border {
@@ -465,11 +491,51 @@
 .text-gulf   { color: var(--color-gulf); }
 .bg-gulf     { background: var(--color-gulf); }
 
-/* ── Mashrabiya Texture ────────────────────────────────────────────── */
-/* Applied via SVG data-uri background on sections */
+/* ── Al Hamra Pattern System ────────────────────────────────────────
+   Official ornamental frieze — Picture1Pattern01.png (1568×168px)
+   Islamic/Arabic botanical motif. Used as architectural cornice.
+
+   Usage:
+   - .pattern-band         → full-width inline (on dark sections)
+   - .pattern-band-light   → light bg version (inverted, multiplied)
+   - .pattern-band-gold    → sepia-tinted gold variant
+   - .pattern-band-subtle  → low-opacity background texture
+
+   For animated dividers, use the <PatternBand> React component
+   from @/components/shared/PatternBand instead.
+──────────────────────────────────────────────────────────────────── */
+.pattern-band,
 .mashrabiya-bg {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%23C5A882' stroke-width='0.4' opacity='0.18'%3E%3Cpolygon points='30,2 52,16 52,44 30,58 8,44 8,16'/%3E%3Cpolygon points='30,12 46,21 46,39 30,48 14,39 14,21'/%3E%3Cline x1='30' y1='2' x2='30' y2='12'/%3E%3Cline x1='52' y1='16' x2='46' y2='21'/%3E%3Cline x1='52' y1='44' x2='46' y2='39'/%3E%3Cline x1='30' y1='58' x2='30' y2='48'/%3E%3Cline x1='8' y1='44' x2='14' y2='39'/%3E%3Cline x1='8' y1='16' x2='14' y2='21'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 60px 60px;
+  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: center;
+}
+
+.pattern-band-light {
+  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: center;
+  filter: invert(1) sepia(0.2) brightness(0.85);
+  opacity: 0.22;
+}
+
+.pattern-band-gold {
+  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: center;
+  filter: sepia(1) saturate(2.5) hue-rotate(5deg) brightness(0.9);
+  opacity: 0.55;
+}
+
+.pattern-band-subtle {
+  background-image: url("/assets/patterns/al-hamra-pattern-01.png");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: center;
+  opacity: 0.12;
 }
 
 /* ── Coordinate Text Style ────────────────────────────────────────── */

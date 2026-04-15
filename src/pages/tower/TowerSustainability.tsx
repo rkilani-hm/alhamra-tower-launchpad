@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
-import { MashrabiyaDivider } from "@/components/shared/MashrabiyaDivider";
+import { PatternBand } from "@/components/shared/PatternBand";
 
 const PEARL = "#C8B99A";
 const DARK  = "#1D1D1B";
@@ -55,18 +55,18 @@ export default function TowerSustainability() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(48px,6vw,100px)",
           alignItems: "start" }} className="sust-intro-grid">
           <div>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
               Environmental philosophy
             </div>
-            <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+            <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontWeight: 300, fontSize: "clamp(26px,3.5vw,50px)",
               color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 0 }}>
               The form is the strategy.
             </h2>
           </div>
           <div>
-            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+            <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 20 }}>
               In most buildings, sustainability features are layered on after the architecture 
@@ -75,7 +75,7 @@ export default function TowerSustainability() {
               makes the building unmistakable is the same act that removes the south-facing 
               glass. The stone wall that defines the skyline is also the primary solar shield.
             </p>
-            <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+            <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9 }}>
               SOM's structural engineers describe the process as 'symbiotic evolution' — 
               the structural system and the exterior form developed together. Neither could 
@@ -88,7 +88,7 @@ export default function TowerSustainability() {
 
       {/* ── Six sustainability pillars ──────────────────────────── */}
       <div style={{ background: "#FAFAFA", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
-        <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+        <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
           letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
           Six environmental design principles
         </div>
@@ -103,15 +103,15 @@ export default function TowerSustainability() {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: (i % 3) * 0.1 }}
                 style={{ background: "#fff", padding: "clamp(28px,4vh,44px) clamp(24px,3vw,36px)" }}>
-                <div style={{ fontFamily: "Cormorant Garamond,serif",
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontSize: "clamp(28px,3vw,44px)", fontWeight: 300,
                   color: "rgba(29,29,27,0.1)", lineHeight: 1, marginBottom: 20 }}>{n}</div>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1vw,14px)",
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1vw,14px)",
                   fontWeight: 500, color: DARK, marginBottom: 16, letterSpacing: "0.03em" }}>{title}</div>
-                <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
                   fontSize: "clamp(12px,0.95vw,13px)", color: "#767676",
-                  lineHeight: 1.85, marginBottom: 20 }}>{body}</p>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                  lineHeight: 1.65, marginBottom: 20 }}>{body}</p>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                   letterSpacing: "0.2em", textTransform: "uppercase", color: PEARL,
                   paddingTop: 16, borderTop: "1px solid rgba(200,185,154,0.3)" }}>{stat}</div>
               </motion.div>
@@ -120,19 +120,19 @@ export default function TowerSustainability() {
         </div>
       </div>
 
-      <MashrabiyaDivider count={9} />
+      <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
 
       {/* ── Quote ───────────────────────────────────────────────── */}
       <div style={{ background: "#fff", padding: "clamp(64px,10vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
             fontWeight: 300, fontSize: "clamp(22px,3vw,42px)",
             color: DARK, lineHeight: 1.4, marginBottom: 28 }}>
             "The solid south wall, and flared geometry, is generated in order to decrease 
             the absorption of solar radiation. This wall not only protects the building from 
             critical environmental conditions — it also assumes the role of structural backbone."
           </div>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
             letterSpacing: "0.35em", textTransform: "uppercase", color: PEARL }}>
             Skidmore, Owings & Merrill LLP — Structural Sustainability Statement
           </div>

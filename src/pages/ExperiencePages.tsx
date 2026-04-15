@@ -48,10 +48,10 @@ export function Services() {
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
         <div style={{ position: "absolute", bottom: 44, left: 80, right: 80 }}>
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
             Al Hamra Business Tower · Grand Lobby · 24/7 Operations
           </p>
-          <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.2vw,34px)", fontWeight: 200, color: "#fff", lineHeight: 1.3 }}>
+          <h3 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(20px,2.2vw,34px)", fontWeight: 200, color: "#fff", lineHeight: 1.3 }}>
             Every service designed to<br /><strong style={{ fontWeight: 500 }}>anticipate. Remove friction. Perform.</strong>
           </h3>
         </div>
@@ -84,7 +84,7 @@ export function Services() {
               onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
             />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "14px 18px 12px" }}>
-              <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</span>
+              <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</span>
             </div>
           </div>
         ))}
@@ -92,7 +92,7 @@ export function Services() {
 
       <Section>
         <Rv>
-          <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(18px,2vw,26px)", fontStyle: "italic", fontWeight: 300, color: "#1D1D1B", lineHeight: 1.65, maxWidth: 720 }}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(18px,2vw,26px)", fontWeight: 200, letterSpacing: "0.04em", color: "#1D1D1B", lineHeight: 1.65, maxWidth: 720 }}>
             "Behind every seamless day at Al Hamra Tower stands an infrastructure of precision — engineering teams, monitoring systems, and service protocols working in concert."
           </p>
         </Rv>
@@ -108,13 +108,13 @@ export function Services() {
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px,5vh,56px) clamp(28px,6vw,96px)" }}>
             <Rv>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 12 }}>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 12 }}>
                 Floors 78 – 80 · 351 Metres
               </div>
-              <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontWeight: 300, fontStyle: "italic", fontSize: "clamp(26px,4vw,58px)", color: "#fff", lineHeight: 1.1, marginBottom: 16 }}>
+              <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 200, letterSpacing: "0.04em", fontSize: "clamp(26px,4vw,58px)", color: "#fff", lineHeight: 1.1, marginBottom: 16 }}>
                 The Sky Lounge.<br />Kuwait's highest dining experience.
               </h2>
-              <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300, fontSize: "clamp(12px,1.1vw,14px)", color: "rgba(255,255,255,0.6)", maxWidth: 560, lineHeight: 1.85 }}>
+              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300, fontSize: "clamp(12px,1.1vw,14px)", color: "rgba(255,255,255,0.6)", maxWidth: 560, lineHeight: 1.65 }}>
                 Starting at 351 metres above Kuwait City, the Al Hamra Sky Lounge occupies Floors 78–80 — the crown of the tower. VIP elevators connect directly from the ground lobby. No other venue in Kuwait begins this high.
               </p>
             </Rv>
@@ -126,20 +126,20 @@ export function Services() {
             <img src="/assets/sky-lobby-lounge.jpg"
               alt="Sky Lounge dining room — chandelier, round tables, piano bar"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Fine Dining · Piano Bar</div>
+            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Fine Dining · Piano Bar</div>
           </div>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
             <img src="/assets/lounge-at-window.jpg"
               alt="Sky Lobby lounge — cream sofas, Kuwait City through full-height windows"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
-            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "Jost,sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Sky Lobby Lounge · Panoramic Views</div>
+            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Sky Lobby Lounge · Panoramic Views</div>
           </div>
         </div>
       </div>
 
       {/* ── Luxury Centre ──────────────────────────────────── */}
       <Section title="Al Hamra Luxury Centre" tag="The Mall · 5 Levels · 24,000 m²">
-        <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+        <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
           fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9,
           maxWidth: 720, marginBottom: 40 }}>
           Directly connected to the tower, the Al Hamra Luxury Centre spans 24,000m² across 
@@ -155,10 +155,10 @@ export function Services() {
           ].map(({ category, brands }) => (
             <div key={category} style={{ background: "#FAFAFA",
               padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #C8B99A" }}>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: "#9A7550", marginBottom: 12 }}>{category}</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(12px,1vw,13px)",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1vw,13px)",
                 color: "#767676", lineHeight: 1.9 }}>{brands}</div>
             </div>
           ))}
@@ -172,7 +172,7 @@ export function Services() {
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
               background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A" }}>
+            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A" }}>
               Luxury Centre · Circular Atrium
             </div>
           </div>
@@ -183,8 +183,8 @@ export function Services() {
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
               background: "linear-gradient(to top, rgba(12,11,9,0.8), transparent)", pointerEvents: "none" }} />
             <div style={{ position: "absolute", bottom: 16, left: 20 }}>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 6 }}>Grand Cinema · 9 Screens</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>Premium recliners on the<br />uppermost mall level</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 6 }}>Grand Cinema · 9 Screens</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6 }}>Premium recliners on the<br />uppermost mall level</div>
             </div>
           </div>
         </div>
@@ -200,12 +200,12 @@ export function Services() {
           ].map(({ icon, label, desc }) => (
             <div key={label} style={{ background: "#FAFAFA",
               padding: "clamp(20px,2.5vw,28px)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
-              <div style={{ fontFamily: "Cormorant Garamond,serif",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: 20, color: "#C8B99A", marginBottom: 8 }}>{icon}</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12px",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12px",
                 fontWeight: 500, color: "#1D1D1B", marginBottom: 6,
                 letterSpacing: "0.04em" }}>{label}</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px",
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
                 color: "#767676", lineHeight: 1.7 }}>{desc}</div>
             </div>
           ))}
@@ -242,12 +242,12 @@ export function Location() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, left: 80, right: 80, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>Al Hamra Tower · Sharq · Kuwait City</div>
-            <h3 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(20px,2.5vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.2 }}>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>Al Hamra Tower · Sharq · Kuwait City</div>
+            <h3 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(20px,2.5vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.2 }}>
               Kuwait City's<br /><strong style={{ fontWeight: 500 }}>Commercial Heart</strong>
             </h3>
           </div>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
             Photo: Dave Burk · SOM
           </div>
         </div>
@@ -268,8 +268,8 @@ export function Location() {
                   { label: "Transport",   value: "Direct access to major arterial roads" },
                 ].map(({ label, value }, i) => (
                   <div key={label} style={{ display: "flex", gap: 24, padding: "14px 0", borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676", minWidth: 110, flexShrink: 0, paddingTop: 2 }}>{label}</div>
-                    <div style={{ fontFamily: "Jost,sans-serif", fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+                    <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676", minWidth: 110, flexShrink: 0, paddingTop: 2 }}>{label}</div>
+                    <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
                   </div>
                 ))}
               </div>
@@ -281,7 +281,7 @@ export function Location() {
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "24px 24px 20px" }}>
                 <a href="https://maps.google.com/?q=Al+Hamra+Tower+Kuwait" target="_blank" rel="noreferrer"
-                  style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#fff", textDecoration: "none" }}>
+                  style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#fff", textDecoration: "none" }}>
                   Get Directions
                 </a>
               </div>
@@ -350,7 +350,7 @@ export function LeasingOpportunities() {
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, right: 80, textAlign: "right" }}>
-          <p style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(20px,2.5vw,32px)", fontStyle: "italic", fontWeight: 300, color: "#fff", lineHeight: 1.4 }}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(20px,2.5vw,32px)", fontWeight: 200, letterSpacing: "0.04em", color: "#fff", lineHeight: 1.4 }}>
             "Every office.<br />Every corner.<br />An unbroken horizon."
           </p>
         </div>
@@ -363,13 +363,13 @@ export function LeasingOpportunities() {
           {LEASING_CONFIGS.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>Configuration {code}</div>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "36px", fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 20 }}>{size}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>Configuration {code}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "36px", fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 20 }}>{size}</div>
                 {bullets.map(b => (
                   <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
                     <span style={{ color: "#767676" }}>—</span>
-                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
+                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
                   </div>
                 ))}
               </div>
@@ -389,8 +389,8 @@ export function LeasingOpportunities() {
             { label: "Flexible Terms", desc: "Configurations tailored to your timeline" },
           ].map(({ label, desc }) => (
             <div key={label} style={{ background: "#fff", padding: "32px 28px" }}>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{label}</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", color: "#6B6B6B", lineHeight: 1.7 }}>{desc}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{label}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11.5px", color: "#6B6B6B", lineHeight: 1.7 }}>{desc}</div>
             </div>
           ))}
         </div>
@@ -399,13 +399,13 @@ export function LeasingOpportunities() {
       {/* Floor Plan Viewer */}
       <div>
         <div style={{ padding: "64px 80px 0" }}>
-          <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>
             Floor Plans · Al Hamra Complex
           </div>
-          <h2 style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
+          <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
             Ground, Mezzanine &amp; Basement Plans
           </h2>
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "14px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.85, maxWidth: 560 }}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.65, maxWidth: 560 }}>
             Full floor plans for the Al Hamra complex retail and parking levels. Contact the leasing team for office floor configurations.
           </p>
         </div>
@@ -434,7 +434,7 @@ export function LeasingInquiry() {
   const inputStyle: React.CSSProperties = {
     width: "100%", padding: "14px 0",
     border: "none", borderBottom: "1px solid rgba(29,29,27,0.18)",
-    fontFamily: "Jost,sans-serif", fontSize: "14px", fontWeight: 300,
+    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300,
     color: "#1D1D1B", background: "transparent", outline: "none",
     transition: "border-color 0.2s",
   };
@@ -455,8 +455,8 @@ export function LeasingInquiry() {
           <Rv>
             {sent ? (
               <div style={{ padding: "60px 0" }}>
-                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "32px", fontWeight: 300, color: "#1D1D1B", marginBottom: 12 }}>Inquiry Received</div>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "14px", color: "#6B6B6B" }}>Our leasing team will respond within one business day.</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "32px", fontWeight: 300, color: "#1D1D1B", marginBottom: 12 }}>Inquiry Received</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", color: "#6B6B6B" }}>Our leasing team will respond within one business day.</div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -464,7 +464,7 @@ export function LeasingInquiry() {
                   <div key={field}>
                     <label
                       htmlFor={`inquiry-${field}`}
-                      style={{ display: "block", fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
+                      style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
                     >
                       {field}
                     </label>
@@ -484,7 +484,7 @@ export function LeasingInquiry() {
                 <div>
                   <label
                     htmlFor="inquiry-message"
-                    style={{ display: "block", fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
+                    style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
                   >
                     Message
                   </label>
@@ -501,7 +501,7 @@ export function LeasingInquiry() {
                 <button type="submit" style={{
                   alignSelf: "flex-start",
                   background: "#1D1D1B", color: "#fff",
-                  fontFamily: "Jost,sans-serif", fontSize: "10.5px", fontWeight: 500,
+                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500,
                   letterSpacing: "0.22em", textTransform: "uppercase",
                   padding: "15px 40px", border: "none", cursor: "pointer",
                   transition: "opacity 0.3s",
@@ -523,8 +523,8 @@ export function LeasingInquiry() {
                 { label: "Hours",   value: "Sunday – Thursday · 8:00 AM – 6:00 PM" },
               ].map(({ label, value }) => (
                 <div key={label} style={{ padding: "18px 0", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#767676", marginBottom: 6 }}>{label}</div>
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#767676", marginBottom: 6 }}>{label}</div>
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
                 </div>
               ))}
             </div>
@@ -568,15 +568,15 @@ export function Downloads() {
               >
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "15px", fontWeight: 500, color: "#1D1D1B" }}>{title}</span>
-                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}>{format} · {size}</span>
+                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "15px", fontWeight: 500, color: "#1D1D1B" }}>{title}</span>
+                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}>{format} · {size}</span>
                   </div>
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "12.5px", color: "#6B6B6B" }}>{desc}</div>
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", color: "#6B6B6B" }}>{desc}</div>
                 </div>
                 <button style={{
                   display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0,
                   background: "none", border: "1px solid rgba(29,29,27,0.2)", cursor: "pointer",
-                  fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em",
+                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em",
                   textTransform: "uppercase", color: "#1D1D1B", padding: "10px 22px",
                   transition: "background 0.2s, color 0.2s",
                 }}
@@ -619,8 +619,8 @@ export function Contact() {
             { label: "Address", value: "Al Hamra Tower, Sharq, Kuwait City, Kuwait" },
           ].map(({ label, value }) => (
             <div key={label} style={{ background: "#fff", padding: "44px 36px" }}>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>{label}</div>
-              <div style={{ fontFamily: "Jost,sans-serif", fontSize: "15px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>{label}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "15px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
             </div>
           ))}
         </div>
@@ -639,7 +639,7 @@ export function Contact() {
             <a href="/leasing/inquiry#inquiry-form" style={{
               display: "inline-flex", alignItems: "center", gap: 12, marginTop: 36,
               background: "#1D1D1B", color: "#fff",
-              fontFamily: "Jost,sans-serif", fontSize: "10.5px", fontWeight: 500,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500,
               letterSpacing: "0.22em", textTransform: "uppercase",
               padding: "15px 34px", textDecoration: "none", transition: "opacity 0.3s",
             }}>

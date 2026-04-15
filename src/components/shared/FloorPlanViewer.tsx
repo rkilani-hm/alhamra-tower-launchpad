@@ -63,7 +63,7 @@ export function FloorPlanViewer() {
               style={{
                 display: "flex", alignItems: "center", gap: 10,
                 padding: "18px 32px",
-                fontFamily: "Jost,sans-serif", fontSize: "10.5px",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px",
                 letterSpacing: "0.2em", textTransform: "uppercase",
                 color: isActive ? "#1D1D1B" : "#767676",
                 background: "none", border: "none", cursor: "pointer",
@@ -74,7 +74,7 @@ export function FloorPlanViewer() {
             >
               {/* Level badge */}
               <span style={{
-                fontFamily: "Cormorant Garamond,serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "18px", fontWeight: 300,
                 color: isActive ? "#1D1D1B" : "#EDEDED",
                 lineHeight: 1,
@@ -102,13 +102,13 @@ export function FloorPlanViewer() {
               background: "#fff",
             }}>
               <div>
-                <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "64px", fontWeight: 300, color: "#EDEDED", lineHeight: 1, marginBottom: 4 }}>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "64px", fontWeight: 300, color: "#EDEDED", lineHeight: 1, marginBottom: 4 }}>
                   {plan.level}
                 </div>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10.5px", fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 20 }}>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 20 }}>
                   {plan.label}
                 </div>
-                <p style={{ fontFamily: "Jost,sans-serif", fontSize: "13px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.85 }}>
+                <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.65 }}>
                   {plan.desc}
                 </p>
               </div>
@@ -117,7 +117,7 @@ export function FloorPlanViewer() {
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 32 }}>
                 {plan.tags.map(tag => (
                   <span key={tag} style={{
-                    fontFamily: "Jost,sans-serif", fontSize: "10px",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                     letterSpacing: "0.2em", textTransform: "uppercase",
                     color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)",
                     padding: "5px 12px",
@@ -127,7 +127,7 @@ export function FloorPlanViewer() {
 
               {/* Legend */}
               <div style={{ marginTop: 36 }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>Legend</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>Legend</div>
                 {[
                   { color: "#F5C842", label: "Occupied — Retail" },
                   { color: "#5BB8E8", label: "F&B — Food & Beverage" },
@@ -135,13 +135,13 @@ export function FloorPlanViewer() {
                 ].map(({ color, label, border }) => (
                   <div key={label} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
                     <div style={{ width: 16, height: 12, background: color, border: border ?? "none", flexShrink: 0 }} />
-                    <span style={{ fontFamily: "Jost,sans-serif", fontSize: "11px", color: "#6B6B6B" }}>{label}</span>
+                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px", color: "#6B6B6B" }}>{label}</span>
                   </div>
                 ))}
               </div>
 
               <div style={{ marginTop: "auto", paddingTop: 32 }}>
-                <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676" }}>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676" }}>
                   Al Hamra Business Tower · Kuwait City
                 </div>
               </div>

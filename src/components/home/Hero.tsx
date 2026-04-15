@@ -131,7 +131,7 @@ export function Hero() {
         style={{
           position: "absolute", right: 28, top: "50%", transformOrigin: "center",
           transform: "translateY(-50%) rotate(90deg)",
-          fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.35em",
+          fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.35em",
           textTransform: "uppercase", color: "rgba(255,255,255,0.3)",
           whiteSpace: "nowrap", zIndex: 8, pointerEvents: "none",
         }}
@@ -153,7 +153,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 14 }} animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 14 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.7 }}
           style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 32,
-            fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}
           aria-hidden="true"
         >
@@ -166,7 +166,7 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0, x: -32 }} animate={{ opacity: ready ? 1 : 0, x: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.95 }}
-            style={{ display: "block", fontFamily: "Jost,sans-serif", fontSize: "clamp(11px,1vw,13px)",
+            style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,13px)",
               letterSpacing: "0.5em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.7)", marginBottom: 4 }}
           >
@@ -179,7 +179,7 @@ export function Hero() {
             style={{ display: "block", lineHeight: 0.9, marginBottom: 4 }}
           >
             <span style={{
-              fontFamily: "Cormorant Garamond,serif", fontStyle: "italic", fontWeight: 300,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(72px,11vw,172px)", color: "#fff", letterSpacing: "-0.03em",
             }}>
               Iconic
@@ -189,7 +189,7 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: ready ? 1 : 0, x: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-            style={{ display: "block", fontFamily: "Jost,sans-serif", fontWeight: 200,
+            style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 200,
               fontSize: "clamp(24px,4.5vw,72px)", color: "#fff",
               letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 36 }}
           >
@@ -201,8 +201,8 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: ready ? 1 : 0, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 1.4 }}
-          style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(13px,1.1vw,15px)",
-            fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.85,
+          style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(13px,1.1vw,15px)",
+            fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.65,
             maxWidth: 420, marginBottom: 48 }}
         >
           The address that defines Kuwait's most distinguished institutions,
@@ -218,7 +218,7 @@ export function Hero() {
           <Link to="/tower"
             style={{ display: "inline-flex", alignItems: "center", gap: 12,
               background: "#fff", color: DARK,
-              fontFamily: "Jost,sans-serif", fontSize: "10.5px", fontWeight: 500,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500,
               letterSpacing: "0.22em", textTransform: "uppercase",
               padding: "15px 32px", textDecoration: "none", transition: "all 0.3s" }}
             onMouseEnter={e => { e.currentTarget.style.background = SAND; e.currentTarget.style.color = "#fff"; }}
@@ -233,7 +233,7 @@ export function Hero() {
           <Link to="/leasing/inquiry#inquiry-form"
             style={{ display: "inline-flex", alignItems: "center", gap: 14,
               color: "rgba(255,255,255,0.85)",
-              fontFamily: "Jost,sans-serif", fontSize: "10.5px",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px",
               letterSpacing: "0.2em", textTransform: "uppercase",
               textDecoration: "none", transition: "color 0.3s, border-color 0.3s",
               border: "1px solid rgba(255,255,255,0.35)", padding: "14px 24px" }}
@@ -271,13 +271,13 @@ export function Hero() {
             borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none",
             display: "flex", flexDirection: "column", gap: 5,
           }}>
-            <div style={{ fontFamily: "Cormorant Garamond,serif", fontSize: "clamp(20px,2.5vw,30px)",
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(20px,2.5vw,30px)",
               fontWeight: 300, color: "#fff", lineHeight: 1 }}>
               {n}
-              {u && <span style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,1.2vw,14px)",
+              {u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,1.2vw,14px)",
                 fontWeight: 200, color: SAND, marginLeft: 3 }}>{u}</span>}
             </div>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.75vw,11px)",
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.75vw,11px)",
               letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
               {l}
             </div>
@@ -292,7 +292,7 @@ export function Hero() {
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
             style={{ width: 36, height: 1, background: SAND, transformOrigin: "left" }}
           />
-          <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+          <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
             letterSpacing: "0.35em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)",
             whiteSpace: "nowrap" }}>
             Scroll
@@ -306,7 +306,7 @@ export function Hero() {
         transition={{ duration: 0.6, delay: 2.4 }}
         aria-hidden="true"
         style={{ position: "absolute", bottom: 80, right: 20, zIndex: 8,
-          fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.2em",
+          fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em",
           textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}
         className="hero-credit"
       >

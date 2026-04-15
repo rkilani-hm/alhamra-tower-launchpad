@@ -57,7 +57,7 @@ export function Architecture() {
             transition={{ delay: 0.8, duration: 0.8 }}
             style={{
               position: "absolute", bottom: 24, left: 24, right: 24, zIndex: 2,
-              fontFamily: "Jost,sans-serif", fontSize: "10px",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
               letterSpacing: "0.3em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.4)",
             }}
@@ -79,7 +79,7 @@ export function Architecture() {
             {/* Kicker */}
             <div style={{
               display: "flex", alignItems: "center", gap: 14, marginBottom: 28,
-              fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL,
             }}>
               <span style={{ width: 32, height: 1,
@@ -88,7 +88,7 @@ export function Architecture() {
             </div>
 
             <h2 style={{
-              fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontWeight: 300, fontSize: "clamp(28px,3.8vw,52px)",
               color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24,
             }}>
@@ -96,7 +96,7 @@ export function Architecture() {
             </h2>
 
             <p style={{
-              fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 20,
             }}>
@@ -107,7 +107,7 @@ export function Architecture() {
               extend the full 412 metres of the building's height.
             </p>
             <p style={{
-              fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 36,
             }}>
@@ -123,7 +123,7 @@ export function Architecture() {
               paddingLeft: 20, marginBottom: 36,
             }}>
               <p style={{
-                fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontStyle: "italic",
                 fontSize: "clamp(15px,1.4vw,18px)", color: DARK,
                 lineHeight: 1.7, margin: 0,
               }}>
@@ -131,7 +131,7 @@ export function Architecture() {
                 provides spectacular views over much of Kuwait and across the Arabian Gulf."
               </p>
               <div style={{
-                fontFamily: "Jost,sans-serif", fontSize: "10px",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: PEARL, marginTop: 12,
               }}>
@@ -150,7 +150,7 @@ export function Architecture() {
                 "Miami Architectural Biennial 2007",
               ].map(award => (
                 <span key={award} style={{
-                  fontFamily: "Jost,sans-serif", fontSize: "10px",
+                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                   letterSpacing: "0.2em", textTransform: "uppercase",
                   color: GULF, padding: "4px 12px",
                   border: `1px solid rgba(42,95,122,0.3)`,
@@ -184,19 +184,19 @@ export function Architecture() {
             }}
           >
             <div style={{
-              fontFamily: "Cormorant Garamond,serif",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontSize: "clamp(24px,3vw,40px)", fontWeight: 300,
               color: DARK, lineHeight: 1,
             }}>
               {n}
               {u && <span style={{
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(12px,1.2vw,16px)", fontWeight: 200,
                 color: PEARL, marginLeft: 4,
               }}>{u}</span>}
             </div>
             <div style={{
-              fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.15em", color: "#767676", lineHeight: 1.5,
             }}>
               {l}
@@ -223,22 +223,22 @@ export function Architecture() {
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
             <div style={{
-              fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.4em", textTransform: "uppercase",
               color: PEARL, marginBottom: 20,
             }}>
               The façade · A dual identity
             </div>
             <h3 style={{
-              fontFamily: "Cormorant Garamond,serif",
-              fontStyle: "italic", fontWeight: 300,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+, fontWeight: 300,
               fontSize: "clamp(22px,2.8vw,38px)", color: DARK,
               lineHeight: 1.2, marginBottom: 20, letterSpacing: "-0.01em",
             }}>
               Glass toward the Gulf.<br />Stone toward the desert.
             </h3>
             <p style={{
-              fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,14px)", color: "#767676",
               lineHeight: 1.9, marginBottom: 16,
             }}>
@@ -248,7 +248,7 @@ export function Architecture() {
               solar heat gain across all 62 office floors.
             </p>
             <p style={{
-              fontFamily: "Jost,sans-serif", fontWeight: 300,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,14px)", color: "#767676",
               lineHeight: 1.9,
             }}>

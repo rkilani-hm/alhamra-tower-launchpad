@@ -43,7 +43,7 @@ export function Marquee() {
               alignItems: "center",
               gap: 28,
               padding: "0 36px",
-              fontFamily: "Jost, sans-serif",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontSize: "10.5px",
               fontWeight: 400,
               letterSpacing: "0.3em",

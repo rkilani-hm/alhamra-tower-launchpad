@@ -86,7 +86,7 @@ export function GulfSection() {
         >
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 16,
-            fontFamily: "Jost,sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             letterSpacing: "0.45em", textTransform: "uppercase",
             color: "rgba(255,255,255,0.5)",
           }}>
@@ -124,7 +124,7 @@ export function GulfSection() {
             {/* Coordinates */}
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               <div style={{
-                fontFamily: "Cormorant Garamond,serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(32px,5vw,72px)",
                 fontWeight: 300, color: "#fff",
                 letterSpacing: "-0.02em", lineHeight: 0.95,
@@ -132,7 +132,7 @@ export function GulfSection() {
                 29°22'N
               </div>
               <div style={{
-                fontFamily: "Cormorant Garamond,serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(32px,5vw,72px)",
                 fontWeight: 300, color: "#fff",
                 letterSpacing: "-0.02em", lineHeight: 0.95,
@@ -140,7 +140,7 @@ export function GulfSection() {
                 47°58'E
               </div>
               <div style={{
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(10px,0.9vw,12px)",
                 letterSpacing: "0.35em",
                 textTransform: "uppercase",
@@ -161,7 +161,7 @@ export function GulfSection() {
               className="gulf-fact-right"
             >
               <div style={{
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(10px,0.8vw,11px)",
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: "rgba(255,255,255,0.35)", marginBottom: 12,
@@ -169,7 +169,7 @@ export function GulfSection() {
                 Gulf to tower
               </div>
               <div style={{
-                fontFamily: "Cormorant Garamond,serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(14px,1.8vw,22px)",
                 fontWeight: 300, color: "rgba(255,255,255,0.75)",
                 lineHeight: 1.6, fontStyle: "italic",

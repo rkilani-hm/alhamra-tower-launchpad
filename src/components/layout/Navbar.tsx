@@ -107,7 +107,7 @@ export function Navbar() {
             onError={e => {
               const t = e.currentTarget as HTMLImageElement;
               t.style.display = "none";
-              t.parentElement!.innerHTML = `<span style="font-family:Jost,sans-serif;font-size:13px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#1D1D1B">AL HAMRA</span>`;
+              t.parentElement!.innerHTML = `<span style="font-family:'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#1D1D1B">AL HAMRA</span>`;
             }}
           />
         </Link>
@@ -128,7 +128,7 @@ export function Navbar() {
                   aria-expanded={isOpen}
                   style={{
                     display: "inline-flex", alignItems: "center", gap: 5,
-                    fontFamily: "Jost, sans-serif",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                     textDecoration: "none", padding: "8px 16px",
                     transition: "color 0.2s",
                   }}>
@@ -163,7 +163,7 @@ export function Navbar() {
                             style={{
                               display: "flex", alignItems: "center", gap: 12,
                               padding: "11px 20px",
-                              fontFamily: "Jost, sans-serif",
+                              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                               color: isChildActive ? "#1D1D1B" : "#6B6B6B",
                               textDecoration: "none",
                               borderLeft: isChildActive ? "2px solid #1D1D1B" : "2px solid transparent",
@@ -173,7 +173,7 @@ export function Navbar() {
                             onMouseEnter={e => { if (!isChildActive) { e.currentTarget.style.color="#1D1D1B"; e.currentTarget.style.background="#FAFAFA"; } }}
                             onMouseLeave={e => { if (!isChildActive) { e.currentTarget.style.color="#6B6B6B"; e.currentTarget.style.background="transparent"; } }}
                           >
-                            <span style={{ fontFamily:"Cormorant Garamond,serif", fontSize:"13px", fontWeight:300, color: isChildActive ? "#1D1D1B" : "#EDEDED", minWidth:18, lineHeight:1 }}>
+                            <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:300, color: isChildActive ? "#1D1D1B" : "#EDEDED", minWidth:18, lineHeight:1 }}>
                               {String(i + 1).padStart(2, "0")}
                             </span>
                             {cl}
@@ -191,7 +191,7 @@ export function Navbar() {
         {/* Right — CTA + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <Link to="/leasing/inquiry#inquiry-form" className="nav-cta-desktop" style={{
-            fontFamily: "Jost, sans-serif", fontSize: "16px", letterSpacing: "0.22em",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16px", letterSpacing: "0.22em",
             textTransform: "uppercase", color: "#1D1D1B", textDecoration: "none",
             border: "1px solid #1D1D1B", padding: "10px 24px", transition: "background 0.3s, color 0.3s",
           }}
@@ -256,7 +256,7 @@ export function Navbar() {
                       }}
                     >
                       <span style={{
-                        fontFamily: "Jost, sans-serif",
+                        fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                         fontSize: "15px", letterSpacing: "0.28em",
                         textTransform: "uppercase",
                         color: isActive ? "#1D1D1B" : "#6B6B6B",
@@ -294,7 +294,7 @@ export function Navbar() {
                                 <Link key={ch} to={ch} style={{
                                   display: "flex", alignItems: "center", gap: 16,
                                   padding: "13px 28px 13px 36px",
-                                  fontFamily: "Jost, sans-serif",
+                                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                                   fontSize: "18px", fontWeight: 300,
                                   letterSpacing: "0.08em",
                                   color: isChildActive ? "#1D1D1B" : "#6B6B6B",
@@ -303,7 +303,7 @@ export function Navbar() {
                                   background: isChildActive ? "#fff" : "transparent",
                                   transition: "background 0.15s",
                                 }}>
-                                  <span style={{ fontFamily:"Cormorant Garamond,serif", fontSize:"15px", fontWeight:300, color:"#EDEDED", lineHeight:1, flexShrink:0 }}>
+                                  <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"15px", fontWeight:300, color:"#EDEDED", lineHeight:1, flexShrink:0 }}>
                                     {String(i + 1).padStart(2, "0")}
                                   </span>
                                   {cl}
@@ -324,7 +324,7 @@ export function Navbar() {
                   style={{
                     display: "block", textAlign: "center",
                     background: "#1D1D1B", color: "#fff",
-                    fontFamily: "Jost, sans-serif", fontSize: "16.5px",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16.5px",
                   }}
                 >
                   Leasing Inquiry

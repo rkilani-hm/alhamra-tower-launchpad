@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SocialIcons } from "@/components/shared/SocialIcons";
+import { PatternBand } from "@/components/shared/PatternBand";
 
 const NAV = [
   {
@@ -41,7 +42,7 @@ const NAV = [
 
 const navLink: React.CSSProperties = {
   display: "block",
-  fontFamily: "Jost, sans-serif",
+  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
   fontSize: "11.5px",
   fontWeight: 300,
   color: "#767676",
@@ -52,7 +53,15 @@ const navLink: React.CSSProperties = {
 
 export function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(29,29,27,0.09)", background: "#fff" }}>
+    <footer style={{ background: "#fff" }}>
+
+      {/* ── Pattern crown — cornice above footer content ────────── */}
+      <PatternBand
+        mode="full"
+        variant="light"
+        opacity={0.18}
+        decorative
+      />
 
       {/* Sitemap grid */}
       <div className="footer-sitemap">
@@ -63,7 +72,7 @@ export function Footer() {
             style={{ height: 61, width: "auto", objectFit: "contain", marginBottom: 20 }}
             onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
-          <p style={{ fontFamily: "Jost,sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#767676", lineHeight: 1.8, maxWidth: 200, marginBottom: 24 }}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11.5px", fontWeight: 300, color: "#767676", lineHeight: 1.6, maxWidth: 200, marginBottom: 24 }}>
             Kuwait's most iconic commercial landmark. 413 metres. Sharq, Kuwait City.
           </p>
           {/* Social icons row */}
@@ -73,7 +82,7 @@ export function Footer() {
         {/* Nav columns */}
         {NAV.map(({ title, links }) => (
           <div key={title}>
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#1D1D1B", fontWeight: 500, marginBottom: 20 }}>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#1D1D1B", fontWeight: 500, marginBottom: 20 }}>
               {title}
             </div>
             {links.map(({ label, href }) => (
@@ -91,13 +100,13 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="footer-bottom" style={{ borderTop: "1px solid rgba(29,29,27,0.07)" }}>
-        <span style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#767676", letterSpacing: "0.1em" }}>
+        <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#767676", letterSpacing: "0.1em" }}>
           © 2026 Al Hamra Tower. All rights reserved. — Kuwait City, Kuwait
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
           {["Privacy Policy", "Terms of Use"].map(l => (
             <Link key={l} to={l === "Privacy Policy" ? "/privacy" : "/terms"}
-              style={{ fontFamily: "Jost,sans-serif", fontSize: "10px", color: "#767676", textDecoration: "none", transition: "color 0.2s" }}
+              style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#767676", textDecoration: "none", transition: "color 0.2s" }}
               onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
               onMouseLeave={e => (e.currentTarget.style.color = "#767676")}
             >{l}</Link>

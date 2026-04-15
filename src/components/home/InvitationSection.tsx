@@ -26,7 +26,7 @@ export function InvitationSection() {
   return (
     <section
       ref={ref}
-      className="mashrabiya-bg"
+      className="pattern-band"
       style={{
         background: DARK,
         padding: "clamp(80px,12vh,140px) clamp(28px,6vw,96px)",
@@ -68,7 +68,7 @@ export function InvitationSection() {
             style={{
               display: "flex", alignItems: "center", gap: 14,
               marginBottom: 32,
-              fontFamily: "Jost,sans-serif",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase",
               color: PEARL,
@@ -88,7 +88,7 @@ export function InvitationSection() {
             transition={{ duration: 1, delay: 0.15, ease: [0.16,1,0.3,1] }}
           >
             <div style={{
-              fontFamily: "Jost,sans-serif",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontWeight: 200,
               fontSize: "clamp(13px,1.2vw,15px)",
               letterSpacing: "0.08em",
@@ -99,8 +99,8 @@ export function InvitationSection() {
               The address that
             </div>
             <div style={{
-              fontFamily: "Cormorant Garamond,serif",
-              fontStyle: "italic", fontWeight: 300,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+, fontWeight: 300,
               fontSize: "clamp(36px,5.5vw,76px)",
               color: "#fff",
               lineHeight: 1.0,
@@ -128,7 +128,7 @@ export function InvitationSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             style={{
-              fontFamily: "Jost,sans-serif",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontSize: "clamp(13px,1.1vw,15px)",
               fontWeight: 300, lineHeight: 1.9,
               color: "rgba(255,255,255,0.5)",
@@ -152,7 +152,7 @@ export function InvitationSection() {
                 display: "inline-flex", alignItems: "center", gap: 16,
                 border: `1px solid rgba(200,185,154,0.35)`,
                 padding: "18px 36px",
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "10.5px", fontWeight: 400,
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: PEARL, textDecoration: "none",
@@ -178,7 +178,7 @@ export function InvitationSection() {
 
             <div style={{
               marginTop: 16,
-              fontFamily: "Jost,sans-serif",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontSize: "10px", letterSpacing: "0.25em",
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.2)",
@@ -195,7 +195,7 @@ export function InvitationSection() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             style={{
-              fontFamily: "Jost,sans-serif",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
               fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.35em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.2)",
@@ -218,7 +218,7 @@ export function InvitationSection() {
               }}
             >
               <div style={{
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(13px,1.1vw,15px)",
                 fontWeight: 400, letterSpacing: "0.04em",
                 color: "#fff",
@@ -226,7 +226,7 @@ export function InvitationSection() {
                 {label}
               </div>
               <div style={{
-                fontFamily: "Jost,sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(11px,0.9vw,12px)",
                 fontWeight: 300, color: "rgba(255,255,255,0.38)",
                 lineHeight: 1.7,
@@ -253,19 +253,19 @@ export function InvitationSection() {
             ].map(({ n, u, l }) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <div style={{
-                  fontFamily: "Cormorant Garamond,serif",
+                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontSize: "clamp(24px,3vw,38px)",
                   fontWeight: 300, color: "#fff", lineHeight: 1,
                 }}>
                   {n}
                   {u && <span style={{
-                    fontFamily: "Jost,sans-serif",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                     fontSize: "0.45em", color: PEARL,
                     marginLeft: 2, fontWeight: 200,
                   }}>{u}</span>}
                 </div>
                 <div style={{
-                  fontFamily: "Jost,sans-serif",
+                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontSize: "10px", letterSpacing: "0.28em",
                   textTransform: "uppercase",
                   color: "rgba(255,255,255,0.3)",

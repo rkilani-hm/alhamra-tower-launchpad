@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from "fra
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
-import { MashrabiyaDivider } from "@/components/shared/MashrabiyaDivider";
+import { PatternBand } from "@/components/shared/PatternBand";
 
 const PEARL = "#C8B99A";
 const GULF  = "#2A5F7A";
@@ -76,7 +76,7 @@ export default function TowerRising() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 48 }}>
             <span style={{ width: 32, height: 1,
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`, flexShrink: 0 }} />
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px",
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
               letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
               Construction Timeline
             </div>
@@ -87,7 +87,7 @@ export default function TowerRising() {
 
             {/* Left — era selector */}
             <div>
-              <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+              <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontWeight: 300, fontSize: "clamp(28px,3vw,42px)", color: DARK,
                 lineHeight: 1.1, marginBottom: 40 }}>
                 From excavation<br />to icon.
@@ -105,14 +105,14 @@ export default function TowerRising() {
                   }}
                 >
                   <span style={{
-                    fontFamily: "Cormorant Garamond,serif", fontSize: "22px",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "22px",
                     fontWeight: 300, color: activeEra === i ? DARK : "#767676",
                     minWidth: 52, transition: "color 0.3s",
                   }}>
                     {era.year}
                   </span>
                   <span style={{
-                    fontFamily: "Jost,sans-serif", fontSize: "11px",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
                     letterSpacing: "0.15em", textTransform: "uppercase",
                     color: activeEra === i ? DARK : "#767676",
                     transition: "color 0.3s",
@@ -152,12 +152,12 @@ export default function TowerRising() {
                       onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0"; }}
                     />
                   </div>
-                  <div style={{ fontFamily: "Cormorant Garamond,serif",
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                     fontSize: "clamp(22px,2.5vw,32px)", fontWeight: 300,
-                    color: DARK, marginBottom: 16, fontStyle: "italic" }}>
+                    color: DARK, marginBottom: 16 }}>
                     {ERAS[activeEra].title}
                   </div>
-                  <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                  <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
                     fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
                     lineHeight: 1.9, maxWidth: 560 }}>
                     {ERAS[activeEra].body}
@@ -169,11 +169,11 @@ export default function TowerRising() {
         </div>
       </section>
 
-      <MashrabiyaDivider count={9} />
+      <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
 
       {/* ── SECTION 2: The Lamella Story ───────────────────────────── */}
       <section style={{ background: DARK, overflow: "hidden" }}
-        className="mashrabiya-bg">
+        className="pattern-band">
         <div ref={lamellaRef} style={{
           maxWidth: 1280, margin: "0 auto",
           padding: "clamp(64px,10vh,120px) clamp(24px,6vw,96px)",
@@ -191,19 +191,19 @@ export default function TowerRising() {
                 <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
                   <span style={{ width: 32, height: 1,
                     background: `linear-gradient(to right, ${PEARL}, #D4CFC9)` }} />
-                  <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px",
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
                     letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
                     Engineering Feat
                   </div>
                 </div>
 
-                <h2 style={{ fontFamily: "Cormorant Garamond,serif", fontStyle: "italic",
+                <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontWeight: 300, fontSize: "clamp(28px,3.5vw,48px)", color: "#fff",
                   lineHeight: 1.1, marginBottom: 24, letterSpacing: "-0.01em" }}>
                   The Lamella — a 24-metre<br />vault with no columns.
                 </h2>
 
-                <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
                   fontSize: "clamp(13px,1.1vw,15px)", color: "rgba(255,255,255,0.6)",
                   lineHeight: 1.9, marginBottom: 20 }}>
                   To create Kuwait's most dramatic lobby, SOM devised the lamella 
@@ -211,7 +211,7 @@ export default function TowerRising() {
                   that curve outward from the building core following a circular arch 24 
                   metres high, creating a completely column-free space beneath the tower.
                 </p>
-                <p style={{ fontFamily: "Jost,sans-serif", fontWeight: 300,
+                <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
                   fontSize: "clamp(13px,1.1vw,15px)", color: "rgba(255,255,255,0.6)",
                   lineHeight: 1.9, marginBottom: 36 }}>
                   Each element was designed using parametric 3D modelling. The fiberglass 
@@ -227,12 +227,12 @@ export default function TowerRising() {
                       borderTop: "1px solid rgba(200,185,154,0.2)",
                       paddingTop: 16,
                     }}>
-                      <div style={{ fontFamily: "Cormorant Garamond,serif",
+                      <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                         fontSize: "clamp(20px,2.5vw,32px)", fontWeight: 300,
                         color: "#fff", marginBottom: 4 }}>
                         {n}
                       </div>
-                      <div style={{ fontFamily: "Jost,sans-serif", fontSize: "10px",
+                      <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                         letterSpacing: "0.2em", textTransform: "uppercase",
                         color: "rgba(255,255,255,0.4)" }}>
                         {l}
@@ -267,7 +267,7 @@ export default function TowerRising() {
               }} />
               <div style={{
                 position: "absolute", bottom: 20, left: 20,
-                fontFamily: "Jost,sans-serif", fontSize: "10px",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: PEARL,
               }}>
@@ -278,7 +278,7 @@ export default function TowerRising() {
         </div>
       </section>
 
-      <MashrabiyaDivider count={7} light />
+      <PatternBand mode="divider" variant="gold" opacity={0.45} padding="clamp(28px,4vw,56px) 0" />
 
       {/* ── SECTION 3: The Building Today — gallery ────────────────── */}
       <section style={{ background: "#fff",
@@ -287,7 +287,7 @@ export default function TowerRising() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 48 }}>
             <span style={{ width: 32, height: 1,
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)` }} />
-            <div style={{ fontFamily: "Jost,sans-serif", fontSize: "11px",
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
               letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
               The Tower Today
             </div>

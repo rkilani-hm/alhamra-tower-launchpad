@@ -18,9 +18,9 @@ export function Perspectives() {
             onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
             onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
           >
-            <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 44, fontWeight: 300, color: "#EDEDED", lineHeight: 1, marginBottom: 16 }}>{n}</div>
-            <div style={{ fontFamily: "Jost, sans-serif", fontSize: 13, fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>{title}</div>
-            <div style={{ fontFamily: "Jost, sans-serif", fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 44, fontWeight: 300, color: "#EDEDED", lineHeight: 1, marginBottom: 16 }}>{n}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 13, fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>{title}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
           </div>
         </ScrollReveal>
       ))}
@@ -54,10 +54,10 @@ export function FloorConfigs() {
             }}
           >
             <div className="left-bar" style={{ position: "absolute", top: 0, left: 0, width: 2, height: 0, background: "#1D1D1B", transition: "height 0.4s ease" }} />
-            <div style={{ fontFamily: "Jost, sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>{code}</div>
-            <div style={{ fontFamily: "Jost, sans-serif", fontSize: 16, fontWeight: 500, color: "#1D1D1B", marginBottom: 12, letterSpacing: "0.04em" }}>{title}</div>
-            <div style={{ fontFamily: "Cormorant Garamond, serif", fontSize: 36, fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 16 }}>{size}</div>
-            <div style={{ fontFamily: "Jost, sans-serif", fontSize: 12, color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>{code}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 16, fontWeight: 500, color: "#1D1D1B", marginBottom: 12, letterSpacing: "0.04em" }}>{title}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 36, fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 16 }}>{size}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 12, color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
           </div>
         </ScrollReveal>
       ))}
@@ -74,14 +74,14 @@ export function LeasingBand() {
     >
       <ScrollReveal>
         <div style={{ maxWidth: 500 }}>
-          <p style={{ fontFamily: "Jost, sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 24 }}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 24 }}>
             Leasing Opportunities
           </p>
-          <h3 style={{ fontFamily: "Jost, sans-serif", fontSize: "clamp(24px, 2.5vw, 42px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, marginBottom: 0 }}>
+          <h3 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(24px, 2.5vw, 42px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, marginBottom: 0 }}>
             Secure your position<br />at Kuwait's<br />
             <strong style={{ fontWeight: 500 }}>premier address</strong>
           </h3>
-          <p style={{ fontFamily: "Jost, sans-serif", fontSize: 14, fontWeight: 300, color: "rgba(255,255,255,0.45)", lineHeight: 1.8, marginTop: 16 }}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 14, fontWeight: 300, color: "rgba(255,255,255,0.45)", lineHeight: 1.6, marginTop: 16 }}>
             Whether you require a full-floor headquarters, a customized configuration,
             or a long-term corporate base — our leasing team will guide you through
             available opportunities.
@@ -96,7 +96,7 @@ export function LeasingBand() {
             style={{
               display: "inline-flex", alignItems: "center", gap: 12,
               background: "#fff", color: "#1D1D1B",
-              fontFamily: "Jost, sans-serif", fontSize: "10.5px", fontWeight: 500,
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500,
               letterSpacing: "0.22em", textTransform: "uppercase",
               padding: "16px 36px", textDecoration: "none", whiteSpace: "nowrap",
               transition: "opacity 0.3s",
@@ -111,7 +111,7 @@ export function LeasingBand() {
             style={{
               display: "inline-flex", alignItems: "center", gap: 14,
               color: "rgba(255,255,255,0.45)",
-              fontFamily: "Jost, sans-serif", fontSize: "10.5px",
+              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px",
               letterSpacing: "0.2em", textTransform: "uppercase",
               textDecoration: "none", transition: "color 0.3s",
             }}
@@ -141,8 +141,8 @@ export function ContactStrip() {
       {CONTACTS.map(({ label, value }, i) => (
         <ScrollReveal key={label} delay={i * 0.1}>
           <div style={{ padding: "44px 48px", borderRight: "1px solid rgba(29,29,27,0.09)", height: "100%" }}>
-            <div style={{ fontFamily: "Jost, sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>{label}</div>
-            <div style={{ fontFamily: "Jost, sans-serif", fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>{label}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
           </div>
         </ScrollReveal>
       ))}

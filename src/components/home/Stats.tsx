@@ -40,14 +40,14 @@ export function Stats() {
           onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
         >
           <div style={{
-            fontFamily: "Cormorant Garamond, serif",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
             fontSize: "clamp(36px,4.5vw,58px)",
             fontWeight: 300, lineHeight: 1, color: "#1D1D1B",
           }}>
             {number}
             {unit && (
               <span style={{
-                fontFamily: "Jost, sans-serif",
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(14px,1.8vw,22px)",
                 fontWeight: 200, color: PEARL, marginLeft: 4,
               }}>
@@ -56,13 +56,13 @@ export function Stats() {
             )}
           </div>
           <div style={{
-            fontFamily: "Jost, sans-serif", fontSize: "clamp(10px,0.9vw,11px)",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.9vw,11px)",
             letterSpacing: "0.28em", textTransform: "uppercase", color: "#1D1D1B",
           }}>
             {label}
           </div>
           <div style={{
-            fontFamily: "Jost, sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             color: "#767676", letterSpacing: "0.05em",
           }}>
             {sub}
