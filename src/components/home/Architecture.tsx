@@ -231,7 +231,7 @@ export function Architecture() {
             </div>
             <h3 style={{
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-, fontWeight: 300,
+              fontWeight: 300,
               fontSize: "clamp(22px,2.8vw,38px)", color: DARK,
               lineHeight: 1.2, marginBottom: 20, letterSpacing: "-0.01em",
             }}>

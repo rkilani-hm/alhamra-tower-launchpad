@@ -102,7 +102,7 @@ export function ViewSection() {
               </div>
               <div style={{
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-, fontWeight: 300,
+fontWeight: 300,
                 fontSize: "clamp(22px,3.5vw,48px)",
                 color: "#fff", lineHeight: 1.1,
                 letterSpacing: "-0.01em",
