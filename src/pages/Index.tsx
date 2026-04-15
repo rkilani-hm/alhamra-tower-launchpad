@@ -36,22 +36,22 @@ export default function Index() {
         {/* ── Beat 2: The City (Gulf, coordinates) ─────────────── */}
         <GulfSection />
 
-        {/* ── Al Hamra pattern — sits between white sections → multiply blend ── */}
-        <PatternBand variant="light" />
+        {/* ── Al Hamra geometric band divider ──────────────────── */}
+        <PatternBand />
 
         {/* ── Beat 3: The Tower ────────────────────────────────── */}
         <Stats />
         <Marquee />
         <Architecture />
 
-        {/* ── Pattern between white sections → multiply blend ────── */}
-        <PatternBand variant="light" opacity={0.4} />
+        {/* ── Al Hamra geometric band divider ──────────────────── */}
+        <PatternBand />
 
         {/* ── Beat 4: The View ─────────────────────────────────── */}
         <ViewSection />
 
-        {/* ── Pattern before dark InvitationSection → multiply ──── */}
-        <PatternBand variant="light" />
+        {/* ── Al Hamra geometric band divider ──────────────────── */}
+        <PatternBand />
 
         {/* ── Beat 5: The Address ──────────────────────────────── */}
         <Perspectives />

@@ -2,6 +2,7 @@ import { PageLayout }  from "@/components/layout/PageLayout";
 import { FloorPlanViewer } from "@/components/shared/FloorPlanViewer";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { PatternBackground } from "@/components/shared/PatternBand";
 
 /* ══════════════════════════════════════════════════
    WORKPLACE EXPERIENCE  /business

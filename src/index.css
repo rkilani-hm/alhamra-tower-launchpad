@@ -504,14 +504,33 @@
    For animated dividers, use the <PatternBand> React component
    from @/components/shared/PatternBand instead.
 ──────────────────────────────────────────────────────────────────── */
-/* Dark sections — white ornaments on transparent */
+/* ── Al Hamra Pattern Utilities ─────────────────────────────────────
+   Band:  al-hamra-pattern-band.jpg  — light grey triangles on white
+   Bg:    al-hamra-pattern-bg.jpg    — geometric tile for section depth
+──────────────────────────────────────────────────────────────────── */
+
+/* Horizontal band separator — between sections on light backgrounds */
 .pattern-band,
 .mashrabiya-bg {
-  background-image: url("/assets/patterns/al-hamra-pattern-white.png");
-  background-repeat: repeat-x;
-  background-size: auto 100%;
-  background-position: center;
-  opacity: 0.5;
+  width: 100%;
+  background: url("/assets/patterns/al-hamra-pattern-band.jpg") center/cover no-repeat;
+  min-height: 80px;
+}
+
+/* Section background texture — for white content areas */
+.pattern-bg-section {
+  background: #fff url("/assets/patterns/al-hamra-pattern-bg.jpg") center/cover no-repeat;
+}
+
+/* Subtle version — low opacity overlay on already-coloured sections */
+.pattern-bg-subtle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/patterns/al-hamra-pattern-bg.jpg") center/cover no-repeat;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ── Coordinate Text Style ────────────────────────────────────────── */

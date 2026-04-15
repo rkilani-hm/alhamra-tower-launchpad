@@ -1,64 +1,108 @@
-/* ── Al Hamra Pattern Band ─────────────────────────────────────────────
-   Two transparent PNG versions of the official ornamental frieze:
+/* ── Al Hamra Pattern System ───────────────────────────────────────────
+   Two pattern assets from Al Hamra brand guidelines:
 
-   al-hamra-pattern-gold.png  — dark gold ornaments, transparent bg
-                                 → use on WHITE / LIGHT sections
-   al-hamra-pattern-white.png — white ornaments, transparent bg
-                                 → use on DARK sections
+   al-hamra-pattern-band.jpg   2667×246px
+   Light grey geometric triangles on white — horizontal section separator.
+   Already correctly coloured for light backgrounds — use as-is.
 
-   Background is fully transparent in both — no black box, no grey bar.
+   al-hamra-pattern-bg.jpg     1440×810px
+   Same geometric motif as a full background tile — very light grey.
+   Use as background-image on sections that need depth and texture.
 ──────────────────────────────────────────────────────────────────────── */
 
 interface PatternBandProps {
-  /** "light" = white/cream background  → gold ornaments
-      "dark"  = dark/charcoal bg        → white ornaments */
-  variant?:    "light" | "dark";
-  opacity?:    number;
+  opacity?: number;
   decorative?: boolean;
+  /** Height of the band — default auto (natural 246px at full width) */
+  height?: number | string;
 }
 
+/** Horizontal band separator — sits between sections on white backgrounds */
 export function PatternBand({
-  variant    = "light",
-  opacity,
+  opacity    = 1,
   decorative = true,
+  height     = "auto",
 }: PatternBandProps) {
-  const src = variant === "dark"
-    ? "/assets/patterns/al-hamra-pattern-white.png"
-    : "/assets/patterns/al-hamra-pattern-gold.png";
-
-  const defaultOpacity = variant === "dark" ? 0.65 : 0.5;
-
   return (
     <div
       aria-hidden={decorative}
       style={{ width: "100%", lineHeight: 0, overflow: "hidden" }}
     >
       <img
-        src={src}
-        alt={decorative ? "" : "Al Hamra ornamental pattern"}
+        src="/assets/patterns/al-hamra-pattern-band.jpg"
+        alt={decorative ? "" : "Al Hamra geometric pattern divider"}
         draggable={false}
         loading="lazy"
+        width={2667}
+        height={246}
         style={{
           display: "block",
           width: "100%",
-          height: "auto",
+          height,
+          objectFit: "cover",
+          objectPosition: "center",
           userSelect: "none",
-          opacity: opacity ?? defaultOpacity,
+          opacity,
         }}
       />
     </div>
   );
 }
 
+/** Full background texture — apply to sections needing visual depth */
+export function PatternBackground({
+  opacity    = 0.55,
+  decorative = true,
+  children,
+  style,
+  className,
+}: {
+  opacity?:    number;
+  decorative?: boolean;
+  children?:   React.ReactNode;
+  style?:      React.CSSProperties;
+  className?:  string;
+}) {
+  return (
+    <div
+      className={className}
+      style={{
+        position: "relative",
+        ...style,
+      }}
+    >
+      {/* Pattern layer */}
+      <div
+        aria-hidden={decorative}
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "url('/assets/patterns/al-hamra-pattern-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          opacity,
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Content above pattern */}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 /* ── Backward-compatible exports ─────────────────────────────────────── */
-export function MashrabiyaDivider({ light = false }: { count?: number; light?: boolean }) {
-  return <PatternBand variant={light ? "light" : "dark"} />;
+export function MashrabiyaDivider({ light: _light = false }: { count?: number; light?: boolean }) {
+  return <PatternBand />;
 }
 
 export function RosetteAccent() {
-  return <PatternBand variant="light" opacity={0.35} />;
+  return <PatternBand opacity={0.6} />;
 }
 
-export function PatternBandParallax({ variant = "dark" }: { variant?: "light" | "dark" }) {
-  return <PatternBand variant={variant} />;
+export function PatternBandParallax({ variant: _variant = "dark" }: { variant?: string }) {
+  return <PatternBand />;
 }

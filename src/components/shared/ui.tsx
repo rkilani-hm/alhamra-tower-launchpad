@@ -89,10 +89,19 @@ export function TwoCol({ left, right, flip=false, bg="#fff" }: TwoColProps) {
 }
 
 /* ── SECTION WRAPPER ─────────────────────── */
-interface SWProps { children: ReactNode; bg?: string; style?: React.CSSProperties; }
-export function Section({ children, bg="#fff", style }: SWProps) {
+import { PatternBackground } from "@/components/shared/PatternBand";
+interface SWProps { children: ReactNode; bg?: string; style?: React.CSSProperties; withPattern?: boolean; patternOpacity?: number; }
+export function Section({ children, bg="#fff", style, withPattern=true, patternOpacity=0.25 }: SWProps) {
+  const isLight = bg === "#fff" || bg === "#FAFAFA" || bg === "white" || bg.startsWith("#F");
+  if (withPattern && isLight) {
+    return (
+      <PatternBackground opacity={patternOpacity} className="ah-section" style={{ background: bg, borderTop: "1px solid rgba(29,29,27,0.09)", ...style }}>
+        {children}
+      </PatternBackground>
+    );
+  }
   return (
-    <section className="ah-section" style={{ background:bg, borderTop:"1px solid rgba(29,29,27,0.09)", ...style }}>
+    <section className="ah-section" style={{ background: bg, borderTop: "1px solid rgba(29,29,27,0.09)", ...style }}>
       {children}
     </section>
   );

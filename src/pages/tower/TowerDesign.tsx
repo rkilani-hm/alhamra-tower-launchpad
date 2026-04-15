@@ -237,7 +237,7 @@ export default function TowerDesign() {
         </div>
       </div>
 
-      <PatternBand variant="light" opacity={0.45} />
+      <PatternBand />
 
       {/* ── Full Specification Table ────────────────────────────── */}
       <div style={{ background: "#fff", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>

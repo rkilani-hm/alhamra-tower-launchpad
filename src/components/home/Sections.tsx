@@ -1,5 +1,6 @@
 import { ScrollReveal } from "../shared/ScrollReveal";
 import { Link } from "react-router-dom";
+import { PatternBackground } from "../shared/PatternBand";
 
 // ── PERSPECTIVES ──────────────────────────────────────────
 const PERSP = [
@@ -10,21 +11,23 @@ const PERSP = [
 
 export function Perspectives() {
   return (
-    <div style={{ /* grid-3col */ }}>
-      {PERSP.map(({ n, title, body }, i) => (
-        <ScrollReveal key={n} delay={i * 0.1}>
-          <div
-            style={{ padding: "52px 48px", borderRight: i < 2 ? "1px solid rgba(29,29,27,0.09)" : "none", transition: "background 0.3s", height: "100%" }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
-          >
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 44, fontWeight: 300, color: "#EDEDED", lineHeight: 1, marginBottom: 16 }}>{n}</div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 13, fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>{title}</div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
-          </div>
-        </ScrollReveal>
-      ))}
-    </div>
+    <PatternBackground opacity={0.25} style={{ background: "#fff", borderTop: "1px solid rgba(29,29,27,0.07)" }}>
+      <div className="grid-3col">
+        {PERSP.map(({ n, title, body }, i) => (
+          <ScrollReveal key={n} delay={i * 0.1}>
+            <div
+              style={{ padding: "52px 48px", borderRight: i < 2 ? "1px solid rgba(29,29,27,0.09)" : "none", transition: "background 0.3s", height: "100%" }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.background = "transparent")}
+            >
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 44, fontWeight: 300, color: "#EDEDED", lineHeight: 1, marginBottom: 16 }}>{n}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 13, fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>{title}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </PatternBackground>
   );
 }
 
@@ -37,7 +40,8 @@ const FLOORS = [
 
 export function FloorConfigs() {
   return (
-    <div className="grid-3col" style={{ background:"#FAFAFA" }}>
+    <PatternBackground opacity={0.28} style={{ background: "#FAFAFA" }}>
+      <div className="grid-3col">
       {FLOORS.map(({ code, title, size, body }, i) => (
         <ScrollReveal key={code} delay={i * 0.1}>
           <div
@@ -61,7 +65,8 @@ export function FloorConfigs() {
           </div>
         </ScrollReveal>
       ))}
-    </div>
+      </div>
+    </PatternBackground>
   );
 }
 
@@ -137,15 +142,17 @@ const CONTACTS = [
 
 export function ContactStrip() {
   return (
-    <div className="grid-4col" style={{ borderTop:"1px solid rgba(29,29,27,0.09)" }}>
-      {CONTACTS.map(({ label, value }, i) => (
-        <ScrollReveal key={label} delay={i * 0.1}>
-          <div style={{ padding: "44px 48px", borderRight: "1px solid rgba(29,29,27,0.09)", height: "100%" }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>{label}</div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
-          </div>
-        </ScrollReveal>
-      ))}
-    </div>
+    <PatternBackground opacity={0.3} style={{ borderTop: "1px solid rgba(29,29,27,0.09)", background: "#fff" }}>
+      <div className="grid-4col">
+        {CONTACTS.map(({ label, value }, i) => (
+          <ScrollReveal key={label} delay={i * 0.1}>
+            <div style={{ padding: "44px 48px", borderRight: "1px solid rgba(29,29,27,0.09)", height: "100%" }}>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>{label}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </PatternBackground>
   );
 }

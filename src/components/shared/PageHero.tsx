@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { staggerSlow, fadeUp, fadeLeft } from "@/lib/motion";
 import { GoldLineDraw } from "@/components/shared/ScrollReveal";
+import { PatternBackground } from "@/components/shared/PatternBand";
 
 /* ── PageHero ───────────────────────────────────────────────────────────
    Interior page hero — used on every sub-page.
@@ -21,20 +22,16 @@ interface Props {
 
 export function PageHero({ tag, title, subtitle, crumbs }: Props) {
   return (
-    <section className="page-hero" style={{
-      background: "#fff",
-      borderBottom: "1px solid rgba(29,29,27,0.09)",
-      position: "relative",
-      overflow: "hidden",
-    }}>
-      {/* Subtle dot-grid texture */}
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: "radial-gradient(circle, rgba(29,29,27,0.04) 1px, transparent 1px)",
-        backgroundSize: "32px 32px", pointerEvents: "none",
-      }} aria-hidden="true" />
-
-      {/* Animated left red rule */}
+    <PatternBackground
+      opacity={0.4}
+      className="page-hero"
+      style={{
+        background: "#fff",
+        borderBottom: "1px solid rgba(29,29,27,0.09)",
+        overflow: "hidden",
+      }}
+    >
+      {/* Animated left pearl rule */}
       <motion.div
         initial={{ scaleY: 0, opacity: 0 }}
         animate={{ scaleY: 1, opacity: 1 }}
@@ -116,6 +113,6 @@ export function PageHero({ tag, title, subtitle, crumbs }: Props) {
           </motion.p>
         )}
       </motion.div>
-    </section>
+    </PatternBackground>
   );
 }

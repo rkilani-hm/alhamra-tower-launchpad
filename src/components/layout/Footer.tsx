@@ -55,12 +55,8 @@ export function Footer() {
   return (
     <footer style={{ background: "#fff" }}>
 
-      {/* ── Pattern crown — sits on white footer → multiply blend ── */}
-      <PatternBand
-        variant="light"
-        opacity={0.35}
-        decorative
-      />
+      {/* ── Al Hamra geometric band — footer crown ─────────────── */}
+      <PatternBand decorative />
 
       {/* Sitemap grid */}
       <div className="footer-sitemap">

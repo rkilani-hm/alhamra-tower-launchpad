@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
+import { PatternBackground } from "@/components/shared/PatternBand";
 
 const SAND   = "#C5A882";
 const SAND_AA = "#9A7550";
@@ -175,7 +176,7 @@ export default function TowerOverview() {
       </div>
 
       {/* ── Stats grid ─────────────────────────────────────────────── */}
-      <div style={{ background: "#fff", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
+      <PatternBackground opacity={0.3} style={{ background: "#fff", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)" }} className="overview-stats-grid">
           {TOWER_STATS.map(({ n, u, icon, l, sub }, i) => (
             <motion.div key={l}
@@ -200,7 +201,7 @@ export default function TowerOverview() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </PatternBackground>
 
       {/* ── Architecture tabs ──────────────────────────────────────── */}
       <div style={{ background: CREAM, padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>

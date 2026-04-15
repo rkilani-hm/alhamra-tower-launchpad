@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView }           from "framer-motion";
 import { stagger, fadeUp, hoverCard }  from "@/lib/motion";
+import { PatternBackground }           from "@/components/shared/PatternBand";
 
 /* ── Stats — animated count-up on viewport entry ───────────────────────
    Numbers count from 0 → target with expo ease-out.
@@ -119,17 +120,18 @@ export function Stats() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <motion.div
-      ref={ref}
-      variants={stagger}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      className="stats-bar grid-4col"
-      style={{ borderTop: "1px solid rgba(29,29,27,0.07)", borderBottom: "1px solid rgba(29,29,27,0.07)" }}
-    >
-      {STATS.map((s, i) => (
-        <StatCard key={s.label} {...s} index={i} active={inView} />
-      ))}
-    </motion.div>
+    <PatternBackground opacity={0.35} style={{ borderTop: "1px solid rgba(29,29,27,0.07)", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
+      <motion.div
+        ref={ref}
+        variants={stagger}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="stats-bar grid-4col"
+      >
+        {STATS.map((s, i) => (
+          <StatCard key={s.label} {...s} index={i} active={inView} />
+        ))}
+      </motion.div>
+    </PatternBackground>
   );
 }

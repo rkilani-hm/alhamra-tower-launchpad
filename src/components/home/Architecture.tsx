@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { PatternBackground } from "@/components/shared/PatternBand";
 
 /* ── Architecture Section ─────────────────────────────────────────────
    Redesigned with PDF content: the architectural story of the form —
@@ -19,14 +20,15 @@ const SPECS = [
 ];
 
 export function Architecture() {
-  const ref    = useRef<HTMLElement>(null);
+  const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
 
   return (
-    <section ref={ref} style={{ background: "#fff", overflow: "hidden" }}>
+    <PatternBackground opacity={0.3} style={{ background: "#fff", overflow: "hidden" }}>
+      <div ref={ref}>
 
       {/* ── Row 1: Full story + render ─────────────────────────────── */}
       <div style={{
@@ -285,6 +287,7 @@ export function Architecture() {
           .arch-specs-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
-    </section>
+      </div>
+    </PatternBackground>
   );
 }
