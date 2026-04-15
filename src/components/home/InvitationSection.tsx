@@ -100,7 +100,7 @@ export function InvitationSection() {
             </div>
             <div style={{
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-, fontWeight: 300,
+fontWeight: 300,
               fontSize: "clamp(36px,5.5vw,76px)",
               color: "#fff",
               lineHeight: 1.0,
