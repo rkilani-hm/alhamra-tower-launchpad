@@ -55,11 +55,10 @@ export function Footer() {
   return (
     <footer style={{ background: "#fff" }}>
 
-      {/* ── Pattern crown — cornice above footer content ────────── */}
+      {/* ── Pattern crown — sits on white footer → multiply blend ── */}
       <PatternBand
-        mode="full"
         variant="light"
-        opacity={0.18}
+        opacity={0.35}
         decorative
       />
 

@@ -510,6 +510,9 @@
   background-repeat: repeat-x;
   background-size: auto 100%;
   background-position: center;
+  /* Dark sections: screen blend makes black vanish, ornaments glow light */
+  mix-blend-mode: screen;
+  opacity: 0.55;
 }
 
 .pattern-band-light {
