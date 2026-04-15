@@ -25,7 +25,7 @@ export function PatternBand({
   mode      = "divider",
   variant   = "dark",
   height    = "auto",
-  padding   = "clamp(40px, 6vw, 80px) 0",
+  padding   = "0",
   opacity,
   decorative = true,
 }: PatternBandProps) {
@@ -53,9 +53,7 @@ export function PatternBand({
   if (mode === "divider") {
     return (
       <div aria-hidden={decorative} style={{ padding, overflow: "hidden" }}>
-        <div style={{ width: "100%", height: 1, background: "linear-gradient(to right, transparent, rgba(200,185,154,0.4), transparent)", marginBottom: 10 }} />
         {img}
-        <div style={{ width: "100%", height: 1, background: "linear-gradient(to right, transparent, rgba(200,185,154,0.4), transparent)", marginTop: 10 }} />
       </div>
     );
   }
@@ -83,7 +81,6 @@ export function MashrabiyaDivider({ light = false }: { count?: number; light?: b
       mode="divider"
       variant={light ? "gold" : "dark"}
       opacity={light ? 0.35 : undefined}
-      padding="clamp(24px,4vw,56px) 0"
     />
   );
 }

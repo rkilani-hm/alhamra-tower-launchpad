@@ -169,7 +169,7 @@ export default function TowerRising() {
         </div>
       </section>
 
-      <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
+      <PatternBand mode="divider" variant="dark" />
 
       {/* ── SECTION 2: The Lamella Story ───────────────────────────── */}
       <section style={{ background: DARK, overflow: "hidden" }}
@@ -278,7 +278,7 @@ export default function TowerRising() {
         </div>
       </section>
 
-      <PatternBand mode="divider" variant="gold" opacity={0.45} padding="clamp(28px,4vw,56px) 0" />
+      <PatternBand mode="divider" variant="gold" opacity={0.45} />
 
       {/* ── SECTION 3: The Building Today — gallery ────────────────── */}
       <section style={{ background: "#fff",

@@ -120,7 +120,7 @@ export default function TowerSustainability() {
         </div>
       </div>
 
-      <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
+      <PatternBand mode="divider" variant="dark" />
 
       {/* ── Quote ───────────────────────────────────────────────── */}
       <div style={{ background: "#fff", padding: "clamp(64px,10vh,100px) clamp(28px,6vw,96px)" }}>

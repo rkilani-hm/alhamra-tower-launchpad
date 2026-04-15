@@ -237,7 +237,7 @@ export default function TowerDesign() {
         </div>
       </div>
 
-      <PatternBand mode="divider" variant="dark" padding="clamp(28px,4vw,56px) 0" />
+      <PatternBand mode="divider" variant="dark" />
 
       {/* ── Full Specification Table ────────────────────────────── */}
       <div style={{ background: "#fff", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>

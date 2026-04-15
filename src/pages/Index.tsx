@@ -37,7 +37,7 @@ export default function Index() {
         <GulfSection />
 
         {/* ── Al Hamra pattern band — primary section separator ── */}
-        <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
+        <PatternBand mode="divider" variant="dark" />
 
         {/* ── Beat 3: The Tower ────────────────────────────────── */}
         <Stats />
@@ -45,13 +45,13 @@ export default function Index() {
         <Architecture />
 
         {/* ── Pattern band — gold tint between tower/view beats ── */}
-        <PatternBand mode="divider" variant="gold" opacity={0.45} padding="clamp(28px,4vw,56px) 0" />
+        <PatternBand mode="divider" variant="gold" opacity={0.45} />
 
         {/* ── Beat 4: The View ─────────────────────────────────── */}
         <ViewSection />
 
         {/* ── Pattern band — before the address finale ─────────── */}
-        <PatternBand mode="divider" variant="dark" padding="clamp(32px,5vw,64px) 0" />
+        <PatternBand mode="divider" variant="dark" />
 
         {/* ── Beat 5: The Address ──────────────────────────────── */}
         <Perspectives />
