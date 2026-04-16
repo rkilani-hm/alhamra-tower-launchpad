@@ -145,12 +145,12 @@ export function OfficeSpaces() {
           {CONFIGS.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>Configuration {code}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>Configuration {code}</div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "36px", fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 20 }}>{size}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}>{size}</div>
                 {bullets.map(b => (
                   <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                    <span style={{ color: "#767676" }}>—</span>
+                    <span style={{ color: "#6B6B6B" }}>—</span>
                     <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
                   </div>
                 ))}
@@ -238,7 +238,7 @@ export function OfficeSpaces() {
             <Rv delay={0.1}><H2>Workspaces Designed to Adapt</H2></Rv>
             <Rv delay={0.2}><FeatureGrid features={FLEX_FEATURES} /></Rv>
             <Rv delay={0.3}>
-              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11.5px", color: "#767676", marginTop: 20, fontStyle: "italic" }}>
+              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11.5px", color: "#6B6B6B", marginTop: 20, fontStyle: "italic" }}>
                 All configurations subject to availability. Contact the leasing team for detailed floor plans.
               </p>
             </Rv>
@@ -275,7 +275,7 @@ export function OfficeSpaces() {
       {/* Floor Plan Viewer */}
       <div>
         <div className="ah-section" style={{ paddingBottom: 0 }}>
-          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 16 }}>
             Floor Plans · Al Hamra Complex
           </div>
           <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
@@ -390,7 +390,7 @@ export function VerticalTransportation() {
             <Rv key={floor} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "36px 28px", height: "100%" }}>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1, marginBottom: 8 }}>{floor}</div>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>{label}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>{label}</div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
               </div>
             </Rv>
@@ -474,7 +474,7 @@ export function Connectivity() {
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
                 onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
               >
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#767676", letterSpacing: "0.2em", marginBottom: 10 }}>{number}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#6B6B6B", letterSpacing: "0.2em", marginBottom: 10 }}>{number}</div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8, letterSpacing: "0.04em" }}>{title}</div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.6, marginBottom: url ? 14 : 0 }}>{body}</div>
                 {url && (
@@ -487,7 +487,7 @@ export function Connectivity() {
                       borderBottom: "1px solid rgba(29,29,27,0.25)",
                       paddingBottom: 2, transition: "border-color 0.2s, color 0.2s",
                     }}
-                    onMouseEnter={e => { e.currentTarget.style.color = "#767676"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.1)"; }}
+                    onMouseEnter={e => { e.currentTarget.style.color = "#6B6B6B"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.1)"; }}
                     onMouseLeave={e => { e.currentTarget.style.color = "#1D1D1B"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.25)"; }}
                   >
                     Visit alhamracenter.com

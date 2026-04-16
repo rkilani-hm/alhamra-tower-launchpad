@@ -10,7 +10,7 @@ import { PatternBackground }           from "@/components/shared/PatternBand";
 
 const PEARL = "#C8B99A";
 const DARK  = "#1D1D1B";
-const MUTED = "#767676";
+const MUTED = "#6B6B6B";
 const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
 const STATS = [

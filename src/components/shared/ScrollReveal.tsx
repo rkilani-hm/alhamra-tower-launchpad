@@ -189,7 +189,7 @@ interface SectionLabelProps {
 
 const CG = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
-export function SectionLabel({ children, delay = 0, color = "#767676", style }: SectionLabelProps) {
+export function SectionLabel({ children, delay = 0, color = "#6B6B6B", style }: SectionLabelProps) {
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 

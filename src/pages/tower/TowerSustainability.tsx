@@ -4,7 +4,8 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
 
-const PEARL = "#C8B99A";
+const PEARL      = "#C8B99A";  /* decorative — large/graphic use */
+const PEARL_TEXT = "#8B6E3E";  /* accessible kicker text — 4.78:1 on white */
 const DARK  = "#1D1D1B";
 
 const PILLARS = [
@@ -56,7 +57,7 @@ export default function TowerSustainability() {
           alignItems: "start" }} className="sust-intro-grid">
           <div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 20 }}>
               Environmental philosophy
             </div>
             <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -89,7 +90,7 @@ export default function TowerSustainability() {
       {/* ── Six sustainability pillars ──────────────────────────── */}
       <div style={{ background: "#FAFAFA", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
+          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 48 }}>
           Six environmental design principles
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1,
@@ -109,10 +110,10 @@ export default function TowerSustainability() {
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1vw,14px)",
                   fontWeight: 500, color: DARK, marginBottom: 16, letterSpacing: "0.03em" }}>{title}</div>
                 <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
-                  fontSize: "clamp(12px,0.95vw,13px)", color: "#767676",
+                  fontSize: "clamp(12px,0.95vw,13px)", color: "#6B6B6B",
                   lineHeight: 1.65, marginBottom: 20 }}>{body}</p>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                  letterSpacing: "0.2em", textTransform: "uppercase", color: PEARL,
+                  letterSpacing: "0.2em", textTransform: "uppercase", color: PEARL_TEXT,
                   paddingTop: 16, borderTop: "1px solid rgba(200,185,154,0.3)" }}>{stat}</div>
               </motion.div>
             );
@@ -133,7 +134,7 @@ export default function TowerSustainability() {
             critical environmental conditions — it also assumes the role of structural backbone."
           </div>
           <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-            letterSpacing: "0.35em", textTransform: "uppercase", color: PEARL }}>
+            letterSpacing: "0.35em", textTransform: "uppercase", color: PEARL_TEXT }}>
             Skidmore, Owings & Merrill LLP — Structural Sustainability Statement
           </div>
         </div>

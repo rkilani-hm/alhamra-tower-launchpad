@@ -67,9 +67,9 @@ export function PageHero({ tag, title, subtitle, crumbs, image }: Props) {
                 {i > 0 && <span style={{ color: "rgba(29,29,27,0.2)", fontSize: "10px" }}>›</span>}
                 <Link
                   to={c.href}
-                  style={{ color: "#767676", textDecoration: "none", transition: "color 0.2s" }}
+                  style={{ color: "#6B6B6B", textDecoration: "none", transition: "color 0.2s" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "#767676")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
                 >{c.label}</Link>
               </span>
             ))}
@@ -79,7 +79,7 @@ export function PageHero({ tag, title, subtitle, crumbs, image }: Props) {
         {/* Tag line with animated gold rule */}
         <motion.div variants={fadeLeft} style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
           <GoldLineDraw width={28} delay={0.2} />
-          <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676" }}>
+          <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B" }}>
             {tag}
           </span>
         </motion.div>

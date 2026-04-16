@@ -45,7 +45,7 @@ const navLink: React.CSSProperties = {
   fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
   fontSize: "11.5px",
   fontWeight: 300,
-  color: "#767676",
+  color: "#6B6B6B",
   textDecoration: "none",
   marginBottom: 10,
   transition: "color 0.2s",
@@ -66,7 +66,7 @@ export function Footer() {
             onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
           {/* Social icons row */}
-          <SocialIcons variant="footer" color="#767676" hoverColor="#1D1D1B" />
+          <SocialIcons variant="footer" color="#6B6B6B" hoverColor="#1D1D1B" />
         </div>
 
         {/* Nav columns */}
@@ -79,7 +79,7 @@ export function Footer() {
               <Link key={label} to={href}
                 style={navLink}
                 onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
-                onMouseLeave={e => (e.currentTarget.style.color = "#767676")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
               >
                 {label}
               </Link>
@@ -90,15 +90,15 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="footer-bottom" style={{ borderTop: "1px solid rgba(29,29,27,0.07)" }}>
-        <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#767676", letterSpacing: "0.1em" }}>
+        <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#6B6B6B", letterSpacing: "0.1em" }}>
           © 2026 Al Hamra Tower. All rights reserved. — Kuwait City, Kuwait
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
           {["Privacy Policy", "Terms of Use"].map(l => (
             <Link key={l} to={l === "Privacy Policy" ? "/privacy" : "/terms"}
-              style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#767676", textDecoration: "none", transition: "color 0.2s" }}
+              style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#6B6B6B", textDecoration: "none", transition: "color 0.2s" }}
               onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#767676")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
             >{l}</Link>
           ))}
         </div>

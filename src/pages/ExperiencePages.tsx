@@ -164,7 +164,7 @@ export function Services() {
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: "#9A7550", marginBottom: 12 }}>{category}</div>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1vw,13px)",
-                color: "#767676", lineHeight: 1.9 }}>{brands}</div>
+                color: "#6B6B6B", lineHeight: 1.9 }}>{brands}</div>
             </div>
           ))}
         </div>
@@ -200,10 +200,10 @@ export function Services() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)",
           gap: 1, marginTop: 2 }} className="grid-4col">
           {[
-            { icon: "◈", label: "9-Screen Cinema",    desc: "Grand Cinemas on the uppermost level" },
-            { icon: "◈", label: "Health Club & Spa",  desc: "Al Hamra Thermae between tower and mall" },
-            { icon: "◈", label: "Outdoor Roof Garden", desc: "6,000m² landscaped plaza" },
-            { icon: "◈", label: "2,000 Parking Spaces", desc: "11-level car park with pedestrian bridges" },
+            { icon: "diamond", label: "9-Screen Cinema",    desc: "Grand Cinemas on the uppermost level" },
+            { icon: "diamond", label: "Health Club & Spa",  desc: "Al Hamra Thermae between tower and mall" },
+            { icon: "diamond", label: "Outdoor Roof Garden", desc: "6,000m² landscaped plaza" },
+            { icon: "diamond", label: "2,000 Parking Spaces", desc: "11-level car park with pedestrian bridges" },
           ].map(({ icon, label, desc }) => (
             <div key={label} style={{ background: "#FAFAFA",
               padding: "clamp(20px,2.5vw,28px)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
@@ -213,7 +213,7 @@ export function Services() {
                 fontWeight: 500, color: "#1D1D1B", marginBottom: 6,
                 letterSpacing: "0.04em" }}>{label}</div>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
-                color: "#767676", lineHeight: 1.7 }}>{desc}</div>
+                color: "#6B6B6B", lineHeight: 1.7 }}>{desc}</div>
             </div>
           ))}
         </div>
@@ -276,7 +276,7 @@ export function Location() {
                   { label: "Transport",   value: "Direct access to major arterial roads" },
                 ].map(({ label, value }, i) => (
                   <div key={label} style={{ display: "flex", gap: 24, padding: "14px 0", borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
-                    <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676", minWidth: 110, flexShrink: 0, paddingTop: 2 }}>{label}</div>
+                    <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B", minWidth: 110, flexShrink: 0, paddingTop: 2 }}>{label}</div>
                     <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
                   </div>
                 ))}
@@ -373,12 +373,12 @@ export function LeasingOpportunities() {
           {LEASING_CONFIGS.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>Configuration {code}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>Configuration {code}</div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "36px", fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 20 }}>{size}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}>{size}</div>
                 {bullets.map(b => (
                   <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                    <span style={{ color: "#767676" }}>—</span>
+                    <span style={{ color: "#6B6B6B" }}>—</span>
                     <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
                   </div>
                 ))}
@@ -409,7 +409,7 @@ export function LeasingOpportunities() {
       {/* Floor Plan Viewer */}
       <div>
         <div style={{ padding: "64px 80px 0" }}>
-          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 16 }}>
             Floor Plans · Al Hamra Complex
           </div>
           <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
@@ -474,7 +474,7 @@ export function LeasingInquiry() {
                   <div key={field}>
                     <label
                       htmlFor={`inquiry-${field}`}
-                      style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
+                      style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 8 }}
                     >
                       {field}
                     </label>
@@ -494,7 +494,7 @@ export function LeasingInquiry() {
                 <div>
                   <label
                     htmlFor="inquiry-message"
-                    style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 8 }}
+                    style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 8 }}
                   >
                     Message
                   </label>
@@ -533,7 +533,7 @@ export function LeasingInquiry() {
                 { label: "Hours",   value: "Sunday – Thursday · 8:00 AM – 6:00 PM" },
               ].map(({ label, value }) => (
                 <div key={label} style={{ padding: "18px 0", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
-                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#767676", marginBottom: 6 }}>{label}</div>
+                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 6 }}>{label}</div>
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
                 </div>
               ))}
@@ -579,7 +579,7 @@ export function Downloads() {
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
                     <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "15px", fontWeight: 500, color: "#1D1D1B" }}>{title}</span>
-                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}>{format} · {size}</span>
+                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}>{format} · {size}</span>
                   </div>
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", color: "#6B6B6B" }}>{desc}</div>
                 </div>
@@ -629,7 +629,7 @@ export function Contact() {
             { label: "Address", value: "Al Hamra Tower, Sharq, Kuwait City, Kuwait" },
           ].map(({ label, value }) => (
             <div key={label} style={{ background: "#fff", padding: "44px 36px" }}>
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 14 }}>{label}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>{label}</div>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "15px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
             </div>
           ))}

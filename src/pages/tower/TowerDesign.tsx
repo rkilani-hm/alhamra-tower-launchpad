@@ -85,7 +85,7 @@ function SpecTable({ cat, rows }: { cat: string; rows: string[][] }) {
           style={{ display: "flex", gap: 16,
             padding: "11px 0", borderBottom: i < rows.length-1 ? "1px solid rgba(29,29,27,0.06)" : "none" }}>
           <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-            color: "#767676", minWidth: 200, flexShrink: 0, letterSpacing: "0.05em" }}>{label}</div>
+            color: "#6B6B6B", minWidth: 200, flexShrink: 0, letterSpacing: "0.05em" }}>{label}</div>
           <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             color: DARK, fontWeight: 400 }}>{value}</div>
         </motion.div>
@@ -126,7 +126,7 @@ export default function TowerDesign() {
             <motion.div initial={{ opacity: 0, x: 20 }} animate={facadeInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-                letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+                letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 20 }}>
                 The Dual Façade
               </div>
               <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -161,7 +161,7 @@ export default function TowerDesign() {
                     </div>
                     <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                       letterSpacing: "0.2em", textTransform: "uppercase",
-                      color: "#767676", marginTop: 6 }}>{l}</div>
+                      color: "#6B6B6B", marginTop: 6 }}>{l}</div>
                   </div>
                 ))}
               </div>
@@ -176,7 +176,7 @@ export default function TowerDesign() {
           className="design-grid-2">
           <div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 20 }}>
               The Lamella Structure
             </div>
             <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -208,7 +208,7 @@ export default function TowerDesign() {
                 of the laminar structure supporting the tower above and below articulates space."
               </p>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL, marginTop: 10 }}>
+                letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL_TEXT, marginTop: 10 }}>
                 SOM / Skidmore, Owings & Merrill
               </div>
             </div>
@@ -247,7 +247,7 @@ export default function TowerDesign() {
       <div style={{ background: "#fff", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-            letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 16 }}>
+            letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 16 }}>
             Technical Specification
           </div>
           <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -273,7 +273,7 @@ export default function TowerDesign() {
         {/* Section kicker */}
         <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
           fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em",
-          textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
+          textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 48 }}>
           Drawings & Documentation
         </div>
 
@@ -292,11 +292,11 @@ export default function TowerDesign() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline",
             marginTop: 14, flexWrap: "wrap", gap: 8 }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-              fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676" }}>
+              fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B" }}>
               SOM — Typical office floor plan
             </div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-              fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: PEARL }}>
+              fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: PEARL_TEXT }}>
               ~2,300 m² net leasable area per floor
             </div>
           </div>
@@ -309,7 +309,7 @@ export default function TowerDesign() {
         >
           <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
             fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
-            color: "#767676", marginBottom: 20 }}>
+            color: "#6B6B6B", marginBottom: 20 }}>
             Elevation Drawings
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
@@ -323,7 +323,7 @@ export default function TowerDesign() {
                   style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }} />
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "#767676", marginTop: 12 }}>{label}</div>
+                  color: "#6B6B6B", marginTop: 12 }}>{label}</div>
               </div>
             ))}
           </div>

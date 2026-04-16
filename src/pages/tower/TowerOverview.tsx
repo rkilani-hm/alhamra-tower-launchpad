@@ -131,7 +131,7 @@ export default function TowerOverview() {
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <div ref={heroRef} style={{ position: "relative", height: "90vh", minHeight: 520, overflow: "hidden", background: "#0c0b09" }}>
         <motion.img
-          src="/assets/tower-overview-banner.png"
+          src="/assets/tower-overview-banner.jpg"
           alt="Al Hamra Tower — official SOM architectural render at dusk, Kuwait City"
           style={{ y: imgY, position: "absolute", inset: 0, width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center top" }}
@@ -186,7 +186,7 @@ export default function TowerOverview() {
                 borderRight: [0,1,3,4].includes(i) ? "1px solid rgba(29,29,27,0.07)" : "none",
                 borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none",
                 display: "flex", flexDirection: "column", gap: 6 }}>
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
+              <div aria-hidden="true" style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
                 color: PEARL, letterSpacing: "0.3em", marginBottom: 4 }}>{icon}</div>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "clamp(22px,3vw,42px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
@@ -197,7 +197,7 @@ export default function TowerOverview() {
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.2em", textTransform: "uppercase", color: DARK, fontWeight: 400 }}>{l}</div>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.82vw,11px)",
-                color: "#767676" }}>{sub}</div>
+                color: "#6B6B6B" }}>{sub}</div>
             </motion.div>
           ))}
         </div>
@@ -214,7 +214,7 @@ export default function TowerOverview() {
                 padding: "14px 28px", cursor: "pointer",
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.3em", textTransform: "uppercase", whiteSpace: "nowrap",
-                color: activeTab === tab.id ? DARK : "#767676",
+                color: activeTab === tab.id ? DARK : "#6B6B6B",
                 fontWeight: activeTab === tab.id ? 500 : 300,
                 transition: "color 0.3s" }}>
               {tab.label}
@@ -253,7 +253,7 @@ export default function TowerOverview() {
                   "{activeContent.quote}"
                 </p>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                  letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL }}>
+                  letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL_TEXT }}>
                   {activeContent.credit}
                 </div>
               </div>
@@ -264,7 +264,7 @@ export default function TowerOverview() {
                     {activeContent.stat.n}
                   </div>
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-                    letterSpacing: "0.2em", textTransform: "uppercase", color: "#767676", marginTop: 8 }}>
+                    letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", marginTop: 8 }}>
                     {activeContent.stat.l}
                   </div>
                 </div>
@@ -278,7 +278,7 @@ export default function TowerOverview() {
       <div style={{ background: "#fff", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)",
         borderTop: "1px solid rgba(29,29,27,0.07)" }}>
         <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
+          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 36 }}>
           Awards & Recognition
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 24 }}>
@@ -303,7 +303,7 @@ export default function TowerOverview() {
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,0.9vw,13px)",
                 fontWeight: 400, color: DARK, marginBottom: 4 }}>{title}</div>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.8vw,11px)",
-                color: "#767676" }}>{sub}</div>
+                color: "#6B6B6B" }}>{sub}</div>
             </motion.div>
           ))}
         </div>

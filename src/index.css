@@ -1,8 +1,24 @@
 
 /* Brand font stack — use var(--font-brand) everywhere */
+
+/* ── Z-index scale ─────────────────────────────────────────────────────
+   10  base overlays (sticky headers, image overlays)
+   20  fixed elements (navbar)
+   30  dropdowns / popovers
+   50  modals / drawers
+   100 toasts / notifications
+──────────────────────────────────────────────────────────────────────── */
+:root {
+  --z-base:   10;
+  --z-sticky: 20;
+  --z-dropdown: 30;
+  --z-modal:  50;
+  --z-toast: 100;
+}
 :root {
   --font-brand: 'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif;
-  --color-pearl: #C8B99A;
+  --color-pearl: #C8B99A;         /* decorative use only — fails AA on white */
+  --color-pearl-text: #8B6E3E;   /* accessible text variant — 4.78:1 on white */
   --color-dark:  #1D1D1B;
   --color-muted: #767676;
 }

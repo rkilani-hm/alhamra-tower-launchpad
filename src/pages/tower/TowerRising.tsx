@@ -5,7 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
 
-const PEARL = "#C8B99A";
+const PEARL      = "#C8B99A";  /* decorative — large/graphic use */
+const PEARL_TEXT = "#8B6E3E";  /* accessible kicker text — 4.78:1 on white */
 const GULF  = "#2A5F7A";
 const DARK  = "#1D1D1B";
 
@@ -15,31 +16,31 @@ const ERAS = [
     year: "2004",
     title: "The Site is Set",
     body: "A mixed-use complex with a 200m tower is designed by Al Jazera Consultants. Excavation begins — 289 cast-in-place bored piles are sunk 22–27 metres into Kuwait's silty sand. The foundation work cannot stop.",
-    img: "/assets/da7f3866-ef56-43e9-93c1-9702fb1fcd3a.jpg",
+    img: "/assets/rising-era-2004-site-set.jpg",
   },
   {
     year: "2005",
     title: "The Height Doubles",
     body: "Kuwait City Municipality raises the maximum allowable building height to 400m. Client group engages Skidmore, Owings & Merrill (SOM) — one of the world's foremost high-rise architects — to design a landmark tower. SOM begins concept design while the contractor is already on site.",
-    img: "/assets/6ca37380-97cf-4f0f-b1ee-8cbcb4092c0f.jpg",
+    img: "/assets/rising-era-2005-height-doubles.jpg",
   },
   {
     year: "2006",
     title: "The Form Emerges",
     body: "SOM's decisive gesture: subtract a spiraling quadrant from a prismatic volume, rotate it at each higher level. Two hyperbolic paraboloid walls emerge — the iconic flared ribbons. The geometry provides transparency toward the Gulf and opacity toward the desert. Construction begins.",
-    img: "/assets/9c04202d-5fbc-48bf-90c8-4aaa45443c3b.png",
+    img: "/assets/rising-era-2006-form-emerges.png",
   },
   {
     year: "2008",
     title: "The Lamella Rises",
     body: "The lobby lamella — a web of 24-metre curved steel elements arching outward from the building core — is constructed using fiberglass formwork fabricated from 3D parametric models. It creates a column-free 900m² lobby. Engineers run non-linear buckling analyses on each member.",
-    img: "/assets/4c16005f-dd03-4a0d-9bd6-bd99b10350c5.png",
+    img: "/assets/rising-era-2008-lamella-rises.jpg",
   },
   {
     year: "2011",
     title: "Kuwait's Skyline Changes",
     body: "Al Hamra Tower tops out at 412.6 metres. At completion it ranks among the ten tallest buildings in the world. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — stands complete in Sharq District. Kuwait City has a new landmark.",
-    img: "/assets/3b1a5251-97d8-42bc-9662-502055b26dd5.png",
+    img: "/assets/rising-era-2011-skyline-changes.png",
     img2: "/assets/skyline-gulf-night.jpg",
   },
 ];
@@ -78,7 +79,7 @@ export default function TowerRising() {
             <span style={{ width: 32, height: 1,
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`, flexShrink: 0 }} />
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-              fontSize: "11px", letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
+              fontSize: "11px", letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
               Construction Timeline
             </div>
           </div>
@@ -101,7 +102,7 @@ export default function TowerRising() {
 
                     {/* Row header — always visible, clickable */}
                     <button type="button"
-                      onClick={() => setActiveEra(isOpen ? -1 : i)}
+                      onClick={() => setActiveEra(i)}
                       style={{
                         width: "100%", textAlign: "left", background: "none", border: "none",
                         cursor: "pointer", padding: "18px 0",
@@ -123,7 +124,7 @@ export default function TowerRising() {
                       <span style={{
                         fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                         fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase",
-                        color: isOpen ? DARK : "#767676",
+                        color: isOpen ? DARK : "#6B6B6B",
                         flex: 1, transition: "color 0.3s ease",
                       }}>
                         {era.title}
@@ -188,9 +189,9 @@ export default function TowerRising() {
                   <div style={{
                     fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                     fontSize: "10px", letterSpacing: "0.35em", textTransform: "uppercase",
-                    color: PEARL, marginBottom: 16,
+                    color: PEARL_TEXT, marginBottom: 16,
                   }}>
-                    {activeEra >= 0 ? ERAS[activeEra].year : ERAS[0].year}
+                    {ERAS[activeEra].year}
                   </div>
 
                   {/* Image — constrained to accordion section height */}
@@ -201,8 +202,8 @@ export default function TowerRising() {
                     maxHeight: "calc((5 * 58px + 180px) * 1.7)",
                   }}>
                     <img
-                      src={activeEra >= 0 ? ERAS[activeEra].img : ERAS[0].img}
-                      alt={activeEra >= 0 ? ERAS[activeEra].title : ERAS[0].title}
+                      src={ERAS[activeEra].img}
+                      alt={ERAS[activeEra].title}
                       loading="lazy"
                       style={{
                         display: "block",
@@ -221,7 +222,7 @@ export default function TowerRising() {
                     fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
                     color: "#9a9894", marginTop: 14,
                   }}>
-                    {activeEra >= 0 ? ERAS[activeEra].title : ERAS[0].title}
+                    {ERAS[activeEra].title}
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -234,7 +235,7 @@ export default function TowerRising() {
 
       {/* ── SECTION 2: The Lamella Story ───────────────────────────── */}
       <section style={{ background: DARK, overflow: "hidden" }}
-        className="pattern-band">
+        className="lamella-section">
         <div ref={lamellaRef} style={{
           maxWidth: 1280, margin: "0 auto",
           padding: "clamp(64px,10vh,120px) clamp(24px,6vw,96px)",
@@ -253,7 +254,7 @@ export default function TowerRising() {
                   <span style={{ width: 32, height: 1,
                     background: `linear-gradient(to right, ${PEARL}, #D4CFC9)` }} />
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
-                    letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
+                    letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
                     Engineering Feat
                   </div>
                 </div>
@@ -312,12 +313,12 @@ export default function TowerRising() {
               style={{ position: "relative", overflow: "hidden" }}
             >
               <img
-                src="/assets/2503102f-7fe4-4836-9a96-3f78e4ae1161.jpg"
+                src="/assets/lobby-lamella-ceiling.jpg"
                 alt="Al Hamra Tower — lamella lobby ceiling, 24 metres high, column-free"
                 style={{ width: "100%", display: "block",
                   objectFit: "cover", minHeight: 400 }}
                 onError={e => {
-                  (e.currentTarget as HTMLImageElement).src = "/assets/2503102f-7fe4-4836-9a96-3f78e4ae1161.jpg";
+                  (e.currentTarget as HTMLImageElement).src = "/assets/lobby-lamella-ceiling.jpg";
                 }}
               />
               {/* Pearl gradient overlay bottom */}
@@ -349,7 +350,7 @@ export default function TowerRising() {
             <span style={{ width: 32, height: 1,
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)` }} />
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
-              letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
+              letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
               The Tower Today
             </div>
           </div>
@@ -358,12 +359,12 @@ export default function TowerRising() {
           {/* Bespoke masonry grid: 4 columns, portrait images span 2 rows */}
           <div className="tower-gallery">
             {[
-              { src: "/assets/cb81b098-f1c8-4aa7-a05d-0a4ddb88c5e5.png", alt: "Al Hamra Tower against blue Kuwaiti sky", cls: "gi-tall" },
-              { src: "/assets/b4097b4e-ffb1-4d82-8006-3d1b87bb8726.png", alt: "Jura limestone facade — the stone south wall", cls: "gi-wide" },
-              { src: "/assets/0d638fff-a80b-43f1-9dd5-9bcf1791fa2e.png", alt: "Tower entrance lit at night", cls: "gi-wide" },
-              { src: "/assets/3fd1126d-6489-475d-8b72-ebcb2637eae5.png", alt: "Al Hamra Luxury Centre atrium", cls: "gi-wide-bottom" },
-              { src: "/assets/eba71a53-124d-4e05-9354-6ec21564d0be.png", alt: "Office south corridor", cls: "gi-tall-right" },
-              { src: "/assets/571e6fd5-b20f-42c8-9e9b-41a0e94868be.png", alt: "Sky Lobby corridor — travertine, chandelier rings, Gulf views", cls: "gi-tall-end" },
+              { src: "/assets/tower-exterior-blue-sky.jpg", alt: "Al Hamra Tower against blue Kuwaiti sky", cls: "gi-tall" },
+              { src: "/assets/facade-limestone-south-wall.jpg", alt: "Jura limestone facade — the stone south wall", cls: "gi-wide" },
+              { src: "/assets/tower-entrance-night.jpg", alt: "Tower entrance lit at night", cls: "gi-wide" },
+              { src: "/assets/mall-atrium-luxury-centre.jpg", alt: "Al Hamra Luxury Centre atrium", cls: "gi-wide-bottom" },
+              { src: "/assets/office-south-corridor.jpg", alt: "Office south corridor", cls: "gi-tall-right" },
+              { src: "/assets/sky-lobby-travertine-corridor.jpg", alt: "Sky Lobby corridor — travertine, chandelier rings, Gulf views", cls: "gi-tall-end" },
             ].map(({ src, alt, cls }, i) => (
               <motion.div
                 key={src}

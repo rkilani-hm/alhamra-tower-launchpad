@@ -84,7 +84,7 @@ export function Navbar() {
     <>
       <nav
         style={{
-          position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 20,
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: scrolled
             ? "clamp(12px,1.5vh,14px) clamp(20px,5vw,64px)"
@@ -151,7 +151,7 @@ export function Navbar() {
                         transform: "translateX(-50%)", background: "#fff",
                         border: "1px solid rgba(29,29,27,0.09)",
                         boxShadow: "0 8px 32px rgba(29,29,27,0.08)",
-                        minWidth: 220, padding: "8px 0", zIndex: 300,
+                        minWidth: 220, padding: "8px 0", zIndex: 30,
                       }}
                     >
                       <div style={{ position: "absolute", top: 0, left: 16, right: 16, height: "2px", background: "#1D1D1B" }} />
@@ -203,7 +203,8 @@ export function Navbar() {
 
           <button type="button" onClick={() => setMobileOpen(p => !p)} className="mobile-menu-btn"
             style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, color: "#1D1D1B" }}
-            aria-label="Menu"
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
           >
             <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
               {mobileOpen ? (
@@ -224,12 +225,15 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.28, ease: "easeInOut" }}
             style={{
-              position: "fixed", inset: 0, zIndex: 190,
+              position: "fixed", inset: 0, zIndex: 20,
               background: "#fff", overflowY: "auto",
               paddingTop: 80,
             }}
@@ -271,7 +275,7 @@ export function Navbar() {
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.22, ease: "easeOut" }}
                       >
-                        <path d="M1 1L7 7L13 1" stroke={isActive ? "#1D1D1B" : "#767676"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M1 1L7 7L13 1" stroke={isActive ? "#1D1D1B" : "#6B6B6B"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </motion.svg>
                     </button>
 

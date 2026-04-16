@@ -54,7 +54,7 @@ interface Props {
   hoverColor?: string;
 }
 
-export function SocialIcons({ variant = "footer", color = "#767676", hoverColor = "#1D1D1B" }: Props) {
+export function SocialIcons({ variant = "footer", color = "#6B6B6B", hoverColor = "#1D1D1B" }: Props) {
   if (variant === "contact") {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -67,7 +67,7 @@ export function SocialIcons({ variant = "footer", color = "#767676", hoverColor 
               textDecoration: "none", color: "#1D1D1B",
               transition: "color 0.2s",
             }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#767676")}
+            onMouseEnter={e => (e.currentTarget.style.color = "#6B6B6B")}
             onMouseLeave={e => (e.currentTarget.style.color = "#1D1D1B")}
           >
             {/* Icon square */}

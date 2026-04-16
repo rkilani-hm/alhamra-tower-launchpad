@@ -37,7 +37,7 @@ export function Cursor() {
         background: "#1D1D1B",
         borderRadius: "50%",
         pointerEvents: "none",
-        zIndex: 9999,
+        zIndex: 50,
         transform: "translate(-50%, -50%)",
         transition: "width .25s, height .25s, background .25s, border .25s",
       }}

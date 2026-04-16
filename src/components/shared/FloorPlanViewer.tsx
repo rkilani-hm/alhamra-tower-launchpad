@@ -65,7 +65,7 @@ export function FloorPlanViewer() {
                 padding: "18px 32px",
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px",
                 letterSpacing: "0.2em", textTransform: "uppercase",
-                color: isActive ? "#1D1D1B" : "#767676",
+                color: isActive ? "#1D1D1B" : "#6B6B6B",
                 background: "none", border: "none", cursor: "pointer",
                 borderBottom: isActive ? "2px solid #1D1D1B" : "2px solid transparent",
                 transition: "color 0.2s, border-color 0.2s",
@@ -127,7 +127,7 @@ export function FloorPlanViewer() {
 
               {/* Legend */}
               <div style={{ marginTop: 36 }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>Legend</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>Legend</div>
                 {[
                   { color: "#F5C842", label: "Occupied — Retail" },
                   { color: "#5BB8E8", label: "F&B — Food & Beverage" },
@@ -141,7 +141,7 @@ export function FloorPlanViewer() {
               </div>
 
               <div style={{ marginTop: "auto", paddingTop: 32 }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676" }}>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B" }}>
                   Al Hamra Business Tower · Kuwait City
                 </div>
               </div>

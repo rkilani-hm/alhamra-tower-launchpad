@@ -180,7 +180,7 @@ export function Architecture() {
             </div>
             <div style={{
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.15em", color: "#767676", lineHeight: 1.5,
+              letterSpacing: "0.15em", color: "#6B6B6B", lineHeight: 1.5,
             }}>
               {l}
             </div>
@@ -222,7 +222,7 @@ export function Architecture() {
             </h3>
             <p style={{
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
-              fontSize: "clamp(13px,1.05vw,14px)", color: "#767676",
+              fontSize: "clamp(13px,1.05vw,14px)", color: "#6B6B6B",
               lineHeight: 1.9, marginBottom: 16,
             }}>
               Three glass facades face north, east, and west — maximising views 
@@ -232,7 +232,7 @@ export function Architecture() {
             </p>
             <p style={{
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
-              fontSize: "clamp(13px,1.05vw,14px)", color: "#767676",
+              fontSize: "clamp(13px,1.05vw,14px)", color: "#6B6B6B",
               lineHeight: 1.9,
             }}>
               The deep-angled windows carved into the south wall angle 

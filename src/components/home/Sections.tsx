@@ -58,9 +58,9 @@ export function FloorConfigs() {
             }}
           >
             <div className="left-bar" style={{ position: "absolute", top: 0, left: 0, width: 2, height: 0, background: "#1D1D1B", transition: "height 0.4s ease" }} />
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 16 }}>{code}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 16 }}>{code}</div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 16, fontWeight: 500, color: "#1D1D1B", marginBottom: 12, letterSpacing: "0.04em" }}>{title}</div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 36, fontWeight: 300, color: "#767676", lineHeight: 1, marginBottom: 16 }}>{size}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 36, fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 16 }}>{size}</div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 12, color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
           </div>
         </ScrollReveal>
@@ -147,7 +147,7 @@ export function ContactStrip() {
         {CONTACTS.map(({ label, value }, i) => (
           <ScrollReveal key={label} delay={i * 0.1}>
             <div style={{ padding: "44px 48px", borderRight: "1px solid rgba(29,29,27,0.09)", height: "100%" }}>
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#767676", marginBottom: 12 }}>{label}</div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>{label}</div>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
             </div>
           </ScrollReveal>

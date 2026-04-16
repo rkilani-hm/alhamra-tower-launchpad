@@ -34,9 +34,9 @@ export function StatsBar({ stats }: { stats: Stat[] }) {
             onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
           >
             <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(36px,4vw,52px)", fontWeight:300, lineHeight:1, color:"#1D1D1B", marginBottom:8 }}>
-              {number}{unit && <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#767676" }}>{unit}</span>}
+              {number}{unit && <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#6B6B6B" }}>{unit}</span>}
             </div>
-            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#767676" }}>{label}</div>
+            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#6B6B6B" }}>{label}</div>
           </div>
         </Rv>
       ))}
@@ -54,7 +54,7 @@ export function FeatureGrid({ features }: { features: Feature[] }) {
           onMouseEnter={e=>((e.currentTarget as HTMLDivElement).style.background="#FAFAFA")}
           onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
         >
-          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color:"#767676", letterSpacing:"0.2em", marginBottom:10 }}>{number}</div>
+          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color:"#6B6B6B", letterSpacing:"0.2em", marginBottom:10 }}>{number}</div>
           <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:500, color:"#1D1D1B", marginBottom:8, letterSpacing:"0.04em" }}>{title}</div>
           <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"12px", color:"#6B6B6B", lineHeight:1.8 }}>{body}</div>
         </div>
@@ -70,7 +70,7 @@ export function SpecTable({ specs }: { specs: Spec[] }) {
     <div>
       {specs.map(({ label, value }, i) => (
         <div key={label} style={{ display:"flex", flexWrap:"wrap", alignItems:"baseline", gap:"8px 24px", padding:"14px 0", borderBottom: i<specs.length-1 ? "1px solid rgba(29,29,27,0.07)":"none" }}>
-          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing:"0.22em", textTransform:"uppercase", color:"#767676", minWidth:"clamp(130px,20vw,200px)", flexShrink:0 }}>{label}</div>
+          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing:"0.22em", textTransform:"uppercase", color:"#6B6B6B", minWidth:"clamp(130px,20vw,200px)", flexShrink:0 }}>{label}</div>
           <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"14px", fontWeight:300, color:"#1D1D1B" }}>{value}</div>
         </div>
       ))}
@@ -135,7 +135,7 @@ export function Tag({ children }: { children: ReactNode }) {
         style={{ display: "block", width: 24, height: 1, background: "#C8B99A", transformOrigin: "left", flexShrink: 0 }}
         aria-hidden="true"
       />
-      <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#767676" }}>
+      <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B" }}>
         {children}
       </span>
     </motion.div>
@@ -193,7 +193,7 @@ export function AwardTable({ awards }: { awards: Award[] }) {
     <div style={{ borderTop:"1px solid rgba(29,29,27,0.09)" }}>
       <div className="award-table-row" style={{ padding:"14px 0", borderBottom:"1px solid rgba(29,29,27,0.09)" }}>
         {["Year","Award","Organisation","Notes"].map(h => (
-          <div key={h} className={h==="Notes"?"award-table-notes":h==="Organisation"?"award-table-org":""} style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.25em", textTransform:"uppercase", color:"#767676" }}>{h}</div>
+          <div key={h} className={h==="Notes"?"award-table-notes":h==="Organisation"?"award-table-org":""} style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.25em", textTransform:"uppercase", color:"#6B6B6B" }}>{h}</div>
         ))}
       </div>
       {awards.map(({ year, award, org, notes }) => (
@@ -206,7 +206,7 @@ export function AwardTable({ awards }: { awards: Award[] }) {
             <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"22px", fontWeight:300, color:"#1D1D1B" }}>{year}</div>
             <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:400, color:"#1D1D1B" }}>{award}</div>
             <div className="award-table-org" style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"12px", color:"#6B6B6B" }}>{org}</div>
-            <div className="award-table-notes" style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"11.5px", color:"#767676", fontStyle:"italic" }}>{notes}</div>
+            <div className="award-table-notes" style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"11.5px", color:"#6B6B6B", fontStyle:"italic" }}>{notes}</div>
           </div>
         </Rv>
       ))}
