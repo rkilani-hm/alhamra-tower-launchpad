@@ -131,7 +131,7 @@ export default function TowerOverview() {
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <div ref={heroRef} style={{ position: "relative", height: "90vh", minHeight: 520, overflow: "hidden", background: "#0c0b09" }}>
         <motion.img
-          src="/assets/tower-render-dusk.jpg"
+          src="/assets/tower-overview-banner.png"
           alt="Al Hamra Tower — official SOM architectural render at dusk, Kuwait City"
           style={{ y: imgY, position: "absolute", inset: 0, width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center top" }}
