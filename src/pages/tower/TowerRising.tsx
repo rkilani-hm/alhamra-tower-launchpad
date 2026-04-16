@@ -21,7 +21,7 @@ const ERAS = [
     year: "2005",
     title: "The Height Doubles",
     body: "Kuwait City Municipality raises the maximum allowable building height to 400m. Client group engages Skidmore, Owings & Merrill (SOM) — one of the world's foremost high-rise architects — to design a landmark tower. SOM begins concept design while the contractor is already on site.",
-    img: "/assets/construction-phase-2.png",
+    img: "/assets/6ca37380-97cf-4f0f-b1ee-8cbcb4092c0f.jpg",
   },
   {
     year: "2006",
