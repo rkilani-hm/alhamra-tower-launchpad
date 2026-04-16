@@ -55,8 +55,6 @@ export function Footer() {
   return (
     <footer style={{ background: "#fff" }}>
 
-      {/* ── Al Hamra geometric band — footer crown ─────────────── */}
-      <PatternBand decorative />
 
       {/* Sitemap grid */}
       <div className="footer-sitemap">
