@@ -294,6 +294,29 @@ export default function TowerRising() {
             </div>
           </div>
 
+          {/* Zoom preview above gallery */}
+          <AnimatePresence>
+            {hoveredImg && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{
+                  marginBottom: 16, background: "#0c0b09",
+                  overflow: "hidden", height: "clamp(280px,40vh,480px)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}
+              >
+                <img
+                  src={hoveredImg}
+                  alt="Zoomed preview"
+                  style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Bespoke masonry grid: 4 columns, portrait images span 2 rows */}
           <div className="tower-gallery">
             {[
@@ -313,7 +336,8 @@ export default function TowerRising() {
                 transition={{ duration: 0.7, delay: i * 0.07 }}
                 style={{ overflow: "hidden", background: "#0c0b09", cursor: "pointer", position: "relative" }}
                 whileHover={{ scale: 1.015 }}
-                onClick={() => setLightbox(src)}
+                onHoverStart={() => setHoveredImg(src)}
+                onHoverEnd={() => setHoveredImg(null)}
               >
                 <img
                   src={src} alt={alt}
@@ -343,44 +367,6 @@ export default function TowerRising() {
           </div>
         </div>
       </section>
-
-      {/* Inline expanded image viewer */}
-      <AnimatePresence>
-        {lightbox && (
-          <div style={{ maxWidth: 1280, margin: "0 auto",
-            padding: "0 clamp(24px,6vw,96px) clamp(32px,5vh,64px)" }}>
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4, ease: [0.16,1,0.3,1] }}
-              style={{ overflow: "hidden", background: "#0c0b09",
-                position: "relative", cursor: "zoom-out" }}
-              onClick={() => setLightbox(null)}
-            >
-              <motion.img
-                src={lightbox}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-                style={{ width: "100%", maxHeight: "70vh", objectFit: "contain",
-                  display: "block", margin: "0 auto" }}
-                alt="Gallery expanded view"
-              />
-              <button
-                onClick={() => setLightbox(null)}
-                style={{
-                  position: "absolute", top: 12, right: 12,
-                  background: "rgba(255,255,255,0.1)", border: "none",
-                  color: "#fff", width: 32, height: 32, borderRadius: "50%",
-                  cursor: "pointer", fontSize: 16, display: "flex",
-                  alignItems: "center", justifyContent: "center",
-                }}
-              >✕</button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       <style>{`
         .tower-gallery {
