@@ -19,34 +19,11 @@ interface PatternBandProps {
 
 /** Horizontal band separator — sits between sections on white backgrounds */
 export function PatternBand({
-  opacity    = 1,
-  decorative = true,
-  height     = "auto",
+  opacity:    _opacity    = 1,
+  decorative: _decorative = true,
+  height:     _height     = "auto",
 }: PatternBandProps) {
-  return (
-    <div
-      aria-hidden={decorative}
-      style={{ width: "100%", lineHeight: 0, overflow: "hidden" }}
-    >
-      <img
-        src="/assets/patterns/al-hamra-pattern-band.jpg"
-        alt={decorative ? "" : "Al Hamra geometric pattern divider"}
-        draggable={false}
-        loading="lazy"
-        width={2667}
-        height={246}
-        style={{
-          display: "block",
-          width: "100%",
-          height,
-          objectFit: "cover",
-          objectPosition: "center",
-          userSelect: "none",
-          opacity,
-        }}
-      />
-    </div>
-  );
+  return null;
 }
 
 /** Full background texture — pattern overlay removed per design update.
