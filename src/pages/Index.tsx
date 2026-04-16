@@ -5,22 +5,19 @@ import { Stats }               from "@/components/home/Stats";
 import { Marquee }             from "@/components/home/Marquee";
 import { Architecture }        from "@/components/home/Architecture";
 import { GulfSection }         from "@/components/home/GulfSection";
-import { ViewSection }         from "@/components/home/ViewSection";
 import { InvitationSection }   from "@/components/home/InvitationSection";
 import { PatternBand }         from "@/components/shared/PatternBand";
 import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sections";
 
 /*
-  Homepage — 5 emotional beats:
+  Homepage — 4 emotional beats:
   ─────────────────────────────
   Beat 1  ARRIVAL      → Hero (full-viewport cinematic, tower)
   Beat 2  THE CITY     → GulfSection (aerial photo, coordinates, Gulf)
           ── Pattern Band divider ──
   Beat 3  THE TOWER    → Stats → Marquee → Architecture
           ── Pattern Band divider (light/gold variant) ──
-  Beat 4  THE VIEW     → ViewSection (floor 55 view, warmth)
-          ── Pattern Band divider ──
-  Beat 5  THE ADDRESS  → Perspectives → FloorConfigs → InvitationSection
+  Beat 4  THE ADDRESS  → Perspectives → FloorConfigs → InvitationSection
   ────── ContactStrip → Footer ──────────────────────────────────────────
 */
 
@@ -41,10 +38,7 @@ export default function Index() {
         <Marquee />
         <Architecture />
 
-        {/* ── Beat 4: The View ─────────────────────────────────── */}
-        <ViewSection />
-
-        {/* ── Beat 5: The Address ──────────────────────────────── */}
+        {/* ── Beat 4: The Address ──────────────────────────────── */}
         <Perspectives />
         <FloorConfigs />
         <InvitationSection />
