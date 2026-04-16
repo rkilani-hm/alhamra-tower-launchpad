@@ -39,7 +39,7 @@ const ERAS = [
     year: "2011",
     title: "Kuwait's Skyline Changes",
     body: "Al Hamra Tower tops out at 412.6 metres. At completion it ranks among the ten tallest buildings in the world. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — stands complete in Sharq District. Kuwait City has a new landmark.",
-    img: "/assets/construction-phase-5.png",
+    img: "/assets/00e8159d-8643-460f-be76-bd73a6b778b6.jpg",
     img2: "/assets/skyline-gulf-night.jpg",
   },
 ];
