@@ -33,7 +33,7 @@ const ERAS = [
     year: "2008",
     title: "The Lamella Rises",
     body: "The lobby lamella — a web of 24-metre curved steel elements arching outward from the building core — is constructed using fiberglass formwork fabricated from 3D parametric models. It creates a column-free 900m² lobby. Engineers run non-linear buckling analyses on each member.",
-    img: "/assets/construction-phase-4.png",
+    img: "/assets/construction-phase-4.jpg",
   },
   {
     year: "2011",
