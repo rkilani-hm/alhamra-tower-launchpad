@@ -90,19 +90,28 @@ export function TwoCol({ left, right, flip=false, bg="#fff" }: TwoColProps) {
 
 /* ── SECTION WRAPPER ─────────────────────── */
 import { PatternBackground } from "@/components/shared/PatternBand";
-interface SWProps { children: ReactNode; bg?: string; style?: React.CSSProperties; withPattern?: boolean; patternOpacity?: number; }
-export function Section({ children, bg="#fff", style, withPattern=true, patternOpacity=0.25 }: SWProps) {
+interface SWProps { children: ReactNode; bg?: string; style?: React.CSSProperties; withPattern?: boolean; patternOpacity?: number; title?: string; tag?: string; }
+export function Section({ children, bg="#fff", style, withPattern=true, patternOpacity=0.25, title, tag }: SWProps) {
   const isLight = bg === "#fff" || bg === "#FAFAFA" || bg === "white" || bg.startsWith("#F");
+  
+  const content = (
+    <>
+      {tag && <Rv><Tag>{tag}</Tag></Rv>}
+      {title && <Rv delay={0.1}><H2>{title}</H2></Rv>}
+      {children}
+    </>
+  );
+
   if (withPattern && isLight) {
     return (
       <PatternBackground opacity={patternOpacity} className="ah-section" style={{ background: bg, borderTop: "1px solid rgba(29,29,27,0.09)", ...style }}>
-        {children}
+        {content}
       </PatternBackground>
     );
   }
   return (
     <section className="ah-section" style={{ background: bg, borderTop: "1px solid rgba(29,29,27,0.09)", ...style }}>
-      {children}
+      {content}
     </section>
   );
 }
