@@ -263,40 +263,149 @@ export default function TowerDesign() {
         </div>
       </div>
 
-      {/* ── Architecture sketches ───────────────────────────────── */}
+      {/* ── Drawings & Documentation ─────────────────────────────── */}
       <div style={{ background: "#FAFAFA", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)" }}>
-        <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
+
+        {/* Section kicker */}
+        <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+          fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em",
+          textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
           Drawings & Documentation
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}
-          className="design-drawing-grid">
-          {[
-            { src: "/assets/arch-sketch.jpg", label: "SOM — Architectural sketch" },
-            { src: "/assets/arch-section.png", label: "Structural section — lobby lamella" },
-          ].map(({ src, label }) => (
-            <motion.div key={label}
-              initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.7 }}>
-              <img src={src} alt={label}
-                style={{ width: "100%", display: "block",
-                  border: "1px solid rgba(29,29,27,0.08)" }} />
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                letterSpacing: "0.2em", textTransform: "uppercase",
-                color: "#767676", marginTop: 12 }}>{label}</div>
-            </motion.div>
-          ))}
-        </div>
+
+        {/* ① Typical Floor Plan — full-width feature */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.8 }}
+          style={{ marginBottom: 64 }}
+        >
+          <img
+            src="/assets/drawings/floor-plan-typical.jpg"
+            alt="SOM — Al Hamra Tower typical office floor plan, ~2,300 m² NLA per floor"
+            loading="lazy"
+            style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }}
+          />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline",
+            marginTop: 14, flexWrap: "wrap", gap: 8 }}>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#767676" }}>
+              SOM — Typical office floor plan
+            </div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: PEARL }}>
+              ~2,300 m² net leasable area per floor
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ② Massing Studies — horizontal scroll carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
+          style={{ marginBottom: 64 }}
+        >
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
+            color: "#767676", marginBottom: 20 }}>
+            Massing Studies · Skidmore, Owings & Merrill
+          </div>
+          <div className="massing-scroll">
+            {[
+              { src: "/assets/drawings/massing-01-west.jpg",       label: "West façade" },
+              { src: "/assets/drawings/massing-02-southeast.jpg",  label: "South-east — carved void" },
+              { src: "/assets/drawings/massing-03-south.jpg",      label: "South — flared walls" },
+              { src: "/assets/drawings/massing-04-east.jpg",       label: "East — ribbon elevation" },
+              { src: "/assets/drawings/massing-05-elevation.jpg",  label: "South elevation" },
+            ].map(({ src, label }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.07 }}
+                className="massing-item"
+              >
+                <img
+                  src={src} alt={`Al Hamra Tower massing study — ${label}`}
+                  loading="lazy"
+                  style={{ display: "block", height: "100%", width: "auto",
+                    maxWidth: "none", border: "1px solid rgba(29,29,27,0.07)",
+                    transition: "transform 0.5s ease" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.025)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }}
+                />
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                  fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "#767676", marginTop: 10, whiteSpace: "nowrap" }}>
+                  {label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "10px", color: "#aaa", letterSpacing: "0.12em", marginTop: 10, textAlign: "right" }}>
+            scroll →
+          </div>
+        </motion.div>
+
+        {/* ③ South Wall Elevation — paired 2-col, portrait drawings */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.15 }}
+        >
+          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
+            color: "#767676", marginBottom: 20 }}>
+            Elevation Drawings
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
+            className="elevation-grid">
+            {[
+              { src: "/assets/drawings/south-wall-elevation.jpg", label: "South wall elevation · 412.6 m" },
+              { src: "/assets/drawings/massing-05-elevation.jpg", label: "South elevation — full context" },
+            ].map(({ src, label }) => (
+              <div key={label}>
+                <img src={src} alt={label} loading="lazy"
+                  style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }} />
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                  fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
+                  color: "#767676", marginTop: 12 }}>{label}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
 
       <style>{`
         .design-grid-1, .design-grid-2 { grid-template-columns: 1fr 1fr !important; }
         .spec-table-grid { grid-template-columns: 1fr 1fr !important; }
         .design-drawing-grid { grid-template-columns: 1fr 1fr !important; }
+        .elevation-grid { grid-template-columns: 1fr 1fr !important; }
+
+        /* Horizontal massing carousel */
+        .massing-scroll {
+          display: flex;
+          gap: 20px;
+          overflow-x: auto;
+          padding-bottom: 8px;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+        }
+        .massing-scroll::-webkit-scrollbar { height: 2px; }
+        .massing-scroll::-webkit-scrollbar-track { background: rgba(29,29,27,0.05); }
+        .massing-scroll::-webkit-scrollbar-thumb { background: rgba(200,185,154,0.5); border-radius: 1px; }
+        .massing-item {
+          flex: 0 0 auto;
+          height: 340px;
+          overflow: hidden;
+          scroll-snap-align: start;
+        }
+        .massing-item img { object-fit: contain; }
+
         @media (max-width: 768px) {
           .design-grid-1, .design-grid-2 { grid-template-columns: 1fr !important; }
           .spec-table-grid { grid-template-columns: 1fr !important; }
           .design-drawing-grid { grid-template-columns: 1fr !important; }
+          .elevation-grid { grid-template-columns: 1fr !important; }
+          .massing-item { height: 240px; }
         }
       `}</style>
     </PageLayout>
