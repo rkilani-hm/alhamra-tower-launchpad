@@ -371,6 +371,7 @@ export default function TowerRising() {
         }
       `}</style>
 
+      <PatternBand />
       <Footer />
     </>
   );
