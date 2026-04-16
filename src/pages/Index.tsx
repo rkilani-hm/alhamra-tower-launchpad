@@ -6,7 +6,6 @@ import { Marquee }             from "@/components/home/Marquee";
 import { Architecture }        from "@/components/home/Architecture";
 import { GulfSection }         from "@/components/home/GulfSection";
 import { InvitationSection }   from "@/components/home/InvitationSection";
-import { PatternBand }         from "@/components/shared/PatternBand";
 import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sections";
 
 /*
@@ -45,9 +44,6 @@ export default function Index() {
 
         {/* ── Footer approach ──────────────────────────────────── */}
         <ContactStrip />
-
-        {/* ── Pattern band above footer ────────────────────────── */}
-        <PatternBand />
 
       </main>
       <Footer />
