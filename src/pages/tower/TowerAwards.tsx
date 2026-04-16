@@ -27,7 +27,7 @@ const ENGINEERING_FACTS = [
     stat: "#1",
     label: "Tallest Stone-Clad Tower",
     body: "258,000 m² of Jura limestone — the world's largest area of stone cladding on a single building. A world record held since 2011 and the first asymmetrical skyscraper ever built. No other tower of comparable height achieves this degree of sculptural mass removal from its own structural body.",
-    img: "/lovable-uploads/Global_Acknowledgement.png",
+    img: "/lovable-uploads/3-_Recognition_2.png",
     imgCaption: "Dual facade · Glass meets limestone",
     credit: "Photo: Dave Burk · SOM",
   },
