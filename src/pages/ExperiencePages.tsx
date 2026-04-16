@@ -45,7 +45,8 @@ export function Services() {
 
       {/* Lobby entrance corridor — full bleed */}
       <div style={{ position: "relative", height:"clamp(240px,35vw,440px)", overflow: "hidden" }}>
-        <img src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance corridor"
+        <img
+              loading="lazy" src="/assets/lobby-entrance-corridor.jpg" alt="Al Hamra Tower Grand Lobby entrance corridor"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
         <div style={{ position: "absolute", bottom: 44, left: 80, right: 80 }}>
@@ -103,7 +104,8 @@ export function Services() {
       <div style={{ position: "relative", overflow: "hidden" }}>
         {/* Full-bleed sky lounge image */}
         <div style={{ position: "relative", height: "clamp(320px,45vw,580px)", overflow: "hidden", background: "#0c0b09" }}>
-          <img src="/assets/sky-lobby-panoramic.jpg"
+          <img
+              loading="lazy" src="/assets/sky-lobby-panoramic.jpg"
             alt="Al Hamra Sky Lounge — 351m dining with panoramic Kuwait views"
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", filter: "brightness(0.75)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
@@ -124,13 +126,15 @@ export function Services() {
         {/* Two-image strip: dining interior + city view */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#0c0b09" }}>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <img src="/assets/sky-lobby-lounge.jpg"
+            <img
+              loading="lazy" src="/assets/sky-lobby-lounge.jpg"
               alt="Sky Lounge dining room — chandelier, round tables, piano bar"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
             <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Fine Dining · Piano Bar</div>
           </div>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <img src="/assets/lounge-at-window.jpg"
+            <img
+              loading="lazy" src="/assets/lounge-at-window.jpg"
               alt="Sky Lobby lounge — cream sofas, Kuwait City through full-height windows"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
             <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Sky Lobby Lounge · Panoramic Views</div>
@@ -168,7 +172,8 @@ export function Services() {
         {/* Mall atrium + cinema in two columns */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, marginBottom: 2 }}>
           <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <img src="/assets/mall-atrium-skylight.jpg"
+            <img
+              loading="lazy" src="/assets/mall-atrium-skylight.jpg"
               alt="Al Hamra Luxury Centre — circular atrium with geometric skylight"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
@@ -178,7 +183,8 @@ export function Services() {
             </div>
           </div>
           <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <img src="/assets/tower-entrance-lit.jpg"
+            <img
+              loading="lazy" src="/assets/tower-entrance-lit.jpg"
               alt="Al Hamra Grand Cinema — 9-screen multiplex, leather recliners"
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
@@ -238,7 +244,8 @@ export function Location() {
 
       {/* Full-bleed waterfront photo */}
       <div style={{ position: "relative", height:"clamp(260px,40vw,520px)", overflow: "hidden" }}>
-        <img src="/assets/kuwait-waterfront.jpg" alt="Kuwait City waterfront and skyline"
+        <img
+              loading="lazy" src="/assets/kuwait-waterfront.jpg" alt="Kuwait City waterfront and skyline"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, left: 80, right: 80, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
@@ -278,7 +285,8 @@ export function Location() {
           </div>
           <Rv delay={0.15}>
             <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 380 }}>
-              <img src="/assets/kuwait-skyline.jpg" alt="Kuwait City skyline with Al Hamra Tower"
+              <img
+              loading="lazy" src="/assets/kuwait-skyline.jpg" alt="Kuwait City skyline with Al Hamra Tower"
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "24px 24px 20px" }}>
                 <a href="https://maps.google.com/?q=Al+Hamra+Tower+Kuwait" target="_blank" rel="noreferrer"
@@ -347,7 +355,8 @@ export function LeasingOpportunities() {
 
       {/* City view — upgraded to enhanced sky lobby panoramic (Kuwait Bay clearly visible) */}
       <div style={{ position: "relative", height:"clamp(220px,32vw,400px)", overflow: "hidden" }}>
-        <img src="/assets/sky-lobby-panoramic.jpg" alt="Kuwait City and Arabian Gulf panoramic view from Al Hamra Sky Lobby"
+        <img
+              loading="lazy" src="/assets/sky-lobby-panoramic.jpg" alt="Kuwait City and Arabian Gulf panoramic view from Al Hamra Sky Lobby"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, right: 80, textAlign: "right" }}>
@@ -574,7 +583,7 @@ export function Downloads() {
                   </div>
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", color: "#6B6B6B" }}>{desc}</div>
                 </div>
-                <button style={{
+                <button type="button" style={{
                   display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0,
                   background: "none", border: "1px solid rgba(29,29,27,0.2)", cursor: "pointer",
                   fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em",

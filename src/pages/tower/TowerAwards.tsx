@@ -228,7 +228,8 @@ export function TowerAwards() {
           {/* Right — lamella ceiling close-up */}
           <Rv delay={0.2}>
             <div style={{ position: "relative", overflow: "hidden" }}>
-              <img src="/assets/lobby-ceiling-day.jpg" alt="Lamella ceiling structure — daylight view"
+              <img
+              loading="lazy" src="/assets/lobby-ceiling-day.jpg" alt="Lamella ceiling structure — daylight view"
                 style={{ width: "100%", height: "clamp(300px,40vw,480px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "20px 20px 16px" }}>
                 <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
@@ -289,7 +290,8 @@ export function TowerAwards() {
       {/* ══ PHOTO PAIR — ENTRANCE ENGINEERING ══════════════ */}
       <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }} className="awards-photo-pair">
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img src="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance — night"
+          <img
+              loading="lazy" src="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance — night"
             style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block", filter: "brightness(0.9)" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>The Entrance at Night</div>
@@ -299,7 +301,8 @@ export function TowerAwards() {
           </div>
         </div>
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img src="/assets/lobby-ceiling-portrait.jpg" alt="Lamella ceiling — portrait"
+          <img
+              loading="lazy" src="/assets/lobby-ceiling-portrait.jpg" alt="Lamella ceiling — portrait"
             style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>The Lamella Web</div>

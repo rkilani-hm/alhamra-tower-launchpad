@@ -1,4 +1,12 @@
 
+/* Brand font stack — use var(--font-brand) everywhere */
+:root {
+  --font-brand: 'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif;
+  --color-pearl: #C8B99A;
+  --color-dark:  #1D1D1B;
+  --color-muted: #767676;
+}
+
 /* ── Design Tokens ──────────────────────────────────────────────────
    Single source of truth for all brand colours.
    Use --color-muted (not #B2B2B2) and --color-sand-aa (not #C5A882)
@@ -770,4 +778,12 @@
 .ah-spec-row.visible {
   opacity: 1;
   transform: translateX(0);
+}
+
+/* Respect prefers-reduced-motion for all Framer Motion elements */
+@media (prefers-reduced-motion: reduce) {
+  [style*="transform"], [style*="opacity"] {
+    transition: none !important;
+    animation: none !important;
+  }
 }

@@ -38,7 +38,8 @@ export function InvitationSection() {
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden",
       }}>
-        <img src="/assets/tower-aerial-night.jpg" alt=""
+        <img
+              loading="lazy" src="/assets/tower-aerial-night.jpg" alt="" aria-hidden="true"
           style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.08, filter: "grayscale(30%)" }} />
       </div>
 

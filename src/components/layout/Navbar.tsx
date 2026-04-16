@@ -201,7 +201,7 @@ export function Navbar() {
             Leasing Inquiry
           </Link>
 
-          <button onClick={() => setMobileOpen(p => !p)} className="mobile-menu-btn"
+          <button type="button" onClick={() => setMobileOpen(p => !p)} className="mobile-menu-btn"
             style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, color: "#1D1D1B" }}
             aria-label="Menu"
           >
@@ -243,7 +243,7 @@ export function Navbar() {
                   <div key={label} style={{ borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
 
                     {/* Section header — tap to expand */}
-                    <button
+                    <button type="button"
                       onClick={() => toggleSection(label)}
                       aria-expanded={isExpanded}
                       aria-controls={`mobile-nav-${label.replace(/\s+/g, "-").toLowerCase()}`}

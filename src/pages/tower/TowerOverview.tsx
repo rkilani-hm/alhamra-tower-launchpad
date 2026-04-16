@@ -209,7 +209,7 @@ export default function TowerOverview() {
         <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(29,29,27,0.1)",
           marginBottom: 56, overflowX: "auto" }}>
           {TABS.map(tab => (
-            <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+            <button type="button" key={tab.id} onClick={() => setActiveTab(tab.id)}
               style={{ position: "relative", background: "none", border: "none",
                 padding: "14px 28px", cursor: "pointer",
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",

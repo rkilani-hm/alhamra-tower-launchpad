@@ -32,7 +32,8 @@ export function WorkplaceExperience() {
 
       {/* Full-bleed lobby — H51: grand lamella lobby, white arches, full daylight */}
       <div style={{ position: "relative", height:"clamp(340px,48vw,640px)", overflow: "hidden" }}>
-        <img src="/assets/lobby-grand-lamella.jpg" alt="Al Hamra Tower Grand Lobby — lamella arches"
+        <img
+              loading="lazy" src="/assets/lobby-grand-lamella.jpg" alt="Al Hamra Tower Grand Lobby — lamella arches"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.05) 0%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
@@ -63,7 +64,8 @@ export function WorkplaceExperience() {
           <Rv delay={0.15}>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/lobby-elevator-corridor.jpg" alt="Al Hamra elevator corridor — travertine and lamella"
+                <img
+              loading="lazy" src="/assets/lobby-elevator-corridor.jpg" alt="Al Hamra elevator corridor — travertine and lamella"
                   style={{ width: "100%", height: 320, objectFit: "cover", objectPosition: "center center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "16px 20px 14px" }}>
                   <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
@@ -72,7 +74,8 @@ export function WorkplaceExperience() {
                 </div>
               </div>
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img src="/assets/lounge-at-window.jpg" alt="Sky Lobby lounge — panoramic Kuwait City view"
+                <img
+              loading="lazy" src="/assets/lounge-at-window.jpg" alt="Sky Lobby lounge — panoramic Kuwait City view"
                   style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "12px 20px 12px" }}>
                   <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
@@ -118,7 +121,8 @@ export function OfficeSpaces() {
 
       {/* Hero — city view with overlay stats */}
       <div style={{ position: "relative", height:"clamp(280px,40vw,520px)", overflow: "hidden" }}>
-        <img src="/assets/sky-lobby-corridor.jpg" alt="Al Hamra Sky Lobby — travertine corridor with chandelier and Gulf views"
+        <img
+              loading="lazy" src="/assets/sky-lobby-corridor.jpg" alt="Al Hamra Sky Lobby — travertine corridor with chandelier and Gulf views"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.68) 100%)" }} />
         <div className="office-hero-stats">
@@ -158,7 +162,8 @@ export function OfficeSpaces() {
 
       {/* Full-bleed lobby arrival experience — using lobby-elevator-corridor-2 (warm gold ambiance) */}
       <div style={{ position: "relative", height: "clamp(300px,42vw,560px)", overflow: "hidden" }}>
-        <img src="/assets/lobby-elevator-corridor-2.jpg" alt="Al Hamra Tower — elevator corridor lamella"
+        <img
+              loading="lazy" src="/assets/lobby-elevator-corridor-2.jpg" alt="Al Hamra Tower — elevator corridor lamella"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
         <div className="ah-section" style={{ position: "absolute", top: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column", justifyContent: "center", background: "transparent" }}>
@@ -205,7 +210,8 @@ export function OfficeSpaces() {
           <Rv>
             <div style={{ display: "flex", flexDirection: "column", gap: 4, height: "100%", minHeight: 420 }}>
               <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
-                <img src="/assets/floor-reception.jpg" alt="Al Hamra floor reception — travertine and steel fins"
+                <img
+              loading="lazy" src="/assets/floor-reception.jpg" alt="Al Hamra floor reception — travertine and steel fins"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Floor Reception</div>
@@ -215,7 +221,8 @@ export function OfficeSpaces() {
                 </div>
               </div>
               <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
-                <img src="/assets/tenant-lobby.jpg" alt="Al Hamra tenant lobby — warm timber and leather"
+                <img
+              loading="lazy" src="/assets/tenant-lobby.jpg" alt="Al Hamra tenant lobby — warm timber and leather"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Tenant Lobby</div>
@@ -242,7 +249,8 @@ export function OfficeSpaces() {
       {/* Entrance night — full-bleed dark split */}
       <div className="office-night-split">
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img src="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance at night"
+          <img
+              loading="lazy" src="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance at night"
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Night Presence</div>
@@ -252,7 +260,8 @@ export function OfficeSpaces() {
           </div>
         </div>
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img src="/assets/boardroom-enhanced.jpg" alt="Al Hamra boardroom — 14-seat table, Kuwait City view, awards"
+          <img
+              loading="lazy" src="/assets/boardroom-enhanced.jpg" alt="Al Hamra boardroom — 14-seat table, Kuwait City view, awards"
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>Executive Boardroom</div>
@@ -359,7 +368,8 @@ export function VerticalTransportation() {
 
       {/* Elevator corridor — new: lobby-elevator-corridor.jpg (warm travertine + lamella framing) */}
       <div style={{ position: "relative", height:"clamp(260px,38vw,480px)", overflow: "hidden" }}>
-        <img src="/assets/lobby-elevator-corridor.jpg" alt="Al Hamra Tower — elevator corridor with lamella structure"
+        <img
+              loading="lazy" src="/assets/lobby-elevator-corridor.jpg" alt="Al Hamra Tower — elevator corridor with lamella structure"
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
         <div className="photo-overlay-text" style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>

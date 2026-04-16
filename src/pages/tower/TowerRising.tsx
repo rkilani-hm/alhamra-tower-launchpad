@@ -100,7 +100,7 @@ export default function TowerRising() {
                   <div key={era.year} style={{ borderTop: "1px solid rgba(29,29,27,0.08)" }}>
 
                     {/* Row header — always visible, clickable */}
-                    <button
+                    <button type="button"
                       onClick={() => setActiveEra(isOpen ? -1 : i)}
                       style={{
                         width: "100%", textAlign: "left", background: "none", border: "none",

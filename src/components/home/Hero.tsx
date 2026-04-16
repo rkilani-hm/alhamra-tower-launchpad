@@ -41,6 +41,7 @@ export function Hero() {
       {/* Full-bleed media */}
       <motion.div style={{ position: "absolute", inset: 0, y: mediaY }}>
         <img
+              loading="lazy"
           src="/assets/tower-sunset.jpg"
           alt="Al Hamra Business Tower rising 412 metres above Kuwait City"
           style={{ position: "absolute", inset: 0, width: "100%", height: "115%",

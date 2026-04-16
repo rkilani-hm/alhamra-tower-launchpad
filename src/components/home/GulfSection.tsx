@@ -44,6 +44,7 @@ export function GulfSection() {
         style={{ position: "absolute", inset: 0, y: imgY, scale }}
       >
         <img
+              loading="lazy"
           src="/assets/skyline-gulf-night.jpg"
           alt="Al Hamra Tower above Kuwait City at dusk, Arabian Gulf on the horizon"
           style={{

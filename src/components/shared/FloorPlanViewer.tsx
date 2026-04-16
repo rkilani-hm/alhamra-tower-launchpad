@@ -53,7 +53,7 @@ export function FloorPlanViewer() {
         {PLANS.map(({ id, label, level }) => {
           const isActive = active === id;
           return (
-            <button
+            <button type="button"
               key={id}
               role="tab"
               aria-selected={active === id}
@@ -161,6 +161,7 @@ export function FloorPlanViewer() {
                 minHeight: 560,
               }}>
               <img
+              loading="lazy"
                 src={plan.src}
                 alt={`Al Hamra Tower — ${plan.label}`}
                 style={{

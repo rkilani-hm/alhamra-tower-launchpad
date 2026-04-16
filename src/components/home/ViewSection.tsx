@@ -38,6 +38,7 @@ export function ViewSection() {
       {/* ── Image ─────────────────────────────────────────────── */}
       <motion.div style={{ position: "absolute", inset: 0, y: imgY, scale }}>
         <img
+              loading="lazy"
           src="/assets/global-landmark.png"
           alt="Al Hamra Tower Sky Lobby — logo sculpture, Gulf views, amber pendant lamps"
           style={{
