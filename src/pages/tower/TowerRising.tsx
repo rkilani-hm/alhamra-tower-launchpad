@@ -198,7 +198,7 @@ export default function TowerRising() {
                     background: "#f7f6f4",
                     border: "1px solid rgba(29,29,27,0.07)",
                     overflow: "hidden",
-                    maxHeight: "calc(5 * 58px + 180px)",
+                    maxHeight: "calc((5 * 58px + 180px) * 1.7)",
                   }}>
                     <img
                       src={activeEra >= 0 ? ERAS[activeEra].img : ERAS[0].img}
