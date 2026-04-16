@@ -18,6 +18,7 @@ interface Props {
   title:    string;
   subtitle?: string;
   crumbs?:  Crumb[];
+  image?:   string;
 }
 
 export function PageHero({ tag, title, subtitle, crumbs }: Props) {
