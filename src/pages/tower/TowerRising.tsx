@@ -54,7 +54,7 @@ const LAMELLA_FACTS = [
 
 export default function TowerRising() {
   const [activeEra, setActiveEra] = useState(0);
-  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [hoveredImg, setHoveredImg] = useState<string | null>(null);
   const lamellaRef = useRef<HTMLDivElement>(null);
   const inView = useInView(lamellaRef, { once: true, margin: "-80px" });
 
