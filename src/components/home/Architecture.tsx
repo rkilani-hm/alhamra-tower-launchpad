@@ -43,9 +43,9 @@ export function Architecture() {
         >
           <motion.img
             src="/lovable-uploads/46052915-521a-44ca-bbd4-d770e159f7fa.png"
-            alt="Al Hamra Tower — SOM architectural render at dusk, Kuwait City"
-            style={{ y: imgY, width: "100%", height: "115%",
-              objectFit: "cover", objectPosition: "center top", display: "block" }}
+            alt="Al Hamra Tower architectural render"
+            style={{ y: imgY, width: "100%", height: "130%",
+              objectFit: "cover", objectPosition: "center center", display: "block" }}
           />
         </motion.div>
 
