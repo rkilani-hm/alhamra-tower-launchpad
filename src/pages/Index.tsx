@@ -46,9 +46,6 @@ export default function Index() {
         {/* ── Footer approach ──────────────────────────────────── */}
         <ContactStrip />
 
-        {/* ── Pattern band above footer ────────────────────────── */}
-        <PatternBand />
-
       </main>
       <Footer />
     </>
