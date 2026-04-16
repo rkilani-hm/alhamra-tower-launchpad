@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -54,6 +54,7 @@ const LAMELLA_FACTS = [
 
 export default function TowerRising() {
   const [activeEra, setActiveEra] = useState(0);
+  const [lightbox, setLightbox] = useState<string | null>(null);
   const lamellaRef = useRef<HTMLDivElement>(null);
   const inView = useInView(lamellaRef, { once: true, margin: "-80px" });
 
@@ -293,49 +294,132 @@ export default function TowerRising() {
             </div>
           </div>
 
-          <div style={{ display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr", gap: 2 }}
-            className="gallery-grid">
+          {/* Bespoke masonry grid: 4 columns, portrait images span 2 rows */}
+          <div className="tower-gallery">
             {[
-              { src: "/assets/cb81b098-f1c8-4aa7-a05d-0a4ddb88c5e5.png",       alt: "Al Hamra Tower against blue Kuwaiti sky" },
-              { src: "/assets/b4097b4e-ffb1-4d82-8006-3d1b87bb8726.png",  alt: "Jura limestone facade — the stone south wall" },
-              { src: "/assets/0d638fff-a80b-43f1-9dd5-9bcf1791fa2e.png",  alt: "Tower entrance lit at night" },
-              { src: "/assets/eba71a53-124d-4e05-9354-6ec21564d0be.png", alt: "Office south corridor" },
-              { src: "/assets/571e6fd5-b20f-42c8-9e9b-41a0e94868be.png",   alt: "Sky Lobby corridor — travertine, chandelier rings, Gulf views" },
-              { src: "/assets/3fd1126d-6489-475d-8b72-ebcb2637eae5.png", alt: "Al Hamra Luxury Centre atrium" },
-            ].map(({ src, alt }, i) => (
+              { src: "/assets/cb81b098-f1c8-4aa7-a05d-0a4ddb88c5e5.png", alt: "Al Hamra Tower against blue Kuwaiti sky", cls: "gi-tall" },
+              { src: "/assets/b4097b4e-ffb1-4d82-8006-3d1b87bb8726.png", alt: "Jura limestone facade — the stone south wall", cls: "gi-wide" },
+              { src: "/assets/0d638fff-a80b-43f1-9dd5-9bcf1791fa2e.png", alt: "Tower entrance lit at night", cls: "gi-wide" },
+              { src: "/assets/3fd1126d-6489-475d-8b72-ebcb2637eae5.png", alt: "Al Hamra Luxury Centre atrium", cls: "gi-wide-bottom" },
+              { src: "/assets/eba71a53-124d-4e05-9354-6ec21564d0be.png", alt: "Office south corridor", cls: "gi-tall-right" },
+              { src: "/assets/571e6fd5-b20f-42c8-9e9b-41a0e94868be.png", alt: "Sky Lobby corridor — travertine, chandelier rings, Gulf views", cls: "gi-tall-end" },
+            ].map(({ src, alt, cls }, i) => (
               <motion.div
                 key={src}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                className={cls}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.7, delay: i * 0.08 }}
-                style={{ overflow: "hidden", aspectRatio: "4/3", background: "#0c0b09" }}
-                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.7, delay: i * 0.07 }}
+                style={{ overflow: "hidden", background: "#0c0b09", cursor: "pointer", position: "relative" }}
+                whileHover={{ scale: 1.015 }}
+                onClick={() => setLightbox(src)}
               >
                 <img
                   src={src} alt={alt}
+                  loading="lazy"
                   style={{ width: "100%", height: "100%",
                     objectFit: "cover", display: "block",
                     transition: "transform 0.6s ease" }}
-                  onError={e => {
-                    (e.currentTarget as HTMLImageElement).style.opacity = "0.3";
-                  }}
+                  onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0.3"; }}
                 />
+                {/* Hover overlay */}
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "rgba(29,29,27,0)",
+                  transition: "background 0.4s ease",
+                  display: "flex", alignItems: "flex-end", padding: 16,
+                }}
+                  className="gallery-overlay"
+                >
+                  <span style={{
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                    fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
+                    color: "rgba(255,255,255,0)", transition: "color 0.4s ease",
+                  }} className="gallery-caption">{alt}</span>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setLightbox(null)}
+            style={{
+              position: "fixed", inset: 0, zIndex: 9999,
+              background: "rgba(0,0,0,0.92)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "zoom-out", padding: 24,
+            }}
+          >
+            <motion.img
+              src={lightbox}
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.16,1,0.3,1] }}
+              style={{ maxWidth: "90vw", maxHeight: "90vh", objectFit: "contain", borderRadius: 2 }}
+              alt="Gallery fullscreen"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <style>{`
+        .tower-gallery {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          grid-template-rows: auto auto;
+          gap: 4px;
+        }
+        /* Portrait: tower exterior — col 1, spans 2 rows */
+        .gi-tall { grid-column: 1; grid-row: 1 / 3; }
+        /* Landscape images fill remaining cells */
+        .gi-wide { grid-column: span 1; }
+        .gi-wide-bottom { grid-column: span 1; }
+        /* Portrait: office corridor — spans 2 rows */
+        .gi-tall-right { grid-column: 4; grid-row: 1 / 3; }
+        /* Portrait: sky lobby — col 3 row 2 */
+        .gi-tall-end { grid-column: 3; grid-row: 2; }
+
+        .tower-gallery > div:hover .gallery-overlay {
+          background: rgba(29,29,27,0.35) !important;
+        }
+        .tower-gallery > div:hover .gallery-caption {
+          color: rgba(255,255,255,0.85) !important;
+        }
+
         @media (max-width: 900px) {
           .timeline-grid { grid-template-columns: 1fr !important; }
-          .lamella-grid   { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .gallery-grid   { grid-template-columns: 1fr 1fr !important; }
+          .lamella-grid  { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .tower-gallery {
+            grid-template-columns: 1fr 1fr !important;
+            grid-template-rows: auto !important;
+          }
+          .gi-tall, .gi-wide, .gi-wide-bottom, .gi-tall-right, .gi-tall-end {
+            grid-column: auto !important;
+            grid-row: auto !important;
+          }
+          .gi-tall, .gi-tall-right, .gi-tall-end {
+            aspect-ratio: 3/4;
+          }
+          .gi-wide, .gi-wide-bottom {
+            aspect-ratio: 4/3;
+          }
         }
         @media (max-width: 540px) {
-          .gallery-grid   { grid-template-columns: 1fr !important; }
+          .tower-gallery { grid-template-columns: 1fr !important; }
+          .gi-tall, .gi-wide, .gi-wide-bottom, .gi-tall-right, .gi-tall-end {
+            aspect-ratio: auto !important;
+          }
         }
       `}</style>
 
