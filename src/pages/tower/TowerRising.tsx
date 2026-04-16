@@ -344,32 +344,41 @@ export default function TowerRising() {
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* Inline expanded image viewer */}
       <AnimatePresence>
         {lightbox && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => setLightbox(null)}
-            style={{
-              position: "fixed", inset: 0, zIndex: 9999,
-              background: "rgba(0,0,0,0.92)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              cursor: "zoom-out", padding: 24,
-            }}
-          >
-            <motion.img
-              src={lightbox}
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+          <div style={{ maxWidth: 1280, margin: "0 auto",
+            padding: "0 clamp(24px,6vw,96px) clamp(32px,5vh,64px)" }}>
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.4, ease: [0.16,1,0.3,1] }}
-              style={{ maxWidth: "90vw", maxHeight: "90vh", objectFit: "contain", borderRadius: 2 }}
-              alt="Gallery fullscreen"
-            />
-          </motion.div>
+              style={{ overflow: "hidden", background: "#0c0b09",
+                position: "relative", cursor: "zoom-out" }}
+              onClick={() => setLightbox(null)}
+            >
+              <motion.img
+                src={lightbox}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                style={{ width: "100%", maxHeight: "70vh", objectFit: "contain",
+                  display: "block", margin: "0 auto" }}
+                alt="Gallery expanded view"
+              />
+              <button
+                onClick={() => setLightbox(null)}
+                style={{
+                  position: "absolute", top: 12, right: 12,
+                  background: "rgba(255,255,255,0.1)", border: "none",
+                  color: "#fff", width: 32, height: 32, borderRadius: "50%",
+                  cursor: "pointer", fontSize: 16, display: "flex",
+                  alignItems: "center", justifyContent: "center",
+                }}
+              >✕</button>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
