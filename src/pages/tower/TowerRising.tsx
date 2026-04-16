@@ -54,7 +54,7 @@ const LAMELLA_FACTS = [
 
 export default function TowerRising() {
   const [activeEra, setActiveEra] = useState(0);
-  const [hoveredImg, setHoveredImg] = useState<string | null>(null);
+  
   const lamellaRef = useRef<HTMLDivElement>(null);
   const inView = useInView(lamellaRef, { once: true, margin: "-80px" });
 
@@ -294,28 +294,6 @@ export default function TowerRising() {
             </div>
           </div>
 
-          {/* Zoom preview above gallery */}
-          <AnimatePresence>
-            {hoveredImg && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                style={{
-                  marginBottom: 16, background: "#0c0b09",
-                  overflow: "hidden", height: "clamp(280px,40vh,480px)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}
-              >
-                <img
-                  src={hoveredImg}
-                  alt="Zoomed preview"
-                  style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {/* Bespoke masonry grid: 4 columns, portrait images span 2 rows */}
           <div className="tower-gallery">
@@ -334,10 +312,7 @@ export default function TowerRising() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.7, delay: i * 0.07 }}
-                style={{ overflow: "hidden", background: "#0c0b09", cursor: "pointer", position: "relative" }}
-                whileHover={{ scale: 1.015 }}
-                onHoverStart={() => setHoveredImg(src)}
-                onHoverEnd={() => setHoveredImg(null)}
+                style={{ overflow: "hidden", background: "#0c0b09", position: "relative" }}
               >
                 <img
                   src={src} alt={alt}
@@ -347,21 +322,6 @@ export default function TowerRising() {
                     transition: "transform 0.6s ease" }}
                   onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0.3"; }}
                 />
-                {/* Hover overlay */}
-                <div style={{
-                  position: "absolute", inset: 0,
-                  background: "rgba(29,29,27,0)",
-                  transition: "background 0.4s ease",
-                  display: "flex", alignItems: "flex-end", padding: 16,
-                }}
-                  className="gallery-overlay"
-                >
-                  <span style={{
-                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-                    fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                    color: "rgba(255,255,255,0)", transition: "color 0.4s ease",
-                  }} className="gallery-caption">{alt}</span>
-                </div>
               </motion.div>
             ))}
           </div>
@@ -385,12 +345,6 @@ export default function TowerRising() {
         /* Portrait: sky lobby — col 3 row 2 */
         .gi-tall-end { grid-column: 3; grid-row: 2; }
 
-        .tower-gallery > div:hover .gallery-overlay {
-          background: rgba(29,29,27,0.35) !important;
-        }
-        .tower-gallery > div:hover .gallery-caption {
-          color: rgba(255,255,255,0.85) !important;
-        }
 
         @media (max-width: 900px) {
           .timeline-grid { grid-template-columns: 1fr !important; }
