@@ -36,22 +36,13 @@ export default function Index() {
         {/* ── Beat 2: The City (Gulf, coordinates) ─────────────── */}
         <GulfSection />
 
-        {/* ── Al Hamra geometric band divider ──────────────────── */}
-        <PatternBand />
-
         {/* ── Beat 3: The Tower ────────────────────────────────── */}
         <Stats />
         <Marquee />
         <Architecture />
 
-        {/* ── Al Hamra geometric band divider ──────────────────── */}
-        <PatternBand />
-
         {/* ── Beat 4: The View ─────────────────────────────────── */}
         <ViewSection />
-
-        {/* ── Al Hamra geometric band divider ──────────────────── */}
-        <PatternBand />
 
         {/* ── Beat 5: The Address ──────────────────────────────── */}
         <Perspectives />
@@ -60,6 +51,9 @@ export default function Index() {
 
         {/* ── Footer approach ──────────────────────────────────── */}
         <ContactStrip />
+
+        {/* ── Pattern band above footer ────────────────────────── */}
+        <PatternBand />
 
       </main>
       <Footer />
