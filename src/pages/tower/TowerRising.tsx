@@ -15,7 +15,7 @@ const ERAS = [
     year: "2004",
     title: "The Site is Set",
     body: "A mixed-use complex with a 200m tower is designed by Al Jazera Consultants. Excavation begins — 289 cast-in-place bored piles are sunk 22–27 metres into Kuwait's silty sand. The foundation work cannot stop.",
-    img: "/assets/construction-phase-1.png",
+    img: "/assets/8d86c35d-3c00-429c-93d0-e2043d9bcf75.png",
   },
   {
     year: "2005",
