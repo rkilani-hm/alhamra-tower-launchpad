@@ -27,7 +27,7 @@ const ERAS = [
     year: "2006",
     title: "The Form Emerges",
     body: "SOM's decisive gesture: subtract a spiraling quadrant from a prismatic volume, rotate it at each higher level. Two hyperbolic paraboloid walls emerge — the iconic flared ribbons. The geometry provides transparency toward the Gulf and opacity toward the desert. Construction begins.",
-    img: "/assets/construction-phase-3.png",
+    img: "/assets/9c04202d-5fbc-48bf-90c8-4aaa45443c3b.png",
   },
   {
     year: "2008",
