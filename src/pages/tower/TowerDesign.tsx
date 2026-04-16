@@ -126,7 +126,7 @@ export default function TowerDesign() {
             <motion.div initial={{ opacity: 0, x: 20 }} animate={facadeInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-                letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 20 }}>
+                letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
                 The Dual Façade
               </div>
               <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -176,7 +176,7 @@ export default function TowerDesign() {
           className="design-grid-2">
           <div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 20 }}>
+              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
               The Lamella Structure
             </div>
             <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -208,7 +208,7 @@ export default function TowerDesign() {
                 of the laminar structure supporting the tower above and below articulates space."
               </p>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL_TEXT, marginTop: 10 }}>
+                letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL, marginTop: 10 }}>
                 SOM / Skidmore, Owings & Merrill
               </div>
             </div>
@@ -247,7 +247,7 @@ export default function TowerDesign() {
       <div style={{ background: "#fff", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-            letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 16 }}>
+            letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 16 }}>
             Technical Specification
           </div>
           <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -273,7 +273,7 @@ export default function TowerDesign() {
         {/* Section kicker */}
         <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
           fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em",
-          textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 48 }}>
+          textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
           Drawings & Documentation
         </div>
 
@@ -296,7 +296,7 @@ export default function TowerDesign() {
               SOM — Typical office floor plan
             </div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-              fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: PEARL_TEXT }}>
+              fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: PEARL }}>
               ~2,300 m² net leasable area per floor
             </div>
           </div>
