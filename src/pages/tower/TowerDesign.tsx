@@ -298,55 +298,7 @@ export default function TowerDesign() {
           </div>
         </motion.div>
 
-        {/* ② Massing Studies — horizontal scroll carousel */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.1 }}
-          style={{ marginBottom: 64 }}
-        >
-          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-            fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
-            color: "#767676", marginBottom: 20 }}>
-            Massing Studies · Skidmore, Owings & Merrill
-          </div>
-          <div className="massing-scroll">
-            {[
-              { src: "/assets/drawings/massing-01-west.jpg",       label: "West façade" },
-              { src: "/assets/drawings/massing-02-southeast.jpg",  label: "South-east — carved void" },
-              { src: "/assets/drawings/massing-03-south.jpg",      label: "South — flared walls" },
-              { src: "/assets/drawings/massing-04-east.jpg",       label: "East — ribbon elevation" },
-              { src: "/assets/drawings/massing-05-elevation.jpg",  label: "South elevation" },
-            ].map(({ src, label }, i) => (
-              <motion.div
-                key={label}
-                initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.07 }}
-                className="massing-item"
-              >
-                <img
-                  src={src} alt={`Al Hamra Tower massing study — ${label}`}
-                  loading="lazy"
-                  style={{ display: "block", height: "100%", width: "auto",
-                    maxWidth: "none", border: "1px solid rgba(29,29,27,0.07)",
-                    transition: "transform 0.5s ease" }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.025)"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }}
-                />
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-                  fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "#767676", marginTop: 10, whiteSpace: "nowrap" }}>
-                  {label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-            fontSize: "10px", color: "#aaa", letterSpacing: "0.12em", marginTop: 10, textAlign: "right" }}>
-            scroll →
-          </div>
-        </motion.div>
-
-        {/* ③ South Wall Elevation — paired 2-col, portrait drawings */}
+        {/* ② South Wall Elevation — paired 2-col, portrait drawings */}
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.15 }}
