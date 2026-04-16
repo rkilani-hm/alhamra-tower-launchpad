@@ -47,25 +47,6 @@ export function Architecture() {
             style={{ y: imgY, width: "100%", height: "115%",
               objectFit: "cover", objectPosition: "center top", display: "block" }}
           />
-          {/* Pearl overlay bottom */}
-          <div style={{
-            position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
-            background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)",
-            pointerEvents: "none",
-          }} />
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            style={{
-              position: "absolute", bottom: 24, left: 24, right: 24, zIndex: 2,
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-              letterSpacing: "0.3em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.4)",
-            }}
-          >
-            © SOM / CTBUH — Architectural render
-          </motion.div>
         </motion.div>
 
         {/* Right — The Form Story */}
