@@ -200,7 +200,7 @@ export default function TowerRising() {
                 <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                   fontWeight: 300, fontSize: "clamp(28px,3.5vw,48px)", color: "#fff",
                   lineHeight: 1.1, marginBottom: 24, letterSpacing: "-0.01em" }}>
-                  The Lamella — a 24-metre<br />vault with no columns.
+                  The Lamella — a 24-metre vault with no columns.
                 </h2>
 
                 <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
