@@ -49,10 +49,12 @@ export function PatternBand({
   );
 }
 
-/** Full background texture — apply to sections needing visual depth */
+/** Full background texture — pattern overlay removed per design update.
+ *  Wrapper preserved so all call-sites work unchanged.
+ *  al-hamra-pattern-bg.jpg is no longer rendered. */
 export function PatternBackground({
-  opacity    = 0.55,
-  decorative = true,
+  opacity:    _opacity    = 0.55,
+  decorative: _decorative = true,
   children,
   style,
   className,
@@ -64,32 +66,8 @@ export function PatternBackground({
   className?:  string;
 }) {
   return (
-    <div
-      className={className}
-      style={{
-        position: "relative",
-        ...style,
-      }}
-    >
-      {/* Pattern layer */}
-      <div
-        aria-hidden={decorative}
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "url('/assets/patterns/al-hamra-pattern-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          opacity,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
-      {/* Content above pattern */}
-      <div style={{ position: "relative", zIndex: 1 }}>
-        {children}
-      </div>
+    <div className={className} style={style}>
+      {children}
     </div>
   );
 }
