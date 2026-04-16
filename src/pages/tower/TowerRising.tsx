@@ -374,13 +374,52 @@ export default function TowerRising() {
       </AnimatePresence>
 
       <style>{`
+        .tower-gallery {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          grid-template-rows: auto auto;
+          gap: 4px;
+        }
+        /* Portrait: tower exterior — col 1, spans 2 rows */
+        .gi-tall { grid-column: 1; grid-row: 1 / 3; }
+        /* Landscape images fill remaining cells */
+        .gi-wide { grid-column: span 1; }
+        .gi-wide-bottom { grid-column: span 1; }
+        /* Portrait: office corridor — spans 2 rows */
+        .gi-tall-right { grid-column: 4; grid-row: 1 / 3; }
+        /* Portrait: sky lobby — col 3 row 2 */
+        .gi-tall-end { grid-column: 3; grid-row: 2; }
+
+        .tower-gallery > div:hover .gallery-overlay {
+          background: rgba(29,29,27,0.35) !important;
+        }
+        .tower-gallery > div:hover .gallery-caption {
+          color: rgba(255,255,255,0.85) !important;
+        }
+
         @media (max-width: 900px) {
           .timeline-grid { grid-template-columns: 1fr !important; }
-          .lamella-grid   { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .gallery-grid   { grid-template-columns: 1fr 1fr !important; }
+          .lamella-grid  { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .tower-gallery {
+            grid-template-columns: 1fr 1fr !important;
+            grid-template-rows: auto !important;
+          }
+          .gi-tall, .gi-wide, .gi-wide-bottom, .gi-tall-right, .gi-tall-end {
+            grid-column: auto !important;
+            grid-row: auto !important;
+          }
+          .gi-tall, .gi-tall-right, .gi-tall-end {
+            aspect-ratio: 3/4;
+          }
+          .gi-wide, .gi-wide-bottom {
+            aspect-ratio: 4/3;
+          }
         }
         @media (max-width: 540px) {
-          .gallery-grid   { grid-template-columns: 1fr !important; }
+          .tower-gallery { grid-template-columns: 1fr !important; }
+          .gi-tall, .gi-wide, .gi-wide-bottom, .gi-tall-right, .gi-tall-end {
+            aspect-ratio: auto !important;
+          }
         }
       `}</style>
 
