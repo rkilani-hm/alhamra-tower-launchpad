@@ -173,7 +173,7 @@ export default function TowerRising() {
               <div style={{ borderTop: "1px solid rgba(29,29,27,0.08)" }} />
             </div>
 
-            {/* ── RIGHT: Portrait image — sticky, natural proportions ── */}
+            {/* ── RIGHT: Portrait image — sticky, matches accordion height ── */}
             <div style={{ position: "sticky", top: 100, alignSelf: "start" }}>
               <AnimatePresence mode="wait">
                 <motion.div
@@ -182,6 +182,7 @@ export default function TowerRising() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ display: "flex", flexDirection: "column" }}
                 >
                   {/* Year badge */}
                   <div style={{
@@ -192,11 +193,12 @@ export default function TowerRising() {
                     {activeEra >= 0 ? ERAS[activeEra].year : ERAS[0].year}
                   </div>
 
-                  {/* Image — natural size, no fixed height, no cropping */}
+                  {/* Image — constrained to accordion section height */}
                   <div style={{
                     background: "#f7f6f4",
                     border: "1px solid rgba(29,29,27,0.07)",
                     overflow: "hidden",
+                    maxHeight: "calc(5 * 58px + 180px)",
                   }}>
                     <img
                       src={activeEra >= 0 ? ERAS[activeEra].img : ERAS[0].img}
@@ -205,8 +207,8 @@ export default function TowerRising() {
                       style={{
                         display: "block",
                         width: "100%",
-                        height: "auto",          /* preserves portrait ratio exactly */
-                        objectFit: "contain",
+                        height: "100%",
+                        objectFit: "cover",
                         objectPosition: "center top",
                       }}
                       onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0.15"; }}
