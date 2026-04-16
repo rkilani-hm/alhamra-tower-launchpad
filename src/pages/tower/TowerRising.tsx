@@ -251,12 +251,12 @@ export default function TowerRising() {
               style={{ position: "relative", overflow: "hidden" }}
             >
               <img
-                src="/assets/786b3c51-296f-4670-8516-55f135c1f9e0.jpg"
+                src="/assets/2503102f-7fe4-4836-9a96-3f78e4ae1161.jpg"
                 alt="Al Hamra Tower — lamella lobby ceiling, 24 metres high, column-free"
                 style={{ width: "100%", display: "block",
                   objectFit: "cover", minHeight: 400 }}
                 onError={e => {
-                  (e.currentTarget as HTMLImageElement).src = "/assets/lobby-interior.jpg";
+                  (e.currentTarget as HTMLImageElement).src = "/assets/2503102f-7fe4-4836-9a96-3f78e4ae1161.jpg";
                 }}
               />
               {/* Pearl gradient overlay bottom */}
