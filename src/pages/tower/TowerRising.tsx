@@ -297,12 +297,12 @@ export default function TowerRising() {
             gridTemplateColumns: "1fr 1fr 1fr", gap: 2 }}
             className="gallery-grid">
             {[
-              { src: "/assets/tower-day-sky.jpg",       alt: "Al Hamra Tower against blue Kuwaiti sky" },
-              { src: "/assets/tower-facade-stone.jpg",  alt: "Jura limestone facade — the stone south wall" },
-              { src: "/assets/tower-entrance-lit.jpg",  alt: "Tower entrance lit at night" },
-              { src: "/assets/offices_south_corridor.jpg", alt: "Office south corridor" },
-              { src: "/assets/sky-lobby-corridor.jpg",   alt: "Sky Lobby corridor — travertine, chandelier rings, Gulf views" },
-              { src: "/assets/mall-atrium-skylight.jpg", alt: "Al Hamra Luxury Centre atrium" },
+              { src: "/assets/cb81b098-f1c8-4aa7-a05d-0a4ddb88c5e5.png",       alt: "Al Hamra Tower against blue Kuwaiti sky" },
+              { src: "/assets/b4097b4e-ffb1-4d82-8006-3d1b87bb8726.png",  alt: "Jura limestone facade — the stone south wall" },
+              { src: "/assets/0d638fff-a80b-43f1-9dd5-9bcf1791fa2e.png",  alt: "Tower entrance lit at night" },
+              { src: "/assets/eba71a53-124d-4e05-9354-6ec21564d0be.png", alt: "Office south corridor" },
+              { src: "/assets/571e6fd5-b20f-42c8-9e9b-41a0e94868be.png",   alt: "Sky Lobby corridor — travertine, chandelier rings, Gulf views" },
+              { src: "/assets/3fd1126d-6489-475d-8b72-ebcb2637eae5.png", alt: "Al Hamra Luxury Centre atrium" },
             ].map(({ src, alt }, i) => (
               <motion.div
                 key={src}
