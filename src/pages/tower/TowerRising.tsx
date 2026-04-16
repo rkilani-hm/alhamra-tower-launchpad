@@ -53,7 +53,7 @@ const LAMELLA_FACTS = [
 ];
 
 export default function TowerRising() {
-  const [activeEra, setActiveEra] = useState(0);
+  const [activeEra, setActiveEra] = useState<number>(0);
   
   const lamellaRef = useRef<HTMLDivElement>(null);
   const inView = useInView(lamellaRef, { once: true, margin: "-80px" });
@@ -69,103 +69,162 @@ export default function TowerRising() {
         image="/assets/office-interior.jpg"
       />
 
-      {/* ── SECTION 1: Construction Timeline ───────────────────────── */}
+      {/* ── SECTION 1: Construction Timeline — accordion + portrait image ── */}
       <section style={{ background: "#fff", padding: "clamp(64px,10vh,120px) 0" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 clamp(24px,6vw,96px)" }}>
 
           {/* Section kicker */}
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 48 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 56 }}>
             <span style={{ width: 32, height: 1,
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`, flexShrink: 0 }} />
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
-              letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontSize: "11px", letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL }}>
               Construction Timeline
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 64 }}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px,6vw,96px)", alignItems: "start" }}
             className="timeline-grid">
 
-            {/* Left — era selector */}
+            {/* ── LEFT: Accordion ─────────────────────────────────── */}
             <div>
               <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-                fontWeight: 300, fontSize: "clamp(28px,3vw,42px)", color: DARK,
+                fontWeight: 300, fontSize: "clamp(26px,2.8vw,40px)", color: DARK,
                 lineHeight: 1.1, marginBottom: 40 }}>
                 From excavation<br />to icon.
               </h2>
-              {ERAS.map((era, i) => (
-                <button
-                  key={era.year}
-                  onClick={() => setActiveEra(i)}
-                  style={{
-                    width: "100%", textAlign: "left", background: "none", border: "none",
-                    cursor: "pointer", padding: "16px 0",
-                    borderBottom: "1px solid rgba(29,29,27,0.07)",
-                    display: "flex", alignItems: "center", gap: 16,
-                    transition: "all 0.2s",
-                  }}
-                >
-                  <span style={{
-                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "22px",
-                    fontWeight: 300, color: activeEra === i ? DARK : "#767676",
-                    minWidth: 52, transition: "color 0.3s",
-                  }}>
-                    {era.year}
-                  </span>
-                  <span style={{
-                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px",
-                    letterSpacing: "0.15em", textTransform: "uppercase",
-                    color: activeEra === i ? DARK : "#767676",
-                    transition: "color 0.3s",
-                  }}>
-                    {era.title}
-                  </span>
-                  {activeEra === i && (
-                    <motion.div layoutId="era-dot"
-                      style={{ width: 6, height: 6, borderRadius: "50%",
-                        background: PEARL, marginLeft: "auto", flexShrink: 0 }} />
-                  )}
-                </button>
-              ))}
+
+              {ERAS.map((era, i) => {
+                const isOpen = activeEra === i;
+                return (
+                  <div key={era.year} style={{ borderTop: "1px solid rgba(29,29,27,0.08)" }}>
+
+                    {/* Row header — always visible, clickable */}
+                    <button
+                      onClick={() => setActiveEra(isOpen ? -1 : i)}
+                      style={{
+                        width: "100%", textAlign: "left", background: "none", border: "none",
+                        cursor: "pointer", padding: "18px 0",
+                        display: "flex", alignItems: "center", gap: 16,
+                      }}
+                      aria-expanded={isOpen}
+                    >
+                      {/* Year */}
+                      <span style={{
+                        fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                        fontSize: "20px", fontWeight: 300,
+                        color: isOpen ? DARK : "#9a9894",
+                        minWidth: 52, transition: "color 0.3s ease",
+                      }}>
+                        {era.year}
+                      </span>
+
+                      {/* Title */}
+                      <span style={{
+                        fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                        fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase",
+                        color: isOpen ? DARK : "#767676",
+                        flex: 1, transition: "color 0.3s ease",
+                      }}>
+                        {era.title}
+                      </span>
+
+                      {/* Chevron */}
+                      <motion.span
+                        animate={{ rotate: isOpen ? 45 : 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        style={{
+                          display: "block", width: 14, height: 14, flexShrink: 0,
+                          color: isOpen ? PEARL : "#c0bdb8",
+                          fontSize: 20, lineHeight: "14px", userSelect: "none",
+                        }}
+                      >+</motion.span>
+                    </button>
+
+                    {/* Collapsible body */}
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          key="body"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                          style={{ overflow: "hidden" }}
+                        >
+                          <p style={{
+                            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                            fontWeight: 300, fontSize: "clamp(13px,1.05vw,15px)",
+                            color: "#5a5a58", lineHeight: 1.9,
+                            paddingBottom: 24, paddingRight: 8,
+                            marginBottom: 0,
+                          }}>
+                            {era.body}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                  </div>
+                );
+              })}
+
+              {/* Close the last border */}
+              <div style={{ borderTop: "1px solid rgba(29,29,27,0.08)" }} />
             </div>
 
-            {/* Right — era detail */}
-            <div style={{ position: "sticky", top: 120, alignSelf: "start" }}>
+            {/* ── RIGHT: Portrait image — sticky, natural proportions ── */}
+            <div style={{ position: "sticky", top: 100, alignSelf: "start" }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeEra}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.5, ease: [0.16,1,0.3,1] }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 >
+                  {/* Year badge */}
                   <div style={{
-                    height: "clamp(280px,40vw,480px)",
-                    overflow: "hidden", marginBottom: 36,
-                    background: "#0c0b09",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                    fontSize: "10px", letterSpacing: "0.35em", textTransform: "uppercase",
+                    color: PEARL, marginBottom: 16,
+                  }}>
+                    {activeEra >= 0 ? ERAS[activeEra].year : ERAS[0].year}
+                  </div>
+
+                  {/* Image — natural size, no fixed height, no cropping */}
+                  <div style={{
+                    background: "#f7f6f4",
+                    border: "1px solid rgba(29,29,27,0.07)",
+                    overflow: "hidden",
                   }}>
                     <img
-                      src={ERAS[activeEra].img}
-                      alt={ERAS[activeEra].title}
-                      style={{ width: "100%", height: "100%",
-                        objectFit: "cover", objectPosition: "center",
-                        display: "block", opacity: 0.92 }}
-                      onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0"; }}
+                      src={activeEra >= 0 ? ERAS[activeEra].img : ERAS[0].img}
+                      alt={activeEra >= 0 ? ERAS[activeEra].title : ERAS[0].title}
+                      loading="lazy"
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        height: "auto",          /* preserves portrait ratio exactly */
+                        objectFit: "contain",
+                        objectPosition: "center top",
+                      }}
+                      onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0.15"; }}
                     />
                   </div>
-                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-                    fontSize: "clamp(22px,2.5vw,32px)", fontWeight: 300,
-                    color: DARK, marginBottom: 16 }}>
-                    {ERAS[activeEra].title}
+
+                  {/* Caption */}
+                  <div style={{
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                    fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
+                    color: "#9a9894", marginTop: 14,
+                  }}>
+                    {activeEra >= 0 ? ERAS[activeEra].title : ERAS[0].title}
                   </div>
-                  <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
-                    fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
-                    lineHeight: 1.9, maxWidth: 560 }}>
-                    {ERAS[activeEra].body}
-                  </p>
                 </motion.div>
               </AnimatePresence>
             </div>
+
           </div>
         </div>
       </section>
@@ -361,6 +420,12 @@ export default function TowerRising() {
           }
           .gi-wide, .gi-wide-bottom {
             aspect-ratio: 4/3;
+          }
+        }
+        /* On mobile: image moves below accordion text for each phase */
+        @media (max-width: 900px) {
+          .timeline-grid > div:last-child {
+            position: static !important;
           }
         }
         @media (max-width: 540px) {
