@@ -253,7 +253,7 @@ export default function TowerOverview() {
                   "{activeContent.quote}"
                 </p>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                  letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL_TEXT }}>
+                  letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL }}>
                   {activeContent.credit}
                 </div>
               </div>
@@ -278,7 +278,7 @@ export default function TowerOverview() {
       <div style={{ background: "#fff", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)",
         borderTop: "1px solid rgba(29,29,27,0.07)" }}>
         <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 36 }}>
+          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
           Awards & Recognition
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 24 }}>
