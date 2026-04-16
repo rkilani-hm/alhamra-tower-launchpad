@@ -14,14 +14,14 @@ const CG = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Tr
 
 interface Crumb { label: string; href: string; }
 interface Props {
-  tag:      string;
+  tag?:     string;
   title:    string;
   subtitle?: string;
   crumbs?:  Crumb[];
   image?:   string;
 }
 
-export function PageHero({ tag, title, subtitle, crumbs }: Props) {
+export function PageHero({ tag, title, subtitle, crumbs, image }: Props) {
   return (
     <PatternBackground
       opacity={0.4}
