@@ -17,7 +17,7 @@ type Dict = typeof enDict;
 
 const DICTIONARIES: Record<Lang, Dict> = {
   en: enDict,
-  ar: arDict as Dict,
+  ar: arDict as unknown as Dict,
 };
 
 const STORAGE_KEY = "alhamra-lang";
