@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView }           from "framer-motion";
 import { stagger, fadeUp, hoverCard }  from "@/lib/motion";
 import { PatternBackground }           from "@/components/shared/PatternBand";
+import { useT }                        from "@/lib/i18n";
 
 /* ── Stats — animated count-up on viewport entry ───────────────────────
    Numbers count from 0 → target with expo ease-out.
@@ -13,11 +14,12 @@ const DARK  = "#1D1D1B";
 const MUTED = "#6B6B6B";
 const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
+/* Structural data — numbers stay as data; label/sub come from i18n at render */
 const STATS = [
-  { raw: 412,    display: "412",     unit: "m",   label: "Height to tip",           sub: "Kuwait's tallest building"         },
-  { raw: 62,     display: "62",      unit: "",    label: "Dedicated office floors",  sub: "Floors 6 – 75"                     },
-  { raw: 258000, display: "258,000", unit: "m²",  label: "Jura limestone cladding", sub: "World record stone-clad tower"     },
-  { raw: 351,    display: "351",     unit: "m",   label: "Sky Lounge elevation",     sub: "Highest dining point in Kuwait"    },
+  { raw: 412,    display: "412",     unit: "m",   key: "height"    },
+  { raw: 62,     display: "62",      unit: "",    key: "floors"    },
+  { raw: 258000, display: "258,000", unit: "m²",  key: "limestone" },
+  { raw: 351,    display: "351",     unit: "m",   key: "skyLounge" },
 ];
 
 /* Expo-out count-up hook */
@@ -57,11 +59,14 @@ function formatWithCommas(n: number, hasComma: boolean): string {
 }
 
 function StatCard({
-  raw, display, unit, label, sub, index, active,
+  raw, display, unit, key: statKey, index, active,
 }: typeof STATS[number] & { index: number; active: boolean }) {
+  const t        = useT();
   const hasComma = display.includes(",");
   const counted  = useCountUp(raw, 1600, index * 120, active);
   const shown    = active ? formatWithCommas(counted, hasComma) : "0";
+  const label    = t(`stats.items.${statKey}.label`);
+  const sub      = t(`stats.items.${statKey}.sub`);
 
   return (
     <motion.div
@@ -129,7 +134,7 @@ export function Stats() {
         className="stats-bar grid-4col"
       >
         {STATS.map((s, i) => (
-          <StatCard key={s.label} {...s} index={i} active={inView} />
+          <StatCard key={s.key} {...s} index={i} active={inView} />
         ))}
       </motion.div>
     </PatternBackground>
