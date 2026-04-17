@@ -6,17 +6,25 @@ import { Marquee }             from "@/components/home/Marquee";
 import { Architecture }        from "@/components/home/Architecture";
 import { GulfSection }         from "@/components/home/GulfSection";
 import { InvitationSection }   from "@/components/home/InvitationSection";
+import { FounderQuote }        from "@/components/home/FounderQuote";
+import { AwardsStrip }         from "@/components/home/AwardsStrip";
+import { ExperienceCards }     from "@/components/home/ExperienceCards";
 import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sections";
 
 /*
-  Homepage — 4 emotional beats:
-  ─────────────────────────────
-  Beat 1  ARRIVAL      → Hero (full-viewport cinematic, tower)
-  Beat 2  THE CITY     → GulfSection (aerial photo, coordinates, Gulf)
-          ── Pattern Band divider ──
-  Beat 3  THE TOWER    → Stats → Marquee → Architecture
-          ── Pattern Band divider (light/gold variant) ──
-  Beat 4  THE ADDRESS  → Perspectives → FloorConfigs → InvitationSection
+  Homepage — 5 emotional beats with deliberate dark/light rhythm:
+  ──────────────────────────────────────────────────────────────────────
+  Beat 1  ARRIVAL      → Hero            [DARK video]
+  Beat 2  THE CITY     → GulfSection     [DARK aerial]
+  Beat 3  THE GESTURE  → FounderQuote    [LIGHT · SOM quote + tower render]
+                         AwardsStrip     [DARK · 412m / 258,000m² / 80 monumental]
+                         ExperienceCards [DARK · 4 discovery paths — burjkhalifa.ae-style]
+  Beat 4  THE TOWER    → Stats           [LIGHT · animated counts]
+                         Marquee         [LIGHT · scrolling text]
+                         Architecture    [LIGHT · dual glass/stone]
+  Beat 5  THE ADDRESS  → Perspectives    [LIGHT]
+                         FloorConfigs    [LIGHT]
+                         InvitationSection [DARK · tenant invitation]
   ────── ContactStrip → Footer ──────────────────────────────────────────
 */
 
@@ -29,15 +37,20 @@ export default function Index() {
         {/* ── Beat 1: Arrival ──────────────────────────────────── */}
         <Hero />
 
-        {/* ── Beat 2: The City (Gulf, coordinates) ─────────────── */}
+        {/* ── Beat 2: The City ─────────────────────────────────── */}
         <GulfSection />
 
-        {/* ── Beat 3: The Tower ────────────────────────────────── */}
+        {/* ── Beat 3: The Gesture (the new editorial moment) ──── */}
+        <FounderQuote />
+        <AwardsStrip />
+        <ExperienceCards />
+
+        {/* ── Beat 4: The Tower ────────────────────────────────── */}
         <Stats />
         <Marquee />
         <Architecture />
 
-        {/* ── Beat 4: The Address ──────────────────────────────── */}
+        {/* ── Beat 5: The Address ──────────────────────────────── */}
         <Perspectives />
         <FloorConfigs />
         <InvitationSection />
