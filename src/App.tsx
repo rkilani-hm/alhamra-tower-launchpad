@@ -27,6 +27,10 @@ import {
   Downloads, Contact,
 } from "./pages/ExperiencePages";
 
+/* Legal pages */
+import Privacy from "./pages/Privacy";
+import Terms   from "./pages/Terms";
+
 const qc = new QueryClient();
 
 /* ── AnimatedRoutes ─────────────────────────────────────────────────────
@@ -73,6 +77,10 @@ function AnimatedRoutes() {
           <Route path="/leasing/inquiry"                element={<LeasingInquiry />} />
           <Route path="/leasing/downloads"              element={<Downloads />} />
           <Route path="/leasing/contact"                element={<Contact />} />
+
+          {/* Legal */}
+          <Route path="/privacy"                        element={<Privacy />} />
+          <Route path="/terms"                          element={<Terms />} />
 
           <Route path="*"                               element={<NotFound />} />
         </Routes>
