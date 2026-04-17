@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { useT } from "@/lib/i18n";
 
 /* ── AwardsStrip ──────────────────────────────────────────────────────
    burjkhalifa.ae/the-tower/ has a brilliant moment: 3 MASSIVE numbers
@@ -21,17 +22,17 @@ const DARK       = "#1D1D1B";
 const CG         = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
 const MONUMENTS = [
-  { raw: 412,    display: "412",     unit: ".6 m",    label: "Height to tip",    sub: "Kuwait's tallest structure"       },
-  { raw: 258000, display: "258,000", unit: " m²",     label: "Stone cladding",   sub: "World record · Jura limestone"    },
-  { raw: 80,     display: "80",      unit: "",        label: "Total floors",     sub: "62 dedicated office levels"       },
+  { raw: 412,    display: "412",     unit: ".6 m",    labelKey: "awards.monuments.height.label",    subKey: "awards.monuments.height.sub"    },
+  { raw: 258000, display: "258,000", unit: " m²",     labelKey: "awards.monuments.limestone.label", subKey: "awards.monuments.limestone.sub" },
+  { raw: 80,     display: "80",      unit: "",        labelKey: "awards.monuments.floors.label",    subKey: "awards.monuments.floors.sub"    },
 ];
 
 const RECOGNITION = [
-  { label: "Skidmore, Owings & Merrill", sub: "Lead architect"      },
-  { label: "CTBUH",                       sub: "Sculpted High-Rise" },
-  { label: "Guinness World Records",      sub: "Largest stone-clad" },
-  { label: "LEED Gold",                   sub: "Sustainability"     },
-  { label: "ENR Global",                  sub: "Best project"       },
+  { labelKey: "awards.recognition.som.label",      subKey: "awards.recognition.som.sub"      },
+  { labelKey: "awards.recognition.ctbuh.label",    subKey: "awards.recognition.ctbuh.sub"    },
+  { labelKey: "awards.recognition.guinness.label", subKey: "awards.recognition.guinness.sub" },
+  { labelKey: "awards.recognition.leed.label",     subKey: "awards.recognition.leed.sub"     },
+  { labelKey: "awards.recognition.enr.label",      subKey: "awards.recognition.enr.sub"      },
 ];
 
 function useCountUp(target: number, duration = 2000, delay = 0, active = false) {
@@ -53,7 +54,7 @@ function useCountUp(target: number, duration = 2000, delay = 0, active = false) 
   return value;
 }
 
-function Monument({ m, i, active }: { m: typeof MONUMENTS[number]; i: number; active: boolean }) {
+function Monument({ m, i, active, t }: { m: typeof MONUMENTS[number]; i: number; active: boolean; t: (k: string) => string }) {
   const hasComma = m.display.includes(",");
   const counted  = useCountUp(m.raw, 2000, i * 150, active);
   const shown    = active ? (hasComma ? counted.toLocaleString("en-US") : String(counted)) : "0";
@@ -77,7 +78,7 @@ function Monument({ m, i, active }: { m: typeof MONUMENTS[number]; i: number; ac
         letterSpacing: "0.4em", textTransform: "uppercase",
         color: PEARL, marginBottom: 6,
       }}>
-        {m.label}
+        {t(m.labelKey)}
       </div>
 
       {/* THE NUMBER — monumental */}
@@ -104,13 +105,14 @@ function Monument({ m, i, active }: { m: typeof MONUMENTS[number]; i: number; ac
         letterSpacing: "0.1em",
         marginTop: 8,
       }}>
-        {m.sub}
+        {t(m.subKey)}
       </div>
     </motion.div>
   );
 }
 
 export function AwardsStrip() {
+  const t = useT();
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -144,7 +146,7 @@ export function AwardsStrip() {
             fontFamily: CG, fontSize: "11px", letterSpacing: "0.4em",
             textTransform: "uppercase", color: PEARL,
           }}>
-            By the Numbers
+            {t("awards.kicker")}
           </span>
           <span style={{ width: 32, height: 1, background: PEARL }} />
         </motion.div>
@@ -158,7 +160,7 @@ export function AwardsStrip() {
           borderBottom: "1px solid rgba(200,185,154,0.15)",
         }} className="monuments-row">
           {MONUMENTS.map((m, i) => (
-            <Monument key={m.label} m={m} i={i} active={inView} />
+            <Monument key={t(m.labelKey)} m={m} i={i} active={inView} />
           ))}
         </div>
 
@@ -174,7 +176,7 @@ export function AwardsStrip() {
             letterSpacing: "0.38em", textTransform: "uppercase",
             color: PEARL_TEXT, marginBottom: 28,
           }}>
-            Designed · Engineered · Recognised
+            {t("awards.recognitionKicker")}
           </div>
 
           <div style={{
@@ -186,7 +188,7 @@ export function AwardsStrip() {
           }}>
             {RECOGNITION.map((r, i) => (
               <motion.div
-                key={r.label}
+                key={r.labelKey}
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ delay: 0.9 + i * 0.08, duration: 0.5 }}
@@ -203,14 +205,14 @@ export function AwardsStrip() {
                   marginBottom: 4,
                   whiteSpace: "nowrap",
                 }}>
-                  {r.label}
+                  {t(r.labelKey)}
                 </div>
                 <div style={{
                   fontFamily: CG, fontSize: "9px",
                   letterSpacing: "0.22em", textTransform: "uppercase",
                   color: "rgba(200,185,154,0.45)",
                 }}>
-                  {r.sub}
+                  {t(r.subKey)}
                 </div>
               </motion.div>
             ))}

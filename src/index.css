@@ -17,11 +17,38 @@
 }
 :root {
   --font-brand: 'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif;
+  /* Arabic font stack — applied via [dir="rtl"] / [data-lang="ar"] selectors */
+  --font-brand-ar: 'Noto Sans Arabic','Tajawal','Cairo','IBM Plex Sans Arabic','Segoe UI','Helvetica Neue',Arial,sans-serif;
   --color-pearl: #C8B99A;         /* decorative use only — fails AA on white */
   --color-pearl-text: #8B6E3E;   /* accessible text variant — 4.78:1 on white */
   --color-dark:  #1D1D1B;
   --color-muted: #767676;
 }
+
+/* ── RTL / Arabic typography ─────────────────────────────────────────
+   When html[lang="ar"] is set, swap to the Arabic font stack.
+   Tracking / letter-spacing is reduced to 0 for AR — Arabic script
+   should never be spaced out letter-by-letter the way uppercase Latin
+   labels can be.
+──────────────────────────────────────────────────────────────────────── */
+html[lang="ar"],
+html[dir="rtl"] {
+  font-family: var(--font-brand-ar) !important;
+}
+
+html[lang="ar"] *,
+html[dir="rtl"] * {
+  /* Kill the uppercase-style tracking on Arabic — it breaks glyph connections */
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* Arabic numerals: force Latin (Western) digits everywhere for consistency
+   with the luxury real-estate convention used in Gulf business content */
+html[lang="ar"] {
+  font-feature-settings: "lnum";
+}
+
 
 /* ── Design Tokens ──────────────────────────────────────────────────
    Single source of truth for all brand colours.

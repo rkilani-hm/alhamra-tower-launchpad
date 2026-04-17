@@ -31,6 +31,9 @@ import {
 import Privacy from "./pages/Privacy";
 import Terms   from "./pages/Terms";
 
+/* i18n */
+import { I18nProvider } from "@/lib/i18n";
+
 const qc = new QueryClient();
 
 /* ── AnimatedRoutes ─────────────────────────────────────────────────────
@@ -91,21 +94,23 @@ function AnimatedRoutes() {
 
 const App = () => (
   <QueryClientProvider client={qc}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        {/* W1: Skip to main content — keyboard accessibility */}
-        <a href="#main-content" className="skip-to-main">
-          Skip to main content
-        </a>
-        {/* C4: Respect OS reduced-motion preference for all Framer Motion */}
-        <MotionConfig reducedMotion="user">
-          <ScrollToTop />
-          <AnimatedRoutes />
-        </MotionConfig>
-      </BrowserRouter>
-    </TooltipProvider>
+    <I18nProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          {/* W1: Skip to main content — keyboard accessibility */}
+          <a href="#main-content" className="skip-to-main">
+            Skip to main content
+          </a>
+          {/* C4: Respect OS reduced-motion preference for all Framer Motion */}
+          <MotionConfig reducedMotion="user">
+            <ScrollToTop />
+            <AnimatedRoutes />
+          </MotionConfig>
+        </BrowserRouter>
+      </TooltipProvider>
+    </I18nProvider>
   </QueryClientProvider>
 );
 

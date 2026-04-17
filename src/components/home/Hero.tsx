@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useT } from "@/lib/i18n";
 
 const SAND = "#C5A882";
 const DARK = "#1D1D1B";
@@ -9,6 +10,7 @@ const PEARL = "#C8B99A";
 const GULF  = "#2A5F7A";
 
 export function Hero() {
+  const t = useT();
   const ref      = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady]   = useState(false);
@@ -43,7 +45,7 @@ export function Hero() {
         <img
               loading="lazy"
           src="/assets/tower-sunset.jpg"
-          alt="Al Hamra Business Tower rising 412 metres above Kuwait City"
+          alt={t("hero.alt")}
           style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center 15%", display: "block" }}
         />
@@ -95,8 +97,8 @@ export function Hero() {
         initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
         transition={{ delay: 2.5, duration: 0.5 }}
         onClick={toggleVideo}
-        aria-label={playing ? "Pause background video" : "Play background video"}
-        title={playing ? "Pause video" : "Play video"}
+        aria-label={playing ? t("hero.pauseVideoAria") : t("hero.playVideoAria")}
+        title={playing ? t("hero.pauseVideo") : t("hero.playVideo")}
         className="hero-pause-btn"
         style={{
           position: "absolute", bottom: 88, right: 20, zIndex: 20,
@@ -137,7 +139,7 @@ export function Hero() {
           whiteSpace: "nowrap", zIndex: 8, pointerEvents: "none",
         }}
       >
-        Sharq District · Kuwait City · 413m · SOM Architecture
+        {t("hero.sideLabel")}
       </motion.div>
 
       {/* Main content — TOP-aligned */}
@@ -159,7 +161,7 @@ export function Hero() {
           aria-hidden="true"
         >
           <span style={{ width: 36, height: 1, background: SAND, flexShrink: 0 }} />
-          Sharq District  ·  Kuwait City  ·  413m  ·  Est. 2011
+          {t("hero.tag")}
         </motion.div>
 
         {/* Heading */}
@@ -171,7 +173,7 @@ export function Hero() {
               letterSpacing: "0.5em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.7)", marginBottom: 4 }}
           >
-            Kuwait's Most
+            {t("hero.eyebrow")}
           </motion.span>
 
           <motion.span
@@ -183,7 +185,7 @@ export function Hero() {
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(72px,11vw,172px)", color: "#fff", letterSpacing: "-0.03em",
             }}>
-              Iconic
+              {t("hero.title")}
             </span>
           </motion.span>
 
@@ -194,7 +196,7 @@ export function Hero() {
               fontSize: "clamp(24px,4.5vw,72px)", color: "#fff",
               letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 36 }}
           >
-            Business Address
+            {t("hero.subtitle")}
           </motion.span>
         </h1>
 
@@ -206,8 +208,7 @@ export function Hero() {
             fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.65,
             maxWidth: 420, marginBottom: 48 }}
         >
-          The address that defines Kuwait's most distinguished institutions,
-          sovereign tenants, and global luxury brands.
+          {t("hero.description")}
         </motion.p>
 
         {/* CTAs */}
@@ -225,7 +226,7 @@ export function Hero() {
             onMouseEnter={e => { e.currentTarget.style.background = SAND; e.currentTarget.style.color = "#fff"; }}
             onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = DARK; }}
           >
-            Discover the Tower
+            {t("hero.ctaPrimary")}
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
               <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -241,7 +242,7 @@ export function Hero() {
             onMouseEnter={e => { e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)"; }}
             onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.85)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"; }}
           >
-            Enquire by appointment
+            {t("hero.ctaSecondary")}
           </Link>
         </motion.div>
       </motion.div>
@@ -259,15 +260,15 @@ export function Hero() {
         }}
         className="hero-stat-strip"
         role="list"
-        aria-label="Tower statistics"
+        aria-label={t("hero.statsLabel")}
       >
         {[
-          { n: "413", u: "m",  l: "Height"           },
-          { n: "80",  u: "",   l: "Office Floors"     },
-          { n: "#1",  u: "",   l: "Tallest in Kuwait" },
-          { n: "52",  u: "",   l: "Elevators"         },
-        ].map(({ n, u, l }, i) => (
-          <div key={l} role="listitem" style={{
+          { n: "413", u: "m",  k: "hero.stats.height"    },
+          { n: "80",  u: "",   k: "hero.stats.floors"    },
+          { n: "#1",  u: "",   k: "hero.stats.rank"      },
+          { n: "52",  u: "",   k: "hero.stats.elevators" },
+        ].map(({ n, u, k }, i) => (
+          <div key={k} role="listitem" style={{
             flex: 1, padding: "clamp(16px,2vh,22px) clamp(16px,2.5vw,36px)",
             borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none",
             display: "flex", flexDirection: "column", gap: 5,
@@ -280,7 +281,7 @@ export function Hero() {
             </div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.75vw,11px)",
               letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-              {l}
+              {t(k)}
             </div>
           </div>
         ))}
@@ -296,7 +297,7 @@ export function Hero() {
           <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
             letterSpacing: "0.35em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)",
             whiteSpace: "nowrap" }}>
-            Scroll
+            {t("hero.scroll")}
           </span>
         </div>
       </motion.div>
@@ -311,7 +312,7 @@ export function Hero() {
           textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}
         className="hero-credit"
       >
-        Photo: Nick Merrick · SOM
+        {t("hero.credit")}
       </motion.div>
 
       <style>{`

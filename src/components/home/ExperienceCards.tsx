@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useT } from "@/lib/i18n";
 
 /* ── ExperienceCards ──────────────────────────────────────────────────
    Burj Khalifa's homepage uses a 4-column grid of dark image cards
@@ -19,40 +20,28 @@ const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,
 
 const CARDS = [
   {
-    kicker: "The Tower",
-    title:  "412 metres of architectural ambition",
-    desc:   "Kuwait's tallest building — designed by SOM, clad in Jura limestone, engineered as a single sculptural gesture.",
+    keyPrefix: "experience.cards.tower",
     image:  "/assets/tower-exterior-blue-sky.jpg",
     href:   "/tower",
-    cta:    "Explore the tower",
   },
   {
-    kicker: "Architecture & Design",
-    title:  "Glass toward the Gulf. Stone toward the desert.",
-    desc:   "Two hyperbolic paraboloid walls, a 24-metre column-free lamella, and 258,000 m² of Jura limestone cladding.",
+    keyPrefix: "experience.cards.architecture",
     image:  "/assets/facade-dual-glass-stone.jpg",
     href:   "/tower/design",
-    cta:    "Discover the design",
   },
   {
-    kicker: "The Business",
-    title:  "An address for the region's principals",
-    desc:   "Ministries, sovereign funds, legal & financial leaders, global luxury brands &mdash; tenants by invitation.",
+    keyPrefix: "experience.cards.business",
     image:  "/assets/sky-lobby-travertine-corridor.jpg",
     href:   "/business",
-    cta:    "View business offering",
   },
   {
-    kicker: "Leasing",
-    title:  "Configurations tailored to your mandate",
-    desc:   "450 m² half-floors to 2,300 m² full floors. Executive suites on 74 & 75. Highest address in Kuwait.",
+    keyPrefix: "experience.cards.leasing",
     image:  "/assets/boardroom-wide.jpg",
     href:   "/leasing/inquiry#inquiry-form",
-    cta:    "Begin your enquiry",
   },
 ];
 
-function Card({ card, index }: { card: typeof CARDS[number]; index: number }) {
+function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t: (k: string) => string }) {
   const [hover, setHover] = useState(false);
   return (
     <motion.div
@@ -66,7 +55,7 @@ function Card({ card, index }: { card: typeof CARDS[number]; index: number }) {
         to={card.href}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        aria-label={`${card.kicker}: ${card.cta}`}
+        aria-label={`${t(card.keyPrefix + ".kicker")}: ${t(card.keyPrefix + ".cta")}`}
         style={{
           display: "block",
           position: "relative",
@@ -128,7 +117,7 @@ function Card({ card, index }: { card: typeof CARDS[number]; index: number }) {
             letterSpacing: "0.38em", textTransform: "uppercase",
             color: PEARL, marginBottom: 14,
           }}>
-            {card.kicker}
+            {t(card.keyPrefix + ".kicker")}
           </div>
 
           <div style={{
@@ -137,7 +126,7 @@ function Card({ card, index }: { card: typeof CARDS[number]; index: number }) {
             color: "#fff", marginBottom: 12,
             letterSpacing: "-0.005em",
           }}>
-            {card.title}
+            {t(card.keyPrefix + ".title")}
           </div>
 
           {/* Description — reveals on hover */}
@@ -153,7 +142,7 @@ function Card({ card, index }: { card: typeof CARDS[number]; index: number }) {
                 lineHeight: 1.6, margin: "0 0 16px",
                 maxWidth: 320,
               }}
-              dangerouslySetInnerHTML={{ __html: card.desc }}
+              dangerouslySetInnerHTML={{ __html: t(card.keyPrefix + ".desc") }}
             />
           </motion.div>
 
@@ -167,7 +156,7 @@ function Card({ card, index }: { card: typeof CARDS[number]; index: number }) {
             borderTop: `1px solid rgba(200,185,154,${hover ? 0.6 : 0.2})`,
             transition: "border-color 0.3s ease",
           }}>
-            <span>{card.cta}</span>
+            <span>{t(card.keyPrefix + ".cta")}</span>
             <motion.svg
               width="18" height="8" viewBox="0 0 18 8" fill="none"
               animate={{ x: hover ? 4 : 0 }}
@@ -184,6 +173,7 @@ function Card({ card, index }: { card: typeof CARDS[number]; index: number }) {
 }
 
 export function ExperienceCards() {
+  const t = useT();
   return (
     <section style={{
       background: DARK,
@@ -201,7 +191,7 @@ export function ExperienceCards() {
             fontFamily: CG, fontSize: "11px", letterSpacing: "0.4em",
             textTransform: "uppercase", color: PEARL,
           }}>
-            Four Paths to Discover
+            {t("experience.kicker")}
           </span>
         </div>
 
@@ -219,7 +209,7 @@ export function ExperienceCards() {
             letterSpacing: "-0.015em",
             maxWidth: 720,
           }}>
-            The architecture, the business,<br />the address — one landmark.
+            {t("experience.title")}
           </h2>
 
           <p style={{
@@ -227,7 +217,7 @@ export function ExperienceCards() {
             color: "rgba(255,255,255,0.55)", lineHeight: 1.7,
             margin: 0, maxWidth: 320,
           }}>
-            Four threads that meet at the summit of Sharq District. Choose where to begin.
+            {t("experience.subtitle")}
           </p>
         </div>
       </div>
@@ -240,7 +230,7 @@ export function ExperienceCards() {
         gap: "clamp(12px,1.5vw,20px)",
       }} className="exp-grid">
         {CARDS.map((card, i) => (
-          <Card key={card.kicker} card={card} index={i} />
+          <Card key={card.keyPrefix} card={card} index={i} t={t} />
         ))}
       </div>
 

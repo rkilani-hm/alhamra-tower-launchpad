@@ -1,45 +1,47 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useT } from "@/lib/i18n";
+import { LanguageToggle } from "@/components/shared/LanguageToggle";
 
 const NAV = [
   {
-    label: "The Tower",
+    labelKey: "nav.tower",
     href:  "/tower",
     children: [
-      { label: "Overview",             href: "/tower"                  },
-      { label: "Rising with Purpose",  href: "/tower/rising"           },
-      { label: "Design & Engineering", href: "/tower/design"           },
-      { label: "Awards & Recognition", href: "/tower/recognition"      },
-      { label: "Sustainability",       href: "/tower/sustainability"   },
+      { labelKey: "nav.sub.overview",       href: "/tower"                  },
+      { labelKey: "nav.sub.rising",         href: "/tower/rising"           },
+      { labelKey: "nav.sub.design",         href: "/tower/design"           },
+      { labelKey: "nav.sub.awards",         href: "/tower/recognition"      },
+      { labelKey: "nav.sub.sustainability", href: "/tower/sustainability"   },
     ],
   },
   {
-    label: "Business",
+    labelKey: "nav.business",
     href:  "/business",
     children: [
-      { label: "Workplace Experience",    href: "/business"                          },
-      { label: "Office Spaces",           href: "/business/office-spaces"            },
-      { label: "Vertical Transportation", href: "/business/vertical-transportation"  },
-      { label: "Connectivity",            href: "/business/connectivity"             },
+      { labelKey: "nav.sub.workplace",    href: "/business"                         },
+      { labelKey: "nav.sub.offices",      href: "/business/office-spaces"           },
+      { labelKey: "nav.sub.vertical",     href: "/business/vertical-transportation" },
+      { labelKey: "nav.sub.connectivity", href: "/business/connectivity"            },
     ],
   },
   {
-    label: "Experience",
+    labelKey: "nav.experience",
     href:  "/services",
     children: [
-      { label: "Services & Facilities", href: "/services"  },
-      { label: "Location & Access",     href: "/location"  },
+      { labelKey: "nav.sub.servicesFull", href: "/services" },
+      { labelKey: "nav.sub.locationFull", href: "/location" },
     ],
   },
   {
-    label: "Leasing",
+    labelKey: "nav.leasing",
     href:  "/leasing",
     children: [
-      { label: "Opportunities", href: "/leasing"           },
-      { label: "Inquiry",       href: "/leasing/inquiry#inquiry-form"   },
-      { label: "Downloads",     href: "/leasing/downloads" },
-      { label: "Contact",       href: "/leasing/contact"   },
+      { labelKey: "nav.sub.opportunities", href: "/leasing"                      },
+      { labelKey: "nav.sub.inquiry",       href: "/leasing/inquiry#inquiry-form" },
+      { labelKey: "nav.sub.downloads",     href: "/leasing/downloads"            },
+      { labelKey: "nav.sub.contact",       href: "/leasing/contact"              },
     ],
   },
 ];
@@ -51,6 +53,7 @@ export function Navbar() {
   const [openSection, setOpenSection] = useState<string | null>(null); // mobile accordion
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
+  const t = useT();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -69,16 +72,16 @@ export function Navbar() {
   useEffect(() => {
     if (mobileOpen) {
       const current = NAV.find(n => location.pathname.startsWith(n.href));
-      if (current) setOpenSection(current.label);
+      if (current) setOpenSection(current.labelKey);
     }
   }, [mobileOpen, location.pathname]);
 
-  const openDropdown  = (label: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenMenu(label); };
+  const openDropdown  = (key: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenMenu(key); };
   const closeDropdown = () => { closeTimer.current = setTimeout(() => setOpenMenu(null), 180); };
   const stayOpen      = () => { if (closeTimer.current) clearTimeout(closeTimer.current); };
 
-  const toggleSection = (label: string) =>
-    setOpenSection(prev => prev === label ? null : label);
+  const toggleSection = (key: string) =>
+    setOpenSection(prev => prev === key ? null : key);
 
   return (
     <>
@@ -114,12 +117,12 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <ul className="nav-desktop-links" style={{ alignItems: "center", gap: 4, listStyle: "none" }}>
-          {NAV.map(({ label, href, children }) => {
+          {NAV.map(({ labelKey, href, children }) => {
             const isActive = location.pathname.startsWith(href);
-            const isOpen   = openMenu === label;
+            const isOpen   = openMenu === labelKey;
             return (
-              <li key={label} style={{ position: "relative" }}
-                onMouseEnter={() => openDropdown(label)}
+              <li key={labelKey} style={{ position: "relative" }}
+                onMouseEnter={() => openDropdown(labelKey)}
                 onMouseLeave={closeDropdown}
               >
                 <Link to={href}
@@ -132,7 +135,7 @@ export function Navbar() {
                     textDecoration: "none", padding: "8px 16px",
                     transition: "color 0.2s",
                   }}>
-                  {label}
+                  {t(labelKey)}
                   <svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"
                     style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s ease", opacity: 0.5 }}>
                     <path d="M1 1L4.5 5L8 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -155,7 +158,7 @@ export function Navbar() {
                       }}
                     >
                       <div style={{ position: "absolute", top: 0, left: 16, right: 16, height: "2px", background: "#1D1D1B" }} />
-                      {children.map(({ label: cl, href: ch }, i) => {
+                      {children.map(({ labelKey: cl, href: ch }, i) => {
                         const isChildActive = location.pathname === ch;
                         return (
                           <Link key={ch} to={ch}
@@ -176,7 +179,7 @@ export function Navbar() {
                             <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:300, color: isChildActive ? "#1D1D1B" : "#EDEDED", minWidth:18, lineHeight:1 }}>
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            {cl}
+                            {t(cl)}
                           </Link>
                         );
                       })}
@@ -198,12 +201,15 @@ export function Navbar() {
             onMouseEnter={e => { e.currentTarget.style.background="#1D1D1B"; e.currentTarget.style.color="#fff"; }}
             onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#1D1D1B"; }}
           >
-            Leasing Inquiry
+            {t("nav.cta")}
           </Link>
+
+          {/* Language toggle */}
+          <LanguageToggle variant="light" />
 
           <button type="button" onClick={() => setMobileOpen(p => !p)} className="mobile-menu-btn"
             style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, color: "#1D1D1B" }}
-            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={mobileOpen ? t("nav.closeMenu") : t("nav.openMenu")}
             aria-expanded={mobileOpen}
           >
             <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
@@ -239,18 +245,19 @@ export function Navbar() {
             }}
           >
             <div style={{ padding: "24px 0 60px" }}>
-              {NAV.map(({ label, href, children }) => {
-                const isExpanded   = openSection === label;
+              {NAV.map(({ labelKey, href, children }) => {
+                const isExpanded   = openSection === labelKey;
                 const isActive     = location.pathname.startsWith(href);
+                const sectionId    = labelKey.replace(/\./g, "-");
 
                 return (
-                  <div key={label} style={{ borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
+                  <div key={labelKey} style={{ borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
 
                     {/* Section header — tap to expand */}
                     <button type="button"
-                      onClick={() => toggleSection(label)}
+                      onClick={() => toggleSection(labelKey)}
                       aria-expanded={isExpanded}
-                      aria-controls={`mobile-nav-${label.replace(/\s+/g, "-").toLowerCase()}`}
+                      aria-controls={`mobile-nav-${sectionId}`}
                       style={{
                         width: "100%", display: "flex", alignItems: "center",
                         justifyContent: "space-between",
@@ -266,7 +273,7 @@ export function Navbar() {
                         color: isActive ? "#1D1D1B" : "#6B6B6B",
                         fontWeight: isActive ? 500 : 300,
                       }}>
-                        {label}
+                        {t(labelKey)}
                       </span>
 
                       {/* Animated chevron */}
@@ -284,7 +291,7 @@ export function Navbar() {
                       {isExpanded && (
                         <motion.div
                           key="content"
-                          id={`mobile-section-${label.replace(/\s/g, "-").toLowerCase()}`}
+                          id={`mobile-section-${sectionId}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -292,7 +299,7 @@ export function Navbar() {
                           style={{ overflow: "hidden" }}
                         >
                           <div style={{ background: "#FAFAFA", padding: "4px 0 8px" }}>
-                            {children.map(({ label: cl, href: ch }, i) => {
+                            {children.map(({ labelKey: cl, href: ch }, i) => {
                               const isChildActive = location.pathname === ch;
                               return (
                                 <Link key={ch} to={ch} style={{
@@ -310,7 +317,7 @@ export function Navbar() {
                                   <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"15px", fontWeight:300, color:"#EDEDED", lineHeight:1, flexShrink:0 }}>
                                     {String(i + 1).padStart(2, "0")}
                                   </span>
-                                  {cl}
+                                  {t(cl)}
                                 </Link>
                               );
                             })}
