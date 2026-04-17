@@ -160,7 +160,7 @@ export function AwardsStrip() {
           borderBottom: "1px solid rgba(200,185,154,0.15)",
         }} className="monuments-row">
           {MONUMENTS.map((m, i) => (
-            <Monument key={t(m.labelKey)} m={m} i={i} active={inView} />
+            <Monument key={m.labelKey} m={m} i={i} active={inView} t={t} />
           ))}
         </div>
 
