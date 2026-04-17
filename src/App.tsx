@@ -31,6 +31,10 @@ import {
 import Privacy from "./pages/Privacy";
 import Terms   from "./pages/Terms";
 
+/* Experience pages (separate files) */
+import BusinessCentre from "./pages/experience/BusinessCentre";
+import AlHamraHotel   from "./pages/experience/AlHamraHotel";
+
 /* i18n */
 import { I18nProvider } from "@/lib/i18n";
 
@@ -74,6 +78,8 @@ function AnimatedRoutes() {
           {/* Experience */}
           <Route path="/services"                       element={<Services />} />
           <Route path="/location"                       element={<Location />} />
+          <Route path="/business-centre"                element={<BusinessCentre />} />
+          <Route path="/hotel"                          element={<AlHamraHotel />} />
 
           {/* Leasing */}
           <Route path="/leasing"                        element={<LeasingOpportunities />} />

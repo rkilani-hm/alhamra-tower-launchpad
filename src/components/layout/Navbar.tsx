@@ -30,8 +30,10 @@ const NAV = [
     labelKey: "nav.experience",
     href:  "/services",
     children: [
-      { labelKey: "nav.sub.servicesFull", href: "/services" },
-      { labelKey: "nav.sub.locationFull", href: "/location" },
+      { labelKey: "nav.sub.servicesFull",   href: "/services"        },
+      { labelKey: "nav.sub.locationFull",   href: "/location"        },
+      { labelKey: "nav.sub.businessCenter", href: "/business-centre" },
+      { labelKey: "nav.sub.hotel",          href: "/hotel"           },
     ],
   },
   {
