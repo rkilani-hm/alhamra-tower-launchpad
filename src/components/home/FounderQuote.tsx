@@ -154,7 +154,7 @@ export function FounderQuote() {
             aria-label={t("founderQuote.quote")}
             style={{
               width: "100%", height: "100%", display: "block",
-              objectFit: "contain", background: "#0c0b09",
+              objectFit: "cover", background: "#0c0b09",
             }}
           />
           {/* Pearl gradient overlay bottom */}
