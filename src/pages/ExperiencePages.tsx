@@ -332,12 +332,13 @@ const LEASING_CONFIGS = [
   {
     code: "HIGH RISE",
     title: "Flagship Headquarters",
-    size: "450 – 1,750 m²",
+    size: "3,000+ m²",
     bullets: [
-      "Floors 52 – 75 · Sky Lobby 2 at Floor 55",
-      "Executive floors 74–75 — Kuwait's highest business address",
-      "VIP elevator direct from lobby to Sky Lounge (351m) at 351m",
-      "Ideal for global luxury brands and corporate HQs",
+      "Multiple contiguous floors · Floors 52 – 75 · Sky Lobby 2 at Floor 55",
+      "Executive floors 74 – 75 — Kuwait's highest business address",
+      "Dedicated parking levels + building signage rights",
+      "VIP elevator direct from arrival lobby to Sky Lounge at 351 m",
+      "Ideal for global luxury brands and regional corporate HQs",
     ],
   },
 ];
