@@ -16,7 +16,7 @@ const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,
 
 /* Structural data — numbers stay as data; label/sub come from i18n at render */
 const STATS = [
-  { raw: 412,    display: "412",     unit: "m",   key: "height"    },
+  { raw: 412,    display: "412.6",   unit: "m",   key: "height"    },
   { raw: 62,     display: "62",      unit: "",    key: "floors"    },
   { raw: 258000, display: "258,000", unit: "m²",  key: "limestone" },
   { raw: 351,    display: "351",     unit: "m",   key: "skyLounge" },
