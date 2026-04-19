@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence, LayoutGroup } from "framer-motion";
+import { useRef, useState, useMemo } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 
@@ -13,14 +13,126 @@ const MUTED = "#8A8580";
 const WHITE = "#FFFFFF";
 
 /* ─── Data ───────────────────────────────── */
-const AWARDS = [
-  { year: "2010", award: "Cityscape Award for Commercial, Mixed-Use Developments",    org: "Cityscape International",    cat: "Architecture",   color: SAND },
-  { year: "2010", award: "Architecture Award",                                         org: "Chicago Athenaeum",          cat: "Design",         color: DARK },
-  { year: "2009", award: "Future Project Award",                                       org: "MIPIM Architectural Review", cat: "Innovation",     color: SAND },
-  { year: "2007", award: "Bronze · Under Construction Category",                       org: "Miami Architectural Biennial", cat: "Engineering", color: DARK },
-  { year: "2014", award: "Emirates Glass LEAF Award",                                  org: "LEAF Awards",                cat: "Sustainability", color: SAND },
-  { year: "2019", award: "World Architecture Festival Recognition",                    org: "WAF",                        cat: "Tall Buildings", color: DARK },
+/* Full corpus of 12 international awards & honours won by Al Hamra Business Tower,
+   compiled from original citation documents. Eight trophies are photographed;
+   four are rendered as certificate-style cards (image: null).                  */
+type Award = {
+  year:     string;
+  ribbon:   string;   /* short distinction e.g. "First Place" */
+  title:    string;
+  org:      string;
+  category: "Architecture" | "Concrete" | "Development" | "Smart Tech" | "Tall Buildings";
+  body:     string;
+  image:    string | null;
+  hero?:    boolean;  /* top-of-page featured award */
+};
+
+const AWARDS_DATA: Award[] = [
+  {
+    year: "2021", ribbon: "Award of Excellence",
+    title: "Best Tall Building 10-Year Award",
+    org: "Council on Tall Buildings and Urban Habitat (CTBUH)",
+    category: "Tall Buildings",
+    body: "Honoured a decade after completion — the pinnacle retrospective recognition for lasting architectural significance. Awarded by audience vote among the world's most influential tall buildings of the past decade.",
+    image: "/assets/awards/2021-ctbuh-10-year-award.jpg",
+    hero: true,
+  },
+  {
+    year: "2019–20", ribbon: "Double Regional Winner",
+    title: "Best Commercial High-Rise Architecture & Development",
+    org: "Arabian Property Awards",
+    category: "Development",
+    body: "Double-crowned for both \"Best Commercial High-Rise Architecture\" and \"Best Commercial High-Rise Development\" — Kuwait and Region — at the Dubai, African & Arabian Property Awards, held in association with the International Property Awards.",
+    image: "/assets/awards/2019-arabian-property-awards.jpg",
+  },
+  {
+    year: "2019–20", ribbon: "International Winner · London",
+    title: "Best International Commercial High-Rise Development",
+    org: "International Property Awards",
+    category: "Development",
+    body: "Presented at the International Property Awards ceremony in London — affirming Al Hamra's architectural brilliance as an iconic landmark and Kuwait's most vibrant international business hub.",
+    image: "/assets/awards/2019-international-property-awards.jpg",
+  },
+  {
+    year: "2016", ribbon: "Two Awards",
+    title: "Smart Building Award — Middle East",
+    org: "Honeywell",
+    category: "Smart Tech",
+    body: "Two Honeywell Smart Building Awards: Middle East Country Winner for the Smartest Building in Kuwait, and Vertical Sector Winner for Private Offices. Scored on Green, Safe and Productive criteria following on-site audit by Honeywell consultants.",
+    image: "/assets/awards/2016-honeywell-smart-building.jpg",
+  },
+  {
+    year: "2015", ribbon: "First Place",
+    title: "Excellence in Concrete Construction — First Place, High-Rise",
+    org: "American Concrete Institute (ACI) · Global",
+    category: "Concrete",
+    body: "First Place globally in the High-Rise Buildings category at the ACI Excellence in Concrete Construction Awards — honouring the most creative concrete projects worldwide and recognising innovation, technology and engineering excellence.",
+    image: "/assets/awards/2015-aci-concrete-first-place.jpg",
+  },
+  {
+    year: "2013", ribbon: "Merit Award",
+    title: "Design Award — Architecture Merit",
+    org: "American Institute of Architects (AIA) · New York Chapter",
+    category: "Architecture",
+    body: "Merit Award from the AIA New York Design Awards Program — honouring outstanding architectural design. Judged by an internationally-prominent three-person jury across the Architecture category.",
+    image: null,
+  },
+  {
+    year: "2012", ribbon: "Company of the Year",
+    title: "Best Real Estate Company of the Year",
+    org: "Arabian Business Achievement Awards · ITP Executive Expo",
+    category: "Development",
+    body: "Al Hamra Real Estate Company recognised as Best Real Estate Company of the Year — reflecting sustained leadership in premium real-estate development across the Gulf.",
+    image: "/assets/awards/2012-best-real-estate-company.jpg",
+  },
+  {
+    year: "2012", ribbon: "Finalist",
+    title: "Best Tall Building — Middle East & Africa (Finalist)",
+    org: "Council on Tall Buildings and Urban Habitat (CTBUH)",
+    category: "Tall Buildings",
+    body: "Finalist nomination for Best Tall Building, Middle East & Africa Region. The CTBUH is the recognised global authority on the official height of tall buildings and on all aspects of tall-building planning, design and construction.",
+    image: null,
+  },
+  {
+    year: "2011", ribbon: "Award of Excellence",
+    title: "Setting New Standards for Landmarks in Kuwait",
+    org: "American Concrete Institute (ACI) · Kuwait Chapter",
+    category: "Concrete",
+    body: "Annual Award of Excellence presented to a local project of outstanding merit — recognising the technical innovation and design excellence that set new standards for landmark construction in Kuwait.",
+    image: "/assets/awards/2011-aci-kuwait-excellence.jpg",
+  },
+  {
+    year: "2010", ribbon: "Emerging Markets",
+    title: "Excellence in Architecture — Emerging Markets",
+    org: "Cityscape Global · Dubai",
+    category: "Architecture",
+    body: "Awarded at Cityscape Global — the world's largest networking exhibition on property development, held at the Dubai International Convention Centre. Recognises outstanding design, performance, vision and achievement across the Gulf, Middle East, Africa, Latin America and Asia.",
+    image: "/assets/awards/2010-cityscape-emerging-markets.jpg",
+  },
+  {
+    year: "2008", ribbon: "Honouree",
+    title: "American Architecture Award",
+    org: "The Chicago Athenaeum — Museum of Architecture & Design",
+    category: "Architecture",
+    body: "Honoured in the Chicago Athenaeum's Annual American Architecture Awards Program — celebrating the best significant buildings and landscapes designed and built worldwide by the most important American architects practising nationally and internationally.",
+    image: null,
+  },
+  {
+    year: "2008", ribbon: "Overall Winner · Cannes",
+    title: "Future Projects Awards — Overall Winner & Excellence in Tall Buildings",
+    org: "MIPIM · Architectural Review · Cannes",
+    category: "Architecture",
+    body: "Overall Winner and Excellence in Tall Buildings at the MIPIM Architectural Review Future Projects Awards in Cannes — a prestigious programme across eight categories honouring outstanding unbuilt and emerging architecture.",
+    image: null,
+  },
 ];
+
+/* Legacy simple AWARDS table — kept for type safety of any legacy reference */
+const AWARDS = AWARDS_DATA.map(a => ({
+  year:  a.year, award: a.title, org: a.org,
+  cat:   a.category,
+  color: a.image ? SAND : DARK,
+}));
 
 const ENGINEERING_FACTS = [
   {
@@ -67,6 +179,374 @@ function ParallaxImg({ src, alt, height }: { src: string; alt: string; height: n
     </div>
   );
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   AWARDS & HONOURS — INTERNATIONAL RECOGNITION
+   ────────────────────────────────────────────────────────────────────────
+   A vertical editorial timeline of Al Hamra's international awards —
+   replacing the legacy utilitarian data table with a prestige-oriented
+   gallery. Three layers of content:
+
+     1. Hero featured award (2021 CTBUH 10-Year — pinned at top)
+     2. Category filter pills (Framer Motion layout animations)
+     3. Card grid — photographed trophies AND certificate-style cards
+        for awards without photography, so nothing feels missing.
+═══════════════════════════════════════════════════════════════════════ */
+const CATEGORIES = ["All", "Architecture", "Tall Buildings", "Development", "Concrete", "Smart Tech"] as const;
+type Category = typeof CATEGORIES[number];
+
+/* Small crest SVG used on image-less "certificate" cards.
+   Fits the existing sand/dark palette — no external icon libs. */
+function AwardCrest({ color = "#C5A882" }: { color?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" width="54" height="54" fill="none" stroke={color} strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="32" cy="26" r="16" />
+      <circle cx="32" cy="26" r="11" strokeOpacity="0.55" />
+      <path d="M22 38 L18 60 L32 52 L46 60 L42 38" />
+      <path d="M32 20 L33.8 24 L38 24.4 L34.8 27.2 L35.8 31.4 L32 29 L28.2 31.4 L29.2 27.2 L26 24.4 L30.2 24 Z" fill={color} fillOpacity="0.18" />
+    </svg>
+  );
+}
+
+function AwardsRecognitionSection() {
+  const [activeCat, setActiveCat] = useState<Category>("All");
+
+  /* Split hero from the rest, then filter the rest by category */
+  const hero = useMemo(() => AWARDS_DATA.find(a => a.hero)!, []);
+  const rest = useMemo(() => AWARDS_DATA.filter(a => !a.hero), []);
+  const filtered = useMemo(
+    () => activeCat === "All" ? rest : rest.filter(a => a.category === activeCat),
+    [activeCat, rest]
+  );
+
+  /* Count per-category badge numbers (used on pills) */
+  const counts = useMemo(() => {
+    const c: Record<Category, number> = { All: AWARDS_DATA.length, Architecture: 0, "Tall Buildings": 0, Development: 0, Concrete: 0, "Smart Tech": 0 };
+    AWARDS_DATA.forEach(a => { c[a.category]++; });
+    return c;
+  }, []);
+
+  return (
+    <section style={{ background: "#FAFAF8" }}>
+      <div className="ah-section" style={{ background: "transparent" }}>
+        {/* ── Header ─────────────────────────────────────── */}
+        <Rv>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+            <div style={{ width: 24, height: 1, background: SAND }} />
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>
+              Awards & Honours
+            </div>
+          </div>
+        </Rv>
+        <Rv delay={0.1}>
+          <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(26px,3.5vw,52px)", fontWeight: 100, letterSpacing: "-0.025em", lineHeight: 1.1, color: DARK, marginBottom: 18 }}>
+            International<br /><span style={{ fontWeight: 400 }}>Recognition</span>
+          </h2>
+        </Rv>
+        <Rv delay={0.18}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: MUTED, lineHeight: 1.7, maxWidth: 620, marginBottom: 48 }}>
+            From Cannes to London, Chicago to Dubai — Al Hamra Business Tower has been recognised by the world's leading architectural, engineering and property institutions for more than a decade. Twelve distinct awards, two continents, one skyline.
+          </p>
+        </Rv>
+
+        {/* ── Hero Featured Award (2021 CTBUH) ───────────── */}
+        <Rv delay={0.25}>
+          <motion.article
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="award-hero"
+            style={{
+              display: "grid", gridTemplateColumns: "1.1fr 1fr",
+              background: DARK, color: WHITE, marginBottom: 64,
+              boxShadow: "0 30px 80px -40px rgba(0,0,0,0.45)",
+              overflow: "hidden", position: "relative",
+            }}
+          >
+            {/* Photograph side */}
+            <div style={{ position: "relative", minHeight: 420, background: DARK, overflow: "hidden" }}>
+              {/* Radial spotlight to lift the crystal trophy off pure black */}
+              <div style={{
+                position: "absolute", inset: 0,
+                background: `radial-gradient(ellipse at center, rgba(197,168,130,0.18) 0%, transparent 55%)`,
+                zIndex: 1,
+              }} />
+              <img
+                src={hero.image!}
+                alt={`${hero.title} — ${hero.org}`}
+                loading="lazy"
+                style={{ position: "relative", zIndex: 2, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", padding: "clamp(24px,4vw,60px)" }}
+              />
+              {/* Top-left ribbon label */}
+              <div style={{
+                position: "absolute", top: 24, left: 24, zIndex: 3,
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                fontSize: "10px", letterSpacing: "0.35em", textTransform: "uppercase",
+                color: SAND, padding: "6px 12px",
+                border: `1px solid ${SAND}`,
+              }}>
+                Featured Honour
+              </div>
+            </div>
+
+            {/* Text side */}
+            <div style={{
+              padding: "clamp(36px,4vw,64px)",
+              display: "flex", flexDirection: "column", justifyContent: "center",
+              borderLeft: `1px solid rgba(197,168,130,0.18)`,
+            }}>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(64px,7vw,96px)", fontWeight: 200, color: WHITE, lineHeight: 1, marginBottom: 4 }}>
+                {hero.year}
+              </div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: SAND, marginBottom: 22 }}>
+                {hero.ribbon} · {hero.category}
+              </div>
+              <h3 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.4vw,34px)", fontWeight: 300, color: WHITE, lineHeight: 1.2, marginBottom: 14, letterSpacing: "-0.01em" }}>
+                {hero.title}
+              </h3>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", fontWeight: 400, color: "rgba(255,255,255,0.72)", marginBottom: 18, letterSpacing: "0.04em" }}>
+                {hero.org}
+              </div>
+              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13.5px", fontWeight: 300, color: "rgba(255,255,255,0.55)", lineHeight: 1.8, maxWidth: 440 }}>
+                {hero.body}
+              </p>
+            </div>
+          </motion.article>
+        </Rv>
+
+        {/* ── Category Filter Pills ──────────────────────── */}
+        <Rv delay={0.1}>
+          <div className="award-filters" role="tablist" aria-label="Filter awards by category">
+            {CATEGORIES.map(cat => {
+              const active = activeCat === cat;
+              return (
+                <motion.button
+                  key={cat}
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setActiveCat(cat)}
+                  whileTap={{ scale: 0.97 }}
+                  style={{
+                    position: "relative",
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                    fontSize: "11px", letterSpacing: "0.24em", textTransform: "uppercase",
+                    padding: "10px 18px", border: `1px solid ${active ? DARK : STONE}`,
+                    background: active ? DARK : WHITE,
+                    color: active ? WHITE : DARK,
+                    cursor: "pointer", transition: "all 0.25s ease",
+                    display: "inline-flex", alignItems: "center", gap: 10,
+                  }}
+                >
+                  {cat}
+                  <span style={{
+                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                    fontSize: "9px", fontWeight: 400,
+                    padding: "1px 7px", minWidth: 20, textAlign: "center",
+                    background: active ? SAND : CREAM,
+                    color: active ? DARK : MUTED,
+                    letterSpacing: "0.05em",
+                  }}>
+                    {counts[cat]}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </div>
+        </Rv>
+
+        {/* ── Timeline Gallery ───────────────────────────── */}
+        <LayoutGroup>
+          <motion.div layout className="award-grid" style={{ marginTop: 44 }}>
+            <AnimatePresence mode="popLayout">
+              {filtered.map((a, i) => (
+                <AwardCard key={a.title + a.year} award={a} index={i} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </LayoutGroup>
+
+        {/* ── Footer stats strip ──────────────────────────── */}
+        <Rv delay={0.15}>
+          <div className="award-footer-stats" style={{ marginTop: 72, paddingTop: 36, borderTop: `1px solid ${STONE}` }}>
+            {[
+              { n: "12",  l: "International Awards" },
+              { n: "7",   l: "Organisations Worldwide" },
+              { n: "14",  l: "Years of Recognition" },
+              { n: "4",   l: "Continents Honouring" },
+            ].map(({ n, l }, i) => (
+              <motion.div
+                key={l}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.55 }}
+              >
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(32px,3.5vw,48px)", fontWeight: 200, color: DARK, lineHeight: 1, marginBottom: 8 }}>
+                  {n}
+                </div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: MUTED }}>
+                  {l}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </Rv>
+      </div>
+    </section>
+  );
+}
+
+/* Individual award card — two flavours (photographed vs certificate).
+   Alternating orientation handled via CSS :nth-child to give the grid
+   a deliberate editorial rhythm.                                      */
+function AwardCard({ award, index }: { award: Award; index: number }) {
+  const hasImage = !!award.image;
+
+  return (
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -12 }}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.06, 0.4), ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -6 }}
+      className="award-card"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr",
+        background: WHITE,
+        border: `1px solid ${STONE}`,
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* ── Visual side ── */}
+      {hasImage ? (
+        <div style={{ position: "relative", background: DARK, aspectRatio: "4 / 3", overflow: "hidden" }}>
+          {/* Subtle warm spotlight behind the crystal */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: `radial-gradient(ellipse at 50% 55%, rgba(197,168,130,0.16) 0%, transparent 58%)`,
+            zIndex: 1,
+          }} />
+          <motion.img
+            src={award.image!}
+            alt={`${award.title} — ${award.org}`}
+            loading="lazy"
+            initial={{ scale: 1.02 }}
+            whileHover={{ scale: 1.06 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            style={{ position: "relative", zIndex: 2, width: "100%", height: "100%", objectFit: "contain", padding: "clamp(14px,2.5vw,32px)" }}
+          />
+          {/* Year badge, top-right */}
+          <div style={{
+            position: "absolute", top: 14, right: 14, zIndex: 3,
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase",
+            color: SAND, padding: "5px 10px",
+            background: "rgba(29,29,27,0.55)", backdropFilter: "blur(4px)",
+            border: `1px solid rgba(197,168,130,0.35)`,
+          }}>
+            {award.year}
+          </div>
+        </div>
+      ) : (
+        /* Certificate-style card for awards without a trophy photo */
+        <div style={{
+          position: "relative", background: CREAM, aspectRatio: "4 / 3",
+          display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
+          padding: "clamp(24px,3vw,40px)", textAlign: "center",
+          borderBottom: `1px solid ${STONE}`,
+        }}>
+          {/* Ornamental frame */}
+          <div style={{
+            position: "absolute", inset: "clamp(16px,2vw,24px)",
+            border: `1px solid ${SAND_AA}`, opacity: 0.35, pointerEvents: "none",
+          }} />
+          <div style={{
+            position: "absolute", top: "clamp(10px,1.4vw,18px)", left: "50%", transform: "translateX(-50%)",
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "9px", letterSpacing: "0.38em", textTransform: "uppercase",
+            color: SAND_AA, background: CREAM, padding: "0 10px",
+          }}>
+            Certificate of Honour
+          </div>
+
+          <AwardCrest color={SAND_AA} />
+          <div style={{
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "clamp(32px,3.5vw,48px)", fontWeight: 200, color: DARK,
+            marginTop: 18, lineHeight: 1, letterSpacing: "-0.02em",
+          }}>
+            {award.year}
+          </div>
+          <div style={{
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase",
+            color: SAND_AA, marginTop: 10,
+          }}>
+            {award.ribbon}
+          </div>
+        </div>
+      )}
+
+      {/* ── Text side ── */}
+      <div style={{
+        padding: "clamp(22px,2.2vw,30px) clamp(22px,2.2vw,30px) clamp(26px,2.5vw,34px)",
+        display: "flex", flexDirection: "column", minHeight: 200,
+      }}>
+        {/* Top line: ribbon + category tag */}
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          gap: 12, marginBottom: 14,
+        }}>
+          <span style={{
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase",
+            color: SAND_AA, fontWeight: 500,
+          }}>
+            {award.ribbon}
+          </span>
+          <span style={{
+            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+            fontSize: "9.5px", letterSpacing: "0.22em", textTransform: "uppercase",
+            padding: "3px 9px", background: CREAM, color: MUTED,
+          }}>
+            {award.category}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h4 style={{
+          fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+          fontSize: "clamp(14px,1.35vw,17px)", fontWeight: 400, color: DARK,
+          lineHeight: 1.35, marginBottom: 8, letterSpacing: "-0.005em",
+        }}>
+          {award.title}
+        </h4>
+
+        {/* Organisation */}
+        <div style={{
+          fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+          fontSize: "11.5px", fontWeight: 400, color: MUTED,
+          marginBottom: 14, letterSpacing: "0.02em",
+        }}>
+          {award.org}
+        </div>
+
+        {/* Body — hairline separator above */}
+        <div style={{ height: 1, background: STONE, margin: "auto 0 14px", width: "28px" }} />
+        <p style={{
+          fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+          fontSize: "12.5px", fontWeight: 300, color: MUTED,
+          lineHeight: 1.75, margin: 0,
+        }}>
+          {award.body}
+        </p>
+      </div>
+    </motion.article>
+  );
+}
+
 
 export function TowerAwards() {
   return (
@@ -241,51 +721,8 @@ export function TowerAwards() {
         </div>
       </Section>
 
-      {/* ══ AWARDS TABLE ══════════════════════════════════ */}
-      <Section bg="#FAFAF8">
-        <Rv>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-            <div style={{ width: 24, height: 1, background: SAND }} />
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>Awards & Honours</div>
-          </div>
-        </Rv>
-        <Rv delay={0.1}>
-          <H2>International Recognition</H2>
-        </Rv>
-
-        <div style={{ marginTop: 40, borderTop: `1px solid ${STONE}` }}>
-          {/* Header */}
-          <div style={{ display: "grid", gridTemplateColumns: "80px 1fr auto", gap: 24, padding: "12px 0", borderBottom: `1px solid ${STONE}` }}>
-            {["Year", "Award", "Organisation"].map(h => (
-              <div key={h} style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: MUTED }}>{h}</div>
-            ))}
-          </div>
-          {AWARDS.map(({ year, award, org, cat, color }, i) => (
-            <Rv key={year + award} delay={i * 0.07}>
-              <motion.div
-                whileHover={{ x: 6, backgroundColor: CREAM }}
-                transition={{ duration: 0.2 }}
-                style={{ display: "grid", gridTemplateColumns: "80px 1fr auto", gap: "clamp(10px,2vw,24px)", padding: "clamp(14px,1.5vw,20px) 0", borderBottom: `1px solid ${STONE}`, cursor: "default", alignItems: "center" }}
-              >
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(18px,2.2vw,24px)", fontWeight: 300, color: DARK }}>{year}</div>
-                <div>
-                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1.1vw,13px)", fontWeight: 400, color: DARK, marginBottom: 2 }}>{award}</div>
-                  <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.9vw,11.5px)", color: MUTED }}>{org}</div>
-                </div>
-                <div style={{
-                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                  padding: "4px 10px",
-                  background: color === DARK ? DARK : color === SAND ? CREAM : STONE,
-                  color: color === DARK ? WHITE : MUTED,
-                  whiteSpace: "nowrap",
-                }}>
-                  {cat}
-                </div>
-              </motion.div>
-            </Rv>
-          ))}
-        </div>
-      </Section>
+      {/* ══ AWARDS & HONOURS — INTERNATIONAL RECOGNITION ═════════════════ */}
+      <AwardsRecognitionSection />
 
       {/* ══ PHOTO PAIR — ENTRANCE ENGINEERING ══════════════ */}
       <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }} className="awards-photo-pair">
@@ -370,21 +807,54 @@ export function TowerAwards() {
           border-right: none;
         }
 
+        /* ─── Awards & Honours Recognition ─────────────────── */
+        .award-filters {
+          display: flex; flex-wrap: wrap; gap: 10px;
+          margin-top: 4px;
+        }
+        .award-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+        .award-card {
+          transition: box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .award-card:hover {
+          box-shadow: 0 24px 60px -30px rgba(29,29,27,0.28);
+          border-color: ${SAND_AA};
+        }
+        .award-footer-stats {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+
         @media (max-width: 900px) {
           .awards-stats-bar { grid-template-columns: repeat(2, 1fr); }
           .eng-card { grid-template-columns: 1fr; }
           .eng-card-img { order: -1 !important; }
           .eng-card-text { order: 1 !important; }
           .awards-photo-pair { grid-template-columns: 1fr !important; }
+          .award-hero { grid-template-columns: 1fr !important; }
+          .award-grid { grid-template-columns: 1fr; gap: 20px; }
+          .award-footer-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
         }
 
         @media (max-width: 640px) {
           .awards-stats-bar { grid-template-columns: 1fr 1fr; }
           .awards-lobby-text { padding: 32px 20px; }
+          .award-filters { gap: 8px; }
+          .award-filters button {
+            font-size: 10px !important;
+            padding: 8px 12px !important;
+            letter-spacing: 0.2em !important;
+          }
         }
 
         @media (max-width: 480px) {
           .awards-stats-bar { grid-template-columns: 1fr; }
+          .award-footer-stats { grid-template-columns: 1fr 1fr; }
         }
       `}</style>
     </PageLayout>
