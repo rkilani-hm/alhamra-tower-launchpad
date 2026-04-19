@@ -144,13 +144,17 @@ export function FounderQuote() {
           }}
           className="fq-image"
         >
-          <img
-            loading="lazy"
-            src="/assets/tower-overview-banner.jpg"
-            alt={t("founderQuote.quote")}
+          <video
+            src="/assets/founder-quote.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={t("founderQuote.quote")}
             style={{
               width: "100%", height: "100%", display: "block",
-              objectFit: "cover", objectPosition: "center 20%",
+              objectFit: "contain", background: "#0c0b09",
             }}
           />
           {/* Pearl gradient overlay bottom */}
