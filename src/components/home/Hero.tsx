@@ -263,7 +263,7 @@ export function Hero() {
         aria-label={t("hero.statsLabel")}
       >
         {[
-          { n: "413", u: "m",  k: "hero.stats.height"    },
+          { n: "412.6", u: "m",  k: "hero.stats.height"    },
           { n: "80",  u: "",   k: "hero.stats.floors"    },
           { n: "#1",  u: "",   k: "hero.stats.rank"      },
           { n: "52",  u: "",   k: "hero.stats.elevators" },
