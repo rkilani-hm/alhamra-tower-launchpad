@@ -126,6 +126,38 @@
     "addressValue": "Sharq, Kuwait City, Kuwait"
   },
 
+  "experience": {
+    "kicker": "Four Paths to Discover",
+    "title": "The architecture, the business, the address — one landmark.",
+    "subtitle": "Four threads that meet at the summit of Sharq District. Choose where to begin.",
+    "cards": {
+      "tower": {
+        "kicker": "The Tower",
+        "title": "412.6 meters of architectural ambition",
+        "desc": "Kuwait's tallest building — designed by SOM, clad in Jura limestone, and engineered as a single sculptural gesture.",
+        "cta": "Explore the Tower"
+      },
+      "architecture": {
+        "kicker": "Architecture & Design",
+        "title": "Glass toward the Gulf. Stone toward the desert.",
+        "desc": "Two hyperbolic paraboloid walls, a 24m column-free lobby, and 258,000m² of Jura limestone cladding.",
+        "cta": "Discover the Design"
+      },
+      "business": {
+        "kicker": "The Business",
+        "title": "An address for the region's principals",
+        "desc": "Ministries, sovereign funds, leading legal and financial institutions, and global luxury brands — tenants by invitation.",
+        "cta": "View Business Offering"
+      },
+      "leasing": {
+        "kicker": "Leasing",
+        "title": "Configurations tailored to your mandate",
+        "desc": "From half-floor 450m² suites to full-floor 2,300m² mandates. Executive suites on floors 74 and 75. Kuwait's premier address.",
+        "cta": "Begin Your Enquiry"
+      }
+    }
+  },
+
   "language": {
     "en": "English",
     "ar": "العربية"
