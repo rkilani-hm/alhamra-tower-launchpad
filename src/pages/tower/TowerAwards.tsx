@@ -960,15 +960,15 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
         padding: "clamp(22px,2.2vw,30px) clamp(22px,2.2vw,30px) clamp(26px,2.5vw,34px)",
         display: "flex", flexDirection: "column", minHeight: 200,
       }}>
-        {/* Top line: ribbon + category tag */}
+        {/* Top line: ribbon + category tag — wraps gracefully at 3-col widths */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          gap: 12, marginBottom: 14,
+          gap: 10, marginBottom: 14, flexWrap: "wrap",
         }}>
           <span style={{
             fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-            fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase",
-            color: SAND_AA, fontWeight: 500,
+            fontSize: "10px", letterSpacing: "0.26em", textTransform: "uppercase",
+            color: SAND_AA, fontWeight: 500, flex: "1 1 auto", minWidth: 0,
           }}>
             {award.ribbon}
           </span>
@@ -976,6 +976,7 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
             fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
             fontSize: "9.5px", letterSpacing: "0.22em", textTransform: "uppercase",
             padding: "3px 9px", background: CREAM, color: MUTED,
+            whiteSpace: "nowrap", flexShrink: 0,
           }}>
             {award.category}
           </span>
@@ -1305,8 +1306,8 @@ export function TowerAwards() {
 
         .award-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
         }
         .award-card {
           transition: box-shadow 0.35s ease, border-color 0.35s ease;
@@ -1422,6 +1423,10 @@ export function TowerAwards() {
           border-radius: 0;
         }
 
+        @media (max-width: 1100px) {
+          .award-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 900px) {
           .awards-stats-bar { grid-template-columns: repeat(2, 1fr); }
           .eng-card { grid-template-columns: 1fr; }
@@ -1429,7 +1434,6 @@ export function TowerAwards() {
           .eng-card-text { order: 1 !important; }
           .awards-photo-pair { grid-template-columns: 1fr !important; }
           .award-hero { grid-template-columns: 1fr !important; }
-          .award-grid { grid-template-columns: 1fr; gap: 20px; }
           .award-footer-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
           .award-controls { flex-direction: column; align-items: flex-start; }
           .view-toggle { align-self: flex-end; }
@@ -1442,6 +1446,7 @@ export function TowerAwards() {
         @media (max-width: 640px) {
           .awards-stats-bar { grid-template-columns: 1fr 1fr; }
           .awards-lobby-text { padding: 32px 20px; }
+          .award-grid { grid-template-columns: 1fr; gap: 20px; }
           .award-filters { gap: 8px; }
           .award-filters button {
             font-size: 10px !important;
