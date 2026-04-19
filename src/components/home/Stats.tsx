@@ -59,8 +59,8 @@ function formatWithCommas(n: number, hasComma: boolean): string {
 }
 
 function StatCard({
-  raw, display, unit, key: statKey, index, active,
-}: typeof STATS[number] & { index: number; active: boolean }) {
+  raw, display, unit, statKey, index, active,
+}: typeof STATS[number] & { statKey: string; index: number; active: boolean }) {
   const t        = useT();
   const hasComma = display.includes(",");
   const counted  = useCountUp(raw, 1600, index * 120, active);
@@ -134,7 +134,7 @@ export function Stats() {
         className="stats-bar grid-4col"
       >
         {STATS.map((s, i) => (
-          <StatCard key={s.key} {...s} index={i} active={inView} />
+          <StatCard key={s.key} {...s} statKey={s.key} index={i} active={inView} />
         ))}
       </motion.div>
     </PatternBackground>

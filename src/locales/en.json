@@ -92,6 +92,32 @@
     }
   },
 
+  "awards": {
+    "kicker": "By the Numbers",
+    "monuments": {
+      "height":    { "label": "Height to Tip",       "sub": "Tallest building in Kuwait" },
+      "limestone": { "label": "Stone Cladding",      "sub": "World record · Jura limestone" },
+      "floors":    { "label": "Total Floors",        "sub": "62 dedicated office levels" }
+    },
+    "recognitionKicker": "Design · Engineering · Recognition",
+    "recognition": {
+      "som":      { "label": "Skidmore, Owings & Merrill", "sub": "Lead Architect" },
+      "ctbuh":    { "label": "CTBUH",                       "sub": "Sculpted Skyscraper" },
+      "guinness": { "label": "Guinness World Records",      "sub": "Largest Stone Cladding" },
+      "leed":     { "label": "LEED Gold",                   "sub": "Sustainability" },
+      "enr":      { "label": "ENR Global",                  "sub": "Best Project" }
+    }
+  },
+
+  "stats": {
+    "items": {
+      "height":    { "label": "Height to Tip",          "sub": "Tallest building in Kuwait" },
+      "floors":    { "label": "Dedicated Office Floors","sub": "Levels 6 – 75" },
+      "limestone": { "label": "Jura Limestone Cladding","sub": "World record stone façade" },
+      "skyLounge": { "label": "Sky Lounge Elevation",   "sub": "Highest dining in Kuwait" }
+    }
+  },
+
   "perspectives": {
     "globalRecognition": {
       "kicker": "Global Recognition",
