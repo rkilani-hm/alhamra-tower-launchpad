@@ -677,7 +677,7 @@ function AwardsRecognitionSection() {
                 style={{ position: "relative", zIndex: 2, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", padding: "clamp(24px,4vw,60px)" }}
               />
               {/* Animated hanging ribbon — unfurls from top */}
-              <AnimatedRibbon lines={["CTBUH", "Award of", "Excellence", "2021"]} />
+              <AnimatedRibbon lines={["CTBUH", "Ten-Year", "Excellence", "2021"]} />
             </div>
 
             {/* Text side */}
@@ -824,9 +824,9 @@ function AwardsRecognitionSection() {
           <div className="award-footer-stats" style={{ marginTop: 72, paddingTop: 36, borderTop: `1px solid ${STONE}` }}>
             {[
               { n: "12",  l: "International Awards" },
-              { n: "7",   l: "Organisations Worldwide" },
+              { n: "10",  l: "Global Institutions" },
               { n: "14",  l: "Years of Recognition" },
-              { n: "4",   l: "Continents Honouring" },
+              { n: "3",   l: "Continents Honouring" },
             ].map(({ n, l }, i) => (
               <motion.div
                 key={l}
