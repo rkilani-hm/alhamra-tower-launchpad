@@ -3,10 +3,18 @@ import { Link } from "react-router-dom";
 import { PatternBackground } from "../shared/PatternBand";
 
 // ── PERSPECTIVES ──────────────────────────────────────────
+// Three sensory-experience cards. Tells what life inside Al Hamra
+// actually feels like — the Light, the Silence, the Vantage. Replaces
+// the previous awards / address / hub trio whose content duplicated
+// the Marquee, ContactStrip, and Hero respectively. Each card now
+// communicates something no other section on the home page covers.
 const PERSP = [
-  { n: "01", title: "Global Recognition",   body: "Cityscape Award 2010 · Chicago Athenaeum · MIPIM Architectural Review · Miami Architectural Biennial 2007. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — engineered by SOM San Francisco." },
-  { n: "02", title: "Unmatched Address",    body: "62 office floors from 35m to 368m above ground. No south-facing offices — every tenant faces the Arabian Gulf, Kuwait Bay, or the city. Sky Lobby 1 at Floor 30. Sky Lobby 2 at Floor 55. Sky Lounge at 351m." },
-  { n: "03", title: "The Capital's Hub",    body: "Sharq District — Kuwait's financial and government quarter. Direct access to the National Bank of Kuwait, major ministries, and the waterfront. 2,000 parking spaces across 11 levels. Fibre optic smart building. 100% power redundancy." },
+  { n: "01", title: "The Light",
+    body: "The asymmetric form is environmental, not aesthetic. Kuwait's south-facing sun is the harshest in the GCC. Al Hamra's stone wall absorbs it — not a single office window points into it. Every workspace receives the gentler northern, eastern, or western light, framed by the Gulf or the city." },
+  { n: "02", title: "The Silence",
+    body: "From the Sky Lobby at Floor 30, the traffic of Sharq becomes a distant idea. By Floor 55, the city stops talking. The Sky Lounge at 351m offers a stillness that does not exist anywhere else in Kuwait — an altitude where conversation, not commute, defines the day." },
+  { n: "03", title: "The Vantage",
+    body: "Kuwait Bay to the north. The Arabian Gulf to the east. The desert horizon to the west. From the upper third of the tower, all three are simultaneously visible from a single window — a perspective once reserved for aircraft, now for the institutions that work here." },
 ];
 
 export function Perspectives() {

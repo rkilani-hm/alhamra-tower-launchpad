@@ -122,25 +122,49 @@ export function Architecture() {
               </div>
             </div>
 
-            {/* Awards */}
-            <div style={{
-              display: "flex", flexWrap: "wrap", gap: "8px 16px",
-            }}>
-              {[
-                "Cityscape Award 2010",
-                "Chicago Athenaeum",
-                "MIPIM Architectural Review",
-                "Miami Architectural Biennial 2007",
-              ].map(award => (
-                <span key={award} style={{
-                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                  letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: GULF, padding: "4px 12px",
-                  border: `1px solid rgba(42,95,122,0.3)`,
-                }}>
-                  {award}
-                </span>
-              ))}
+            {/* Construction Timeline — engineering biography unique to Architecture
+                section. Replaces former awards chips (awards now consolidated in
+                the Marquee scrolling band — single source of truth for recognition). */}
+            <div>
+              <div style={{
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
+                color: GULF, marginBottom: 14,
+              }}>
+                Construction Milestones
+              </div>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: "auto 1fr",
+                rowGap: 10, columnGap: 18,
+              }}>
+                {[
+                  { y: "2005", e: "Concept by SOM San Francisco" },
+                  { y: "2007", e: "Ground breaking · piling begins" },
+                  { y: "2009", e: "Topping out at 412.6 m" },
+                  { y: "2010", e: "Façade installation completed" },
+                  { y: "2011", e: "Building inaugurated" },
+                ].map(({ y, e }) => (
+                  <div key={y} style={{ display: "contents" }}>
+                    <span style={{
+                      fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                      fontSize: "11px", letterSpacing: "0.18em",
+                      color: GULF, fontWeight: 500,
+                      borderRight: `1px solid rgba(42,95,122,0.18)`,
+                      paddingRight: 18,
+                    }}>
+                      {y}
+                    </span>
+                    <span style={{
+                      fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                      fontSize: "12px", color: DARK,
+                      letterSpacing: "0.04em", lineHeight: 1.5,
+                    }}>
+                      {e}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

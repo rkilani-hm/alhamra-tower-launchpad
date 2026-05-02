@@ -119,15 +119,20 @@
   },
 
   "perspectives": {
-    "globalRecognition": {
-      "kicker": "Global Recognition",
-      "title":  "Engineered to be seen — engineered to be remembered.",
-      "body":   "Cityscape Award 2010 · Chicago Athenaeum · MIPIM Architectural Review · Miami Architectural Biennial 2007. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — engineered by SOM San Francisco."
+    "light": {
+      "kicker": "The Light",
+      "title":  "No tenant ever faces south.",
+      "body":   "The asymmetric form is environmental, not aesthetic. Kuwait's south-facing sun is the harshest in the GCC. Al Hamra's stone wall absorbs it — not a single office window points into it. Every workspace receives the gentler northern, eastern, or western light, framed by the Gulf or the city."
     },
-    "unmatchedAddress": {
-      "kicker": "Unmatched Address",
-      "title":  "The Capital's Hub",
-      "body":   "Sharq District — Kuwait's financial and government quarter. Direct access to the National Bank of Kuwait, major ministries, and the waterfront. 2,000 parking spaces across 11 levels. Fibre optic smart building. 100% power redundancy."
+    "silence": {
+      "kicker": "The Silence",
+      "title":  "Above the city, you can hear the building breathe.",
+      "body":   "From the Sky Lobby at Floor 30, the traffic of Sharq becomes a distant idea. By Floor 55, the city stops talking. The Sky Lounge at 351m offers a stillness that does not exist anywhere else in Kuwait — an altitude where conversation, not commute, defines the day."
+    },
+    "vantage": {
+      "kicker": "The Vantage",
+      "title":  "You see the country from your desk.",
+      "body":   "Kuwait Bay to the north. The Arabian Gulf to the east. The desert horizon to the west. From the upper third of the tower, all three are simultaneously visible from a single window — a perspective once reserved for aircraft, now for the institutions that work here."
     }
   },
 

@@ -1,14 +1,23 @@
 import { useState } from "react";
 
+/* ── Verified 12-award corpus, newest first.
+   Mirrors the source-of-truth dataset on /tower/recognition (TowerAwards.tsx).
+   This is now the ONLY place on Home where awards are named — Architecture
+   and Perspectives sections previously duplicated subsets of this list and
+   have been re-purposed to tell different stories. ─────────────────────── */
 const ITEMS = [
-  "Best Tall Building Middle East — CTBUH 2012",
-  "MIPIM Architectural Review 2013",
-  "Emirates Glass LEAF Award 2014",
-  "International Property Award 2016",
-  "World Architecture Festival 2019",
-  "Designed by Skidmore, Owings & Merrill",
-  "#1 Tallest Sculpted Tower · #23 World",
-  "195,000 m² Gross Area · 10,000 m² Site",
+  "2021 CTBUH Ten-Year Award of Excellence",
+  "2019–20 International Property Awards · London",
+  "2019–20 Arabian Property Awards · Double Winner",
+  "2016 Honeywell Smart Building Award · Middle East",
+  "2015 ACI First Place · High-Rise Concrete",
+  "2013 AIA New York · Architecture Merit Award",
+  "2012 Best Real Estate Company · Arabian Business",
+  "2012 CTBUH Finalist · Middle East & Africa",
+  "2011 ACI Award of Excellence · Kuwait",
+  "2010 Cityscape Global · Excellence in Architecture",
+  "2008 American Architecture Award · Chicago Athenaeum",
+  "2008 MIPIM Architectural Review · Cannes · Overall Winner",
 ];
 
 const DOUBLED = [...ITEMS, ...ITEMS];
