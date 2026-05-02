@@ -7,7 +7,6 @@ import { Architecture }        from "@/components/home/Architecture";
 import { GulfSection }         from "@/components/home/GulfSection";
 import { InvitationSection }   from "@/components/home/InvitationSection";
 import { FounderQuote }        from "@/components/home/FounderQuote";
-import { AwardsStrip }         from "@/components/home/AwardsStrip";
 import { ExperienceCards }     from "@/components/home/ExperienceCards";
 import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sections";
 
@@ -17,15 +16,18 @@ import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sect
   Beat 1  ARRIVAL      → Hero            [DARK video]
   Beat 2  THE CITY     → GulfSection     [DARK aerial]
   Beat 3  THE GESTURE  → FounderQuote    [LIGHT · SOM quote + tower render]
-                         AwardsStrip     [DARK · 412m / 258,000m² / 80 monumental]
+                         Stats           [DARK · 5 monumental count-up numbers]
                          ExperienceCards [DARK · 4 discovery paths — burjkhalifa.ae-style]
-  Beat 4  THE TOWER    → Stats           [LIGHT · animated counts]
-                         Marquee         [LIGHT · scrolling text]
-                         Architecture    [LIGHT · dual glass/stone]
-  Beat 5  THE ADDRESS  → Perspectives    [LIGHT]
+  Beat 4  THE TOWER    → Marquee         [DARK · 12 verified awards scrolling]
+                         Architecture    [LIGHT · dual glass/stone + construction timeline]
+  Beat 5  THE ADDRESS  → Perspectives    [LIGHT · the Light, Silence, Vantage]
                          FloorConfigs    [LIGHT]
                          InvitationSection [DARK · tenant invitation]
   ────── ContactStrip → Footer ──────────────────────────────────────────
+
+  Note: Stats absorbed AwardsStrip in commit consolidating duplicated
+  count-up sections. Stats now owns the entire "by the numbers" beat with
+  5 monumental stats on a dark cinematic plate.
 */
 
 export default function Index() {
@@ -40,13 +42,12 @@ export default function Index() {
         {/* ── Beat 2: The City ─────────────────────────────────── */}
         <GulfSection />
 
-        {/* ── Beat 3: The Gesture (the new editorial moment) ──── */}
+        {/* ── Beat 3: The Gesture ──────────────────────────────── */}
         <FounderQuote />
-        <AwardsStrip />
+        <Stats />
         <ExperienceCards />
 
         {/* ── Beat 4: The Tower ────────────────────────────────── */}
-        <Stats />
         <Marquee />
         <Architecture />
 
