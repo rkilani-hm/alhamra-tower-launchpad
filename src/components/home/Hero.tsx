@@ -40,24 +40,23 @@ export function Hero() {
       position: "relative", width: "100%", height: "100vh",
       minHeight: 600, overflow: "hidden", background: "#0c0b09",
     }}>
-      {/* Full-bleed media */}
+      {/* Full-bleed media — video only.
+          tower-sunset.jpg is now used as the <video poster> attribute
+          rather than a competing <img> element, so visitors see a hero
+          frame instantly during the ~600-800ms it takes the .mp4 to
+          decode the first frame. Once playback begins the poster is
+          replaced by the video. No image bleeds through. */}
       <motion.div style={{ position: "absolute", inset: 0, y: mediaY }}>
-        <img
-              loading="lazy"
-          src="/assets/tower-sunset.jpg"
-          alt={t("hero.alt")}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
-            objectFit: "cover", objectPosition: "center 15%", display: "block" }}
-        />
         <motion.video
           ref={videoRef}
           autoPlay muted loop playsInline preload="auto"
+          poster="/assets/tower-sunset.jpg"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.92 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 2.5, delay: 0.5 }}
           style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center 15%", display: "block" }}
-          aria-hidden="true"
+          aria-label={t("hero.alt")}
         >
           <source src="/assets/tower-drone.mp4" type="video/mp4" />
         </motion.video>
