@@ -1,6 +1,6 @@
 import { Navbar }              from "@/components/layout/Navbar";
 import { Footer }              from "@/components/layout/Footer";
-import { Hero }                from "@/components/home/Hero";
+import { Hero }                from "@/components/home/HeroV2";   // Concept 1 — procedural twist (revert: change to ./Hero)
 import { Stats }               from "@/components/home/Stats";
 import { Marquee }             from "@/components/home/Marquee";
 import { Architecture }        from "@/components/home/Architecture";

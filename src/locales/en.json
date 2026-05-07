@@ -63,6 +63,13 @@
       "concrete":    "Reinforced concrete poured",
       "piles":       "Foundation piles, 1.2m diameter",
       "curtainWall": "Curtain wall glass panels"
+    },
+    "statsLabel": "Tower statistics",
+    "stats": {
+      "height":    "Height",
+      "floors":    "Floors",
+      "rank":      "Tallest in Kuwait",
+      "elevators": "Elevators"
     }
   },
 
