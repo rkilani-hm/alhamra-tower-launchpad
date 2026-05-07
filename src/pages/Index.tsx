@@ -1,6 +1,6 @@
 import { Navbar }              from "@/components/layout/Navbar";
 import { Footer }              from "@/components/layout/Footer";
-import { Hero }                from "@/components/home/HeroV2";   // Concept 1 — procedural twist (revert: change to ./Hero)
+import { Hero }                from "@/components/home/Hero";
 import { Stats }               from "@/components/home/Stats";
 import { Marquee }             from "@/components/home/Marquee";
 import { Architecture }        from "@/components/home/Architecture";
@@ -9,6 +9,7 @@ import { InvitationSection }   from "@/components/home/InvitationSection";
 import { FounderQuote }        from "@/components/home/FounderQuote";
 import { ExperienceCards }     from "@/components/home/ExperienceCards";
 import { Perspectives, FloorConfigs, ContactStrip } from "@/components/home/Sections";
+import { RevealOnScroll }      from "@/components/shared/RevealOnScroll";
 
 /*
   Homepage — 5 emotional beats with deliberate dark/light rhythm:
@@ -40,24 +41,24 @@ export default function Index() {
         <Hero />
 
         {/* ── Beat 2: The City ─────────────────────────────────── */}
-        <GulfSection />
+        <RevealOnScroll><GulfSection /></RevealOnScroll>
 
         {/* ── Beat 3: The Gesture ──────────────────────────────── */}
-        <FounderQuote />
-        <Stats />
-        <ExperienceCards />
+        <RevealOnScroll><FounderQuote /></RevealOnScroll>
+        <RevealOnScroll><Stats /></RevealOnScroll>
+        <RevealOnScroll><ExperienceCards /></RevealOnScroll>
 
         {/* ── Beat 4: The Tower ────────────────────────────────── */}
-        <Marquee />
-        <Architecture />
+        <RevealOnScroll><Marquee /></RevealOnScroll>
+        <RevealOnScroll><Architecture /></RevealOnScroll>
 
         {/* ── Beat 5: The Address ──────────────────────────────── */}
-        <Perspectives />
-        <FloorConfigs />
-        <InvitationSection />
+        <RevealOnScroll><Perspectives /></RevealOnScroll>
+        <RevealOnScroll><FloorConfigs /></RevealOnScroll>
+        <RevealOnScroll><InvitationSection /></RevealOnScroll>
 
         {/* ── Footer approach ──────────────────────────────────── */}
-        <ContactStrip />
+        <RevealOnScroll><ContactStrip /></RevealOnScroll>
 
       </main>
       <Footer />

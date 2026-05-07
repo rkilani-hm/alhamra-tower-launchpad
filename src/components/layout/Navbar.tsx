@@ -198,7 +198,9 @@ export function Navbar() {
           <Link to="/leasing/inquiry#inquiry-form" className="nav-cta-desktop" style={{
             fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16px", letterSpacing: "0.22em",
             textTransform: "uppercase", color: "#1D1D1B", textDecoration: "none",
-            border: "1px solid #1D1D1B", padding: "10px 24px", transition: "background 0.3s, color 0.3s",
+            border: "1px solid #1D1D1B", padding: "10px 24px",
+            transition: "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+            background: "transparent",
           }}
             onMouseEnter={e => { e.currentTarget.style.background="#1D1D1B"; e.currentTarget.style.color="#fff"; }}
             onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#1D1D1B"; }}

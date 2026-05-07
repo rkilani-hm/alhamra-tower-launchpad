@@ -153,13 +153,17 @@ export function Hero() {
         {/* Tag line */}
         <motion.div
           initial={{ opacity: 0, y: 14 }} animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 14 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.7 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
           style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 32,
             fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
             letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}
           aria-hidden="true"
         >
-          <span style={{ width: 36, height: 1, background: SAND, flexShrink: 0 }} />
+          <motion.span
+            initial={{ scaleX: 0 }} animate={{ scaleX: ready ? 1 : 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
+            style={{ width: 36, height: 1, background: SAND, flexShrink: 0, transformOrigin: "left", display: "block" }}
+          />
           {t("hero.tag")}
         </motion.div>
 
@@ -202,7 +206,7 @@ export function Hero() {
         {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: ready ? 1 : 0, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 1.4 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.4 }}
           style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(13px,1.1vw,15px)",
             fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.65,
             maxWidth: 420, marginBottom: 48 }}
@@ -213,7 +217,7 @@ export function Hero() {
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: ready ? 1 : 0, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 1.6 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.6 }}
           style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px 28px" }}
         >
           <Link to="/tower"
@@ -221,9 +225,21 @@ export function Hero() {
               background: "#fff", color: DARK,
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500,
               letterSpacing: "0.22em", textTransform: "uppercase",
-              padding: "15px 32px", textDecoration: "none", transition: "all 0.3s" }}
-            onMouseEnter={e => { e.currentTarget.style.background = SAND; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = DARK; }}
+              padding: "15px 32px", textDecoration: "none",
+              transition: "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+              willChange: "transform" }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = SAND;
+              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 12px 28px rgba(0,0,0,0.25)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = "#fff";
+              e.currentTarget.style.color = DARK;
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
           >
             {t("hero.ctaPrimary")}
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
@@ -236,10 +252,20 @@ export function Hero() {
               color: "rgba(255,255,255,0.85)",
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px",
               letterSpacing: "0.2em", textTransform: "uppercase",
-              textDecoration: "none", transition: "color 0.3s, border-color 0.3s",
-              border: "1px solid rgba(255,255,255,0.35)", padding: "14px 24px" }}
-            onMouseEnter={e => { e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)"; }}
-            onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.85)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"; }}
+              textDecoration: "none",
+              transition: "color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+              border: "1px solid rgba(255,255,255,0.35)", padding: "14px 24px",
+              background: "rgba(255,255,255,0)" }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)";
+              e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = "rgba(255,255,255,0.85)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)";
+              e.currentTarget.style.background = "rgba(255,255,255,0)";
+            }}
           >
             {t("hero.ctaSecondary")}
           </Link>
@@ -248,8 +274,8 @@ export function Hero() {
 
       {/* Bottom stats strip */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: ready ? 1 : 0, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 1.9 }}
+        initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 1.7 }}
         style={{
           position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 7,
           display: "flex", alignItems: "stretch",
@@ -265,13 +291,19 @@ export function Hero() {
           { n: "412.6", u: "m",  k: "hero.stats.height"    },
           { n: "80",  u: "",   k: "hero.stats.floors"    },
           { n: "#1",  u: "",   k: "hero.stats.rank"      },
-          { n: "52",  u: "",   k: "hero.stats.elevators" },
+          { n: "43",  u: "",   k: "hero.stats.elevators" },
         ].map(({ n, u, k }, i) => (
-          <div key={k} role="listitem" style={{
-            flex: 1, padding: "clamp(16px,2vh,22px) clamp(16px,2.5vw,36px)",
-            borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none",
-            display: "flex", flexDirection: "column", gap: 5,
-          }}>
+          <motion.div
+            key={k}
+            role="listitem"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 14 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.9 + i * 0.08 }}
+            style={{
+              flex: 1, padding: "clamp(16px,2vh,22px) clamp(16px,2.5vw,36px)",
+              borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none",
+              display: "flex", flexDirection: "column", gap: 5,
+            }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(20px,2.5vw,30px)",
               fontWeight: 300, color: "#fff", lineHeight: 1 }}>
               {n}
@@ -282,7 +314,7 @@ export function Hero() {
               letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
               {t(k)}
             </div>
-          </div>
+          </motion.div>
         ))}
         <div style={{
           padding: "clamp(16px,2vh,22px) clamp(16px,2.5vw,36px)",
