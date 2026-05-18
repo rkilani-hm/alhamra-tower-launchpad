@@ -2,6 +2,97 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence, LayoutGrou
 import { useRef, useState, useMemo, useEffect, useCallback } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { useI18n } from "@/lib/i18n";
+
+/* Bilingual top-level strings only — deep awards data stays in English
+   since international award titles and citation text conventionally
+   remain in English even on Arabic-facing pages */
+const TA_CONTENT = {
+  en: {
+    heroKicker: "The Tower · Awards & Recognition",
+    heroTitleA: "Global",
+    heroTitleB: "Acknowledgement",
+    heroBody: "The world's tallest stone-clad tower and first asymmetrical skyscraper — recognised by leading engineering, architecture, and sustainability institutions for over a decade.",
+    photoCredit: "Photo: Dave Burk · SOM Architecture",
+    statsLabels: [
+      "Tallest in World at Completion",
+      "Tallest Sculpted Concrete Tower",
+      "Floors of Curved Concrete",
+      "Lamella Buckling Capacity",
+    ],
+    engKicker: "Engineering Milestones",
+    engTitleA: "Why the World",
+    engTitleB: "Took Notice",
+    engBody: "Three structural achievements set Al Hamra Tower apart from every skyscraper that preceded it — each one recognised independently by international institutions.",
+    lobbyKicker: "The Lamella Structure · Grand Lobby",
+    lobbyTitleA: "The barrel vault of",
+    lobbyTitleB: "concrete lamellae",
+    lobbyTitleC: "that holds up 412m",
+    lobbyBody: "Concrete lamellae prevent the 24-metre sloping columns from buckling by providing alternate load paths to the foundation. The structural system reduces the columns to one-third of what they would otherwise require — creating the column-free arrival experience of Kuwait's most prestigious address.",
+    ctbuhKicker: "Published Research · CTBUH 2007",
+    ctbuhTitleA: "\"Sculpted High Rise:",
+    ctbuhTitleB: "The Al Hamra Tower\"",
+    ctbuhBody: "Mark Sarkisian, Neville Mathias, Aaron Mazeika (SOM) — Council on Tall Buildings and Urban Habitat, Structural Engineers World Congress 2007.",
+    ctbuhQuote: "\"By blending conventional engineering tools with parametric modelling software, SOM has brought together the realms of free-form design and the super high-rise skyscraper.\"",
+    ctbuhQuoteAttr: "CTBUH Research Paper · 2007",
+    lobbyCeilingCap: "Lamella ceiling · Daylight filtering through the web of concrete",
+    awardsKicker: "Awards & Honours",
+    awardsTitleA: "International",
+    awardsTitleB: "Recognition",
+    awardsBody: "From Cannes to London, Chicago to Dubai — Al Hamra Business Tower has been recognised by the world's leading architectural, engineering and property institutions for more than a decade. Twelve distinct awards, two continents, one skyline.",
+    entranceTitle: "The Entrance at Night",
+    entranceSub: "Sloped perimeter columns defining the street appearance",
+    lamellaTitle: "The Lamella Web",
+    lamellaSub: "189,000 kN buckling capacity — engineered elegance",
+    collabKicker: "Project Collaborators",
+    collabTitle: "The Team Behind the Tower",
+    ctaTitle: "Explore Sustainability & Innovation",
+    ctaSubtitle: "See how Al Hamra Tower's climate-responsive engineering translates into world-class environmental performance.",
+    ctaLabel: "Sustainability",
+  },
+  ar: {
+    heroKicker: "البرج · التكريم والتقدير",
+    heroTitleA: "إشادة",
+    heroTitleB: "عالمية",
+    heroBody: "أعلى برج مكسوّ بالحجر في العالم، وأوّل ناطحة سحاب غير متماثلة — حظي بتقدير أبرز المؤسسات الهندسية والمعمارية والمعنية بالاستدامة لأكثر من عقد.",
+    photoCredit: "تصوير: ديف بِرك · SOM للعمارة",
+    statsLabels: [
+      "أطول برج في العالم عند الاكتمال",
+      "أطول برج خرساني منحوت",
+      "طابقاً من الخرسانة المنحنية",
+      "قدرة استيعاب الانبعاج للبنية المُضلَّعة",
+    ],
+    engKicker: "محطّات هندسية فارقة",
+    engTitleA: "لماذا التفت إليه",
+    engTitleB: "العالم",
+    engBody: "ثلاثة إنجازات إنشائية جعلت برج الحمراء يتميّز عن كلّ ناطحات السحاب التي سبقته — كلٌّ منها حظي بتقدير مستقلّ من مؤسسات دولية رفيعة.",
+    lobbyKicker: "البنية المُضلَّعة · اللوبي الكبير",
+    lobbyTitleA: "قبوّ من",
+    lobbyTitleB: "الخرسانة المُضلَّعة",
+    lobbyTitleC: "يحمل ٤١٢ متراً",
+    lobbyBody: "تحول الأضلاع الخرسانية دون انبعاج الأعمدة المائلة بارتفاع ٢٤ متراً، عبر توفير مسارات بديلة لنقل الأحمال إلى الأساس. يقلّص هذا النظام الإنشائي حجم الأعمدة إلى ثلث ما كانت ستحتاجه — ليصنع تجربة وصولٍ خاليةً من الأعمدة في أرقى عناوين الكويت.",
+    ctbuhKicker: "بحثٌ منشور · مجلس CTBUH ٢٠٠٧",
+    ctbuhTitleA: "«ناطحة سحابٍ منحوتة:",
+    ctbuhTitleB: "برج الحمراء»",
+    ctbuhBody: "مارك ساركيسيان، نيفيل ماتياس، آرون مازيكا (SOM) — مجلس الأبراج الشاهقة والبيئة الحضرية، المؤتمر العالمي لمهندسي الإنشاءات ٢٠٠٧.",
+    ctbuhQuote: "«بالمزج بين أدوات الهندسة التقليدية وبرامج النمذجة البارامترية، استطاع مكتب SOM أن يجمع بين عالم التصميم الحرّ وعالم ناطحات السحاب الفائقة الارتفاع.»",
+    ctbuhQuoteAttr: "ورقة بحثية لـ CTBUH · ٢٠٠٧",
+    lobbyCeilingCap: "السقف المُضلَّع · ضوء النهار يتسلّل عبر شبكة الخرسانة",
+    awardsKicker: "الجوائز والتكريمات",
+    awardsTitleA: "تكريمٌ",
+    awardsTitleB: "عالمي",
+    awardsBody: "من كان إلى لندن، ومن شيكاغو إلى دبي — حظي برج الحمراء للأعمال بتقدير أبرز المؤسسات المعمارية والهندسية والعقارية في العالم منذ أكثر من عقد. اثنا عشر جائزةً مميَّزة، وقارّتان، وأفقٌ واحد.",
+    entranceTitle: "المدخل ليلاً",
+    entranceSub: "الأعمدة المحيطية المائلة التي تُحدِّد المظهر من الشارع",
+    lamellaTitle: "شبكة الأضلاع",
+    lamellaSub: "قدرة استيعاب انبعاج ١٨٩٬٠٠٠ كيلونيوتن — أناقةٌ مُصمَّمة",
+    collabKicker: "شركاء المشروع",
+    collabTitle: "الفريق الذي صنع البرج",
+    ctaTitle: "استكشف الاستدامة والابتكار",
+    ctaSubtitle: "اطّلع على كيف تُترجَم هندسة برج الحمراء المتجاوبة مع المناخ إلى أداء بيئي بمستوى عالمي.",
+    ctaLabel: "الاستدامة",
+  },
+} as const;
 
 /* ─── Brand tokens ───────────────────────── */
 const SAND    = "#C5A882";   /* use only on dark backgrounds */
@@ -600,6 +691,8 @@ function TimelineView({ awards, onCardClick }: { awards: Award[]; onCardClick: (
 }
 
 function AwardsRecognitionSection() {
+  const { lang } = useI18n();
+  const c = TA_CONTENT[lang];
   const [activeCat, setActiveCat] = useState<Category>("All");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
   const [lightboxAward, setLightboxAward] = useState<Award | null>(null);
@@ -627,18 +720,18 @@ function AwardsRecognitionSection() {
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
             <div style={{ width: 24, height: 1, background: SAND }} />
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>
-              Awards & Honours
+              {c.awardsKicker}
             </div>
           </div>
         </Rv>
         <Rv delay={0.1}>
           <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(26px,3.5vw,52px)", fontWeight: 100, letterSpacing: "-0.025em", lineHeight: 1.1, color: DARK, marginBottom: 18 }}>
-            International<br /><span style={{ fontWeight: 400 }}>Recognition</span>
+            {c.awardsTitleA}<br /><span style={{ fontWeight: 400 }}>{c.awardsTitleB}</span>
           </h2>
         </Rv>
         <Rv delay={0.18}>
           <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: MUTED, lineHeight: 1.7, maxWidth: 620, marginBottom: 48 }}>
-            From Cannes to London, Chicago to Dubai — Al Hamra Business Tower has been recognised by the world's leading architectural, engineering and property institutions for more than a decade. Twelve distinct awards, two continents, one skyline.
+            {c.awardsBody}
           </p>
         </Rv>
 
@@ -1016,6 +1109,8 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
 
 
 export function TowerAwards() {
+  const { lang } = useI18n();
+  const c = TA_CONTENT[lang];
   return (
     <PageLayout>
 
@@ -1036,20 +1131,20 @@ export function TowerAwards() {
         <div className="awards-hero-text">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND, marginBottom: 14 }}>
-              The Tower · Awards & Recognition
+              {c.heroKicker}
             </div>
             <h1 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(28px,5vw,72px)", fontWeight: 100, letterSpacing: "-0.03em", lineHeight: 1, color: WHITE, marginBottom: 16 }}>
-              Global<br /><span style={{ fontWeight: 400 }}>Acknowledgement</span>
+              {c.heroTitleA}<br /><span style={{ fontWeight: 400 }}>{c.heroTitleB}</span>
             </h1>
             <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.55)", maxWidth: 440, lineHeight: 1.8 }}>
-              The world's tallest stone-clad tower and first asymmetrical skyscraper — recognised by leading engineering, architecture, and sustainability institutions for over a decade.
+              {c.heroBody}
             </p>
           </motion.div>
         </div>
 
         {/* Bottom credit */}
         <div style={{ position: "absolute", bottom: 18, right: 24, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
-          Photo: Dave Burk · SOM Architecture
+          {c.photoCredit}
         </div>
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: `linear-gradient(transparent, #FAFAF8)`, pointerEvents: "none" }} />
       </div>
@@ -1057,10 +1152,10 @@ export function TowerAwards() {
       {/* ══ GLOBAL STATS BAR ══════════════════════════════ */}
       <div className="awards-stats-bar">
         {[
-          { n: "23rd",     l: "Tallest in World at Completion" },
-          { n: "#1",       l: "Tallest Sculpted Concrete Tower" },
-          { n: "80",       l: "Floors of Curved Concrete" },
-          { n: "189,000", u:"kN", l: "Lamella Buckling Capacity" },
+          { n: "23rd",     l: c.statsLabels[0] },
+          { n: "#1",       l: c.statsLabels[1] },
+          { n: "80",       l: c.statsLabels[2] },
+          { n: "189,000", u:"kN", l: c.statsLabels[3] },
         ].map(({ n, u, l }, i) => (
           <motion.div key={l}
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
@@ -1082,18 +1177,18 @@ export function TowerAwards() {
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: SAND }} />
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>
-                Engineering Milestones
+                {c.engKicker}
               </div>
             </div>
           </Rv>
           <Rv delay={0.1}>
             <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,3vw,44px)", fontWeight: 100, letterSpacing: "-0.025em", lineHeight: 1.1, color: DARK, marginBottom: 8 }}>
-              Why the World<br /><span style={{ fontWeight: 400 }}>Took Notice</span>
+              {c.engTitleA}<br /><span style={{ fontWeight: 400 }}>{c.engTitleB}</span>
             </h2>
           </Rv>
           <Rv delay={0.2}>
             <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: MUTED, lineHeight: 1.65, maxWidth: 560, marginBottom: 56 }}>
-              Three structural achievements set Al Hamra Tower apart from every skyscraper that preceded it — each one recognised independently by international institutions.
+              {c.engBody}
             </p>
           </Rv>
         </div>
@@ -1133,13 +1228,13 @@ export function TowerAwards() {
           <div className="awards-lobby-text">
             <Rv>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND, marginBottom: 16 }}>
-                The Lamella Structure · Grand Lobby
+                {c.lobbyKicker}
               </div>
               <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(24px,4vw,56px)", fontWeight: 100, color: WHITE, lineHeight: 1.08, marginBottom: 20 }}>
-                The barrel vault of<br /><span style={{ fontWeight: 400, color: SAND }}>concrete lamellae</span><br />that holds up 412m
+                {c.lobbyTitleA}<br /><span style={{ fontWeight: 400, color: SAND }}>{c.lobbyTitleB}</span><br />{c.lobbyTitleC}
               </h2>
               <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.65, maxWidth: 480 }}>
-                Concrete lamellae prevent the 24-metre sloping columns from buckling by providing alternate load paths to the foundation. The structural system reduces the columns to one-third of what they would otherwise require — creating the column-free arrival experience of Kuwait's most prestigious address.
+                {c.lobbyBody}
               </p>
             </Rv>
           </div>
@@ -1153,20 +1248,20 @@ export function TowerAwards() {
             <Rv>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
                 <div style={{ width: 24, height: 1, background: SAND }} />
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>Published Research · CTBUH 2007</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>{c.ctbuhKicker}</div>
               </div>
               <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.8vw,40px)", fontWeight: 100, letterSpacing: "-0.02em", color: DARK, lineHeight: 1.15, marginBottom: 24 }}>
-                "Sculpted High Rise:<br /><span style={{ fontWeight: 400 }}>The Al Hamra Tower"</span>
+                {c.ctbuhTitleA}<br /><span style={{ fontWeight: 400 }}>{c.ctbuhTitleB}</span>
               </h2>
-              <Body>Mark Sarkisian, Neville Mathias, Aaron Mazeika (SOM) — Council on Tall Buildings and Urban Habitat, Structural Engineers World Congress 2007.</Body>
+              <Body>{c.ctbuhBody}</Body>
             </Rv>
             <Rv delay={0.15}>
               <div style={{ marginTop: 36, padding: "28px 28px 28px 24px", borderLeft: `3px solid ${SAND}`, background: CREAM }}>
                 <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(15px,1.5vw,18px)", fontStyle: "italic", fontWeight: 300, color: DARK, lineHeight: 1.7, marginBottom: 16 }}>
-                  "By blending conventional engineering tools with parametric modelling software, SOM has brought together the realms of free-form design and the super high-rise skyscraper."
+                  {c.ctbuhQuote}
                 </p>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: MUTED }}>
-                  CTBUH Research Paper · 2007
+                  {c.ctbuhQuoteAttr}
                 </div>
               </div>
             </Rv>
@@ -1180,7 +1275,7 @@ export function TowerAwards() {
                 style={{ width: "100%", height: "clamp(300px,40vw,480px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "20px 20px 16px" }}>
                 <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                  Lamella ceiling · Daylight filtering through the web of concrete
+                  {c.lobbyCeilingCap}
                 </span>
               </div>
             </div>
@@ -1198,9 +1293,9 @@ export function TowerAwards() {
               loading="lazy" src="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance — night"
             style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block", filter: "brightness(0.9)" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>The Entrance at Night</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>{c.entranceTitle}</div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
-              Sloped perimeter columns defining the street appearance
+              {c.entranceSub}
             </div>
           </div>
         </div>
@@ -1209,9 +1304,9 @@ export function TowerAwards() {
               loading="lazy" src="/assets/lobby-ceiling-portrait.jpg" alt="Lamella ceiling — portrait"
             style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>The Lamella Web</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>{c.lamellaTitle}</div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
-              189,000 kN buckling capacity — engineered elegance
+              {c.lamellaSub}
             </div>
           </div>
         </div>
@@ -1222,10 +1317,10 @@ export function TowerAwards() {
         <Rv>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
             <div style={{ width: 24, height: 1, background: SAND }} />
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>Project Collaborators</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>{c.collabKicker}</div>
           </div>
         </Rv>
-        <Rv delay={0.1}><H2>The Team Behind the Tower</H2></Rv>
+        <Rv delay={0.1}><H2>{c.collabTitle}</H2></Rv>
         <Rv delay={0.2}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 1, background: STONE, marginTop: 40 }}>
             {COLLABORATORS.map(({ role, org }) => (
@@ -1238,7 +1333,7 @@ export function TowerAwards() {
         </Rv>
       </Section>
 
-      <DarkBand title="Explore Sustainability &amp; Innovation" subtitle="See how Al Hamra Tower's climate-responsive engineering translates into world-class environmental performance." ctaLabel="Sustainability" ctaHref="/tower/sustainability" />
+      <DarkBand title={c.ctaTitle} subtitle={c.ctaSubtitle} ctaLabel={c.ctaLabel} ctaHref="/tower/sustainability" />
 
       {/* Scoped styles */}
       <style>{`

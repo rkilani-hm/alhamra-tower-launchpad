@@ -2,107 +2,188 @@ import { motion } from "framer-motion";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, StatsBar, DarkBand } from "@/components/shared/ui";
+import { useI18n } from "@/lib/i18n";
 
 const PEARL      = "#C8B99A";
 const PEARL_TEXT = "#8B6E3E";
 const DARK       = "#1D1D1B";
 const CG         = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
-/* ── Business Centre — /business-centre ──────────────────────────────
-   Content sourced directly from:
+/* ──────────────────────────────────────────────────────────────────
+   Business Centre — /business-centre
+   Bilingual EN/AR content sourced from
    Al_Hamra_Business_Tower_Website — "Business Center" sheet
-   Column C (Content) organized per Column A (Section) / Column B
-   (Subsection) hierarchy.
+────────────────────────────────────────────────────────────────── */
 
-   Five beats:
-   1. HERO           — 36th floor positioning
-   2. OVERVIEW       — Focused. Composed. Elevated.
-   3. STRATEGIC      — 5 bullet advantages
-   4. FACILITIES     — 6 categories of executive services
-   5. CTA            — booking strip
-──────────────────────────────────────────────────────────────────────── */
-
-const ADVANTAGES = [
-  { num: "01", text: "Landmark location within Kuwait's premier development" },
-  { num: "02", text: "Elevated setting that enhances focus and clarity" },
-  { num: "03", text: "End-to-end operational coordination" },
-  { num: "04", text: "Configurable layouts and flexible pricing" },
-  { num: "05", text: "Supported by Al Hamra's integrated infrastructure" },
-];
-
-const FACILITIES = [
-  {
-    num: "01",
-    title: "Spatial Configuration & Capacity",
-    body: "Configurable layouts including boardroom settings, seminar arrangements, and collaborative workshop formats. Seating capacities and final layouts are tailored to each session's requirements.",
-    image: "/assets/boardroom-wide.jpg",
-    imageCaption: "Primary Boardroom · Configurable Layouts",
+const CONTENT = {
+  en: {
+    tag: "Experience · Business Centre",
+    title: "Al Hamra Business Centre",
+    subtitle: "An executive business facility within Al Hamra Business Tower. Configurable rooms for high-level convenings — purpose-built for corporate engagements, workshops, and training.",
+    crumbs: [
+      { label: "Home", href: "/" },
+      { label: "Experience", href: "/services" },
+      { label: "Business Centre", href: "/business-centre" },
+    ],
+    stats: [
+      { number: "36", label: "Floor Level" },
+      { number: "∞",  label: "Configurable Layouts" },
+      { number: "24/7", label: "Operational Support" },
+      { number: "412m", label: "Tower Elevation" },
+    ],
+    heroKicker: "36th Floor · Kuwait City & the Arabian Gulf",
+    heroHeading: "Executive convenings,",
+    heroHeadingBold: "at the altitude of institutions.",
+    heroImageAlt: "Al Hamra Business Centre — Boardroom on the 36th floor overlooking the Arabian Gulf",
+    overviewTag: "Overview · The Space",
+    overviewLine1: "Professional.",
+    overviewLine2: "Distinguished.",
+    overviewLine3: "Pioneering.",
+    overviewBody1: "Located on the 36th floor, Al Hamra Business Centre offers a purpose-built environment for corporate meetings, executive workshops, training sessions, and high-level convenings.",
+    overviewBody2: "Available to companies and individuals alike, supported by direct on-site logistical coordination — ensuring a seamless, professional experience across every engagement.",
+    strategicTag: "Why Al Hamra Business Centre · Strategic Advantages",
+    strategicHeading: "Five reasons institutions choose this address.",
+    advantages: [
+      { num: "01", text: "Strategic location within Kuwait's finest integrated development" },
+      { num: "02", text: "A refined environment that elevates professional performance and productivity" },
+      { num: "03", text: "End-to-end management from initial inquiry to final delivery" },
+      { num: "04", text: "Configurable spaces with flexible pricing tailored to diverse needs" },
+      { num: "05", text: "Supported by Al Hamra's integrated infrastructure" },
+    ],
+    facilitiesTag: "Business Support Services · Executive Facilities",
+    facilitiesHeading: "A comprehensively managed executive environment.",
+    facilitiesBody: "Al Hamra Business Centre provides a fully-managed executive environment, supported by integrated infrastructure and refined operational services — ensuring efficiency, business continuity, and professional excellence across every engagement.",
+    facilities: [
+      { num: "01", title: "Spatial Configuration & Capacity",
+        body: "Flexible, customisable spaces — including executive meeting rooms, seminar arrangements, and collaborative workshop formats — with seating capacities and final layouts tailored to each session's requirements.",
+        image: "/assets/boardroom-wide.jpg",
+        imageCaption: "Primary Boardroom · Configurable Layouts" },
+      { num: "02", title: "Integrated Systems",
+        body: "A complete audio-visual system with smart controls and on-call technical support ensures uninterrupted presentations and conferencing, with continuous digital connectivity.",
+        image: "/assets/meeting-room-glass-pattern.jpg",
+        imageCaption: "Meeting Room · AV + Smart Controls" },
+      { num: "03", title: "Catering & Hospitality",
+        body: "Direct access to Al Hamra Mall enables a wide range of hospitality options from restaurant tenants, with arrangements for meals and coffee breaks tailored to the engagement, and the option to engage external caterers as required.",
+        image: "/assets/mall-atrium-luxury-centre.jpg",
+        imageCaption: "Al Hamra Luxury Centre · Curated Catering" },
+      { num: "04", title: "Parking & Access",
+        body: "The complex provides organised parking, internal shuttle service to Dasman Parking, valet service, and access via ride-share services — ensuring a smooth, efficient arrival for guests.",
+        image: "/assets/entrance-night.jpg",
+        imageCaption: "Grand Entrance · Valet + Structured Parking" },
+      { num: "05", title: "Premium Touchpoints",
+        body: "Stationery bearing the Al Hamra Business Centre identity and an operational environment managed to Al Hamra Tower's highest standards of quality and institutional professionalism.",
+        image: "/assets/lobby-executive-lounge.jpg",
+        imageCaption: "Executive Lounge · Branded Environment" },
+      { num: "06", title: "Accommodation",
+        body: "Distinguished accommodation for trainers and guest speakers at preferred corporate rates at Al Hamra Hotel within the complex — ensuring comfort and continuity of the engagement.",
+        image: "/assets/sky-lobby-travertine-corridor.jpg",
+        imageCaption: "Al Hamra Hotel · Preferred Corporate Rates" },
+    ],
+    ctaTitle: "Host your next meeting.",
+    ctaSubtitle: "For bookings and inquiries, call 1829000 or visit www.alhamra.com.kw to discuss your requirements.",
+    ctaLabel: "Begin the Conversation",
+    contactRows: [
+      { label: "Phone",    value: "1829000" },
+      { label: "Website",  value: "www.alhamra.com.kw" },
+      { label: "Location", value: "36th Floor · Al Hamra Business Tower" },
+    ],
   },
-  {
-    num: "02",
-    title: "Integrated Systems",
-    body: "A fully integrated audio-visual system with smart controls and dedicated IT support ensures uninterrupted presentations, conferencing, and digital connectivity.",
-    image: "/assets/meeting-room-glass-pattern.jpg",
-    imageCaption: "Meeting Room · AV + Smart Controls",
+  ar: {
+    tag: "تجربة الحمراء · مركز الأعمال",
+    title: "مركز الحمراء للأعمال",
+    subtitle: "مرفق أعمال تنفيذي داخل برج الحمراء للأعمال. غرف مرنة تناسب الاجتماعات رفيعة المستوى — مصمَّمة خصيصاً لاستضافة اجتماعات المؤسسات، وورش العمل، وجلسات التدريب.",
+    crumbs: [
+      { label: "الرئيسية", href: "/" },
+      { label: "تجربة الحمراء", href: "/services" },
+      { label: "مركز الأعمال", href: "/business-centre" },
+    ],
+    stats: [
+      { number: "٣٦", label: "الطابق" },
+      { number: "∞",  label: "تصاميم متعدّدة" },
+      { number: "٢٤/٧", label: "دعم تشغيلي" },
+      { number: "٤١٢م", label: "ارتفاع البرج" },
+    ],
+    heroKicker: "الطابق السادس والثلاثون · مدينة الكويت والخليج العربي",
+    heroHeading: "اجتماعات تنفيذية،",
+    heroHeadingBold: "على ارتفاع المؤسسات.",
+    heroImageAlt: "مركز الحمراء للأعمال — قاعة اجتماعات في الطابق ٣٦ مطلّة على الخليج العربي",
+    overviewTag: "نظرة عامة · المساحة",
+    overviewLine1: "احترافية.",
+    overviewLine2: "تميُّز.",
+    overviewLine3: "ريادة.",
+    overviewBody1: "يقع مركز الحمراء للأعمال في الطابق السادس والثلاثين، ويقدّم بيئة مصمَّمة خصيصاً لاستضافة اجتماعات المؤسسات والشركات، وورش العمل، وجلسات التدريب، وغيرها من الفعاليات رفيعة المستوى.",
+    overviewBody2: "يوفّر المركز خدماته للشركات والأفراد، ويضمّ دعماً لوجستياً مباشراً في الموقع لضمان تجربة سلسة واحترافية في كلّ المناسبات.",
+    strategicTag: "لماذا مركز الحمراء للأعمال · مزايا استراتيجية",
+    strategicHeading: "خمسة أسباب تجعل المؤسسات تختار هذا العنوان.",
+    advantages: [
+      { num: "٠١", text: "موقع استراتيجي داخل أرقى المشاريع المتطوّرة في الكويت" },
+      { num: "٠٢", text: "بيئة راقية تعزّز الأداء الاحترافي والإنتاجية" },
+      { num: "٠٣", text: "إدارة شاملة من الألف إلى الياء" },
+      { num: "٠٤", text: "مساحات قابلة للتخصيص مع أسعار مرنة تلبّي مختلف الاحتياجات" },
+      { num: "٠٥", text: "مدعومٌ بالبنية التحتية المتكاملة لبرج الحمراء" },
+    ],
+    facilitiesTag: "خدمات دعم الأعمال · المرافق التنفيذية",
+    facilitiesHeading: "بيئة تنفيذية مُدارة بالكامل.",
+    facilitiesBody: "يقدّم مركز أعمال الحمراء بيئةً تنفيذية مُدارة بالكامل، مدعومة ببنية تحتية متكاملة وخدمات تشغيلية مُتقنة تضمن الكفاءة، واستمرارية الأعمال، والتميّز المهني في كلّ مناسبة.",
+    facilities: [
+      { num: "٠١", title: "التوزيع المكاني والسعة",
+        body: "مساحات مرنة قابلة للتخصيص، تشمل غرف الاجتماعات التنفيذية، وترتيبات الندوات، وصيغ ورش العمل التعاونية، مع تحديد السعة وتوزيع المقاعد بما يتوافق مع متطلبات كلّ فعالية.",
+        image: "/assets/boardroom-wide.jpg",
+        imageCaption: "قاعة الاجتماعات الرئيسية · تصاميم قابلة للتخصيص" },
+      { num: "٠٢", title: "الأنظمة المتكاملة",
+        body: "نظام صوتي ومرئي متكامل مع تحكّم ذكي ودعم تقني متوافر، لضمان تقديم عروض ومؤتمرات متواصلة، واتصال رقمي مستمرّ دون انقطاع.",
+        image: "/assets/meeting-room-glass-pattern.jpg",
+        imageCaption: "قاعة الاجتماعات · الأنظمة الصوتية والمرئية والتحكّم الذكي" },
+      { num: "٠٣", title: "خدمات الطعام والضيافة",
+        body: "يتيح الوصول المباشر إلى مول الحمراء خياراتٍ متنوّعة من ضيافة مطاعم المستأجرين، مع إمكانية ترتيب وجباتٍ واستراحات قهوة وفق احتياجات الفعالية، ودعم الاستعانة بمقدّمي خدمات تموين خارجيين عند الحاجة.",
+        image: "/assets/mall-atrium-luxury-centre.jpg",
+        imageCaption: "مركز الحمراء التجاري · ضيافة منتقاة" },
+      { num: "٠٤", title: "المواقف ووسائل الوصول",
+        body: "يوفّر المجمَّع مواقف منظَّمة للسيارات، وخدمات نقل داخلية إلى موقف دسمان، وخدمة صفّ السيارات، وإمكانية الوصول عبر خدمات الركوب التشاركي، لضمان وصول سلس وفعّال للضيوف.",
+        image: "/assets/entrance-night.jpg",
+        imageCaption: "المدخل الكبير · صفّ السيارات والمواقف المنظَّمة" },
+      { num: "٠٥", title: "لمسات راقية",
+        body: "أدوات مكتبية تحمل هويّة مركز أعمال الحمراء، وبيئة تشغيلية مُدارة وفق أعلى معايير الجودة والاحتراف المؤسسي لبرج الحمراء.",
+        image: "/assets/lobby-executive-lounge.jpg",
+        imageCaption: "الصالة التنفيذية · بيئة بهويّة المركز" },
+      { num: "٠٦", title: "الإقامة",
+        body: "إقامة مميَّزة للمدرّبين والضيوف بأسعار خاصّة للشركات في فندق الحمراء ضمن المجمَّع، لضمان الراحة واستمرارية الفعاليات.",
+        image: "/assets/sky-lobby-travertine-corridor.jpg",
+        imageCaption: "فندق الحمراء · أسعار شركات تفضيلية" },
+    ],
+    ctaTitle: "استضِف اجتماعك القادم.",
+    ctaSubtitle: "للحجز والاستفسار، تفضّل بالاتصال على ١٨٢٩٠٠٠ أو زيارة www.alhamra.com.kw للتعرّف على احتياجاتكم.",
+    ctaLabel: "ابدأ المحادثة",
+    contactRows: [
+      { label: "الهاتف",    value: "١٨٢٩٠٠٠" },
+      { label: "الموقع الإلكتروني",  value: "www.alhamra.com.kw" },
+      { label: "العنوان", value: "الطابق ٣٦ · برج الحمراء للأعمال" },
+    ],
   },
-  {
-    num: "03",
-    title: "Catering & Hospitality",
-    body: "Direct access to Al Hamra Shopping Center allows curated catering options from restaurant tenants, diverse dining choices for coffee breaks and meals, preferential arrangements where applicable, and the option to engage external caterers.",
-    image: "/assets/mall-atrium-luxury-centre.jpg",
-    imageCaption: "Al Hamra Luxury Centre · Curated Catering",
-  },
-  {
-    num: "04",
-    title: "Parking & Access",
-    body: "Guests benefit from structured parking within the Al Hamra complex, shuttle connectivity to Dasman Parking, valet services, and ride-service access, ensuring practical and efficient arrival.",
-    image: "/assets/entrance-night.jpg",
-    imageCaption: "Grand Entrance · Valet + Structured Parking",
-  },
-  {
-    num: "05",
-    title: "Premium Touchpoints",
-    body: "Business Hub-branded stationery and a professionally managed environment aligned with Al Hamra's corporate standards.",
-    image: "/assets/lobby-executive-lounge.jpg",
-    imageCaption: "Executive Lounge · Branded Environment",
-  },
-  {
-    num: "06",
-    title: "Accommodation",
-    body: "Visiting trainers and guest speakers may access special corporate rates at Al Hamra Hotel, located within the complex, ensuring convenience and continuity.",
-    image: "/assets/sky-lobby-travertine-corridor.jpg",
-    imageCaption: "Al Hamra Hotel · Preferred Corporate Rates",
-  },
-];
+} as const;
 
 export default function BusinessCentre() {
+  const { lang } = useI18n();
+  const c = CONTENT[lang];
+
   return (
     <PageLayout>
       <PageHero
-        tag="Experience · Business Centre"
-        title="Al Hamra Business Centre"
-        subtitle="An executive business facility within Al Hamra Business Tower. Configurable rooms for high-level convenings — purpose-built for corporate engagements."
+        tag={c.tag}
+        title={c.title}
+        subtitle={c.subtitle}
         image="/assets/city-view-office.jpg"
-        crumbs={[
-          { label: "Home", href: "/" },
-          { label: "Experience", href: "/services" },
-          { label: "Business Centre", href: "/business-centre" },
-        ]}
+        crumbs={[...c.crumbs]}
       />
 
-      <StatsBar stats={[
-        { number: "36", label: "Floor Level" },
-        { number: "∞",  label: "Configurable Layouts" },
-        { number: "24/7", label: "Operational Support" },
-        { number: "412m", label: "Tower Elevation" },
-      ]} />
+      <StatsBar stats={[...c.stats]} />
 
       {/* ── HERO CAROUSEL-STYLE FULL-BLEED IMAGE ──────────────────── */}
       <div style={{ position: "relative", height: "clamp(320px,48vw,560px)", overflow: "hidden" }}>
         <img
           loading="lazy"
           src="/assets/boardroom-gulf-view.jpg"
-          alt="Al Hamra Business Centre — Boardroom on the 36th floor overlooking the Arabian Gulf"
+          alt={c.heroImageAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }}
         />
         <div style={{
@@ -114,14 +195,14 @@ export default function BusinessCentre() {
             fontFamily: CG, fontSize: "10px", letterSpacing: "0.4em",
             textTransform: "uppercase", color: PEARL, marginBottom: 12,
           }}>
-            36<sup style={{ fontSize: "60%", top: "-0.5em", position: "relative" }}>th</sup> Floor · Kuwait City &amp; the Arabian Gulf
+            {c.heroKicker}
           </div>
           <h3 style={{
             fontFamily: CG, fontSize: "clamp(22px,2.5vw,38px)",
             fontWeight: 200, color: "#fff", lineHeight: 1.25,
             margin: 0, maxWidth: 760, letterSpacing: "-0.005em",
           }}>
-            Executive convenings, <strong style={{ fontWeight: 500 }}>at the altitude of institutions.</strong>
+            {c.heroHeading} <strong style={{ fontWeight: 500 }}>{c.heroHeadingBold}</strong>
           </h3>
         </div>
       </div>
@@ -133,28 +214,24 @@ export default function BusinessCentre() {
           gap: "clamp(48px,6vw,96px)",
         }} className="bc-overview-grid">
           <div>
-            <Rv><Tag>Overview · The Space</Tag></Rv>
+            <Rv><Tag>{c.overviewTag}</Tag></Rv>
             <Rv delay={0.1}>
               <H2>
-                Focused.<br />
-                Composed.<br />
-                <em style={{ color: PEARL_TEXT, fontStyle: "normal" }}>Elevated.</em>
+                {c.overviewLine1}<br />
+                {c.overviewLine2}<br />
+                <em style={{ color: PEARL_TEXT, fontStyle: "normal" }}>{c.overviewLine3}</em>
               </H2>
             </Rv>
           </div>
           <div>
             <Rv delay={0.2}>
               <Body style={{ marginBottom: 20 }}>
-                Located on the 36th floor, the Al Hamra Business Centre offers a
-                purpose-built environment for corporate meetings, executive workshops,
-                training sessions, and high-level convenings.
+                {c.overviewBody1}
               </Body>
             </Rv>
             <Rv delay={0.3}>
               <Body>
-                Available to institutions, companies, and individuals, supported by
-                on-site operational coordination to ensure seamless oversight — from
-                the first inquiry to the final engagement.
+                {c.overviewBody2}
               </Body>
             </Rv>
           </div>
@@ -163,8 +240,8 @@ export default function BusinessCentre() {
 
       {/* ── STRATEGIC ADVANTAGE ────────────────────────────────────── */}
       <Section bg="#FAFAFA">
-        <Rv><Tag>Why Al Hamra Business Centre · Strategic Advantage</Tag></Rv>
-        <Rv delay={0.1}><H2>Five reasons institutions choose this address.</H2></Rv>
+        <Rv><Tag>{c.strategicTag}</Tag></Rv>
+        <Rv delay={0.1}><H2>{c.strategicHeading}</H2></Rv>
         <Rv delay={0.2}>
           <div style={{
             display: "grid",
@@ -172,7 +249,7 @@ export default function BusinessCentre() {
             gap: "clamp(16px,2vw,24px)",
             marginTop: "clamp(32px,5vh,56px)",
           }}>
-            {ADVANTAGES.map((a, i) => (
+            {c.advantages.map((a, i) => (
               <motion.div
                 key={a.num}
                 initial={{ opacity: 0, y: 20 }}
@@ -206,13 +283,11 @@ export default function BusinessCentre() {
 
       {/* ── EXECUTIVE FACILITIES — 6 cards with images ─────────────── */}
       <Section>
-        <Rv><Tag>Business Support Services · Executive Facilities</Tag></Rv>
-        <Rv delay={0.1}><H2>A comprehensively managed executive environment.</H2></Rv>
+        <Rv><Tag>{c.facilitiesTag}</Tag></Rv>
+        <Rv delay={0.1}><H2>{c.facilitiesHeading}</H2></Rv>
         <Rv delay={0.2}>
           <Body style={{ maxWidth: 720, marginBottom: "clamp(40px,6vh,64px)" }}>
-            Al Hamra Business Centre provides integrated infrastructure and operational
-            services designed to ensure efficiency, continuity, and professional excellence
-            across every session.
+            {c.facilitiesBody}
           </Body>
         </Rv>
 
@@ -221,7 +296,7 @@ export default function BusinessCentre() {
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "clamp(20px,3vw,36px)",
         }}>
-          {FACILITIES.map((f, i) => (
+          {c.facilities.map((f, i) => (
             <motion.article
               key={f.num}
               initial={{ opacity: 0, y: 24 }}
@@ -296,9 +371,9 @@ export default function BusinessCentre() {
 
       {/* ── CTA ───────────────────────────────────────────────────── */}
       <DarkBand
-        title="Host your next meeting."
-        subtitle="For bookings and inquiries, contact our team to discuss your requirements. Configurable layouts, flexible pricing, and end-to-end operational coordination."
-        ctaLabel="Begin the Conversation"
+        title={c.ctaTitle}
+        subtitle={c.ctaSubtitle}
+        ctaLabel={c.ctaLabel}
         ctaHref="/leasing/inquiry#inquiry-form"
       />
 
@@ -313,11 +388,7 @@ export default function BusinessCentre() {
           display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))",
           gap: "clamp(20px,3vw,48px)",
         }}>
-          {[
-            { label: "Phone",    value: "1829000" },
-            { label: "Website",  value: "www.alhamra.com.kw" },
-            { label: "Location", value: "36th Floor · Al Hamra Business Tower" },
-          ].map(item => (
+          {c.contactRows.map(item => (
             <div key={item.label}>
               <div style={{
                 fontFamily: CG, fontSize: "10px", letterSpacing: "0.32em",
