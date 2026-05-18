@@ -1,27 +1,69 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useI18n } from "@/lib/i18n";
 
 /* ── The Invitation Section ───────────────────────────────────────────
-   Replaces the flat dark leasing band.
    "By appointment" signals exclusivity — the building is choosing
-   its tenants, not the other way around.
-   Mashrabiya texture on dark background. Pearl accents throughout.
+   its tenants, not the other way around. Bilingual EN/AR with luxury
+   MSA marketing register.
 ──────────────────────────────────────────────────────────────────────── */
 
 const PEARL = "#C8B99A";
-const GULF  = "#2A5F7A";
 const DARK  = "#1D1D1B";
+const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
-const TENANTS = [
-  { label: "Government & Sovereign",  desc: "Kuwait's leading ministries, sovereign wealth funds and GCC institutions"  },
-  { label: "Luxury Retail",           desc: "Hermès · Gucci · Bottega Veneta · YSL · Ferragamo · Mont Blanc · Panerai"},
-  { label: "Financial & Professional", desc: "Regional and international financial institutions and professional services firms"},
-];
+const CONTENT = {
+  en: {
+    kicker: "Leasing Opportunities",
+    eyebrow: "The address that",
+    headlineA: "needs no",
+    headlineB: "introduction.",
+    body: "Home to Kuwait's leading ministries, Hermès, Gucci, Bottega Veneta and the world's most recognised luxury houses. Now welcoming a select group of new tenants.",
+    cta: "Enquire by appointment",
+    responseTime: "Responses within 24 hours",
+    tenantsLabel: "Distinguished tenants",
+    tenants: [
+      { label: "Government & Sovereign",   desc: "Kuwait's leading ministries, sovereign wealth funds, and GCC institutions" },
+      { label: "Luxury Retail",            desc: "Hermès · Gucci · Bottega Veneta · YSL · Ferragamo · Mont Blanc · Panerai" },
+      { label: "Financial & Professional", desc: "Regional and international financial institutions and professional services firms" },
+    ],
+    stats: [
+      { n: "80",   u: "+", l: "Floors occupied" },
+      { n: "2011", u: "",  l: "Year completed" },
+      { n: "52",   u: "",  l: "High-speed elevators" },
+    ],
+    bgAlt: "",
+  },
+  ar: {
+    kicker: "فرص التأجير",
+    eyebrow: "العنوان الذي",
+    headlineA: "لا يحتاج",
+    headlineB: "إلى تعريف.",
+    body: "موطنُ كبرى وزارات الكويت، وهيرميس، وغوتشي، وبوتيغا فينيتا، وأشهر دور الفخامة في العالم. واليوم، يفتح أبوابه أمام مجموعةٍ منتقاة من المستأجرين الجدد.",
+    cta: "استفسر بموعدٍ مسبق",
+    responseTime: "ردٌّ خلال ٢٤ ساعة",
+    tenantsLabel: "مستأجرون مميَّزون",
+    tenants: [
+      { label: "جهات حكوميّة وسياديّة",       desc: "كبرى وزارات الكويت، وصناديق الثروات السياديّة، والمؤسسات الخليجيّة" },
+      { label: "تجزئة فاخرة",                desc: "هيرميس · غوتشي · بوتيغا فينيتا · سان لوران · فيراغامو · مونت بلانك · بانيراي" },
+      { label: "مؤسسات ماليّة ومهنيّة",       desc: "مؤسسات ماليّة إقليميّة ودوليّة، وشركات خدمات مهنيّة رفيعة" },
+    ],
+    stats: [
+      { n: "٨٠",    u: "+", l: "طوابق مشغولة" },
+      { n: "٢٠١١",  u: "",  l: "عام الافتتاح" },
+      { n: "٥٢",    u: "",  l: "مصاعد عالية السرعة" },
+    ],
+    bgAlt: "",
+  },
+} as const;
 
 export function InvitationSection() {
+  const { lang } = useI18n();
+  const c = CONTENT[lang];
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const isAr = lang === "ar";
 
   return (
     <section
@@ -63,13 +105,13 @@ export function InvitationSection() {
         <div>
           {/* Kicker */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: isAr ? 20 : -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}
             style={{
               display: "flex", alignItems: "center", gap: 14,
               marginBottom: 32,
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontFamily: FONT,
               fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase",
               color: PEARL,
@@ -79,7 +121,7 @@ export function InvitationSection() {
               width: 32, height: 1, flexShrink: 0,
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`,
             }} />
-            Leasing Opportunities
+            {c.kicker}
           </motion.div>
 
           {/* Main headline */}
@@ -89,7 +131,7 @@ export function InvitationSection() {
             transition={{ duration: 1, delay: 0.15, ease: [0.16,1,0.3,1] }}
           >
             <div style={{
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontFamily: FONT,
               fontWeight: 200,
               fontSize: "clamp(13px,1.2vw,15px)",
               letterSpacing: "0.08em",
@@ -97,30 +139,32 @@ export function InvitationSection() {
               color: "rgba(255,255,255,0.45)",
               marginBottom: 12,
             }}>
-              The address that
+              {c.eyebrow}
             </div>
             <div style={{
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
-fontWeight: 300,
+              fontFamily: FONT,
+              fontWeight: 300,
               fontSize: "clamp(36px,5.5vw,76px)",
               color: "#fff",
               lineHeight: 1.0,
               letterSpacing: "-0.02em",
               marginBottom: 16,
             }}>
-              needs no<br />introduction.
+              {c.headlineA}<br />{c.headlineB}
             </div>
           </motion.div>
 
-          {/* Pearl divider */}
+          {/* Pearl divider — flips direction in AR */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
             transition={{ duration: 1, delay: 0.35, ease: [0.16,1,0.3,1] }}
             style={{
               height: 1, width: 120, marginBottom: 28,
-              background: `linear-gradient(to right, ${PEARL}, transparent)`,
-              transformOrigin: "left",
+              background: isAr
+                ? `linear-gradient(to left, ${PEARL}, transparent)`
+                : `linear-gradient(to right, ${PEARL}, transparent)`,
+              transformOrigin: isAr ? "right" : "left",
             }}
           />
 
@@ -129,16 +173,14 @@ fontWeight: 300,
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             style={{
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontFamily: FONT,
               fontSize: "clamp(13px,1.1vw,15px)",
               fontWeight: 300, lineHeight: 1.9,
               color: "rgba(255,255,255,0.5)",
               maxWidth: 360, marginBottom: 48,
             }}
           >
-            Home to Kuwait's leading ministries, Hermès, Gucci, Bottega Veneta
-            and the world's most recognised luxury houses.
-            Now welcoming a select group of new tenants.
+            {c.body}
           </motion.p>
 
           {/* By appointment CTA */}
@@ -153,7 +195,7 @@ fontWeight: 300,
                 display: "inline-flex", alignItems: "center", gap: 16,
                 border: `1px solid rgba(200,185,154,0.35)`,
                 padding: "18px 36px",
-                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                fontFamily: FONT,
                 fontSize: "10.5px", fontWeight: 400,
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: PEARL, textDecoration: "none",
@@ -171,20 +213,21 @@ fontWeight: 300,
                 e.currentTarget.style.background = "transparent";
               }}
             >
-              Enquire by appointment
-              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+              {c.cta}
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"
+                   style={{ transform: isAr ? "scaleX(-1)" : "none" }}>
                 <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
 
             <div style={{
               marginTop: 16,
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontFamily: FONT,
               fontSize: "10px", letterSpacing: "0.25em",
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.2)",
             }}>
-              Responses within 24 hours
+              {c.responseTime}
             </div>
           </motion.div>
         </div>
@@ -196,20 +239,20 @@ fontWeight: 300,
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             style={{
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+              fontFamily: FONT,
               fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.35em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.2)",
               marginBottom: 32,
             }}
           >
-            Distinguished tenants
+            {c.tenantsLabel}
           </motion.div>
 
-          {TENANTS.map(({ label, desc }, i) => (
+          {c.tenants.map(({ label, desc }, i) => (
             <motion.div
               key={label}
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: isAr ? -30 : 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 + i * 0.12, ease: [0.16,1,0.3,1] }}
               style={{
@@ -219,7 +262,7 @@ fontWeight: 300,
               }}
             >
               <div style={{
-                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                fontFamily: FONT,
                 fontSize: "clamp(13px,1.1vw,15px)",
                 fontWeight: 400, letterSpacing: "0.04em",
                 color: "#fff",
@@ -227,7 +270,7 @@ fontWeight: 300,
                 {label}
               </div>
               <div style={{
-                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                fontFamily: FONT,
                 fontSize: "clamp(11px,0.9vw,12px)",
                 fontWeight: 300, color: "rgba(255,255,255,0.38)",
                 lineHeight: 1.7,
@@ -240,33 +283,29 @@ fontWeight: 300,
           {/* Last border */}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }} />
 
-          {/* Gulf blue accent stat */}
+          {/* Gulf blue accent stats */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
             style={{ marginTop: 40, display: "flex", gap: 32, flexWrap: "wrap" }}
           >
-            {[
-              { n: "80",   u: "+",    l: "Floors occupied"      },
-              { n: "2011", u: "",     l: "Year completed"        },
-              { n: "52",   u: "",     l: "High-speed elevators"  },
-            ].map(({ n, u, l }) => (
+            {c.stats.map(({ n, u, l }) => (
               <div key={l} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <div style={{
-                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                  fontFamily: FONT,
                   fontSize: "clamp(24px,3vw,38px)",
                   fontWeight: 300, color: "#fff", lineHeight: 1,
                 }}>
                   {n}
                   {u && <span style={{
-                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                    fontFamily: FONT,
                     fontSize: "0.45em", color: PEARL,
                     marginLeft: 2, fontWeight: 200,
                   }}>{u}</span>}
                 </div>
                 <div style={{
-                  fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                  fontFamily: FONT,
                   fontSize: "10px", letterSpacing: "0.28em",
                   textTransform: "uppercase",
                   color: "rgba(255,255,255,0.3)",
