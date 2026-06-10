@@ -43,7 +43,7 @@ export function RevealOnScroll({
   if (reducedMotion) {
     // No motion wrapper — render children inside a passive div so consumers
     // that pass className/style still get them applied.
-    return <div style={style} {...(rest as React.HTMLAttributes<HTMLDivElement>)}>{children}</div>;
+    return <div style={style as React.CSSProperties} {...(rest as unknown as React.HTMLAttributes<HTMLDivElement>)}>{children}</div>;
   }
 
   return (
