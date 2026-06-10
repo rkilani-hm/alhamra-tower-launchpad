@@ -1,6 +1,20 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView }           from "framer-motion";
-import { useT }                        from "@/lib/i18n";
+import { useT, useContent }            from "@/lib/i18n";
+
+/* Counter config now lives in the locale JSON under stats.counters, so a CMS
+   editor can change every number — start, end, step, the displayed value, and
+   the unit — without touching code. The count-up animates start→end stepping
+   by `step`; `display` is the final formatted string shown when the animation
+   completes (lets "412.6" / Eastern-Arabic numerals render exactly as typed). */
+interface Counter {
+  key: string;
+  start: number;
+  end: number;
+  step: number;
+  display: string;
+  unit: string;
+}
 
 /* ═════════════════════════════════════════════════════════════════════════
    STATS — MONUMENTAL
@@ -27,54 +41,57 @@ import { useT }                        from "@/lib/i18n";
 const PEARL = "#C8B99A";
 const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
-/* Structural data — numbers stay as data; label/sub come from i18n at render */
-const STATS = [
-  { raw: 412,    display: "412.6",   unit: " m",   key: "height"    },
-  { raw: 258000, display: "258,000", unit: " m²",  key: "limestone" },
-  { raw: 62,     display: "62",      unit: "",     key: "floors"    },
-  { raw: 351,    display: "351",     unit: " m",   key: "skyLounge" },
-  { raw: 2011,   display: "2011",    unit: "",     key: "year"      },
-];
-
-/* Expo-out count-up hook — 1.6s duration with staggered delay per stat */
-function useCountUp(end: number, duration = 1600, delay = 0, active = false) {
-  const [value, setValue] = useState(0);
+/* Expo-out count-up hook — animates `start`→`end` quantised to `step`,
+   1.6s duration with staggered delay per stat. */
+function useCountUp(start: number, end: number, step = 1, duration = 1600, delay = 0, active = false) {
+  const [value, setValue] = useState(start);
 
   useEffect(() => {
     if (!active) return;
+    const safeStep = step > 0 ? step : 1;
     let startTime: number | null = null;
     let raf: number;
 
     const delayTimer = setTimeout(() => {
-      const step = (timestamp: number) => {
+      const stepFrame = (timestamp: number) => {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
         const t = Math.min(elapsed / duration, 1);
         const eased = 1 - Math.pow(1 - t, 4); /* expo ease-out */
-        setValue(Math.round(eased * end));
-        if (t < 1) raf = requestAnimationFrame(step);
+        const rawVal = start + eased * (end - start);
+        /* Quantise to the nearest step so the rolling numbers honour `step` */
+        const quantised = Math.round(rawVal / safeStep) * safeStep;
+        setValue(quantised);
+        if (t < 1) raf = requestAnimationFrame(stepFrame);
+        else setValue(end);
       };
-      raf = requestAnimationFrame(step);
+      raf = requestAnimationFrame(stepFrame);
     }, delay);
 
     return () => {
       clearTimeout(delayTimer);
       cancelAnimationFrame(raf);
     };
-  }, [end, duration, delay, active]);
+  }, [start, end, step, duration, delay, active]);
 
   return value;
 }
 
 function StatColumn({
-  raw, display, unit, statKey, index, active, total,
-}: typeof STATS[number] & { statKey: string; index: number; active: boolean; total: number }) {
+  counter, index, active, total,
+}: { counter: Counter; index: number; active: boolean; total: number }) {
   const t        = useT();
+  const { key: statKey, start, end, step, display, unit } = counter;
   const hasComma = display.includes(",");
-  const counted  = useCountUp(raw, 1600, index * 120, active);
-  const shown    = active
-    ? (hasComma ? counted.toLocaleString("en-US") : String(counted))
-    : "0";
+  const counted  = useCountUp(start, end, step, 1600, index * 120, active);
+  const done     = counted >= end;
+  /* While animating, show the rolling integer; once complete, show the
+     editor's exact `display` string (preserves "412.6", Eastern digits, etc.) */
+  const shown    = !active
+    ? String(start)
+    : done
+      ? display
+      : (hasComma ? counted.toLocaleString("en-US") : String(counted));
   const label    = t(`stats.items.${statKey}.label`);
   const sub      = t(`stats.items.${statKey}.sub`);
 
@@ -133,9 +150,11 @@ function StatColumn({
 }
 
 export function Stats() {
-  const t      = useT();
-  const ref    = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const t        = useT();
+  const counters = useContent<Counter[]>("stats.counters");
+  const ref      = useRef<HTMLDivElement>(null);
+  const inView   = useInView(ref, { once: true, margin: "-60px" });
+  const list     = Array.isArray(counters) ? counters : [];
 
   return (
     <section style={{
@@ -179,13 +198,12 @@ export function Stats() {
           borderTop: "1px solid rgba(200,185,154,0.15)",
           borderBottom: "1px solid rgba(200,185,154,0.15)",
         }}>
-          {STATS.map((s, i) => (
+          {list.map((c, i) => (
             <StatColumn
-              key={s.key}
-              {...s}
-              statKey={s.key}
+              key={c.key}
+              counter={c}
               index={i}
-              total={STATS.length}
+              total={list.length}
               active={inView}
             />
           ))}

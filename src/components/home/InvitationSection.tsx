@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useI18n } from "@/lib/i18n";
+import { useI18n, useContent } from "@/lib/i18n";
 
 /* ── The Invitation Section ───────────────────────────────────────────
    "By appointment" signals exclusivity — the building is choosing
@@ -13,54 +13,10 @@ const PEARL = "#C8B99A";
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
-const CONTENT = {
-  en: {
-    kicker: "Leasing Opportunities",
-    eyebrow: "The address that",
-    headlineA: "needs no",
-    headlineB: "introduction.",
-    body: "Home to Kuwait's leading ministries, Hermès, Gucci, Bottega Veneta and the world's most recognised luxury houses. Now welcoming a select group of new tenants.",
-    cta: "Enquire by appointment",
-    responseTime: "Responses within 24 hours",
-    tenantsLabel: "Distinguished tenants",
-    tenants: [
-      { label: "Government & Sovereign",   desc: "Kuwait's leading ministries, sovereign wealth funds, and GCC institutions" },
-      { label: "Luxury Retail",            desc: "Hermès · Gucci · Bottega Veneta · YSL · Ferragamo · Mont Blanc · Panerai" },
-      { label: "Financial & Professional", desc: "Regional and international financial institutions and professional services firms" },
-    ],
-    stats: [
-      { n: "80",   u: "+", l: "Floors occupied" },
-      { n: "2011", u: "",  l: "Year completed" },
-      { n: "52",   u: "",  l: "High-speed elevators" },
-    ],
-    bgAlt: "",
-  },
-  ar: {
-    kicker: "فرص التأجير",
-    eyebrow: "العنوان الذي",
-    headlineA: "لا يحتاج",
-    headlineB: "إلى تعريف.",
-    body: "موطنُ كبرى وزارات الكويت، وهيرميس، وغوتشي، وبوتيغا فينيتا، وأشهر دور الفخامة في العالم. واليوم، يفتح أبوابه أمام مجموعةٍ منتقاة من المستأجرين الجدد.",
-    cta: "استفسر بموعدٍ مسبق",
-    responseTime: "ردٌّ خلال ٢٤ ساعة",
-    tenantsLabel: "مستأجرون مميَّزون",
-    tenants: [
-      { label: "جهات حكوميّة وسياديّة",       desc: "كبرى وزارات الكويت، وصناديق الثروات السياديّة، والمؤسسات الخليجيّة" },
-      { label: "تجزئة فاخرة",                desc: "هيرميس · غوتشي · بوتيغا فينيتا · سان لوران · فيراغامو · مونت بلانك · بانيراي" },
-      { label: "مؤسسات ماليّة ومهنيّة",       desc: "مؤسسات ماليّة إقليميّة ودوليّة، وشركات خدمات مهنيّة رفيعة" },
-    ],
-    stats: [
-      { n: "٨٠",    u: "+", l: "طوابق مشغولة" },
-      { n: "٢٠١١",  u: "",  l: "عام الافتتاح" },
-      { n: "٥٢",    u: "",  l: "مصاعد عالية السرعة" },
-    ],
-    bgAlt: "",
-  },
-} as const;
 
 export function InvitationSection() {
   const { lang } = useI18n();
-  const c = CONTENT[lang];
+  const c = useContent<any>("content.invitation");
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const isAr = lang === "ar";
