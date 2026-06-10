@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView }           from "framer-motion";
-import { useT, useContent }            from "@/lib/i18n";
+import { useT, useContent, useI18n }   from "@/lib/i18n";
+import { useStatCounters, useStatLabels } from "@/lib/useCmsContent";
 
 /* Counter config now lives in the locale JSON under stats.counters, so a CMS
    editor can change every number — start, end, step, the displayed value, and
@@ -78,8 +79,8 @@ function useCountUp(start: number, end: number, step = 1, duration = 1600, delay
 }
 
 function StatColumn({
-  counter, index, active, total,
-}: { counter: Counter; index: number; active: boolean; total: number }) {
+  counter, index, active, total, dbLabel,
+}: { counter: Counter; index: number; active: boolean; total: number; dbLabel?: { label: string; sub: string } }) {
   const t        = useT();
   const { key: statKey, start, end, step, display, unit } = counter;
   const hasComma = display.includes(",");
@@ -92,8 +93,9 @@ function StatColumn({
     : done
       ? display
       : (hasComma ? counted.toLocaleString("en-US") : String(counted));
-  const label    = t(`stats.items.${statKey}.label`);
-  const sub      = t(`stats.items.${statKey}.sub`);
+  /* DB label/sub take precedence when published; else fall back to t() */
+  const label    = dbLabel?.label || t(`stats.items.${statKey}.label`);
+  const sub      = dbLabel?.sub   || t(`stats.items.${statKey}.sub`);
 
   return (
     <motion.div
@@ -151,10 +153,15 @@ function StatColumn({
 
 export function Stats() {
   const t        = useT();
-  const counters = useContent<Counter[]>("stats.counters");
+  const { lang } = useI18n();
+  const staticCounters = useContent<Counter[]>("stats.counters");
+  /* DB override: published "home" counters take precedence; null → static */
+  const dbCounters = useStatCounters("home", lang);
+  const dbLabels   = useStatLabels("home", lang);
   const ref      = useRef<HTMLDivElement>(null);
   const inView   = useInView(ref, { once: true, margin: "-60px" });
-  const list     = Array.isArray(counters) ? counters : [];
+  const staticList = Array.isArray(staticCounters) ? staticCounters : [];
+  const list     = dbCounters ?? staticList;
 
   return (
     <section style={{
@@ -205,6 +212,7 @@ export function Stats() {
               index={i}
               total={list.length}
               active={inView}
+              dbLabel={dbLabels[c.key]}
             />
           ))}
         </div>
