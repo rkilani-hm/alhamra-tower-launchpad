@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import enDict from "@/locales/en.json";
 import arDict from "@/locales/ar.json";
+import { supabase } from "@/integrations/supabase/client";
 
 /* ── Lightweight i18n ─────────────────────────────────────────────────
    No external dependencies. Supports:
@@ -78,6 +79,49 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(getInitialLang);
   const dir: "ltr" | "rtl" = lang === "ar" ? "rtl" : "ltr";
 
+  /* ── CMS override map ──────────────────────────────────────────────────
+     Published section_fields + page_prose, keyed by the same dot-notation
+     the components already request (e.g. "hero.title", "towerDesign.lamellaP1").
+     DB content takes precedence over static JSON; if the fetch fails or a key
+     isn't published, t() falls through to the locale files. Both languages are
+     stored so switching language never needs a refetch. Empty until loaded —
+     the site renders static content first, then swaps in published overrides. */
+  const [overrides, setOverrides] = useState<Record<string, { en: string; ar: string | null }>>({});
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const [sf, pp] = await Promise.all([
+          supabase
+            .from("section_fields")
+            .select("section_key,field_key,value_en,value_ar,status")
+            .eq("status", "published"),
+          supabase
+            .from("page_prose")
+            .select("page_key,field_key,value_en,value_ar,status")
+            .eq("status", "published"),
+        ]);
+        if (cancelled) return;
+        const map: Record<string, { en: string; ar: string | null }> = {};
+        for (const r of sf.data ?? []) {
+          if (r.section_key && r.field_key && r.value_en != null) {
+            map[`${r.section_key}.${r.field_key}`] = { en: r.value_en, ar: r.value_ar };
+          }
+        }
+        for (const r of pp.data ?? []) {
+          if (r.page_key && r.field_key && r.value_en != null) {
+            map[`${r.page_key}.${r.field_key}`] = { en: r.value_en, ar: r.value_ar };
+          }
+        }
+        if (!cancelled) setOverrides(map);
+      } catch {
+        /* network/other failure → overrides stay {} → pure static fallback */
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
   /* Apply <html lang=".."> and dir=".." on every lang change */
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -92,6 +136,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   };
 
   const t = (key: string): string => {
+    /* CMS override first: published DB content wins over static JSON. */
+    const ov = overrides[key];
+    if (ov) {
+      const v = lang === "ar" ? (ov.ar ?? ov.en) : ov.en;
+      if (v !== undefined && v !== null) return v;
+    }
     const val = resolve(DICTIONARIES[lang], key);
     if (val !== undefined) return val;
     // Fall back to English if Arabic is missing

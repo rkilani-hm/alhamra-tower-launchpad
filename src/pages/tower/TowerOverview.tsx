@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const SAND   = "#C5A882";
 const SAND_AA = "#9A7550";
@@ -60,7 +61,8 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 
 export default function TowerOverview() {
   const { lang } = useI18n();
-  const c = useContent<any>("content.towerOverview");
+  const cStatic = useContent<any>("content.towerOverview");
+  const c = usePageContent<any>("towerOverview", cStatic, lang);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });

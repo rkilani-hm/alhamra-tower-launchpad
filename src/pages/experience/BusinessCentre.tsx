@@ -3,6 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, StatsBar, DarkBand } from "@/components/shared/ui";
 import { useI18n, useContent } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
 const PEARL_TEXT = "#8B6E3E";
@@ -18,7 +19,8 @@ const CG         = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Fu
 
 export default function BusinessCentre() {
   const { lang } = useI18n();
-  const c = useContent<any>("content.businessCentre");
+  const cStatic = useContent<any>("content.businessCentre");
+  const c = usePageContent<any>("businessCentre", cStatic, lang);
 
   return (
     <PageLayout>

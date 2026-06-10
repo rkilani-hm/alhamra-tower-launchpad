@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── Architecture Section — Homepage ──────────────────────────────────
    The architectural story of the form: how the geometry responds to
@@ -17,7 +18,8 @@ const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,
 
 export function Architecture() {
   const { lang } = useI18n();
-  const c = useContent<any>("content.architecture");
+  const cStatic = useContent<any>("content.architecture");
+  const c = usePageContent<any>("architecture", cStatic, lang);
   const ref    = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 

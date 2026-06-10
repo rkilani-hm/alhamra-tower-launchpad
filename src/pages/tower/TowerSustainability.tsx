@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL_TEXT = "#8B6E3E";
 const DARK  = "#1D1D1B";
@@ -12,7 +13,8 @@ const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'
 
 export default function TowerSustainability() {
   const { lang } = useI18n();
-  const c = useContent<any>("content.towerSustain");
+  const cStatic = useContent<any>("content.towerSustain");
+  const c = usePageContent<any>("towerSustain", cStatic, lang);
 
   return (
     <PageLayout>

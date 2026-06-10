@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
 const PEARL_TEXT = "#8B6E3E";
@@ -17,7 +18,8 @@ const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'
 
 export default function TowerRising() {
   const { lang } = useI18n();
-  const c = useContent<any>("content.towerRising");
+  const cStatic = useContent<any>("content.towerRising");
+  const c = usePageContent<any>("towerRising", cStatic, lang);
 
   const [activeEra, setActiveEra] = useState<number>(0);
 

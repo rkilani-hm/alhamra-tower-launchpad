@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL  = "#C8B99A";
 const DARK   = "#1D1D1B";
@@ -42,7 +43,8 @@ function SpecTable({ cat, rows }: SpecTableProps) {
 
 export default function TowerDesign() {
   const { lang } = useI18n();
-  const c = useContent<any>("content.towerDesign");
+  const cStatic = useContent<any>("content.towerDesign");
+  const c = usePageContent<any>("towerDesign", cStatic, lang);
   const facadeRef = useRef<HTMLDivElement>(null);
   const facadeInView = useInView(facadeRef, { once: true, margin: "-80px" });
 

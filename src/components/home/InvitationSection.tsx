@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useI18n, useContent } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── The Invitation Section ───────────────────────────────────────────
    "By appointment" signals exclusivity — the building is choosing
@@ -16,7 +17,8 @@ const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,
 
 export function InvitationSection() {
   const { lang } = useI18n();
-  const c = useContent<any>("content.invitation");
+  const cStatic = useContent<any>("content.invitation");
+  const c = usePageContent<any>("invitation", cStatic, lang);
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const isAr = lang === "ar";
