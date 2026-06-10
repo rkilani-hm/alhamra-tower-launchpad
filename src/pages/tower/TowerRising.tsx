@@ -4,7 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
-import { useI18n } from "@/lib/i18n";
+import { useI18n, useContent } from "@/lib/i18n";
 
 const PEARL      = "#C8B99A";
 const PEARL_TEXT = "#8B6E3E";
@@ -13,134 +13,11 @@ const DARK  = "#1D1D1B";
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
 /* ── Bilingual content ─────────────────────────────────────────────── */
-const CONTENT = {
-  en: {
-    hero: {
-      title: "Rising with Purpose",
-      subtitle: "The construction of Al Hamra Tower",
-      tag: "2006 – 2011",
-      crumbs: [{ label: "Home", href: "/" }, { label: "The Tower", href: "/tower" }],
-    },
-    timeline: {
-      kicker: "Construction Timeline",
-      title: "From excavation to icon.",
-      titleLine1: "From excavation",
-      titleLine2: "to icon.",
-    },
-    eras: [
-      {
-        year: "2004",
-        title: "The Site is Set",
-        body: "A mixed-use complex with a 200m tower is designed by Al Jazera Consultants. Excavation begins — 289 cast-in-place bored piles are sunk 22–27 metres into Kuwait's silty sand. The foundation work cannot stop.",
-        img: "/assets/rising-era-2004-site-set.jpg",
-      },
-      {
-        year: "2005",
-        title: "The Height Doubles",
-        body: "Kuwait City Municipality raises the maximum allowable building height to 400m. Client group engages Skidmore, Owings & Merrill (SOM) — one of the world's foremost high-rise architects — to design a landmark tower. SOM begins concept design while the contractor is already on site.",
-        img: "/assets/rising-era-2005-height-doubles.jpg",
-      },
-      {
-        year: "2006",
-        title: "The Form Emerges",
-        body: "SOM's decisive gesture: subtract a spiraling quadrant from a prismatic volume, rotate it at each higher level. Two hyperbolic paraboloid walls emerge — the iconic flared ribbons. The geometry provides transparency toward the Gulf and opacity toward the desert. Construction begins.",
-        img: "/assets/rising-era-2006-form-emerges.png",
-      },
-      {
-        year: "2008",
-        title: "The Lamella Rises",
-        body: "The lobby lamella — a web of 24-metre curved steel elements arching outward from the building core — is constructed using fiberglass formwork fabricated from 3D parametric models. It creates a column-free 900m² lobby. Engineers run non-linear buckling analyses on each member.",
-        img: "/assets/rising-era-2008-lamella-rises.jpg",
-      },
-      {
-        year: "2011",
-        title: "Kuwait's Skyline Changes",
-        body: "Al Hamra Tower tops out at 412.6 metres. At completion it ranks among the ten tallest buildings in the world. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — stands complete in Sharq District. Kuwait City has a new landmark.",
-        img: "/assets/rising-era-2011-skyline-changes.png",
-        img2: "/assets/skyline-gulf-night.jpg",
-      },
-    ],
-    lamella: {
-      kicker: "Engineering Feat",
-      heading: "The Lamella — a 24-metre vault with no columns.",
-      body1: "To create Kuwait's most dramatic lobby, SOM devised the lamella bracing system — a web of five distinct element types (A through E) that curve outward from the building core following a circular arch 24 metres high, creating a completely column-free space beneath the tower.",
-      body2: "Each element was designed using parametric 3D modelling. The fiberglass formwork moulds were fabricated directly from digital models. Non-linear buckling analyses were performed on every member — engineering and architecture resolved as a single sculptural gesture.",
-      caption: "The lobby lamella · Ground floor",
-      facts: [
-        { n: "24m",    l: "Column-free lobby height" },
-        { n: "900m²",  l: "Grand lobby floor area"   },
-        { n: "5",      l: "Lamella element types (A–E)" },
-        { n: "160mm",  l: "Maximum steel plate thickness" },
-      ],
-    },
-    galleryKicker: "The Tower Today",
-  },
-  ar: {
-    hero: {
-      title: "نشأة المعلم",
-      subtitle: "تشييد برج الحمراء للأعمال",
-      tag: "2006 – 2011",
-      crumbs: [{ label: "الرئيسية", href: "/" }, { label: "البرج", href: "/tower" }],
-    },
-    timeline: {
-      kicker: "الجدول الزمني للإنشاء",
-      title: "من الحفر إلى الأيقونة.",
-      titleLine1: "من الحفر",
-      titleLine2: "إلى الأيقونة.",
-    },
-    eras: [
-      {
-        year: "2004",
-        title: "تثبيت الموقع",
-        body: "صمّم استشاريو الجزيرة مجمّعاً متعدّد الاستخدامات يضمّ برجاً بارتفاع 200 م. تبدأ أعمال الحفر — تُغرس 289 ركيزة خرسانيّة مصبوبة في الموقع على عمقٍ يتراوح بين 22 و27 متراً في الرمال الطميية للكويت. لا يمكن لأعمال الأساس أن تتوقّف.",
-        img: "/assets/rising-era-2004-site-set.jpg",
-      },
-      {
-        year: "2005",
-        title: "تضاعف الارتفاع",
-        body: "ترفع بلديّة الكويت الحدّ الأقصى المسموح به لارتفاع المباني إلى 400 م. تتعاقد مجموعة العميل مع سكيدمور، أوينغز أند ميريل (SOM) — أحد أبرز معماريي الأبراج الشاهقة في العالم — لتصميم برجٍ معلميّ. تبدأ SOM التصميم المفاهيميّ بينما المقاول حاضرٌ بالفعل في الموقع.",
-        img: "/assets/rising-era-2005-height-doubles.jpg",
-      },
-      {
-        year: "2006",
-        title: "يبرز الشكل",
-        body: "إيماءة SOM الحاسمة: اقتطاع شريحةٍ حلزونيّة من كتلةٍ منشوريّة، ثمّ تدويرها عند كلّ مستوى أعلى. ينبثق جداران مكافئان زائديّان — الشريطان المتدلّيان الأيقونيّان. توفّر الهندسة شفافيّة نحو الخليج وعتمة نحو الصحراء. تبدأ أعمال البناء.",
-        img: "/assets/rising-era-2006-form-emerges.png",
-      },
-      {
-        year: "2008",
-        title: "تنهض اللاميلا",
-        body: "يُشيَّد هيكل اللاميلا في اللوبي — شبكةٌ من العناصر الفولاذيّة المنحنية بطول 24 متراً، تنحني للخارج من نواة المبنى — باستخدام قوالب من الألياف الزجاجيّة مصنوعة من نماذج بارامتريّة ثلاثيّة الأبعاد. تخلق لوبي خالياً من الأعمدة بمساحة 900 م². يُجري المهندسون تحليلات انبعاجٍ غير خطيّة على كلّ عنصر.",
-        img: "/assets/rising-era-2008-lamella-rises.jpg",
-      },
-      {
-        year: "2011",
-        title: "أفق الكويت يتغيّر",
-        body: "يكتمل برج الحمراء عند ارتفاع 412.6 متراً. عند الإنجاز يأتي ضمن أعلى عشرة مبانٍ في العالم. تقف ناطحة السحاب الأكبر المكسوّة بالحجر في العالم — 258,000 م² من حجر جورا الجيريّ — مكتملةً في منطقة الشرق. ولمدينة الكويت معلمٌ جديد.",
-        img: "/assets/rising-era-2011-skyline-changes.png",
-        img2: "/assets/skyline-gulf-night.jpg",
-      },
-    ],
-    lamella: {
-      kicker: "إنجازٌ هندسيّ",
-      heading: "اللاميلا — قبوٌ بطول 24 متراً بلا أعمدة.",
-      body1: "لإنشاء أكثر اللوبيات إثارةً في الكويت، ابتكرت SOM نظام دعامات اللاميلا — شبكةٌ من خمسة أنواع متمايزة من العناصر (من A إلى E) تنحني للخارج من نواة المبنى متّبعةً قوساً دائريّاً بارتفاع 24 متراً، لتخلق مساحةً خاليةً تماماً من الأعمدة تحت البرج.",
-      body2: "صُمّم كلّ عنصرٍ باستخدام النمذجة البارامتريّة ثلاثيّة الأبعاد. صُنعت قوالب القولبة من الألياف الزجاجيّة مباشرةً من النماذج الرقميّة. أُجريت تحليلات الانبعاج غير الخطيّة على كلّ عنصر — حيث ائتلفت الهندسة والعمارة في إيماءةٍ نحتيّةٍ واحدة.",
-      caption: "لاميلا اللوبي · الطابق الأرضي",
-      facts: [
-        { n: "24 م",   l: "ارتفاع اللوبي الخالي من الأعمدة" },
-        { n: "900 م²", l: "مساحة اللوبي الكبير"            },
-        { n: "5",      l: "أنواع عناصر اللاميلا (A–E)"     },
-        { n: "160 مم", l: "أقصى سُمكٍ للوحة الفولاذيّة"     },
-      ],
-    },
-    galleryKicker: "البرج اليوم",
-  },
-};
+;
 
 export default function TowerRising() {
   const { lang } = useI18n();
-  const c = CONTENT[lang];
+  const c = useContent<any>("content.towerRising");
 
   const [activeEra, setActiveEra] = useState<number>(0);
 

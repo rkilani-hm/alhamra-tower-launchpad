@@ -3,7 +3,6 @@
     "siteName": "Al Hamra Business Tower",
     "tagline": "An Architectural Monument Without Equal"
   },
-
   "nav": {
     "home": "Home",
     "tower": "The Tower",
@@ -18,26 +17,25 @@
     "closeMenu": "Close navigation menu",
     "changeLanguage": "Change language",
     "sub": {
-      "overview":      "Overview",
-      "rising":        "Rising with Purpose",
-      "design":        "Design & Engineering",
-      "awards":        "Awards & Recognition",
-      "sustainability":"Sustainability",
-      "workplace":     "Workplace Experience",
-      "offices":       "Office Spaces",
-      "vertical":      "Vertical Transportation",
-      "connectivity":  "Connectivity",
-      "servicesFull":  "Services & Facilities",
-      "locationFull":  "Location & Access",
-      "businessCenter":"Business Centre",
-      "hotel":         "Al Hamra Hotel",
+      "overview": "Overview",
+      "rising": "Rising with Purpose",
+      "design": "Design & Engineering",
+      "awards": "Awards & Recognition",
+      "sustainability": "Sustainability",
+      "workplace": "Workplace Experience",
+      "offices": "Office Spaces",
+      "vertical": "Vertical Transportation",
+      "connectivity": "Connectivity",
+      "servicesFull": "Services & Facilities",
+      "locationFull": "Location & Access",
+      "businessCenter": "Business Centre",
+      "hotel": "Al Hamra Hotel",
       "opportunities": "Opportunities",
-      "inquiry":       "Inquiry",
-      "downloads":     "Downloads",
-      "contact":       "Contact"
+      "inquiry": "Inquiry",
+      "downloads": "Downloads",
+      "contact": "Contact"
     }
   },
-
   "hero": {
     "tag": "Sharq District  ·  Kuwait City  ·  412m  ·  Est. 2011",
     "eyebrow": "Kuwait's Most",
@@ -64,19 +62,18 @@
     "headlineSecondary": "Glass toward the Gulf. Stone toward the desert.",
     "specsKicker": "By the Numbers",
     "specs": {
-      "limestone":   "Jura limestone cladding — world record",
-      "concrete":    "Reinforced concrete poured",
-      "piles":       "Foundation piles, 1.2m diameter",
+      "limestone": "Jura limestone cladding — world record",
+      "concrete": "Reinforced concrete poured",
+      "piles": "Foundation piles, 1.2m diameter",
       "curtainWall": "Curtain wall glass panels"
     },
     "stats": {
-      "height":    "Height",
-      "floors":    "Floors",
-      "rank":      "Tallest in Kuwait",
+      "height": "Height",
+      "floors": "Floors",
+      "rank": "Tallest in Kuwait",
       "elevators": "Elevators"
     }
   },
-
   "intro": {
     "kicker": "From landmark… to legacy",
     "title": "True excellence is not measured by reaching towering heights, but by the lasting impact it leaves behind.",
@@ -86,7 +83,6 @@
     "body4": "This is a business environment designed to be home to leadership, where intelligent architecture meets a deep understanding of climate and operational precision — forming a headquarters that elevates the ambitions of leaders and decision-makers.",
     "cta": "Discover the Tower"
   },
-
   "gulf": {
     "kicker": "The City · The Arabian Gulf",
     "title": "Kuwait City. The Arabian Gulf.",
@@ -102,7 +98,6 @@
       "skyline": "Skyline"
     }
   },
-
   "founderQuote": {
     "kicker": "The Architectural Gesture",
     "quote": "We wanted to deliver an achievement that embodies our capabilities in Kuwait — not only in reaching a soaring height, but in distinction through architectural and engineering innovation.",
@@ -110,7 +105,6 @@
     "role": "Development Team",
     "caption": "412.6 m · Kuwait City"
   },
-
   "awards": {
     "kicker": "Beyond all measures",
     "title": "The tower's form was never about height alone — behind it lay an unshakable vision and resolute determination.",
@@ -120,7 +114,6 @@
     "body4": "This monument was not built to match its era — it was built to leave a lasting mark.",
     "cta": "Engineering Excellence"
   },
-
   "experience": {
     "kicker": "Enter the world of Al Hamra",
     "title": "Four pillars of a singular icon",
@@ -152,18 +145,73 @@
       }
     }
   },
-
   "stats": {
     "kicker": "By the Numbers",
+    "counters": [
+      {
+        "key": "height",
+        "start": 0,
+        "end": 412,
+        "step": 1,
+        "display": "412.6",
+        "unit": " m"
+      },
+      {
+        "key": "limestone",
+        "start": 0,
+        "end": 258000,
+        "step": 1,
+        "display": "258,000",
+        "unit": " m²"
+      },
+      {
+        "key": "floors",
+        "start": 0,
+        "end": 77,
+        "step": 1,
+        "display": "77",
+        "unit": ""
+      },
+      {
+        "key": "skyLounge",
+        "start": 0,
+        "end": 351,
+        "step": 1,
+        "display": "351",
+        "unit": " m"
+      },
+      {
+        "key": "year",
+        "start": 0,
+        "end": 2011,
+        "step": 1,
+        "display": "2011",
+        "unit": ""
+      }
+    ],
     "items": {
-      "height":    { "label": "412 metres rising",       "sub": "Kuwait's tallest monument — reshaping the city skyline" },
-      "limestone": { "label": "Jura Limestone",          "sub": "Largest stone-clad façade ever built" },
-      "floors":    { "label": "77 floors",               "sub": "A business destination of refined offices and retail" },
-      "skyLounge": { "label": "Sky Lounge Elevation",    "sub": "Highest dining and event floor in Kuwait" },
-      "year":      { "label": "Year Completed",          "sub": "Engineered by SOM San Francisco" }
+      "height": {
+        "label": "412 metres rising",
+        "sub": "Kuwait's tallest monument — reshaping the city skyline"
+      },
+      "limestone": {
+        "label": "Jura Limestone",
+        "sub": "Largest stone-clad façade ever built"
+      },
+      "floors": {
+        "label": "77 floors",
+        "sub": "A business destination of refined offices and retail"
+      },
+      "skyLounge": {
+        "label": "Sky Lounge Elevation",
+        "sub": "Highest dining and event floor in Kuwait"
+      },
+      "year": {
+        "label": "Year Completed",
+        "sub": "Engineered by SOM San Francisco"
+      }
     }
   },
-
   "architecture": {
     "kickerPrimary": "Architecture — Skidmore, Owings & Merrill",
     "headlinePrimary": "A form born of sun, wind, and the Gulf.",
@@ -176,13 +224,12 @@
     "headlineSecondary": "Glass toward the Gulf. Stone toward the desert.",
     "specsKicker": "By the Numbers",
     "specs": {
-      "limestone":   "Jura limestone cladding — world record",
-      "concrete":    "Reinforced concrete poured",
-      "piles":       "Foundation piles, 1.2m diameter",
+      "limestone": "Jura limestone cladding — world record",
+      "concrete": "Reinforced concrete poured",
+      "piles": "Foundation piles, 1.2m diameter",
       "curtainWall": "Curtain wall glass panels"
     }
   },
-
   "credentials": {
     "architect": "Architect of Record",
     "architectValue": "Skidmore, Owings & Merrill",
@@ -193,7 +240,6 @@
     "ranking": "Global Ranking",
     "rankingValue": "23rd tallest tower in the world"
   },
-
   "invitation": {
     "kicker": "By appointment",
     "title": "Your next address awaits.",
@@ -201,58 +247,75 @@
     "ctaPrimary": "Begin the conversation",
     "statsKicker": "By the numbers",
     "invStats": {
-      "floors":    "Floors occupied",
-      "year":      "Year completed",
+      "floors": "Floors occupied",
+      "year": "Year completed",
       "elevators": "High-speed elevators"
     },
     "tenants": {
-      "government": { "label": "Government & Sovereign", "desc": "Kuwait's leading ministries, sovereign wealth funds and GCC institutions" },
-      "retail":     { "label": "Luxury Retail",          "desc": "Hermès · Gucci · Bottega Veneta · YSL · Ferragamo · Mont Blanc · Panerai" },
-      "financial":  { "label": "Financial & Professional", "desc": "Regional and international financial institutions and professional services firms" }
+      "government": {
+        "label": "Government & Sovereign",
+        "desc": "Kuwait's leading ministries, sovereign wealth funds and GCC institutions"
+      },
+      "retail": {
+        "label": "Luxury Retail",
+        "desc": "Hermès · Gucci · Bottega Veneta · YSL · Ferragamo · Mont Blanc · Panerai"
+      },
+      "financial": {
+        "label": "Financial & Professional",
+        "desc": "Regional and international financial institutions and professional services firms"
+      }
     }
   },
-
   "perspectives": {
     "light": {
       "kicker": "The Light",
-      "title":  "No tenant ever faces south.",
-      "body":   "The asymmetric form is environmental, not aesthetic. Kuwait's south-facing sun is the harshest in the GCC. Al Hamra's stone wall absorbs it — not a single office window points into it. Every workspace receives the gentler northern, eastern, or western light, framed by the Gulf or the city."
+      "title": "No tenant ever faces south.",
+      "body": "The asymmetric form is environmental, not aesthetic. Kuwait's south-facing sun is the harshest in the GCC. Al Hamra's stone wall absorbs it — not a single office window points into it. Every workspace receives the gentler northern, eastern, or western light, framed by the Gulf or the city."
     },
     "silence": {
       "kicker": "The Silence",
-      "title":  "Above the city, you can hear the building breathe.",
-      "body":   "From the Sky Lobby at Floor 30, the traffic of Sharq becomes a distant idea. By Floor 55, the city stops talking. The Sky Lounge at 351m offers a stillness that does not exist anywhere else in Kuwait — an altitude where conversation, not commute, defines the day."
+      "title": "Above the city, you can hear the building breathe.",
+      "body": "From the Sky Lobby at Floor 30, the traffic of Sharq becomes a distant idea. By Floor 55, the city stops talking. The Sky Lounge at 351m offers a stillness that does not exist anywhere else in Kuwait — an altitude where conversation, not commute, defines the day."
     },
     "vantage": {
       "kicker": "The Vantage",
-      "title":  "You see the country from your desk.",
-      "body":   "Kuwait Bay to the north. The Arabian Gulf to the east. The desert horizon to the west. From the upper third of the tower, all three are simultaneously visible from a single window — a perspective once reserved for aircraft, now for the institutions that work here."
+      "title": "You see the country from your desk.",
+      "body": "Kuwait Bay to the north. The Arabian Gulf to the east. The desert horizon to the west. From the upper third of the tower, all three are simultaneously visible from a single window — a perspective once reserved for aircraft, now for the institutions that work here."
     }
   },
-
   "floorConfigs": {
     "kicker": "Floor Configurations",
-    "title":  "Space that adapts to the institution inside.",
+    "title": "Space that adapts to the institution inside.",
     "items": {
-      "c1": { "label": "Configuration 01", "title": "Executive Suite",        "body": "Corner-office configuration with panoramic Gulf views, private reception, and full executive facilities. Ideal for regional offices and professional firms." },
-      "c2": { "label": "Configuration 02", "title": "Full-Floor Tenancy",     "body": "Entire floor exclusivity with private elevator access and dedicated reception, with the option to integrate complete corporate identity." },
-      "c3": { "label": "Configuration 03", "title": "Corporate Headquarters", "body": "Multiple connected floors with building signage rights and dedicated parking levels. Kuwait's premier headquarters address." }
+      "c1": {
+        "label": "Configuration 01",
+        "title": "Executive Suite",
+        "body": "Corner-office configuration with panoramic Gulf views, private reception, and full executive facilities. Ideal for regional offices and professional firms."
+      },
+      "c2": {
+        "label": "Configuration 02",
+        "title": "Full-Floor Tenancy",
+        "body": "Entire floor exclusivity with private elevator access and dedicated reception, with the option to integrate complete corporate identity."
+      },
+      "c3": {
+        "label": "Configuration 03",
+        "title": "Corporate Headquarters",
+        "body": "Multiple connected floors with building signage rights and dedicated parking levels. Kuwait's premier headquarters address."
+      }
     }
   },
-
   "contactStrip": {
     "kicker": "Enquire",
-    "title":  "Your inquiries are handled with complete confidentiality",
-    "phone":   "Phone",
+    "title": "Your inquiries are handled with complete confidentiality",
+    "phone": "Phone",
     "phoneValue": "+965 2227 5000",
-    "email":   "Email",
+    "email": "Email",
     "emailValue": "leasing@alhamratower.com",
-    "hours":   "Hours",
+    "hours": "Hours",
     "hoursValue": "Sun – Thu · 8:00 AM – 6:00 PM",
     "address": "Address",
     "addressValue": "Sharq, Kuwait City, Kuwait"
   },
-
   "footer": {
     "copyright": "© 2026 Al Hamra Real Estate Company. All rights reserved.",
     "exploreTitle": "Explore",
@@ -277,9 +340,900 @@
     "emailTitle": "Email",
     "email": "leasing@alhamratower.com"
   },
-
   "language": {
     "en": "English",
     "ar": "العربية"
+  },
+  "content": {
+    "invitation": {
+      "kicker": "Leasing Opportunities",
+      "eyebrow": "The address that",
+      "headlineA": "needs no",
+      "headlineB": "introduction.",
+      "body": "Home to Kuwait's leading ministries, Hermès, Gucci, Bottega Veneta and the world's most recognised luxury houses. Now welcoming a select group of new tenants.",
+      "cta": "Enquire by appointment",
+      "responseTime": "Responses within 24 hours",
+      "tenantsLabel": "Distinguished tenants",
+      "tenants": [
+        {
+          "label": "Government & Sovereign",
+          "desc": "Kuwait's leading ministries, sovereign wealth funds, and GCC institutions"
+        },
+        {
+          "label": "Luxury Retail",
+          "desc": "Hermès · Gucci · Bottega Veneta · YSL · Ferragamo · Mont Blanc · Panerai"
+        },
+        {
+          "label": "Financial & Professional",
+          "desc": "Regional and international financial institutions and professional services firms"
+        }
+      ],
+      "stats": [
+        {
+          "n": "80",
+          "u": "+",
+          "l": "Floors occupied"
+        },
+        {
+          "n": "2011",
+          "u": "",
+          "l": "Year completed"
+        },
+        {
+          "n": "43",
+          "u": "",
+          "l": "High-speed elevators"
+        }
+      ],
+      "bgAlt": ""
+    },
+    "architecture": {
+      "kicker": "SOM Architecture · 2006–2011",
+      "headlineA": "A form born from",
+      "headlineB": "sun, wind, and the Gulf.",
+      "body1": "The Al Hamra Tower's geometry was generated by a single decisive act: subtracting a spiraling quadrant from a simple prismatic volume, then rotating it incrementally at each higher level. The result is two hyperbolic paraboloid walls — the iconic flared ribbons — that extend the full 412 metres of the building's height.",
+      "body2Pre": "The transparent glass envelope faces north, west, and east — toward the Arabian Gulf. The monolithic stone wall faces south — shielding every office from Kuwait's desert sun. Architecture and engineering evolved together. The structure ",
+      "body2Em": "is",
+      "body2Post": " the form.",
+      "quote": "\"Like an enshrouded figure with its delicate glass veil, the Tower provides spectacular views over much of Kuwait and across the Arabian Gulf.\"",
+      "credit": "Skidmore, Owings & Merrill LLP",
+      "milestonesKicker": "Construction Milestones",
+      "milestones": [
+        {
+          "y": "2005",
+          "e": "Concept by SOM San Francisco"
+        },
+        {
+          "y": "2007",
+          "e": "Ground breaking · piling begins"
+        },
+        {
+          "y": "2009",
+          "e": "Topping out at 412.6 m"
+        },
+        {
+          "y": "2010",
+          "e": "Façade installation completed"
+        },
+        {
+          "y": "2011",
+          "e": "Building inaugurated"
+        }
+      ],
+      "specs": [
+        {
+          "n": "258,000",
+          "u": "m²",
+          "l": "Jura limestone cladding — world record"
+        },
+        {
+          "n": "195,000",
+          "u": "m³",
+          "l": "Reinforced concrete poured"
+        },
+        {
+          "n": "289",
+          "u": "",
+          "l": "Foundation piles, 1.2m diameter"
+        },
+        {
+          "n": "55,000",
+          "u": "m²",
+          "l": "Curtain wall glass panels"
+        }
+      ],
+      "facadeKicker": "The façade · A dual identity",
+      "facadeHeadingA": "Glass toward the Gulf.",
+      "facadeHeadingB": "Stone toward the desert.",
+      "facadeBody1": "Three glass facades face north, east, and west — maximising views across Kuwait Bay and the Arabian Gulf. The south wall — 84,000m² of Jura limestone — turns its back to the desert sun, minimising solar heat gain across every office floor.",
+      "facadeBody2": "The deep-angled windows carved into the south wall angle obliquely — framing views across the city and peninsula while blocking direct sunlight entirely. Every office is north-facing. No tenant faces the desert.",
+      "renderAlt": "Al Hamra Tower architectural render",
+      "nightAlt": "Al Hamra Tower at night — Kuwait City skyline"
+    },
+    "towerOverview": {
+      "heroKicker": "The Tower · Skidmore, Owings & Merrill · 2006–2011",
+      "heroTitle": "The Tower",
+      "heroSub": [
+        "412 metres. First asymmetrical skyscraper in the world.",
+        "World's tallest stone-clad building. Kuwait City, Sharq District."
+      ],
+      "heroCredit": "© SOM / CTBUH — Architectural render",
+      "stats": [
+        {
+          "n": "412.6",
+          "u": "m",
+          "icon": "↑",
+          "l": "Height to tip",
+          "sub": "Occupied height: 371.4m"
+        },
+        {
+          "n": "80",
+          "u": "",
+          "icon": "▦",
+          "l": "Total levels",
+          "sub": "Office, executive & sky-lounge floors"
+        },
+        {
+          "n": "258,000",
+          "u": "m²",
+          "icon": "◈",
+          "l": "Jura limestone cladding",
+          "sub": "World's tallest stone-clad tower"
+        },
+        {
+          "n": "289",
+          "u": "",
+          "icon": "⬡",
+          "l": "Foundation piles",
+          "sub": "1,200mm diameter, 22–27m depth"
+        },
+        {
+          "n": "43",
+          "u": "",
+          "icon": "⬆",
+          "l": "High-speed elevators",
+          "sub": "3 zones — Low, Mid, High rise"
+        },
+        {
+          "n": "351",
+          "u": "m",
+          "icon": "✦",
+          "l": "Sky Lounge elevation",
+          "sub": "Highest dining in Kuwait"
+        }
+      ],
+      "tabs": [
+        {
+          "id": "form",
+          "label": "The Form",
+          "heading": "Born from a single sculptural act.",
+          "body": [
+            "The Al Hamra Tower's geometry was generated by subtracting a spiraling quadrant from a simple prismatic volume — then rotating that removed mass incrementally at each higher level. The result is two hyperbolic paraboloid reinforced-concrete walls — the iconic flared ribbons — extending the full 412 metres of the tower's height.",
+            "Architect Mark Sarkisian and the SOM San Francisco team describe it as 'architectural expression through structural form on a grand scale.' The structural system and exterior form evolved together in a process of symbiotic evolution — the structure is the form."
+          ],
+          "quote": "The building geometry is generated by a spiraling slice subtracted from a simple prismatic volume.",
+          "credit": "Skidmore, Owings & Merrill LLP — Sculpted High-Rise paper",
+          "statN": "1st",
+          "statL": "Asymmetrical skyscraper in the world"
+        },
+        {
+          "id": "facade",
+          "label": "The Façade",
+          "heading": "Glass toward the Gulf. Stone toward the desert.",
+          "body": [
+            "Three facades face north, east, and west — fully glazed with insulating low-emissivity glass, maximising views across Kuwait Bay and the Arabian Gulf. No south-facing office exists anywhere in the building.",
+            "The south wall is 258,000 m² of Jura limestone — the world's largest area of stone cladding on a single building. Deep angled windows carved into the stone frame oblique views of the city and peninsula while blocking all direct solar radiation."
+          ],
+          "quote": "The transparent envelope facing north and its solid wall facing south — a response to the environment itself.",
+          "credit": "SOM Structural Engineering Team",
+          "statN": "55,000",
+          "statL": "m² of insulating curtain wall glass"
+        },
+        {
+          "id": "lobby",
+          "label": "The Lobby",
+          "heading": "24 metres. No columns. Engineered to be impossible.",
+          "body": [
+            "The main lobby is a 900 m² column-free volume rising 24 metres — made possible by the lamella structure: curved steel columns bent outward from 60 metres above, distributing loads through five interlocking bracing systems (A, B, C, D, E elements) studied via non-linear buckling analysis.",
+            "The fiberglass formwork moulds for the lamella were fabricated directly from 3D parametric models — an early example of digital fabrication at supertall scale. The lobby faces north, oriented toward the Arabian Gulf."
+          ],
+          "quote": "Like an enshrouded figure with its delicate glass veil, the Tower provides spectacular views over much of Kuwait and across the Arabian Gulf.",
+          "credit": "Al Hamra Firdous Tower Study",
+          "statN": "900",
+          "statL": "m² — column-free lobby area"
+        },
+        {
+          "id": "zones",
+          "label": "The Zones",
+          "heading": "Three rise zones. Two sky lobbies. One executive crown.",
+          "body": [
+            "The business tower is divided into three stacked zones — Low Rise (Floors 6–26), Mid Rise (31–51), and High Rise (56–73) — each served by dedicated elevator banks. Sky Lobby 1 on Floor 30 and Sky Lobby 2 on Floor 55 provide transfer floors with 7-metre ceilings, full business centres, and employee lounges.",
+            "Executive Floors 74–75 represent the highest business address in Kuwait. VIP elevators connect directly from the main lobby to the crown. The Sky Lounge occupies Floors 78–80 at 351 metres — the highest dining experience in Kuwait."
+          ],
+          "quote": "Executive Floors on the 74th & 75th providing the highest business address in Kuwait with a unique experience.",
+          "credit": "Al Hamra Tower Technical Specification",
+          "statN": "74–75",
+          "statL": "Executive floors — highest address in Kuwait"
+        }
+      ],
+      "awardsKicker": "Awards & Recognition",
+      "awards": [
+        {
+          "year": "2007",
+          "title": "Miami Architectural Biennial",
+          "sub": "Bronze — Under Construction Category"
+        },
+        {
+          "year": "2010",
+          "title": "Cityscape Award",
+          "sub": "Commercial Mixed-use Developments"
+        },
+        {
+          "year": "2011",
+          "title": "Time Magazine",
+          "sub": "Best Inventions of the Year"
+        },
+        {
+          "year": "2012",
+          "title": "CTBUH Award",
+          "sub": "Best Tall Building Middle East"
+        },
+        {
+          "year": "2013",
+          "title": "MIPIM Architectural Review",
+          "sub": "Future Project Award"
+        },
+        {
+          "year": "2014",
+          "title": "Emirates Glass LEAF Award",
+          "sub": "International Award"
+        },
+        {
+          "year": "2016",
+          "title": "MEA Awards",
+          "sub": "Sustainable Design Recognition"
+        },
+        {
+          "year": "2019",
+          "title": "World Architecture Festival",
+          "sub": "Completed Buildings"
+        }
+      ],
+      "ctaHeadline": "Every office. Every view. The Gulf.",
+      "ctaPrimary": "Design & Engineering",
+      "ctaSecondary": "Enquire by appointment"
+    },
+    "towerDesign": {
+      "heroTitle": "Design & Engineering",
+      "heroSubtitle": "How a single formal act — subtracting a spiraling quadrant from a prismatic volume — created both the architectural identity and the structural system of Kuwait's most ambitious building.",
+      "crumbHome": "Home",
+      "crumbTower": "The Tower",
+      "facadeKicker": "The Dual Façade",
+      "facadeHeadingLine1": "Glass toward the Gulf.",
+      "facadeHeadingLine2": "Stone toward the desert.",
+      "facadeP1Part1": "Three facades face north, east, and west — fully glazed with insulating low-emissivity glass, maximising views across Kuwait Bay and the Arabian Gulf.",
+      "facadeP1Strong": " Not a single office in the building faces south.",
+      "facadeP2": "The south wall is 258,000 m² of Jura limestone — the world's largest area of stone cladding on any single building. Deep angled windows carved into the stone frame oblique city and peninsula views while completely blocking direct solar radiation.",
+      "facadeStats": [
+        {
+          "n": "258,000",
+          "u": "m²",
+          "l": "World record limestone cladding"
+        },
+        {
+          "n": "55,000",
+          "u": "m²",
+          "l": "Low-E curtain wall glass"
+        },
+        {
+          "n": "0",
+          "u": "",
+          "l": "South-facing offices"
+        }
+      ],
+      "lamellaKicker": "The Lamella Structure",
+      "lamellaHeadingLine1": "24 metres. No columns.",
+      "lamellaHeadingLine2": "Engineered to be impossible.",
+      "lamellaP1": "The main lobby rises 24 metres without a single column — achieved through the lamella bracing system. The north tower columns, vertical from Level 12 upward, slope outward following a circular arch from 60 metres high, intercepting the ground slab 7.6 metres further north than a vertical column would.",
+      "lamellaP2": "Five interlocking element types — A, B, C, D, E — form a three-dimensional web. Non-linear buckling analysis confirmed the system: adding the D elements alone increased buckling resistance by a factor of two. All fiberglass formwork moulds were fabricated directly from parametric 3D models — an early milestone in computational construction.",
+      "lamellaQuote": "\"The geometry of this area is generated by the application of the principles of the laminar structure supporting the tower above and below articulates space.\"",
+      "lamellaQuoteCredit": "SOM / Skidmore, Owings & Merrill",
+      "lobbyCaption1": "Escalator Hall · Steel Sculpture",
+      "lobbyCaption2": "Trencadis Façade · Upper Floors",
+      "specKicker": "Technical Specification",
+      "specHeading": "The numbers behind the form.",
+      "drawingsKicker": "Drawings & Documentation",
+      "drawingsPlanLabel": "SOM — Typical office floor plan",
+      "drawingsPlanNote": "~2,300 m² net leasable area per floor",
+      "drawingsElevKicker": "Elevation Drawings",
+      "drawingsLabelSouth": "South wall elevation · 412.6 m",
+      "drawingsLabelContext": "South elevation — full context",
+      "specs": [
+        {
+          "cat": "Height",
+          "rows": [
+            [
+              "Height to tip",
+              "412.6 m"
+            ],
+            [
+              "Occupied height",
+              "371.4 m"
+            ],
+            [
+              "Top floor height",
+              "368 m"
+            ],
+            [
+              "Sky Lounge elevation",
+              "351 m"
+            ]
+          ]
+        },
+        {
+          "cat": "Structure",
+          "rows": [
+            [
+              "Structural type",
+              "RC shear wall core + perimeter MRF"
+            ],
+            [
+              "Foundation",
+              "289 piles × 1,200mm dia."
+            ],
+            [
+              "Pile depth range",
+              "22–27 m"
+            ],
+            [
+              "Raft thickness",
+              "4.0 m"
+            ],
+            [
+              "Structural steel",
+              "6,000 tons"
+            ],
+            [
+              "Reinforcing steel",
+              "38,000 tons"
+            ],
+            [
+              "Concrete poured",
+              "195,000 m³ / 500,000 tons"
+            ],
+            [
+              "Core wall thickness",
+              "300 mm – 1,200 mm"
+            ]
+          ]
+        },
+        {
+          "cat": "Facade",
+          "rows": [
+            [
+              "South wall limestone",
+              "258,000 m² (world record)"
+            ],
+            [
+              "Curtain wall glass",
+              "55,000 m²"
+            ],
+            [
+              "Glass type",
+              "Insulated low-emissivity coating"
+            ],
+            [
+              "Curved glass units",
+              "~30% of total glass area"
+            ],
+            [
+              "Stone type (lower)",
+              "Jura limestone tiles"
+            ],
+            [
+              "Stone type (upper)",
+              "Trencadis (mesh + crushed limestone)"
+            ]
+          ]
+        },
+        {
+          "cat": "Floors",
+          "rows": [
+            [
+              "Total levels",
+              "80"
+            ],
+            [
+              "Office floor BUA",
+              "2,300 m² per floor"
+            ],
+            [
+              "Tenantable range",
+              "450 m² – 1,750 m²"
+            ],
+            [
+              "South-facing offices",
+              "Zero — none"
+            ],
+            [
+              "Sky Lobby 1",
+              "Floor 30 (7m ceiling)"
+            ],
+            [
+              "Sky Lobby 2",
+              "Floor 55 (7m ceiling)"
+            ],
+            [
+              "Executive floors",
+              "74–75"
+            ],
+            [
+              "Sky Lounge",
+              "Floors 78–80"
+            ]
+          ]
+        },
+        {
+          "cat": "Services",
+          "rows": [
+            [
+              "Elevators (tower)",
+              "43"
+            ],
+            [
+              "Escalators",
+              "16"
+            ],
+            [
+              "Elevator zones",
+              "3 — Low / Mid / High rise"
+            ],
+            [
+              "VIP elevator",
+              "Direct lobby → crown"
+            ],
+            [
+              "Power supply",
+              "100% redundancy"
+            ],
+            [
+              "Electrical substations",
+              "5 (Floors B2, 4, 27, 52, 76)"
+            ],
+            [
+              "IT backbone",
+              "Fibre optic smart building"
+            ]
+          ]
+        },
+        {
+          "cat": "Engineering Team",
+          "rows": [
+            [
+              "Architect",
+              "Skidmore, Owings & Merrill LLP"
+            ],
+            [
+              "Structural engineer",
+              "SOM San Francisco"
+            ],
+            [
+              "MEP engineer",
+              "SOM Chicago"
+            ],
+            [
+              "Local architect",
+              "Al Jazera Consultants, Kuwait"
+            ],
+            [
+              "Wind engineer",
+              "BMT Fluid Mechanics, London"
+            ],
+            [
+              "Geotechnical engineer",
+              "Consultancy Group Company, Beirut"
+            ],
+            [
+              "Client",
+              "Ajial Real Estate & Entertainment Co."
+            ],
+            [
+              "Contractor",
+              "Ahmadiah Contracting & Trading Co."
+            ],
+            [
+              "Design code",
+              "IBC 2003 + ACI 318-02M"
+            ],
+            [
+              "Construction",
+              "2006–2011"
+            ]
+          ]
+        }
+      ]
+    },
+    "towerSustain": {
+      "heroTitle": "Sustainability",
+      "heroSubtitle": "Al Hamra's environmental performance was not engineered into the building after the form was set. It was the form itself — every design decision that gave the tower its identity also solved an environmental problem.",
+      "crumbHome": "Home",
+      "crumbTower": "The Tower",
+      "introKicker": "Environmental philosophy",
+      "introHeading": "The form is the strategy.",
+      "introP1": "In most buildings, sustainability features are layered on after the architecture is resolved — solar panels, shading devices, green roofs. At Al Hamra Tower, the environmental response generated the architecture. The spiraling form that makes the building unmistakable is the same act that removes the south-facing glass. The stone wall that defines the skyline is also the primary solar shield.",
+      "introP2": "SOM's structural engineers describe the process as 'symbiotic evolution' — the structural system and the exterior form developed together. Neither could exist without the other. The flared walls are both the building's visual signature and its lateral force-resisting system.",
+      "pillarsKicker": "Six environmental design principles",
+      "pillars": [
+        {
+          "n": "01",
+          "title": "The Desert Wall",
+          "body": "The solid south wall — 258,000 m² of Jura limestone — is the building's primary environmental strategy. Its geometry responds directly to Kuwait's solar path. Openings are positioned based on the envelope's relationship to the sun at each floor level, ensuring that direct solar radiation never enters an office space.",
+          "stat": "Zero south-facing offices, tower-wide"
+        },
+        {
+          "n": "02",
+          "title": "The Spiraling Form",
+          "body": "Removing a quarter of each floor plate on the south side does two things simultaneously: it maximises Gulf views for every tenant, and it reduces the total surface area exposed to desert sun. SOM describes it as a 'purely formal operation' — architecture and environmental engineering solved by the same geometric act.",
+          "stat": "30% less south-facing surface than a conventional tower of equal area"
+        },
+        {
+          "n": "03",
+          "title": "Low-E Insulating Glass",
+          "body": "55,000 m² of curtain wall on the north, east, and west facades uses insulating glass with low-emissivity coating. Approximately 30% of the glass units are curved — manufactured to wrap the tower's corners — with bending and coating processes designed to work in tandem.",
+          "stat": "55,000 m² insulating curtain wall"
+        },
+        {
+          "n": "04",
+          "title": "Trencadis — Weight Reduced Stone",
+          "body": "The upper floors of the limestone cladding use trencadis — a mesh coated with crushed limestone — rather than full tiles. This significantly reduces the facade weight at height while maintaining the visual continuity of the monolithic stone wall. A material innovation driven by structural necessity.",
+          "stat": "Significant weight reduction at height — same visual appearance"
+        },
+        {
+          "n": "05",
+          "title": "Smart Building Infrastructure",
+          "body": "A fibre optic backbone and advanced Building Automation System (BAS) managed by a world-leading facility management company monitors and controls all building systems across every floor. Five electrical substations located at strategic levels (B2, 4, 27, 52, 76) ensure 100% power supply redundancy.",
+          "stat": "100% power supply redundancy across 5 substations"
+        },
+        {
+          "n": "06",
+          "title": "Concrete Over Steel",
+          "body": "Al Hamra is one of the few reinforced concrete supertall buildings — a choice with long-term sustainability implications. Concrete's thermal mass moderates internal temperature swings. Its compressive strength allows efficient use of material. The 289 piles were designed for the specific chemistry of Kuwait's silty-sand geology to resist sulphate attack without corrosion.",
+          "stat": "195,000 m³ reinforced concrete — structural longevity by design"
+        }
+      ],
+      "quote": "\"The solid south wall, and flared geometry, is generated in order to decrease the absorption of solar radiation. This wall not only protects the building from critical environmental conditions — it also assumes the role of structural backbone.\"",
+      "quoteCredit": "Skidmore, Owings & Merrill LLP — Structural Sustainability Statement"
+    },
+    "towerRising": {
+      "hero": {
+        "title": "Rising with Purpose",
+        "subtitle": "The construction of Al Hamra Tower",
+        "tag": "2006 – 2011",
+        "crumbs": [
+          {
+            "label": "Home",
+            "href": "/"
+          },
+          {
+            "label": "The Tower",
+            "href": "/tower"
+          }
+        ]
+      },
+      "timeline": {
+        "kicker": "Construction Timeline",
+        "title": "From excavation to icon.",
+        "titleLine1": "From excavation",
+        "titleLine2": "to icon."
+      },
+      "eras": [
+        {
+          "year": "2004",
+          "title": "The Site is Set",
+          "body": "A mixed-use complex with a 200m tower is designed by Al Jazera Consultants. Excavation begins — 289 cast-in-place bored piles are sunk 22–27 metres into Kuwait's silty sand. The foundation work cannot stop.",
+          "img": "/assets/rising-era-2004-site-set.jpg"
+        },
+        {
+          "year": "2005",
+          "title": "The Height Doubles",
+          "body": "Kuwait City Municipality raises the maximum allowable building height to 400m. Client group engages Skidmore, Owings & Merrill (SOM) — one of the world's foremost high-rise architects — to design a landmark tower. SOM begins concept design while the contractor is already on site.",
+          "img": "/assets/rising-era-2005-height-doubles.jpg"
+        },
+        {
+          "year": "2006",
+          "title": "The Form Emerges",
+          "body": "SOM's decisive gesture: subtract a spiraling quadrant from a prismatic volume, rotate it at each higher level. Two hyperbolic paraboloid walls emerge — the iconic flared ribbons. The geometry provides transparency toward the Gulf and opacity toward the desert. Construction begins.",
+          "img": "/assets/rising-era-2006-form-emerges.png"
+        },
+        {
+          "year": "2008",
+          "title": "The Lamella Rises",
+          "body": "The lobby lamella — a web of 24-metre curved steel elements arching outward from the building core — is constructed using fiberglass formwork fabricated from 3D parametric models. It creates a column-free 900m² lobby. Engineers run non-linear buckling analyses on each member.",
+          "img": "/assets/rising-era-2008-lamella-rises.jpg"
+        },
+        {
+          "year": "2011",
+          "title": "Kuwait's Skyline Changes",
+          "body": "Al Hamra Tower tops out at 412.6 metres. At completion it ranks among the ten tallest buildings in the world. The world's largest stone-clad skyscraper — 258,000m² of Jura limestone — stands complete in Sharq District. Kuwait City has a new landmark.",
+          "img": "/assets/rising-era-2011-skyline-changes.png",
+          "img2": "/assets/skyline-gulf-night.jpg"
+        }
+      ],
+      "lamella": {
+        "kicker": "Engineering Feat",
+        "heading": "The Lamella — a 24-metre vault with no columns.",
+        "body1": "To create Kuwait's most dramatic lobby, SOM devised the lamella bracing system — a web of five distinct element types (A through E) that curve outward from the building core following a circular arch 24 metres high, creating a completely column-free space beneath the tower.",
+        "body2": "Each element was designed using parametric 3D modelling. The fiberglass formwork moulds were fabricated directly from digital models. Non-linear buckling analyses were performed on every member — engineering and architecture resolved as a single sculptural gesture.",
+        "caption": "The lobby lamella · Ground floor",
+        "facts": [
+          {
+            "n": "24m",
+            "l": "Column-free lobby height"
+          },
+          {
+            "n": "900m²",
+            "l": "Grand lobby floor area"
+          },
+          {
+            "n": "5",
+            "l": "Lamella element types (A–E)"
+          },
+          {
+            "n": "160mm",
+            "l": "Maximum steel plate thickness"
+          }
+        ]
+      },
+      "galleryKicker": "The Tower Today"
+    },
+    "businessCentre": {
+      "tag": "Experience · Business Centre",
+      "title": "Al Hamra Business Centre",
+      "subtitle": "An executive business facility within Al Hamra Business Tower. Configurable rooms for high-level convenings — purpose-built for corporate engagements, workshops, and training.",
+      "crumbs": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Experience",
+          "href": "/services"
+        },
+        {
+          "label": "Business Centre",
+          "href": "/business-centre"
+        }
+      ],
+      "stats": [
+        {
+          "number": "36",
+          "label": "Floor Level"
+        },
+        {
+          "number": "∞",
+          "label": "Configurable Layouts"
+        },
+        {
+          "number": "24/7",
+          "label": "Operational Support"
+        },
+        {
+          "number": "412m",
+          "label": "Tower Elevation"
+        }
+      ],
+      "heroKicker": "36th Floor · Kuwait City & the Arabian Gulf",
+      "heroHeading": "Executive convenings,",
+      "heroHeadingBold": "at the altitude of institutions.",
+      "heroImageAlt": "Al Hamra Business Centre — Boardroom on the 36th floor overlooking the Arabian Gulf",
+      "overviewTag": "Overview · The Space",
+      "overviewLine1": "Professional.",
+      "overviewLine2": "Distinguished.",
+      "overviewLine3": "Pioneering.",
+      "overviewBody1": "Located on the 36th floor, Al Hamra Business Centre offers a purpose-built environment for corporate meetings, executive workshops, training sessions, and high-level convenings.",
+      "overviewBody2": "Available to companies and individuals alike, supported by direct on-site logistical coordination — ensuring a seamless, professional experience across every engagement.",
+      "strategicTag": "Why Al Hamra Business Centre · Strategic Advantages",
+      "strategicHeading": "Five reasons institutions choose this address.",
+      "advantages": [
+        {
+          "num": "01",
+          "text": "Strategic location within Kuwait's finest integrated development"
+        },
+        {
+          "num": "02",
+          "text": "A refined environment that elevates professional performance and productivity"
+        },
+        {
+          "num": "03",
+          "text": "End-to-end management from initial inquiry to final delivery"
+        },
+        {
+          "num": "04",
+          "text": "Configurable spaces with flexible pricing tailored to diverse needs"
+        },
+        {
+          "num": "05",
+          "text": "Supported by Al Hamra's integrated infrastructure"
+        }
+      ],
+      "facilitiesTag": "Business Support Services · Executive Facilities",
+      "facilitiesHeading": "A comprehensively managed executive environment.",
+      "facilitiesBody": "Al Hamra Business Centre provides a fully-managed executive environment, supported by integrated infrastructure and refined operational services — ensuring efficiency, business continuity, and professional excellence across every engagement.",
+      "facilities": [
+        {
+          "num": "01",
+          "title": "Spatial Configuration & Capacity",
+          "body": "Flexible, customisable spaces — including executive meeting rooms, seminar arrangements, and collaborative workshop formats — with seating capacities and final layouts tailored to each session's requirements.",
+          "image": "/assets/boardroom-wide.jpg",
+          "imageCaption": "Primary Boardroom · Configurable Layouts"
+        },
+        {
+          "num": "02",
+          "title": "Integrated Systems",
+          "body": "A complete audio-visual system with smart controls and on-call technical support ensures uninterrupted presentations and conferencing, with continuous digital connectivity.",
+          "image": "/assets/meeting-room-glass-pattern.jpg",
+          "imageCaption": "Meeting Room · AV + Smart Controls"
+        },
+        {
+          "num": "03",
+          "title": "Catering & Hospitality",
+          "body": "Direct access to Al Hamra Mall enables a wide range of hospitality options from restaurant tenants, with arrangements for meals and coffee breaks tailored to the engagement, and the option to engage external caterers as required.",
+          "image": "/assets/mall-atrium-luxury-centre.jpg",
+          "imageCaption": "Al Hamra Luxury Centre · Curated Catering"
+        },
+        {
+          "num": "04",
+          "title": "Parking & Access",
+          "body": "The complex provides organised parking, internal shuttle service to Dasman Parking, valet service, and access via ride-share services — ensuring a smooth, efficient arrival for guests.",
+          "image": "/assets/entrance-night.jpg",
+          "imageCaption": "Grand Entrance · Valet + Structured Parking"
+        },
+        {
+          "num": "05",
+          "title": "Premium Touchpoints",
+          "body": "Stationery bearing the Al Hamra Business Centre identity and an operational environment managed to Al Hamra Tower's highest standards of quality and institutional professionalism.",
+          "image": "/assets/lobby-executive-lounge.jpg",
+          "imageCaption": "Executive Lounge · Branded Environment"
+        },
+        {
+          "num": "06",
+          "title": "Accommodation",
+          "body": "Distinguished accommodation for trainers and guest speakers at preferred corporate rates at Al Hamra Hotel within the complex — ensuring comfort and continuity of the engagement.",
+          "image": "/assets/sky-lobby-travertine-corridor.jpg",
+          "imageCaption": "Al Hamra Hotel · Preferred Corporate Rates"
+        }
+      ],
+      "ctaTitle": "Host your next meeting.",
+      "ctaSubtitle": "For bookings and inquiries, call 1829000 or visit www.alhamra.com.kw to discuss your requirements.",
+      "ctaLabel": "Begin the Conversation",
+      "contactRows": [
+        {
+          "label": "Phone",
+          "value": "1829000"
+        },
+        {
+          "label": "Website",
+          "value": "www.alhamra.com.kw"
+        },
+        {
+          "label": "Location",
+          "value": "36th Floor · Al Hamra Business Tower"
+        }
+      ]
+    },
+    "alHamraHotel": {
+      "tag": "Experience · Hospitality",
+      "title": "Al Hamra Hotel",
+      "subtitle": "A premium hospitality destination within Al Hamra's integrated ecosystem — designed for business and leisure travellers alike.",
+      "crumbs": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Experience",
+          "href": "/services"
+        },
+        {
+          "label": "Al Hamra Hotel",
+          "href": "/hotel"
+        }
+      ],
+      "stats": [
+        {
+          "number": "01",
+          "label": "Integrated Destination"
+        },
+        {
+          "number": "Direct",
+          "label": "Tower & Centre Access"
+        },
+        {
+          "number": "24/7",
+          "label": "Guest Services"
+        },
+        {
+          "number": "Sharq",
+          "label": "Kuwait City"
+        }
+      ],
+      "heroImageAlt": "Al Hamra Hotel — refined interior within the Al Hamra destination",
+      "heroKicker": "A Premium Destination · Kuwait City · Sharq District",
+      "heroHeading": "A fully integrated stay —",
+      "heroHeadingBold": "within a singular destination.",
+      "overviewTag": "Overview · The Experience",
+      "overviewLine1": "Refined.",
+      "overviewLine2": "Seamless.",
+      "overviewLine3": "Elevated.",
+      "overviewBody1": "Located within the Al Hamra development, the hotel offers a premium hospitality experience designed for business and leisure travellers alike.",
+      "overviewBody2": "With direct connectivity to the Business Tower and Shopping Centre, it provides a fully integrated stay — combining comfort, accessibility, and operational convenience within one unified destination.",
+      "advantagesTag": "Why Al Hamra Hotel · Distinct Advantage",
+      "advantagesHeading": "Five dimensions of an integrated stay.",
+      "advantages": [
+        {
+          "num": "01",
+          "text": "Strategic location within Kuwait's leading mixed-use destination"
+        },
+        {
+          "num": "02",
+          "text": "Direct connectivity to the Business Tower and Shopping Centre"
+        },
+        {
+          "num": "03",
+          "text": "Designed for both short and extended stays"
+        },
+        {
+          "num": "04",
+          "text": "Access to curated retail, dining, and lifestyle offerings"
+        },
+        {
+          "num": "05",
+          "text": "Supported by Al Hamra's integrated infrastructure"
+        }
+      ],
+      "servicesTag": "Hotel Services & Facilities · Guest Experience",
+      "servicesHeading": "Every aspect, considered.",
+      "servicesBody": "Five service dimensions combine to deliver a seamless hospitality experience — from refined accommodation to curated access across the wider Al Hamra destination.",
+      "services": [
+        {
+          "num": "01",
+          "title": "Accommodation",
+          "body": "Well-appointed rooms and suites designed for comfort, privacy, and functional efficiency — a refined retreat following a day of institutional business.",
+          "image": "/assets/sky-lobby-mirror-lounge.jpg",
+          "imageCaption": "Hotel Suite · Refined Interior"
+        },
+        {
+          "num": "02",
+          "title": "Dining & In-Room Services",
+          "body": "Access to on-site dining options and in-room services, complemented by direct connectivity to Al Hamra Shopping Centre's restaurants and cafés.",
+          "image": "/assets/mall-atrium-luxury-centre.jpg",
+          "imageCaption": "Shopping Centre · Culinary Access"
+        },
+        {
+          "num": "03",
+          "title": "Business & Meeting Access",
+          "body": "Proximity to Al Hamra Business Centre enables seamless access to meeting rooms, training facilities, and corporate services — a fully integrated institutional stay.",
+          "image": "/assets/boardroom-wide.jpg",
+          "imageCaption": "Business Centre · Direct Connectivity"
+        },
+        {
+          "num": "04",
+          "title": "Wellness & Leisure",
+          "body": "Access to fitness and wellness facilities designed to support balance and well-being during the stay, with views across Kuwait City and the Arabian Gulf.",
+          "image": "/assets/high-floor-view-lounge.jpg",
+          "imageCaption": "Wellness Lounge · Gulf Views"
+        },
+        {
+          "num": "05",
+          "title": "Parking & Accessibility",
+          "body": "Dedicated parking, valet services, and direct access to the wider Al Hamra complex ensure ease of movement across the destination.",
+          "image": "/assets/entrance-night-wide.jpg",
+          "imageCaption": "Complex Entrance · Dedicated Valet"
+        }
+      ],
+      "ctaTitle": "Plan your stay.",
+      "ctaSubtitle": "For reservations and inquiries, please contact the Al Hamra Hotel team directly. A fully integrated stay, within a singular destination.",
+      "ctaLabel": "Make a Reservation"
+    }
   }
 }

@@ -27,6 +27,10 @@ interface I18nContextValue {
   dir: "ltr" | "rtl";
   setLang: (lang: Lang) => void;
   t: (key: string) => string;
+  /* Returns a non-string node (object/array) by dot-notation key, with
+     EN fallback. Used for content blocks migrated out of components into
+     the locale JSON — e.g. tNode("architecture.milestones"). */
+  tNode: <T = unknown>(key: string) => T;
 }
 
 const I18nContext = createContext<I18nContextValue | null>(null);
@@ -43,6 +47,22 @@ function resolve(dict: Dict, key: string): string | undefined {
     }
   }
   return typeof cur === "string" ? cur : undefined;
+}
+
+/* Like resolve(), but returns ANY node (object, array, string) — used for
+   structured content blocks (arrays of objects, nested tables) that were
+   migrated out of component-level CONTENT dicts into the locale JSON. */
+function resolveNode(dict: Dict, key: string): unknown {
+  const parts = key.split(".");
+  let cur: unknown = dict;
+  for (const p of parts) {
+    if (cur && typeof cur === "object" && p in (cur as Record<string, unknown>)) {
+      cur = (cur as Record<string, unknown>)[p];
+    } else {
+      return undefined;
+    }
+  }
+  return cur;
 }
 
 function getInitialLang(): Lang {
@@ -82,8 +102,19 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     return key;
   };
 
+  /* Structured-node lookup for migrated content blocks. Falls back to EN
+     when the current language is missing the node, mirroring t(). */
+  const tNode = <T = unknown>(key: string): T => {
+    const val = resolveNode(DICTIONARIES[lang], key);
+    if (val !== undefined) return val as T;
+    const fallback = resolveNode(DICTIONARIES.en, key);
+    if (fallback !== undefined) return fallback as T;
+    if (import.meta.env.DEV) console.warn(`[i18n] missing node: ${key}`);
+    return undefined as T;
+  };
+
   return (
-    <I18nContext.Provider value={{ lang, dir, setLang, t }}>
+    <I18nContext.Provider value={{ lang, dir, setLang, t, tNode }}>
       {children}
     </I18nContext.Provider>
   );
@@ -98,4 +129,12 @@ export function useI18n(): I18nContextValue {
 /* Convenience hook for components that only need t() */
 export function useT() {
   return useI18n().t;
+}
+
+/* Returns an entire migrated content namespace in the active language,
+   e.g. useContent("invitation") replaces the old `const c = CONTENT[lang]`.
+   The shape is identical to the former component-level dict, so all
+   downstream `c.foo` / `c.items.map(...)` usage is unchanged. */
+export function useContent<T = Record<string, unknown>>(namespace: string): T {
+  return useI18n().tNode<T>(namespace);
 }
