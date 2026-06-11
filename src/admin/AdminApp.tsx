@@ -4,6 +4,7 @@
 import { ReactNode } from "react";
 import { AdminAuthProvider, useAdminAuth } from "./AdminAuth";
 import { AdminLogin } from "./AdminLogin";
+import { ContentBrowser } from "./ContentBrowser";
 
 function Frame({ children }: { children: ReactNode }) {
   const { email, role, signOut, loading, session } = useAdminAuth();
@@ -68,38 +69,11 @@ function Frame({ children }: { children: ReactNode }) {
   );
 }
 
-/* Placeholder home — replaced by the content browser in 6b. */
-function StudioHome() {
-  const { role } = useAdminAuth();
-  return (
-    <div>
-      <div style={{ letterSpacing: "0.2em", fontSize: 11, textTransform: "uppercase", color: "#9A7550" }}>
-        Welcome
-      </div>
-      <h1 style={{ fontSize: 30, fontWeight: 400, margin: "12px 0 0" }}>Content Studio</h1>
-      <div style={{ height: 1, width: 48, background: "#C8B99A", margin: "20px 0 28px" }} />
-      <p style={{ fontSize: 15, lineHeight: 1.7, maxWidth: 560, color: "#3A3733" }}>
-        You're signed in. The content browser and editors arrive next. From here you'll
-        manage every section of the site — homepage, tower pages, experiences, and global
-        content — in both English and Arabic.
-      </p>
-      <p style={{ fontSize: 13, lineHeight: 1.7, marginTop: 20, color: "#6E6456" }}>
-        Your access level is <strong style={{ color: "#1D1D1B" }}>{role ?? "unknown"}</strong>.
-        {role === "manager"
-          ? " You can edit and publish content."
-          : role === "editor"
-            ? " You can edit drafts; a manager publishes them."
-            : " Your role isn't set — contact the administrator."}
-      </p>
-    </div>
-  );
-}
-
 export function AdminApp() {
   return (
     <AdminAuthProvider>
       <Frame>
-        <StudioHome />
+        <ContentBrowser />
       </Frame>
     </AdminAuthProvider>
   );
