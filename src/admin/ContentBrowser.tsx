@@ -7,6 +7,8 @@ import {
   FlatTable, FlatField, listFlatGroups, loadFlatFields,
   saveFlatField, publishField, unpublishField, groupLabel,
 } from "./adminData";
+import { StructuredEditor } from "./StructuredEditor";
+import { TABLE_DEFS, StructuredTable } from "./structuredData";
 
 const PEARL = "#C8B99A";
 const DARK = "#1D1D1B";
@@ -18,6 +20,7 @@ type GroupRow = { group: string; total: number; drafts: number; table: FlatTable
 export function ContentBrowser() {
   const [groups, setGroups] = useState<GroupRow[]>([]);
   const [open, setOpen] = useState<GroupRow | null>(null);
+  const [openStructured, setOpenStructured] = useState<StructuredTable | null>(null);
   const [loading, setLoading] = useState(true);
 
   async function refresh() {
@@ -38,6 +41,9 @@ export function ContentBrowser() {
 
   if (open) {
     return <GroupEditor row={open} onBack={() => { setOpen(null); refresh(); }} />;
+  }
+  if (openStructured) {
+    return <StructuredEditor table={openStructured} onBack={() => setOpenStructured(null)} />;
   }
 
   return (
@@ -75,6 +81,30 @@ export function ContentBrowser() {
           ))}
         </div>
       )}
+
+      {/* Structured content — list tables (stats, awards, cards, timeline, specs) */}
+      <div style={{ marginTop: 44 }}>
+        <Eyebrow>Structured</Eyebrow>
+        <H1>Lists & data</H1>
+        <Rule />
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 14 }}>
+          {(Object.keys(TABLE_DEFS) as StructuredTable[]).map((tbl) => (
+            <button
+              key={tbl}
+              onClick={() => setOpenStructured(tbl)}
+              style={{
+                textAlign: "left", background: "#fff", border: "1px solid #E4DFD6",
+                padding: "18px 20px", cursor: "pointer", fontFamily: "inherit",
+                transition: "border-color 160ms",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.borderColor = PEARL)}
+              onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#E4DFD6")}
+            >
+              <div style={{ fontSize: 15, color: DARK }}>{TABLE_DEFS[tbl].title}</div>
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
