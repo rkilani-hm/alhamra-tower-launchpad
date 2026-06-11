@@ -9,6 +9,7 @@ import {
 } from "./adminData";
 import { StructuredEditor } from "./StructuredEditor";
 import { TABLE_DEFS, StructuredTable } from "./structuredData";
+import { HistoryView } from "./HistoryView";
 
 const PEARL = "#C8B99A";
 const DARK = "#1D1D1B";
@@ -21,6 +22,7 @@ export function ContentBrowser() {
   const [groups, setGroups] = useState<GroupRow[]>([]);
   const [open, setOpen] = useState<GroupRow | null>(null);
   const [openStructured, setOpenStructured] = useState<StructuredTable | null>(null);
+  const [showHistory, setShowHistory] = useState(false);
   const [loading, setLoading] = useState(true);
 
   async function refresh() {
@@ -44,6 +46,9 @@ export function ContentBrowser() {
   }
   if (openStructured) {
     return <StructuredEditor table={openStructured} onBack={() => setOpenStructured(null)} />;
+  }
+  if (showHistory) {
+    return <HistoryView onBack={() => setShowHistory(false)} />;
   }
 
   return (
@@ -103,6 +108,20 @@ export function ContentBrowser() {
               <div style={{ fontSize: 15, color: DARK }}>{TABLE_DEFS[tbl].title}</div>
             </button>
           ))}
+        </div>
+
+        {/* Publish history */}
+        <div style={{ marginTop: 28 }}>
+          <button
+            onClick={() => setShowHistory(true)}
+            style={{
+              textAlign: "left", background: DARK, border: `1px solid ${DARK}`, color: "#F5F2EE",
+              padding: "16px 20px", cursor: "pointer", fontFamily: "inherit", width: "100%", maxWidth: 320,
+            }}
+          >
+            <div style={{ fontSize: 15, marginBottom: 4 }}>Publish history</div>
+            <div style={{ fontSize: 12, color: "#9A8B73" }}>View past versions &amp; restore</div>
+          </button>
         </div>
       </div>
     </div>

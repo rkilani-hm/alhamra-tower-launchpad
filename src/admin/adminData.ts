@@ -131,3 +131,111 @@ export const GROUP_LABELS: Record<string, string> = {
 };
 
 export const groupLabel = (g: string) => GROUP_LABELS[g] ?? g;
+
+/* ── Publish history (content_versions) ──────────────────────────────────
+   Read-only audit of publishes; restore writes a snapshot's values back to
+   the live row (managers only — RLS on the target table enforces this). */
+
+export interface VersionRow {
+  id: string;
+  table_name: string;
+  record_id: string;
+  snapshot: Record<string, any>;
+  published_at: string;
+  note: string | null;
+}
+
+export async function listVersions(limit = 50): Promise<VersionRow[]> {
+  const { data, error } = await supabase
+    .from("content_versions")
+    .select("id,table_name,record_id,snapshot,published_at,note")
+    .order("published_at", { ascending: false })
+    .limit(limit);
+  if (error || !data) return [];
+  return data as VersionRow[];
+}
+
+/* Restore a snapshot: write its editable values back onto the live row.
+   We only restore content columns (not id/updated_at/status bookkeeping),
+   then leave status as-is (restoring republishes by writing values; the row
+   stays published). Managers only — RLS enforces. */
+export async function restoreVersion(v: VersionRow): Promise<{ error: string | null }> {
+  const snap = v.snapshot || {};
+  // Strip columns we must not overwrite.
+  const SKIP = new Set(["id", "created_at"]);
+  const payload: Record<string, any> = {};
+  for (const [k, val] of Object.entries(snap)) {
+    if (SKIP.has(k)) continue;
+    payload[k] = val;
+  }
+  const { data: u } = await supabase.auth.getUser();
+  payload.updated_by = u.user?.id ?? null;
+  payload.updated_at = new Date().toISOString();
+  const { error } = await (supabase.from(v.table_name as any) as any)
+    .update(payload)
+    .eq("id", v.record_id);
+  return { error: error?.message ?? null };
+}
+
+/* A readable one-line summary of what a snapshot contains. */
+export function versionSummary(v: VersionRow): string {
+  const s = v.snapshot || {};
+  const key = s.field_key || s.stat_key || s.collection || s.category_en || "record";
+  const text = s.value_en || s.title_en || s.label_en || s.display_en || "";
+  return text ? `${key}: ${String(text).slice(0, 60)}` : String(key);
+}
+
+/* ── Media library (media_assets + site-media storage bucket) ────────────── */
+
+export interface MediaAsset {
+  id: string;
+  public_url: string | null;
+  storage_path: string | null;
+  alt_en: string | null;
+}
+
+export async function listMedia(): Promise<MediaAsset[]> {
+  const { data, error } = await supabase
+    .from("media_assets")
+    .select("id,public_url,storage_path,alt_en")
+    .order("created_at", { ascending: false });
+  if (error || !data) return [];
+  return data as MediaAsset[];
+}
+
+/* Upload a file to the site-media bucket and create a media_assets row.
+   Returns the new asset id on success. */
+export async function uploadMedia(file: File): Promise<{ id: string | null; error: string | null }> {
+  try {
+    const ext = file.name.split(".").pop() || "bin";
+    const path = `${crypto.randomUUID()}.${ext}`;
+    const up = await supabase.storage.from("site-media").upload(path, file, {
+      cacheControl: "3600", upsert: false,
+    });
+    if (up.error) return { id: null, error: up.error.message };
+
+    const { data: pub } = supabase.storage.from("site-media").getPublicUrl(path);
+    const { data: u } = await supabase.auth.getUser();
+    const ins = await supabase.from("media_assets").insert({
+      storage_path: path,
+      public_url: pub.publicUrl,
+      alt_en: file.name,
+      uploaded_by: u.user?.id ?? null,
+    }).select("id").single();
+    if (ins.error) return { id: null, error: ins.error.message };
+    return { id: ins.data.id, error: null };
+  } catch (e: any) {
+    return { id: null, error: e?.message ?? "Upload failed" };
+  }
+}
+
+/* Set the image_id on a feature_cards or timeline_entries row. */
+export async function setRowImage(
+  table: "feature_cards" | "timeline_entries", id: string, imageId: string | null
+): Promise<{ error: string | null }> {
+  const { data: u } = await supabase.auth.getUser();
+  const { error } = await (supabase.from(table) as any)
+    .update({ image_id: imageId, updated_by: u.user?.id ?? null, updated_at: new Date().toISOString() })
+    .eq("id", id);
+  return { error: error?.message ?? null };
+}

@@ -7,6 +7,7 @@ import {
   StructuredTable, TableDef, TABLE_DEFS, FieldDef,
   listStructuredGroups, loadStructuredRows, saveStructuredRow, setStructuredStatus,
 } from "./structuredData";
+import { ImagePicker } from "./ImagePicker";
 
 const PEARL = "#C8B99A", DARK = "#1D1D1B", INK = "#3A3733", MUTE = "#6E6456";
 
@@ -116,6 +117,14 @@ function RowEditor({ def, row, onChanged }: { def: TableDef; row: any; onChanged
 
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {def.fields.map((f) => <FieldRow key={f.col} f={f} vals={vals} setVals={setVals} />)}
+        {(def.table === "feature_cards" || def.table === "timeline_entries") && (
+          <ImagePicker
+            table={def.table}
+            rowId={row.id}
+            currentImageId={row.image_id ?? null}
+            onChanged={onChanged}
+          />
+        )}
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 14 }}>
