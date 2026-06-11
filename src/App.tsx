@@ -9,6 +9,7 @@ import { pageVariants }    from "@/lib/motion";
 
 /* Pages */
 import Index               from "./pages/Index";
+import { AdminApp }        from "./admin/AdminApp";
 import NotFound            from "./pages/NotFound";
 import TowerOverview       from "./pages/tower/TowerOverview";
 import TowerRising         from "./pages/tower/TowerRising";
@@ -59,6 +60,9 @@ function AnimatedRoutes() {
         style={{ willChange: "opacity, transform" }}
       >
         <Routes location={location}>
+          {/* Admin — Content Studio (own frame, no marketing chrome) */}
+          <Route path="/admin/*"                        element={<AdminApp />} />
+
           {/* Homepage */}
           <Route path="/"                               element={<Index />} />
 
