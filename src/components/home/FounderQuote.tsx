@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useT } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 
 /* ── FounderQuote ─────────────────────────────────────────────────────
    Inspired by burjkhalifa.ae/the-tower/ — which opens with a founder
@@ -54,7 +55,7 @@ export function FounderQuote() {
               fontFamily: CG, fontSize: "11px", letterSpacing: "0.4em",
               textTransform: "uppercase", color: PEARL_TEXT,
             }}>
-              {t("founderQuote.kicker")}
+              <Editable id="section_fields:founderQuote:kicker">{t("founderQuote.kicker")}</Editable>
             </span>
           </motion.div>
 
@@ -94,7 +95,7 @@ export function FounderQuote() {
               margin: 0,
               maxWidth: 620,
             }}>
-              {t("founderQuote.quote")}
+              <Editable id="section_fields:founderQuote:quote">{t("founderQuote.quote")}</Editable>
             </p>
 
             {/* Attribution */}
@@ -116,7 +117,7 @@ export function FounderQuote() {
                   letterSpacing: "0.18em", textTransform: "uppercase",
                   color: DARK,
                 }}>
-                  {t("founderQuote.attribution")}
+                  <Editable id="section_fields:founderQuote:attribution">{t("founderQuote.attribution")}</Editable>
                 </div>
                 <div style={{
                   fontFamily: CG, fontSize: "10px",
@@ -124,7 +125,7 @@ export function FounderQuote() {
                   color: PEARL_TEXT,
                   marginTop: 3,
                 }}>
-                  {t("founderQuote.role")}
+                  <Editable id="section_fields:founderQuote:role">{t("founderQuote.role")}</Editable>
                 </div>
               </div>
             </motion.footer>
@@ -170,7 +171,7 @@ export function FounderQuote() {
             letterSpacing: "0.3em", textTransform: "uppercase",
             color: PEARL,
           }}>
-            {t("founderQuote.caption")}
+            <Editable id="section_fields:founderQuote:caption">{t("founderQuote.caption")}</Editable>
           </div>
         </motion.div>
 
