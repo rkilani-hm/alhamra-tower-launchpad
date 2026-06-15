@@ -78,8 +78,9 @@ export function Architecture() {
               fontFamily: FONT,
               fontWeight: 300, fontSize: "clamp(28px,3.8vw,52px)",
               color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24,
+              whiteSpace: "pre-line",
             }}>
-              {c.headlineA}<br />{c.headlineB}
+              {c.headlineA}
             </h2>
 
             <p style={{
@@ -237,8 +238,9 @@ export function Architecture() {
               fontWeight: 300,
               fontSize: "clamp(22px,2.8vw,38px)", color: DARK,
               lineHeight: 1.2, marginBottom: 20, letterSpacing: "-0.01em",
+              whiteSpace: "pre-line",
             }}>
-              {c.facadeHeadingA}<br />{c.facadeHeadingB}
+              {c.facadeHeadingA}
             </h3>
             <p style={{
               fontFamily: FONT, fontWeight: 300,

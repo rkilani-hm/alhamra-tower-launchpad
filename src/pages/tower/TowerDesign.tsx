@@ -79,8 +79,8 @@ export default function TowerDesign() {
               </div>
               <h2 style={{ fontFamily: FONT,
                 fontWeight: 300, fontSize: "clamp(26px,3.5vw,48px)",
-                color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24 }}>
-                {c.facadeHeadingLine1}<br />{c.facadeHeadingLine2}
+                color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24, whiteSpace: "pre-line" }}>
+                {c.facadeHeadingLine1}
               </h2>
               <p style={{ fontFamily: FONT, fontWeight: 300,
                 fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
@@ -122,8 +122,8 @@ export default function TowerDesign() {
             </div>
             <h2 style={{ fontFamily: FONT,
               fontWeight: 300, fontSize: "clamp(24px,3.2vw,44px)",
-              color: DARK, lineHeight: 1.1, marginBottom: 24 }}>
-              {c.lamellaHeadingLine1}<br />{c.lamellaHeadingLine2}
+              color: DARK, lineHeight: 1.1, marginBottom: 24, whiteSpace: "pre-line" }}>
+              {c.lamellaHeadingLine1}
             </h2>
             <p style={{ fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",

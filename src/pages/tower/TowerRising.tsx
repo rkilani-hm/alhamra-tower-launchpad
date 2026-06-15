@@ -56,8 +56,8 @@ export default function TowerRising() {
             <div>
               <h2 style={{ fontFamily: FONT,
                 fontWeight: 300, fontSize: "clamp(26px,2.8vw,40px)", color: DARK,
-                lineHeight: 1.1, marginBottom: 40 }}>
-                {c.timeline.titleLine1}<br />{c.timeline.titleLine2}
+                lineHeight: 1.1, marginBottom: 40, whiteSpace: "pre-line" }}>
+                {c.timeline.titleLine1}
               </h2>
 
               {c.eras.map((era, i) => {

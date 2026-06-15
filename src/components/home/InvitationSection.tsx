@@ -107,8 +107,9 @@ export function InvitationSection() {
               lineHeight: 1.0,
               letterSpacing: "-0.02em",
               marginBottom: 16,
+              whiteSpace: "pre-line",
             }}>
-              {c.headlineA}<br />{c.headlineB}
+              {c.headlineA}
             </div>
           </motion.div>
 
