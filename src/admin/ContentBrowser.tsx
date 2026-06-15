@@ -2,7 +2,6 @@
    page_prose). EN/AR side by side, save-as-draft, manager publish. */
 
 import { useEffect, useState } from "react";
-import { useAdminAuth } from "./AdminAuth";
 import {
   FlatTable, FlatField, listFlatGroups, loadFlatFields,
   saveFlatField, publishField, unpublishField, groupLabel,
@@ -10,6 +9,7 @@ import {
 import { StructuredEditor } from "./StructuredEditor";
 import { TABLE_DEFS, StructuredTable } from "./structuredData";
 import { HistoryView } from "./HistoryView";
+import { ImageMigration } from "./ImageMigration";
 import {
   PEARL, DARK, INK, MUTE, Eyebrow, H1, Rule, Muted, FieldLabel, StatusPill,
   inStyle, taStyle, backStyle, btnSolid, btnGhost,
@@ -22,6 +22,7 @@ export function ContentBrowser() {
   const [open, setOpen] = useState<GroupRow | null>(null);
   const [openStructured, setOpenStructured] = useState<StructuredTable | null>(null);
   const [showHistory, setShowHistory] = useState(false);
+  const [showMigration, setShowMigration] = useState(false);
   const [loading, setLoading] = useState(true);
 
   async function refresh() {
@@ -48,6 +49,9 @@ export function ContentBrowser() {
   }
   if (showHistory) {
     return <HistoryView onBack={() => setShowHistory(false)} />;
+  }
+  if (showMigration) {
+    return <ImageMigration onBack={() => setShowMigration(false)} />;
   }
 
   return (
@@ -110,16 +114,26 @@ export function ContentBrowser() {
         </div>
 
         {/* Publish history */}
-        <div style={{ marginTop: 28 }}>
+        <div style={{ marginTop: 28, display: "flex", gap: 14, flexWrap: "wrap" }}>
           <button
             onClick={() => setShowHistory(true)}
             style={{
               textAlign: "left", background: DARK, border: `1px solid ${DARK}`, color: "#F5F2EE",
-              padding: "16px 20px", cursor: "pointer", fontFamily: "inherit", width: "100%", maxWidth: 320,
+              padding: "16px 20px", cursor: "pointer", fontFamily: "inherit", flex: "1 1 280px", maxWidth: 360,
             }}
           >
             <div style={{ fontSize: 15, marginBottom: 4 }}>Publish history</div>
             <div style={{ fontSize: 12, color: "#9A8B73" }}>View past versions &amp; restore</div>
+          </button>
+          <button
+            onClick={() => setShowMigration(true)}
+            style={{
+              textAlign: "left", background: "#fff", border: "1px solid #E4DFD6", color: DARK,
+              padding: "16px 20px", cursor: "pointer", fontFamily: "inherit", flex: "1 1 280px", maxWidth: 360,
+            }}
+          >
+            <div style={{ fontSize: 15, marginBottom: 4 }}>Migrate images to Storage</div>
+            <div style={{ fontSize: 12, color: MUTE }}>One-time maintenance utility</div>
           </button>
         </div>
       </div>
@@ -128,8 +142,6 @@ export function ContentBrowser() {
 }
 
 function GroupEditor({ row, onBack }: { row: GroupRow; onBack: () => void }) {
-  const { role } = useAdminAuth();
-  const isManager = role === "manager";
   const [fields, setFields] = useState<FlatField[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -155,7 +167,6 @@ function GroupEditor({ row, onBack }: { row: GroupRow; onBack: () => void }) {
               key={f.id}
               table={row.table}
               field={f}
-              isManager={isManager}
               onChanged={load}
             />
           ))}
@@ -166,8 +177,8 @@ function GroupEditor({ row, onBack }: { row: GroupRow; onBack: () => void }) {
 }
 
 function FieldEditor({
-  table, field, isManager, onChanged,
-}: { table: FlatTable; field: FlatField; isManager: boolean; onChanged: () => void }) {
+  table, field, onChanged,
+}: { table: FlatTable; field: FlatField; onChanged: () => void }) {
   const [en, setEn] = useState(field.value_en ?? "");
   const [ar, setAr] = useState(field.value_ar ?? "");
   const [busy, setBusy] = useState<"" | "save" | "publish" | "unpublish">("");
@@ -219,15 +230,15 @@ function FieldEditor({
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 12 }}>
-        <button onClick={doSave} disabled={!dirty || !!busy} style={btnGhost(!dirty || !!busy)}>
-          {busy === "save" ? "Saving…" : "Save draft"}
+        {/* Primary: one-click publish (saves any edits + publishes live) */}
+        <button onClick={doPublish} disabled={!!busy} style={btnSolid(!!busy)}>
+          {busy === "publish" ? "Publishing…" : dirty ? "Publish changes" : "Publish"}
         </button>
-        {isManager && (
-          <button onClick={doPublish} disabled={!!busy} style={btnSolid(!!busy)}>
-            {busy === "publish" ? "Publishing…" : dirty ? "Save & publish" : "Publish"}
-          </button>
-        )}
-        {isManager && field.status === "published" && (
+        {/* Secondary: stage as draft without going live */}
+        <button onClick={doSave} disabled={!dirty || !!busy} style={btnGhost(!dirty || !!busy)}>
+          {busy === "save" ? "Saving…" : "Save as draft"}
+        </button>
+        {field.status === "published" && (
           <button onClick={doUnpublish} disabled={!!busy} style={btnGhost(!!busy)}>
             {busy === "unpublish" ? "Reverting…" : "Unpublish"}
           </button>

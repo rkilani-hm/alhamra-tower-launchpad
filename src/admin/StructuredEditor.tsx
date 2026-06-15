@@ -2,7 +2,6 @@
    Browse collections → edit rows (bilingual + scalar fields) → save/publish. */
 
 import { useEffect, useState } from "react";
-import { useAdminAuth } from "./AdminAuth";
 import {
   StructuredTable, TableDef, TABLE_DEFS, FieldDef,
   listStructuredGroups, loadStructuredRows, saveStructuredRow, setStructuredStatus,
@@ -84,8 +83,6 @@ function GroupRows({ def, group, onBack, singleList }: { def: TableDef; group: s
 }
 
 function RowEditor({ def, row, onChanged }: { def: TableDef; row: any; onChanged: () => void }) {
-  const { role } = useAdminAuth();
-  const isManager = role === "manager";
   const [vals, setVals] = useState<Record<string, any>>(() => initVals(def, row));
   const [busy, setBusy] = useState<"" | "save" | "pub" | "unpub">("");
   const [msg, setMsg] = useState<string | null>(null);
@@ -130,15 +127,13 @@ function RowEditor({ def, row, onChanged }: { def: TableDef; row: any; onChanged
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 14 }}>
-        <button onClick={() => doSave(false)} disabled={!dirty || !!busy} style={btnGhost(!dirty || !!busy)}>
-          {busy === "save" ? "Saving…" : "Save draft"}
+        <button onClick={() => doSave(true)} disabled={!!busy} style={btnSolid(!!busy)}>
+          {busy === "pub" ? "Publishing…" : dirty ? "Publish changes" : "Publish"}
         </button>
-        {isManager && (
-          <button onClick={() => doSave(true)} disabled={!!busy} style={btnSolid(!!busy)}>
-            {busy === "pub" ? "Publishing…" : dirty ? "Save & publish" : "Publish"}
-          </button>
-        )}
-        {isManager && row.status === "published" && (
+        <button onClick={() => doSave(false)} disabled={!dirty || !!busy} style={btnGhost(!dirty || !!busy)}>
+          {busy === "save" ? "Saving…" : "Save as draft"}
+        </button>
+        {row.status === "published" && (
           <button onClick={doUnpublish} disabled={!!busy} style={btnGhost(!!busy)}>
             {busy === "unpub" ? "Reverting…" : "Unpublish"}
           </button>
