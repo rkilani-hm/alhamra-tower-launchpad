@@ -12,7 +12,7 @@ import { HistoryView } from "./HistoryView";
 import { ImageMigration } from "./ImageMigration";
 import {
   PEARL, DARK, INK, MUTE, Eyebrow, H1, Rule, Muted, FieldLabel, StatusPill,
-  inStyle, taStyle, backStyle, btnSolid, btnGhost,
+  inStyle, taStyle, backStyle, btnSolid, btnGhost, toEasternArabic,
 } from "./ui";
 
 type GroupRow = { group: string; total: number; drafts: number; table: FlatTable };
@@ -224,8 +224,8 @@ function FieldEditor({
         <div>
           <FieldLabel>العربية (Arabic)</FieldLabel>
           {long
-            ? <textarea value={ar} onChange={(e) => setAr(e.target.value)} rows={4} dir="rtl" style={{ ...taStyle, textAlign: "right" }} />
-            : <input value={ar} onChange={(e) => setAr(e.target.value)} dir="rtl" style={{ ...inStyle, textAlign: "right" }} />}
+            ? <textarea value={ar} onChange={(e) => setAr(toEasternArabic(e.target.value))} rows={4} dir="rtl" style={{ ...taStyle, textAlign: "right" }} />
+            : <input value={ar} onChange={(e) => setAr(toEasternArabic(e.target.value))} dir="rtl" style={{ ...inStyle, textAlign: "right" }} />}
         </div>
       </div>
 

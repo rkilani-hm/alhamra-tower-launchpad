@@ -6,6 +6,19 @@
 
 import React from "react";
 
+/* Convert Western digits (0-9) to Eastern Arabic-Indic numerals (٠-٩), and
+   localize separators: thousands comma → ٬, decimal dot → ٫ (only between
+   digits, so it won't touch sentence punctuation). Used live on Arabic CMS
+   inputs so typed numbers match the site's Eastern-numeral convention. */
+const W2E: Record<string, string> = { "0":"٠","1":"١","2":"٢","3":"٣","4":"٤","5":"٥","6":"٦","7":"٧","8":"٨","9":"٩" };
+export function toEasternArabic(s: string): string {
+  if (!s) return s;
+  let out = s.replace(/[0-9]/g, (d) => W2E[d]);
+  // separators only when sitting between Eastern digits
+  out = out.replace(/([٠-٩])\.([٠-٩])/g, "$1٫$2").replace(/([٠-٩]),([٠-٩])/g, "$1٬$2");
+  return out;
+}
+
 export const PEARL = "#C8B99A";
 export const DARK = "#1D1D1B";
 export const INK = "#3A3733";

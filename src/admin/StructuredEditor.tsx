@@ -9,7 +9,7 @@ import {
 import { ImagePicker } from "./ImagePicker";
 import {
   PEARL, DARK, INK, MUTE, Eyebrow, H1, Rule, Muted, FieldLabel, StatusPill,
-  inStyle, taStyle, cardStyle, backStyle, btnSolid, btnGhost,
+  inStyle, taStyle, cardStyle, backStyle, btnSolid, btnGhost, toEasternArabic,
 } from "./ui";
 
 export function StructuredEditor({ table, onBack }: { table: StructuredTable; onBack: () => void }) {
@@ -158,8 +158,8 @@ function FieldRow({ f, vals, setVals }: { f: FieldDef; vals: Record<string, any>
             ? <textarea value={vals[enK] ?? ""} onChange={(e) => set(enK, e.target.value)} rows={3} style={taStyle} />
             : <input value={vals[enK] ?? ""} onChange={(e) => set(enK, e.target.value)} style={inStyle} />}
           {long
-            ? <textarea value={vals[arK] ?? ""} onChange={(e) => set(arK, e.target.value)} rows={3} dir="rtl" style={{ ...taStyle, textAlign: "right" }} />
-            : <input value={vals[arK] ?? ""} onChange={(e) => set(arK, e.target.value)} dir="rtl" style={{ ...inStyle, textAlign: "right" }} />}
+            ? <textarea value={vals[arK] ?? ""} onChange={(e) => set(arK, toEasternArabic(e.target.value))} rows={3} dir="rtl" style={{ ...taStyle, textAlign: "right" }} />
+            : <input value={vals[arK] ?? ""} onChange={(e) => set(arK, toEasternArabic(e.target.value))} dir="rtl" style={{ ...inStyle, textAlign: "right" }} />}
         </div>
       </div>
     );
