@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── The Invitation Section ───────────────────────────────────────────
@@ -79,7 +80,7 @@ export function InvitationSection() {
               width: 32, height: 1, flexShrink: 0,
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`,
             }} />
-            {c.kicker}
+            <Editable id="page_prose:invitation:kicker">{c.kicker}</Editable>
           </motion.div>
 
           {/* Main headline */}
@@ -97,7 +98,7 @@ export function InvitationSection() {
               color: "rgba(255,255,255,0.45)",
               marginBottom: 12,
             }}>
-              {c.eyebrow}
+              <Editable id="page_prose:invitation:eyebrow">{c.eyebrow}</Editable>
             </div>
             <div style={{
               fontFamily: FONT,
@@ -109,7 +110,7 @@ export function InvitationSection() {
               marginBottom: 16,
               whiteSpace: "pre-line",
             }}>
-              {c.headlineA}
+              <Editable id="page_prose:invitation:headlineA">{c.headlineA}</Editable>
             </div>
           </motion.div>
 
@@ -139,7 +140,7 @@ export function InvitationSection() {
               maxWidth: 360, marginBottom: 48,
             }}
           >
-            {c.body}
+            <Editable id="page_prose:invitation:body">{c.body}</Editable>
           </motion.p>
 
           {/* By appointment CTA */}
@@ -172,7 +173,7 @@ export function InvitationSection() {
                 e.currentTarget.style.background = "transparent";
               }}
             >
-              {c.cta}
+              <Editable id="page_prose:invitation:cta">{c.cta}</Editable>
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"
                    style={{ transform: isAr ? "scaleX(-1)" : "none" }}>
                 <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -186,7 +187,7 @@ export function InvitationSection() {
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.2)",
             }}>
-              {c.responseTime}
+              <Editable id="page_prose:invitation:responseTime">{c.responseTime}</Editable>
             </div>
           </motion.div>
         </div>
@@ -205,7 +206,7 @@ export function InvitationSection() {
               marginBottom: 32,
             }}
           >
-            {c.tenantsLabel}
+            <Editable id="page_prose:invitation:tenantsLabel">{c.tenantsLabel}</Editable>
           </motion.div>
 
           {c.tenants.map(({ label, desc }, i) => (

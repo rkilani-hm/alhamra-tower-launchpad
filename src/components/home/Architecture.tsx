@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── Architecture Section — Homepage ──────────────────────────────────
@@ -71,7 +72,7 @@ export function Architecture() {
             }}>
               <span style={{ width: 32, height: 1,
                 background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`, flexShrink: 0 }} />
-              {c.kicker}
+              <Editable id="page_prose:architecture:kicker">{c.kicker}</Editable>
             </div>
 
             <h2 style={{
@@ -80,7 +81,7 @@ export function Architecture() {
               color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24,
               whiteSpace: "pre-line",
             }}>
-              {c.headlineA}
+              <Editable id="page_prose:architecture:headlineA">{c.headlineA}</Editable>
             </h2>
 
             <p style={{
@@ -88,14 +89,14 @@ export function Architecture() {
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 20,
             }}>
-              {c.body1}
+              <Editable id="page_prose:architecture:body1">{c.body1}</Editable>
             </p>
             <p style={{
               fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 36,
             }}>
-              {c.body2Pre}<em>{c.body2Em}</em>{c.body2Post}
+              <Editable id="page_prose:architecture:body2Pre">{c.body2Pre}</Editable><em><Editable id="page_prose:architecture:body2Em">{c.body2Em}</Editable></em><Editable id="page_prose:architecture:body2Post">{c.body2Post}</Editable>
             </p>
 
             {/* Quote from SOM paper — bar flips to right edge in AR */}
@@ -111,14 +112,14 @@ export function Architecture() {
                 fontSize: "clamp(15px,1.4vw,18px)", color: DARK,
                 lineHeight: 1.7, margin: 0,
               }}>
-                {c.quote}
+                <Editable id="page_prose:architecture:quote">{c.quote}</Editable>
               </p>
               <div style={{
                 fontFamily: FONT, fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: PEARL, marginTop: 12,
               }}>
-                {c.credit}
+                <Editable id="page_prose:architecture:credit">{c.credit}</Editable>
               </div>
             </div>
 
@@ -129,7 +130,7 @@ export function Architecture() {
                 fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
                 color: GULF, marginBottom: 14,
               }}>
-                {c.milestonesKicker}
+                <Editable id="page_prose:architecture:milestonesKicker">{c.milestonesKicker}</Editable>
               </div>
               <div style={{
                 display: "grid",
@@ -231,7 +232,7 @@ export function Architecture() {
               letterSpacing: "0.4em", textTransform: "uppercase",
               color: PEARL, marginBottom: 20,
             }}>
-              {c.facadeKicker}
+              <Editable id="page_prose:architecture:facadeKicker">{c.facadeKicker}</Editable>
             </div>
             <h3 style={{
               fontFamily: FONT,
@@ -240,21 +241,21 @@ export function Architecture() {
               lineHeight: 1.2, marginBottom: 20, letterSpacing: "-0.01em",
               whiteSpace: "pre-line",
             }}>
-              {c.facadeHeadingA}
+              <Editable id="page_prose:architecture:facadeHeadingA">{c.facadeHeadingA}</Editable>
             </h3>
             <p style={{
               fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,14px)", color: "#6B6B6B",
               lineHeight: 1.9, marginBottom: 16,
             }}>
-              {c.facadeBody1}
+              <Editable id="page_prose:architecture:facadeBody1">{c.facadeBody1}</Editable>
             </p>
             <p style={{
               fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,14px)", color: "#6B6B6B",
               lineHeight: 1.9,
             }}>
-              {c.facadeBody2}
+              <Editable id="page_prose:architecture:facadeBody2">{c.facadeBody2}</Editable>
             </p>
           </motion.div>
         </div>

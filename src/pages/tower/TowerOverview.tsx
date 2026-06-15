@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const SAND   = "#C5A882";
@@ -97,14 +98,14 @@ export default function TowerOverview() {
               fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL }}>
             <span style={{ width: 32, height: 1, background: `linear-gradient(to right,${PEARL},#D4CFC9)`, flexShrink: 0 }} />
-            {c.heroKicker}
+            <Editable id="page_prose:towerOverview:heroKicker">{c.heroKicker}</Editable>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.9, ease: [0.16,1,0.3,1] }}
             style={{ fontFamily: FONT,
               fontWeight: 300, fontSize: "clamp(36px,6vw,88px)", color: "#fff",
               letterSpacing: "-0.02em", lineHeight: 1.0, margin: "0 0 12px" }}>
-            {c.heroTitle}
+            <Editable id="page_prose:towerOverview:heroTitle">{c.heroTitle}</Editable>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.75, duration: 0.8 }}
@@ -118,7 +119,7 @@ export default function TowerOverview() {
             transition={{ delay: 1.1, duration: 0.6 }}
             style={{ marginTop: 8, fontFamily: FONT, fontSize: "10px",
               letterSpacing: "0.2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase" }}>
-            {c.heroCredit}
+            <Editable id="page_prose:towerOverview:heroCredit">{c.heroCredit}</Editable>
           </motion.div>
         </motion.div>
       </div>
@@ -227,7 +228,7 @@ export default function TowerOverview() {
         borderTop: "1px solid rgba(29,29,27,0.07)" }}>
         <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
           letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
-          {c.awardsKicker}
+          <Editable id="page_prose:towerOverview:awardsKicker">{c.awardsKicker}</Editable>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 24 }}>
           {c.awards.map(({ year, title, sub }, i) => (
@@ -254,7 +255,7 @@ export default function TowerOverview() {
         <div style={{ fontFamily: FONT,
           fontWeight: 300, fontSize: "clamp(28px,4vw,56px)", color: "#fff",
           letterSpacing: "-0.01em", marginBottom: 40 }}>
-          {c.ctaHeadline}
+          <Editable id="page_prose:towerOverview:ctaHeadline">{c.ctaHeadline}</Editable>
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
           <Link to="/tower/design" style={{ display: "inline-flex", alignItems: "center", gap: 12,
@@ -264,7 +265,7 @@ export default function TowerOverview() {
             transition: "all 0.3s" }}
             onMouseEnter={e=>{e.currentTarget.style.borderColor=PEARL;e.currentTarget.style.color="#fff";}}
             onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(200,185,154,0.4)";e.currentTarget.style.color=PEARL;}}>
-            {c.ctaPrimary}
+            <Editable id="page_prose:towerOverview:ctaPrimary">{c.ctaPrimary}</Editable>
           </Link>
           <Link to="/leasing/inquiry#inquiry-form" style={{ display: "inline-flex", alignItems: "center", gap: 12,
             background: "#fff", color: DARK, fontFamily: FONT,
@@ -272,7 +273,7 @@ export default function TowerOverview() {
             padding: "15px 32px", textDecoration: "none", transition: "all 0.3s" }}
             onMouseEnter={e=>{e.currentTarget.style.background=PEARL;e.currentTarget.style.color="#fff";}}
             onMouseLeave={e=>{e.currentTarget.style.background="#fff";e.currentTarget.style.color=DARK;}}>
-            {c.ctaSecondary}
+            <Editable id="page_prose:towerOverview:ctaSecondary">{c.ctaSecondary}</Editable>
           </Link>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, StatsBar, DarkBand } from "@/components/shared/ui";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -51,14 +52,14 @@ export default function BusinessCentre() {
             fontFamily: CG, fontSize: "10px", letterSpacing: "0.4em",
             textTransform: "uppercase", color: PEARL, marginBottom: 12,
           }}>
-            {c.heroKicker}
+            <Editable id="page_prose:businessCentre:heroKicker">{c.heroKicker}</Editable>
           </div>
           <h3 style={{
             fontFamily: CG, fontSize: "clamp(22px,2.5vw,38px)",
             fontWeight: 200, color: "#fff", lineHeight: 1.25,
             margin: 0, maxWidth: 760, letterSpacing: "-0.005em",
           }}>
-            {c.heroHeading} <strong style={{ fontWeight: 500 }}>{c.heroHeadingBold}</strong>
+            <Editable id="page_prose:businessCentre:heroHeading">{c.heroHeading}</Editable> <strong style={{ fontWeight: 500 }}><Editable id="page_prose:businessCentre:heroHeadingBold">{c.heroHeadingBold}</Editable></strong>
           </h3>
         </div>
       </div>
@@ -70,24 +71,24 @@ export default function BusinessCentre() {
           gap: "clamp(48px,6vw,96px)",
         }} className="bc-overview-grid">
           <div>
-            <Rv><Tag>{c.overviewTag}</Tag></Rv>
+            <Rv><Tag><Editable id="page_prose:businessCentre:overviewTag">{c.overviewTag}</Editable></Tag></Rv>
             <Rv delay={0.1}>
               <H2>
-                {c.overviewLine1}<br />
-                {c.overviewLine2}<br />
-                <em style={{ color: PEARL_TEXT, fontStyle: "normal" }}>{c.overviewLine3}</em>
+                <Editable id="page_prose:businessCentre:overviewLine1">{c.overviewLine1}</Editable><br />
+                <Editable id="page_prose:businessCentre:overviewLine2">{c.overviewLine2}</Editable><br />
+                <em style={{ color: PEARL_TEXT, fontStyle: "normal" }}><Editable id="page_prose:businessCentre:overviewLine3">{c.overviewLine3}</Editable></em>
               </H2>
             </Rv>
           </div>
           <div>
             <Rv delay={0.2}>
               <Body style={{ marginBottom: 20 }}>
-                {c.overviewBody1}
+                <Editable id="page_prose:businessCentre:overviewBody1">{c.overviewBody1}</Editable>
               </Body>
             </Rv>
             <Rv delay={0.3}>
               <Body>
-                {c.overviewBody2}
+                <Editable id="page_prose:businessCentre:overviewBody2">{c.overviewBody2}</Editable>
               </Body>
             </Rv>
           </div>
@@ -96,8 +97,8 @@ export default function BusinessCentre() {
 
       {/* ── STRATEGIC ADVANTAGE ────────────────────────────────────── */}
       <Section bg="#FAFAFA">
-        <Rv><Tag>{c.strategicTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.strategicHeading}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:businessCentre:strategicTag">{c.strategicTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:businessCentre:strategicHeading">{c.strategicHeading}</Editable></H2></Rv>
         <Rv delay={0.2}>
           <div style={{
             display: "grid",
@@ -139,11 +140,11 @@ export default function BusinessCentre() {
 
       {/* ── EXECUTIVE FACILITIES — 6 cards with images ─────────────── */}
       <Section>
-        <Rv><Tag>{c.facilitiesTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.facilitiesHeading}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:businessCentre:facilitiesTag">{c.facilitiesTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:businessCentre:facilitiesHeading">{c.facilitiesHeading}</Editable></H2></Rv>
         <Rv delay={0.2}>
           <Body style={{ maxWidth: 720, marginBottom: "clamp(40px,6vh,64px)" }}>
-            {c.facilitiesBody}
+            <Editable id="page_prose:businessCentre:facilitiesBody">{c.facilitiesBody}</Editable>
           </Body>
         </Rv>
 

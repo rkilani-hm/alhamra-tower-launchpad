@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL_TEXT = "#8B6E3E";
@@ -32,23 +33,23 @@ export default function TowerSustainability() {
           <div>
             <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 20 }}>
-              {c.introKicker}
+              <Editable id="page_prose:towerSustain:introKicker">{c.introKicker}</Editable>
             </div>
             <h2 style={{ fontFamily: FONT,
               fontWeight: 300, fontSize: "clamp(26px,3.5vw,50px)",
               color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 0 }}>
-              {c.introHeading}
+              <Editable id="page_prose:towerSustain:introHeading">{c.introHeading}</Editable>
             </h2>
           </div>
           <div>
             <p style={{ fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 20 }}>
-              {c.introP1}
+              <Editable id="page_prose:towerSustain:introP1">{c.introP1}</Editable>
             </p>
             <p style={{ fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9 }}>
-              {c.introP2}
+              <Editable id="page_prose:towerSustain:introP2">{c.introP2}</Editable>
             </p>
           </div>
         </div>
@@ -58,7 +59,7 @@ export default function TowerSustainability() {
       <div style={{ background: "#FAFAFA", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
           letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 48 }}>
-          {c.pillarsKicker}
+          <Editable id="page_prose:towerSustain:pillarsKicker">{c.pillarsKicker}</Editable>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 1,
           background: "rgba(29,29,27,0.07)" }} className="sust-pillars-grid">
@@ -94,11 +95,11 @@ export default function TowerSustainability() {
           <div style={{ fontFamily: FONT,
             fontWeight: 300, fontSize: "clamp(22px,3vw,42px)",
             color: DARK, lineHeight: 1.4, marginBottom: 28 }}>
-            {c.quote}
+            <Editable id="page_prose:towerSustain:quote">{c.quote}</Editable>
           </div>
           <div style={{ fontFamily: FONT, fontSize: "10px",
             letterSpacing: "0.35em", textTransform: "uppercase", color: PEARL_TEXT }}>
-            {c.quoteCredit}
+            <Editable id="page_prose:towerSustain:quoteCredit">{c.quoteCredit}</Editable>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -290,7 +291,7 @@ export default function TowerRising() {
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)` }} />
             <div style={{ fontFamily: FONT, fontSize: "11px",
               letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
-              {c.galleryKicker}
+              <Editable id="page_prose:towerRising:galleryKicker">{c.galleryKicker}</Editable>
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL  = "#C8B99A";
@@ -75,22 +76,22 @@ export default function TowerDesign() {
               transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
-                {c.facadeKicker}
+                <Editable id="page_prose:towerDesign:facadeKicker">{c.facadeKicker}</Editable>
               </div>
               <h2 style={{ fontFamily: FONT,
                 fontWeight: 300, fontSize: "clamp(26px,3.5vw,48px)",
                 color: DARK, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: 24, whiteSpace: "pre-line" }}>
-                {c.facadeHeadingLine1}
+                <Editable id="page_prose:towerDesign:facadeHeadingLine1">{c.facadeHeadingLine1}</Editable>
               </h2>
               <p style={{ fontFamily: FONT, fontWeight: 300,
                 fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
                 lineHeight: 1.9, marginBottom: 20 }}>
-                {c.facadeP1Part1}
-                <strong style={{ color: DARK, fontWeight: 400 }}>{c.facadeP1Strong}</strong>
+                <Editable id="page_prose:towerDesign:facadeP1Part1">{c.facadeP1Part1}</Editable>
+                <strong style={{ color: DARK, fontWeight: 400 }}><Editable id="page_prose:towerDesign:facadeP1Strong">{c.facadeP1Strong}</Editable></strong>
               </p>
               <p style={{ fontFamily: FONT, fontWeight: 300,
                 fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58", lineHeight: 1.9, marginBottom: 32 }}>
-                {c.facadeP2}
+                <Editable id="page_prose:towerDesign:facadeP2">{c.facadeP2}</Editable>
               </p>
               <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
                 {c.facadeStats.map(({ n, u, l }) => (
@@ -118,22 +119,22 @@ export default function TowerDesign() {
           <div>
             <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
-              {c.lamellaKicker}
+              <Editable id="page_prose:towerDesign:lamellaKicker">{c.lamellaKicker}</Editable>
             </div>
             <h2 style={{ fontFamily: FONT,
               fontWeight: 300, fontSize: "clamp(24px,3.2vw,44px)",
               color: DARK, lineHeight: 1.1, marginBottom: 24, whiteSpace: "pre-line" }}>
-              {c.lamellaHeadingLine1}
+              <Editable id="page_prose:towerDesign:lamellaHeadingLine1">{c.lamellaHeadingLine1}</Editable>
             </h2>
             <p style={{ fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 16 }}>
-              {c.lamellaP1}
+              <Editable id="page_prose:towerDesign:lamellaP1">{c.lamellaP1}</Editable>
             </p>
             <p style={{ fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
               lineHeight: 1.9, marginBottom: 28 }}>
-              {c.lamellaP2}
+              <Editable id="page_prose:towerDesign:lamellaP2">{c.lamellaP2}</Editable>
             </p>
             <div style={{ borderLeft: lang === "ar" ? "none" : `2px solid ${PEARL}`,
               borderRight: lang === "ar" ? `2px solid ${PEARL}` : "none",
@@ -141,11 +142,11 @@ export default function TowerDesign() {
               paddingRight: lang === "ar" ? 20 : 0 }}>
               <p style={{ fontFamily: FONT, fontStyle: "italic",
                 fontSize: "clamp(14px,1.3vw,18px)", color: DARK, lineHeight: 1.7, margin: 0 }}>
-                {c.lamellaQuote}
+                <Editable id="page_prose:towerDesign:lamellaQuote">{c.lamellaQuote}</Editable>
               </p>
               <div style={{ fontFamily: FONT, fontSize: "10px",
                 letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL, marginTop: 10 }}>
-                {c.lamellaQuoteCredit}
+                <Editable id="page_prose:towerDesign:lamellaQuoteCredit">{c.lamellaQuoteCredit}</Editable>
               </div>
             </div>
           </div>
@@ -163,14 +164,14 @@ export default function TowerDesign() {
               loading="lazy" src="/assets/lobby-escalator-art.jpg"
                   alt={lang === "ar" ? "سلالمُ الحمراء الكهربائية ومنحوتةُ السقف الفولاذية" : "Al Hamra escalator and sculptural steel ceiling installation"}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>{c.lobbyCaption1}</div>
+                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}><Editable id="page_prose:towerDesign:lobbyCaption1">{c.lobbyCaption1}</Editable></div>
               </div>
               <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
                 <img
               loading="lazy" src="/assets/facade-trencadis-detail.jpg"
                   alt={lang === "ar" ? "واجهةُ برج الحمراء — تفصيلُ الحجر الجيريّ والترِنكاديس" : "Al Hamra Tower facade — limestone and trencadis mosaic detail"}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,185,154,0.8)" }}>{c.lobbyCaption2}</div>
+                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,185,154,0.8)" }}><Editable id="page_prose:towerDesign:lobbyCaption2">{c.lobbyCaption2}</Editable></div>
               </div>
             </div>
           </div>
@@ -182,12 +183,12 @@ export default function TowerDesign() {
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
             letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 16 }}>
-            {c.specKicker}
+            <Editable id="page_prose:towerDesign:specKicker">{c.specKicker}</Editable>
           </div>
           <h2 style={{ fontFamily: FONT,
             fontWeight: 300, fontSize: "clamp(26px,3.5vw,48px)",
             color: DARK, lineHeight: 1.1 }}>
-            {c.specHeading}
+            <Editable id="page_prose:towerDesign:specHeading">{c.specHeading}</Editable>
           </h2>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,80px)" }}
@@ -207,7 +208,7 @@ export default function TowerDesign() {
         <div style={{ fontFamily: FONT,
           fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em",
           textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
-          {c.drawingsKicker}
+          <Editable id="page_prose:towerDesign:drawingsKicker">{c.drawingsKicker}</Editable>
         </div>
 
         <motion.div
@@ -225,11 +226,11 @@ export default function TowerDesign() {
             marginTop: 14, flexWrap: "wrap", gap: 8 }}>
             <div style={{ fontFamily: FONT,
               fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B" }}>
-              {c.drawingsPlanLabel}
+              <Editable id="page_prose:towerDesign:drawingsPlanLabel">{c.drawingsPlanLabel}</Editable>
             </div>
             <div style={{ fontFamily: FONT,
               fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: PEARL }}>
-              {c.drawingsPlanNote}
+              <Editable id="page_prose:towerDesign:drawingsPlanNote">{c.drawingsPlanNote}</Editable>
             </div>
           </div>
         </motion.div>
@@ -241,7 +242,7 @@ export default function TowerDesign() {
           <div style={{ fontFamily: FONT,
             fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
             color: "#6B6B6B", marginBottom: 20 }}>
-            {c.drawingsElevKicker}
+            <Editable id="page_prose:towerDesign:drawingsElevKicker">{c.drawingsElevKicker}</Editable>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
             className="elevation-grid">

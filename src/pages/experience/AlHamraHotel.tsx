@@ -3,6 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, StatsBar, DarkBand } from "@/components/shared/ui";
 import { useI18n, useContent } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -50,14 +51,14 @@ export default function AlHamraHotel() {
             fontFamily: CG, fontSize: "10px", letterSpacing: "0.4em",
             textTransform: "uppercase", color: PEARL, marginBottom: 12,
           }}>
-            {c.heroKicker}
+            <Editable id="page_prose:alHamraHotel:heroKicker">{c.heroKicker}</Editable>
           </div>
           <h3 style={{
             fontFamily: CG, fontSize: "clamp(22px,2.5vw,38px)",
             fontWeight: 200, color: "#fff", lineHeight: 1.25,
             margin: 0, maxWidth: 760, letterSpacing: "-0.005em",
           }}>
-            {c.heroHeading} <strong style={{ fontWeight: 500 }}>{c.heroHeadingBold}</strong>
+            <Editable id="page_prose:alHamraHotel:heroHeading">{c.heroHeading}</Editable> <strong style={{ fontWeight: 500 }}><Editable id="page_prose:alHamraHotel:heroHeadingBold">{c.heroHeadingBold}</Editable></strong>
           </h3>
         </div>
       </div>
@@ -69,24 +70,24 @@ export default function AlHamraHotel() {
           gap: "clamp(48px,6vw,96px)",
         }} className="hotel-overview-grid">
           <div>
-            <Rv><Tag>{c.overviewTag}</Tag></Rv>
+            <Rv><Tag><Editable id="page_prose:alHamraHotel:overviewTag">{c.overviewTag}</Editable></Tag></Rv>
             <Rv delay={0.1}>
               <H2>
-                {c.overviewLine1}<br />
-                {c.overviewLine2}<br />
-                <em style={{ color: PEARL_TEXT, fontStyle: "normal" }}>{c.overviewLine3}</em>
+                <Editable id="page_prose:alHamraHotel:overviewLine1">{c.overviewLine1}</Editable><br />
+                <Editable id="page_prose:alHamraHotel:overviewLine2">{c.overviewLine2}</Editable><br />
+                <em style={{ color: PEARL_TEXT, fontStyle: "normal" }}><Editable id="page_prose:alHamraHotel:overviewLine3">{c.overviewLine3}</Editable></em>
               </H2>
             </Rv>
           </div>
           <div>
             <Rv delay={0.2}>
               <Body style={{ marginBottom: 20 }}>
-                {c.overviewBody1}
+                <Editable id="page_prose:alHamraHotel:overviewBody1">{c.overviewBody1}</Editable>
               </Body>
             </Rv>
             <Rv delay={0.3}>
               <Body>
-                {c.overviewBody2}
+                <Editable id="page_prose:alHamraHotel:overviewBody2">{c.overviewBody2}</Editable>
               </Body>
             </Rv>
           </div>
@@ -95,8 +96,8 @@ export default function AlHamraHotel() {
 
       {/* ── DISTINCT ADVANTAGE ─────────────────────────────────────── */}
       <Section bg="#FAFAFA">
-        <Rv><Tag>{c.advantagesTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.advantagesHeading}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:alHamraHotel:advantagesTag">{c.advantagesTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:alHamraHotel:advantagesHeading">{c.advantagesHeading}</Editable></H2></Rv>
         <Rv delay={0.2}>
           <div style={{
             display: "grid",
@@ -138,11 +139,11 @@ export default function AlHamraHotel() {
 
       {/* ── GUEST EXPERIENCE — 5 service categories ────────────────── */}
       <Section>
-        <Rv><Tag>{c.servicesTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.servicesHeading}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:alHamraHotel:servicesTag">{c.servicesTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:alHamraHotel:servicesHeading">{c.servicesHeading}</Editable></H2></Rv>
         <Rv delay={0.2}>
           <Body style={{ maxWidth: 720, marginBottom: "clamp(40px,6vh,64px)" }}>
-            {c.servicesBody}
+            <Editable id="page_prose:alHamraHotel:servicesBody">{c.servicesBody}</Editable>
           </Body>
         </Rv>
 
