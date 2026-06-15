@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -118,7 +118,7 @@ export default function TowerRising() {
                             paddingBottom: 24, paddingRight: 8,
                             marginBottom: 0,
                           }}>
-                            {era.body}
+                            <EditableRow id={`timeline_entries:towerRising.eras:${i}`}>{era.body}</EditableRow>
                           </p>
                         </motion.div>
                       )}

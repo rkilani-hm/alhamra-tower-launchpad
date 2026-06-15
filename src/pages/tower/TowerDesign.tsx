@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL  = "#C8B99A";
@@ -94,12 +94,12 @@ export default function TowerDesign() {
                 <Editable id="page_prose:towerDesign:facadeP2">{c.facadeP2}</Editable>
               </p>
               <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
-                {c.facadeStats.map(({ n, u, l }) => (
+                {c.facadeStats.map(({ n, u, l }, i) => (
                   <div key={l}>
                     <div style={{ fontFamily: FONT,
                       fontSize: "clamp(24px,3vw,38px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
-                      {n}{u && <span style={{ fontFamily: FONT,
-                        fontSize: "0.4em", color: PEARL, marginLeft: 3, fontWeight: 200 }}>{u}</span>}
+                      <EditableRow id={`stat_counters:towerDesign:towerDesign_${i}`}>{n}{u && <span style={{ fontFamily: FONT,
+                        fontSize: "0.4em", color: PEARL, marginLeft: 3, fontWeight: 200 }}>{u}</span>}</EditableRow>
                     </div>
                     <div style={{ fontFamily: FONT, fontSize: "10px",
                       letterSpacing: "0.2em", textTransform: "uppercase",
