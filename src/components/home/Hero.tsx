@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useT } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 
 const SAND = "#C5A882";
 const DARK = "#1D1D1B";
@@ -176,7 +177,7 @@ export function Hero() {
               letterSpacing: "0.5em", textTransform: "uppercase",
               color: "rgba(255,255,255,0.7)", marginBottom: 4 }}
           >
-            {t("hero.eyebrow")}
+            <Editable id="section_fields:hero:eyebrow">{t("hero.eyebrow")}</Editable>
           </motion.span>
 
           <motion.span
@@ -188,7 +189,7 @@ export function Hero() {
               fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
               fontSize: "clamp(72px,11vw,172px)", color: "#fff", letterSpacing: "-0.03em",
             }}>
-              {t("hero.title")}
+              <Editable id="section_fields:hero:title">{t("hero.title")}</Editable>
             </span>
           </motion.span>
 
@@ -199,7 +200,7 @@ export function Hero() {
               fontSize: "clamp(24px,4.5vw,72px)", color: "#fff",
               letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 36 }}
           >
-            {t("hero.subtitle")}
+            <Editable id="section_fields:hero:subtitle">{t("hero.subtitle")}</Editable>
           </motion.span>
         </h1>
 
@@ -211,7 +212,7 @@ export function Hero() {
             fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.65,
             maxWidth: 420, marginBottom: 48 }}
         >
-          {t("hero.description")}
+          <Editable id="section_fields:hero:description">{t("hero.description")}</Editable>
         </motion.p>
 
         {/* CTAs */}

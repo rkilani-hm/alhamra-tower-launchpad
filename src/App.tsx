@@ -38,6 +38,7 @@ import AlHamraHotel   from "./pages/experience/AlHamraHotel";
 
 /* i18n */
 import { I18nProvider } from "@/lib/i18n";
+import { EditModeProvider } from "@/lib/EditMode";
 
 const qc = new QueryClient();
 
@@ -116,7 +117,9 @@ const App = () => (
           {/* C4: Respect OS reduced-motion preference for all Framer Motion */}
           <MotionConfig reducedMotion="user">
             <ScrollToTop />
-            <AnimatedRoutes />
+            <EditModeProvider>
+              <AnimatedRoutes />
+            </EditModeProvider>
           </MotionConfig>
         </BrowserRouter>
       </TooltipProvider>
