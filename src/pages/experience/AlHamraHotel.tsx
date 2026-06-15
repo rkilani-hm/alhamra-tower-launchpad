@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, StatsBar, DarkBand } from "@/components/shared/ui";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -129,7 +129,7 @@ export default function AlHamraHotel() {
                   fontFamily: CG, fontSize: "clamp(13px,1.1vw,15px)",
                   color: DARK, fontWeight: 300, lineHeight: 1.65,
                 }}>
-                  {a.text}
+                  <EditableRow id={`feature_cards:alHamraHotel.advantages:${i}`}>{a.text}</EditableRow>
                 </div>
               </motion.div>
             ))}
@@ -199,14 +199,14 @@ export default function AlHamraHotel() {
                   margin: "0 0 12px",
                   letterSpacing: "-0.005em",
                 }}>
-                  {s.title}
+                  <EditableRow id={`feature_cards:alHamraHotel.services:${i}`}>{s.title}</EditableRow>
                 </h3>
                 <p style={{
                   fontFamily: CG, fontSize: "clamp(12px,1vw,14px)",
                   fontWeight: 300, color: "#4a4a48",
                   lineHeight: 1.75, margin: "0 0 10px",
                 }}>
-                  {s.body}
+                  <EditableRow id={`feature_cards:alHamraHotel.services:${i}`}>{s.body}</EditableRow>
                 </p>
                 <div style={{
                   fontFamily: CG, fontSize: "10px",

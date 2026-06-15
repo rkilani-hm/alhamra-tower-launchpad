@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL_TEXT = "#8B6E3E";
@@ -76,10 +76,14 @@ export default function TowerSustainability() {
                   fontSize: "clamp(28px,3vw,44px)", fontWeight: 300,
                   color: "rgba(29,29,27,0.1)", lineHeight: 1, marginBottom: 20 }}>{n}</div>
                 <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,14px)",
-                  fontWeight: 500, color: DARK, marginBottom: 16, letterSpacing: "0.03em" }}>{title}</div>
+                  fontWeight: 500, color: DARK, marginBottom: 16, letterSpacing: "0.03em" }}>
+                  <EditableRow id={`feature_cards:towerSustain.pillars:${i}`}>{title}</EditableRow>
+                </div>
                 <p style={{ fontFamily: FONT, fontWeight: 300,
                   fontSize: "clamp(12px,0.95vw,13px)", color: "#6B6B6B",
-                  lineHeight: 1.65, marginBottom: 20 }}>{body}</p>
+                  lineHeight: 1.65, marginBottom: 20 }}>
+                  <EditableRow id={`feature_cards:towerSustain.pillars:${i}`}>{body}</EditableRow>
+                </p>
                 <div style={{ fontFamily: FONT, fontSize: "10px",
                   letterSpacing: "0.2em", textTransform: "uppercase", color: PEARL_TEXT,
                   paddingTop: 16, borderTop: "1px solid rgba(200,185,154,0.3)" }}>{stat}</div>
