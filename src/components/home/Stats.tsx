@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView }           from "framer-motion";
 import { useT, useContent, useI18n }   from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, EditableRow } from "@/lib/EditMode";
 import { useStatCounters, useStatLabels } from "@/lib/useCmsContent";
 
 /* Counter config now lives in the locale JSON under stats.counters, so a CMS
@@ -128,6 +128,7 @@ function StatColumn({
         lineHeight: 1,
         letterSpacing: "-0.03em",
       }}>
+        <EditableRow id={`stat_counters:home:${statKey}`}>
         {shown}
         {unit && (
           <span style={{
@@ -137,6 +138,7 @@ function StatColumn({
             letterSpacing: "-0.01em",
           }}>{unit}</span>
         )}
+        </EditableRow>
       </div>
 
       {/* Sub */}

@@ -188,3 +188,147 @@ const inp: CSSProperties = { width: "100%", padding: "8px 10px", border: "1px so
 const ta: CSSProperties = { ...inp, resize: "vertical", lineHeight: 1.6 };
 const solid: CSSProperties = { padding: "8px 16px", background: "#C8B99A", color: "#1D1D1B", border: "none", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" };
 const ghost: CSSProperties = { padding: "8px 16px", background: "transparent", color: "#3A3733", border: "1px solid #C5BCA9", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" };
+
+/* ──────────────────────────────────────────────────────────────────────────
+   <EditableRow> — in-place editing for STRUCTURED tables (stat_counters,
+   feature_cards, timeline_entries, spec_rows). These don't fit the flat
+   value_en/value_ar shape, so this sibling wrapper addresses a row by its
+   natural key and edits the table's relevant bilingual fields.
+
+   Locator: "table:group:key"
+     stat_counters:home:height           → group_key='home',  stat_key='height'
+     feature_cards:towerSustain.pillars:0 → collection=...,    sort_order=0
+     timeline_entries:towerRising.eras:0  → collection=...,    sort_order=0
+     spec_rows::5                         → (no group),        sort_order=5
+──────────────────────────────────────────────────────────────────────────── */
+
+interface RowFieldDef { col: string; label: string; bilingual: boolean; }
+const ROW_FIELDS: Record<string, RowFieldDef[]> = {
+  stat_counters: [
+    { col: "display", label: "Display value", bilingual: true },
+    { col: "unit", label: "Unit", bilingual: true },
+    { col: "label", label: "Label", bilingual: true },
+    { col: "sub", label: "Sub-label", bilingual: true },
+  ],
+  feature_cards: [
+    { col: "title", label: "Title", bilingual: true },
+    { col: "body", label: "Body", bilingual: true },
+    { col: "image_caption", label: "Image caption", bilingual: true },
+  ],
+  timeline_entries: [
+    { col: "title", label: "Title", bilingual: true },
+    { col: "body", label: "Body", bilingual: true },
+  ],
+  spec_rows: [
+    { col: "label", label: "Label", bilingual: true },
+    { col: "value", label: "Value", bilingual: true },
+  ],
+};
+// How to locate a row by its natural key, per table.
+function rowMatch(table: string, group: string, key: string) {
+  if (table === "stat_counters") return [{ c: "group_key", v: group }, { c: "stat_key", v: key }];
+  if (table === "spec_rows") return [{ c: "sort_order", v: Number(key) }];
+  // feature_cards / timeline_entries: collection + sort_order
+  return [{ c: "collection", v: group }, { c: "sort_order", v: Number(key) }];
+}
+
+export function EditableRow({
+  id, children, as = "span", style,
+}: { id: string; children: ReactNode; as?: keyof JSX.IntrinsicElements; style?: CSSProperties }) {
+  const { enabled } = useEditMode();
+  const { lang } = useI18n();
+  const [editing, setEditing] = useState(false);
+  const [hover, setHover] = useState(false);
+
+  if (!enabled) {
+    const Tag = as as any;
+    return style ? <Tag style={style}>{children}</Tag> : <>{children}</>;
+  }
+  const Tag = as as any;
+  return (
+    <Tag
+      style={{ ...style, position: "relative", cursor: "pointer",
+        outline: hover ? "2px dashed #C8B99A" : "1px dashed rgba(200,185,154,0.5)", outlineOffset: 2, borderRadius: 2 }}
+      onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+      onClick={(e: any) => { e.stopPropagation(); e.preventDefault(); setEditing(true); }}
+    >
+      {children}
+      {editing && <RowPopover id={id} lang={lang} onClose={() => setEditing(false)} />}
+    </Tag>
+  );
+}
+
+function RowPopover({ id, lang, onClose }: { id: string; lang: "en" | "ar"; onClose: () => void }) {
+  const [table, group, key] = id.split(":");
+  const fields = ROW_FIELDS[table] ?? [];
+  const [vals, setVals] = useState<Record<string, string>>({});
+  const [rowId, setRowId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      let q = (supabase.from(table as any) as any).select("*");
+      for (const m of rowMatch(table, group, key)) q = q.eq(m.c, m.v);
+      const { data } = await q.maybeSingle();
+      if (data) {
+        setRowId(data.id);
+        const v: Record<string, string> = {};
+        for (const f of fields) {
+          if (f.bilingual) { v[`${f.col}_en`] = data[`${f.col}_en`] ?? ""; v[`${f.col}_ar`] = data[`${f.col}_ar`] ?? ""; }
+          else v[f.col] = data[f.col] ?? "";
+        }
+        setVals(v);
+      }
+      setLoading(false);
+    })();
+  }, [id]);
+
+  async function save(publish: boolean) {
+    if (!rowId) return;
+    setBusy(true);
+    const { data: u } = await supabase.auth.getUser();
+    const patch: any = { ...vals, updated_by: u.user?.id ?? null, updated_at: new Date().toISOString() };
+    if (publish) patch.status = "published";
+    await (supabase.from(table as any) as any).update(patch).eq("id", rowId);
+    setBusy(false); onClose();
+    if (publish) window.location.reload();
+  }
+
+  const set = (k: string, val: string) => setVals((p) => ({ ...p, [k]: val }));
+
+  return (
+    <div onClick={(e) => e.stopPropagation()} style={{
+      position: "absolute", top: "100%", left: 0, marginTop: 8, zIndex: 10000, width: 440, maxWidth: "90vw",
+      background: "#fff", color: "#1D1D1B", border: "1px solid #C8B99A", boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
+      padding: 16, fontFamily: "'Century Gothic',sans-serif", textAlign: "left", direction: "ltr" }}>
+      {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : !rowId ? (
+        <div style={{ fontSize: 13, color: "#B05050" }}>This item isn't editable yet ({id}).</div>
+      ) : (
+        <>
+          <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9A7550", marginBottom: 10 }}>
+            Editing · {table.replace("_", " ")} · {group || key}
+          </div>
+          {fields.map((f) => f.bilingual ? (
+            <div key={f.col}>
+              <Label>{f.label} — EN</Label>
+              <input value={vals[`${f.col}_en`] ?? ""} onChange={(e) => set(`${f.col}_en`, e.target.value)} style={inp} />
+              <Label>{f.label} — AR</Label>
+              <input value={vals[`${f.col}_ar`] ?? ""} onChange={(e) => set(`${f.col}_ar`, toEasternArabic(e.target.value))} dir="rtl" style={{ ...inp, textAlign: "right" }} />
+            </div>
+          ) : (
+            <div key={f.col}>
+              <Label>{f.label}</Label>
+              <input value={vals[f.col] ?? ""} onChange={(e) => set(f.col, e.target.value)} style={inp} />
+            </div>
+          ))}
+          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+            <button onClick={() => save(true)} disabled={busy} style={solid}>{busy ? "Saving…" : "Publish"}</button>
+            <button onClick={() => save(false)} disabled={busy} style={ghost}>Save draft</button>
+            <button onClick={onClose} disabled={busy} style={ghost}>Cancel</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
