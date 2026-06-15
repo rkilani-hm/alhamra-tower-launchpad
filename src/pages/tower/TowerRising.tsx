@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable, EditableRow } from "@/lib/EditMode";
+import { Editable, EditableRow, EditableImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -155,6 +155,7 @@ export default function TowerRising() {
                     overflow: "hidden",
                     maxHeight: "calc((5 * 58px + 180px) * 1.7)",
                   }}>
+                    <EditableImage id={`timeline_entries:towerRising.eras:${activeEra}`}>
                     <img
                       src={c.eras[activeEra].img}
                       alt={c.eras[activeEra].title}
@@ -168,6 +169,7 @@ export default function TowerRising() {
                       }}
                       onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0.15"; }}
                     />
+                    </EditableImage>
                   </div>
 
                   <div style={{

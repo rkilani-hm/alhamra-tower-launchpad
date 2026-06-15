@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, StatsBar, DarkBand } from "@/components/shared/ui";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable, EditableRow } from "@/lib/EditMode";
+import { Editable, EditableRow, EditableImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -168,6 +168,7 @@ export default function AlHamraHotel() {
                 overflow: "hidden",
                 background: "#0c0b09",
               }}>
+                <EditableImage id={`feature_cards:alHamraHotel.services:${i}`}>
                 <img
                   loading="lazy"
                   src={s.image}
@@ -180,6 +181,7 @@ export default function AlHamraHotel() {
                   onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
                   onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
                 />
+                </EditableImage>
                 <div style={{
                   position: "absolute", top: 16, left: 16,
                   background: "rgba(29,29,27,0.82)",
