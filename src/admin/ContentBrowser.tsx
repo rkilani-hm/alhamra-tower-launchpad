@@ -10,11 +10,10 @@ import {
 import { StructuredEditor } from "./StructuredEditor";
 import { TABLE_DEFS, StructuredTable } from "./structuredData";
 import { HistoryView } from "./HistoryView";
-
-const PEARL = "#C8B99A";
-const DARK = "#1D1D1B";
-const INK = "#3A3733";
-const MUTE = "#6E6456";
+import {
+  PEARL, DARK, INK, MUTE, Eyebrow, H1, Rule, Muted, FieldLabel, StatusPill,
+  inStyle, taStyle, backStyle, btnSolid, btnGhost,
+} from "./ui";
 
 type GroupRow = { group: string; total: number; drafts: number; table: FlatTable };
 
@@ -238,46 +237,3 @@ function FieldEditor({
     </div>
   );
 }
-
-/* ── small presentational helpers ─────────────────────────────────────── */
-const Eyebrow = ({ children }: { children: React.ReactNode }) =>
-  <div style={{ letterSpacing: "0.2em", fontSize: 11, textTransform: "uppercase", color: "#9A7550" }}>{children}</div>;
-const H1 = ({ children }: { children: React.ReactNode }) =>
-  <h1 style={{ fontSize: 28, fontWeight: 400, margin: "12px 0 0", color: DARK }}>{children}</h1>;
-const Rule = () => <div style={{ height: 1, width: 48, background: PEARL, margin: "18px 0 26px" }} />;
-const Muted = ({ children }: { children: React.ReactNode }) => <div style={{ color: MUTE, fontSize: 14 }}>{children}</div>;
-const FieldLabel = ({ children }: { children: React.ReactNode }) =>
-  <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: MUTE, marginBottom: 6 }}>{children}</div>;
-
-function StatusPill({ status }: { status: string }) {
-  const pub = status === "published";
-  return (
-    <span style={{
-      fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase",
-      color: pub ? "#5A8A5A" : "#A8842E",
-      border: `1px solid ${pub ? "#BcdBBc" : "#E4CF8E"}`,
-      padding: "2px 8px",
-    }}>{pub ? "Published" : "Draft"}</span>
-  );
-}
-
-const inStyle: React.CSSProperties = {
-  width: "100%", padding: "9px 11px", border: "1px solid #D8D2C7",
-  fontFamily: "inherit", fontSize: 14, color: DARK, outline: "none", borderRadius: 0, background: "#FCFBF9",
-};
-const taStyle: React.CSSProperties = { ...inStyle, resize: "vertical", lineHeight: 1.6 };
-const backStyle: React.CSSProperties = {
-  background: "transparent", border: "none", color: MUTE, fontFamily: "inherit",
-  fontSize: 12, letterSpacing: "0.08em", cursor: "pointer", padding: 0, marginBottom: 20,
-};
-const btnSolid = (disabled: boolean): React.CSSProperties => ({
-  padding: "9px 18px", background: disabled ? "#C9BfA8" : PEARL, color: DARK, border: "none",
-  fontFamily: "inherit", fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase",
-  cursor: disabled ? "default" : "pointer",
-});
-const btnGhost = (disabled: boolean): React.CSSProperties => ({
-  padding: "9px 18px", background: "transparent", color: disabled ? "#B5AE9F" : INK,
-  border: `1px solid ${disabled ? "#E0DAD0" : "#C5BCA9"}`,
-  fontFamily: "inherit", fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase",
-  cursor: disabled ? "default" : "pointer",
-});

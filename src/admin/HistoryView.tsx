@@ -5,9 +5,9 @@
 import { useEffect, useState } from "react";
 import { useAdminAuth } from "./AdminAuth";
 import { VersionRow, listVersions, restoreVersion, versionSummary } from "./adminData";
-import { groupLabel } from "./adminData";
-
-const PEARL = "#C8B99A", DARK = "#1D1D1B", INK = "#3A3733", MUTE = "#6E6456";
+import {
+  PEARL, DARK, INK, MUTE, Eyebrow, H1, Rule, Muted, backStyle, btnSolid, btnGhost,
+} from "./ui";
 
 const TABLE_TITLES: Record<string, string> = {
   section_fields: "Section text",
@@ -95,13 +95,3 @@ function fmt(iso: string): string {
     return d.toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
   } catch { return iso; }
 }
-
-const Eyebrow = ({ children }: { children: React.ReactNode }) =>
-  <div style={{ letterSpacing: "0.2em", fontSize: 11, textTransform: "uppercase", color: "#9A7550" }}>{children}</div>;
-const H1 = ({ children }: { children: React.ReactNode }) =>
-  <h1 style={{ fontSize: 28, fontWeight: 400, margin: "12px 0 0", color: DARK }}>{children}</h1>;
-const Rule = () => <div style={{ height: 1, width: 48, background: PEARL, margin: "18px 0 26px" }} />;
-const Muted = ({ children }: { children: React.ReactNode }) => <div style={{ color: MUTE, fontSize: 14 }}>{children}</div>;
-const backStyle: React.CSSProperties = { background: "transparent", border: "none", color: MUTE, fontFamily: "inherit", fontSize: 12, letterSpacing: "0.08em", cursor: "pointer", padding: 0, marginBottom: 20 };
-const btnSolid = (d: boolean): React.CSSProperties => ({ padding: "8px 16px", background: d ? "#C9BfA8" : PEARL, color: DARK, border: "none", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: d ? "default" : "pointer" });
-const btnGhost = (d: boolean): React.CSSProperties => ({ padding: "8px 16px", background: "transparent", color: d ? "#B5AE9F" : INK, border: `1px solid ${d ? "#E0DAD0" : "#C5BCA9"}`, fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: d ? "default" : "pointer" });
