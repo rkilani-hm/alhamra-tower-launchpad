@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const SAND   = "#C5A882";
@@ -139,9 +139,11 @@ export default function TowerOverview() {
                 color: PEARL, letterSpacing: "0.3em", marginBottom: 4 }}>{icon}</div>
               <div style={{ fontFamily: FONT,
                 fontSize: "clamp(22px,3vw,42px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
+                <EditableRow id={`stat_counters:towerOverview:towerOverview_${i}`}>
                 <CountUp value={n} delay={i * 0.1} />
                 {u && <span style={{ fontFamily: FONT,
                   fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: PEARL, marginLeft: 4 }}>{u}</span>}
+                </EditableRow>
               </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.2em", textTransform: "uppercase", color: DARK, fontWeight: 400 }}>{l}</div>
@@ -241,7 +243,9 @@ export default function TowerOverview() {
                 {year}
               </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(11px,0.9vw,13px)",
-                fontWeight: 400, color: DARK, marginBottom: 4 }}>{title}</div>
+                fontWeight: 400, color: DARK, marginBottom: 4 }}>
+                <EditableRow id={`awards::${i}`}>{title}</EditableRow>
+              </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.8vw,11px)",
                 color: "#6B6B6B" }}>{sub}</div>
             </motion.div>
