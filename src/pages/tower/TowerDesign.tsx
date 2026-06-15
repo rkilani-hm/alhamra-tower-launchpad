@@ -35,7 +35,9 @@ function SpecTable({ cat, rows }: SpecTableProps) {
           <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
             color: "#6B6B6B", minWidth: 200, flexShrink: 0, letterSpacing: "0.05em" }}>{label}</div>
           <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-            color: DARK, fontWeight: 400 }}>{value}</div>
+            color: DARK, fontWeight: 400 }}>
+            <EditableRow id={`spec_rows::${label}`}>{value}</EditableRow>
+          </div>
         </motion.div>
       ))}
     </div>

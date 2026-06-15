@@ -232,7 +232,7 @@ const ROW_FIELDS: Record<string, RowFieldDef[]> = {
 // How to locate a row by its natural key, per table.
 function rowMatch(table: string, group: string, key: string) {
   if (table === "stat_counters") return [{ c: "group_key", v: group }, { c: "stat_key", v: key }];
-  if (table === "spec_rows") return [{ c: "sort_order", v: Number(key) }];
+  if (table === "spec_rows") return [{ c: "__or_label__", v: key }];
   if (table === "awards") return [{ c: "sort_order", v: Number(key) }];
   // feature_cards / timeline_entries: collection + sort_order
   return [{ c: "collection", v: group }, { c: "sort_order", v: Number(key) }];
@@ -275,7 +275,13 @@ function RowPopover({ id, lang, onClose }: { id: string; lang: "en" | "ar"; onCl
   useEffect(() => {
     (async () => {
       let q = (supabase.from(table as any) as any).select("*");
-      for (const m of rowMatch(table, group, key)) q = q.eq(m.c, m.v);
+      for (const m of rowMatch(table, group, key)) {
+        if (m.c === "__or_label__") {
+          q = q.or(`label_en.eq.${m.v},label_ar.eq.${m.v}`);
+        } else {
+          q = q.eq(m.c, m.v);
+        }
+      }
       const { data } = await q.maybeSingle();
       if (data) {
         setRowId(data.id);
