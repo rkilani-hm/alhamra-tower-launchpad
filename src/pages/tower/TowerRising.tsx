@@ -207,30 +207,31 @@ export default function TowerRising() {
                     background: `linear-gradient(to right, ${PEARL}, #D4CFC9)` }} />
                   <div style={{ fontFamily: FONT, fontSize: "11px",
                     letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
-                    {c.lamella.kicker}
+                    <Editable id="page_prose:towerRising:lamella.kicker">{c.lamella.kicker}</Editable>
                   </div>
                 </div>
 
                 <h2 style={{ fontFamily: FONT,
                   fontWeight: 300, fontSize: "clamp(28px,3.5vw,48px)", color: "#fff",
                   lineHeight: 1.1, marginBottom: 24, letterSpacing: "-0.01em" }}>
-                  {c.lamella.heading}
+                  <Editable id="page_prose:towerRising:lamella.heading">{c.lamella.heading}</Editable>
                 </h2>
 
                 <p style={{ fontFamily: FONT, fontWeight: 300,
                   fontSize: "clamp(13px,1.1vw,15px)", color: "rgba(255,255,255,0.6)",
                   lineHeight: 1.9, marginBottom: 20 }}>
-                  {c.lamella.body1}
+                  <Editable id="page_prose:towerRising:lamella.body1">{c.lamella.body1}</Editable>
                 </p>
                 <p style={{ fontFamily: FONT, fontWeight: 300,
                   fontSize: "clamp(13px,1.1vw,15px)", color: "rgba(255,255,255,0.6)",
                   lineHeight: 1.9, marginBottom: 36 }}>
-                  {c.lamella.body2}
+                  <Editable id="page_prose:towerRising:lamella.body2">{c.lamella.body2}</Editable>
                 </p>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-                  {c.lamella.facts.map(({ n, l }) => (
-                    <div key={l} style={{
+                  {c.lamella.facts.map(({ n, l }, fi) => (
+                    <EditableRow key={l} id={`stat_counters:towerRising:towerRising_${fi}`}>
+                    <div style={{
                       borderTop: "1px solid rgba(200,185,154,0.2)",
                       paddingTop: 16,
                     }}>
@@ -245,6 +246,7 @@ export default function TowerRising() {
                         {l}
                       </div>
                     </div>
+                    </EditableRow>
                   ))}
                 </div>
               </motion.div>
@@ -277,7 +279,7 @@ export default function TowerRising() {
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: PEARL,
               }}>
-                {c.lamella.caption}
+                <Editable id="page_prose:towerRising:lamella.caption">{c.lamella.caption}</Editable>
               </div>
             </motion.div>
           </div>

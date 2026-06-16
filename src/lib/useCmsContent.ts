@@ -157,6 +157,12 @@ const PAGE_TIMELINE_FIELDS: Record<string, { collection: string; field: string }
   towerRising:  [{ collection: "towerRising.eras",        field: "eras" }],
 };
 
+/* Some pages render their stat group into a NON-default array path (not the
+   top-level `stats`). Map page_key → dotted path the stat overlay should target. */
+const PAGE_STAT_TARGET: Record<string, string> = {
+  towerRising: "lamella.facts",
+};
+
 export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base: T, lang: Lang): T {
   const [merged, setMerged] = useState<T>(base);
 
@@ -218,12 +224,22 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
           changed = true;
         }
 
-        // 2. Stat counters → page's `stats` array (shape {n,u,l,sub} or {number,label}).
-        //    We overlay onto existing array entries by index to preserve any
-        //    extra keys, and match the existing shape (n/number, l/label).
+        // 2. Stat counters → page's stat array (default `stats`, or a custom
+        //    dotted path via PAGE_STAT_TARGET, e.g. towerRising → lamella.facts).
+        //    Overlay onto existing entries by index, matching the existing shape.
         const statRows = stats.data ?? [];
-        if (statRows.length && Array.isArray(out.stats)) {
-          out.stats = out.stats.map((orig: AnyObj, i: number) => {
+        const statPath = PAGE_STAT_TARGET[pageKey] ?? "stats";
+        // resolve the target array node by walking the dotted path
+        let statTarget: AnyObj | null = out;
+        const sp = statPath.split(".");
+        for (let i = 0; i < sp.length - 1; i++) {
+          statTarget = (statTarget && typeof statTarget[sp[i]] === "object") ? statTarget[sp[i]] : null;
+          if (!statTarget) break;
+        }
+        const statKey = sp[sp.length - 1];
+        const statArr = statTarget ? statTarget[statKey] : null;
+        if (statRows.length && Array.isArray(statArr)) {
+          statTarget![statKey] = statArr.map((orig: AnyObj, i: number) => {
             const r = statRows[i];
             if (!r) return orig;
             const next = { ...orig };
