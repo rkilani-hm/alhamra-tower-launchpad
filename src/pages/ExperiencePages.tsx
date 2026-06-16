@@ -5,6 +5,7 @@ import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n } from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -144,10 +145,11 @@ const SERVICES_CONTENT = {
 
 export function Services() {
   const { lang } = useI18n();
-  const c = SERVICES_CONTENT[lang];
+  const c = usePageContent<any>("services", SERVICES_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="services"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -384,10 +386,11 @@ const LOCATION_CONTENT = {
 
 export function Location() {
   const { lang } = useI18n();
-  const c = LOCATION_CONTENT[lang];
+  const c = usePageContent<any>("location", LOCATION_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="location"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -582,10 +585,11 @@ const LEASING_CONTENT = {
 
 export function LeasingOpportunities() {
   const { lang } = useI18n();
-  const c = LEASING_CONTENT[lang];
+  const c = usePageContent<any>("leasing", LEASING_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="leasing"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -706,7 +710,7 @@ const INQUIRY_CONTENT = {
 
 export function LeasingInquiry() {
   const { lang } = useI18n();
-  const c = INQUIRY_CONTENT[lang];
+  const c = usePageContent<any>("inquiry", INQUIRY_CONTENT[lang], lang);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
 
@@ -726,6 +730,7 @@ export function LeasingInquiry() {
   return (
     <PageLayout>
       <PageHero
+        editKey="inquiry"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -849,10 +854,11 @@ const DOWNLOADS_CONTENT = {
 
 export function Downloads() {
   const { lang } = useI18n();
-  const c = DOWNLOADS_CONTENT[lang];
+  const c = usePageContent<any>("downloads", DOWNLOADS_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="downloads"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -946,10 +952,11 @@ const CONTACT_CONTENT = {
 
 export function Contact() {
   const { lang } = useI18n();
-  const c = CONTACT_CONTENT[lang];
+  const c = usePageContent<any>("contact", CONTACT_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="contact"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}

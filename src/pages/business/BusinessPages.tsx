@@ -271,10 +271,11 @@ const OFFICE_CONTENT = {
 
 export function OfficeSpaces() {
   const { lang } = useI18n();
-  const c = OFFICE_CONTENT[lang];
+  const c = usePageContent<any>("officeSpaces", OFFICE_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="officeSpaces"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -558,10 +559,11 @@ const VERTICAL_CONTENT = {
 
 export function VerticalTransportation() {
   const { lang } = useI18n();
-  const c = VERTICAL_CONTENT[lang];
+  const c = usePageContent<any>("verticalTransport", VERTICAL_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="verticalTransport"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -685,10 +687,11 @@ const CONN_CONTENT = {
 
 export function Connectivity() {
   const { lang } = useI18n();
-  const c = CONN_CONTENT[lang];
+  const c = usePageContent<any>("connectivity", CONN_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
+        editKey="connectivity"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
