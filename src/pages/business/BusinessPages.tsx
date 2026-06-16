@@ -81,6 +81,7 @@ export function WorkplaceExperience() {
   return (
     <PageLayout>
       <PageHero
+        editKey="workplace"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}

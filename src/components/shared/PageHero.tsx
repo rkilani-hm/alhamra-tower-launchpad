@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { staggerSlow, fadeUp, fadeLeft } from "@/lib/motion";
 import { GoldLineDraw } from "@/components/shared/ScrollReveal";
 import { PatternBackground } from "@/components/shared/PatternBand";
+import { Editable } from "@/lib/EditMode";
 
 /* ── PageHero ───────────────────────────────────────────────────────────
    Interior page hero — used on every sub-page.
@@ -19,9 +20,16 @@ interface Props {
   subtitle?: string;
   crumbs?:  Crumb[];
   image?:   string;
+  /* When set (e.g. "workplace"), hero text becomes click-to-edit in edit mode,
+     mapping to page_prose rows tag/title/subtitle for this page_key. Optional —
+     pages that don't pass it render exactly as before. */
+  editKey?: string;
 }
 
-export function PageHero({ tag, title, subtitle, crumbs }: Props) {
+export function PageHero({ tag, title, subtitle, crumbs, editKey }: Props) {
+  /* Helper: wrap with <Editable> only when an editKey is provided. */
+  const E = (field: string, node: React.ReactNode) =>
+    editKey ? <Editable id={`page_prose:${editKey}:${field}`}>{node}</Editable> : <>{node}</>;
   return (
     <PatternBackground
       opacity={0.4}
@@ -80,7 +88,7 @@ export function PageHero({ tag, title, subtitle, crumbs }: Props) {
         <motion.div variants={fadeLeft} style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
           <GoldLineDraw width={28} delay={0.2} />
           <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B" }}>
-            {tag}
+            {E("tag", tag)}
           </span>
         </motion.div>
 
@@ -93,7 +101,7 @@ export function PageHero({ tag, title, subtitle, crumbs }: Props) {
             lineHeight: 1.1, color: "#1D1D1B", marginBottom: 20,
           }}
         >
-          {title}
+          {E("title", title)}
         </motion.h1>
 
         {/* Gold underline accent */}
@@ -110,7 +118,7 @@ export function PageHero({ tag, title, subtitle, crumbs }: Props) {
               color: "#6B6B6B", lineHeight: 1.65, maxWidth: 640, marginTop: 20,
             }}
           >
-            {subtitle}
+            {E("subtitle", subtitle)}
           </motion.p>
         )}
       </motion.div>
