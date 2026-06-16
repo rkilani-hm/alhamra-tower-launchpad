@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView }           from "framer-motion";
 import { useT, useContent, useI18n }   from "@/lib/i18n";
-import { Editable, EditableRow } from "@/lib/EditMode";
+import { EditableRow } from "@/lib/EditMode";
 import { useStatCounters, useStatLabels } from "@/lib/useCmsContent";
 
 /* Counter config now lives in the locale JSON under stats.counters, so a CMS

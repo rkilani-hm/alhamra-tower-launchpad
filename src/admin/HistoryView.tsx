@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useAdminAuth } from "./AdminAuth";
 import { VersionRow, listVersions, restoreVersion, versionSummary } from "./adminData";
 import {
-  PEARL, DARK, INK, MUTE, Eyebrow, H1, Rule, Muted, backStyle, btnSolid, btnGhost,
+  INK, MUTE, Eyebrow, H1, Rule, Muted, backStyle, btnSolid, btnGhost,
 } from "./ui";
 
 const TABLE_TITLES: Record<string, string> = {

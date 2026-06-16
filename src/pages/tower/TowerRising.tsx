@@ -10,7 +10,6 @@ import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
 const PEARL_TEXT = "#8B6E3E";
-const GULF  = "#2A5F7A";
 const DARK  = "#1D1D1B";
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 

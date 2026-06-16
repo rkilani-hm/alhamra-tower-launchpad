@@ -16,7 +16,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode, CSSProperties } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toEasternArabic } from "@/admin/ui";
-import { useI18n } from "@/lib/i18n";
 
 interface EditContextValue {
   enabled: boolean;          // edit mode actively on
@@ -81,7 +80,6 @@ export function Editable({
   style?: CSSProperties;
 }) {
   const { enabled } = useEditMode();
-  const { lang } = useI18n();
   const [editing, setEditing] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -105,13 +103,13 @@ export function Editable({
       onClick={(e: any) => { e.stopPropagation(); e.preventDefault(); setEditing(true); }}
     >
       {children}
-      {editing && <EditPopover id={id} lang={lang} onClose={() => setEditing(false)} />}
+      {editing && <EditPopover id={id} onClose={() => setEditing(false)} />}
     </Tag>
   );
 }
 
 /* The inline edit popover — loads current value, saves + publishes on confirm. */
-function EditPopover({ id, lang, onClose }: { id: string; lang: "en" | "ar"; onClose: () => void }) {
+function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
   const [table, group, field] = id.split(":");
   const [valEn, setValEn] = useState("");
   const [valAr, setValAr] = useState("");
@@ -242,7 +240,6 @@ export function EditableRow({
   id, children, as = "span", style,
 }: { id: string; children: ReactNode; as?: keyof JSX.IntrinsicElements; style?: CSSProperties }) {
   const { enabled } = useEditMode();
-  const { lang } = useI18n();
   const [editing, setEditing] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -259,12 +256,12 @@ export function EditableRow({
       onClick={(e: any) => { e.stopPropagation(); e.preventDefault(); setEditing(true); }}
     >
       {children}
-      {editing && <RowPopover id={id} lang={lang} onClose={() => setEditing(false)} />}
+      {editing && <RowPopover id={id} onClose={() => setEditing(false)} />}
     </Tag>
   );
 }
 
-function RowPopover({ id, lang, onClose }: { id: string; lang: "en" | "ar"; onClose: () => void }) {
+function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
   const [table, group, key] = id.split(":");
   const fields = ROW_FIELDS[table] ?? [];
   const [vals, setVals] = useState<Record<string, string>>({});
@@ -382,7 +379,6 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
   const [rowId, setRowId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
-  const fileRef = (typeof document !== "undefined") ? { current: null as HTMLInputElement | null } : { current: null };
 
   useEffect(() => {
     (async () => {

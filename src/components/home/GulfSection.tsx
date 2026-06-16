@@ -7,7 +7,6 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
    Beat 2 of the homepage journey.
 ──────────────────────────────────────────────────────────────────────── */
 
-const GULF   = "#2A5F7A";
 const PEARL  = "#C8B99A";
 
 export function GulfSection() {

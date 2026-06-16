@@ -11,7 +11,7 @@ import { TABLE_DEFS, StructuredTable } from "./structuredData";
 import { HistoryView } from "./HistoryView";
 import { ImageMigration } from "./ImageMigration";
 import {
-  PEARL, DARK, INK, MUTE, Eyebrow, H1, Rule, Muted, FieldLabel, StatusPill,
+  PEARL, DARK, MUTE, Eyebrow, H1, Rule, Muted, FieldLabel, StatusPill,
   inStyle, taStyle, backStyle, btnSolid, btnGhost, toEasternArabic,
 } from "./ui";
 

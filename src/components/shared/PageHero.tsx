@@ -21,7 +21,7 @@ interface Props {
   image?:   string;
 }
 
-export function PageHero({ tag, title, subtitle, crumbs, image }: Props) {
+export function PageHero({ tag, title, subtitle, crumbs }: Props) {
   return (
     <PatternBackground
       opacity={0.4}

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SocialIcons } from "@/components/shared/SocialIcons";
-import { PatternBand } from "@/components/shared/PatternBand";
 import { useT } from "@/lib/i18n";
 
 const NAV = [

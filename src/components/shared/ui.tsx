@@ -1,7 +1,7 @@
 import { ReactNode, useRef } from "react";
 import { motion }    from "framer-motion";
 import { useInView } from "framer-motion";
-import { stagger, fadeUp } from "@/lib/motion";
+import { fadeUp } from "@/lib/motion";
 
 const CG = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 

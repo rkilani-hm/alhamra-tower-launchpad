@@ -6,9 +6,7 @@ import { Editable } from "@/lib/EditMode";
 
 const SAND = "#C5A882";
 const DARK = "#1D1D1B";
-const RED  = "#CD1719";
 const PEARL = "#C8B99A";
-const GULF  = "#2A5F7A";
 
 export function Hero() {
   const t = useT();

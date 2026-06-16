@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useRef, useState, useMemo, useEffect, useCallback } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
-import { Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { Section, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n } from "@/lib/i18n";
 
 /* Bilingual top-level strings only — deep awards data stays in English
@@ -217,13 +217,6 @@ const AWARDS_DATA: Award[] = [
     image: null,
   },
 ];
-
-/* Legacy simple AWARDS table — kept for type safety of any legacy reference */
-const AWARDS = AWARDS_DATA.map(a => ({
-  year:  a.year, award: a.title, org: a.org,
-  cat:   a.category,
-  color: a.image ? SAND : DARK,
-}));
 
 const ENGINEERING_FACTS = [
   {

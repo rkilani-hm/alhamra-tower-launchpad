@@ -120,7 +120,6 @@ export function Navbar() {
         {/* Desktop nav */}
         <ul className="nav-desktop-links" style={{ alignItems: "center", gap: 4, listStyle: "none" }}>
           {NAV.map(({ labelKey, href, children }) => {
-            const isActive = location.pathname.startsWith(href);
             const isOpen   = openMenu === labelKey;
             return (
               <li key={labelKey} style={{ position: "relative" }}

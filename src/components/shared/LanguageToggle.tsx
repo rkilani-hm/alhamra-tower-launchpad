@@ -11,7 +11,6 @@ export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dar
   const { lang, setLang, t } = useI18n();
 
   const isDark = variant === "dark";
-  const text   = isDark ? "rgba(255,255,255,0.85)" : "#1D1D1B";
   const textOff = isDark ? "rgba(255,255,255,0.4)" : "#9a9894";
   const border = isDark ? "rgba(255,255,255,0.2)" : "rgba(29,29,27,0.15)";
 

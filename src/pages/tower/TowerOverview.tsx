@@ -7,13 +7,10 @@ import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
-const SAND   = "#C5A882";
-const SAND_AA = "#9A7550";
 const CREAM  = "#F5F0E8";
 const STONE  = "#E8E0D4";
 const DARK   = "#1D1D1B";
 const PEARL  = "#C8B99A";
-const GULF   = "#2A5F7A";
 
 /* ── Bilingual content dictionary ─────────────────────────────────────
    English copy preserved verbatim. Arabic copy sourced from
