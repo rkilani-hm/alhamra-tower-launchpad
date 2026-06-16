@@ -118,7 +118,7 @@ export function WorkplaceExperience() {
           <Rv delay={0.15}>
             <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img loading="lazy" src="/assets/lobby-elevator-corridor.jpg" alt={c.corridorAlt}
+                <SlotImage loading="lazy" slot="workplace.corridor" fallback="/assets/lobby-elevator-corridor.jpg" alt={c.corridorAlt}
                   style={{ width: "100%", height: 320, objectFit: "cover", objectPosition: "center center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "16px 20px 14px" }}>
                   <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
@@ -127,7 +127,7 @@ export function WorkplaceExperience() {
                 </div>
               </div>
               <div style={{ position: "relative", overflow: "hidden" }}>
-                <img loading="lazy" src="/assets/lounge-at-window.jpg" alt={c.loungeAlt}
+                <SlotImage loading="lazy" slot="workplace.lounge" fallback="/assets/lounge-at-window.jpg" alt={c.loungeAlt}
                   style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "12px 20px 12px" }}>
                   <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
@@ -283,7 +283,7 @@ export function OfficeSpaces() {
       />
 
       <div style={{ position: "relative", height: "clamp(280px,40vw,520px)", overflow: "hidden" }}>
-        <img loading="lazy" src="/assets/sky-lobby-corridor.jpg" alt={c.skyAlt}
+        <SlotImage loading="lazy" slot="officeSpaces.sky" fallback="/assets/sky-lobby-corridor.jpg" alt={c.skyAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.68) 100%)" }} />
         <div className="office-hero-stats">
@@ -321,7 +321,7 @@ export function OfficeSpaces() {
       </Section>
 
       <div style={{ position: "relative", height: "clamp(300px,42vw,560px)", overflow: "hidden" }}>
-        <img loading="lazy" src="/assets/lobby-elevator-corridor-2.jpg" alt={c.arrivalAlt}
+        <SlotImage loading="lazy" slot="officeSpaces.arrival" fallback="/assets/lobby-elevator-corridor-2.jpg" alt={c.arrivalAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
         <div className="ah-section" style={{ position: "absolute", top: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column", justifyContent: "center", background: "transparent" }}>
@@ -361,7 +361,7 @@ export function OfficeSpaces() {
           <Rv>
             <div style={{ display: "flex", flexDirection: "column", gap: 4, height: "100%", minHeight: 420 }}>
               <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
-                <img loading="lazy" src="/assets/floor-reception.jpg" alt={c.floorReceptionAlt}
+                <SlotImage loading="lazy" slot="officeSpaces.floorReception" fallback="/assets/floor-reception.jpg" alt={c.floorReceptionAlt}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
                   <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.floorReceptionTitle}</div>
@@ -371,7 +371,7 @@ export function OfficeSpaces() {
                 </div>
               </div>
               <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
-                <img loading="lazy" src="/assets/tenant-lobby.jpg" alt={c.tenantLobbyAlt}
+                <SlotImage loading="lazy" slot="officeSpaces.tenantLobby" fallback="/assets/tenant-lobby.jpg" alt={c.tenantLobbyAlt}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
                   <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.tenantLobbyTitle}</div>
@@ -397,7 +397,7 @@ export function OfficeSpaces() {
 
       <div className="office-night-split">
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img loading="lazy" src="/assets/entrance-night.jpg" alt={c.entranceAlt}
+          <SlotImage loading="lazy" slot="officeSpaces.entrance" fallback="/assets/entrance-night.jpg" alt={c.entranceAlt}
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.entranceTitle}</div>
@@ -407,7 +407,7 @@ export function OfficeSpaces() {
           </div>
         </div>
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img loading="lazy" src="/assets/boardroom-enhanced.jpg" alt={c.boardroomAlt}
+          <SlotImage loading="lazy" slot="officeSpaces.boardroom" fallback="/assets/boardroom-enhanced.jpg" alt={c.boardroomAlt}
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.boardroomTitle}</div>
@@ -572,7 +572,7 @@ export function VerticalTransportation() {
       <StatsBar stats={[...c.stats]} />
 
       <div style={{ position: "relative", height: "clamp(260px,38vw,480px)", overflow: "hidden" }}>
-        <img loading="lazy" src="/assets/lobby-elevator-corridor.jpg" alt={c.corridorAlt}
+        <SlotImage loading="lazy" slot="verticalTransport.corridor" fallback="/assets/lobby-elevator-corridor.jpg" alt={c.corridorAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
         <div className="photo-overlay-text" style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>

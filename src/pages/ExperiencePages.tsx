@@ -6,6 +6,7 @@ import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n } from "@/lib/i18n";
 import { usePageContent } from "@/lib/useCmsContent";
+import { SlotImage } from "@/lib/EditMode";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -159,8 +160,8 @@ export function Services() {
 
       {/* Lobby entrance corridor — full bleed */}
       <div style={{ position: "relative", height:"clamp(240px,35vw,440px)", overflow: "hidden" }}>
-        <img
-              loading="lazy" src="/assets/lobby-entrance-corridor.jpg"
+        <SlotImage
+              loading="lazy" slot="services.corridor" fallback="/assets/lobby-entrance-corridor.jpg"
               alt={lang === "ar" ? "ممرّ مدخل اللوبي الكبير لبرج الحمراء" : "Al Hamra Tower Grand Lobby entrance corridor"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
@@ -218,8 +219,8 @@ export function Services() {
       {/* ── Sky Lounge ─────────────────────────────────────── */}
       <div style={{ position: "relative", overflow: "hidden" }}>
         <div style={{ position: "relative", height: "clamp(320px,45vw,580px)", overflow: "hidden", background: "#0c0b09" }}>
-          <img
-              loading="lazy" src="/assets/sky-lobby-panoramic.jpg"
+          <SlotImage
+              loading="lazy" slot="services.skyPanoramic" fallback="/assets/sky-lobby-panoramic.jpg"
             alt={lang === "ar" ? "صالة الحمراء السماوية — مطعم بانورامي على ارتفاع ٣٥١ متراً يطلّ على الكويت" : "Al Hamra Sky Lounge — 351m dining with panoramic Kuwait views"}
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", filter: "brightness(0.75)" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
@@ -239,15 +240,15 @@ export function Services() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#0c0b09" }}>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <img
-              loading="lazy" src="/assets/sky-lobby-lounge.jpg"
+            <SlotImage
+              loading="lazy" slot="services.skyLounge" fallback="/assets/sky-lobby-lounge.jpg"
               alt={lang === "ar" ? "قاعة طعام صالة السماء — ثريا وطاولات مستديرة وبار بيانو" : "Sky Lounge dining room — chandelier, round tables, piano bar"}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
             <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{c.skyCap1}</div>
           </div>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <img
-              loading="lazy" src="/assets/lounge-at-window.jpg"
+            <SlotImage
+              loading="lazy" slot="services.lounge" fallback="/assets/lounge-at-window.jpg"
               alt={lang === "ar" ? "صالة لوبي السماء — أرائك كريمية وإطلالة على مدينة الكويت" : "Sky Lobby lounge — cream sofas, Kuwait City through full-height windows"}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
             <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{c.skyCap2}</div>
@@ -278,8 +279,8 @@ export function Services() {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, marginBottom: 2 }}>
           <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <img
-              loading="lazy" src="/assets/mall-atrium-skylight.jpg"
+            <SlotImage
+              loading="lazy" slot="services.mallAtrium" fallback="/assets/mall-atrium-skylight.jpg"
               alt={lang === "ar" ? "مركز الحمراء التجاري — بهو دائري بقبّة هندسية" : "Al Hamra Luxury Centre — circular atrium with geometric skylight"}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
@@ -289,8 +290,8 @@ export function Services() {
             </div>
           </div>
           <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <img
-              loading="lazy" src="/assets/tower-entrance-lit.jpg"
+            <SlotImage
+              loading="lazy" slot="services.entrance" fallback="/assets/tower-entrance-lit.jpg"
               alt={lang === "ar" ? "غراند سينما الحمراء — مجمع سينمائي من ٩ شاشات بمقاعد جلدية قابلة للإمالة" : "Al Hamra Grand Cinema — 9-screen multiplex, leather recliners"}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
@@ -400,8 +401,8 @@ export function Location() {
 
       {/* Full-bleed waterfront photo */}
       <div style={{ position: "relative", height:"clamp(260px,40vw,520px)", overflow: "hidden" }}>
-        <img
-              loading="lazy" src="/assets/kuwait-waterfront.jpg"
+        <SlotImage
+              loading="lazy" slot="location.waterfront" fallback="/assets/kuwait-waterfront.jpg"
               alt={lang === "ar" ? "واجهة مدينة الكويت البحرية والأفق" : "Kuwait City waterfront and skyline"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
@@ -437,8 +438,8 @@ export function Location() {
           </div>
           <Rv delay={0.15}>
             <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 380 }}>
-              <img
-              loading="lazy" src="/assets/kuwait-skyline.jpg"
+              <SlotImage
+              loading="lazy" slot="location.skyline" fallback="/assets/kuwait-skyline.jpg"
               alt={lang === "ar" ? "أفق مدينة الكويت مع برج الحمراء" : "Kuwait City skyline with Al Hamra Tower"}
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "24px 24px 20px" }}>
@@ -598,8 +599,8 @@ export function LeasingOpportunities() {
       <StatsBar stats={[...c.stats]} />
 
       <div style={{ position: "relative", height:"clamp(220px,32vw,400px)", overflow: "hidden" }}>
-        <img
-              loading="lazy" src="/assets/sky-lobby-panoramic.jpg"
+        <SlotImage
+              loading="lazy" slot="leasing.skyPanoramic" fallback="/assets/sky-lobby-panoramic.jpg"
               alt={lang === "ar" ? "إطلالة بانورامية على مدينة الكويت والخليج العربي من لوبي السماء" : "Kuwait City and Arabian Gulf panoramic view from Al Hamra Sky Lobby"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
