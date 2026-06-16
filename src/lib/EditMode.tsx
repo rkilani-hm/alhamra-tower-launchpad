@@ -147,21 +147,13 @@ function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
   }
 
   return (
-    <div
-      onClick={(e) => e.stopPropagation()}
-      style={{
-        position: "absolute", top: "100%", left: 0, marginTop: 8, zIndex: 10000,
-        width: 420, maxWidth: "90vw", background: "#fff", color: "#1D1D1B",
-        border: "1px solid #C8B99A", boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
-        padding: 16, fontFamily: "'Century Gothic',sans-serif", textAlign: "left",
-      }}
-    >
+    <PopoverShell title="Edit text" onClose={onClose}>
       {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : !rowId ? (
         <div style={{ fontSize: 13, color: "#B05050" }}>This text isn't editable yet ({id}).</div>
       ) : (
         <>
           <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9A7550", marginBottom: 10 }}>
-            Editing · {group} · {field}
+            {group} · {field}
           </div>
           <Label>English</Label>
           {longText
@@ -178,7 +170,7 @@ function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
           </div>
         </>
       )}
-    </div>
+    </PopoverShell>
   );
 }
 
@@ -309,16 +301,14 @@ function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
   const set = (k: string, val: string) => setVals((p) => ({ ...p, [k]: val }));
 
   return (
-    <div onClick={(e) => e.stopPropagation()} style={{
-      position: "absolute", top: "100%", left: 0, marginTop: 8, zIndex: 10000, width: 440, maxWidth: "90vw",
-      background: "#fff", color: "#1D1D1B", border: "1px solid #C8B99A", boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
-      padding: 16, fontFamily: "'Century Gothic',sans-serif", textAlign: "left", direction: "ltr" }}>
+    <PopoverShell title="Edit item" onClose={onClose}>
+      <div style={{ direction: "ltr" }}>
       {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : !rowId ? (
         <div style={{ fontSize: 13, color: "#B05050" }}>This item isn't editable yet ({id}).</div>
       ) : (
         <>
           <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9A7550", marginBottom: 10 }}>
-            Editing · {table.replace("_", " ")} · {group || key}
+            {table.replace("_", " ")} · {group || key}
           </div>
           {fields.map((f) => f.bilingual ? (
             <div key={f.col}>
@@ -340,7 +330,8 @@ function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
           </div>
         </>
       )}
-    </div>
+      </div>
+    </PopoverShell>
   );
 }
 
@@ -372,6 +363,43 @@ export function EditableImage({
       >Change image</button>
       {open && <ImageSwapPopover id={id} onClose={() => setOpen(false)} />}
     </span>
+  );
+}
+
+/* Shared modal shell for image/video swap popovers. Renders a fixed,
+   viewport-centered panel on a dimmed backdrop, above all page content —
+   so it never gets clipped by a short image container or trapped beneath
+   later sections. Backdrop click and Esc close it. */
+function PopoverShell({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 2147483000,
+        background: "rgba(12,11,9,0.55)", backdropFilter: "blur(2px)",
+        display: "flex", alignItems: "center", justifyContent: "center", padding: 20,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: 420, maxWidth: "92vw", maxHeight: "85vh", overflowY: "auto",
+          background: "#fff", border: "1px solid #C8B99A", boxShadow: "0 20px 70px rgba(0,0,0,0.45)",
+          padding: 18, fontFamily: "'Century Gothic',sans-serif", textAlign: "left",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+          <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550" }}>{title}</span>
+          <button onClick={onClose} style={{ border: "none", background: "none", cursor: "pointer", fontSize: 20, color: "#6E6456", lineHeight: 1 }}>×</button>
+        </div>
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -419,14 +447,7 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
   }
 
   return (
-    <div onClick={(e) => e.stopPropagation()} style={{
-      position: "absolute", top: 48, right: 10, zIndex: 10001, width: 360, maxWidth: "90vw",
-      background: "#fff", border: "1px solid #C8B99A", boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
-      padding: 14, fontFamily: "'Century Gothic',sans-serif", textAlign: "left" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-        <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550" }}>Change image</span>
-        <button onClick={onClose} style={{ border: "none", background: "none", cursor: "pointer", fontSize: 18, color: "#6E6456" }}>×</button>
-      </div>
+    <PopoverShell title="Change image" onClose={onClose}>
       {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : !rowId ? (
         <div style={{ fontSize: 13, color: "#B05050" }}>This image isn't editable yet.</div>
       ) : (
@@ -435,7 +456,7 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
             {busy ? "Working…" : "Upload new"}
             <input type="file" accept="image/*" onChange={upload} style={{ display: "none" }} disabled={busy} />
           </label>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6, maxHeight: 280, overflowY: "auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6 }}>
             {media.map((m) => (
               <button key={m.id} onClick={() => choose(m.id)} disabled={busy}
                 style={{ padding: 0, border: "1px solid #D8D2C7", background: "#fff", cursor: "pointer", aspectRatio: "4/3", overflow: "hidden" }}>
@@ -445,7 +466,7 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
           </div>
         </>
       )}
-    </div>
+    </PopoverShell>
   );
 }
 
@@ -549,20 +570,13 @@ function SlotSwapPopover({ slot, fallback, kind = "image", onClose }: { slot: st
   }
 
   return (
-    <div onClick={(e) => e.stopPropagation()} style={{
-      position: "absolute", top: 48, right: 10, zIndex: 10001, width: 360, maxWidth: "90vw",
-      background: "#fff", border: "1px solid #C8B99A", boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
-      padding: 14, fontFamily: "'Century Gothic',sans-serif", textAlign: "left" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-        <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550" }}>{kind === "video" ? "Change video" : "Change image"}</span>
-        <button onClick={onClose} style={{ border: "none", background: "none", cursor: "pointer", fontSize: 18, color: "#6E6456" }}>×</button>
-      </div>
+    <PopoverShell title={kind === "video" ? "Change video" : "Change image"} onClose={onClose}>
       <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#C8B99A", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
         {busy ? "Working…" : "Upload new"}
         <input type="file" accept={kind === "video" ? "video/*" : "image/*"} onChange={upload} style={{ display: "none" }} disabled={busy} />
       </label>
       {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6, maxHeight: 280, overflowY: "auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6 }}>
           {media.map((m) => (
             <button key={m.id} onClick={() => apply(m.id)} disabled={busy}
               style={{ padding: 0, border: "1px solid #D8D2C7", background: "#fff", cursor: "pointer", aspectRatio: "4/3", overflow: "hidden" }}>
@@ -575,7 +589,7 @@ function SlotSwapPopover({ slot, fallback, kind = "image", onClose }: { slot: st
           ))}
         </div>
       )}
-    </div>
+    </PopoverShell>
   );
 }
 
