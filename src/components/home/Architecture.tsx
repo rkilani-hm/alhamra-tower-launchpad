@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── Architecture Section — Homepage ──────────────────────────────────
@@ -262,8 +262,10 @@ export function Architecture() {
 
         {/* Right — night tower image */}
         <div style={{ position: "relative", overflow: "hidden", minHeight: 320 }}>
-          <motion.img
-            src="/assets/tower-aerial-night.jpg"
+          <SlotImage
+            motion
+            slot="home.architectureNight"
+            fallback="/assets/tower-aerial-night.jpg"
             alt={c.nightAlt}
             style={{
               y: imgY,

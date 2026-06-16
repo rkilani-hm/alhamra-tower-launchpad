@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { SlotImage } from "@/lib/EditMode";
 
 /* ── The Gulf Section ─────────────────────────────────────────────────
    Full-viewport emotional beat: nothing but the city, the water,
@@ -42,9 +43,10 @@ export function GulfSection() {
       <motion.div
         style={{ position: "absolute", inset: 0, y: imgY, scale }}
       >
-        <img
+        <SlotImage
               loading="lazy"
-          src="/assets/skyline-gulf-night.jpg"
+          slot="home.gulf"
+          fallback="/assets/skyline-gulf-night.jpg"
           alt="Al Hamra Tower above Kuwait City at dusk, Arabian Gulf on the horizon"
           style={{
             width: "100%",

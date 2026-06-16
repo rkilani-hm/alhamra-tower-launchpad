@@ -14,6 +14,7 @@
 ────────────────────────────────────────────────────────────────────────── */
 
 import { createContext, useContext, useEffect, useState, ReactNode, CSSProperties } from "react";
+import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { useSlotImage, invalidateSlotCache } from "@/lib/useCmsContent";
 import { toEasternArabic } from "@/admin/ui";
@@ -456,17 +457,40 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
 ──────────────────────────────────────────────────────────────────────────── */
 
 export function SlotImage({
-  slot, fallback, alt, style, className, ...rest
+  slot, fallback, alt, style, className, motion: useMotion, ...rest
 }: {
   slot: string; fallback: string; alt?: string;
-  style?: CSSProperties; className?: string; [k: string]: any;
+  style?: any; className?: string; motion?: boolean; [k: string]: any;
 }) {
   const { enabled } = useEditMode();
   const src = useSlotImage(slot, fallback);
   const [open, setOpen] = useState(false);
 
-  const img = <img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />;
+  const img = useMotion
+    ? <motion.img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />
+    : <img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />;
   if (!enabled) return img;
+
+  // For motion/parallax images, avoid a wrapper span (which would break
+  // absolute positioning). Render the button as an absolutely-positioned
+  // sibling — the parent container is already positioned in these cases.
+  if (useMotion) {
+    return (
+      <>
+        {img}
+        <button
+          onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
+          style={{
+            position: "absolute", top: 10, right: 10, zIndex: 50,
+            background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+            padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
+            letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
+          }}
+        >Change image</button>
+        {open && <SlotSwapPopover slot={slot} fallback={fallback} onClose={() => setOpen(false)} />}
+      </>
+    );
+  }
 
   return (
     <span style={{ position: "relative", display: "block", width: "100%", height: "100%" }}>
