@@ -150,6 +150,7 @@ const PAGE_CARD_FIELDS: Record<string, { collection: string; field: string }[]> 
     { collection: "alHamraHotel.advantages", field: "advantages" },
     { collection: "alHamraHotel.services",   field: "services" },
   ],
+  workplace:      [{ collection: "workplace.features", field: "features" }],
 };
 const PAGE_TIMELINE_FIELDS: Record<string, { collection: string; field: string }[]> = {
   architecture: [{ collection: "architecture.milestones", field: "milestones" }],
