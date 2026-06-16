@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable, EditableRow } from "@/lib/EditMode";
+import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const CREAM  = "#F5F0E8";
@@ -76,8 +76,10 @@ export default function TowerOverview() {
     <PageLayout>
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <div ref={heroRef} style={{ position: "relative", height: "90vh", minHeight: 520, overflow: "hidden", background: "#0c0b09" }}>
-        <motion.img
-          src="/assets/tower-overview-banner.jpg"
+        <SlotImage
+          motion
+          slot="towerOverview.banner"
+          fallback="/assets/tower-overview-banner.jpg"
           alt={lang === "ar" ? "برج الحمراء — رسم SOM المعماري الرسمي عند الغسق، مدينة الكويت" : "Al Hamra Tower — official SOM architectural render at dusk, Kuwait City"}
           style={{ y: imgY, position: "absolute", inset: 0, width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center top" }}

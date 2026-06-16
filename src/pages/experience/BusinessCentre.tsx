@@ -3,7 +3,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { Section, Tag, H2, Body, Rv, StatsBar, DarkBand } from "@/components/shared/ui";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable, EditableRow, EditableImage } from "@/lib/EditMode";
+import { Editable, EditableRow, EditableImage, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -37,9 +37,10 @@ export default function BusinessCentre() {
 
       {/* ── HERO CAROUSEL-STYLE FULL-BLEED IMAGE ──────────────────── */}
       <div style={{ position: "relative", height: "clamp(320px,48vw,560px)", overflow: "hidden" }}>
-        <img
+        <SlotImage
           loading="lazy"
-          src="/assets/boardroom-gulf-view.jpg"
+          slot="businessCentre.hero"
+          fallback="/assets/boardroom-gulf-view.jpg"
           alt={c.heroImageAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }}
         />

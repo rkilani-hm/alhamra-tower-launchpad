@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable, EditableRow, EditableImage } from "@/lib/EditMode";
+import { Editable, EditableRow, EditableImage, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
@@ -256,8 +256,9 @@ export default function TowerRising() {
               transition={{ duration: 1.2, ease: [0.16,1,0.3,1] }}
               style={{ position: "relative", overflow: "hidden" }}
             >
-              <img
-                src="/assets/lobby-lamella-ceiling.jpg"
+              <SlotImage
+                slot="towerRising.lamellaCeiling"
+                fallback="/assets/lobby-lamella-ceiling.jpg"
                 alt={lang === "ar" ? "برج الحمراء — سقف لاميلا اللوبي بارتفاع 24 متراً، خالٍ من الأعمدة" : "Al Hamra Tower — lamella lobby ceiling, 24 metres high, column-free"}
                 style={{ width: "100%", display: "block",
                   objectFit: "cover", minHeight: 400 }}
