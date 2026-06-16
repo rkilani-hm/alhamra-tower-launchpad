@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence, LayoutGrou
 import { useRef, useState, useMemo, useEffect, useCallback } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { SlotImage } from "@/lib/EditMode";
 import { useI18n } from "@/lib/i18n";
 
 /* Bilingual top-level strings only — deep awards data stays in English
@@ -253,13 +254,15 @@ const COLLABORATORS = [
 ];
 
 /* ─── Parallax image ─────────────────────── */
-function ParallaxImg({ src, alt, height }: { src: string; alt: string; height: number }) {
+function ParallaxImg({ src, alt, height, slot }: { src: string; alt: string; height: number; slot?: string }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useSpring(useTransform(scrollYProgress, [0, 1], ["0%", "18%"]), { stiffness: 80, damping: 20 });
   return (
     <div ref={ref} style={{ position: "relative", overflow: "hidden", height }}>
-      <motion.img src={src} alt={alt} style={{ y, width: "100%", height: "120%", objectFit: "cover", objectPosition: "center", position: "absolute", top: 0 }} />
+      {slot
+        ? <SlotImage motion slot={slot} fallback={src} alt={alt} style={{ y, width: "100%", height: "120%", objectFit: "cover", objectPosition: "center", position: "absolute", top: 0 }} />
+        : <motion.img src={src} alt={alt} style={{ y, width: "100%", height: "120%", objectFit: "cover", objectPosition: "center", position: "absolute", top: 0 }} />}
     </div>
   );
 }
@@ -1109,8 +1112,9 @@ export function TowerAwards() {
 
       {/* ══ HERO — tower-render-dusk.jpg: official SOM/CTBUH render, purple dusk sky ═══ */}
       <div style={{ position: "relative", height: "clamp(360px,55vw,680px)", overflow: "hidden", background: DARK }}>
-        <motion.img
-          src="/assets/tower-render-dusk.jpg"
+        <SlotImage
+          motion
+          slot="towerAwards.dusk" fallback="/assets/tower-render-dusk.jpg"
           alt="Al Hamra Tower — official SOM architectural render at dusk"
           initial={{ scale: 1.06 }} animate={{ scale: 1 }}
           transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
@@ -1215,7 +1219,7 @@ export function TowerAwards() {
 
       {/* ══ LOBBY FEATURE — FULL-BLEED ════════════════════ */}
       <section style={{ position: "relative", overflow: "hidden" }}>
-        <ParallaxImg src="/assets/lobby-interior.jpg" alt="Al Hamra Grand Lobby lamella structure" height={520} />
+        <ParallaxImg src="/assets/lobby-interior.jpg" slot="towerAwards.lobbyInterior" alt="Al Hamra Grand Lobby lamella structure" height={520} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.78) 0%, rgba(29,29,27,0.3) 55%, transparent 100%)" }} />
         <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div className="awards-lobby-text">
@@ -1263,8 +1267,8 @@ export function TowerAwards() {
           {/* Right — lamella ceiling close-up */}
           <Rv delay={0.2}>
             <div style={{ position: "relative", overflow: "hidden" }}>
-              <img
-              loading="lazy" src="/assets/lobby-ceiling-day.jpg" alt="Lamella ceiling structure — daylight view"
+              <SlotImage
+              loading="lazy" slot="towerAwards.lobbyCeilingDay" fallback="/assets/lobby-ceiling-day.jpg" alt="Lamella ceiling structure — daylight view"
                 style={{ width: "100%", height: "clamp(300px,40vw,480px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "20px 20px 16px" }}>
                 <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
@@ -1282,8 +1286,8 @@ export function TowerAwards() {
       {/* ══ PHOTO PAIR — ENTRANCE ENGINEERING ══════════════ */}
       <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }} className="awards-photo-pair">
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img
-              loading="lazy" src="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance — night"
+          <SlotImage
+              loading="lazy" slot="towerAwards.entranceNight" fallback="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance — night"
             style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block", filter: "brightness(0.9)" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>{c.entranceTitle}</div>
@@ -1293,8 +1297,8 @@ export function TowerAwards() {
           </div>
         </div>
         <div style={{ position: "relative", overflow: "hidden" }}>
-          <img
-              loading="lazy" src="/assets/lobby-ceiling-portrait.jpg" alt="Lamella ceiling — portrait"
+          <SlotImage
+              loading="lazy" slot="towerAwards.lobbyCeilingPortrait" fallback="/assets/lobby-ceiling-portrait.jpg" alt="Lamella ceiling — portrait"
             style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>{c.lamellaTitle}</div>

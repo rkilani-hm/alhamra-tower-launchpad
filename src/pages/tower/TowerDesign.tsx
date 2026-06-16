@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable, EditableRow } from "@/lib/EditMode";
+import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL  = "#C8B99A";
@@ -65,8 +65,8 @@ export default function TowerDesign() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: "60vh" }}
           className="design-grid-1">
           <div style={{ position: "relative", overflow: "hidden", background: "#0c0b09", minHeight: 360 }}>
-            <img
-              loading="lazy" src="/assets/facade-dual-glass-stone.jpg"
+            <SlotImage
+              loading="lazy" slot="towerDesign.facade" fallback="/assets/facade-dual-glass-stone.jpg"
               alt={lang === "ar" ? "برج الحمراء — واجهةٌ مزدوجة: جدارٌ ستائريّ زجاجيّ وحجرُ الجوراسيك جنباً إلى جنب" : "Al Hamra Tower dual facade — glass curtain wall and Jura limestone side by side"}
               style={{ width: "100%", height: "100%", objectFit: "cover",
                 objectPosition: "center", display: "block" }} />
@@ -154,23 +154,23 @@ export default function TowerDesign() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 4, position: "relative", minHeight: 480 }}>
             <div style={{ position: "relative", overflow: "hidden", flex: 2 }}>
-              <img
-              loading="lazy" src="/assets/lobby-grand-lamella.jpg"
+              <SlotImage
+              loading="lazy" slot="towerDesign.lobby" fallback="/assets/lobby-grand-lamella.jpg"
                 alt={lang === "ar" ? "ردهةُ برج الحمراء — أقواسُ اللاميلا البيضاء، فضاءٌ بلا أعمدة بارتفاع 24م" : "Al Hamra Tower lobby — white lamella arches, 24m column-free atrium"}
                 style={{ width: "100%", height: "100%", objectFit: "cover", minHeight: 360,
                   objectPosition: "center", display: "block" }} />
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
               <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
-                <img
-              loading="lazy" src="/assets/lobby-escalator-art.jpg"
+                <SlotImage
+              loading="lazy" slot="towerDesign.escalator" fallback="/assets/lobby-escalator-art.jpg"
                   alt={lang === "ar" ? "سلالمُ الحمراء الكهربائية ومنحوتةُ السقف الفولاذية" : "Al Hamra escalator and sculptural steel ceiling installation"}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}><Editable id="page_prose:towerDesign:lobbyCaption1">{c.lobbyCaption1}</Editable></div>
               </div>
               <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
-                <img
-              loading="lazy" src="/assets/facade-trencadis-detail.jpg"
+                <SlotImage
+              loading="lazy" slot="towerDesign.trencadis" fallback="/assets/facade-trencadis-detail.jpg"
                   alt={lang === "ar" ? "واجهةُ برج الحمراء — تفصيلُ الحجر الجيريّ والترِنكاديس" : "Al Hamra Tower facade — limestone and trencadis mosaic detail"}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,185,154,0.8)" }}><Editable id="page_prose:towerDesign:lobbyCaption2">{c.lobbyCaption2}</Editable></div>
@@ -218,8 +218,8 @@ export default function TowerDesign() {
           viewport={{ once: true }} transition={{ duration: 0.8 }}
           style={{ marginBottom: 64 }}
         >
-          <img
-            src="/assets/drawings/floor-plan-typical.jpg"
+          <SlotImage
+            slot="towerDesign.floorPlan" fallback="/assets/drawings/floor-plan-typical.jpg"
             alt={lang === "ar" ? "SOM — مخطّط طابق المكاتب النموذجيّ لبرج الحمراء، نحو 2,300م² صافي" : "SOM — Al Hamra Tower typical office floor plan, ~2,300 m² NLA per floor"}
             loading="lazy"
             style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }}
