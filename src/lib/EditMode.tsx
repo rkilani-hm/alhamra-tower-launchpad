@@ -15,6 +15,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode, CSSProperties } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useSlotImage, invalidateSlotCache } from "@/lib/useCmsContent";
 import { toEasternArabic } from "@/admin/ui";
 
 interface EditContextValue {
@@ -442,6 +443,109 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
             ))}
           </div>
         </>
+      )}
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   <SlotImage> — a hardcoded image made editable via the image_slots table.
+   Renders an <img> resolving slot→media (fallback to the original path). In
+   edit mode, overlays "Change image" → media library pick / upload, writing
+   the slot's media_id. Use in place of a plain <img> for hero/section images.
+──────────────────────────────────────────────────────────────────────────── */
+
+export function SlotImage({
+  slot, fallback, alt, style, className, ...rest
+}: {
+  slot: string; fallback: string; alt?: string;
+  style?: CSSProperties; className?: string; [k: string]: any;
+}) {
+  const { enabled } = useEditMode();
+  const src = useSlotImage(slot, fallback);
+  const [open, setOpen] = useState(false);
+
+  const img = <img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />;
+  if (!enabled) return img;
+
+  return (
+    <span style={{ position: "relative", display: "block", width: "100%", height: "100%" }}>
+      {img}
+      <button
+        onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
+        style={{
+          position: "absolute", top: 10, right: 10, zIndex: 50,
+          background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+          padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
+          letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
+        }}
+      >Change image</button>
+      {open && <SlotSwapPopover slot={slot} fallback={fallback} onClose={() => setOpen(false)} />}
+    </span>
+  );
+}
+
+function SlotSwapPopover({ slot, fallback, onClose }: { slot: string; fallback: string; onClose: () => void }) {
+  const [media, setMedia] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase.from("media_assets").select("id,public_url,alt_en").order("created_at", { ascending: false });
+      setMedia(data ?? []); setLoading(false);
+    })();
+  }, []);
+
+  async function apply(mediaId: string) {
+    setBusy(true);
+    const { data: u } = await supabase.auth.getUser();
+    // Upsert the slot → media mapping.
+    await (supabase as any).from("image_slots").upsert({
+      slot, media_id: mediaId, fallback_path: fallback,
+      status: "published", updated_by: u.user?.id ?? null, updated_at: new Date().toISOString(),
+    }, { onConflict: "slot" });
+    invalidateSlotCache();
+    setBusy(false); onClose(); window.location.reload();
+  }
+
+  async function upload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]; if (!file) return;
+    setBusy(true);
+    try {
+      const ext = file.name.split(".").pop() || "bin";
+      const path = `${crypto.randomUUID()}.${ext}`;
+      const up = await supabase.storage.from("site-media").upload(path, file, { upsert: false, contentType: file.type });
+      if (up.error) throw up.error;
+      const { data: pub } = supabase.storage.from("site-media").getPublicUrl(path);
+      const { data: u } = await supabase.auth.getUser();
+      const ins = await supabase.from("media_assets").insert({ storage_path: path, public_url: pub.publicUrl, alt_en: file.name, uploaded_by: u.user?.id ?? null }).select("id").single();
+      if (ins.data) await apply(ins.data.id);
+    } catch { setBusy(false); }
+  }
+
+  return (
+    <div onClick={(e) => e.stopPropagation()} style={{
+      position: "absolute", top: 48, right: 10, zIndex: 10001, width: 360, maxWidth: "90vw",
+      background: "#fff", border: "1px solid #C8B99A", boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
+      padding: 14, fontFamily: "'Century Gothic',sans-serif", textAlign: "left" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+        <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550" }}>Change image</span>
+        <button onClick={onClose} style={{ border: "none", background: "none", cursor: "pointer", fontSize: 18, color: "#6E6456" }}>×</button>
+      </div>
+      <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#C8B99A", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
+        {busy ? "Working…" : "Upload new"}
+        <input type="file" accept="image/*" onChange={upload} style={{ display: "none" }} disabled={busy} />
+      </label>
+      {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6, maxHeight: 280, overflowY: "auto" }}>
+          {media.map((m) => (
+            <button key={m.id} onClick={() => apply(m.id)} disabled={busy}
+              style={{ padding: 0, border: "1px solid #D8D2C7", background: "#fff", cursor: "pointer", aspectRatio: "4/3", overflow: "hidden" }}>
+              {m.public_url ? <img src={m.public_url} alt={m.alt_en ?? ""} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <span style={{ fontSize: 9 }}>{m.alt_en}</span>}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -4,7 +4,7 @@ import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n }     from "@/lib/i18n";
 import { usePageContent } from "@/lib/useCmsContent";
-import { Editable, EditableRow } from "@/lib/EditMode";
+import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -91,7 +91,7 @@ export function WorkplaceExperience() {
       <StatsBar stats={[...c.stats]} />
 
       <div style={{ position: "relative", height: "clamp(340px,48vw,640px)", overflow: "hidden" }}>
-        <img loading="lazy" src="/assets/lobby-grand-lamella.jpg" alt={c.lobbyAlt}
+        <SlotImage slot="workplace.lobby" fallback="/assets/lobby-grand-lamella.jpg" loading="lazy" alt={c.lobbyAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.05) 0%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>

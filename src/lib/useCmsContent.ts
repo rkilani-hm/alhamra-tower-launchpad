@@ -309,3 +309,46 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
 
   return merged;
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Image slots — resolves a slot name (e.g. "workplace.lobby") to its current
+   image URL. Published image_slots override the hardcoded fallback path.
+   One fetch on mount, shared via a module cache so many <SlotImage> instances
+   don't each query.
+────────────────────────────────────────────────────────────────────────── */
+let _slotCache: Record<string, string> | null = null;
+let _slotPromise: Promise<Record<string, string>> | null = null;
+
+async function fetchSlots(): Promise<Record<string, string>> {
+  if (_slotCache) return _slotCache;
+  if (_slotPromise) return _slotPromise;
+  _slotPromise = (async () => {
+    const map: Record<string, string> = {};
+    try {
+      const { data } = await ((supabase as any).from("image_slots"))
+        .select("slot,media_id,media_assets(public_url)")
+        .eq("status", "published");
+      for (const r of data ?? []) {
+        const url = r.media_assets?.public_url;
+        if (url) map[r.slot] = url;
+      }
+    } catch { /* fall back to hardcoded paths */ }
+    _slotCache = map;
+    return map;
+  })();
+  return _slotPromise;
+}
+
+/* Returns the resolved URL for a slot, or the fallback until/unless overridden. */
+export function useSlotImage(slot: string, fallback: string): string {
+  const [url, setUrl] = useState(fallback);
+  useEffect(() => {
+    let active = true;
+    fetchSlots().then((m) => { if (active && m[slot]) setUrl(m[slot]); });
+    return () => { active = false; };
+  }, [slot, fallback]);
+  return url;
+}
+
+/* Allow the edit layer to invalidate the cache after a swap. */
+export function invalidateSlotCache() { _slotCache = null; _slotPromise = null; }
