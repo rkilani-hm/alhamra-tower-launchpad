@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useT } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotVideo } from "@/lib/EditMode";
 
 /* ── FounderQuote ─────────────────────────────────────────────────────
    Inspired by burjkhalifa.ae/the-tower/ — which opens with a founder
@@ -145,8 +145,9 @@ export function FounderQuote() {
           }}
           className="fq-image"
         >
-          <video
-            src="/assets/founder-quote.mp4"
+          <SlotVideo
+            slot="home.founderQuote"
+            fallback="/assets/founder-quote.mp4"
             autoPlay
             muted
             loop

@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useT } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, useSlotVideoSrc, SlotVideoEditButton } from "@/lib/EditMode";
 
 const SAND = "#C5A882";
 const DARK = "#1D1D1B";
@@ -10,6 +10,7 @@ const PEARL = "#C8B99A";
 
 export function Hero() {
   const t = useT();
+  const heroVideoSrc = useSlotVideoSrc("home.heroVideo", "/assets/tower-drone.mp4");
   const ref      = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady]   = useState(false);
@@ -48,6 +49,8 @@ export function Hero() {
       <motion.div style={{ position: "absolute", inset: 0, y: mediaY }}>
         <motion.video
           ref={videoRef}
+          key={heroVideoSrc}
+          src={heroVideoSrc}
           autoPlay muted loop playsInline preload="auto"
           poster="/assets/tower-sunset.jpg"
           initial={{ opacity: 0 }}
@@ -56,9 +59,8 @@ export function Hero() {
           style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center 15%", display: "block" }}
           aria-label={t("hero.alt")}
-        >
-          <source src="/assets/tower-drone.mp4" type="video/mp4" />
-        </motion.video>
+        />
+        <SlotVideoEditButton slot="home.heroVideo" fallback="/assets/tower-drone.mp4" />
       </motion.div>
 
       {/* Gradient overlays */}

@@ -509,7 +509,7 @@ export function SlotImage({
   );
 }
 
-function SlotSwapPopover({ slot, fallback, onClose }: { slot: string; fallback: string; onClose: () => void }) {
+function SlotSwapPopover({ slot, fallback, kind = "image", onClose }: { slot: string; fallback: string; kind?: "image" | "video"; onClose: () => void }) {
   const [media, setMedia] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -554,23 +554,91 @@ function SlotSwapPopover({ slot, fallback, onClose }: { slot: string; fallback: 
       background: "#fff", border: "1px solid #C8B99A", boxShadow: "0 8px 40px rgba(0,0,0,0.3)",
       padding: 14, fontFamily: "'Century Gothic',sans-serif", textAlign: "left" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-        <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550" }}>Change image</span>
+        <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550" }}>{kind === "video" ? "Change video" : "Change image"}</span>
         <button onClick={onClose} style={{ border: "none", background: "none", cursor: "pointer", fontSize: 18, color: "#6E6456" }}>×</button>
       </div>
       <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#C8B99A", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
         {busy ? "Working…" : "Upload new"}
-        <input type="file" accept="image/*" onChange={upload} style={{ display: "none" }} disabled={busy} />
+        <input type="file" accept={kind === "video" ? "video/*" : "image/*"} onChange={upload} style={{ display: "none" }} disabled={busy} />
       </label>
       {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6, maxHeight: 280, overflowY: "auto" }}>
           {media.map((m) => (
             <button key={m.id} onClick={() => apply(m.id)} disabled={busy}
               style={{ padding: 0, border: "1px solid #D8D2C7", background: "#fff", cursor: "pointer", aspectRatio: "4/3", overflow: "hidden" }}>
-              {m.public_url ? <img src={m.public_url} alt={m.alt_en ?? ""} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <span style={{ fontSize: 9 }}>{m.alt_en}</span>}
+              {m.public_url
+                ? (/\.(mp4|webm|mov)(\?|$)/i.test(m.public_url)
+                    ? <video src={m.public_url} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    : <img src={m.public_url} alt={m.alt_en ?? ""} style={{ width: "100%", height: "100%", objectFit: "cover" }} />)
+                : <span style={{ fontSize: 9 }}>{m.alt_en}</span>}
             </button>
           ))}
         </div>
       )}
     </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   <SlotVideo> — a hardcoded <video> made editable via the same image_slots
+   table (a slot can point at a video media asset). Drop-in for a plain
+   <video src=...>. In edit mode, overlays "Change video" → library/upload.
+──────────────────────────────────────────────────────────────────────────── */
+
+export function SlotVideo({
+  slot, fallback, style, className, ...rest
+}: {
+  slot: string; fallback: string;
+  style?: any; className?: string; [k: string]: any;
+}) {
+  const { enabled } = useEditMode();
+  const src = useSlotImage(slot, fallback);
+  const [open, setOpen] = useState(false);
+
+  const vid = <video src={src} style={style} className={className} {...rest} />;
+  if (!enabled) return vid;
+
+  return (
+    <span style={{ position: "relative", display: "block", width: "100%", height: "100%" }}>
+      {vid}
+      <button
+        onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
+        style={{
+          position: "absolute", top: 10, right: 10, zIndex: 50,
+          background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+          padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
+          letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
+        }}
+      >Change video</button>
+      {open && <SlotSwapPopover slot={slot} fallback={fallback} kind="video" onClose={() => setOpen(false)} />}
+    </span>
+  );
+}
+
+/* useSlotVideoSrc — for cases where a plain wrapper won't do (e.g. a
+   motion.video with a <source> child and a ref). Resolves the slot URL so the
+   caller can apply it to its own element; the caller adds its own edit button
+   via <SlotVideoEditButton>. */
+export function useSlotVideoSrc(slot: string, fallback: string) {
+  return useSlotImage(slot, fallback);
+}
+
+export function SlotVideoEditButton({ slot, fallback }: { slot: string; fallback: string }) {
+  const { enabled } = useEditMode();
+  const [open, setOpen] = useState(false);
+  if (!enabled) return null;
+  return (
+    <>
+      <button
+        onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
+        style={{
+          position: "absolute", top: 10, right: 10, zIndex: 50,
+          background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+          padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
+          letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
+        }}
+      >Change video</button>
+      {open && <SlotSwapPopover slot={slot} fallback={fallback} kind="video" onClose={() => setOpen(false)} />}
+    </>
   );
 }
