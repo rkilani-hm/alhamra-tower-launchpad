@@ -3,6 +3,8 @@ import { FloorPlanViewer } from "@/components/shared/FloorPlanViewer";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n }     from "@/lib/i18n";
+import { usePageContent } from "@/lib/useCmsContent";
+import { Editable, EditableRow } from "@/lib/EditMode";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -75,7 +77,7 @@ const WORKPLACE_CONTENT = {
 
 export function WorkplaceExperience() {
   const { lang } = useI18n();
-  const c = WORKPLACE_CONTENT[lang];
+  const c = usePageContent<any>("workplace", WORKPLACE_CONTENT[lang], lang);
   return (
     <PageLayout>
       <PageHero
@@ -93,9 +95,9 @@ export function WorkplaceExperience() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.05) 0%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
           <Rv>
-            <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>{c.lobbyKicker}</p>
+            <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}><Editable id="page_prose:workplace:lobbyKicker">{c.lobbyKicker}</Editable></p>
             <h3 style={{ fontFamily: FONT, fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, maxWidth: 560 }}>
-              {c.lobbyHeading1}<br /><strong style={{ fontWeight: 500 }}>{c.lobbyHeading2}</strong>
+              <Editable id="page_prose:workplace:lobbyHeading1">{c.lobbyHeading1}</Editable><br /><strong style={{ fontWeight: 500 }}><Editable id="page_prose:workplace:lobbyHeading2">{c.lobbyHeading2}</Editable></strong>
             </h3>
           </Rv>
         </div>
@@ -104,9 +106,9 @@ export function WorkplaceExperience() {
       <Section>
         <div className="grid-2col media-right">
           <div>
-            <Rv><Tag>{c.workTag}</Tag></Rv>
-            <Rv delay={0.1}><H2>{c.workH2}</H2></Rv>
-            <Rv delay={0.2}><Body>{c.workBody}</Body></Rv>
+            <Rv><Tag><Editable id="page_prose:workplace:workTag">{c.workTag}</Editable></Tag></Rv>
+            <Rv delay={0.1}><H2><Editable id="page_prose:workplace:workH2">{c.workH2}</Editable></H2></Rv>
+            <Rv delay={0.2}><Body><Editable id="page_prose:workplace:workBody">{c.workBody}</Editable></Body></Rv>
             <Rv delay={0.3}>
               <FeatureGrid features={[...c.features]} />
             </Rv>
@@ -119,7 +121,7 @@ export function WorkplaceExperience() {
                   style={{ width: "100%", height: 320, objectFit: "cover", objectPosition: "center center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "16px 20px 14px" }}>
                   <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
-                    {c.corridorCap}
+                    <Editable id="page_prose:workplace:corridorCap">{c.corridorCap}</Editable>
                   </span>
                 </div>
               </div>
@@ -128,7 +130,7 @@ export function WorkplaceExperience() {
                   style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "12px 20px 12px" }}>
                   <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
-                    {c.loungeCap}
+                    <Editable id="page_prose:workplace:loungeCap">{c.loungeCap}</Editable>
                   </span>
                 </div>
               </div>
