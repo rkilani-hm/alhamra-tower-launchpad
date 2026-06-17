@@ -1121,8 +1121,8 @@ export function TowerAwards() {
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", filter: "brightness(0.75) saturate(1.1)" }}
         />
         {/* Gradient overlays */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.1) 0%, transparent 40%, rgba(29,29,27,0.75) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, rgba(197,168,130,0.15) 0%, transparent 60%)` }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, rgba(29,29,27,0.1) 0%, transparent 40%, rgba(29,29,27,0.75) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `linear-gradient(to right, rgba(197,168,130,0.15) 0%, transparent 60%)` }} />
 
         {/* Text overlay */}
         <div className="awards-hero-text">
@@ -1220,8 +1220,8 @@ export function TowerAwards() {
       {/* ══ LOBBY FEATURE — FULL-BLEED ════════════════════ */}
       <section style={{ position: "relative", overflow: "hidden" }}>
         <ParallaxImg src="/assets/lobby-interior.jpg" slot="towerAwards.lobbyInterior" alt="Al Hamra Grand Lobby lamella structure" height={520} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.78) 0%, rgba(29,29,27,0.3) 55%, transparent 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.78) 0%, rgba(29,29,27,0.3) 55%, transparent 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div className="awards-lobby-text">
             <Rv>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND, marginBottom: 16 }}>

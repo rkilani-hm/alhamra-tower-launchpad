@@ -93,7 +93,7 @@ export function WorkplaceExperience() {
       <div style={{ position: "relative", height: "clamp(340px,48vw,640px)", overflow: "hidden" }}>
         <SlotImage slot="workplace.lobby" fallback="/assets/lobby-grand-lamella.jpg" loading="lazy" alt={c.lobbyAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(29,29,27,0.05) 0%, rgba(29,29,27,0.55) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, rgba(29,29,27,0.05) 0%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
           <Rv>
             <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}><Editable id="page_prose:workplace:lobbyKicker">{c.lobbyKicker}</Editable></p>
@@ -285,7 +285,7 @@ export function OfficeSpaces() {
       <div style={{ position: "relative", height: "clamp(280px,40vw,520px)", overflow: "hidden" }}>
         <SlotImage loading="lazy" slot="officeSpaces.sky" fallback="/assets/sky-lobby-corridor.jpg" alt={c.skyAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.68) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.68) 100%)" }} />
         <div className="office-hero-stats">
           {c.heroStats.map(({ n, u, l }) => (
             <div key={l}>
@@ -323,7 +323,7 @@ export function OfficeSpaces() {
       <div style={{ position: "relative", height: "clamp(300px,42vw,560px)", overflow: "hidden" }}>
         <SlotImage loading="lazy" slot="officeSpaces.arrival" fallback="/assets/lobby-elevator-corridor-2.jpg" alt={c.arrivalAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
         <div className="ah-section" style={{ position: "absolute", top: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column", justifyContent: "center", background: "transparent" }}>
           <Rv>
             <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>{c.arrivalKicker}</div>
@@ -349,7 +349,7 @@ export function OfficeSpaces() {
                 onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
                 onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
               />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(29,29,27,0.65) 0%, transparent 55%)" }} />
+              <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to top, rgba(29,29,27,0.65) 0%, transparent 55%)" }} />
               <div style={{ position: "absolute", bottom: 12, left: 14, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</div>
             </div>
           </Rv>
@@ -574,7 +574,7 @@ export function VerticalTransportation() {
       <div style={{ position: "relative", height: "clamp(260px,38vw,480px)", overflow: "hidden" }}>
         <SlotImage loading="lazy" slot="verticalTransport.corridor" fallback="/assets/lobby-elevator-corridor.jpg" alt={c.corridorAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
         <div className="photo-overlay-text" style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
           <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>
             {c.corridorKicker}

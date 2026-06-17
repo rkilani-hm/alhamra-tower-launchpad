@@ -84,11 +84,11 @@ export default function TowerOverview() {
           style={{ y: imgY, position: "absolute", inset: 0, width: "100%", height: "115%",
             objectFit: "cover", objectPosition: "center top" }}
         />
-        <div style={{ position: "absolute", inset: 0,
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
           background: "linear-gradient(to bottom, rgba(12,11,9,0.3) 0%, transparent 30%, rgba(12,11,9,0.25) 65%, rgba(12,11,9,0.9) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0,
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
           background: "linear-gradient(to right, rgba(12,11,9,0.6) 0%, transparent 60%)" }} />
-        <motion.div style={{ opacity: fade, position: "absolute", inset: 0, zIndex: 4,
+        <motion.div style={{ opacity: fade, position: "absolute", inset: 0, zIndex: 4, pointerEvents: "none",
           display: "flex", flexDirection: "column", justifyContent: "flex-end",
           padding: "0 clamp(28px,6vw,96px) clamp(48px,7vh,80px)" }}>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}

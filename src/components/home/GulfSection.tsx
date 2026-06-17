@@ -79,6 +79,7 @@ export function GulfSection() {
           justifyContent: "space-between",
           padding: "clamp(48px,7vh,88px) clamp(28px,6vw,96px)",
           zIndex: 5,
+          pointerEvents: "none",
         }}
       >
         {/* Top — Gulf label */}

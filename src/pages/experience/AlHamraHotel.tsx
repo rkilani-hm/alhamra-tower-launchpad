@@ -44,7 +44,7 @@ export default function AlHamraHotel() {
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%" }}
         />
         <div style={{
-          position: "absolute", inset: 0,
+          position: "absolute", inset: 0, pointerEvents: "none",
           background: "linear-gradient(to bottom, rgba(29,29,27,0.35) 0%, transparent 30%, transparent 60%, rgba(29,29,27,0.85) 100%)",
         }} />
         <div style={{ position: "absolute", bottom: "clamp(32px,5vh,56px)", left: "clamp(24px,5vw,80px)", right: "clamp(24px,5vw,80px)" }}>

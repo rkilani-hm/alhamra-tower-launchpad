@@ -164,7 +164,7 @@ export function Services() {
               loading="lazy" slot="services.corridor" fallback="/assets/lobby-entrance-corridor.jpg"
               alt={lang === "ar" ? "ممرّ مدخل اللوبي الكبير لبرج الحمراء" : "Al Hamra Tower Grand Lobby entrance corridor"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
         <div style={{ position: "absolute", bottom: 44, left: 80, right: 80 }}>
           <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
             {c.lobbyKicker}
@@ -223,7 +223,7 @@ export function Services() {
               loading="lazy" slot="services.skyPanoramic" fallback="/assets/sky-lobby-panoramic.jpg"
             alt={lang === "ar" ? "صالة الحمراء السماوية — مطعم بانورامي على ارتفاع ٣٥١ متراً يطلّ على الكويت" : "Al Hamra Sky Lounge — 351m dining with panoramic Kuwait views"}
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", filter: "brightness(0.75)" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
+          <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px,5vh,56px) clamp(28px,6vw,96px)" }}>
             <Rv>
               <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 12 }}>
@@ -405,7 +405,7 @@ export function Location() {
               loading="lazy" slot="location.waterfront" fallback="/assets/kuwait-waterfront.jpg"
               alt={lang === "ar" ? "واجهة مدينة الكويت البحرية والأفق" : "Kuwait City waterfront and skyline"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, left: 80, right: 80, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div>
             <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>{c.bannerKicker}</div>
@@ -603,7 +603,7 @@ export function LeasingOpportunities() {
               loading="lazy" slot="leasing.skyPanoramic" fallback="/assets/sky-lobby-panoramic.jpg"
               alt={lang === "ar" ? "إطلالة بانورامية على مدينة الكويت والخليج العربي من لوبي السماء" : "Kuwait City and Arabian Gulf panoramic view from Al Hamra Sky Lobby"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, right: lang === "ar" ? "auto" : 80, left: lang === "ar" ? 80 : "auto", textAlign: lang === "ar" ? "left" : "right" }}>
           <p style={{ fontFamily: FONT, fontSize: "clamp(20px,2.5vw,32px)", fontWeight: 200, letterSpacing: "0.04em", color: "#fff", lineHeight: 1.4, whiteSpace: "pre-line" }}>
             {c.quote}
