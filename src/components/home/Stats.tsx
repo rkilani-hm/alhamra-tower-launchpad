@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView }           from "framer-motion";
 import { useT, useContent, useI18n }   from "@/lib/i18n";
-import { EditableRow } from "@/lib/EditMode";
+import { EditableRow, Editable } from "@/lib/EditMode";
 import { useStatCounters, useStatLabels } from "@/lib/useCmsContent";
 
 /* Counter config now lives in the locale JSON under stats.counters, so a CMS
@@ -196,7 +196,7 @@ export function Stats() {
             fontFamily: CG, fontSize: "11px", letterSpacing: "0.4em",
             textTransform: "uppercase", color: PEARL,
           }}>
-            {t("stats.kicker")}
+            <Editable id="section_fields:stats:kicker">{t("stats.kicker")}</Editable>
           </span>
           <span style={{ width: 32, height: 1, background: PEARL }} />
         </motion.div>

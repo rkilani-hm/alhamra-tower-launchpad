@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useT } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 
 /* ── ExperienceCards ──────────────────────────────────────────────────
    Burj Khalifa's homepage uses a 4-column grid of dark image cards
@@ -117,7 +118,7 @@ function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t
             letterSpacing: "0.38em", textTransform: "uppercase",
             color: PEARL, marginBottom: 14,
           }}>
-            {t(card.keyPrefix + ".kicker")}
+            <Editable id={`section_fields:experience:${card.keyPrefix.replace("experience.","")}.kicker`}>{t(card.keyPrefix + ".kicker")}</Editable>
           </div>
 
           <div style={{
@@ -126,7 +127,7 @@ function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t
             color: "#fff", marginBottom: 12,
             letterSpacing: "-0.005em",
           }}>
-            {t(card.keyPrefix + ".title")}
+            <Editable id={`section_fields:experience:${card.keyPrefix.replace("experience.","")}.title`}>{t(card.keyPrefix + ".title")}</Editable>
           </div>
 
           {/* Description — reveals on hover */}
@@ -142,8 +143,7 @@ function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t
                 lineHeight: 1.6, margin: "0 0 16px",
                 maxWidth: 320,
               }}
-              dangerouslySetInnerHTML={{ __html: t(card.keyPrefix + ".desc") }}
-            />
+            ><Editable id={`section_fields:experience:${card.keyPrefix.replace("experience.","")}.desc`}>{t(card.keyPrefix + ".desc")}</Editable></p>
           </motion.div>
 
           {/* CTA — arrow always visible */}
@@ -156,7 +156,7 @@ function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t
             borderTop: `1px solid rgba(200,185,154,${hover ? 0.6 : 0.2})`,
             transition: "border-color 0.3s ease",
           }}>
-            <span>{t(card.keyPrefix + ".cta")}</span>
+            <span><Editable id={`section_fields:experience:${card.keyPrefix.replace("experience.","")}.cta`}>{t(card.keyPrefix + ".cta")}</Editable></span>
             <motion.svg
               width="18" height="8" viewBox="0 0 18 8" fill="none"
               animate={{ x: hover ? 4 : 0 }}
@@ -191,7 +191,7 @@ export function ExperienceCards() {
             fontFamily: CG, fontSize: "11px", letterSpacing: "0.4em",
             textTransform: "uppercase", color: PEARL,
           }}>
-            {t("experience.kicker")}
+            <Editable id="section_fields:experience:kicker">{t("experience.kicker")}</Editable>
           </span>
         </div>
 
@@ -209,7 +209,7 @@ export function ExperienceCards() {
             letterSpacing: "-0.015em",
             maxWidth: 720,
           }}>
-            {t("experience.title")}
+            <Editable id="section_fields:experience:title">{t("experience.title")}</Editable>
           </h2>
 
           <p style={{
@@ -217,7 +217,7 @@ export function ExperienceCards() {
             color: "rgba(255,255,255,0.55)", lineHeight: 1.7,
             margin: 0, maxWidth: 320,
           }}>
-            {t("experience.subtitle")}
+            <Editable id="section_fields:experience:subtitle">{t("experience.subtitle")}</Editable>
           </p>
         </div>
       </div>
