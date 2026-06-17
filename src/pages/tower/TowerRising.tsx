@@ -229,7 +229,7 @@ export default function TowerRising() {
                 </p>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-                  {c.lamella.facts.map(({ n, l }, fi) => (
+                  {(c.lamella?.facts ?? []).map(({ n, l }, fi) => (
                     <EditableRow key={l} id={`stat_counters:towerRising:towerRising_${fi}`}>
                     <div style={{
                       borderTop: "1px solid rgba(200,185,154,0.2)",

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useI18n, useContent } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── The Invitation Section ───────────────────────────────────────────
@@ -210,8 +210,8 @@ export function InvitationSection() {
           </motion.div>
 
           {c.tenants.map(({ label, desc }, i) => (
+            <EditableRow key={label} id={`feature_cards:invitation.tenants:${i}`}>
             <motion.div
-              key={label}
               initial={{ opacity: 0, x: isAr ? -30 : 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 + i * 0.12, ease: [0.16,1,0.3,1] }}
@@ -238,6 +238,7 @@ export function InvitationSection() {
                 {desc}
               </div>
             </motion.div>
+            </EditableRow>
           ))}
 
           {/* Last border */}
@@ -250,8 +251,9 @@ export function InvitationSection() {
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
             style={{ marginTop: 40, display: "flex", gap: 32, flexWrap: "wrap" }}
           >
-            {c.stats.map(({ n, u, l }) => (
-              <div key={l} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            {c.stats.map(({ n, u, l }, si) => (
+              <EditableRow key={l} id={`stat_counters:invitation:invitation_${si}`}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                 <div style={{
                   fontFamily: FONT,
                   fontSize: "clamp(24px,3vw,38px)",
@@ -273,6 +275,7 @@ export function InvitationSection() {
                   {l}
                 </div>
               </div>
+              </EditableRow>
             ))}
           </motion.div>
         </div>
