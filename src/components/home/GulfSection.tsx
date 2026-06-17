@@ -86,7 +86,7 @@ export function GulfSection() {
       >
         {/* Top — Gulf label */}
         <motion.div
-          style={{ x: coordLeftX, opacity: coordOp }}
+          style={{ x: coordLeftX, opacity: coordOp, pointerEvents: "auto" }}
           className="gulf-top-label"
         >
           <div style={{
@@ -118,7 +118,7 @@ export function GulfSection() {
           <motion.div
             style={{
               x: coordRightX, opacity: coordOp,
-              marginTop: 24,
+              marginTop: 24, pointerEvents: "auto",
               display: "flex",
               alignItems: "flex-end",
               justifyContent: "space-between",

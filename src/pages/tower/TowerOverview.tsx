@@ -93,7 +93,7 @@ export default function TowerOverview() {
           padding: "0 clamp(28px,6vw,96px) clamp(48px,7vh,80px)" }}>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20,
+            style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20, pointerEvents: "auto",
               fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL }}>
             <span style={{ width: 32, height: 1, background: `linear-gradient(to right,${PEARL},#D4CFC9)`, flexShrink: 0 }} />
@@ -101,18 +101,18 @@ export default function TowerOverview() {
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.9, ease: [0.16,1,0.3,1] }}
-            style={{ fontFamily: FONT,
+            style={{ fontFamily: FONT, pointerEvents: "auto",
               fontWeight: 300, fontSize: "clamp(36px,6vw,88px)", color: "#fff",
               letterSpacing: "-0.02em", lineHeight: 1.0, margin: "0 0 12px" }}>
             <Editable id="page_prose:towerOverview:heroTitle">{c.heroTitle}</Editable>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.75, duration: 0.8 }}
-            style={{ fontFamily: FONT, fontWeight: 200,
+            style={{ fontFamily: FONT, fontWeight: 200, pointerEvents: "auto",
               fontSize: "clamp(13px,1.3vw,18px)", color: "rgba(255,255,255,0.6)",
               maxWidth: 480, lineHeight: 1.7, margin: 0 }}>
-            {c.heroSub[0]}<br />
-            {c.heroSub[1]}
+            <Editable id="page_prose:towerOverview:heroSub.0">{c.heroSub[0]}</Editable><br />
+            <Editable id="page_prose:towerOverview:heroSub.1">{c.heroSub[1]}</Editable>
           </motion.p>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.6 }}
