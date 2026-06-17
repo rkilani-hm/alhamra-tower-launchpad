@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { SlotImage } from "@/lib/EditMode";
+import { SlotImage, Editable } from "@/lib/EditMode";
+import { useT } from "@/lib/i18n";
 
 /* ── The Gulf Section ─────────────────────────────────────────────────
    Full-viewport emotional beat: nothing but the city, the water,
@@ -11,6 +12,7 @@ import { SlotImage } from "@/lib/EditMode";
 const PEARL  = "#C8B99A";
 
 export function GulfSection() {
+  const t = useT();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -98,7 +100,7 @@ export function GulfSection() {
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`,
               flexShrink: 0,
             }} />
-            Arabian Gulf · Sharq District · Kuwait City
+            <Editable id="section_fields:gulf:topLabel">{t("gulf.topLabel")}</Editable>
           </div>
         </motion.div>
 
@@ -132,7 +134,7 @@ export function GulfSection() {
                 fontWeight: 300, color: "#fff",
                 letterSpacing: "-0.02em", lineHeight: 0.95,
               }}>
-                29°22'N
+                <Editable id="section_fields:gulf:coordLat">{t("gulf.coordLat")}</Editable>
               </div>
               <div style={{
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -140,7 +142,7 @@ export function GulfSection() {
                 fontWeight: 300, color: "#fff",
                 letterSpacing: "-0.02em", lineHeight: 0.95,
               }}>
-                47°58'E
+                <Editable id="section_fields:gulf:coordLng">{t("gulf.coordLng")}</Editable>
               </div>
               <div style={{
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -150,7 +152,7 @@ export function GulfSection() {
                 color: PEARL,
                 marginTop: 8,
               }}>
-                The exact location of ambition
+                <Editable id="section_fields:gulf:coordLabel">{t("gulf.coordLabel")}</Editable>
               </div>
             </div>
 
@@ -169,7 +171,7 @@ export function GulfSection() {
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: "rgba(255,255,255,0.35)", marginBottom: 12,
               }}>
-                Gulf to tower
+                <Editable id="section_fields:gulf:factLabel">{t("gulf.factLabel")}</Editable>
               </div>
               <div style={{
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
@@ -177,7 +179,7 @@ export function GulfSection() {
                 fontWeight: 300, color: "rgba(255,255,255,0.75)",
                 lineHeight: 1.6, fontStyle: "italic",
               }}>
-                "Visible from every shore of the city. The landmark that orients you."
+                <Editable id="section_fields:gulf:factQuote">{t("gulf.factQuote")}</Editable>
               </div>
             </div>
           </motion.div>
