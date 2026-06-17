@@ -1,44 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useT } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 
+/* Structural data only — editable text (label/desc/tags) comes from the CMS
+   via t("floorplan.<id>.<field>"). This shared component is used by multiple
+   pages; all read the same section_fields:floorplan rows. */
 const PLANS = [
-  {
-    id: "ground",
-    label: "Ground Floor",
-    level: "G",
-    src: "/assets/plan-ground.jpg",
-    desc: "Main retail level featuring Gucci, Hermès, Bottega Veneta, Ferragamo, and luxury international brands.",
-    tags: ["Retail", "Luxury", "Dining"],
-  },
-  {
-    id: "mezzanine",
-    label: "Mezzanine",
-    level: "M",
-    src: "/assets/plan-mezzanine.jpg",
-    desc: "Mezzanine level with Mont Blanc, Ted Baker, Harry's of London, Costa, NBK banking, and fashion boutiques.",
-    tags: ["Retail", "F&B", "Banking"],
-  },
-  {
-    id: "basement1",
-    label: "First Basement",
-    level: "B1",
-    src: "/assets/plan-basement-1.jpg",
-    desc: "First basement level with Starbucks, Adidas Originals, WHSmith, Al Hajery Pharmacy, Café Meem, and Coffea.",
-    tags: ["F&B", "Retail", "Services"],
-  },
-  {
-    id: "basement2",
-    label: "Second Basement",
-    level: "B2",
-    src: "/assets/plan-basement-2.jpg",
-    desc: "Second basement level — extensive parking, loading bays, and service infrastructure for the complex.",
-    tags: ["Parking", "Services", "Logistics"],
-  },
+  { id: "ground",    level: "G",  src: "/assets/plan-ground.jpg" },
+  { id: "mezzanine", level: "M",  src: "/assets/plan-mezzanine.jpg" },
+  { id: "basement1", level: "B1", src: "/assets/plan-basement-1.jpg" },
+  { id: "basement2", level: "B2", src: "/assets/plan-basement-2.jpg" },
 ];
 
 export function FloorPlanViewer() {
+  const t = useT();
   const [active, setActive] = useState("ground");
   const plan = PLANS.find(p => p.id === active)!;
+  const planLabel = t(`floorplan.${plan.id}.label`);
+  const planDesc  = t(`floorplan.${plan.id}.desc`);
+  const planTags  = t(`floorplan.${plan.id}.tags`).split("·").map(s => s.trim()).filter(Boolean);
 
   return (
     <div style={{ borderTop: "1px solid rgba(29,29,27,0.09)" }}>
@@ -50,8 +31,9 @@ export function FloorPlanViewer() {
         background: "#FAFAFA",
         overflowX: "auto",
       }}>
-        {PLANS.map(({ id, label, level }) => {
+        {PLANS.map(({ id, level }) => {
           const isActive = active === id;
+          const tabLabel = t(`floorplan.${id}.label`);
           return (
             <button type="button"
               key={id}
@@ -80,7 +62,9 @@ export function FloorPlanViewer() {
                 lineHeight: 1,
                 transition: "color 0.2s",
               }}>{level}</span>
-              {label}
+              {isActive
+                ? <Editable id={`section_fields:floorplan:${id}.label`}>{tabLabel}</Editable>
+                : tabLabel}
             </button>
           );
         })}
@@ -106,43 +90,51 @@ export function FloorPlanViewer() {
                   {plan.level}
                 </div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 20 }}>
-                  {plan.label}
+                  <Editable id={`section_fields:floorplan:${plan.id}.label`}>{planLabel}</Editable>
                 </div>
                 <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "13px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.65 }}>
-                  {plan.desc}
+                  <Editable id={`section_fields:floorplan:${plan.id}.desc`}>{planDesc}</Editable>
                 </p>
               </div>
 
               {/* Tags */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 32 }}>
-                {plan.tags.map(tag => (
-                  <span key={tag} style={{
-                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-                    letterSpacing: "0.2em", textTransform: "uppercase",
-                    color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)",
-                    padding: "5px 12px",
-                  }}>{tag}</span>
-                ))}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 32, alignItems: "center" }}>
+                <Editable id={`section_fields:floorplan:${plan.id}.tags`}>
+                  <span style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {planTags.map(tag => (
+                    <span key={tag} style={{
+                      fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
+                      letterSpacing: "0.2em", textTransform: "uppercase",
+                      color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)",
+                      padding: "5px 12px",
+                    }}>{tag}</span>
+                  ))}
+                  </span>
+                </Editable>
               </div>
 
               {/* Legend */}
               <div style={{ marginTop: 36 }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>Legend</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>
+                  <Editable id="section_fields:floorplan:legendTitle">{t("floorplan.legendTitle")}</Editable>
+                </div>
                 {[
-                  { color: "#F5C842", label: "Occupied — Retail" },
-                  { color: "#5BB8E8", label: "F&B — Food & Beverage" },
-                  { color: "#fff",    label: "Vacant / Available", border: "1px solid rgba(29,29,27,0.2)" },
-                ].map(({ color, label, border }) => (
-                  <div key={label} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+                  { color: "#F5C842", border: undefined },
+                  { color: "#5BB8E8", border: undefined },
+                  { color: "#fff",    border: "1px solid rgba(29,29,27,0.2)" },
+                ].map(({ color, border }, li) => (
+                  <div key={li} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
                     <div style={{ width: 16, height: 12, background: color, border: border ?? "none", flexShrink: 0 }} />
-                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px", color: "#6B6B6B" }}>{label}</span>
+                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px", color: "#6B6B6B" }}>
+                      <Editable id={`section_fields:floorplan:legend.${li}`}>{t(`floorplan.legend.${li}`)}</Editable>
+                    </span>
                   </div>
                 ))}
               </div>
 
               <div style={{ marginTop: "auto", paddingTop: 32 }}>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B" }}>
-                  Al Hamra Business Tower · Kuwait City
+                  <Editable id="section_fields:floorplan:footer">{t("floorplan.footer")}</Editable>
                 </div>
               </div>
             </div>
@@ -163,7 +155,7 @@ export function FloorPlanViewer() {
               <img
               loading="lazy"
                 src={plan.src}
-                alt={`Al Hamra Tower — ${plan.label}`}
+                alt={`Al Hamra Tower — ${planLabel}`}
                 style={{
                   width: "100%",
                   height: "auto",
