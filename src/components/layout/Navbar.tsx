@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useT } from "@/lib/i18n";
+import { Editable, useEditMode } from "@/lib/EditMode";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
+
+/* nav.tower → section_fields:nav:tower ; nav.sub.overview → section_fields:nav:sub.overview */
+const navEditId = (labelKey: string) => `section_fields:nav:${labelKey.replace(/^nav\./, "")}`;
 
 const NAV = [
   {
@@ -56,6 +60,7 @@ export function Navbar() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
   const t = useT();
+  const { enabled: editEnabled } = useEditMode();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -79,7 +84,7 @@ export function Navbar() {
   }, [mobileOpen, location.pathname]);
 
   const openDropdown  = (key: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpenMenu(key); };
-  const closeDropdown = () => { closeTimer.current = setTimeout(() => setOpenMenu(null), 180); };
+  const closeDropdown = () => { if (editEnabled) return; closeTimer.current = setTimeout(() => setOpenMenu(null), 180); };
   const stayOpen      = () => { if (closeTimer.current) clearTimeout(closeTimer.current); };
 
   const toggleSection = (key: string) =>
@@ -136,7 +141,7 @@ export function Navbar() {
                     textDecoration: "none", padding: "8px 16px",
                     transition: "color 0.2s",
                   }}>
-                  {t(labelKey)}
+                  <Editable id={navEditId(labelKey)}>{t(labelKey)}</Editable>
                   <svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"
                     style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.25s ease", opacity: 0.5 }}>
                     <path d="M1 1L4.5 5L8 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -180,7 +185,7 @@ export function Navbar() {
                             <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:300, color: isChildActive ? "#1D1D1B" : "#EDEDED", minWidth:18, lineHeight:1 }}>
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            {t(cl)}
+                            <Editable id={navEditId(cl)}>{t(cl)}</Editable>
                           </Link>
                         );
                       })}
@@ -204,7 +209,7 @@ export function Navbar() {
             onMouseEnter={e => { e.currentTarget.style.background="#1D1D1B"; e.currentTarget.style.color="#fff"; }}
             onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#1D1D1B"; }}
           >
-            {t("nav.cta")}
+            <Editable id="section_fields:nav:cta">{t("nav.cta")}</Editable>
           </Link>
 
           {/* Language toggle */}

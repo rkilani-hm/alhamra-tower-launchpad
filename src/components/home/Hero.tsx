@@ -165,7 +165,7 @@ export function Hero() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
             style={{ width: 36, height: 1, background: SAND, flexShrink: 0, transformOrigin: "left", display: "block" }}
           />
-          {t("hero.tag")}
+          <Editable id="section_fields:hero:tag">{t("hero.tag")}</Editable>
         </motion.div>
 
         {/* Heading */}
@@ -242,7 +242,7 @@ export function Hero() {
               e.currentTarget.style.boxShadow = "none";
             }}
           >
-            {t("hero.ctaPrimary")}
+            <Editable id="section_fields:hero:ctaPrimary">{t("hero.ctaPrimary")}</Editable>
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
               <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -268,7 +268,7 @@ export function Hero() {
               e.currentTarget.style.background = "rgba(255,255,255,0)";
             }}
           >
-            {t("hero.ctaSecondary")}
+            <Editable id="section_fields:hero:ctaSecondary">{t("hero.ctaSecondary")}</Editable>
           </Link>
         </motion.div>
       </motion.div>
