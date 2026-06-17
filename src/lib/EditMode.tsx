@@ -163,7 +163,7 @@ function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
           {longText
             ? <textarea value={valAr} onChange={(e) => setValAr(toEasternArabic(e.target.value))} rows={3} dir="rtl" style={{ ...ta, textAlign: "right" }} />
             : <input value={valAr} onChange={(e) => setValAr(toEasternArabic(e.target.value))} dir="rtl" style={{ ...inp, textAlign: "right" }} />}
-          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+          <div style={{ position: "sticky", bottom: -18, background: "#fff", paddingTop: 12, paddingBottom: 2, marginTop: 12, borderTop: "1px solid #ECE7DD", display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button onClick={() => save(true)} disabled={busy} style={solid}>{busy ? "Saving…" : "Publish"}</button>
             <button onClick={() => save(false)} disabled={busy} style={ghost}>Save draft</button>
             <button onClick={onClose} disabled={busy} style={ghost}>Cancel</button>
@@ -176,7 +176,7 @@ function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
 
 const Label = ({ children }: { children: ReactNode }) =>
   <div style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#6E6456", margin: "8px 0 4px" }}>{children}</div>;
-const inp: CSSProperties = { width: "100%", padding: "8px 10px", border: "1px solid #D8D2C7", fontFamily: "inherit", fontSize: 14, background: "#FCFBF9", outline: "none" };
+const inp: CSSProperties = { width: "100%", padding: "8px 10px", border: "1px solid #D8D2C7", fontFamily: "inherit", fontSize: 14, background: "#FCFBF9", color: "#1D1D1B", caretColor: "#1D1D1B", outline: "none", WebkitTextFillColor: "#1D1D1B" } as CSSProperties;
 const ta: CSSProperties = { ...inp, resize: "vertical", lineHeight: 1.6 };
 const solid: CSSProperties = { padding: "8px 16px", background: "#C8B99A", color: "#1D1D1B", border: "none", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" };
 const ghost: CSSProperties = { padding: "8px 16px", background: "transparent", color: "#3A3733", border: "1px solid #C5BCA9", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" };
@@ -323,7 +323,7 @@ function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
               <input value={vals[f.col] ?? ""} onChange={(e) => set(f.col, e.target.value)} style={inp} />
             </div>
           ))}
-          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+          <div style={{ position: "sticky", bottom: -18, background: "#fff", paddingTop: 12, paddingBottom: 2, marginTop: 12, borderTop: "1px solid #ECE7DD", display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button onClick={() => save(true)} disabled={busy} style={solid}>{busy ? "Saving…" : "Publish"}</button>
             <button onClick={() => save(false)} disabled={busy} style={ghost}>Save draft</button>
             <button onClick={onClose} disabled={busy} style={ghost}>Cancel</button>
