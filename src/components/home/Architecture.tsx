@@ -193,7 +193,7 @@ export function Architecture() {
               fontSize: "clamp(24px,3vw,40px)", fontWeight: 300,
               color: DARK, lineHeight: 1,
             }}>
-              {n}
+              <Editable id={`page_prose:architecture:specs.${i}.n`}>{n}</Editable>
               {u && <span style={{
                 fontFamily: FONT,
                 fontSize: "clamp(12px,1.2vw,16px)", fontWeight: 200,
@@ -204,7 +204,7 @@ export function Architecture() {
               fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.15em", color: "#6B6B6B", lineHeight: 1.5,
             }}>
-              {l}
+              <Editable id={`page_prose:architecture:specs.${i}.l`}>{l}</Editable>
             </div>
           </motion.div>
         ))}

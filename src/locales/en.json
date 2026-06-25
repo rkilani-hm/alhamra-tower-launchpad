@@ -69,9 +69,13 @@
     },
     "stats": {
       "height": "Height",
+      "heightValue": "412.6",
       "floors": "Floors",
+      "floorsValue": "80",
       "rank": "Tallest in Kuwait",
-      "elevators": "Elevators"
+      "rankValue": "#1",
+      "elevators": "Elevators",
+      "elevatorsValue": "43"
     }
   },
   "intro": {
@@ -289,18 +293,21 @@
     "items": {
       "c1": {
         "label": "Configuration 01",
-        "title": "Executive Suite",
-        "body": "Corner-office configuration with panoramic Gulf views, private reception, and full executive facilities. Ideal for regional offices and professional firms."
+        "title": "Ministerial Suite",
+        "size": "250–500 m²",
+        "body": "Corner office configuration with panoramic city views and private meeting room. Ideal for regional offices and professional firms."
       },
       "c2": {
         "label": "Configuration 02",
-        "title": "Full-Floor Tenancy",
-        "body": "Entire floor exclusivity with private elevator access and dedicated reception, with the option to integrate complete corporate identity."
+        "title": "Sovereign Floor",
+        "size": "1,200–1,800 m²",
+        "body": "Entire floor exclusivity with private elevator access and dedicated reception. 3.2m ceiling height with 360° views."
       },
       "c3": {
         "label": "Configuration 03",
-        "title": "Corporate Headquarters",
-        "body": "Multiple connected floors with building signage rights and dedicated parking levels. Kuwait's premier headquarters address."
+        "title": "Flagship Headquarters",
+        "size": "3,000+ m²",
+        "body": "Multiple floors with building signage rights and dedicated parking levels. Kuwait's premier headquarters address."
       }
     }
   },

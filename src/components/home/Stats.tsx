@@ -117,7 +117,7 @@ function StatColumn({
         letterSpacing: "0.32em", textTransform: "uppercase",
         color: PEARL, marginBottom: 6,
       }}>
-        {label}
+        <EditableRow id={`stat_counters:home:${statKey}`}>{label}</EditableRow>
       </div>
 
       {/* Monumental number — sized to fit 5 stats per row at 1280px max */}
@@ -148,7 +148,7 @@ function StatColumn({
         letterSpacing: "0.08em",
         marginTop: 6,
       }}>
-        {sub}
+        <EditableRow id={`stat_counters:home:${statKey}`}>{sub}</EditableRow>
       </div>
     </motion.div>
   );

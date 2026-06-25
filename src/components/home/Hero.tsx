@@ -105,7 +105,7 @@ export function Hero() {
           background: "rgba(12,11,9,0.5)", border: "1px solid rgba(255,255,255,0.2)",
           color: "#fff", width: 36, height: 36, cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-          backdropFilter: "blur(8px)", transition: "all 0.2s",
+          backdropFilter: "blur(8px)", transition: "background 0.2s ease",
           padding: 0,
         }}
         onMouseEnter={e => (e.currentTarget.style.background = "rgba(29,29,27,0.8)")}
@@ -289,11 +289,11 @@ export function Hero() {
         aria-label={t("hero.statsLabel")}
       >
         {[
-          { n: "412.6", u: "m",  k: "hero.stats.height"    },
-          { n: "80",  u: "",   k: "hero.stats.floors"    },
-          { n: "#1",  u: "",   k: "hero.stats.rank"      },
-          { n: "43",  u: "",   k: "hero.stats.elevators" },
-        ].map(({ n, u, k }, i) => (
+          { vk: "hero.stats.heightValue",    u: "m", k: "hero.stats.height"    },
+          { vk: "hero.stats.floorsValue",    u: "",  k: "hero.stats.floors"    },
+          { vk: "hero.stats.rankValue",      u: "",  k: "hero.stats.rank"      },
+          { vk: "hero.stats.elevatorsValue", u: "",  k: "hero.stats.elevators" },
+        ].map(({ vk, u, k }, i) => (
           <motion.div
             key={k}
             role="listitem"
@@ -307,13 +307,13 @@ export function Hero() {
             }}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(20px,2.5vw,30px)",
               fontWeight: 300, color: "#fff", lineHeight: 1 }}>
-              {n}
+              <Editable id={`section_fields:hero:${vk.slice(5)}`}>{t(vk)}</Editable>
               {u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,1.2vw,14px)",
                 fontWeight: 200, color: SAND, marginLeft: 3 }}>{u}</span>}
             </div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.75vw,11px)",
               letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-              {t(k)}
+              <Editable id={`section_fields:hero:${k.slice(5)}`}>{t(k)}</Editable>
             </div>
           </motion.div>
         ))}

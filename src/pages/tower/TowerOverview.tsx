@@ -68,6 +68,7 @@ export default function TowerOverview() {
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const [activeTab, setActiveTab] = useState(c.tabs[0].id);
+  const activeIdx = Math.max(0, c.tabs.findIndex(t => t.id === activeTab));
   const activeContent = c.tabs.find(t => t.id === activeTab) ?? c.tabs[0];
 
   const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
@@ -145,9 +146,13 @@ export default function TowerOverview() {
                 </EditableRow>
               </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-                letterSpacing: "0.2em", textTransform: "uppercase", color: DARK, fontWeight: 400 }}>{l}</div>
+                letterSpacing: "0.2em", textTransform: "uppercase", color: DARK, fontWeight: 400 }}>
+                <EditableRow id={`stat_counters:towerOverview:towerOverview_${i}`}>{l}</EditableRow>
+              </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.82vw,11px)",
-                color: "#6B6B6B" }}>{sub}</div>
+                color: "#6B6B6B" }}>
+                <EditableRow id={`stat_counters:towerOverview:towerOverview_${i}`}>{sub}</EditableRow>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -188,34 +193,36 @@ export default function TowerOverview() {
               <h2 style={{ fontFamily: FONT,
                 fontWeight: 300, fontSize: "clamp(24px,3vw,42px)", color: DARK,
                 lineHeight: 1.1, marginBottom: 28, letterSpacing: "-0.01em" }}>
-                {activeContent.heading}
+                <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.heading`}>{activeContent.heading}</Editable>
               </h2>
               {activeContent.body.map((p, i) => (
                 <p key={i} style={{ fontFamily: FONT, fontWeight: 300,
                   fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
-                  lineHeight: 1.9, marginBottom: 16 }}>{p}</p>
+                  lineHeight: 1.9, marginBottom: 16 }}>
+                  <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.body.${i}`}>{p}</Editable>
+                </p>
               ))}
             </div>
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <div style={{ borderLeft: `2px solid ${PEARL}`, paddingLeft: 24, marginBottom: 40 }}>
                 <p style={{ fontFamily: FONT, fontStyle: "italic",
                   fontSize: "clamp(15px,1.4vw,19px)", color: DARK, lineHeight: 1.7, margin: "0 0 12px" }}>
-                  "{activeContent.quote}"
+                  "<Editable id={`page_prose:towerOverview:tabs.${activeIdx}.quote`}>{activeContent.quote}</Editable>"
                 </p>
                 <div style={{ fontFamily: FONT, fontSize: "10px",
                   letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL }}>
-                  {activeContent.credit}
+                  <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.credit`}>{activeContent.credit}</Editable>
                 </div>
               </div>
               <TiltCard>
                 <div style={{ background: STONE, padding: "clamp(24px,3vh,36px) clamp(20px,3vw,36px)" }}>
                   <div style={{ fontFamily: FONT,
                     fontSize: "clamp(36px,5vw,68px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
-                    {activeContent.statN}
+                    <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.statN`}>{activeContent.statN}</Editable>
                   </div>
                   <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
                     letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", marginTop: 8 }}>
-                    {activeContent.statL}
+                    <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.statL`}>{activeContent.statL}</Editable>
                   </div>
                 </div>
               </TiltCard>
@@ -265,7 +272,7 @@ export default function TowerOverview() {
             background: "none", border: `1px solid rgba(200,185,154,0.4)`, color: PEARL,
             fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.25em",
             textTransform: "uppercase", padding: "15px 32px", textDecoration: "none",
-            transition: "all 0.3s" }}
+            transition: "border-color 0.3s ease, color 0.3s ease" }}
             onMouseEnter={e=>{e.currentTarget.style.borderColor=PEARL;e.currentTarget.style.color="#fff";}}
             onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(200,185,154,0.4)";e.currentTarget.style.color=PEARL;}}>
             <Editable id="page_prose:towerOverview:ctaPrimary">{c.ctaPrimary}</Editable>
@@ -273,7 +280,7 @@ export default function TowerOverview() {
           <Link to="/leasing/inquiry#inquiry-form" style={{ display: "inline-flex", alignItems: "center", gap: 12,
             background: "#fff", color: DARK, fontFamily: FONT,
             fontSize: "10.5px", letterSpacing: "0.25em", textTransform: "uppercase",
-            padding: "15px 32px", textDecoration: "none", transition: "all 0.3s" }}
+            padding: "15px 32px", textDecoration: "none", transition: "background 0.3s ease, color 0.3s ease" }}
             onMouseEnter={e=>{e.currentTarget.style.background=PEARL;e.currentTarget.style.color="#fff";}}
             onMouseLeave={e=>{e.currentTarget.style.background="#fff";e.currentTarget.style.color=DARK;}}>
             <Editable id="page_prose:towerOverview:ctaSecondary">{c.ctaSecondary}</Editable>
