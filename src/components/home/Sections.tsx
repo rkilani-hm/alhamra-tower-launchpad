@@ -1,7 +1,8 @@
 import { ScrollReveal } from "../shared/ScrollReveal";
 import { Link } from "react-router-dom";
 import { PatternBackground } from "../shared/PatternBand";
-import { useI18n } from "@/lib/i18n";
+import { useI18n, useT } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -190,32 +191,34 @@ export function LeasingBand() {
 }
 
 // ── CONTACT STRIP ──────────────────────────────────────────
-const CONTACT_STRIP_CONTENT = {
-  en: [
-    { label: "Phone",   value: "+965 2227 5000" },
-    { label: "Email",   value: "leasing@alhamratower.com" },
-    { label: "Hours",   value: "Sun – Thu · 8:00 AM – 6:00 PM" },
-    { label: "Address", value: "Jaber Al Mubarak Street, Sharq, Kuwait City" },
-  ],
-  ar: [
-    { label: "الهاتف",          value: "+٩٦٥ ٢٢٢٧ ٥٠٠٠" },
-    { label: "البريد الإلكتروني", value: "leasing@alhamratower.com" },
-    { label: "ساعات العمل",      value: "الأحد – الخميس · ٨:٠٠ صباحاً – ٦:٠٠ مساءً" },
-    { label: "العنوان",          value: "شارع جابر المبارك، منطقة شرق، مدينة الكويت" },
-  ],
-} as const;
+/* Content lives in the locale files (contactStrip.*) — the canonical CMS
+   fallback layer — and is overlaid by published `section_fields` rows via t().
+   Each label and value is individually editable in place. The kicker/title
+   locale keys exist but are intentionally NOT surfaced in this rail. */
+const CONTACT_ROWS = [
+  { labelKey: "phone",   valueKey: "phoneValue" },
+  { labelKey: "email",   valueKey: "emailValue" },
+  { labelKey: "hours",   valueKey: "hoursValue" },
+  { labelKey: "address", valueKey: "addressValue" },
+] as const;
 
 export function ContactStrip() {
-  const { lang } = useI18n();
-  const items = CONTACT_STRIP_CONTENT[lang];
+  const t = useT();
   return (
     <PatternBackground opacity={0.3} style={{ borderTop: "1px solid rgba(29,29,27,0.09)", background: "#fff" }}>
       <div className="grid-4col">
-        {items.map(({ label, value }, i) => (
-          <ScrollReveal key={label} delay={i * 0.1}>
+        {CONTACT_ROWS.map(({ labelKey, valueKey }, i) => (
+          <ScrollReveal key={labelKey} delay={i * 0.1}>
             <div style={{ padding: "44px 48px", borderRight: "1px solid rgba(29,29,27,0.09)", height: "100%" }}>
-              <div style={{ fontFamily: FONT, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>{label}</div>
-              <div style={{ fontFamily: FONT, fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+              <div style={{ fontFamily: FONT, fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>
+                <Editable id={`section_fields:contactStrip:${labelKey}`}>{t(`contactStrip.${labelKey}`)}</Editable>
+              </div>
+              <div
+                {...(valueKey === "emailValue" ? { dir: "ltr" as const } : {})}
+                style={{ fontFamily: FONT, fontSize: "14.5px", fontWeight: 300, color: "#1D1D1B" }}
+              >
+                <Editable id={`section_fields:contactStrip:${valueKey}`}>{t(`contactStrip.${valueKey}`)}</Editable>
+              </div>
             </div>
           </ScrollReveal>
         ))}
