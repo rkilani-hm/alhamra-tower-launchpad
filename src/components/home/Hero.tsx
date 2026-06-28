@@ -8,9 +8,31 @@ const SAND = "#C5A882";
 const DARK = "#1D1D1B";
 const PEARL = "#C8B99A";
 
+/* Honour data-saver / reduced-motion: skip the autoplay hero video (a heavy
+   .mp4 download + continuous motion) and show the high-quality poster still
+   instead. Pure performance + a11y win; the default experience is unchanged. */
+function useLightHero() {
+  const [light, setLight] = useState(false);
+  useEffect(() => {
+    const dataQ   = window.matchMedia("(prefers-reduced-data: reduce)");
+    const motionQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const saveData = (navigator as any)?.connection?.saveData === true;
+    const update = () => setLight(saveData || dataQ.matches || motionQ.matches);
+    update();
+    dataQ.addEventListener?.("change", update);
+    motionQ.addEventListener?.("change", update);
+    return () => {
+      dataQ.removeEventListener?.("change", update);
+      motionQ.removeEventListener?.("change", update);
+    };
+  }, []);
+  return light;
+}
+
 export function Hero() {
   const t = useT();
   const heroVideoSrc = useSlotVideoSrc("home.heroVideo", "/assets/tower-drone.mp4");
+  const lightHero = useLightHero();
   const ref      = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady]   = useState(false);
@@ -47,20 +69,31 @@ export function Hero() {
           decode the first frame. Once playback begins the poster is
           replaced by the video. No image bleeds through. */}
       <motion.div style={{ position: "absolute", inset: 0, y: mediaY }}>
-        <motion.video
-          ref={videoRef}
-          key={heroVideoSrc}
-          src={heroVideoSrc}
-          autoPlay muted loop playsInline preload="auto"
-          poster="/assets/tower-sunset.jpg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2.5, delay: 0.5 }}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
-            objectFit: "cover", objectPosition: "center 15%", display: "block" }}
-          aria-label={t("hero.alt")}
-        />
-        <SlotVideoEditButton slot="home.heroVideo" fallback="/assets/tower-drone.mp4" />
+        {lightHero ? (
+          <img
+            src="/assets/tower-sunset.jpg"
+            alt={t("hero.alt")}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
+              objectFit: "cover", objectPosition: "center 15%", display: "block" }}
+          />
+        ) : (
+          <>
+            <motion.video
+              ref={videoRef}
+              key={heroVideoSrc}
+              src={heroVideoSrc}
+              autoPlay muted loop playsInline preload="auto"
+              poster="/assets/tower-sunset.jpg"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2.5, delay: 0.5 }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
+                objectFit: "cover", objectPosition: "center 15%", display: "block" }}
+              aria-label={t("hero.alt")}
+            />
+            <SlotVideoEditButton slot="home.heroVideo" fallback="/assets/tower-drone.mp4" />
+          </>
+        )}
       </motion.div>
 
       {/* Gradient overlays */}
@@ -92,7 +125,8 @@ export function Hero() {
           background: `linear-gradient(to bottom, ${PEARL}, #D4CFC9 50%, ${PEARL})`, transformOrigin: "top", zIndex: 10 }}
       />
 
-      {/* W4: Video pause button — WCAG 2.1.2 */}
+      {/* W4: Video pause button — WCAG 2.1.2 (only shown when the video renders) */}
+      {!lightHero && (
       <motion.button
         initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
         transition={{ delay: 2.5, duration: 0.5 }}
@@ -103,7 +137,7 @@ export function Hero() {
         style={{
           position: "absolute", bottom: 88, right: 20, zIndex: 20,
           background: "rgba(12,11,9,0.5)", border: "1px solid rgba(255,255,255,0.2)",
-          color: "#fff", width: 36, height: 36, cursor: "pointer",
+          color: "#fff", width: 44, height: 44, cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
           backdropFilter: "blur(8px)", transition: "background 0.2s ease",
           padding: 0,
@@ -124,6 +158,7 @@ export function Hero() {
           </svg>
         )}
       </motion.button>
+      )}
 
       {/* Side label */}
       <motion.div

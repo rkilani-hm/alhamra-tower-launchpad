@@ -76,7 +76,7 @@ export default function TowerRising() {
                       <span style={{
                         fontFamily: FONT,
                         fontSize: "20px", fontWeight: 300,
-                        color: isOpen ? DARK : "#9a9894",
+                        color: isOpen ? DARK : "#6B6B6B",
                         minWidth: 52, transition: "color 0.3s ease",
                       }}>
                         {era.year}
@@ -174,7 +174,7 @@ export default function TowerRising() {
                   <div style={{
                     fontFamily: FONT,
                     fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                    color: "#9a9894", marginTop: 14,
+                    color: "#6B6B6B", marginTop: 14,
                   }}>
                     {c.eras[activeEra].title}
                   </div>

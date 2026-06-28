@@ -11,7 +11,7 @@ export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dar
   const { lang, setLang, t } = useI18n();
 
   const isDark = variant === "dark";
-  const textOff = isDark ? "rgba(255,255,255,0.4)" : "#9a9894";
+  const textOff = isDark ? "rgba(255,255,255,0.55)" : "#6B6B6B";
   const border = isDark ? "rgba(255,255,255,0.2)" : "rgba(29,29,27,0.15)";
 
   return (
@@ -25,7 +25,6 @@ export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dar
         borderRadius: 1,
         padding: 3,
         gap: 2,
-        height: 30,
       }}
     >
       <button
@@ -38,10 +37,12 @@ export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dar
           color: lang === "en" ? (isDark ? "#fff" : "#fff") : textOff,
           fontFamily: CG, fontSize: "10px",
           letterSpacing: "0.22em",
-          padding: "5px 9px",
+          padding: "0 12px",
+          minWidth: 44, minHeight: 40,
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
           border: "none",
           cursor: "pointer",
-          transition: "all 0.22s ease",
+          transition: "background 0.22s ease, color 0.22s ease",
           lineHeight: 1,
         }}
       >
@@ -58,10 +59,12 @@ export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dar
           fontFamily: "'Noto Sans Arabic','Tajawal',sans-serif",
           fontSize: "13px",
           fontWeight: 500,
-          padding: "5px 9px",
+          padding: "0 12px",
+          minWidth: 44, minHeight: 40,
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
           border: "none",
           cursor: "pointer",
-          transition: "all 0.22s ease",
+          transition: "background 0.22s ease, color 0.22s ease",
           lineHeight: 1,
         }}
       >

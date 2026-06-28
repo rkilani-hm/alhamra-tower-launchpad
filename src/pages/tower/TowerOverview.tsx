@@ -166,7 +166,7 @@ export default function TowerOverview() {
           {c.tabs.map(tab => (
             <button type="button" key={tab.id} onClick={() => setActiveTab(tab.id)}
               style={{ position: "relative", background: "none", border: "none",
-                padding: "14px 28px", cursor: "pointer",
+                padding: "14px 28px", minHeight: 44, cursor: "pointer",
                 fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.3em", textTransform: "uppercase", whiteSpace: "nowrap",
                 color: activeTab === tab.id ? DARK : "#6B6B6B",
@@ -198,7 +198,7 @@ export default function TowerOverview() {
               {activeContent.body.map((p, i) => (
                 <p key={i} style={{ fontFamily: FONT, fontWeight: 300,
                   fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
-                  lineHeight: 1.9, marginBottom: 16 }}>
+                  lineHeight: 1.9, marginBottom: 16, maxWidth: "62ch" }}>
                   <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.body.${i}`}>{p}</Editable>
                 </p>
               ))}
