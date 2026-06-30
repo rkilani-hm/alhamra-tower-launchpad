@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useT } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 
 /* Structural data only — editable text (label/desc/tags) comes from the CMS
    via t("floorplan.<id>.<field>"). This shared component is used by multiple
@@ -15,6 +15,9 @@ const PLANS = [
 
 export function FloorPlanViewer() {
   const t = useT();
+  /* t() returns the key itself when a string is missing/unpublished; tf falls
+     back to the structural default so the level badge never shows a raw key. */
+  const tf = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
   const [active, setActive] = useState("ground");
   const plan = PLANS.find(p => p.id === active)!;
   const planLabel = t(`floorplan.${plan.id}.label`);
@@ -61,7 +64,7 @@ export function FloorPlanViewer() {
                 color: isActive ? "#1D1D1B" : "#EDEDED",
                 lineHeight: 1,
                 transition: "color 0.2s",
-              }}>{level}</span>
+              }}>{tf(`floorplan.${id}.level`, level)}</span>
               {isActive
                 ? <Editable id={`section_fields:floorplan:${id}.label`}>{tabLabel}</Editable>
                 : tabLabel}
@@ -87,7 +90,7 @@ export function FloorPlanViewer() {
             }}>
               <div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "64px", fontWeight: 300, color: "#EDEDED", lineHeight: 1, marginBottom: 4 }}>
-                  {plan.level}
+                  <Editable id={`section_fields:floorplan:${plan.id}.level`}>{tf(`floorplan.${plan.id}.level`, plan.level)}</Editable>
                 </div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500, color: "#1D1D1B", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 20 }}>
                   <Editable id={`section_fields:floorplan:${plan.id}.label`}>{planLabel}</Editable>
@@ -152,10 +155,11 @@ export function FloorPlanViewer() {
                 justifyContent: "center",
                 minHeight: 560,
               }}>
-              <img
-              loading="lazy"
-                src={plan.src}
+              <SlotImage
+                slot={`floorplan.${plan.id}`}
+                fallback={plan.src}
                 alt={`Al Hamra Tower — ${planLabel}`}
+                loading="lazy"
                 style={{
                   width: "100%",
                   height: "auto",
