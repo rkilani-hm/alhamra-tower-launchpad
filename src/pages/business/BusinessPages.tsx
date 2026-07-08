@@ -344,7 +344,7 @@ export function OfficeSpaces() {
         {c.gallery.map(({ src, cap, pos }, i) => (
           <Rv key={cap} delay={i * 0.08}>
             <div style={{ position: "relative", overflow: "hidden", height: "clamp(200px,24vw,320px)" }}>
-              <img src={src} alt={cap}
+              <SlotImage slot={`officeSpaces.gallery${i}`} fallback={src} alt={cap} loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, transition: "transform 0.6s ease", display: "block" }}
                 onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
                 onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
@@ -706,7 +706,7 @@ export function Connectivity() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
             {c.features.map(({ number, title, body, url }) => (
               <div key={number}
-                style={{ background: "#fff", padding: "28px 26px", transition: "background 0.3s" }}
+                style={{ background: "#fff", padding: "28px 26px", transition: "background 0.18s ease" }}
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
                 onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
               >
