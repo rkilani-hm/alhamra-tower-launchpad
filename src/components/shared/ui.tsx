@@ -2,6 +2,7 @@ import { ReactNode, useRef } from "react";
 import { motion }    from "framer-motion";
 import { useInView } from "framer-motion";
 import { fadeUp } from "@/lib/motion";
+import { Editable } from "@/lib/EditMode";
 
 const CG = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -23,7 +24,7 @@ export function Rv({ children, delay=0, style, className }: RvProps) {
 
 /* ── STATS BAR ───────────────────────────── */
 interface Stat { number: string; unit?: string; label: string; }
-export function StatsBar({ stats }: { stats: Stat[] }) {
+export function StatsBar({ stats, editKey }: { stats: Stat[]; editKey?: string }) {
   return (
     <div className="stats-bar" style={{ gridTemplateColumns: `repeat(${stats.length},1fr)` }}>
       {stats.map(({ number, unit, label }, i) => (
@@ -34,9 +35,9 @@ export function StatsBar({ stats }: { stats: Stat[] }) {
             onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
           >
             <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(36px,4vw,52px)", fontWeight:300, lineHeight:1, color:"#1D1D1B", marginBottom:8 }}>
-              {number}{unit && <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#6B6B6B" }}>{unit}</span>}
+              {editKey ? <Editable id={`page_prose:${editKey}:stats.${i}.number`}>{number}</Editable> : number}{unit && <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#6B6B6B" }}>{unit}</span>}
             </div>
-            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#6B6B6B" }}>{label}</div>
+            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#6B6B6B" }}>{editKey ? <Editable id={`page_prose:${editKey}:stats.${i}.label`}>{label}</Editable> : label}</div>
           </div>
         </Rv>
       ))}
@@ -46,17 +47,17 @@ export function StatsBar({ stats }: { stats: Stat[] }) {
 
 /* ── FEATURE GRID ────────────────────────── */
 interface Feature { number: string; title: string; body: string; }
-export function FeatureGrid({ features }: { features: Feature[] }) {
+export function FeatureGrid({ features, editKey }: { features: Feature[]; editKey?: string }) {
   return (
     <div className="feature-grid">
-      {features.map(({ number, title, body }) => (
+      {features.map(({ number, title, body }, i) => (
         <div key={number} className="ah-card-hover" style={{ background:"#fff", padding:"clamp(20px,2vw,28px) clamp(16px,2vw,26px)" }}
           onMouseEnter={e=>((e.currentTarget as HTMLDivElement).style.background="#FAFAFA")}
           onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
         >
           <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color:"#6B6B6B", letterSpacing:"0.2em", marginBottom:10 }}>{number}</div>
-          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:500, color:"#1D1D1B", marginBottom:8, letterSpacing:"0.04em" }}>{title}</div>
-          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"12px", color:"#6B6B6B", lineHeight:1.8 }}>{body}</div>
+          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:500, color:"#1D1D1B", marginBottom:8, letterSpacing:"0.04em" }}>{editKey ? <Editable id={`page_prose:${editKey}:features.${i}.title`}>{title}</Editable> : title}</div>
+          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"12px", color:"#6B6B6B", lineHeight:1.8 }}>{editKey ? <Editable id={`page_prose:${editKey}:features.${i}.body`}>{body}</Editable> : body}</div>
         </div>
       ))}
     </div>
@@ -166,20 +167,23 @@ export function Body({ children, style }: { children: ReactNode; style?: React.C
 
 /* ── DARK BAND ───────────────────────────── */
 interface DarkBandProps { title: string; subtitle?: string; ctaLabel: string; ctaHref: string; }
-export function DarkBand({ title, subtitle, ctaLabel, ctaHref }: DarkBandProps) {
+export function DarkBand({ title, subtitle, ctaLabel, ctaHref, editKey }: DarkBandProps & { editKey?: string }) {
+  const h3Style = { fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(20px,2.5vw,38px)", fontWeight:200, color:"#fff", lineHeight:1.3 } as React.CSSProperties;
   return (
     <section className="dark-band" style={{ background:"#1D1D1B" }}>
       <div>
         <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", marginBottom:16 }}>Next Step</div>
-        <h3 style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(20px,2.5vw,38px)", fontWeight:200, color:"#fff", lineHeight:1.3 }} dangerouslySetInnerHTML={{ __html:title }} />
-        {subtitle && <p style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"14px", fontWeight:300, color:"rgba(255,255,255,0.45)", lineHeight:1.8, marginTop:12, maxWidth:480 }}>{subtitle}</p>}
+        {editKey
+          ? <h3 style={h3Style}><Editable id={`page_prose:${editKey}:darkTitle`}><span dangerouslySetInnerHTML={{ __html:title }} /></Editable></h3>
+          : <h3 style={h3Style} dangerouslySetInnerHTML={{ __html:title }} />}
+        {subtitle && <p style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"14px", fontWeight:300, color:"rgba(255,255,255,0.45)", lineHeight:1.8, marginTop:12, maxWidth:480 }}>{editKey ? <Editable id={`page_prose:${editKey}:darkSubtitle`}>{subtitle}</Editable> : subtitle}</p>}
       </div>
       <a href={ctaHref}
         style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#fff", color:"#1D1D1B", fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"10.5px", fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", padding:"15px 30px", textDecoration:"none", flexShrink:0, whiteSpace:"nowrap", transition:"opacity 0.3s" }}
         onMouseEnter={e=>(e.currentTarget.style.opacity="0.88")}
         onMouseLeave={e=>(e.currentTarget.style.opacity="1")}
       >
-        {ctaLabel}
+        {editKey ? <Editable id={`page_prose:${editKey}:darkCta`}>{ctaLabel}</Editable> : ctaLabel}
         <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5H11M7 1L11 4.5L7 8" stroke="#1D1D1B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
       </a>
     </section>

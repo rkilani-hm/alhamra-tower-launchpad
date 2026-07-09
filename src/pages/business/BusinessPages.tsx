@@ -88,7 +88,7 @@ export function WorkplaceExperience() {
         crumbs={[{ label: c.crumbHome, href: "/" }, { label: c.crumbBusiness, href: "/business" }]}
       />
 
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="workplace" />
 
       <div style={{ position: "relative", height: "clamp(340px,48vw,640px)", overflow: "hidden" }}>
         <SlotImage slot="workplace.lobby" fallback="/assets/lobby-grand-lamella.jpg" loading="lazy" alt={c.lobbyAlt}
@@ -111,7 +111,7 @@ export function WorkplaceExperience() {
             <Rv delay={0.1}><H2><Editable id="page_prose:workplace:workH2">{c.workH2}</Editable></H2></Rv>
             <Rv delay={0.2}><Body><Editable id="page_prose:workplace:workBody">{c.workBody}</Editable></Body></Rv>
             <Rv delay={0.3}>
-              <FeatureGrid features={[...c.features]} />
+              <FeatureGrid features={[...c.features]} editKey="workplace" />
             </Rv>
           </div>
 
@@ -140,7 +140,7 @@ export function WorkplaceExperience() {
         </div>
       </Section>
 
-      <DarkBand title={c.darkTitle} ctaLabel={c.darkCta} ctaHref="/business/office-spaces" />
+      <DarkBand title={c.darkTitle} ctaLabel={c.darkCta} ctaHref="/business/office-spaces" editKey="workplace" />
     </PageLayout>
   );
 }
