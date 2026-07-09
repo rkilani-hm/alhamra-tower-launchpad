@@ -287,12 +287,12 @@ export function OfficeSpaces() {
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.68) 100%)" }} />
         <div className="office-hero-stats">
-          {c.heroStats.map(({ n, u, l }) => (
+          {c.heroStats.map(({ n, u, l }, i) => (
             <div key={l}>
               <div style={{ fontFamily: FONT, fontSize: "clamp(28px,4vw,40px)", fontWeight: 300, color: "#fff", lineHeight: 1 }}>
-                {n}<span style={{ fontFamily: FONT, fontSize: "clamp(11px,1.3vw,14px)", fontWeight: 200, color: "rgba(255,255,255,0.55)" }}>{u}</span>
+                <Editable id={`page_prose:officeSpaces:heroStats.${i}.n`}>{n}</Editable><span style={{ fontFamily: FONT, fontSize: "clamp(11px,1.3vw,14px)", fontWeight: 200, color: "rgba(255,255,255,0.55)" }}>{u}</span>
               </div>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 6 }}>{l}</div>
+              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 6 }}><Editable id={`page_prose:officeSpaces:heroStats.${i}.l`}>{l}</Editable></div>
             </div>
           ))}
         </div>
@@ -326,17 +326,17 @@ export function OfficeSpaces() {
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
         <div className="ah-section" style={{ position: "absolute", top: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column", justifyContent: "center", background: "transparent" }}>
           <Rv>
-            <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}>{c.arrivalKicker}</div>
+            <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 16 }}><Editable id="page_prose:officeSpaces:arrivalKicker">{c.arrivalKicker}</Editable></div>
             <h2 style={{ fontFamily: FONT, fontSize: "clamp(22px,3vw,44px)", fontWeight: 200, color: "#fff", lineHeight: 1.12, maxWidth: 480, marginBottom: 20 }}>
-              {c.arrivalH1}<br /><strong style={{ fontWeight: 500 }}>{c.arrivalH2}</strong>
+              <Editable id="page_prose:officeSpaces:arrivalH1">{c.arrivalH1}</Editable><br /><strong style={{ fontWeight: 500 }}><Editable id="page_prose:officeSpaces:arrivalH2">{c.arrivalH2}</Editable></strong>
             </h2>
             <p style={{ fontFamily: FONT, fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.65, maxWidth: 400 }}>
-              {c.arrivalBody}
+              <Editable id="page_prose:officeSpaces:arrivalBody">{c.arrivalBody}</Editable>
             </p>
           </Rv>
         </div>
         <div style={{ position: "absolute", bottom: 16, right: 24, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
-          {c.arrivalCorner}
+          <Editable id="page_prose:officeSpaces:arrivalCorner">{c.arrivalCorner}</Editable>
         </div>
       </div>
 
@@ -350,7 +350,7 @@ export function OfficeSpaces() {
                 onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
               />
               <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to top, rgba(29,29,27,0.65) 0%, transparent 55%)" }} />
-              <div style={{ position: "absolute", bottom: 12, left: 14, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</div>
+              <div style={{ position: "absolute", bottom: 12, left: 14, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}><Editable id={`page_prose:officeSpaces:gallery.${i}.cap`}>{cap}</Editable></div>
             </div>
           </Rv>
         ))}
@@ -364,9 +364,9 @@ export function OfficeSpaces() {
                 <SlotImage loading="lazy" slot="officeSpaces.floorReception" fallback="/assets/floor-reception.jpg" alt={c.floorReceptionAlt}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
-                  <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.floorReceptionTitle}</div>
+                  <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}><Editable id="page_prose:officeSpaces:floorReceptionTitle">{c.floorReceptionTitle}</Editable></div>
                   <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                    {c.floorReceptionCap}
+                    <Editable id="page_prose:officeSpaces:floorReceptionCap">{c.floorReceptionCap}</Editable>
                   </span>
                 </div>
               </div>
@@ -374,9 +374,9 @@ export function OfficeSpaces() {
                 <SlotImage loading="lazy" slot="officeSpaces.tenantLobby" fallback="/assets/tenant-lobby.jpg" alt={c.tenantLobbyAlt}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
-                  <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.tenantLobbyTitle}</div>
+                  <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}><Editable id="page_prose:officeSpaces:tenantLobbyTitle">{c.tenantLobbyTitle}</Editable></div>
                   <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                    {c.tenantLobbyCap}
+                    <Editable id="page_prose:officeSpaces:tenantLobbyCap">{c.tenantLobbyCap}</Editable>
                   </span>
                 </div>
               </div>
@@ -400,9 +400,9 @@ export function OfficeSpaces() {
           <SlotImage loading="lazy" slot="officeSpaces.entrance" fallback="/assets/entrance-night.jpg" alt={c.entranceAlt}
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
-            <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.entranceTitle}</div>
+            <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}><Editable id="page_prose:officeSpaces:entranceTitle">{c.entranceTitle}</Editable></div>
             <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-              {c.entranceCap}
+              <Editable id="page_prose:officeSpaces:entranceCap">{c.entranceCap}</Editable>
             </span>
           </div>
         </div>
@@ -410,9 +410,9 @@ export function OfficeSpaces() {
           <SlotImage loading="lazy" slot="officeSpaces.boardroom" fallback="/assets/boardroom-enhanced.jpg" alt={c.boardroomAlt}
             style={{ width: "100%", height: "clamp(260px,35vw,460px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.65))", padding: "24px 20px 18px" }}>
-            <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}>{c.boardroomTitle}</div>
+            <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}><Editable id="page_prose:officeSpaces:boardroomTitle">{c.boardroomTitle}</Editable></div>
             <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-              {c.boardroomCap}
+              <Editable id="page_prose:officeSpaces:boardroomCap">{c.boardroomCap}</Editable>
             </span>
           </div>
         </div>
