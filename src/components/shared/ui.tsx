@@ -24,7 +24,7 @@ export function Rv({ children, delay=0, style, className }: RvProps) {
 
 /* ── STATS BAR ───────────────────────────── */
 interface Stat { number: string; unit?: string; label: string; }
-export function StatsBar({ stats, editKey }: { stats: Stat[]; editKey?: string }) {
+export function StatsBar({ stats, editKey, editField = "stats" }: { stats: Stat[]; editKey?: string; editField?: string }) {
   return (
     <div className="stats-bar" style={{ gridTemplateColumns: `repeat(${stats.length},1fr)` }}>
       {stats.map(({ number, unit, label }, i) => (
@@ -35,9 +35,9 @@ export function StatsBar({ stats, editKey }: { stats: Stat[]; editKey?: string }
             onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
           >
             <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(36px,4vw,52px)", fontWeight:300, lineHeight:1, color:"#1D1D1B", marginBottom:8 }}>
-              {editKey ? <Editable id={`page_prose:${editKey}:stats.${i}.number`}>{number}</Editable> : number}{unit && <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#6B6B6B" }}>{unit}</span>}
+              {editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.number`}>{number}</Editable> : number}{unit && <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#6B6B6B" }}>{unit}</span>}
             </div>
-            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#6B6B6B" }}>{editKey ? <Editable id={`page_prose:${editKey}:stats.${i}.label`}>{label}</Editable> : label}</div>
+            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#6B6B6B" }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.label`}>{label}</Editable> : label}</div>
           </div>
         </Rv>
       ))}
@@ -47,7 +47,7 @@ export function StatsBar({ stats, editKey }: { stats: Stat[]; editKey?: string }
 
 /* ── FEATURE GRID ────────────────────────── */
 interface Feature { number: string; title: string; body: string; }
-export function FeatureGrid({ features, editKey }: { features: Feature[]; editKey?: string }) {
+export function FeatureGrid({ features, editKey, editField = "features" }: { features: Feature[]; editKey?: string; editField?: string }) {
   return (
     <div className="feature-grid">
       {features.map(({ number, title, body }, i) => (
@@ -56,8 +56,8 @@ export function FeatureGrid({ features, editKey }: { features: Feature[]; editKe
           onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
         >
           <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color:"#6B6B6B", letterSpacing:"0.2em", marginBottom:10 }}>{number}</div>
-          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:500, color:"#1D1D1B", marginBottom:8, letterSpacing:"0.04em" }}>{editKey ? <Editable id={`page_prose:${editKey}:features.${i}.title`}>{title}</Editable> : title}</div>
-          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"12px", color:"#6B6B6B", lineHeight:1.8 }}>{editKey ? <Editable id={`page_prose:${editKey}:features.${i}.body`}>{body}</Editable> : body}</div>
+          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:500, color:"#1D1D1B", marginBottom:8, letterSpacing:"0.04em" }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.title`}>{title}</Editable> : title}</div>
+          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"12px", color:"#6B6B6B", lineHeight:1.8 }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.body`}>{body}</Editable> : body}</div>
         </div>
       ))}
     </div>

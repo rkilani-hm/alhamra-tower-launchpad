@@ -569,7 +569,7 @@ export function VerticalTransportation() {
         subtitle={c.subtitle}
         crumbs={[{ label: c.crumbHome, href: "/" }, { label: c.crumbBusiness, href: "/business" }, { label: c.crumbThis, href: "/business/vertical-transportation" }]}
       />
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="verticalTransport" />
 
       <div style={{ position: "relative", height: "clamp(260px,38vw,480px)", overflow: "hidden" }}>
         <SlotImage loading="lazy" slot="verticalTransport.corridor" fallback="/assets/lobby-elevator-corridor.jpg" alt={c.corridorAlt}
@@ -577,24 +577,24 @@ export function VerticalTransportation() {
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.65) 0%, rgba(29,29,27,0.1) 60%, transparent 100%)" }} />
         <div className="photo-overlay-text" style={{ position: "absolute", bottom: 0, left: 0, top: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
           <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}>
-            {c.corridorKicker}
+            <Editable id="page_prose:verticalTransport:corridorKicker">{c.corridorKicker}</Editable>
           </p>
           <h3 style={{ fontFamily: FONT, fontSize: "clamp(20px,2.2vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.25 }}>
-            {c.corridorH1}<br /><strong style={{ fontWeight: 500 }}>{c.corridorH2}</strong>
+            <Editable id="page_prose:verticalTransport:corridorH1">{c.corridorH1}</Editable><br /><strong style={{ fontWeight: 500 }}><Editable id="page_prose:verticalTransport:corridorH2">{c.corridorH2}</Editable></strong>
           </h3>
         </div>
       </div>
 
       <Section>
-        <Rv><Tag>{c.ascentTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.ascentH2}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:verticalTransport:ascentTag">{c.ascentTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:verticalTransport:ascentH2">{c.ascentH2}</Editable></H2></Rv>
         <div className="grid-4col" style={{ gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 48 }}>
           {c.ascent.map(({ floor, label, body }, i) => (
             <Rv key={floor} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "36px 28px", height: "100%" }}>
-                <div style={{ fontFamily: FONT, fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1, marginBottom: 8 }}>{floor}</div>
-                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>{label}</div>
-                <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}>{body}</div>
+                <div style={{ fontFamily: FONT, fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1, marginBottom: 8 }}><Editable id={`page_prose:verticalTransport:ascent.${i}.floor`}>{floor}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}><Editable id={`page_prose:verticalTransport:ascent.${i}.label`}>{label}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}><Editable id={`page_prose:verticalTransport:ascent.${i}.body`}>{body}</Editable></div>
               </div>
             </Rv>
           ))}
@@ -602,16 +602,16 @@ export function VerticalTransportation() {
       </Section>
 
       <Section bg="#FAFAFA">
-        <Rv><Tag>{c.routesTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.routesH2}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:verticalTransport:routesTag">{c.routesTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:verticalTransport:routesH2">{c.routesH2}</Editable></H2></Rv>
         <Rv delay={0.2}>
           <div style={{ marginTop: 40 }}>
             {c.routes.map(({ name, floors, speed, cap }, i) => (
               <div key={name} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", padding: "18px 0", borderBottom: i < c.routes.length - 1 ? "1px solid rgba(29,29,27,0.07)" : "none", gap: 24 }}>
-                <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 400, color: "#1D1D1B" }}>{name}</div>
-                <div style={{ fontFamily: FONT, fontSize: "22px", fontWeight: 300, color: "#1D1D1B" }}>{floors}</div>
-                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}>{speed}</div>
-                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}>{cap}</div>
+                <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 400, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.name`}>{name}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "22px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.floors`}>{floors}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.speed`}>{speed}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.cap`}>{cap}</Editable></div>
               </div>
             ))}
           </div>
@@ -619,12 +619,12 @@ export function VerticalTransportation() {
       </Section>
 
       <Section>
-        <Rv><Tag>{c.lobbyTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.lobbyH2}</H2></Rv>
-        <Rv delay={0.2}><FeatureGrid features={[...c.lobbyFeatures]} /></Rv>
+        <Rv><Tag><Editable id="page_prose:verticalTransport:lobbyTag">{c.lobbyTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:verticalTransport:lobbyH2">{c.lobbyH2}</Editable></H2></Rv>
+        <Rv delay={0.2}><FeatureGrid features={[...c.lobbyFeatures]} editKey="verticalTransport" editField="lobbyFeatures" /></Rv>
       </Section>
 
-      <DarkBand title={c.darkTitle} ctaLabel={c.darkCta} ctaHref="/business/connectivity" />
+      <DarkBand title={c.darkTitle} ctaLabel={c.darkCta} ctaHref="/business/connectivity" editKey="verticalTransport" />
     </PageLayout>
   );
 }
