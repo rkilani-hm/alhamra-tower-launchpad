@@ -156,7 +156,7 @@ export function Services() {
         subtitle={c.subtitle}
         crumbs={[...c.crumbs]}
       />
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="services" />
 
       {/* Lobby entrance corridor — full bleed */}
       <div style={{ position: "relative", height:"clamp(240px,35vw,440px)", overflow: "hidden" }}>
@@ -176,16 +176,16 @@ export function Services() {
       </div>
 
       <Section>
-        <Rv><Tag>{c.systemsTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.systemsHeading}</H2></Rv>
-        <Rv delay={0.2}><Body style={{ maxWidth: 640, marginBottom: 48 }}>{c.systemsBody}</Body></Rv>
-        <Rv delay={0.3}><FeatureGrid features={[...c.systems]} /></Rv>
+        <Rv><Tag><Editable id="page_prose:services:systemsTag">{c.systemsTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:services:systemsHeading">{c.systemsHeading}</Editable></H2></Rv>
+        <Rv delay={0.2}><Body style={{ maxWidth: 640, marginBottom: 48 }}><Editable id="page_prose:services:systemsBody">{c.systemsBody}</Editable></Body></Rv>
+        <Rv delay={0.3}><FeatureGrid features={[...c.systems]} editKey="services" editField="systems" /></Rv>
       </Section>
 
       <Section bg="#FAFAFA">
-        <Rv><Tag>{c.facilityTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.facilityHeading}</H2></Rv>
-        <Rv delay={0.2}><FeatureGrid features={[...c.facility]} /></Rv>
+        <Rv><Tag><Editable id="page_prose:services:facilityTag">{c.facilityTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:services:facilityHeading">{c.facilityHeading}</Editable></H2></Rv>
+        <Rv delay={0.2}><FeatureGrid features={[...c.facility]} editKey="services" editField="facility" /></Rv>
       </Section>
 
       {/* Interior photo gallery */}
@@ -322,7 +322,7 @@ export function Services() {
         </div>
       </Section>
 
-      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" />
+      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="services" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
     </PageLayout>
   );
 }

@@ -167,23 +167,26 @@ export function Body({ children, style }: { children: ReactNode; style?: React.C
 
 /* ── DARK BAND ───────────────────────────── */
 interface DarkBandProps { title: string; subtitle?: string; ctaLabel: string; ctaHref: string; }
-export function DarkBand({ title, subtitle, ctaLabel, ctaHref, editKey }: DarkBandProps & { editKey?: string }) {
+export function DarkBand({ title, subtitle, ctaLabel, ctaHref, editKey, editFields }: DarkBandProps & { editKey?: string; editFields?: { title?: string; subtitle?: string; cta?: string } }) {
+  const kTitle = editFields?.title ?? "darkTitle";
+  const kSub   = editFields?.subtitle ?? "darkSubtitle";
+  const kCta   = editFields?.cta ?? "darkCta";
   const h3Style = { fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(20px,2.5vw,38px)", fontWeight:200, color:"#fff", lineHeight:1.3 } as React.CSSProperties;
   return (
     <section className="dark-band" style={{ background:"#1D1D1B" }}>
       <div>
         <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", marginBottom:16 }}>Next Step</div>
         {editKey
-          ? <h3 style={h3Style}><Editable id={`page_prose:${editKey}:darkTitle`}><span dangerouslySetInnerHTML={{ __html:title }} /></Editable></h3>
+          ? <h3 style={h3Style}><Editable id={`page_prose:${editKey}:${kTitle}`}><span dangerouslySetInnerHTML={{ __html:title }} /></Editable></h3>
           : <h3 style={h3Style} dangerouslySetInnerHTML={{ __html:title }} />}
-        {subtitle && <p style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"14px", fontWeight:300, color:"rgba(255,255,255,0.45)", lineHeight:1.8, marginTop:12, maxWidth:480 }}>{editKey ? <Editable id={`page_prose:${editKey}:darkSubtitle`}>{subtitle}</Editable> : subtitle}</p>}
+        {subtitle && <p style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"14px", fontWeight:300, color:"rgba(255,255,255,0.45)", lineHeight:1.8, marginTop:12, maxWidth:480 }}>{editKey ? <Editable id={`page_prose:${editKey}:${kSub}`}>{subtitle}</Editable> : subtitle}</p>}
       </div>
       <a href={ctaHref}
         style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#fff", color:"#1D1D1B", fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"10.5px", fontWeight:500, letterSpacing:"0.22em", textTransform:"uppercase", padding:"15px 30px", textDecoration:"none", flexShrink:0, whiteSpace:"nowrap", transition:"opacity 0.3s" }}
         onMouseEnter={e=>(e.currentTarget.style.opacity="0.88")}
         onMouseLeave={e=>(e.currentTarget.style.opacity="1")}
       >
-        {editKey ? <Editable id={`page_prose:${editKey}:darkCta`}>{ctaLabel}</Editable> : ctaLabel}
+        {editKey ? <Editable id={`page_prose:${editKey}:${kCta}`}>{ctaLabel}</Editable> : ctaLabel}
         <svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5H11M7 1L11 4.5L7 8" stroke="#1D1D1B" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
       </a>
     </section>
