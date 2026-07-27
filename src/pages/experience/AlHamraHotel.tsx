@@ -25,6 +25,7 @@ export default function AlHamraHotel() {
   return (
     <PageLayout>
       <PageHero
+        editKey="alHamraHotel"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -32,7 +33,7 @@ export default function AlHamraHotel() {
         crumbs={[...c.crumbs]}
       />
 
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="alHamraHotel" />
 
       {/* ── HERO FULL-BLEED ───────────────────────────────────────── */}
       <div style={{ position: "relative", height: "clamp(320px,48vw,560px)", overflow: "hidden" }}>
@@ -233,6 +234,8 @@ export default function AlHamraHotel() {
         subtitle={c.ctaSubtitle}
         ctaLabel={c.ctaLabel}
         ctaHref="/leasing/inquiry#inquiry-form"
+        editKey="alHamraHotel"
+        editFields={{ title: "ctaTitle", subtitle: "ctaSubtitle", cta: "ctaLabel" }}
       />
 
       <style>{`

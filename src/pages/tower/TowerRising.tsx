@@ -46,7 +46,7 @@ export default function TowerRising() {
               background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`, flexShrink: 0 }} />
             <div style={{ fontFamily: FONT,
               fontSize: "11px", letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
-              {c.timeline.kicker}
+              <Editable id="page_prose:towerRising:timeline.kicker">{c.timeline.kicker}</Editable>
             </div>
           </div>
 
@@ -57,7 +57,7 @@ export default function TowerRising() {
               <h2 style={{ fontFamily: FONT,
                 fontWeight: 300, fontSize: "clamp(26px,2.8vw,40px)", color: DARK,
                 lineHeight: 1.1, marginBottom: 40, whiteSpace: "pre-line" }}>
-                {c.timeline.titleLine1}
+                <Editable id="page_prose:towerRising:timeline.titleLine1">{c.timeline.titleLine1}</Editable>
               </h2>
 
               {c.eras.map((era, i) => {

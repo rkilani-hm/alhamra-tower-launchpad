@@ -105,7 +105,7 @@ export default function TowerDesign() {
                     </div>
                     <div style={{ fontFamily: FONT, fontSize: "10px",
                       letterSpacing: "0.2em", textTransform: "uppercase",
-                      color: "#6B6B6B", marginTop: 6 }}>{l}</div>
+                      color: "#6B6B6B", marginTop: 6 }}><EditableRow id={`stat_counters:towerDesign:towerDesign_${i}`}>{l}</EditableRow></div>
                   </div>
                 ))}
               </div>
@@ -249,15 +249,15 @@ export default function TowerDesign() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
             className="elevation-grid">
             {[
-              { src: "/assets/drawings/south-wall-elevation.jpg", label: c.drawingsLabelSouth },
-              { src: "/assets/drawings/massing-05-elevation.jpg", label: c.drawingsLabelContext },
-            ].map(({ src, label }) => (
+              { src: "/assets/drawings/south-wall-elevation.jpg", label: c.drawingsLabelSouth, fld: "drawingsLabelSouth" },
+              { src: "/assets/drawings/massing-05-elevation.jpg", label: c.drawingsLabelContext, fld: "drawingsLabelContext" },
+            ].map(({ src, label, fld }) => (
               <div key={label}>
                 <img src={src} alt={label} loading="lazy"
                   style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }} />
                 <div style={{ fontFamily: FONT,
                   fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "#6B6B6B", marginTop: 12 }}>{label}</div>
+                  color: "#6B6B6B", marginTop: 12 }}><Editable id={`page_prose:towerDesign:${fld}`}>{label}</Editable></div>
               </div>
             ))}
           </div>

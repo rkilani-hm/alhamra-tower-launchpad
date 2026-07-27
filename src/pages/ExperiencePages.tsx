@@ -598,7 +598,7 @@ export function LeasingOpportunities() {
         subtitle={c.subtitle}
         crumbs={[...c.crumbs]}
       />
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="leasing" />
 
       <div style={{ position: "relative", height:"clamp(220px,32vw,400px)", overflow: "hidden" }}>
         <SlotImage
@@ -608,25 +608,25 @@ export function LeasingOpportunities() {
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, right: lang === "ar" ? "auto" : 80, left: lang === "ar" ? 80 : "auto", textAlign: lang === "ar" ? "left" : "right" }}>
           <p style={{ fontFamily: FONT, fontSize: "clamp(20px,2.5vw,32px)", fontWeight: 200, letterSpacing: "0.04em", color: "#fff", lineHeight: 1.4, whiteSpace: "pre-line" }}>
-            {c.quote}
+            <Editable id="page_prose:leasing:quote">{c.quote}</Editable>
           </p>
         </div>
       </div>
 
       <Section>
-        <Rv><Tag>{c.configsTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.configsHeading}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:leasing:configsTag">{c.configsTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:leasing:configsHeading">{c.configsHeading}</Editable></H2></Rv>
         <div className="grid-3col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:48 }}>
           {c.configs.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
-                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>{c.configLabel} {code}</div>
-                <div style={{ fontFamily: FONT, fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontFamily: FONT, fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}>{size}</div>
-                {bullets.map(b => (
+                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}><Editable id="page_prose:leasing:configLabel">{c.configLabel}</Editable> {code}</div>
+                <div style={{ fontFamily: FONT, fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}><Editable id={`page_prose:leasing:configs.${i}.title`}>{title}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}><Editable id={`page_prose:leasing:configs.${i}.size`}>{size}</Editable></div>
+                {bullets.map((b, bi) => (
                   <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
                     <span style={{ color: "#6B6B6B" }}>—</span>
-                    <span style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
+                    <span style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:leasing:configs.${i}.bullets.${bi}`}>{b}</Editable></span>
                   </div>
                 ))}
               </div>
@@ -636,13 +636,13 @@ export function LeasingOpportunities() {
       </Section>
 
       <Section bg="#FAFAFA">
-        <Rv><Tag>{c.amenitiesTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.amenitiesHeading}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:leasing:amenitiesTag">{c.amenitiesTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:leasing:amenitiesHeading">{c.amenitiesHeading}</Editable></H2></Rv>
         <div className="grid-4col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:40 }}>
-          {c.amenities.map(({ label, desc }) => (
+          {c.amenities.map(({ label, desc }, i) => (
             <div key={label} style={{ background: "#fff", padding: "32px 28px" }}>
-              <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{label}</div>
-              <div style={{ fontFamily: FONT, fontSize: "11.5px", color: "#6B6B6B", lineHeight: 1.7 }}>{desc}</div>
+              <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}><Editable id={`page_prose:leasing:amenities.${i}.label`}>{label}</Editable></div>
+              <div style={{ fontFamily: FONT, fontSize: "11.5px", color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:leasing:amenities.${i}.desc`}>{desc}</Editable></div>
             </div>
           ))}
         </div>
@@ -652,13 +652,13 @@ export function LeasingOpportunities() {
       <div>
         <div style={{ padding: "64px 80px 0" }}>
           <div style={{ fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 16 }}>
-            {c.plansKicker}
+            <Editable id="page_prose:leasing:plansKicker">{c.plansKicker}</Editable>
           </div>
           <h2 style={{ fontFamily: FONT, fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
-            {c.plansTitle}
+            <Editable id="page_prose:leasing:plansTitle">{c.plansTitle}</Editable>
           </h2>
           <p style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.65, maxWidth: 560 }}>
-            {c.plansBody}
+            <Editable id="page_prose:leasing:plansBody">{c.plansBody}</Editable>
           </p>
         </div>
         <div style={{ marginTop: 40 }}>
@@ -666,7 +666,7 @@ export function LeasingOpportunities() {
         </div>
       </div>
 
-      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" />
+      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="leasing" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
     </PageLayout>
   );
 }
@@ -747,8 +747,8 @@ export function LeasingInquiry() {
           <Rv>
             {sent ? (
               <div style={{ padding: "60px 0" }}>
-                <div style={{ fontFamily: FONT, fontSize: "32px", fontWeight: 300, color: "#1D1D1B", marginBottom: 12 }}>{c.sentTitle}</div>
-                <div style={{ fontFamily: FONT, fontSize: "14px", color: "#6B6B6B" }}>{c.sentBody}</div>
+                <div style={{ fontFamily: FONT, fontSize: "32px", fontWeight: 300, color: "#1D1D1B", marginBottom: 12 }}><Editable id="page_prose:inquiry:sentTitle">{c.sentTitle}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "14px", color: "#6B6B6B" }}><Editable id="page_prose:inquiry:sentBody">{c.sentBody}</Editable></div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }}>
@@ -758,7 +758,7 @@ export function LeasingInquiry() {
                       htmlFor={`inquiry-${field}`}
                       style={{ display: "block", fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 8 }}
                     >
-                      {c.fieldLabels[field]}
+                      <Editable id={`page_prose:inquiry:fieldLabels.${field}`}>{c.fieldLabels[field]}</Editable>
                     </label>
                     <input
                       id={`inquiry-${field}`}
@@ -778,7 +778,7 @@ export function LeasingInquiry() {
                     htmlFor="inquiry-message"
                     style={{ display: "block", fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 8 }}
                   >
-                    {c.fieldLabels.message}
+                    <Editable id="page_prose:inquiry:fieldLabels.message">{c.fieldLabels.message}</Editable>
                   </label>
                   <textarea
                     id="inquiry-message"
@@ -798,7 +798,7 @@ export function LeasingInquiry() {
                   padding: "15px 40px", border: "none", cursor: "pointer",
                   transition: "opacity 0.3s",
                 }}>
-                  {c.submitLabel}
+                  <Editable id="page_prose:inquiry:submitLabel">{c.submitLabel}</Editable>
                 </button>
               </form>
             )}
@@ -807,11 +807,11 @@ export function LeasingInquiry() {
           {/* Contact details */}
           <Rv delay={0.15}>
             <div>
-              <Tag>{c.contactTag}</Tag>
-              {c.contactRows.map(({ label, value }) => (
+              <Tag><Editable id="page_prose:inquiry:contactTag">{c.contactTag}</Editable></Tag>
+              {c.contactRows.map(({ label, value }, i) => (
                 <div key={label} style={{ padding: "18px 0", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
-                  <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 6 }}>{label}</div>
-                  <div style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+                  <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 6 }}><Editable id={`page_prose:inquiry:contactRows.${i}.label`}>{label}</Editable></div>
+                  <div style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:inquiry:contactRows.${i}.value`}>{value}</Editable></div>
                 </div>
               ))}
             </div>
@@ -881,10 +881,10 @@ export function Downloads() {
               >
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                    <span style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 500, color: "#1D1D1B" }}>{title}</span>
-                    <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}>{format} · {size}</span>
+                    <span style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 500, color: "#1D1D1B" }}><Editable id={`page_prose:downloads:items.${i}.title`}>{title}</Editable></span>
+                    <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}><Editable id={`page_prose:downloads:items.${i}.format`}>{format}</Editable> · <Editable id={`page_prose:downloads:items.${i}.size`}>{size}</Editable></span>
                   </div>
-                  <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#6B6B6B" }}>{desc}</div>
+                  <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#6B6B6B" }}><Editable id={`page_prose:downloads:items.${i}.desc`}>{desc}</Editable></div>
                 </div>
                 <button type="button" style={{
                   display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0,
@@ -896,7 +896,7 @@ export function Downloads() {
                   onMouseEnter={e => { e.currentTarget.style.background="#1D1D1B"; e.currentTarget.style.color="#fff"; }}
                   onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#1D1D1B"; }}
                 >
-                  {c.downloadLabel}
+                  <Editable id="page_prose:downloads:downloadLabel">{c.downloadLabel}</Editable>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M6 1v7M2 8l4 3 4-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -906,7 +906,7 @@ export function Downloads() {
           ))}
         </div>
       </Section>
-      <DarkBand title={c.cta.title} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" />
+      <DarkBand title={c.cta.title} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="downloads" editFields={{ title: "cta.title", cta: "cta.label" }} />
     </PageLayout>
   );
 }
@@ -967,10 +967,10 @@ export function Contact() {
       />
       <Section>
         <div className="grid-4col" style={{ gap:1, background:"rgba(29,29,27,0.09)" }}>
-          {c.rows.map(({ label, value }) => (
+          {c.rows.map(({ label, value }, i) => (
             <div key={label} style={{ background: "#fff", padding: "44px 36px" }}>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>{label}</div>
-              <div style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 300, color: "#1D1D1B" }}>{value}</div>
+              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}><Editable id={`page_prose:contact:rows.${i}.label`}>{label}</Editable></div>
+              <div style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:contact:rows.${i}.value`}>{value}</Editable></div>
             </div>
           ))}
         </div>
@@ -978,14 +978,14 @@ export function Contact() {
       <Section bg="#FAFAFA">
         <div className="grid-2col">
           <Rv>
-            <Tag>{c.socialTag}</Tag>
-            <H2>{c.socialHeading}</H2>
+            <Tag><Editable id="page_prose:contact:socialTag">{c.socialTag}</Editable></Tag>
+            <H2><Editable id="page_prose:contact:socialHeading">{c.socialHeading}</Editable></H2>
             <SocialIcons variant="contact" />
           </Rv>
           <Rv delay={0.15}>
-            <Tag>{c.teamTag}</Tag>
-            <H2>{c.teamHeading}</H2>
-            <Body>{c.teamBody}</Body>
+            <Tag><Editable id="page_prose:contact:teamTag">{c.teamTag}</Editable></Tag>
+            <H2><Editable id="page_prose:contact:teamHeading">{c.teamHeading}</Editable></H2>
+            <Body><Editable id="page_prose:contact:teamBody">{c.teamBody}</Editable></Body>
             <a href="/leasing/inquiry#inquiry-form" style={{
               display: "inline-flex", alignItems: "center", gap: 12, marginTop: 36,
               background: "#1D1D1B", color: "#fff",
@@ -993,7 +993,7 @@ export function Contact() {
               letterSpacing: "0.22em", textTransform: "uppercase",
               padding: "15px 34px", textDecoration: "none", transition: "opacity 0.3s",
             }}>
-              {c.ctaLabel}
+              <Editable id="page_prose:contact:ctaLabel">{c.ctaLabel}</Editable>
             </a>
           </Rv>
         </div>

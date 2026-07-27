@@ -26,6 +26,7 @@ export default function BusinessCentre() {
   return (
     <PageLayout>
       <PageHero
+        editKey="businessCentre"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -33,7 +34,7 @@ export default function BusinessCentre() {
         crumbs={[...c.crumbs]}
       />
 
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="businessCentre" />
 
       {/* ── HERO CAROUSEL-STYLE FULL-BLEED IMAGE ──────────────────── */}
       <div style={{ position: "relative", height: "clamp(320px,48vw,560px)", overflow: "hidden" }}>
@@ -235,6 +236,8 @@ export default function BusinessCentre() {
         subtitle={c.ctaSubtitle}
         ctaLabel={c.ctaLabel}
         ctaHref="/leasing/inquiry#inquiry-form"
+        editKey="businessCentre"
+        editFields={{ title: "ctaTitle", subtitle: "ctaSubtitle", cta: "ctaLabel" }}
       />
 
       {/* Direct contact detail strip */}
@@ -248,20 +251,20 @@ export default function BusinessCentre() {
           display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))",
           gap: "clamp(20px,3vw,48px)",
         }}>
-          {c.contactRows.map(item => (
+          {c.contactRows.map((item, i) => (
             <div key={item.label}>
               <div style={{
                 fontFamily: CG, fontSize: "10px", letterSpacing: "0.32em",
                 textTransform: "uppercase", color: PEARL,
                 marginBottom: 8,
               }}>
-                {item.label}
+                <Editable id={`page_prose:businessCentre:contactRows.${i}.label`}>{item.label}</Editable>
               </div>
               <div style={{
                 fontFamily: CG, fontSize: "clamp(13px,1.1vw,15px)",
                 color: "#fff", fontWeight: 300,
               }}>
-                {item.value}
+                <Editable id={`page_prose:businessCentre:contactRows.${i}.value`}>{item.value}</Editable>
               </div>
             </div>
           ))}

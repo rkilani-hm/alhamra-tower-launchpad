@@ -697,22 +697,22 @@ export function Connectivity() {
         subtitle={c.subtitle}
         crumbs={[{ label: c.crumbHome, href: "/" }, { label: c.crumbBusiness, href: "/business" }, { label: c.crumbThis, href: "/business/connectivity" }]}
       />
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="connectivity" />
       <Section>
-        <Rv><Tag>{c.tag2}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.h2}</H2></Rv>
-        <Rv delay={0.2}><Body style={{ maxWidth: 640, marginBottom: 48 }}>{c.body}</Body></Rv>
+        <Rv><Tag><Editable id="page_prose:connectivity:tag2">{c.tag2}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:connectivity:h2">{c.h2}</Editable></H2></Rv>
+        <Rv delay={0.2}><Body style={{ maxWidth: 640, marginBottom: 48 }}><Editable id="page_prose:connectivity:body">{c.body}</Editable></Body></Rv>
         <Rv delay={0.3}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
-            {c.features.map(({ number, title, body, url }) => (
+            {c.features.map(({ number, title, body, url }, i) => (
               <div key={number}
                 style={{ background: "#fff", padding: "28px 26px", transition: "background 0.18s ease" }}
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
                 onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
               >
                 <div style={{ fontFamily: FONT, fontSize: "10px", color: "#6B6B6B", letterSpacing: "0.2em", marginBottom: 10 }}>{number}</div>
-                <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8, letterSpacing: "0.04em" }}>{title}</div>
-                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.6, marginBottom: url ? 14 : 0 }}>{body}</div>
+                <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8, letterSpacing: "0.04em" }}><Editable id={`page_prose:connectivity:features.${i}.title`}>{title}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.6, marginBottom: url ? 14 : 0 }}><Editable id={`page_prose:connectivity:features.${i}.body`}>{body}</Editable></div>
                 {url && (
                   <a href={url} target="_blank" rel="noreferrer"
                     style={{
@@ -726,7 +726,7 @@ export function Connectivity() {
                     onMouseEnter={e => { e.currentTarget.style.color = "#6B6B6B"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.1)"; }}
                     onMouseLeave={e => { e.currentTarget.style.color = "#1D1D1B"; e.currentTarget.style.borderColor = "rgba(29,29,27,0.25)"; }}
                   >
-                    {c.visitLink}
+                    <Editable id="page_prose:connectivity:visitLink">{c.visitLink}</Editable>
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                       <path d="M1 9L9 1M9 1H4M9 1V6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -737,7 +737,7 @@ export function Connectivity() {
           </div>
         </Rv>
       </Section>
-      <DarkBand title={c.darkTitle} subtitle={c.darkSubtitle} ctaLabel={c.darkCta} ctaHref="/leasing/inquiry#inquiry-form" />
+      <DarkBand title={c.darkTitle} subtitle={c.darkSubtitle} ctaLabel={c.darkCta} ctaHref="/leasing/inquiry#inquiry-form" editKey="connectivity" />
     </PageLayout>
   );
 }
