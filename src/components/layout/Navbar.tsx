@@ -102,7 +102,7 @@ export function Navbar() {
           background: scrolled || openMenu || mobileOpen ? "rgba(255,255,255,0.97)" : "transparent",
           backdropFilter: scrolled || openMenu || mobileOpen ? "blur(20px)" : "none",
           borderBottom: scrolled || openMenu || mobileOpen ? "1px solid rgba(29,29,27,0.09)" : "none",
-          transition: "all 0.4s ease",
+          transition: "padding 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease",
         }}
       >
         {/* Logo */}
@@ -281,7 +281,7 @@ export function Navbar() {
                         color: isActive ? "#1D1D1B" : "#6B6B6B",
                         fontWeight: isActive ? 500 : 300,
                       }}>
-                        {t(labelKey)}
+                        <Editable id={navEditId(labelKey)}>{t(labelKey)}</Editable>
                       </span>
 
                       {/* Animated chevron */}
@@ -325,7 +325,7 @@ export function Navbar() {
                                   <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"15px", fontWeight:300, color:"#EDEDED", lineHeight:1, flexShrink:0 }}>
                                     {String(i + 1).padStart(2, "0")}
                                   </span>
-                                  {t(cl)}
+                                  <Editable id={navEditId(cl)}>{t(cl)}</Editable>
                                 </Link>
                               );
                             })}
@@ -346,7 +346,7 @@ export function Navbar() {
                     fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16.5px",
                   }}
                 >
-                  Leasing Inquiry
+                  <Editable id="section_fields:nav:cta">{t("nav.cta")}</Editable>
                 </Link>
               </div>
             </div>

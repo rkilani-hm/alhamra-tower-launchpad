@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { SocialIcons } from "@/components/shared/SocialIcons";
 import { useT } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
+
+/* Nav labels reuse the shared section_fields:nav rows (same t() keys as the
+   Navbar); footer-only strings live under section_fields:footer. */
+const navId = (k: string) => `section_fields:nav:${k.replace(/^nav\./, "")}`;
 
 const NAV = [
   {
@@ -74,7 +79,7 @@ export function Footer() {
         {NAV.map(({ titleKey, links }) => (
           <div key={titleKey}>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#1D1D1B", fontWeight: 500, marginBottom: 20 }}>
-              {t(titleKey)}
+              <Editable id={navId(titleKey)}>{t(titleKey)}</Editable>
             </div>
             {links.map(({ labelKey, href }) => (
               <Link key={labelKey} to={href}
@@ -82,7 +87,7 @@ export function Footer() {
                 onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
                 onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
               >
-                {t(labelKey)}
+                <Editable id={navId(labelKey)}>{t(labelKey)}</Editable>
               </Link>
             ))}
           </div>
@@ -92,7 +97,7 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="footer-bottom" style={{ borderTop: "1px solid rgba(29,29,27,0.07)" }}>
         <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#6B6B6B", letterSpacing: "0.1em" }}>
-          {t("footer.copyright")}
+          <Editable id="section_fields:footer:copyright">{t("footer.copyright")}</Editable>
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
           {[
@@ -103,7 +108,7 @@ export function Footer() {
               style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#6B6B6B", textDecoration: "none", transition: "color 0.2s" }}
               onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
               onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
-            >{t(labelKey)}</Link>
+            ><Editable id={`section_fields:footer:${labelKey.replace(/^footer\./, "")}`}>{t(labelKey)}</Editable></Link>
           ))}
         </div>
       </div>
