@@ -6,7 +6,7 @@ import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n } from "@/lib/i18n";
 import { usePageContent } from "@/lib/useCmsContent";
-import { SlotImage } from "@/lib/EditMode";
+import { SlotImage, Editable } from "@/lib/EditMode";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -167,10 +167,10 @@ export function Services() {
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
         <div style={{ position: "absolute", bottom: 44, left: 80, right: 80 }}>
           <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
-            {c.lobbyKicker}
+            <Editable id="page_prose:services:lobbyKicker">{c.lobbyKicker}</Editable>
           </p>
           <h3 style={{ fontFamily: FONT, fontSize: "clamp(20px,2.2vw,34px)", fontWeight: 200, color: "#fff", lineHeight: 1.3 }}>
-            {c.lobbyHeading}<br /><strong style={{ fontWeight: 500 }}>{c.lobbyHeadingBold}</strong>
+            <Editable id="page_prose:services:lobbyHeading">{c.lobbyHeading}</Editable><br /><strong style={{ fontWeight: 500 }}><Editable id="page_prose:services:lobbyHeadingBold">{c.lobbyHeadingBold}</Editable></strong>
           </h3>
         </div>
       </div>
@@ -194,7 +194,7 @@ export function Services() {
           { src: "/assets/lobby-elevator-hall.jpg",   alt: lang === "ar" ? "ردهة مصاعد كبار الشخصيات" : "VIP elevator hall",        cap: c.galleryCaps[0] },
           { src: "/assets/lobby-ceiling-day.jpg",     alt: lang === "ar" ? "هيكل سقف اللوبي" : "Lobby ceiling structure",  cap: c.galleryCaps[1] },
           { src: "/assets/lobby-ceiling-portrait.jpg",alt: lang === "ar" ? "السقف الإنشائي للوبي" : "Lobby ceiling portrait",   cap: c.galleryCaps[2] },
-        ].map(({ src, alt, cap }) => (
+        ].map(({ src, alt, cap }, i) => (
           <div key={src} style={{ position: "relative", overflow: "hidden", height: 300 }}>
             <img src={src} alt={alt}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", transition: "transform 0.6s ease" }}
@@ -202,7 +202,7 @@ export function Services() {
               onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
             />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "14px 18px 12px" }}>
-              <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>{cap}</span>
+              <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}><Editable id={`page_prose:services:galleryCaps.${i}`}>{cap}</Editable></span>
             </div>
           </div>
         ))}
@@ -211,7 +211,7 @@ export function Services() {
       <Section>
         <Rv>
           <p style={{ fontFamily: FONT, fontSize: "clamp(18px,2vw,26px)", fontWeight: 200, letterSpacing: "0.04em", color: "#1D1D1B", lineHeight: 1.65, maxWidth: 720 }}>
-            {c.quote}
+            <Editable id="page_prose:services:quote">{c.quote}</Editable>
           </p>
         </Rv>
       </Section>
@@ -227,13 +227,13 @@ export function Services() {
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px,5vh,56px) clamp(28px,6vw,96px)" }}>
             <Rv>
               <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 12 }}>
-                {c.skyKicker}
+                <Editable id="page_prose:services:skyKicker">{c.skyKicker}</Editable>
               </div>
               <h2 style={{ fontFamily: FONT, fontWeight: 200, letterSpacing: "0.04em", fontSize: "clamp(26px,4vw,58px)", color: "#fff", lineHeight: 1.1, marginBottom: 16 }}>
-                {c.skyTitle}<br />{c.skyTitle2}
+                <Editable id="page_prose:services:skyTitle">{c.skyTitle}</Editable><br /><Editable id="page_prose:services:skyTitle2">{c.skyTitle2}</Editable>
               </h2>
               <p style={{ fontFamily: FONT, fontWeight: 300, fontSize: "clamp(12px,1.1vw,14px)", color: "rgba(255,255,255,0.6)", maxWidth: 560, lineHeight: 1.65 }}>
-                {c.skyBody}
+                <Editable id="page_prose:services:skyBody">{c.skyBody}</Editable>
               </p>
             </Rv>
           </div>
@@ -244,35 +244,37 @@ export function Services() {
               loading="lazy" slot="services.skyLounge" fallback="/assets/sky-lobby-lounge.jpg"
               alt={lang === "ar" ? "قاعة طعام صالة السماء — ثريا وطاولات مستديرة وبار بيانو" : "Sky Lounge dining room — chandelier, round tables, piano bar"}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{c.skyCap1}</div>
+            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}><Editable id="page_prose:services:skyCap1">{c.skyCap1}</Editable></div>
           </div>
           <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
             <SlotImage
               loading="lazy" slot="services.lounge" fallback="/assets/lounge-at-window.jpg"
               alt={lang === "ar" ? "صالة لوبي السماء — أرائك كريمية وإطلالة على مدينة الكويت" : "Sky Lobby lounge — cream sofas, Kuwait City through full-height windows"}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
-            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{c.skyCap2}</div>
+            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}><Editable id="page_prose:services:skyCap2">{c.skyCap2}</Editable></div>
           </div>
         </div>
       </div>
 
       {/* ── Luxury Centre ──────────────────────────────────── */}
-      <Section title={c.mallTitle} tag={c.mallTag}>
+      <Section>
+        <Rv><Tag><Editable id="page_prose:services:mallTag">{c.mallTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:services:mallTitle">{c.mallTitle}</Editable></H2></Rv>
         <p style={{ fontFamily: FONT, fontWeight: 300,
           fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9,
           maxWidth: 720, marginBottom: 40 }}>
-          {c.mallBody}
+          <Editable id="page_prose:services:mallBody">{c.mallBody}</Editable>
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2,
           marginBottom: 48 }} className="grid-3col">
-          {c.brands.map(({ category, brands }) => (
+          {c.brands.map(({ category, brands }, i) => (
             <div key={category} style={{ background: "#FAFAFA",
               padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #C8B99A" }}>
               <div style={{ fontFamily: FONT, fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
-                color: "#9A7550", marginBottom: 12 }}>{category}</div>
+                color: "#9A7550", marginBottom: 12 }}><Editable id={`page_prose:services:brands.${i}.category`}>{category}</Editable></div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,13px)",
-                color: "#6B6B6B", lineHeight: 1.9 }}>{brands}</div>
+                color: "#6B6B6B", lineHeight: 1.9 }}><Editable id={`page_prose:services:brands.${i}.brands`}>{brands}</Editable></div>
             </div>
           ))}
         </div>
@@ -286,7 +288,7 @@ export function Services() {
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
               background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)", pointerEvents: "none" }} />
             <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A" }}>
-              {c.atriumCap}
+              <Editable id="page_prose:services:atriumCap">{c.atriumCap}</Editable>
             </div>
           </div>
           <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
@@ -297,24 +299,24 @@ export function Services() {
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
               background: "linear-gradient(to top, rgba(12,11,9,0.8), transparent)", pointerEvents: "none" }} />
             <div style={{ position: "absolute", bottom: 16, left: 20 }}>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 6 }}>{c.cinemaCap}</div>
-              <div style={{ fontFamily: FONT, fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, whiteSpace: "pre-line" }}>{c.cinemaSub}</div>
+              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 6 }}><Editable id="page_prose:services:cinemaCap">{c.cinemaCap}</Editable></div>
+              <div style={{ fontFamily: FONT, fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, whiteSpace: "pre-line" }}><Editable id="page_prose:services:cinemaSub">{c.cinemaSub}</Editable></div>
             </div>
           </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)",
           gap: 1, marginTop: 2 }} className="grid-4col">
-          {c.amenities.map(({ label, desc }) => (
+          {c.amenities.map(({ label, desc }, i) => (
             <div key={label} style={{ background: "#FAFAFA",
               padding: "clamp(20px,2.5vw,28px)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
               <div style={{ fontFamily: FONT,
                 fontSize: 20, color: "#C8B99A", marginBottom: 8 }}>◆</div>
               <div style={{ fontFamily: FONT, fontSize: "12px",
                 fontWeight: 500, color: "#1D1D1B", marginBottom: 6,
-                letterSpacing: "0.04em" }}>{label}</div>
+                letterSpacing: "0.04em" }}><Editable id={`page_prose:services:amenities.${i}.label`}>{label}</Editable></div>
               <div style={{ fontFamily: FONT, fontSize: "11px",
-                color: "#6B6B6B", lineHeight: 1.7 }}>{desc}</div>
+                color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:services:amenities.${i}.desc`}>{desc}</Editable></div>
             </div>
           ))}
         </div>
