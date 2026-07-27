@@ -399,7 +399,7 @@ export function Location() {
         subtitle={c.subtitle}
         crumbs={[...c.crumbs]}
       />
-      <StatsBar stats={[...c.stats]} />
+      <StatsBar stats={[...c.stats]} editKey="location" />
 
       {/* Full-bleed waterfront photo */}
       <div style={{ position: "relative", height:"clamp(260px,40vw,520px)", overflow: "hidden" }}>
@@ -410,13 +410,13 @@ export function Location() {
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
         <div style={{ position: "absolute", bottom: 40, left: 80, right: 80, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div>
-            <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>{c.bannerKicker}</div>
+            <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}><Editable id="page_prose:location:bannerKicker">{c.bannerKicker}</Editable></div>
             <h3 style={{ fontFamily: FONT, fontSize: "clamp(20px,2.5vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.2 }}>
-              {c.bannerLine1}<br /><strong style={{ fontWeight: 500 }}>{c.bannerLine2}</strong>
+              <Editable id="page_prose:location:bannerLine1">{c.bannerLine1}</Editable><br /><strong style={{ fontWeight: 500 }}><Editable id="page_prose:location:bannerLine2">{c.bannerLine2}</Editable></strong>
             </h3>
           </div>
           <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>
-            {c.bannerCredit}
+            <Editable id="page_prose:location:bannerCredit">{c.bannerCredit}</Editable>
           </div>
         </div>
       </div>
@@ -424,15 +424,15 @@ export function Location() {
       <Section>
         <div className="grid-2col media-right">
           <div>
-            <Rv><Tag>{c.sectionTag}</Tag></Rv>
-            <Rv delay={0.1}><H2>{c.sectionHeading}</H2></Rv>
-            <Rv delay={0.2}><Body>{c.sectionBody}</Body></Rv>
+            <Rv><Tag><Editable id="page_prose:location:sectionTag">{c.sectionTag}</Editable></Tag></Rv>
+            <Rv delay={0.1}><H2><Editable id="page_prose:location:sectionHeading">{c.sectionHeading}</Editable></H2></Rv>
+            <Rv delay={0.2}><Body><Editable id="page_prose:location:sectionBody">{c.sectionBody}</Editable></Body></Rv>
             <Rv delay={0.3}>
               <div style={{ marginTop: 40 }}>
                 {c.detailLabels.map((label, i) => (
                   <div key={label} style={{ display: "flex", gap: 24, padding: "14px 0", borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
-                    <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B", minWidth: 110, flexShrink: 0, paddingTop: 2 }}>{label}</div>
-                    <div style={{ fontFamily: FONT, fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}>{c.detailValues[i]}</div>
+                    <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B", minWidth: 110, flexShrink: 0, paddingTop: 2 }}><Editable id={`page_prose:location:detailLabels.${i}`}>{label}</Editable></div>
+                    <div style={{ fontFamily: FONT, fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:location:detailValues.${i}`}>{c.detailValues[i]}</Editable></div>
                   </div>
                 ))}
               </div>
@@ -447,7 +447,7 @@ export function Location() {
               <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "24px 24px 20px" }}>
                 <a href="https://maps.google.com/?q=Al+Hamra+Tower+Kuwait" target="_blank" rel="noreferrer"
                   style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#fff", textDecoration: "none" }}>
-                  {c.directionsLabel}
+                  <Editable id="page_prose:location:directionsLabel">{c.directionsLabel}</Editable>
                 </a>
               </div>
             </div>
@@ -455,7 +455,7 @@ export function Location() {
         </div>
       </Section>
 
-      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" />
+      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="location" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
     </PageLayout>
   );
 }
