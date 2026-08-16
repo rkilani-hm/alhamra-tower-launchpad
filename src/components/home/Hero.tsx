@@ -96,30 +96,13 @@ export function Hero() {
           background: `linear-gradient(to bottom, ${PEARL}, #D4CFC9 50%, ${PEARL})`, transformOrigin: "top", zIndex: 10 }}
       />
 
-      {/* Side label */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
-        transition={{ duration: 0.8, delay: 2 }}
-        className="hero-side-label"
-        aria-hidden="true"
-        style={{
-          position: "absolute", right: 28, top: "50%", transformOrigin: "center",
-          transform: "translateY(-50%) rotate(90deg)",
-          fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.35em",
-          textTransform: "uppercase", color: "rgba(255,255,255,0.3)",
-          whiteSpace: "nowrap", zIndex: 8, pointerEvents: "none",
-        }}
-      >
-        {t("hero.sideLabel")}
-      </motion.div>
-
-      {/* Main content — TOP-aligned */}
+      {/* Main content — clean media hero, CTAs only (no data overlays) */}
       <motion.div
         style={{ y: textY, opacity: fade,
           position: "absolute", inset: 0, zIndex: 6,
           display: "flex", flexDirection: "column",
           justifyContent: "flex-end",
-          padding: "0 clamp(28px,6vw,96px) clamp(120px,17vh,168px)",
+          padding: "0 clamp(28px,6vw,96px) clamp(56px,9vh,96px)",
         }}
       >
         {/* Headline text intentionally removed — the hero is now a clean
@@ -183,93 +166,8 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Bottom stats strip */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 1.7 }}
-        style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 7,
-          display: "flex", alignItems: "stretch",
-          borderTop: "1px solid rgba(255,255,255,0.1)",
-          background: "rgba(12,11,9,0.55)",
-          backdropFilter: "blur(12px)",
-        }}
-        className="hero-stat-strip"
-        role="list"
-        aria-label={t("hero.statsLabel")}
-      >
-        {[
-          { vk: "hero.stats.heightValue",    u: "m", k: "hero.stats.height"    },
-          { vk: "hero.stats.floorsValue",    u: "",  k: "hero.stats.floors"    },
-          { vk: "hero.stats.rankValue",      u: "",  k: "hero.stats.rank"      },
-          { vk: "hero.stats.elevatorsValue", u: "",  k: "hero.stats.elevators" },
-        ].map(({ vk, u, k }, i) => (
-          <motion.div
-            key={k}
-            role="listitem"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 14 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.9 + i * 0.08 }}
-            style={{
-              flex: 1, padding: "clamp(16px,2vh,22px) clamp(16px,2.5vw,36px)",
-              borderRight: i < 3 ? "1px solid rgba(255,255,255,0.08)" : "none",
-              display: "flex", flexDirection: "column", gap: 5,
-            }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(20px,2.5vw,30px)",
-              fontWeight: 300, color: "#fff", lineHeight: 1 }}>
-              <Editable id={`section_fields:hero:${vk.slice(5)}`}>{t(vk)}</Editable>
-              {u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,1.2vw,14px)",
-                fontWeight: 200, color: SAND, marginLeft: 3 }}>{u}</span>}
-            </div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.75vw,11px)",
-              letterSpacing: "0.28em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
-              <Editable id={`section_fields:hero:${k.slice(5)}`}>{t(k)}</Editable>
-            </div>
-          </motion.div>
-        ))}
-        <div style={{
-          padding: "clamp(16px,2vh,22px) clamp(16px,2.5vw,36px)",
-          display: "flex", alignItems: "center", gap: 12, flexShrink: 0,
-        }} className="hero-scroll-hint" aria-hidden="true">
-          <motion.div
-            animate={{ scaleX: [0, 1, 0] }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
-            style={{ width: 36, height: 1, background: SAND, transformOrigin: "left" }}
-          />
-          <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px",
-            letterSpacing: "0.35em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)",
-            whiteSpace: "nowrap" }}>
-            {t("hero.scroll")}
-          </span>
-        </div>
-      </motion.div>
-
-      {/* Photo credit */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
-        transition={{ duration: 0.6, delay: 2.4 }}
-        aria-hidden="true"
-        style={{ position: "absolute", bottom: 80, right: 20, zIndex: 8,
-          fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em",
-          textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}
-        className="hero-credit"
-      >
-        {t("hero.credit")}
-      </motion.div>
-
       <style>{`
-        .hero-side-label  { display: block; }
-        .hero-scroll-hint { display: flex; }
-        .hero-credit      { display: block; }
-        .hero-pause-btn   { display: flex; }
-        @media (max-width: 1024px) {
-          .hero-side-label  { display: none; }
-        }
-        @media (max-width: 768px) {
-          .hero-stat-strip  { display: none; }
-          .hero-scroll-hint { display: none; }
-          .hero-credit      { display: none; }
-        }
+        .hero-pause-btn { display: flex; }
       `}</style>
     </section>
   );
