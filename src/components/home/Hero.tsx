@@ -2,7 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useT } from "@/lib/i18n";
-import { Editable, useSlotVideoSrc, SlotVideoEditButton } from "@/lib/EditMode";
+import { Editable, useSlotVideoSrc } from "@/lib/EditMode";
+import { HeroMediaShowcase } from "@/components/home/HeroMediaShowcase";
 
 const SAND = "#C5A882";
 const DARK = "#1D1D1B";
@@ -31,12 +32,12 @@ function useLightHero() {
 
 export function Hero() {
   const t = useT();
+  // Legacy single hero video (set via the old CMS slot) — used as the fallback
+  // when the multi-media gallery is empty, so nothing is lost.
   const heroVideoSrc = useSlotVideoSrc("home.heroVideo", "/assets/tower-drone.mp4");
   const lightHero = useLightHero();
   const ref      = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady]   = useState(false);
-  const [playing, setPlaying] = useState(true);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const rawY   = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
@@ -49,52 +50,21 @@ export function Hero() {
     return () => clearTimeout(t);
   }, []);
 
-  /* W4: Video pause/play toggle */
-  const toggleVideo = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (playing) { v.pause(); } else { v.play(); }
-    setPlaying(p => !p);
-  };
-
   return (
     <section ref={ref} style={{
       position: "relative", width: "100%", height: "100vh",
       minHeight: 600, overflow: "hidden", background: "#0c0b09",
     }}>
-      {/* Full-bleed media — video only.
-          tower-sunset.jpg is now used as the <video poster> attribute
-          rather than a competing <img> element, so visitors see a hero
-          frame instantly during the ~600-800ms it takes the .mp4 to
-          decode the first frame. Once playback begins the poster is
-          replaced by the video. No image bleeds through. */}
-      <motion.div style={{ position: "absolute", inset: 0, y: mediaY }}>
-        {lightHero ? (
-          <img
-            src="/assets/tower-sunset.jpg"
-            alt={t("hero.alt")}
-            style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
-              objectFit: "cover", objectPosition: "center 15%", display: "block" }}
-          />
-        ) : (
-          <>
-            <motion.video
-              ref={videoRef}
-              key={heroVideoSrc}
-              src={heroVideoSrc}
-              autoPlay muted loop playsInline preload="auto"
-              poster="/assets/tower-sunset.jpg"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 2.5, delay: 0.5 }}
-              style={{ position: "absolute", inset: 0, width: "100%", height: "115%",
-                objectFit: "cover", objectPosition: "center 15%", display: "block" }}
-              aria-label={t("hero.alt")}
-            />
-            <SlotVideoEditButton slot="home.heroVideo" fallback="/assets/tower-drone.mp4" />
-          </>
-        )}
-      </motion.div>
+      {/* Full-bleed media — a rotating showcase of admin-managed videos &
+          images (falls back to the original single hero video when empty). */}
+      <HeroMediaShowcase
+        fallbackVideo={heroVideoSrc}
+        fallbackPoster="/assets/tower-sunset.jpg"
+        lightHero={lightHero}
+        mediaY={mediaY}
+        pauseLabel={t("hero.pauseVideoAria")}
+        playLabel={t("hero.playVideoAria")}
+      />
 
       {/* Gradient overlays */}
       <div style={{ position: "absolute", inset: 0,
@@ -125,41 +95,6 @@ export function Hero() {
           background: `linear-gradient(to bottom, ${PEARL}, #D4CFC9 50%, ${PEARL})`, transformOrigin: "top", zIndex: 10 }}
       />
 
-      {/* W4: Video pause button — WCAG 2.1.2 (only shown when the video renders) */}
-      {!lightHero && (
-      <motion.button
-        initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
-        transition={{ delay: 2.5, duration: 0.5 }}
-        onClick={toggleVideo}
-        aria-label={playing ? t("hero.pauseVideoAria") : t("hero.playVideoAria")}
-        title={playing ? t("hero.pauseVideo") : t("hero.playVideo")}
-        className="hero-pause-btn"
-        style={{
-          position: "absolute", bottom: 88, right: 20, zIndex: 20,
-          background: "rgba(12,11,9,0.5)", border: "1px solid rgba(255,255,255,0.2)",
-          color: "#fff", width: 44, height: 44, cursor: "pointer",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          backdropFilter: "blur(8px)", transition: "background 0.2s ease",
-          padding: 0,
-        }}
-        onMouseEnter={e => (e.currentTarget.style.background = "rgba(29,29,27,0.8)")}
-        onMouseLeave={e => (e.currentTarget.style.background = "rgba(12,11,9,0.5)")}
-      >
-        {playing ? (
-          /* Pause icon */
-          <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true">
-            <rect x="0" y="0" width="4" height="14" rx="1"/>
-            <rect x="8" y="0" width="4" height="14" rx="1"/>
-          </svg>
-        ) : (
-          /* Play icon */
-          <svg width="12" height="14" viewBox="0 0 12 14" fill="currentColor" aria-hidden="true">
-            <path d="M1 1l10 6-10 6V1z"/>
-          </svg>
-        )}
-      </motion.button>
-      )}
-
       {/* Side label */}
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: ready ? 1 : 0 }}
@@ -182,73 +117,12 @@ export function Hero() {
         style={{ y: textY, opacity: fade,
           position: "absolute", inset: 0, zIndex: 6,
           display: "flex", flexDirection: "column",
-          justifyContent: "flex-start",
-          padding: "clamp(100px,10vh,130px) clamp(28px,6vw,96px) 0",
+          justifyContent: "flex-end",
+          padding: "0 clamp(28px,6vw,96px) clamp(120px,17vh,168px)",
         }}
       >
-        {/* Tag line */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }} animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 14 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
-          style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 32,
-            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(10px,0.85vw,11px)",
-            letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}
-          aria-hidden="true"
-        >
-          <motion.span
-            initial={{ scaleX: 0 }} animate={{ scaleX: ready ? 1 : 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
-            style={{ width: 36, height: 1, background: SAND, flexShrink: 0, transformOrigin: "left", display: "block" }}
-          />
-          <Editable id="section_fields:hero:tag">{t("hero.tag")}</Editable>
-        </motion.div>
-
-        {/* Heading */}
-        <h1 style={{ margin: 0, padding: 0 }}>
-          <motion.span
-            initial={{ opacity: 0, x: -32 }} animate={{ opacity: ready ? 1 : 0, x: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.95 }}
-            style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,13px)",
-              letterSpacing: "0.5em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.7)", marginBottom: 4 }}
-          >
-            <Editable id="section_fields:hero:eyebrow">{t("hero.eyebrow")}</Editable>
-          </motion.span>
-
-          <motion.span
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: ready ? 1 : 0, y: 0 }}
-            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 1.05 }}
-            style={{ display: "block", lineHeight: 0.9, marginBottom: 4 }}
-          >
-            <span style={{
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 300,
-              fontSize: "clamp(72px,11vw,172px)", color: "#fff", letterSpacing: "-0.03em",
-            }}>
-              <Editable id="section_fields:hero:title">{t("hero.title")}</Editable>
-            </span>
-          </motion.span>
-
-          <motion.span
-            initial={{ opacity: 0, x: -20 }} animate={{ opacity: ready ? 1 : 0, x: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-            style={{ display: "block", fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontWeight: 200,
-              fontSize: "clamp(24px,4.5vw,72px)", color: "#fff",
-              letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 36 }}
-          >
-            <Editable id="section_fields:hero:subtitle">{t("hero.subtitle")}</Editable>
-          </motion.span>
-        </h1>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }} animate={{ opacity: ready ? 1 : 0, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.4 }}
-          style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(13px,1.1vw,15px)",
-            fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.65,
-            maxWidth: 420, marginBottom: 48 }}
-        >
-          <Editable id="section_fields:hero:description">{t("hero.description")}</Editable>
-        </motion.p>
+        {/* Headline text intentionally removed — the hero is now a clean
+            media showcase. CTAs are kept, anchored above the stats strip. */}
 
         {/* CTAs */}
         <motion.div

@@ -4,7 +4,6 @@ import { Hero }                from "@/components/home/Hero";
 import { Stats }               from "@/components/home/Stats";
 import { Marquee }             from "@/components/home/Marquee";
 import { Architecture }        from "@/components/home/Architecture";
-import { GulfSection }         from "@/components/home/GulfSection";
 import { InvitationSection }   from "@/components/home/InvitationSection";
 import { FounderQuote }        from "@/components/home/FounderQuote";
 import { ExperienceCards }     from "@/components/home/ExperienceCards";
@@ -39,9 +38,6 @@ export default function Index() {
 
         {/* ── Beat 1: Arrival ──────────────────────────────────── */}
         <Hero />
-
-        {/* ── Beat 2: The City ─────────────────────────────────── */}
-        <RevealOnScroll><GulfSection /></RevealOnScroll>
 
         {/* ── Beat 3: The Gesture ──────────────────────────────── */}
         <RevealOnScroll><FounderQuote /></RevealOnScroll>

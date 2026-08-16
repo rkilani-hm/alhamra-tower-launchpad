@@ -370,7 +370,7 @@ export function EditableImage({
    viewport-centered panel on a dimmed backdrop, above all page content —
    so it never gets clipped by a short image container or trapped beneath
    later sections. Backdrop click and Esc close it. */
-function PopoverShell({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
+export function PopoverShell({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", onKey);
