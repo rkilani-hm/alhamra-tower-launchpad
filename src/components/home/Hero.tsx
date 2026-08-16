@@ -1,12 +1,10 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Link } from "react-router-dom";
 import { useT } from "@/lib/i18n";
-import { Editable, useSlotVideoSrc } from "@/lib/EditMode";
+import { useSlotVideoSrc } from "@/lib/EditMode";
 import { HeroMediaShowcase } from "@/components/home/HeroMediaShowcase";
 
 const SAND = "#C5A882";
-const DARK = "#1D1D1B";
 const PEARL = "#C8B99A";
 
 /* Honour data-saver / reduced-motion: skip the autoplay hero video (a heavy
@@ -37,18 +35,10 @@ export function Hero() {
   const heroVideoSrc = useSlotVideoSrc("home.heroVideo", "/assets/tower-drone.mp4");
   const lightHero = useLightHero();
   const ref      = useRef<HTMLElement>(null);
-  const [ready, setReady]   = useState(false);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const rawY   = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const mediaY = useSpring(rawY, { stiffness: 60, damping: 18 });
-  const textY  = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
-  const fade   = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-
-  useEffect(() => {
-    const t = setTimeout(() => setReady(true), 80);
-    return () => clearTimeout(t);
-  }, []);
 
   return (
     <section ref={ref} style={{
@@ -96,75 +86,8 @@ export function Hero() {
           background: `linear-gradient(to bottom, ${PEARL}, #D4CFC9 50%, ${PEARL})`, transformOrigin: "top", zIndex: 10 }}
       />
 
-      {/* Main content — clean media hero, CTAs only (no data overlays) */}
-      <motion.div
-        style={{ y: textY, opacity: fade,
-          position: "absolute", inset: 0, zIndex: 6,
-          display: "flex", flexDirection: "column",
-          justifyContent: "flex-end",
-          padding: "0 clamp(28px,6vw,96px) clamp(56px,9vh,96px)",
-        }}
-      >
-        {/* Headline text intentionally removed — the hero is now a clean
-            media showcase. CTAs are kept, anchored above the stats strip. */}
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: ready ? 1 : 0, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.6 }}
-          style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "14px 28px" }}
-        >
-          <Link to="/tower"
-            style={{ display: "inline-flex", alignItems: "center", gap: 12,
-              background: "#fff", color: DARK,
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", fontWeight: 500,
-              letterSpacing: "0.22em", textTransform: "uppercase",
-              padding: "15px 32px", textDecoration: "none",
-              transition: "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-              willChange: "transform" }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = SAND;
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 12px 28px rgba(0,0,0,0.25)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = "#fff";
-              e.currentTarget.style.color = DARK;
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
-          >
-            <Editable id="section_fields:hero:ctaPrimary">{t("hero.ctaPrimary")}</Editable>
-            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
-              <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </Link>
-
-          <Link to="/leasing/inquiry#inquiry-form"
-            style={{ display: "inline-flex", alignItems: "center", gap: 14,
-              color: "rgba(255,255,255,0.85)",
-              fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px",
-              letterSpacing: "0.2em", textTransform: "uppercase",
-              textDecoration: "none",
-              transition: "color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-              border: "1px solid rgba(255,255,255,0.35)", padding: "14px 24px",
-              background: "rgba(255,255,255,0)" }}
-            onMouseEnter={e => {
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)";
-              e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.color = "rgba(255,255,255,0.85)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)";
-              e.currentTarget.style.background = "rgba(255,255,255,0)";
-            }}
-          >
-            <Editable id="section_fields:hero:ctaSecondary">{t("hero.ctaSecondary")}</Editable>
-          </Link>
-        </motion.div>
-      </motion.div>
+      {/* Pure media hero — no text, no data, no CTAs. Just the media,
+          the gradient/accent overlays, and the pause control. */}
 
       <style>{`
         .hero-pause-btn { display: flex; }
