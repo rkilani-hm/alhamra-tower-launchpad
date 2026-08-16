@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useT } from "@/lib/i18n";
@@ -63,8 +64,8 @@ const navListVariants = {
   show: { transition: { delayChildren: 0.7, staggerChildren: 0.09 } },
 };
 const navItemVariants = {
-  hidden: { opacity: 0, y: -10 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+  hidden: { y: -12 },
+  show: { y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export function Navbar() {
@@ -107,12 +108,16 @@ export function Navbar() {
   const toggleSection = (key: string) =>
     setOpenSection(prev => prev === key ? null : key);
 
-  return (
+  // Portal to <body> so the fixed bar escapes the page-transition wrapper in
+  // App.tsx (a transformed / will-change:transform ancestor makes position:
+  // fixed resolve against that wrapper, not the viewport — which would let the
+  // bar scroll away). At body level it is truly viewport-fixed → stays sticky.
+  return createPortal(
     <>
       <motion.nav
-        initial={playIntro ? { y: -80, opacity: 0 } : false}
-        animate={{ y: 0, opacity: 1 }}
-        transition={playIntro ? { duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
+        initial={playIntro ? { y: -80 } : false}
+        animate={{ y: 0 }}
+        transition={playIntro ? { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 20,
           display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -170,9 +175,9 @@ export function Navbar() {
                   aria-expanded={isOpen}
                   style={{
                     display: "inline-flex", alignItems: "center", gap: 5,
-                    fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                    fontFamily: "var(--font-brand)",
+                    color: "#1D1D1B",
                     textDecoration: "none", padding: "8px 16px",
-                    transition: "color 0.2s",
                   }}>
                   <Editable id={navEditId(labelKey)}>{t(labelKey)}</Editable>
                   <svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"
@@ -233,7 +238,7 @@ export function Navbar() {
         {/* Right — CTA + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <Link to="/leasing/inquiry#inquiry-form" className="nav-cta-desktop" style={{
-            fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "16px", letterSpacing: "0.22em",
+            fontFamily: "var(--font-brand)", fontSize: "16px", letterSpacing: "0.22em",
             textTransform: "uppercase", color: "#1D1D1B", textDecoration: "none",
             border: "1px solid #1D1D1B", padding: "10px 24px",
             transition: "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -392,6 +397,7 @@ export function Navbar() {
           .mobile-menu-btn   { display: flex !important; }
         }
       `}</style>
-    </>
+    </>,
+    document.body
   );
 }
