@@ -369,26 +369,15 @@ export function OfficeSpaces() {
       <Section bg="#FAFAFA">
         <div className="grid-2col">
           <Rv>
-            <div style={{ display: "flex", flexDirection: "column", gap: 4, height: "100%", minHeight: 420 }}>
-              <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
-                <SlotImage loading="lazy" slot="officeSpaces.floorReception" fallback="/assets/floor-reception.jpg" alt={c.floorReceptionAlt}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
-                  <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}><Editable id="page_prose:officeSpaces:floorReceptionTitle">{c.floorReceptionTitle}</Editable></div>
-                  <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                    <Editable id="page_prose:officeSpaces:floorReceptionCap">{c.floorReceptionCap}</Editable>
-                  </span>
-                </div>
-              </div>
-              <div style={{ position: "relative", overflow: "hidden", flex: 1 }}>
-                <SlotImage loading="lazy" slot="officeSpaces.tenantLobby" fallback="/assets/tenant-lobby.jpg" alt={c.tenantLobbyAlt}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 200 }} />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "16px 20px 14px" }}>
-                  <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}><Editable id="page_prose:officeSpaces:tenantLobbyTitle">{c.tenantLobbyTitle}</Editable></div>
-                  <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                    <Editable id="page_prose:officeSpaces:tenantLobbyCap">{c.tenantLobbyCap}</Editable>
-                  </span>
-                </div>
+            {/* One merged media cell (image OR video) filling the column. */}
+            <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 440 }}>
+              <SlotImage loading="lazy" slot="officeSpaces.flexMedia" fallback="/assets/floor-reception.jpg" alt={c.floorReceptionAlt}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", minHeight: 440 }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "18px 22px 16px" }}>
+                <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1.1vw,14px)", fontWeight: 500, color: "#fff", marginBottom: 4 }}><Editable id="page_prose:officeSpaces:floorReceptionTitle">{c.floorReceptionTitle}</Editable></div>
+                <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
+                  <Editable id="page_prose:officeSpaces:floorReceptionCap">{c.floorReceptionCap}</Editable>
+                </span>
               </div>
             </div>
           </Rv>
