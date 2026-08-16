@@ -130,11 +130,11 @@ export function Navbar() {
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 20,
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: scrolled
-            ? "clamp(12px,1.5vh,14px) clamp(20px,5vw,64px)"
-            : "clamp(16px,2vh,22px) clamp(20px,5vw,64px)",
-          // Frosted glass: ~50% translucent so the media shows through, fading
+            ? "clamp(6px,1vh,9px) clamp(20px,5vw,64px)"
+            : "clamp(8px,1.2vh,12px) clamp(20px,5vw,64px)",
+          // Frosted glass: ~65% translucent so the media shows through, fading
           // to fully opaque on hover (the "fade colour" on interaction).
-          background: barOpaque ? "#fff" : "rgba(255,255,255,0.5)",
+          background: barOpaque ? "#fff" : "rgba(255,255,255,0.65)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           borderBottom: "1px solid rgba(29,29,27,0.09)",
@@ -149,7 +149,7 @@ export function Navbar() {
             fallback="/assets/al-hamra-logo.png"
             alt="Al Hamra"
             style={{
-              height: 64, width: "auto", objectFit: "contain",
+              height: 46, width: "auto", objectFit: "contain",
               transition: "opacity 0.4s ease",
             }}
             onError={(e: any) => {
@@ -246,9 +246,9 @@ export function Navbar() {
         {/* Right — CTA + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <Link to="/leasing/inquiry#inquiry-form" className="nav-cta-desktop" style={{
-            fontFamily: "var(--font-brand)", fontSize: "16px", letterSpacing: "0.22em",
+            fontFamily: "var(--font-brand)", fontSize: "12px", letterSpacing: "0.2em",
             textTransform: "uppercase", color: "#1D1D1B", textDecoration: "none",
-            border: "1px solid #1D1D1B", padding: "10px 24px",
+            border: "1px solid #1D1D1B", padding: "8px 18px",
             transition: "background 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
             background: "transparent",
           }}
