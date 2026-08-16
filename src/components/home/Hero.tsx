@@ -66,15 +66,16 @@ export function Hero() {
         playLabel={t("hero.playVideoAria")}
       />
 
-      {/* Gradient overlays */}
+      {/* Gradient overlays — lightened so the media reads brighter; just enough
+          bottom scrim for the CTAs and the stats strip, minimal top/left. */}
       <div style={{ position: "absolute", inset: 0,
-        background: "linear-gradient(to bottom, rgba(12,11,9,0.45) 0%, transparent 35%, rgba(12,11,9,0.25) 65%, rgba(12,11,9,0.82) 100%)",
+        background: "linear-gradient(to bottom, rgba(12,11,9,0.12) 0%, transparent 32%, transparent 62%, rgba(12,11,9,0.7) 100%)",
         pointerEvents: "none" }} />
       <div style={{ position: "absolute", inset: 0,
-        background: "linear-gradient(to right, rgba(12,11,9,0.72) 0%, rgba(12,11,9,0.35) 40%, transparent 65%)",
+        background: "linear-gradient(to right, rgba(12,11,9,0.38) 0%, rgba(12,11,9,0.1) 35%, transparent 60%)",
         pointerEvents: "none" }} />
       <div style={{ position: "absolute", inset: 0,
-        background: `linear-gradient(to top right, rgba(197,168,130,0.12) 0%, transparent 60%)`,
+        background: `linear-gradient(to top right, rgba(197,168,130,0.1) 0%, transparent 60%)`,
         pointerEvents: "none" }} />
 
       {/* Scan line */}

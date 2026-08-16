@@ -23,6 +23,8 @@ const COLLECTION = "home.heroGallery";
 const COVER: React.CSSProperties = {
   position: "absolute", inset: 0, width: "100%", height: "115%",
   objectFit: "cover", objectPosition: "center 15%", display: "block",
+  // Lift the (dusk) footage so the hero doesn't read too dark.
+  filter: "brightness(1.18) saturate(1.05)",
 };
 
 type Item = { id: string; url: string; alt: string; isVideo: boolean; status: string; sort: number };
