@@ -20,11 +20,20 @@ import { useEditMode, PopoverShell, isVideoSrc } from "@/lib/EditMode";
 ──────────────────────────────────────────────────────────────────────────── */
 
 const COLLECTION = "home.heroGallery";
-const COVER: React.CSSProperties = {
+
+// Video (and the poster still) fill the frame full-bleed — cover, with a touch
+// of parallax overscan and a brightness lift for the dusk footage.
+const videoStyle: React.CSSProperties = {
   position: "absolute", inset: 0, width: "100%", height: "115%",
   objectFit: "cover", objectPosition: "center 15%", display: "block",
-  // Lift the (dusk) footage so the hero doesn't read too dark.
   filter: "brightness(1.18) saturate(1.05)",
+};
+
+// Uploaded images are shown in FULL (contain) so nothing is cropped — the dark
+// hero backdrop frames any aspect-ratio difference. Images are left unaltered.
+const imageStyle: React.CSSProperties = {
+  position: "absolute", inset: 0, width: "100%", height: "100%",
+  objectFit: "contain", objectPosition: "center", display: "block",
 };
 
 type Item = { id: string; url: string; alt: string; isVideo: boolean; status: string; sort: number };
@@ -124,7 +133,11 @@ export function HeroMediaShowcase({
             style={{ position: "absolute", inset: 0 }}
           >
             {lightHero ? (
-              <img src={current.isVideo ? fallbackPoster : current.url} alt={current.alt} style={COVER} />
+              <img
+                src={current.isVideo ? fallbackPoster : current.url}
+                alt={current.alt}
+                style={current.isVideo ? videoStyle : imageStyle}
+              />
             ) : current.isVideo ? (
               // Plain <video> (real DOM ref) so play()/pause() is reliable.
               <video
@@ -137,10 +150,10 @@ export function HeroMediaShowcase({
                 poster={fallbackPoster}
                 loop={!multiple}
                 onEnded={multiple ? next : undefined}
-                style={COVER}
+                style={videoStyle}
               />
             ) : (
-              <img src={current.url} alt={current.alt} style={COVER} />
+              <img src={current.url} alt={current.alt} style={imageStyle} />
             )}
           </motion.div>
         </AnimatePresence>
