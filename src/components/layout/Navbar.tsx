@@ -56,6 +56,17 @@ const NAV = [
 // SPA navigation (which re-mounts the navbar and would replay it each time).
 let navIntroPlayed = false;
 
+// The bar drops in as a unit; then the individual links cascade in — each one
+// a beat after the last — timed to begin just as the bar settles.
+const navListVariants = {
+  hidden: {},
+  show: { transition: { delayChildren: 0.7, staggerChildren: 0.09 } },
+};
+const navItemVariants = {
+  hidden: { opacity: 0, y: -10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export function Navbar() {
   const [playIntro] = useState(() => !navIntroPlayed);
   useEffect(() => { navIntroPlayed = true; }, []);
@@ -137,11 +148,19 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="nav-desktop-links" style={{ alignItems: "center", gap: 4, listStyle: "none" }}>
+        <motion.ul
+          className="nav-desktop-links"
+          variants={playIntro ? navListVariants : undefined}
+          initial={playIntro ? "hidden" : false}
+          animate={playIntro ? "show" : undefined}
+          style={{ alignItems: "center", gap: 4, listStyle: "none" }}
+        >
           {NAV.map(({ labelKey, href, children }) => {
             const isOpen   = openMenu === labelKey;
             return (
-              <li key={labelKey} style={{ position: "relative" }}
+              <motion.li key={labelKey}
+                variants={playIntro ? navItemVariants : undefined}
+                style={{ position: "relative" }}
                 onMouseEnter={() => openDropdown(labelKey)}
                 onMouseLeave={closeDropdown}
               >
@@ -206,10 +225,10 @@ export function Navbar() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </li>
+              </motion.li>
             );
           })}
-        </ul>
+        </motion.ul>
 
         {/* Right — CTA + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
