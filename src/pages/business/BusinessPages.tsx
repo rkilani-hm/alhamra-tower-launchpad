@@ -6,6 +6,16 @@ import { useI18n }     from "@/lib/i18n";
 import { usePageContent } from "@/lib/useCmsContent";
 import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
 
+/* Minimal line icons for the Flexibility & Fit-Out feature cards, index-mapped:
+   open floor plate · ceiling clearance · fit-out plan · modular partitions.
+   Colour comes from `currentColor` so the card hover can recolour them. */
+const FLEX_ICONS = [
+  (<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="20" height="18" rx="1"/><rect x="5.5" y="6.5" width="2.6" height="2.6"/><rect x="17.9" y="6.5" width="2.6" height="2.6"/><rect x="5.5" y="16.9" width="2.6" height="2.6"/><rect x="17.9" y="16.9" width="2.6" height="2.6"/></svg>),
+  (<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><line x1="4" y1="4" x2="22" y2="4"/><line x1="4" y1="22" x2="22" y2="22"/><line x1="13" y1="7.5" x2="13" y2="18.5"/><path d="M10 10.5 L13 7.5 L16 10.5"/><path d="M10 15.5 L13 18.5 L16 15.5"/></svg>),
+  (<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="3" width="14" height="20" rx="1"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>),
+  (<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="7.5" height="7.5" rx="0.6"/><rect x="14.5" y="4" width="7.5" height="7.5" rx="0.6"/><rect x="4" y="14.5" width="7.5" height="7.5" rx="0.6"/><rect x="14.5" y="14.5" width="7.5" height="7.5" rx="0.6"/></svg>),
+];
+
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
 /* ════════════════════════════════════════════════════════════════════
@@ -382,15 +392,62 @@ export function OfficeSpaces() {
               </div>
             </div>
           </Rv>
-          <div>
-            <Rv><Tag>{c.flexTag}</Tag></Rv>
-            <Rv delay={0.1}><H2>{c.flexH2}</H2></Rv>
-            <Rv delay={0.2}><FeatureGrid features={[...c.flexFeatures]} /></Rv>
-            <Rv delay={0.3}>
-              <p style={{ fontFamily: FONT, fontSize: "11.5px", color: "#6B6B6B", marginTop: 20, fontStyle: "italic" }}>
-                {c.flexFootnote}
+          <div className="flex-fitout">
+            <Rv><Tag><Editable id="page_prose:officeSpaces:flexTag">{c.flexTag}</Editable></Tag></Rv>
+            <Rv delay={0.1}><H2><Editable id="page_prose:officeSpaces:flexH2">{c.flexH2}</Editable></H2></Rv>
+
+            <div className="flex-fitout-grid">
+              {c.flexFeatures.map((f: { number: string; title: string; body: string }, i: number) => (
+                <Rv key={f.number} delay={0.16 + i * 0.08} className="ff-card">
+                  <span className="ff-icon" aria-hidden="true">{FLEX_ICONS[i % FLEX_ICONS.length]}</span>
+                  <span className="ff-num" aria-hidden="true">{f.number}</span>
+                  <h3 className="ff-title"><Editable id={`page_prose:officeSpaces:flexFeatures.${i}.title`}>{f.title}</Editable></h3>
+                  <p className="ff-body"><Editable id={`page_prose:officeSpaces:flexFeatures.${i}.body`}>{f.body}</Editable></p>
+                </Rv>
+              ))}
+            </div>
+
+            <Rv delay={0.44}>
+              <p className="ff-foot">
+                <span className="ff-foot-dot" aria-hidden="true" />
+                <Editable id="page_prose:officeSpaces:flexFootnote">{c.flexFootnote}</Editable>
               </p>
             </Rv>
+
+            <style>{`
+              .flex-fitout-grid{
+                display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+                gap:1px;background:rgba(29,29,27,0.09);
+                border:1px solid rgba(29,29,27,0.09);margin-top:10px;
+              }
+              .ff-card{
+                position:relative;background:#fff;overflow:hidden;
+                padding:clamp(20px,2vw,30px) clamp(18px,1.8vw,26px);
+                transition:background .35s ease;
+              }
+              .ff-card::before{
+                content:"";position:absolute;top:0;left:0;height:2px;width:100%;
+                background:#C8B99A;transform:scaleX(0);transform-origin:left;
+                transition:transform .5s cubic-bezier(.16,1,.3,1);
+              }
+              .ff-card:hover{background:#FAFAFA;}
+              .ff-card:hover::before{transform:scaleX(1);}
+              .ff-icon{display:block;color:#C8B99A;margin-bottom:16px;
+                transition:color .3s ease,transform .4s cubic-bezier(.16,1,.3,1);}
+              .ff-card:hover .ff-icon{color:#2A5F7A;transform:translateY(-2px);}
+              .ff-num{position:absolute;top:12px;right:16px;font-family:var(--font-brand);
+                font-size:34px;font-weight:200;line-height:1;letter-spacing:-.02em;
+                color:rgba(200,185,154,.30);pointer-events:none;}
+              .ff-title{font-family:var(--font-brand);font-size:14px;font-weight:500;
+                color:#1D1D1B;letter-spacing:.02em;line-height:1.35;margin:0 0 9px;
+                padding-right:34px;}
+              .ff-body{font-family:var(--font-brand);font-size:12.5px;color:#6B6B6B;
+                line-height:1.8;margin:0;}
+              .ff-foot{font-family:var(--font-brand);font-size:11.5px;color:#6B6B6B;
+                margin-top:22px;font-style:italic;display:flex;align-items:center;gap:9px;}
+              .ff-foot-dot{width:5px;height:5px;border-radius:50%;background:#C8B99A;flex-shrink:0;}
+              @media (max-width:560px){.flex-fitout-grid{grid-template-columns:1fr;}}
+            `}</style>
           </div>
         </div>
       </Section>
