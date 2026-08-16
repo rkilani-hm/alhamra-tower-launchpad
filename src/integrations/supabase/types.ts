@@ -186,6 +186,47 @@ export type Database = {
           },
         ]
       }
+      image_slots: {
+        Row: {
+          alt_ar: string | null
+          alt_en: string | null
+          fallback_path: string | null
+          media_id: string | null
+          slot: string
+          status: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          alt_ar?: string | null
+          alt_en?: string | null
+          fallback_path?: string | null
+          media_id?: string | null
+          slot: string
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          alt_ar?: string | null
+          alt_en?: string | null
+          fallback_path?: string | null
+          media_id?: string | null
+          slot?: string
+          status?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "image_slots_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media_assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       media_assets: {
         Row: {
           alt_ar: string | null
