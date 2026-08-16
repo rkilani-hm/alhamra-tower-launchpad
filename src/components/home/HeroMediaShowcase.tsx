@@ -58,7 +58,7 @@ export function HeroMediaShowcase({
   fallbackVideo: string;
   fallbackPoster: string;
   lightHero: boolean;
-  mediaY: MotionValue<string>;
+  mediaY: MotionValue<string> | MotionValue<number>;
   pauseLabel: string;
   playLabel: string;
 }) {
