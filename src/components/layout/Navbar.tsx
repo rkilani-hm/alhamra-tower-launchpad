@@ -57,11 +57,13 @@ const NAV = [
 // SPA navigation (which re-mounts the navbar and would replay it each time).
 let navIntroPlayed = false;
 
-// The bar drops in as a unit; then the individual links cascade in — each one
-// a beat after the last — timed to begin just as the bar settles.
+// On first load the hero plays alone for ~5s, then the bar drops in from the
+// top and the links cascade in — each a beat after the last — timed to begin
+// just as the bar settles (see NAV_INTRO_DELAY below).
+const NAV_INTRO_DELAY = 5; // seconds before the menu drops in on first load
 const navListVariants = {
   hidden: {},
-  show: { transition: { delayChildren: 0.7, staggerChildren: 0.09 } },
+  show: { transition: { delayChildren: NAV_INTRO_DELAY + 0.55, staggerChildren: 0.09 } },
 };
 const navItemVariants = {
   hidden: { y: -12 },
@@ -121,9 +123,9 @@ export function Navbar() {
   return createPortal(
     <>
       <motion.nav
-        initial={playIntro ? { y: -80 } : false}
+        initial={playIntro ? { y: -100 } : false}
         animate={{ y: 0 }}
-        transition={playIntro ? { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
+        transition={playIntro ? { duration: 0.7, delay: NAV_INTRO_DELAY, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
         onMouseEnter={() => setNavHover(true)}
         onMouseLeave={() => setNavHover(false)}
         style={{
