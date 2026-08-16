@@ -253,7 +253,7 @@ export default function TowerDesign() {
               { src: "/assets/drawings/massing-05-elevation.jpg", label: c.drawingsLabelContext, fld: "drawingsLabelContext" },
             ].map(({ src, label, fld }) => (
               <div key={label}>
-                <img src={src} alt={label} loading="lazy"
+                <SlotImage slot={`towerDesign.drawing.${fld}`} fallback={src} alt={label} loading="lazy"
                   style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }} />
                 <div style={{ fontFamily: FONT,
                   fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",

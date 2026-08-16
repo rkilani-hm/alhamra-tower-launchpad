@@ -470,11 +470,17 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
   );
 }
 
+/* Any media container (SlotImage / SlotVideo) can hold EITHER an image or a
+   video — the admin can swap one for the other. We pick the element to render
+   from the resolved asset's extension, not from which component was used. */
+export const isVideoSrc = (u?: string) => !!u && /\.(mp4|webm|mov|m4v|ogg)(\?|$)/i.test(u);
+
 /* ──────────────────────────────────────────────────────────────────────────
    <SlotImage> — a hardcoded image made editable via the image_slots table.
-   Renders an <img> resolving slot→media (fallback to the original path). In
-   edit mode, overlays "Change image" → media library pick / upload, writing
-   the slot's media_id. Use in place of a plain <img> for hero/section images.
+   Resolves slot→media (fallback to the original path). Renders an <img>, or a
+   muted autoplay <video> if the chosen asset is a video — so an image
+   container can be swapped for a video. In edit mode, overlays "Change media"
+   → library pick / upload. Use in place of a plain <img> for section images.
 ──────────────────────────────────────────────────────────────────────────── */
 
 export function SlotImage({
@@ -487,9 +493,17 @@ export function SlotImage({
   const src = useSlotImage(slot, fallback);
   const [open, setOpen] = useState(false);
 
-  const img = useMotion
-    ? <motion.img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />
-    : <img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />;
+  // If the admin picked a video for this (nominally image) slot, render it as
+  // a background-style video. Drop img-only props so they don't hit <video>.
+  const asVideo = isVideoSrc(src);
+  const { loading: _loading, ...mediaRest } = rest;
+  const img = asVideo
+    ? (useMotion
+        ? <motion.video src={src} autoPlay muted loop playsInline style={style} className={className} aria-label={alt ?? ""} {...mediaRest} />
+        : <video src={src} autoPlay muted loop playsInline style={style} className={className} aria-label={alt ?? ""} {...mediaRest} />)
+    : (useMotion
+        ? <motion.img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />
+        : <img src={src} alt={alt ?? ""} style={style} className={className} {...rest} />);
   if (!enabled) return img;
 
   // For motion/parallax images, avoid a wrapper span (which would break
@@ -507,7 +521,7 @@ export function SlotImage({
             padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
             letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
           }}
-        >Change image</button>
+        >Change media</button>
         {open && <SlotSwapPopover slot={slot} fallback={fallback} onClose={() => setOpen(false)} />}
       </>
     );
@@ -524,13 +538,13 @@ export function SlotImage({
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
-      >Change image</button>
+      >Change media</button>
       {open && <SlotSwapPopover slot={slot} fallback={fallback} onClose={() => setOpen(false)} />}
     </span>
   );
 }
 
-function SlotSwapPopover({ slot, fallback, kind = "image", onClose }: { slot: string; fallback: string; kind?: "image" | "video"; onClose: () => void }) {
+function SlotSwapPopover({ slot, fallback, onClose }: { slot: string; fallback: string; kind?: "image" | "video"; onClose: () => void }) {
   const [media, setMedia] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -570,10 +584,11 @@ function SlotSwapPopover({ slot, fallback, kind = "image", onClose }: { slot: st
   }
 
   return (
-    <PopoverShell title={kind === "video" ? "Change video" : "Change image"} onClose={onClose}>
+    <PopoverShell title="Change media" onClose={onClose}>
+      <div style={{ fontSize: 11, color: "#6E6456", marginBottom: 10, lineHeight: 1.5 }}>Pick an image or a video — either can replace what is here now.</div>
       <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#C8B99A", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
         {busy ? "Working…" : "Upload new"}
-        <input type="file" accept={kind === "video" ? "video/*" : "image/*"} onChange={upload} style={{ display: "none" }} disabled={busy} />
+        <input type="file" accept="image/*,video/*" onChange={upload} style={{ display: "none" }} disabled={busy} />
       </label>
       {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 6 }}>
@@ -609,7 +624,13 @@ export function SlotVideo({
   const src = useSlotImage(slot, fallback);
   const [open, setOpen] = useState(false);
 
-  const vid = <video src={src} style={style} className={className} {...rest} />;
+  // If the admin picked an image for this (nominally video) slot, render it as
+  // a still image. Drop video-only props so they don't hit <img>.
+  const asImage = !isVideoSrc(src);
+  const { autoPlay: _a, muted: _m, loop: _l, playsInline: _p, controls: _c, poster: _po, ...imgRest } = rest;
+  const vid = asImage
+    ? <img src={src} alt={(rest as any)["aria-label"] ?? ""} style={style} className={className} {...imgRest} />
+    : <video src={src} style={style} className={className} {...rest} />;
   if (!enabled) return vid;
 
   return (
@@ -623,8 +644,8 @@ export function SlotVideo({
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
-      >Change video</button>
-      {open && <SlotSwapPopover slot={slot} fallback={fallback} kind="video" onClose={() => setOpen(false)} />}
+      >Change media</button>
+      {open && <SlotSwapPopover slot={slot} fallback={fallback} onClose={() => setOpen(false)} />}
     </span>
   );
 }
@@ -651,8 +672,8 @@ export function SlotVideoEditButton({ slot, fallback }: { slot: string; fallback
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
-      >Change video</button>
-      {open && <SlotSwapPopover slot={slot} fallback={fallback} kind="video" onClose={() => setOpen(false)} />}
+      >Change media</button>
+      {open && <SlotSwapPopover slot={slot} fallback={fallback} onClose={() => setOpen(false)} />}
     </>
   );
 }

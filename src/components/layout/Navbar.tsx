@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useT } from "@/lib/i18n";
-import { Editable, useEditMode } from "@/lib/EditMode";
+import { Editable, useEditMode, SlotImage } from "@/lib/EditMode";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
 
 /* nav.tower → section_fields:nav:tower ; nav.sub.overview → section_fields:nav:sub.overview */
@@ -105,16 +105,18 @@ export function Navbar() {
           transition: "padding 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease",
         }}
       >
-        {/* Logo */}
-        <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-          <img
-            src="/assets/al-hamra-logo.png"
+        {/* Logo (admin-swappable via the shared site.logo slot) */}
+        <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", position: "relative" }}>
+          <SlotImage
+            motion
+            slot="site.logo"
+            fallback="/assets/al-hamra-logo.png"
             alt="Al Hamra"
             style={{
               height: 64, width: "auto", objectFit: "contain",
               transition: "opacity 0.4s ease",
             }}
-            onError={e => {
+            onError={(e: any) => {
               const t = e.currentTarget as HTMLImageElement;
               t.style.display = "none";
               t.parentElement!.innerHTML = `<span style="font-family:'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#1D1D1B">AL HAMRA</span>`;

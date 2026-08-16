@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { SocialIcons } from "@/components/shared/SocialIcons";
 import { useT } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 
 /* Nav labels reuse the shared section_fields:nav rows (same t() keys as the
    Navbar); footer-only strings live under section_fields:footer. */
@@ -65,11 +65,14 @@ export function Footer() {
       {/* Sitemap grid */}
       <div className="footer-sitemap">
         {/* Logo + tagline + social icons */}
-        <div>
-          <img
-            src="/assets/al-hamra-logo.png" alt={t("meta.siteName")}
+        <div style={{ position: "relative" }}>
+          <SlotImage
+            motion
+            slot="site.logo"
+            fallback="/assets/al-hamra-logo.png"
+            alt={t("meta.siteName")}
             style={{ height: 183, width: "auto", objectFit: "contain", marginBottom: 20 }}
-            onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+            onError={(e: any) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
           />
           {/* Social icons row */}
           <SocialIcons variant="footer" color="#6B6B6B" hoverColor="#1D1D1B" />

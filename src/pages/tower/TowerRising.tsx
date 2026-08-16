@@ -317,13 +317,12 @@ export default function TowerRising() {
                 transition={{ duration: 0.7, delay: i * 0.07 }}
                 style={{ overflow: "hidden", background: "#0c0b09", position: "relative" }}
               >
-                <img
-                  src={src} alt={alt}
+                <SlotImage
+                  slot={`towerRising.gallery.${i}`} fallback={src} alt={alt}
                   loading="lazy"
                   style={{ width: "100%", height: "100%",
                     objectFit: "cover", display: "block",
                     transition: "transform 0.6s ease" }}
-                  onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = "0.3"; }}
                 />
               </motion.div>
             ))}

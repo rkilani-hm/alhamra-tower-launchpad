@@ -253,6 +253,11 @@ const COLLABORATORS = [
   { role: "General Contractor",        org: "Ahmadiah Contracting & Trading"   },
 ];
 
+/* All views of one award share a single editable media slot, keyed by the
+   award's (language-invariant, unique) English title. Edit once → updates that
+   award's photo in the timeline card, detail modal, hero feature and grid. */
+const trophySlot = (title: string) => `towerAwards.trophy.${title.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()}`;
+
 /* ─── Parallax image ─────────────────────── */
 function ParallaxImg({ src, alt, height, slot }: { src: string; alt: string; height: number; slot?: string }) {
   const ref = useRef(null);
@@ -445,7 +450,7 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
                 border: "1px solid rgba(197,168,130,0.3)",
                 color: WHITE, cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                transition: "all 0.2s ease",
+                transition: "background 0.2s ease, border-color 0.2s ease",
               }}
               onMouseEnter={e => {
                 (e.currentTarget.style.background = "rgba(197,168,130,0.18)");
@@ -473,8 +478,10 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
                 background: `radial-gradient(ellipse at center, rgba(197,168,130,0.22) 0%, transparent 60%)`,
               }} />
               {award.image ? (
-                <img
-                  src={award.image}
+                <SlotImage
+                  motion
+                  slot={trophySlot(award.title)}
+                  fallback={award.image}
                   alt={`${award.title} — ${award.org}`}
                   style={{ position: "relative", maxWidth: "100%", maxHeight: "min(70vh, 620px)", objectFit: "contain" }}
                 />
@@ -636,7 +643,7 @@ function TimelineView({ awards, onCardClick }: { awards: Award[]; onCardClick: (
             {a.image ? (
               <div className="timeline-card-visual" style={{ background: DARK }}>
                 <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 50% 55%, rgba(197,168,130,0.16) 0%, transparent 60%)` }} />
-                <img src={a.image} alt={a.title} loading="lazy"
+                <SlotImage motion slot={trophySlot(a.title)} fallback={a.image} alt={a.title} loading="lazy"
                   style={{ position: "relative", width: "100%", height: "100%", objectFit: "contain", padding: "clamp(14px,2vw,24px)" }} />
               </div>
             ) : (
@@ -759,8 +766,10 @@ function AwardsRecognitionSection() {
                 background: `radial-gradient(ellipse at center, rgba(197,168,130,0.18) 0%, transparent 55%)`,
                 zIndex: 1,
               }} />
-              <img
-                src={hero.image!}
+              <SlotImage
+                motion
+                slot={trophySlot(hero.title)}
+                fallback={hero.image!}
                 alt={`${hero.title} — ${hero.org}`}
                 loading="lazy"
                 style={{ position: "relative", zIndex: 2, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", padding: "clamp(24px,4vw,60px)" }}
@@ -814,7 +823,7 @@ function AwardsRecognitionSection() {
                       padding: "10px 18px", border: `1px solid ${active ? DARK : STONE}`,
                       background: active ? DARK : WHITE,
                       color: active ? WHITE : DARK,
-                      cursor: "pointer", transition: "all 0.25s ease",
+                      cursor: "pointer", transition: "background 0.25s ease, border-color 0.25s ease, color 0.25s ease",
                       display: "inline-flex", alignItems: "center", gap: 10,
                     }}
                   >
@@ -983,8 +992,10 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
             background: `radial-gradient(ellipse at 50% 55%, rgba(197,168,130,0.16) 0%, transparent 58%)`,
             zIndex: 1,
           }} />
-          <motion.img
-            src={award.image!}
+          <SlotImage
+            motion
+            slot={trophySlot(award.title)}
+            fallback={award.image!}
             alt={`${award.title} — ${award.org}`}
             loading="lazy"
             initial={{ scale: 1.02 }}
@@ -1198,7 +1209,7 @@ export function TowerAwards() {
 
               {/* Image side */}
               <div className="eng-card-img" style={{ position: "relative", overflow: "hidden", minHeight: "clamp(260px,35vw,440px)", background: STONE }}>
-                <ParallaxImg src={img} alt={imgCaption} height={440} />
+                <ParallaxImg src={img} slot="towerAwards.recognitionHero" alt={imgCaption} height={440} />
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(29,29,27,0.7) 0%, transparent 50%)" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(16px,2vw,24px)" }}>
                   <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", color: "rgba(255,255,255,0.7)" }}>{imgCaption}</div>

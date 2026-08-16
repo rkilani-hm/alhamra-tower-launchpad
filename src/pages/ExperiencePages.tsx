@@ -196,10 +196,10 @@ export function Services() {
           { src: "/assets/lobby-ceiling-portrait.jpg",alt: lang === "ar" ? "السقف الإنشائي للوبي" : "Lobby ceiling portrait",   cap: c.galleryCaps[2] },
         ].map(({ src, alt, cap }, i) => (
           <div key={src} style={{ position: "relative", overflow: "hidden", height: 300 }}>
-            <img src={src} alt={alt}
+            <SlotImage slot={`services.gallery.${i}`} fallback={src} alt={alt}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", transition: "transform 0.6s ease" }}
-              onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")}
-              onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.transform = "scale(1.04)")}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.transform = "scale(1)")}
             />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "14px 18px 12px" }}>
               <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}><Editable id={`page_prose:services:galleryCaps.${i}`}>{cap}</Editable></span>

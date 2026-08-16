@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useT } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 
 /* ── ExperienceCards ──────────────────────────────────────────────────
    Burj Khalifa's homepage uses a 4-column grid of dark image cards
@@ -67,10 +67,12 @@ function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t
           color: "inherit",
         }}
       >
-        {/* Image */}
-        <motion.img
+        {/* Image (admin-swappable — image or video) */}
+        <SlotImage
+          motion
+          slot={`home.experienceCard.${card.keyPrefix.split(".").pop()}`}
+          fallback={card.image}
           loading="lazy"
-          src={card.image}
           alt=""
           animate={{ scale: hover ? 1.04 : 1 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
