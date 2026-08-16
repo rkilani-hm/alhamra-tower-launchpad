@@ -98,53 +98,49 @@ export function HeroMediaShowcase({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [safeIndex, lightHero, multiple, playing, current.isVideo]);
 
-  const toggle = () => {
+  // Keep the real <video> element in sync with the play/pause state. Driving it
+  // from an effect (not only inside the click handler) guarantees the video
+  // actually pauses/resumes — even across rotations and re-renders.
+  useEffect(() => {
     const v = videoRef.current;
-    if (current.isVideo && v) { if (playing) v.pause(); else v.play(); }
-    setPlaying((p) => !p);
-  };
+    if (!v || lightHero || !current.isVideo) return;
+    if (playing) v.play().catch(() => {}); else v.pause();
+  }, [playing, safeIndex, current.isVideo, lightHero]);
+
+  const toggle = () => setPlaying((p) => !p);
 
   return (
     <>
       <motion.div style={{ position: "absolute", inset: 0, y: mediaY }}>
         <AnimatePresence initial={false}>
-          {lightHero ? (
-            <img
-              key="light"
-              src={current.isVideo ? fallbackPoster : current.url}
-              alt={current.alt}
-              style={COVER}
-            />
-          ) : current.isVideo ? (
-            <motion.video
-              key={current.id + ":" + safeIndex}
-              ref={videoRef}
-              src={current.url}
-              autoPlay={playing}
-              muted
-              playsInline
-              preload="auto"
-              poster={fallbackPoster}
-              loop={!multiple}
-              onEnded={multiple ? next : undefined}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.1 }}
-              style={COVER}
-            />
-          ) : (
-            <motion.img
-              key={current.id + ":" + safeIndex}
-              src={current.url}
-              alt={current.alt}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.1 }}
-              style={COVER}
-            />
-          )}
+          <motion.div
+            key={lightHero ? "light" : current.id + ":" + safeIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.1 }}
+            style={{ position: "absolute", inset: 0 }}
+          >
+            {lightHero ? (
+              <img src={current.isVideo ? fallbackPoster : current.url} alt={current.alt} style={COVER} />
+            ) : current.isVideo ? (
+              // Plain <video> (real DOM ref) so play()/pause() is reliable.
+              <video
+                ref={videoRef}
+                src={current.url}
+                autoPlay={playing}
+                muted
+                playsInline
+                preload="auto"
+                poster={fallbackPoster}
+                loop={!multiple}
+                onEnded={multiple ? next : undefined}
+                style={COVER}
+              />
+            ) : (
+              <img src={current.url} alt={current.alt} style={COVER} />
+            )}
+          </motion.div>
         </AnimatePresence>
       </motion.div>
 
