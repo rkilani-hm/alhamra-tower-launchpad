@@ -29,11 +29,12 @@ const videoStyle: React.CSSProperties = {
   filter: "brightness(1.18) saturate(1.05)",
 };
 
-// Uploaded images are shown in FULL (contain) so nothing is cropped — the dark
-// hero backdrop frames any aspect-ratio difference. Images are left unaltered.
+// Uploaded images fill the hero full-bleed (cover), matching the video. The
+// client supplies 16:9 assets, so any crop against the viewport is negligible.
+// Left unaltered (no brightness filter — images are chosen already-exposed).
 const imageStyle: React.CSSProperties = {
-  position: "absolute", inset: 0, width: "100%", height: "100%",
-  objectFit: "contain", objectPosition: "center", display: "block",
+  position: "absolute", inset: 0, width: "100%", height: "115%",
+  objectFit: "cover", objectPosition: "center", display: "block",
 };
 
 type Item = { id: string; url: string; alt: string; isVideo: boolean; status: string; sort: number };
