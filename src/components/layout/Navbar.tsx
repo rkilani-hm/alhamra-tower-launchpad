@@ -52,7 +52,13 @@ const NAV = [
   },
 ];
 
+// Play the menu's drop-in entrance only once per full page load — not on every
+// SPA navigation (which re-mounts the navbar and would replay it each time).
+let navIntroPlayed = false;
+
 export function Navbar() {
+  const [playIntro] = useState(() => !navIntroPlayed);
+  useEffect(() => { navIntroPlayed = true; }, []);
   const [scrolled, setScrolled]       = useState(false);
   const [openMenu, setOpenMenu]       = useState<string | null>(null);
   const [mobileOpen, setMobileOpen]   = useState(false);
@@ -92,17 +98,23 @@ export function Navbar() {
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={playIntro ? { y: -80, opacity: 0 } : false}
+        animate={{ y: 0, opacity: 1 }}
+        transition={playIntro ? { duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 20,
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: scrolled
             ? "clamp(12px,1.5vh,14px) clamp(20px,5vw,64px)"
             : "clamp(16px,2vh,22px) clamp(20px,5vw,64px)",
-          background: scrolled || openMenu || mobileOpen ? "rgba(255,255,255,0.97)" : "transparent",
-          backdropFilter: scrolled || openMenu || mobileOpen ? "blur(20px)" : "none",
-          borderBottom: scrolled || openMenu || mobileOpen ? "1px solid rgba(29,29,27,0.09)" : "none",
-          transition: "padding 0.4s ease, background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease",
+          // Burj-Khalifa-style: a solid light bar that STAYS light at all times
+          // (never transparent over the hero media).
+          background: "rgba(255,255,255,0.97)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderBottom: "1px solid rgba(29,29,27,0.09)",
+          transition: "padding 0.4s ease",
         }}
       >
         {/* Logo (admin-swappable via the shared site.logo slot) */}
@@ -235,7 +247,7 @@ export function Navbar() {
             </svg>
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* ── MOBILE MENU OVERLAY ───────────────── */}
       <AnimatePresence>
