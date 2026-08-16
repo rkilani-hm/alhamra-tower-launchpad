@@ -46,8 +46,10 @@ export function Architecture() {
         <motion.div
           style={{ position: "relative", overflow: "hidden", background: "#0c0b09" }}
         >
-          <motion.img
-            src="/lovable-uploads/46052915-521a-44ca-bbd4-d770e159f7fa.png"
+          <SlotImage
+            motion
+            slot="home.architectureForm"
+            fallback="/lovable-uploads/46052915-521a-44ca-bbd4-d770e159f7fa.png"
             alt={c.renderAlt}
             style={{ y: imgY, width: "100%", height: "130%",
               objectFit: "cover", objectPosition: "center center", display: "block" }}
