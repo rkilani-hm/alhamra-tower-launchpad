@@ -72,6 +72,7 @@ export function Navbar() {
   const [playIntro] = useState(() => !navIntroPlayed);
   useEffect(() => { navIntroPlayed = true; }, []);
   const [scrolled, setScrolled]       = useState(false);
+  const [navHover, setNavHover]       = useState(false);
   const [openMenu, setOpenMenu]       = useState<string | null>(null);
   const [mobileOpen, setMobileOpen]   = useState(false);
   const [openSection, setOpenSection] = useState<string | null>(null); // mobile accordion
@@ -108,6 +109,11 @@ export function Navbar() {
   const toggleSection = (key: string) =>
     setOpenSection(prev => prev === key ? null : key);
 
+  // Frosted bar: ~50% translucent by default (media shows through) → fully
+  // opaque on hover, or while a dropdown / mobile menu is open (so those stay
+  // readable even though the pointer sits in the panel below the bar).
+  const barOpaque = navHover || openMenu !== null || mobileOpen;
+
   // Portal to <body> so the fixed bar escapes the page-transition wrapper in
   // App.tsx (a transformed / will-change:transform ancestor makes position:
   // fixed resolve against that wrapper, not the viewport — which would let the
@@ -118,19 +124,21 @@ export function Navbar() {
         initial={playIntro ? { y: -80 } : false}
         animate={{ y: 0 }}
         transition={playIntro ? { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] } : { duration: 0 }}
+        onMouseEnter={() => setNavHover(true)}
+        onMouseLeave={() => setNavHover(false)}
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 20,
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: scrolled
             ? "clamp(12px,1.5vh,14px) clamp(20px,5vw,64px)"
             : "clamp(16px,2vh,22px) clamp(20px,5vw,64px)",
-          // Burj-Khalifa-style: a solid light bar that STAYS light at all times
-          // (never transparent over the hero media).
-          background: "rgba(255,255,255,0.97)",
+          // Frosted glass: ~50% translucent so the media shows through, fading
+          // to fully opaque on hover (the "fade colour" on interaction).
+          background: barOpaque ? "#fff" : "rgba(255,255,255,0.5)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           borderBottom: "1px solid rgba(29,29,27,0.09)",
-          transition: "padding 0.4s ease",
+          transition: "padding 0.4s ease, background 0.45s ease",
         }}
       >
         {/* Logo (admin-swappable via the shared site.logo slot) */}
