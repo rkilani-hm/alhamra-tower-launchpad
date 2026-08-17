@@ -42,11 +42,12 @@ export function Architecture() {
         minHeight: "clamp(340px,46vh,500px)",
       }} className="arch-grid-1">
 
-        {/* Left — SOM render, dusk purple sky. Definite, shorter height with the
-            image absolutely filling it (cover) — reliable in grid and stacked. */}
+        {/* Left — SOM render. The container STRETCHES to fill the full column
+            (matches the text height on desktop); the image absolutely fills it
+            (cover). minHeight covers the stacked/mobile case. */}
         <motion.div
           style={{ position: "relative", overflow: "hidden", background: "#0c0b09",
-            width: "100%", height: "clamp(300px,42vh,470px)", alignSelf: "center" }}
+            width: "100%", minHeight: "clamp(300px,44vh,460px)" }}
         >
           <SlotImage
             motion
