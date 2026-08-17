@@ -1202,6 +1202,7 @@ export function TowerAwards() {
         </div>
 
         {/* Engineering cards — alternating layout */}
+        <div style={{ maxWidth: 1360, margin: "0 auto" }}>
         {ENGINEERING_FACTS.map(({ stat, label, body, img, imgCaption, credit }, i) => (
           <Rv key={stat} delay={i * 0.08}>
             <div className={`eng-card ${i % 2 === 1 ? "eng-card-flip" : ""}`}
@@ -1226,6 +1227,7 @@ export function TowerAwards() {
             </div>
           </Rv>
         ))}
+        </div>
       </section>
 
       {/* ══ LOBBY FEATURE — FULL-BLEED ════════════════════ */}
@@ -1410,7 +1412,10 @@ export function TowerAwards() {
         .award-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+          gap: 24px;
+          max-width: 1360px;
+          margin-left: auto;
+          margin-right: auto;
         }
         .award-card {
           transition: box-shadow 0.35s ease, border-color 0.35s ease;

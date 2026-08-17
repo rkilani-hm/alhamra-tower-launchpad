@@ -5,6 +5,7 @@ import { PageHero }   from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
+import { DarkBand } from "@/components/shared/ui";
 
 const PEARL_TEXT = "#8B6E3E";
 const DARK  = "#1D1D1B";
@@ -29,7 +30,7 @@ export default function TowerSustainability() {
       {/* ── Intro statement ─────────────────────────────────────── */}
       <div style={{ background: "#fff", padding: "clamp(64px,10vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(48px,6vw,100px)",
-          alignItems: "start" }} className="sust-intro-grid">
+          alignItems: "center" }} className="sust-intro-grid">
           <div>
             <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL_TEXT, marginBottom: 20 }}>
@@ -71,7 +72,7 @@ export default function TowerSustainability() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: (i % 3) * 0.1 }}
-                style={{ background: "#fff", padding: "clamp(28px,4vh,44px) clamp(24px,3vw,36px)" }}>
+                style={{ background: "#fff", padding: "clamp(36px,4.5vh,52px) clamp(24px,3vw,36px)" }}>
                 <div style={{ fontFamily: FONT,
                   fontSize: "clamp(28px,3vw,44px)", fontWeight: 300,
                   color: "rgba(29,29,27,0.1)", lineHeight: 1, marginBottom: 20 }}>{n}</div>
@@ -81,7 +82,7 @@ export default function TowerSustainability() {
                 </div>
                 <p style={{ fontFamily: FONT, fontWeight: 300,
                   fontSize: "clamp(12px,0.95vw,13px)", color: "#6B6B6B",
-                  lineHeight: 1.65, marginBottom: 20 }}>
+                  lineHeight: 1.8, marginBottom: 20 }}>
                   <EditableRow id={`feature_cards:towerSustain.pillars:${i}`}>{body}</EditableRow>
                 </p>
                 <div style={{ fontFamily: FONT, fontSize: "10px",
@@ -98,7 +99,7 @@ export default function TowerSustainability() {
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <div style={{ fontFamily: FONT,
             fontWeight: 300, fontSize: "clamp(22px,3vw,42px)",
-            color: DARK, lineHeight: 1.4, marginBottom: 28 }}>
+            color: DARK, lineHeight: 1.55, marginBottom: 28 }}>
             <Editable id="page_prose:towerSustain:quote">{c.quote}</Editable>
           </div>
           <div style={{ fontFamily: FONT, fontSize: "10px",
@@ -107,6 +108,27 @@ export default function TowerSustainability() {
           </div>
         </div>
       </div>
+
+      <DarkBand
+        title={c.ctaTitle ?? "Discover the engineering behind the tower"}
+        subtitle={c.ctaSubtitle ?? "Explore the design, structure and awards that make Al Hamra Tower a global landmark."}
+        ctaLabel="Leasing Inquiry"
+        ctaHref="/leasing/inquiry#inquiry-form"
+      />
+
+      <style>{`
+        .sust-intro-grid { grid-template-columns: 1fr 1fr; }
+        .sust-pillars-grid { grid-template-columns: 1fr 1fr 1fr; }
+        @media (max-width: 900px) {
+          .sust-pillars-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 768px) {
+          .sust-intro-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 600px) {
+          .sust-pillars-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </PageLayout>
   );
 }

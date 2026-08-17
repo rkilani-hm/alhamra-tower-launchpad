@@ -68,7 +68,7 @@ export default function AlHamraHotel() {
       {/* ── OVERVIEW ──────────────────────────────────────────────── */}
       <Section>
         <div style={{
-          display: "grid", gridTemplateColumns: "1fr 1.4fr",
+          display: "grid", gridTemplateColumns: "0.85fr 1.5fr",
           gap: "clamp(48px,6vw,96px)",
         }} className="hotel-overview-grid">
           <div>
@@ -196,7 +196,7 @@ export default function AlHamraHotel() {
               </div>
 
               {/* Body */}
-              <div style={{ padding: "clamp(20px,3vh,28px) clamp(4px,1vw,12px) 0" }}>
+              <div style={{ padding: "clamp(20px,3vh,28px) clamp(16px,1.5vw,22px) 0" }}>
                 <h3 style={{
                   fontFamily: CG, fontSize: "clamp(16px,1.4vw,20px)",
                   fontWeight: 400, color: DARK, lineHeight: 1.3,

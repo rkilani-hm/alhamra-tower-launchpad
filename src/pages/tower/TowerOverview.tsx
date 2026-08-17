@@ -131,7 +131,7 @@ export default function TowerOverview() {
             <motion.div key={l}
               initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }}
-              style={{ padding: "clamp(28px,4vh,44px) clamp(20px,3vw,40px)",
+              style={{ padding: "clamp(36px,5vh,56px) clamp(28px,3vw,44px)",
                 borderRight: [0,1,3,4].includes(i) ? "1px solid rgba(29,29,27,0.07)" : "none",
                 borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none",
                 display: "flex", flexDirection: "column", gap: 6 }}>
@@ -203,8 +203,8 @@ export default function TowerOverview() {
                 </p>
               ))}
             </div>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              <div style={{ borderLeft: `2px solid ${PEARL}`, paddingLeft: 24, marginBottom: 40 }}>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", gap: "clamp(40px,5vh,64px)" }}>
+              <div style={{ borderLeft: `2px solid ${PEARL}`, paddingLeft: 24 }}>
                 <p style={{ fontFamily: FONT, fontStyle: "italic",
                   fontSize: "clamp(15px,1.4vw,19px)", color: DARK, lineHeight: 1.7, margin: "0 0 12px" }}>
                   "<Editable id={`page_prose:towerOverview:tabs.${activeIdx}.quote`}>{activeContent.quote}</Editable>"
@@ -238,12 +238,12 @@ export default function TowerOverview() {
           letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
           <Editable id="page_prose:towerOverview:awardsKicker">{c.awardsKicker}</Editable>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 40 }}>
           {c.awards.map(({ year, title, sub }, i) => (
             <motion.div key={year + title}
               initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.06 }}
-              style={{ borderLeft: `1px solid rgba(200,185,154,0.4)`, paddingLeft: 20 }}>
+              style={{ borderLeft: `1px solid rgba(200,185,154,0.4)`, paddingLeft: 24 }}>
               <div style={{ fontFamily: FONT,
                 fontSize: "clamp(20px,2vw,28px)", fontWeight: 300, color: DARK, lineHeight: 1, marginBottom: 6 }}>
                 {year}
@@ -264,7 +264,7 @@ export default function TowerOverview() {
         textAlign: "center" }}>
         <div style={{ fontFamily: FONT,
           fontWeight: 300, fontSize: "clamp(28px,4vw,56px)", color: "#fff",
-          letterSpacing: "-0.01em", marginBottom: 40 }}>
+          letterSpacing: "-0.01em", maxWidth: 640, margin: "0 auto 48px" }}>
           <Editable id="page_prose:towerOverview:ctaHeadline">{c.ctaHeadline}</Editable>
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>

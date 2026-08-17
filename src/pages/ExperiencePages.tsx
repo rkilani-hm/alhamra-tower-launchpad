@@ -165,7 +165,7 @@ export function Services() {
               alt={lang === "ar" ? "ممرّ مدخل اللوبي الكبير لبرج الحمراء" : "Al Hamra Tower Grand Lobby entrance corridor"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.65) 100%)" }} />
-        <div style={{ position: "absolute", bottom: 44, left: 80, right: 80 }}>
+        <div style={{ position: "absolute", bottom: 44, left: "clamp(20px,5vw,80px)", right: "clamp(20px,5vw,80px)" }}>
           <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}>
             <Editable id="page_prose:services:lobbyKicker">{c.lobbyKicker}</Editable>
           </p>
@@ -185,7 +185,7 @@ export function Services() {
       <Section bg="#FAFAFA">
         <Rv><Tag><Editable id="page_prose:services:facilityTag">{c.facilityTag}</Editable></Tag></Rv>
         <Rv delay={0.1}><H2><Editable id="page_prose:services:facilityHeading">{c.facilityHeading}</Editable></H2></Rv>
-        <Rv delay={0.2}><FeatureGrid features={[...c.facility]} editKey="services" editField="facility" /></Rv>
+        <Rv delay={0.2}><div style={{ marginTop: 40 }}><FeatureGrid features={[...c.facility]} editKey="services" editField="facility" /></div></Rv>
       </Section>
 
       {/* Interior photo gallery */}
@@ -195,7 +195,7 @@ export function Services() {
           { src: "/assets/lobby-ceiling-day.jpg",     alt: lang === "ar" ? "هيكل سقف اللوبي" : "Lobby ceiling structure",  cap: c.galleryCaps[1] },
           { src: "/assets/lobby-ceiling-portrait.jpg",alt: lang === "ar" ? "السقف الإنشائي للوبي" : "Lobby ceiling portrait",   cap: c.galleryCaps[2] },
         ].map(({ src, alt, cap }, i) => (
-          <div key={src} style={{ position: "relative", overflow: "hidden", height: 300 }}>
+          <div key={src} style={{ position: "relative", overflow: "hidden", height: "clamp(220px,40vw,300px)" }}>
             <SlotImage slot={`services.gallery.${i}`} fallback={src} alt={alt}
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", transition: "transform 0.6s ease" }}
               onMouseEnter={e => ((e.currentTarget as HTMLElement).style.transform = "scale(1.04)")}
@@ -306,7 +306,7 @@ export function Services() {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)",
-          gap: 1, marginTop: 2 }} className="grid-4col">
+          gap: 1, marginTop: "clamp(32px,5vh,56px)" }} className="grid-4col">
           {c.amenities.map(({ label, desc }, i) => (
             <div key={label} style={{ background: "#FAFAFA",
               padding: "clamp(20px,2.5vw,28px)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
@@ -408,7 +408,7 @@ export function Location() {
               alt={lang === "ar" ? "واجهة مدينة الكويت البحرية والأفق" : "Kuwait City waterfront and skyline"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 40%, rgba(29,29,27,0.55) 100%)" }} />
-        <div style={{ position: "absolute", bottom: 40, left: 80, right: 80, display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+        <div className="location-banner-caption" style={{ position: "absolute", bottom: 40, left: "clamp(20px,5vw,80px)", right: "clamp(20px,5vw,80px)", display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 20 }}>
           <div>
             <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 10 }}><Editable id="page_prose:location:bannerKicker">{c.bannerKicker}</Editable></div>
             <h3 style={{ fontFamily: FONT, fontSize: "clamp(20px,2.5vw,36px)", fontWeight: 200, color: "#fff", lineHeight: 1.2 }}>
@@ -430,8 +430,8 @@ export function Location() {
             <Rv delay={0.3}>
               <div style={{ marginTop: 40 }}>
                 {c.detailLabels.map((label, i) => (
-                  <div key={label} style={{ display: "flex", gap: 24, padding: "14px 0", borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
-                    <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B", minWidth: 110, flexShrink: 0, paddingTop: 2 }}><Editable id={`page_prose:location:detailLabels.${i}`}>{label}</Editable></div>
+                  <div key={label} style={{ display: "flex", gap: "clamp(20px,3vw,32px)", padding: "18px 0", borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
+                    <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B", minWidth: 130, flexShrink: 0, paddingTop: 2 }}><Editable id={`page_prose:location:detailLabels.${i}`}>{label}</Editable></div>
                     <div style={{ fontFamily: FONT, fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:location:detailValues.${i}`}>{c.detailValues[i]}</Editable></div>
                   </div>
                 ))}
@@ -439,7 +439,7 @@ export function Location() {
             </Rv>
           </div>
           <Rv delay={0.15}>
-            <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: 380 }}>
+            <div style={{ position: "relative", overflow: "hidden", height: "100%", minHeight: "clamp(380px,42vw,520px)" }}>
               <SlotImage
               loading="lazy" slot="location.skyline" fallback="/assets/kuwait-skyline.jpg"
               alt={lang === "ar" ? "أفق مدينة الكويت مع برج الحمراء" : "Kuwait City skyline with Al Hamra Tower"}
@@ -456,6 +456,15 @@ export function Location() {
       </Section>
 
       <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="location" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
+      <style>{`
+        @media (max-width: 640px) {
+          .location-banner-caption {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+          }
+        }
+      `}</style>
     </PageLayout>
   );
 }
@@ -606,7 +615,7 @@ export function LeasingOpportunities() {
               alt={lang === "ar" ? "إطلالة بانورامية على مدينة الكويت والخليج العربي من لوبي السماء" : "Kuwait City and Arabian Gulf panoramic view from Al Hamra Sky Lobby"}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%" }} />
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 35%, rgba(29,29,27,0.5) 100%)" }} />
-        <div style={{ position: "absolute", bottom: 40, right: lang === "ar" ? "auto" : 80, left: lang === "ar" ? 80 : "auto", textAlign: lang === "ar" ? "left" : "right" }}>
+        <div style={{ position: "absolute", bottom: 40, right: lang === "ar" ? "auto" : "clamp(20px,5vw,80px)", left: lang === "ar" ? "clamp(20px,5vw,80px)" : "auto", textAlign: lang === "ar" ? "left" : "right" }}>
           <p style={{ fontFamily: FONT, fontSize: "clamp(20px,2.5vw,32px)", fontWeight: 200, letterSpacing: "0.04em", color: "#fff", lineHeight: 1.4, whiteSpace: "pre-line" }}>
             <Editable id="page_prose:leasing:quote">{c.quote}</Editable>
           </p>
@@ -650,7 +659,7 @@ export function LeasingOpportunities() {
 
       {/* Floor Plan Viewer */}
       <div>
-        <div style={{ padding: "64px 80px 0" }}>
+        <div style={{ padding: "clamp(40px,6vw,80px) clamp(20px,6vw,80px) 0" }}>
           <div style={{ fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 16 }}>
             <Editable id="page_prose:leasing:plansKicker">{c.plansKicker}</Editable>
           </div>
@@ -682,6 +691,8 @@ const INQUIRY_CONTENT = {
     crumbs: [{ label: "Home", href: "/" }, { label: "Leasing", href: "/leasing" }, { label: "Inquiry", href: "/leasing/inquiry#inquiry-form" }],
     sentTitle: "Inquiry Received",
     sentBody: "Our leasing team will respond within one business day.",
+    formTag: "Send a Message",
+    formHeading: "Tell us about your requirements",
     fieldLabels: { name: "Name", email: "Email", subject: "Subject", message: "Message" },
     submitLabel: "Submit Inquiry",
     contactTag: "Contact Details",
@@ -699,6 +710,8 @@ const INQUIRY_CONTENT = {
     crumbs: [{ label: "الرئيسية", href: "/" }, { label: "التأجير", href: "/leasing" }, { label: "الاستفسار", href: "/leasing/inquiry#inquiry-form" }],
     sentTitle: "تم استلام الاستفسار",
     sentBody: "سيتواصل فريق التأجير معك خلال يوم عمل واحد.",
+    formTag: "أرسل رسالة",
+    formHeading: "أخبرنا عن متطلباتك",
     fieldLabels: { name: "الاسم", email: "البريد الإلكتروني", subject: "الموضوع", message: "الرسالة" },
     submitLabel: "إرسال الاستفسار",
     contactTag: "تفاصيل التواصل",
@@ -723,7 +736,7 @@ export function LeasingInquiry() {
   };
 
   const inputStyle: React.CSSProperties = {
-    width: "100%", padding: "14px 0",
+    width: "100%", padding: "16px 0",
     border: "none", borderBottom: "1px solid rgba(29,29,27,0.18)",
     fontFamily: FONT, fontSize: "14px", fontWeight: 300,
     color: "#1D1D1B", background: "transparent", outline: "none",
@@ -751,12 +764,15 @@ export function LeasingInquiry() {
                 <div style={{ fontFamily: FONT, fontSize: "14px", color: "#6B6B6B" }}><Editable id="page_prose:inquiry:sentBody">{c.sentBody}</Editable></div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+              <>
+              <Tag><Editable id="page_prose:inquiry:formTag">{c.formTag}</Editable></Tag>
+              <H2><Editable id="page_prose:inquiry:formHeading">{c.formHeading}</Editable></H2>
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "clamp(28px,4vh,36px)" }}>
                 {(["name","email","subject"] as const).map(field => (
                   <div key={field}>
                     <label
                       htmlFor={`inquiry-${field}`}
-                      style={{ display: "block", fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 8 }}
+                      style={{ display: "block", fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 10 }}
                     >
                       <Editable id={`page_prose:inquiry:fieldLabels.${field}`}>{c.fieldLabels[field]}</Editable>
                     </label>
@@ -773,10 +789,10 @@ export function LeasingInquiry() {
                     />
                   </div>
                 ))}
-                <div>
+                <div style={{ marginTop: 8 }}>
                   <label
                     htmlFor="inquiry-message"
-                    style={{ display: "block", fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 8 }}
+                    style={{ display: "block", fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 10 }}
                   >
                     <Editable id="page_prose:inquiry:fieldLabels.message">{c.fieldLabels.message}</Editable>
                   </label>
@@ -791,7 +807,7 @@ export function LeasingInquiry() {
                   />
                 </div>
                 <button type="submit" style={{
-                  alignSelf: "flex-start",
+                  alignSelf: "flex-start", marginTop: 8,
                   background: "#1D1D1B", color: "#fff",
                   fontFamily: FONT, fontSize: "10.5px", fontWeight: 500,
                   letterSpacing: "0.22em", textTransform: "uppercase",
@@ -801,6 +817,7 @@ export function LeasingInquiry() {
                   <Editable id="page_prose:inquiry:submitLabel">{c.submitLabel}</Editable>
                 </button>
               </form>
+              </>
             )}
           </Rv>
 
@@ -867,13 +884,14 @@ export function Downloads() {
         subtitle={c.subtitle}
         crumbs={[...c.crumbs]}
       />
-      <Section>
+      <Section style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "rgba(29,29,27,0.09)" }}>
           {c.items.map(({ title, format, size, desc }, i) => (
             <Rv key={title} delay={i * 0.1}>
-              <div style={{
-                background: "#fff", padding: "36px 40px",
+              <div className="download-row" style={{
+                background: "#fff", padding: "clamp(24px,4vw,36px) clamp(20px,4vw,40px)",
                 display: "flex", alignItems: "center", justifyContent: "space-between", gap: 40,
+                flexWrap: "wrap",
                 transition: "background 0.2s",
               }}
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
@@ -907,6 +925,15 @@ export function Downloads() {
         </div>
       </Section>
       <DarkBand title={c.cta.title} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="downloads" editFields={{ title: "cta.title", cta: "cta.label" }} />
+      <style>{`
+        @media (max-width: 640px) {
+          .download-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+          }
+        }
+      `}</style>
     </PageLayout>
   );
 }
@@ -928,6 +955,7 @@ const CONTACT_CONTENT = {
     ],
     socialTag: "Social Media",
     socialHeading: "Follow Al Hamra Tower",
+    socialSupport: "Stay connected for the latest on availability, events, and announcements. Our office hours are Sunday – Thursday, 8:00 AM – 6:00 PM.",
     teamTag: "Leasing Team",
     teamHeading: "Dedicated Support",
     teamBody: "Our leasing team is available to discuss available configurations, floor plans, pricing, and customisation options. Contact us directly for a response within one business day.",
@@ -946,6 +974,7 @@ const CONTACT_CONTENT = {
     ],
     socialTag: "وسائل التواصل الاجتماعي",
     socialHeading: "تابع برج الحمراء",
+    socialSupport: "ابقَ على تواصل لآخر المستجدّات حول المتاح، والفعاليات، والإعلانات. ساعات العمل من الأحد إلى الخميس، ٨:٠٠ صباحاً – ٦:٠٠ مساءً.",
     teamTag: "فريق التأجير",
     teamHeading: "دعمٌ مخصَّص",
     teamBody: "فريق التأجير لدينا جاهز لمناقشة التصاميم المتوفّرة، ومخطّطات الطوابق، والأسعار، وخيارات التخصيص. تواصل معنا مباشرةً لتلقّي ردٍّ خلال يوم عمل واحد.",
@@ -981,6 +1010,7 @@ export function Contact() {
             <Tag><Editable id="page_prose:contact:socialTag">{c.socialTag}</Editable></Tag>
             <H2><Editable id="page_prose:contact:socialHeading">{c.socialHeading}</Editable></H2>
             <SocialIcons variant="contact" />
+            <Body style={{ marginTop: 28, maxWidth: 420 }}><Editable id="page_prose:contact:socialSupport">{c.socialSupport}</Editable></Body>
           </Rv>
           <Rv delay={0.15}>
             <Tag><Editable id="page_prose:contact:teamTag">{c.teamTag}</Editable></Tag>

@@ -31,7 +31,7 @@ function SpecTable({ cat, rows }: SpecTableProps) {
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, delay: i * 0.04 }}
           style={{ display: "flex", gap: 16,
-            padding: "11px 0", borderBottom: i < rows.length-1 ? "1px solid rgba(29,29,27,0.06)" : "none" }}>
+            padding: "14px 0", borderBottom: i < rows.length-1 ? "1px solid rgba(29,29,27,0.06)" : "none" }}>
           <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
             color: "#6B6B6B", minWidth: 200, flexShrink: 0, letterSpacing: "0.05em" }}>{label}</div>
           <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
@@ -87,12 +87,12 @@ export default function TowerDesign() {
               </h2>
               <p style={{ fontFamily: FONT, fontWeight: 300,
                 fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
-                lineHeight: 1.9, marginBottom: 20 }}>
+                lineHeight: 1.9, marginBottom: 20, maxWidth: 560 }}>
                 <Editable id="page_prose:towerDesign:facadeP1Part1">{c.facadeP1Part1}</Editable>
                 <strong style={{ color: DARK, fontWeight: 400 }}><Editable id="page_prose:towerDesign:facadeP1Strong">{c.facadeP1Strong}</Editable></strong>
               </p>
               <p style={{ fontFamily: FONT, fontWeight: 300,
-                fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58", lineHeight: 1.9, marginBottom: 32 }}>
+                fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58", lineHeight: 1.9, marginBottom: 32, maxWidth: 560 }}>
                 <Editable id="page_prose:towerDesign:facadeP2">{c.facadeP2}</Editable>
               </p>
               <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
@@ -161,14 +161,14 @@ export default function TowerDesign() {
                   objectPosition: "center", display: "block" }} />
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4 }}>
-              <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
+              <div style={{ position: "relative", overflow: "hidden", height: "clamp(160px,14vw,220px)" }}>
                 <SlotImage
               loading="lazy" slot="towerDesign.escalator" fallback="/assets/lobby-escalator-art.jpg"
                   alt={lang === "ar" ? "سلالمُ الحمراء الكهربائية ومنحوتةُ السقف الفولاذية" : "Al Hamra escalator and sculptural steel ceiling installation"}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}><Editable id="page_prose:towerDesign:lobbyCaption1">{c.lobbyCaption1}</Editable></div>
               </div>
-              <div style={{ position: "relative", overflow: "hidden", height: 160 }}>
+              <div style={{ position: "relative", overflow: "hidden", height: "clamp(160px,14vw,220px)" }}>
                 <SlotImage
               loading="lazy" slot="towerDesign.trencadis" fallback="/assets/facade-trencadis-detail.jpg"
                   alt={lang === "ar" ? "واجهةُ برج الحمراء — تفصيلُ الحجر الجيريّ والترِنكاديس" : "Al Hamra Tower facade — limestone and trencadis mosaic detail"}
@@ -205,7 +205,7 @@ export default function TowerDesign() {
       </div>
 
       {/* ── Drawings & Documentation ─────────────────────────────── */}
-      <div style={{ background: "#FAFAFA", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)" }}>
+      <div style={{ background: "#FAFAFA", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
 
         <div style={{ fontFamily: FONT,
           fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em",

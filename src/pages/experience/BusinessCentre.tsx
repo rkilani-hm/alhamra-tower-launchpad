@@ -69,7 +69,7 @@ export default function BusinessCentre() {
       {/* ── OVERVIEW ──────────────────────────────────────────────── */}
       <Section>
         <div style={{
-          display: "grid", gridTemplateColumns: "1fr 1.4fr",
+          display: "grid", gridTemplateColumns: "0.85fr 1.5fr",
           gap: "clamp(48px,6vw,96px)",
         }} className="bc-overview-grid">
           <div>
@@ -198,7 +198,7 @@ export default function BusinessCentre() {
               </div>
 
               {/* Body */}
-              <div style={{ padding: "clamp(20px,3vh,28px) clamp(4px,1vw,12px) 0" }}>
+              <div style={{ padding: "clamp(20px,3vh,28px) clamp(16px,1.5vw,22px) 0" }}>
                 <h3 style={{
                   fontFamily: CG, fontSize: "clamp(16px,1.4vw,20px)",
                   fontWeight: 400, color: DARK, lineHeight: 1.3,
@@ -244,7 +244,7 @@ export default function BusinessCentre() {
       <div style={{
         background: "#0F0E0C",
         borderTop: "1px solid rgba(200,185,154,0.1)",
-        padding: "clamp(32px,5vh,48px) clamp(28px,6vw,96px)",
+        padding: "clamp(48px,7vh,72px) clamp(28px,6vw,96px) clamp(32px,5vh,48px)",
       }}>
         <div style={{
           maxWidth: 1200, margin: "0 auto",

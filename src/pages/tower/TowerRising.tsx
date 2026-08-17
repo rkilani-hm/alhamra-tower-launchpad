@@ -68,7 +68,7 @@ export default function TowerRising() {
                       onClick={() => setActiveEra(i)}
                       style={{
                         width: "100%", textAlign: lang === "ar" ? "right" : "left", background: "none", border: "none",
-                        cursor: "pointer", padding: "18px 0",
+                        cursor: "pointer", padding: "22px 0",
                         display: "flex", alignItems: "center", gap: 16,
                       }}
                       aria-expanded={isOpen}
@@ -77,7 +77,7 @@ export default function TowerRising() {
                         fontFamily: FONT,
                         fontSize: "20px", fontWeight: 300,
                         color: isOpen ? DARK : "#6B6B6B",
-                        minWidth: 52, transition: "color 0.3s ease",
+                        minWidth: 64, transition: "color 0.3s ease",
                       }}>
                         {era.year}
                       </span>
@@ -114,7 +114,7 @@ export default function TowerRising() {
                             fontFamily: FONT,
                             fontWeight: 300, fontSize: "clamp(13px,1.05vw,15px)",
                             color: "#5a5a58", lineHeight: 1.9,
-                            paddingBottom: 24, paddingRight: 8,
+                            paddingBottom: 28, paddingRight: 24,
                             marginBottom: 0,
                           }}>
                             <EditableRow id={`timeline_entries:towerRising.eras:${i}`}>{era.body}</EditableRow>
@@ -152,7 +152,7 @@ export default function TowerRising() {
                     background: "#f7f6f4",
                     border: "1px solid rgba(29,29,27,0.07)",
                     overflow: "hidden",
-                    maxHeight: "calc((5 * 58px + 180px) * 1.7)",
+                    maxHeight: "min(70vh, 720px)",
                   }}>
                     <EditableImage id={`timeline_entries:towerRising.eras:${activeEra}`}>
                     <img
@@ -193,7 +193,7 @@ export default function TowerRising() {
           maxWidth: 1280, margin: "0 auto",
           padding: "clamp(64px,10vh,120px) clamp(24px,6vw,96px)",
         }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80,
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(48px,6vw,96px)",
             alignItems: "center" }} className="lamella-grid">
 
             <div>

@@ -153,7 +153,7 @@ export function H2({ children }: { children: ReactNode }) {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-      style={{ fontFamily: CG, fontSize: "clamp(20px,2.5vw,40px)", fontWeight: 200, lineHeight: 1.22, letterSpacing: "-0.015em", color: "#1D1D1B", marginBottom: 24 }}
+      style={{ fontFamily: CG, fontSize: "clamp(24px,3vw,48px)", fontWeight: 200, lineHeight: 1.16, letterSpacing: "-0.018em", color: "#1D1D1B", marginBottom: 28 }}
     >
       {children}
     </motion.h2>

@@ -98,13 +98,15 @@ export function WorkplaceExperience() {
         crumbs={[{ label: c.crumbHome, href: "/" }, { label: c.crumbBusiness, href: "/business" }]}
       />
 
-      <StatsBar stats={[...c.stats]} editKey="workplace" />
+      <div style={{ maxWidth: 1360, margin: "0 auto" }}>
+        <StatsBar stats={[...c.stats]} editKey="workplace" />
+      </div>
 
       <div style={{ position: "relative", height: "clamp(340px,48vw,640px)", overflow: "hidden" }}>
         <SlotImage slot="workplace.lobby" fallback="/assets/lobby-grand-lamella.jpg" loading="lazy" alt={c.lobbyAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, rgba(29,29,27,0.05) 0%, rgba(29,29,27,0.55) 100%)" }} />
-        <div style={{ position: "absolute", bottom: 48, left: 80, right: 80 }}>
+        <div style={{ position: "absolute", bottom: 48, left: "clamp(20px,5vw,80px)", right: "clamp(20px,5vw,80px)" }}>
           <Rv>
             <p style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginBottom: 12 }}><Editable id="page_prose:workplace:lobbyKicker">{c.lobbyKicker}</Editable></p>
             <h3 style={{ fontFamily: FONT, fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, maxWidth: 560 }}>
@@ -121,7 +123,9 @@ export function WorkplaceExperience() {
             <Rv delay={0.1}><H2><Editable id="page_prose:workplace:workH2">{c.workH2}</Editable></H2></Rv>
             <Rv delay={0.2}><Body><Editable id="page_prose:workplace:workBody">{c.workBody}</Editable></Body></Rv>
             <Rv delay={0.3}>
-              <FeatureGrid features={[...c.features]} editKey="workplace" />
+              <div style={{ marginTop: 40 }}>
+                <FeatureGrid features={[...c.features]} editKey="workplace" />
+              </div>
             </Rv>
           </div>
 
@@ -314,7 +318,7 @@ export function OfficeSpaces() {
         <div className="grid-3col feature-grid" style={{ marginTop: 48 }}>
           {c.configs.map(({ code, title, size, bullets }, i) => (
             <Rv key={code} delay={i * 0.1}>
-              <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
+              <div style={{ background: "#fff", padding: "48px 40px", height: "100%" }}>
                 <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>{c.configLabel} {code}</div>
                 <div style={{ fontFamily: FONT, fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
                 <div style={{ fontFamily: FONT, fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}>{size}</div>
@@ -407,7 +411,7 @@ export function OfficeSpaces() {
               .flex-fitout-grid{
                 display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
                 gap:1px;background:rgba(29,29,27,0.09);
-                border:1px solid rgba(29,29,27,0.09);margin-top:10px;
+                border:1px solid rgba(29,29,27,0.09);margin-top:28px;
               }
               .ff-card{
                 position:relative;background:#fff;overflow:hidden;
@@ -433,7 +437,7 @@ export function OfficeSpaces() {
               .ff-body{font-family:var(--font-brand);font-size:12.5px;color:#6B6B6B;
                 line-height:1.8;margin:0;}
               .ff-foot{font-family:var(--font-brand);font-size:11.5px;color:#6B6B6B;
-                margin-top:22px;font-style:italic;display:flex;align-items:center;gap:9px;}
+                margin-top:28px;font-style:italic;display:flex;align-items:center;gap:9px;}
               .ff-foot-dot{width:5px;height:5px;border-radius:50%;background:#C8B99A;flex-shrink:0;}
               @media (max-width:560px){.flex-fitout-grid{grid-template-columns:1fr;}}
             `}</style>
@@ -508,6 +512,9 @@ export function OfficeSpaces() {
         @media (max-width: 480px) {
           .office-gallery-strip { grid-template-columns: 1fr; }
         }
+        @media (max-width: 640px) {
+          .office-hero-stats { flex-wrap: wrap; gap: 24px 40px; }
+        }
       `}</style>
     </PageLayout>
   );
@@ -541,6 +548,7 @@ const VERTICAL_CONTENT = {
     ],
     routesTag: "Elevator System Architecture",
     routesH2: "Elevator Routes",
+    routesCols: ["Route", "Floors", "Speed", "Capacity"],
     routes: [
       { name: "Express to Sky Lobby 55", floors: "G → 55",  speed: "6 m/s", cap: "24 persons" },
       { name: "Express to Sky Lobby 30", floors: "G → 30",  speed: "6 m/s", cap: "24 persons" },
@@ -583,6 +591,7 @@ const VERTICAL_CONTENT = {
     ],
     routesTag: "بنيةُ منظومة المصاعد",
     routesH2: "مساراتُ المصاعد",
+    routesCols: ["المسار", "الطوابق", "السرعة", "السعة"],
     routes: [
       { name: "السريعُ إلى ردهة السماء 55", floors: "G → 55",  speed: "6 م/ث", cap: "24 شخصاً" },
       { name: "السريعُ إلى ردهة السماء 30", floors: "G → 30",  speed: "6 م/ث", cap: "24 شخصاً" },
@@ -615,7 +624,9 @@ export function VerticalTransportation() {
         subtitle={c.subtitle}
         crumbs={[{ label: c.crumbHome, href: "/" }, { label: c.crumbBusiness, href: "/business" }, { label: c.crumbThis, href: "/business/vertical-transportation" }]}
       />
-      <StatsBar stats={[...c.stats]} editKey="verticalTransport" />
+      <div style={{ maxWidth: 1360, margin: "0 auto" }}>
+        <StatsBar stats={[...c.stats]} editKey="verticalTransport" />
+      </div>
 
       <div style={{ position: "relative", height: "clamp(260px,38vw,480px)", overflow: "hidden" }}>
         <SlotImage loading="lazy" slot="verticalTransport.corridor" fallback="/assets/lobby-elevator-corridor.jpg" alt={c.corridorAlt}
@@ -637,7 +648,7 @@ export function VerticalTransportation() {
         <div className="grid-4col" style={{ gap: 1, background: "rgba(29,29,27,0.09)", marginTop: 48 }}>
           {c.ascent.map(({ floor, label, body }, i) => (
             <Rv key={floor} delay={i * 0.1}>
-              <div style={{ background: "#fff", padding: "36px 28px", height: "100%" }}>
+              <div style={{ background: "#fff", padding: "40px 32px", height: "100%" }}>
                 <div style={{ fontFamily: FONT, fontSize: 36, fontWeight: 300, color: "#1D1D1B", lineHeight: 1, marginBottom: 8 }}><Editable id={`page_prose:verticalTransport:ascent.${i}.floor`}>{floor}</Editable></div>
                 <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}><Editable id={`page_prose:verticalTransport:ascent.${i}.label`}>{label}</Editable></div>
                 <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#6B6B6B", lineHeight: 1.8 }}><Editable id={`page_prose:verticalTransport:ascent.${i}.body`}>{body}</Editable></div>
@@ -651,15 +662,45 @@ export function VerticalTransportation() {
         <Rv><Tag><Editable id="page_prose:verticalTransport:routesTag">{c.routesTag}</Editable></Tag></Rv>
         <Rv delay={0.1}><H2><Editable id="page_prose:verticalTransport:routesH2">{c.routesH2}</Editable></H2></Rv>
         <Rv delay={0.2}>
-          <div style={{ marginTop: 40 }}>
+          <div className="routes-table" style={{ marginTop: 40 }}>
+            <div className="routes-head">
+              <span>{c.routesCols[0]}</span>
+              <span>{c.routesCols[1]}</span>
+              <span>{c.routesCols[2]}</span>
+              <span>{c.routesCols[3]}</span>
+            </div>
             {c.routes.map(({ name, floors, speed, cap }, i) => (
-              <div key={name} style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", padding: "18px 0", borderBottom: i < c.routes.length - 1 ? "1px solid rgba(29,29,27,0.07)" : "none", gap: 24 }}>
-                <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 400, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.name`}>{name}</Editable></div>
-                <div style={{ fontFamily: FONT, fontSize: "22px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.floors`}>{floors}</Editable></div>
-                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.speed`}>{speed}</Editable></div>
-                <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.cap`}>{cap}</Editable></div>
+              <div key={name} className="routes-row" style={{ borderBottom: i < c.routes.length - 1 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
+                <div className="routes-cell" data-label={c.routesCols[0]} style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 400, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.name`}>{name}</Editable></div>
+                <div className="routes-cell" data-label={c.routesCols[1]} style={{ fontFamily: FONT, fontSize: "22px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.floors`}>{floors}</Editable></div>
+                <div className="routes-cell" data-label={c.routesCols[2]} style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.speed`}>{speed}</Editable></div>
+                <div className="routes-cell" data-label={c.routesCols[3]} style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.cap`}>{cap}</Editable></div>
               </div>
             ))}
+            <style>{`
+              .routes-head{
+                display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;
+                padding:0 0 14px;margin-bottom:2px;
+                border-bottom:1px solid rgba(29,29,27,0.12);
+              }
+              .routes-head span{
+                font-family:var(--font-brand);font-size:10px;letter-spacing:0.2em;
+                text-transform:uppercase;color:#6B6B6B;
+              }
+              .routes-row{
+                display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;
+                padding:22px 0;align-items:baseline;
+              }
+              @media (max-width:640px){
+                .routes-head{display:none;}
+                .routes-row{grid-template-columns:1fr;gap:6px;}
+                .routes-cell::before{
+                  content:attr(data-label);display:block;
+                  font-family:var(--font-brand);font-size:9px;letter-spacing:0.2em;
+                  text-transform:uppercase;color:#9A9A98;margin-bottom:3px;
+                }
+              }
+            `}</style>
           </div>
         </Rv>
       </Section>
@@ -743,16 +784,18 @@ export function Connectivity() {
         subtitle={c.subtitle}
         crumbs={[{ label: c.crumbHome, href: "/" }, { label: c.crumbBusiness, href: "/business" }, { label: c.crumbThis, href: "/business/connectivity" }]}
       />
-      <StatsBar stats={[...c.stats]} editKey="connectivity" />
+      <div style={{ maxWidth: 1360, margin: "0 auto" }}>
+        <StatsBar stats={[...c.stats]} editKey="connectivity" />
+      </div>
       <Section>
         <Rv><Tag><Editable id="page_prose:connectivity:tag2">{c.tag2}</Editable></Tag></Rv>
         <Rv delay={0.1}><H2><Editable id="page_prose:connectivity:h2">{c.h2}</Editable></H2></Rv>
         <Rv delay={0.2}><Body style={{ maxWidth: 640, marginBottom: 48 }}><Editable id="page_prose:connectivity:body">{c.body}</Editable></Body></Rv>
         <Rv delay={0.3}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "rgba(29,29,27,0.09)" }}>
+          <div className="conn-feature-grid" style={{ display: "grid", gap: 1, background: "rgba(29,29,27,0.09)" }}>
             {c.features.map(({ number, title, body, url }, i) => (
               <div key={number}
-                style={{ background: "#fff", padding: "28px 26px", transition: "background 0.18s ease" }}
+                style={{ background: "#fff", padding: "clamp(28px,2.2vw,40px) clamp(24px,2vw,34px)", transition: "background 0.18s ease" }}
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
                 onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
               >
@@ -782,6 +825,10 @@ export function Connectivity() {
             ))}
           </div>
         </Rv>
+        <style>{`
+          .conn-feature-grid{ grid-template-columns:1fr 1fr; }
+          @media (max-width:640px){ .conn-feature-grid{ grid-template-columns:1fr; } }
+        `}</style>
       </Section>
       <DarkBand title={c.darkTitle} subtitle={c.darkSubtitle} ctaLabel={c.darkCta} ctaHref="/leasing/inquiry#inquiry-form" editKey="connectivity" />
     </PageLayout>
