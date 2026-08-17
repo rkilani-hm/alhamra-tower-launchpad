@@ -197,12 +197,10 @@ export function ExperienceCards() {
           </span>
         </div>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr auto",
-          gap: 24,
-          alignItems: "end",
-        }} className="exp-header">
+        {/* Headline and subtitle stack vertically — one focused message,
+           not a headline with a small explainer floating in the top-right
+           corner (which reads as a templated layout tell). */}
+        <div className="exp-header">
           <h2 style={{
             fontFamily: CG, fontWeight: 200,
             fontSize: "clamp(28px,4vw,52px)",
@@ -215,9 +213,9 @@ export function ExperienceCards() {
           </h2>
 
           <p style={{
-            fontFamily: CG, fontSize: "13px", fontWeight: 300,
-            color: "rgba(255,255,255,0.55)", lineHeight: 1.7,
-            margin: 0, maxWidth: 320,
+            fontFamily: CG, fontSize: "15px", fontWeight: 300,
+            color: "rgba(255,255,255,0.6)", lineHeight: 1.7,
+            margin: "18px 0 0", maxWidth: 520,
           }}>
             <Editable id="section_fields:experience:subtitle">{t("experience.subtitle")}</Editable>
           </p>
@@ -239,7 +237,6 @@ export function ExperienceCards() {
       <style>{`
         @media (max-width: 1024px) {
           .exp-grid   { grid-template-columns: repeat(2, 1fr) !important; }
-          .exp-header { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 540px) {
           .exp-grid { grid-template-columns: 1fr !important; }

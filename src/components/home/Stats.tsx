@@ -120,23 +120,28 @@ function StatColumn({
         <EditableRow id={`stat_counters:home:${statKey}`}>{label}</EditableRow>
       </div>
 
-      {/* Monumental number — sized to fit 5 stats per row at 1280px max */}
+      {/* Monumental number — sized so the widest value (258,000) keeps its
+         unit inline on a single line across all five columns. `nowrap`
+         guarantees the unit never drops to its own row, so every stat reads
+         with the same number → unit rhythm regardless of digit count. */}
       <div style={{
         fontFamily: CG, fontWeight: 200,
-        fontSize: "clamp(40px,5.5vw,84px)",
+        fontSize: "clamp(34px,3.9vw,64px)",
         color: "#fff",
         lineHeight: 1,
         letterSpacing: "-0.03em",
+        whiteSpace: "nowrap",
       }}>
         <EditableRow id={`stat_counters:home:${statKey}`}>
         {shown}
         {unit && (
           <span style={{
             fontFamily: CG,
-            fontSize: "clamp(14px,1.8vw,28px)",
+            fontSize: "clamp(13px,1.4vw,22px)",
             fontWeight: 200, color: PEARL,
             letterSpacing: "-0.01em",
-          }}>{unit}</span>
+            marginInlineStart: 4,
+          }}>{unit.trim()}</span>
         )}
         </EditableRow>
       </div>
