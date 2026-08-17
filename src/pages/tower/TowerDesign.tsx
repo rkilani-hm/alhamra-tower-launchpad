@@ -20,27 +20,19 @@ function SpecTable({ cat, rows }: SpecTableProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <div ref={ref} style={{ marginBottom: 40 }}>
-      <div style={{ fontFamily: FONT, fontSize: "10px",
-        letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL,
-        marginBottom: 16, paddingBottom: 12,
-        borderBottom: `1px solid rgba(200,185,154,0.25)` }}>{cat}</div>
-      {rows.map(([label, value], i) => (
-        <motion.div key={label}
-          initial={{ opacity: 0, x: -10 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, delay: i * 0.04 }}
-          style={{ display: "flex", gap: 16,
-            padding: "14px 0", borderBottom: i < rows.length-1 ? "1px solid rgba(29,29,27,0.06)" : "none" }}>
-          <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-            color: "#6B6B6B", minWidth: 200, flexShrink: 0, letterSpacing: "0.05em" }}>{label}</div>
-          <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-            color: DARK, fontWeight: 400 }}>
-            <EditableRow id={`spec_rows::${label}`}>{value}</EditableRow>
-          </div>
-        </motion.div>
+    <motion.div ref={ref} className="spec-card"
+      initial={{ opacity: 0, y: 18 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <span className="spec-card-name">{cat}</span>
+      {rows.map(([label, value]) => (
+        <div key={label} className="spec-row">
+          <span className="spec-row-label">{label}</span>
+          <span className="spec-row-value"><EditableRow id={`spec_rows::${label}`}>{value}</EditableRow></span>
+        </div>
       ))}
-    </div>
+    </motion.div>
   );
 }
 
@@ -193,15 +185,19 @@ export default function TowerDesign() {
             <Editable id="page_prose:towerDesign:specHeading">{c.specHeading}</Editable>
           </h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,80px)" }}
-          className="spec-table-grid">
-          <div>
-            {c.specs.slice(0,3).map(s => <SpecTable key={s.cat} cat={s.cat} rows={s.rows as readonly (readonly [string, string])[]} />)}
-          </div>
-          <div>
-            {c.specs.slice(3).map(s => <SpecTable key={s.cat} cat={s.cat} rows={s.rows as readonly (readonly [string, string])[]} />)}
-          </div>
+        <div className="spec-grid">
+          {c.specs.map(s => <SpecTable key={s.cat} cat={s.cat} rows={s.rows as readonly (readonly [string, string])[]} />)}
         </div>
+        <style>{`
+          .spec-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; align-items:start; }
+          .spec-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(26px,2.3vw,38px) clamp(22px,1.9vw,32px); }
+          .spec-card-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8B6E3E; padding-bottom:16px; margin-bottom:6px; border-bottom:1px solid rgba(200,185,154,0.35); }
+          .spec-row{ padding:16px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
+          .spec-row:last-child{ border-bottom:none; padding-bottom:2px; }
+          .spec-row-label{ display:block; font-family:var(--font-brand); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#9a938a; margin-bottom:6px; }
+          .spec-row-value{ display:block; font-family:var(--font-brand); font-size:16px; color:#1D1D1B; font-weight:300; line-height:1.4; letter-spacing:0.01em; }
+          @media (max-width:560px){ .spec-grid{ grid-template-columns:1fr; } }
+        `}</style>
       </div>
 
       {/* ── Drawings & Documentation ─────────────────────────────── */}
