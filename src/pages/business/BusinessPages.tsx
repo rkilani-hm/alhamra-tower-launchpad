@@ -1,5 +1,6 @@
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { FloorPlanViewer } from "@/components/shared/FloorPlanViewer";
+import { FloorPlateSelector } from "@/components/shared/FloorPlateSelector";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n }     from "@/lib/i18n";
@@ -480,7 +481,10 @@ export function OfficeSpaces() {
             {c.floorPlansBody}
           </p>
         </div>
-        <div style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 44 }}>
+          <FloorPlateSelector />
+        </div>
+        <div style={{ marginTop: "clamp(56px,8vh,96px)" }}>
           <FloorPlanViewer />
         </div>
       </div>
