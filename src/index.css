@@ -612,7 +612,7 @@ summary:focus-visible,
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--color-gulf);
+  color: #8B6E3E; /* single gold accent (was gulf blue) */
   font-weight: 300;
 }
 

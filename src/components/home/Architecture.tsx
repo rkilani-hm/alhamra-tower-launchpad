@@ -12,7 +12,7 @@ import { usePageContent } from "@/lib/useCmsContent";
 ──────────────────────────────────────────────────────────────────────── */
 
 const PEARL = "#C8B99A";
-const GULF  = "#2A5F7A";
+const GULF  = "#8B6E3E";  /* accent discipline: gulf-blue demoted to the single gold accent */
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -151,8 +151,8 @@ export function Architecture() {
                       // In LTR, year sits left of event with right separator.
                       // In RTL, the visual order reverses naturally;
                       // the separator must move to the opposite edge.
-                      borderRight: isAr ? "none" : `1px solid rgba(42,95,122,0.18)`,
-                      borderLeft: isAr ? `1px solid rgba(42,95,122,0.18)` : "none",
+                      borderRight: isAr ? "none" : `1px solid rgba(197,168,130,0.28)`,
+                      borderLeft: isAr ? `1px solid rgba(197,168,130,0.28)` : "none",
                       paddingRight: isAr ? 0 : 18,
                       paddingLeft: isAr ? 18 : 0,
                     }}>

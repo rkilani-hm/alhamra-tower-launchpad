@@ -48,7 +48,7 @@ export function InvitationSection() {
       <div style={{
         position: "absolute", top: 0, right: 0,
         width: "40%", height: "60%", pointerEvents: "none",
-        background: `radial-gradient(ellipse at top right, rgba(42,95,122,0.12) 0%, transparent 70%)`,
+        background: `radial-gradient(ellipse at top right, rgba(197,168,130,0.12) 0%, transparent 70%)`,
       }} />
 
       <div style={{

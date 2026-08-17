@@ -427,7 +427,7 @@ export function OfficeSpaces() {
               .ff-card:hover::before{transform:scaleX(1);}
               .ff-icon{display:block;color:#C8B99A;margin-bottom:16px;
                 transition:color .3s ease,transform .4s cubic-bezier(.16,1,.3,1);}
-              .ff-card:hover .ff-icon{color:#2A5F7A;transform:translateY(-2px);}
+              .ff-card:hover .ff-icon{color:#8B6E3E;transform:translateY(-2px);}
               .ff-num{position:absolute;top:12px;right:16px;font-family:var(--font-brand);
                 font-size:34px;font-weight:200;line-height:1;letter-spacing:-.02em;
                 color:rgba(200,185,154,.30);pointer-events:none;}
