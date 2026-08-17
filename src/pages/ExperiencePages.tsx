@@ -428,13 +428,21 @@ export function Location() {
             <Rv delay={0.1}><H2><Editable id="page_prose:location:sectionHeading">{c.sectionHeading}</Editable></H2></Rv>
             <Rv delay={0.2}><Body><Editable id="page_prose:location:sectionBody">{c.sectionBody}</Editable></Body></Rv>
             <Rv delay={0.3}>
-              <div style={{ marginTop: 40 }}>
+              <div className="loc-spec-card" style={{ marginTop: 40 }}>
                 {c.detailLabels.map((label, i) => (
-                  <div key={label} style={{ display: "flex", gap: "clamp(20px,3vw,32px)", padding: "18px 0", borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
-                    <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B", minWidth: 130, flexShrink: 0, paddingTop: 2 }}><Editable id={`page_prose:location:detailLabels.${i}`}>{label}</Editable></div>
-                    <div style={{ fontFamily: FONT, fontSize: "13.5px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:location:detailValues.${i}`}>{c.detailValues[i]}</Editable></div>
+                  <div key={label} className="loc-row">
+                    <span className="loc-l"><Editable id={`page_prose:location:detailLabels.${i}`}>{label}</Editable></span>
+                    <span className="loc-v"><Editable id={`page_prose:location:detailValues.${i}`}>{c.detailValues[i]}</Editable></span>
                   </div>
                 ))}
+                <style>{`
+                  .loc-spec-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(20px,1.8vw,30px) clamp(22px,2vw,30px); }
+                  .loc-row{ display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:15px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
+                  .loc-row:first-child{ padding-top:2px; }
+                  .loc-row:last-child{ border-bottom:none; padding-bottom:2px; }
+                  .loc-l{ font-family:var(--font-brand); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#9a938a; flex-shrink:0; }
+                  .loc-v{ font-family:var(--font-brand); font-size:16px; font-weight:300; color:#1D1D1B; text-align:right; line-height:1.4; }
+                `}</style>
               </div>
             </Rv>
           </div>
