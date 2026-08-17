@@ -39,20 +39,22 @@ export function Architecture() {
       <div style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
-        minHeight: "70vh",
+        minHeight: "clamp(340px,46vh,500px)",
       }} className="arch-grid-1">
 
-        {/* Left — SOM render, dusk purple sky */}
+        {/* Left — SOM render, dusk purple sky. Definite, shorter height with the
+            image absolutely filling it (cover) — reliable in grid and stacked. */}
         <motion.div
-          style={{ position: "relative", overflow: "hidden", background: "#0c0b09" }}
+          style={{ position: "relative", overflow: "hidden", background: "#0c0b09",
+            width: "100%", height: "clamp(300px,42vh,470px)", alignSelf: "center" }}
         >
           <SlotImage
             motion
             slot="home.architectureForm"
             fallback="/lovable-uploads/46052915-521a-44ca-bbd4-d770e159f7fa.png"
             alt={c.renderAlt}
-            style={{ y: imgY, width: "100%", height: "130%",
-              objectFit: "cover", objectPosition: "center center", display: "block" }}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: "center", display: "block" }}
           />
         </motion.div>
 
