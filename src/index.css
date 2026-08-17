@@ -316,11 +316,13 @@ summary:focus-visible,
   }
 }
 
-/* ── Section padding ──────────────────────── */
-.ah-section { padding: 80px 80px; }
-@media (max-width: 1024px) { .ah-section { padding: 64px 48px; } }
-@media (max-width: 768px)  { .ah-section { padding: 48px 24px; } }
-@media (max-width: 640px)  { .ah-section { padding: 40px 20px; } }
+/* ── Section padding ──────────────────────────────────────────────────
+   Generous vertical rhythm for a premium feel — vertical padding is larger
+   than horizontal so sections read as tall, calm bands. */
+.ah-section { padding: 112px 80px; }
+@media (max-width: 1024px) { .ah-section { padding: 88px 48px; } }
+@media (max-width: 768px)  { .ah-section { padding: 64px 24px; } }
+@media (max-width: 640px)  { .ah-section { padding: 52px 20px; } }
 
 .ah-section-fafafa { background: #FAFAFA; }
 
@@ -378,9 +380,9 @@ summary:focus-visible,
   border-top: 1px solid rgba(29,29,27,0.09);
   border-bottom: 1px solid rgba(29,29,27,0.09);
 }
-.stats-bar-cell { padding: 48px 44px; }
-@media (max-width: 768px) { .stats-bar-cell { padding: 32px 24px; } }
-@media (max-width: 500px) { .stats-bar-cell { padding: 28px 20px; } }
+.stats-bar-cell { padding: 56px 48px; }
+@media (max-width: 768px) { .stats-bar-cell { padding: 40px 28px; } }
+@media (max-width: 500px) { .stats-bar-cell { padding: 32px 22px; } }
 
 /* ── Feature grid (2-col) ─────────────────── */
 .feature-grid {

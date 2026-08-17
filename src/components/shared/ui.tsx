@@ -51,7 +51,7 @@ export function FeatureGrid({ features, editKey, editField = "features" }: { fea
   return (
     <div className="feature-grid">
       {features.map(({ number, title, body }, i) => (
-        <div key={number} className="ah-card-hover" style={{ background:"#fff", padding:"clamp(20px,2vw,28px) clamp(16px,2vw,26px)" }}
+        <div key={number} className="ah-card-hover" style={{ background:"#fff", padding:"clamp(28px,2.4vw,40px) clamp(24px,2.2vw,34px)" }}
           onMouseEnter={e=>((e.currentTarget as HTMLDivElement).style.background="#FAFAFA")}
           onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
         >
@@ -96,11 +96,11 @@ export function Section({ children, bg="#fff", style, withPattern=true, patternO
   const isLight = bg === "#fff" || bg === "#FAFAFA" || bg === "white" || bg.startsWith("#F");
   
   const content = (
-    <>
+    <div style={{ maxWidth: 1360, margin: "0 auto" }}>
       {tag && <Rv><Tag>{tag}</Tag></Rv>}
       {title && <Rv delay={0.1}><H2>{title}</H2></Rv>}
       {children}
-    </>
+    </div>
   );
 
   if (withPattern && isLight) {
@@ -153,7 +153,7 @@ export function H2({ children }: { children: ReactNode }) {
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-      style={{ fontFamily: CG, fontSize: "clamp(20px,2.5vw,40px)", fontWeight: 200, lineHeight: 1.22, letterSpacing: "-0.015em", color: "#1D1D1B", marginBottom: 16 }}
+      style={{ fontFamily: CG, fontSize: "clamp(20px,2.5vw,40px)", fontWeight: 200, lineHeight: 1.22, letterSpacing: "-0.015em", color: "#1D1D1B", marginBottom: 24 }}
     >
       {children}
     </motion.h2>
