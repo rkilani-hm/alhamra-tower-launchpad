@@ -14,6 +14,7 @@
 ────────────────────────────────────────────────────────────────────────── */
 
 import { createContext, useContext, useEffect, useState, ReactNode, CSSProperties } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { useSlotImage, invalidateSlotCache } from "@/lib/useCmsContent";
@@ -376,7 +377,11 @@ export function PopoverShell({ title, onClose, children }: { title: string; onCl
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
-  return (
+  // Portal to <body> so the fixed overlay centres in the VIEWPORT. Without
+  // this it is nested inside App.tsx's transformed page-transition wrapper,
+  // which makes position:fixed resolve against that full-height wrapper — so
+  // the popup lands in the middle of the whole page instead of on screen.
+  return createPortal(
     <div
       onClick={onClose}
       style={{
@@ -399,7 +404,8 @@ export function PopoverShell({ title, onClose, children }: { title: string; onCl
         </div>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
