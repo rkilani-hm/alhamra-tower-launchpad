@@ -662,44 +662,23 @@ export function VerticalTransportation() {
         <Rv><Tag><Editable id="page_prose:verticalTransport:routesTag">{c.routesTag}</Editable></Tag></Rv>
         <Rv delay={0.1}><H2><Editable id="page_prose:verticalTransport:routesH2">{c.routesH2}</Editable></H2></Rv>
         <Rv delay={0.2}>
-          <div className="routes-table" style={{ marginTop: 40 }}>
-            <div className="routes-head">
-              <span>{c.routesCols[0]}</span>
-              <span>{c.routesCols[1]}</span>
-              <span>{c.routesCols[2]}</span>
-              <span>{c.routesCols[3]}</span>
-            </div>
+          <div className="route-grid" style={{ marginTop: 40 }}>
             {c.routes.map(({ name, floors, speed, cap }, i) => (
-              <div key={name} className="routes-row" style={{ borderBottom: i < c.routes.length - 1 ? "1px solid rgba(29,29,27,0.07)" : "none" }}>
-                <div className="routes-cell" data-label={c.routesCols[0]} style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 400, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.name`}>{name}</Editable></div>
-                <div className="routes-cell" data-label={c.routesCols[1]} style={{ fontFamily: FONT, fontSize: "22px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.floors`}>{floors}</Editable></div>
-                <div className="routes-cell" data-label={c.routesCols[2]} style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.speed`}>{speed}</Editable></div>
-                <div className="routes-cell" data-label={c.routesCols[3]} style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B" }}><Editable id={`page_prose:verticalTransport:routes.${i}.cap`}>{cap}</Editable></div>
+              <div key={name} className="route-card">
+                <span className="route-name"><Editable id={`page_prose:verticalTransport:routes.${i}.name`}>{name}</Editable></span>
+                <div className="rc-row"><span className="rc-l">{c.routesCols[1]}</span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.floors`}>{floors}</Editable></span></div>
+                <div className="rc-row"><span className="rc-l">{c.routesCols[2]}</span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.speed`}>{speed}</Editable></span></div>
+                <div className="rc-row"><span className="rc-l">{c.routesCols[3]}</span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.cap`}>{cap}</Editable></span></div>
               </div>
             ))}
             <style>{`
-              .routes-head{
-                display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;
-                padding:0 0 14px;margin-bottom:2px;
-                border-bottom:1px solid rgba(29,29,27,0.12);
-              }
-              .routes-head span{
-                font-family:var(--font-brand);font-size:10px;letter-spacing:0.2em;
-                text-transform:uppercase;color:#6B6B6B;
-              }
-              .routes-row{
-                display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;
-                padding:22px 0;align-items:baseline;
-              }
-              @media (max-width:640px){
-                .routes-head{display:none;}
-                .routes-row{grid-template-columns:1fr;gap:6px;}
-                .routes-cell::before{
-                  content:attr(data-label);display:block;
-                  font-family:var(--font-brand);font-size:9px;letter-spacing:0.2em;
-                  text-transform:uppercase;color:#9A9A98;margin-bottom:3px;
-                }
-              }
+              .route-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; align-items:start; }
+              .route-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(24px,2.2vw,34px) clamp(20px,1.8vw,30px); }
+              .route-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#8B6E3E; padding-bottom:16px; margin-bottom:4px; border-bottom:1px solid rgba(200,185,154,0.35); }
+              .rc-row{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:14px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
+              .rc-row:last-child{ border-bottom:none; padding-bottom:2px; }
+              .rc-l{ font-family:var(--font-brand); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#9a938a; }
+              .rc-v{ font-family:var(--font-brand); font-size:16px; font-weight:300; color:#1D1D1B; text-align:right; }
             `}</style>
           </div>
         </Rv>

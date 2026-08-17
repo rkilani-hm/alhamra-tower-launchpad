@@ -885,54 +885,33 @@ export function Downloads() {
         crumbs={[...c.crumbs]}
       />
       <Section style={{ paddingTop: 56, paddingBottom: 56 }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "rgba(29,29,27,0.09)" }}>
+        <div className="dl-grid">
           {c.items.map(({ title, format, size, desc }, i) => (
-            <Rv key={title} delay={i * 0.1}>
-              <div className="download-row" style={{
-                background: "#fff", padding: "clamp(24px,4vw,36px) clamp(20px,4vw,40px)",
-                display: "flex", alignItems: "center", justifyContent: "space-between", gap: 40,
-                flexWrap: "wrap",
-                transition: "background 0.2s",
-              }}
-                onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
-                onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
-              >
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                    <span style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 500, color: "#1D1D1B" }}><Editable id={`page_prose:downloads:items.${i}.title`}>{title}</Editable></span>
-                    <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", border: "1px solid rgba(29,29,27,0.12)", padding: "3px 8px" }}><Editable id={`page_prose:downloads:items.${i}.format`}>{format}</Editable> · <Editable id={`page_prose:downloads:items.${i}.size`}>{size}</Editable></span>
-                  </div>
-                  <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#6B6B6B" }}><Editable id={`page_prose:downloads:items.${i}.desc`}>{desc}</Editable></div>
-                </div>
-                <button type="button" style={{
-                  display: "inline-flex", alignItems: "center", gap: 10, flexShrink: 0,
-                  background: "none", border: "1px solid rgba(29,29,27,0.2)", cursor: "pointer",
-                  fontFamily: FONT, fontSize: "10px", letterSpacing: "0.2em",
-                  textTransform: "uppercase", color: "#1D1D1B", padding: "10px 22px",
-                  transition: "background 0.2s, color 0.2s",
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.background="#1D1D1B"; e.currentTarget.style.color="#fff"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background="transparent"; e.currentTarget.style.color="#1D1D1B"; }}
-                >
-                  <Editable id="page_prose:downloads:downloadLabel">{c.downloadLabel}</Editable>
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v7M2 8l4 3 4-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
+            <Rv key={title} delay={i * 0.08} className="dl-card">
+              <span className="dl-format"><Editable id={`page_prose:downloads:items.${i}.format`}>{format}</Editable> · <Editable id={`page_prose:downloads:items.${i}.size`}>{size}</Editable></span>
+              <div className="dl-title"><Editable id={`page_prose:downloads:items.${i}.title`}>{title}</Editable></div>
+              <div className="dl-desc"><Editable id={`page_prose:downloads:items.${i}.desc`}>{desc}</Editable></div>
+              <button type="button" className="dl-btn">
+                <Editable id="page_prose:downloads:downloadLabel">{c.downloadLabel}</Editable>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 1v7M2 8l4 3 4-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
             </Rv>
           ))}
         </div>
       </Section>
       <DarkBand title={c.cta.title} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="downloads" editFields={{ title: "cta.title", cta: "cta.label" }} />
       <style>{`
-        @media (max-width: 640px) {
-          .download-row {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 20px;
-          }
-        }
+        .dl-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; align-items:stretch; }
+        .dl-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(28px,2.4vw,38px) clamp(24px,2vw,32px); display:flex; flex-direction:column; height:100%; transition:background .25s ease, border-color .25s ease; }
+        .dl-card:hover{ background:#FAFAFA; border-color:rgba(200,185,154,0.5); }
+        .dl-format{ font-family:var(--font-brand); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#8B6E3E; }
+        .dl-title{ font-family:var(--font-brand); font-size:17px; font-weight:400; color:#1D1D1B; margin:16px 0 10px; line-height:1.3; }
+        .dl-desc{ font-family:var(--font-brand); font-size:13px; color:#6B6B6B; line-height:1.7; margin-bottom:24px; }
+        .dl-btn{ margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:10px; background:none; border:1px solid rgba(29,29,27,0.2); cursor:pointer; font-family:var(--font-brand); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#1D1D1B; padding:11px 22px; transition:background .2s, color .2s; }
+        .dl-btn:hover{ background:#1D1D1B; color:#fff; }
+        @media (max-width:560px){ .dl-grid{ grid-template-columns:1fr; } }
       `}</style>
     </PageLayout>
   );
