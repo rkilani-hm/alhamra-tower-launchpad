@@ -34,7 +34,7 @@ export function FounderQuote() {
       }}
     >
       <div style={{
-        maxWidth: 1280, margin: "0 auto",
+        maxWidth: 1360, margin: "0 auto",
         display: "grid",
         gridTemplateColumns: "1.15fr 1fr",
         gap: "clamp(48px,6vw,96px)",

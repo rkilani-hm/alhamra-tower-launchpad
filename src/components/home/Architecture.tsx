@@ -33,7 +33,7 @@ export function Architecture() {
 
   return (
     <PatternBackground opacity={0.3} style={{ background: "#fff", overflow: "hidden" }}>
-      <div ref={ref}>
+      <div ref={ref} style={{ maxWidth: 1360, margin: "0 auto" }}>
 
       {/* ── Row 1: Full story + render ─────────────────────────────── */}
       <div style={{

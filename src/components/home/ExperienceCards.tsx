@@ -184,7 +184,7 @@ export function ExperienceCards() {
     }}>
       {/* Section intro */}
       <div style={{
-        maxWidth: 1280, margin: "0 auto clamp(48px,6vh,72px)",
+        maxWidth: 1360, margin: "0 auto clamp(48px,6vh,72px)",
         padding: "0 clamp(4px,1vw,16px)",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
@@ -226,7 +226,7 @@ export function ExperienceCards() {
 
       {/* The 4-card grid */}
       <div style={{
-        maxWidth: 1280, margin: "0 auto",
+        maxWidth: 1360, margin: "0 auto",
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "clamp(12px,1.5vw,20px)",

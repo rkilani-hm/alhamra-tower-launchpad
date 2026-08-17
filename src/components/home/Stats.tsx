@@ -179,7 +179,7 @@ export function Stats() {
         background: "radial-gradient(ellipse at 50% 50%, rgba(200,185,154,0.06) 0%, transparent 60%)",
       }} />
 
-      <div ref={ref} style={{ maxWidth: 1280, margin: "0 auto", position: "relative" }}>
+      <div ref={ref} style={{ maxWidth: 1360, margin: "0 auto", position: "relative" }}>
 
         {/* Centred kicker */}
         <motion.div

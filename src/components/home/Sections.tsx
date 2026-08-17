@@ -25,7 +25,7 @@ export function Perspectives() {
   const t = useT();
   return (
     <PatternBackground opacity={0.25} style={{ background: "#fff", borderTop: "1px solid rgba(29,29,27,0.07)" }}>
-      <div className="grid-3col">
+      <div className="grid-3col" style={{ maxWidth: 1360, margin: "0 auto" }}>
         {PERSP_KEYS.map((pk, i) => (
           <ScrollReveal key={pk} delay={i * 0.1}>
             <div
@@ -57,7 +57,7 @@ export function FloorConfigs() {
   const t = useT();
   return (
     <PatternBackground opacity={0.28} style={{ background: "#FAFAFA" }}>
-      <div className="grid-3col">
+      <div className="grid-3col" style={{ maxWidth: 1360, margin: "0 auto" }}>
       {FLOOR_KEYS.map((fk, i) => (
         <ScrollReveal key={fk} delay={i * 0.1}>
           <div
@@ -201,7 +201,7 @@ export function ContactStrip() {
   const t = useT();
   return (
     <PatternBackground opacity={0.3} style={{ borderTop: "1px solid rgba(29,29,27,0.09)", background: "#fff" }}>
-      <div className="grid-4col">
+      <div className="grid-4col" style={{ maxWidth: 1360, margin: "0 auto" }}>
         {CONTACT_ROWS.map(({ labelKey, valueKey }, i) => (
           <ScrollReveal key={labelKey} delay={i * 0.1}>
             <div style={{ padding: "44px 48px", borderRight: "1px solid rgba(29,29,27,0.09)", height: "100%" }}>

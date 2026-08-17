@@ -52,7 +52,7 @@ export function InvitationSection() {
       }} />
 
       <div style={{
-        maxWidth: 1200, margin: "0 auto",
+        maxWidth: 1360, margin: "0 auto",
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         gap: "clamp(48px,8vw,120px)",
@@ -159,7 +159,7 @@ export function InvitationSection() {
                 fontSize: "10.5px", fontWeight: 400,
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: PEARL, textDecoration: "none",
-                transition: "all 0.4s",
+                transition: "background 0.25s ease, border-color 0.25s ease, color 0.25s ease",
                 position: "relative", overflow: "hidden",
               }}
               onMouseEnter={e => {
