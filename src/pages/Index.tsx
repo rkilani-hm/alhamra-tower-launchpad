@@ -2,7 +2,6 @@ import { Navbar }              from "@/components/layout/Navbar";
 import { Footer }              from "@/components/layout/Footer";
 import { Hero }                from "@/components/home/Hero";
 import { Stats }               from "@/components/home/Stats";
-import { Marquee }             from "@/components/home/Marquee";
 import { Architecture }        from "@/components/home/Architecture";
 import { InvitationSection }   from "@/components/home/InvitationSection";
 import { FounderQuote }        from "@/components/home/FounderQuote";
@@ -45,7 +44,6 @@ export default function Index() {
         <RevealOnScroll><ExperienceCards /></RevealOnScroll>
 
         {/* ── Beat 4: The Tower ────────────────────────────────── */}
-        <RevealOnScroll><Marquee /></RevealOnScroll>
         <RevealOnScroll><Architecture /></RevealOnScroll>
 
         {/* ── Beat 5: The Address ──────────────────────────────── */}
