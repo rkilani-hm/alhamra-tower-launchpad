@@ -39,6 +39,21 @@ const imageStyle: React.CSSProperties = {
 
 type Item = { id: string; url: string; alt: string; isVideo: boolean; status: string; sort: number };
 
+/* Persist the resolved gallery so a reload paints the correct media instantly
+   (stale-while-revalidate) rather than flashing the bundled fallback video
+   while the network fetch is in flight. */
+const HERO_LS_KEY = "ah_herogallery_v1";
+function readHeroLS(): Item[] | null {
+  try {
+    const s = typeof localStorage !== "undefined" ? localStorage.getItem(HERO_LS_KEY) : null;
+    const a = s ? JSON.parse(s) : null;
+    return Array.isArray(a) ? (a as Item[]) : null;
+  } catch { return null; }
+}
+function writeHeroLS(items: Item[]) {
+  try { localStorage.setItem(HERO_LS_KEY, JSON.stringify(items)); } catch { /* quota / unavailable */ }
+}
+
 async function fetchGallery(allStatuses: boolean): Promise<Item[]> {
   let q = supabase
     .from("feature_cards")
@@ -75,7 +90,8 @@ export function HeroMediaShowcase({
   playLabel: string;
 }) {
   const { enabled } = useEditMode();
-  const [published, setPublished] = useState<Item[] | null>(null);
+  // Seed from the persisted gallery so a reload renders the right media at once.
+  const [published, setPublished] = useState<Item[] | null>(() => readHeroLS());
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [manageOpen, setManageOpen] = useState(false);
@@ -83,9 +99,18 @@ export function HeroMediaShowcase({
 
   useEffect(() => {
     let cancelled = false;
-    fetchGallery(false).then((items) => { if (!cancelled) setPublished(items); });
+    fetchGallery(false).then((items) => {
+      if (cancelled) return;
+      setPublished(items);
+      writeHeroLS(items);
+    });
     return () => { cancelled = true; };
   }, []);
+
+  // True only once the gallery has actually resolved (from cache or network).
+  // Until then, on a cold first visit we show a neutral dark frame rather than
+  // the bundled fallback video, so no "old media" ever flashes.
+  const resolved = published !== null;
 
   const fallbackItem: Item = {
     id: "__fallback", url: fallbackVideo, alt: "",
@@ -125,6 +150,17 @@ export function HeroMediaShowcase({
     <>
       <motion.div style={{ position: "absolute", inset: 0, y: mediaY }}>
         <AnimatePresence initial={false}>
+          {!resolved ? (
+            <motion.div
+              key="hero-loading"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              style={{ position: "absolute", inset: 0, background: "#0c0b09" }}
+              aria-hidden="true"
+            />
+          ) : (
           <motion.div
             key={lightHero ? "light" : current.id + ":" + safeIndex}
             initial={{ opacity: 0 }}
@@ -157,11 +193,12 @@ export function HeroMediaShowcase({
               <img src={current.url} alt={current.alt} style={imageStyle} />
             )}
           </motion.div>
+          )}
         </AnimatePresence>
       </motion.div>
 
       {/* Prev / next arrows + dots (only with several items) */}
-      {!lightHero && multiple && (
+      {resolved && !lightHero && multiple && (
         <>
           <button onClick={prev} aria-label="Previous" className="hero-nav-arrow" style={arrowStyle("left")}>‹</button>
           <button onClick={next} aria-label="Next" className="hero-nav-arrow" style={arrowStyle("right")}>›</button>
@@ -187,7 +224,7 @@ export function HeroMediaShowcase({
       )}
 
       {/* WCAG 2.1.2 pause/play — only when the current item is a moving video */}
-      {!lightHero && current.isVideo && (
+      {resolved && !lightHero && current.isVideo && (
         <button
           onClick={toggle}
           aria-label={playing ? pauseLabel : playLabel}

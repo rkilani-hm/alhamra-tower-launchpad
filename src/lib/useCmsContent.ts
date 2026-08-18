@@ -332,11 +332,28 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
    One fetch on mount, shared via a module cache so many <SlotImage> instances
    don't each query.
 ────────────────────────────────────────────────────────────────────────── */
-let _slotCache: Record<string, string> | null = null;
+/* Stale-while-revalidate: the resolved slot→URL map is persisted to
+   localStorage and seeded synchronously at module load, so a reload paints the
+   last-known (correct) media immediately instead of flashing the hardcoded
+   fallback for a moment before the network fetch lands. The background fetch
+   still runs once per page load and updates the cache if anything changed. */
+const _SLOT_LS_KEY = "ah_slotmap_v1";
+
+function _readSlotLS(): Record<string, string> | null {
+  try {
+    const s = typeof localStorage !== "undefined" ? localStorage.getItem(_SLOT_LS_KEY) : null;
+    const o = s ? JSON.parse(s) : null;
+    return o && typeof o === "object" ? (o as Record<string, string>) : null;
+  } catch { return null; }
+}
+function _writeSlotLS(map: Record<string, string>) {
+  try { localStorage.setItem(_SLOT_LS_KEY, JSON.stringify(map)); } catch { /* quota / unavailable */ }
+}
+
+let _slotCache: Record<string, string> | null = _readSlotLS();
 let _slotPromise: Promise<Record<string, string>> | null = null;
 
 async function fetchSlots(): Promise<Record<string, string>> {
-  if (_slotCache) return _slotCache;
   if (_slotPromise) return _slotPromise;
   _slotPromise = (async () => {
     const map: Record<string, string> = {};
@@ -348,23 +365,35 @@ async function fetchSlots(): Promise<Record<string, string>> {
         const url = r.media_assets?.public_url;
         if (url) map[r.slot] = url;
       }
-    } catch { /* fall back to hardcoded paths */ }
-    _slotCache = map;
-    return map;
+      _slotCache = map;
+      _writeSlotLS(map);
+    } catch {
+      /* network/RLS failure — keep whatever we already had (seeded or empty) */
+      if (!_slotCache) _slotCache = map;
+    }
+    return _slotCache!;
   })();
   return _slotPromise;
 }
 
-/* Returns the resolved URL for a slot, or the fallback until/unless overridden. */
+/* Returns the resolved URL for a slot. Initialised synchronously from the
+   persisted cache (no fallback flash on reload once seeded), then revalidated;
+   only re-renders if the resolved URL actually differs from what's shown. */
 export function useSlotImage(slot: string, fallback: string): string {
-  const [url, setUrl] = useState(fallback);
+  const [url, setUrl] = useState<string>(() => _slotCache?.[slot] ?? fallback);
   useEffect(() => {
     let active = true;
-    fetchSlots().then((m) => { if (active && m[slot]) setUrl(m[slot]); });
+    fetchSlots().then((m) => {
+      if (!active) return;
+      const resolved = m[slot] ?? fallback;
+      setUrl((prev) => (prev === resolved ? prev : resolved));
+    });
     return () => { active = false; };
   }, [slot, fallback]);
   return url;
 }
 
-/* Allow the edit layer to invalidate the cache after a swap. */
-export function invalidateSlotCache() { _slotCache = null; _slotPromise = null; }
+/* Allow the edit layer to force a fresh fetch after a swap. The persisted
+   cache is intentionally kept so the post-swap reload still paints instantly;
+   the refetch then corrects the one slot that changed. */
+export function invalidateSlotCache() { _slotPromise = null; }
