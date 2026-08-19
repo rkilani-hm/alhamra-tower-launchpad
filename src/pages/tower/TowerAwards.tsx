@@ -1402,7 +1402,7 @@ export function TowerAwards() {
           padding: 8px 16px; border: none; background: transparent;
           color: ${MUTED}; cursor: pointer;
           display: inline-flex; align-items: center; gap: 8px;
-          transition: all 0.25s ease;
+          transition: background-color 0.25s ease, color 0.25s ease;
         }
         .view-toggle-btn:hover { color: ${DARK}; }
         .view-toggle-btn.is-active {
@@ -1452,7 +1452,7 @@ export function TowerAwards() {
           background: ${WHITE}; color: ${DARK};
           cursor: pointer;
           display: flex; align-items: center; justify-content: center;
-          transition: all 0.25s ease;
+          transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
         .timeline-chev:hover {
           background: ${DARK}; color: ${WHITE};

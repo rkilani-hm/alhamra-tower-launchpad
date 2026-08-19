@@ -29,6 +29,7 @@ export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dar
     >
       <button
         type="button"
+        className="ah-hit"
         onClick={() => setLang("en")}
         aria-pressed={lang === "en"}
         aria-label={t("language.en")}
@@ -50,6 +51,7 @@ export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dar
       </button>
       <button
         type="button"
+        className="ah-hit"
         onClick={() => setLang("ar")}
         aria-pressed={lang === "ar"}
         aria-label={t("language.ar")}

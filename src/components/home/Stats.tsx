@@ -131,6 +131,8 @@ function StatColumn({
         lineHeight: 1,
         letterSpacing: "-0.03em",
         whiteSpace: "nowrap",
+        // Fixed-width digits so the count-up doesn't jitter as it rolls.
+        fontVariantNumeric: "tabular-nums",
       }}>
         <EditableRow id={`stat_counters:home:${statKey}`}>
         {shown}

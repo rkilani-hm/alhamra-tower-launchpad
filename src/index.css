@@ -180,6 +180,11 @@ summary:focus-visible,
 
   html {
     scroll-behavior: smooth;
+    /* Crisper type on macOS/retina — the geometric Century Gothic reads
+       cleaner antialiased than with the default subpixel rendering. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -208,11 +213,38 @@ summary:focus-visible,
     font-weight: 300;
     letter-spacing: -0.01em;
     line-height: 1.2;
+    /* Even out ragged multi-line headlines instead of leaving a lone word
+       stranded on the last line. */
+    text-wrap: balance;
   }
 
   p {
     font-family: var(--font-century);
     line-height: 1.7;
+    /* Avoid orphan/runt last lines in captions, descriptions and body copy. */
+    text-wrap: pretty;
+  }
+
+  /* Updating / column-aligned numbers (count-ups, stat grids, specs) keep a
+     fixed glyph width so digits don't jitter as the value changes. */
+  .ah-tnums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* Compact controls that must stay visually small (e.g. the navbar language
+     toggle) get a taller invisible touch target via a vertical-only overlay,
+     so adjacent controls never overlap. */
+  .ah-hit {
+    position: relative;
+  }
+  .ah-hit::after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    bottom: -9px;
+    left: 0;
+    right: 0;
   }
 }
 
