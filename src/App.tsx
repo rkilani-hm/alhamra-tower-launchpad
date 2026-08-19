@@ -9,6 +9,7 @@ import { pageVariants }    from "@/lib/motion";
 
 /* Pages */
 import Index               from "./pages/Index";
+import Home2               from "./pages/Home2";
 import { AdminApp }        from "./admin/AdminApp";
 import NotFound            from "./pages/NotFound";
 import TowerOverview       from "./pages/tower/TowerOverview";
@@ -66,6 +67,7 @@ function AnimatedRoutes() {
 
           {/* Homepage */}
           <Route path="/"                               element={<Index />} />
+          <Route path="/home2"                          element={<Home2 />} />
 
           {/* Tower */}
           <Route path="/tower"                          element={<TowerOverview />} />

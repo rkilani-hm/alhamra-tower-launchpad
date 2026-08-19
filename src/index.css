@@ -246,6 +246,26 @@ summary:focus-visible,
     left: 0;
     right: 0;
   }
+
+  /* Interactive "life": a slow, subtle hover-zoom on the large homepage
+     imagery. Motivated as hover feedback; honours reduced-motion. Only the
+     transform is animated (compositor-friendly). */
+  @media (prefers-reduced-motion: no-preference) {
+    .config-banner, .feature-img, .la-row-img, .la-banner, .la-top-img { overflow: hidden; }
+    .config-banner img,
+    .feature-img img,
+    .la-row-img img,
+    .la-banner img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .config-banner:hover img,
+    .feature-img:hover img,
+    .la-row-img:hover img,
+    .la-banner:hover img {
+      transform: scale(1.05);
+    }
+  }
 }
 
 @layer utilities {

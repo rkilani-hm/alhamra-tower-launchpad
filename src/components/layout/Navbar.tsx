@@ -11,6 +11,13 @@ const navEditId = (labelKey: string) => `section_fields:nav:${labelKey.replace(/
 
 const NAV = [
   {
+    labelKey: "nav.home2",
+    href:  "/home2",
+    children: [
+      { labelKey: "nav.home2", href: "/home2" },
+    ],
+  },
+  {
     labelKey: "nav.tower",
     href:  "/tower",
     children: [
