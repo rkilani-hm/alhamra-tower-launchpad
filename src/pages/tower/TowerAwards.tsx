@@ -541,7 +541,7 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
               <div style={{
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase",
-                color: SAND, marginBottom: 22,
+                color: "#CD1719", marginBottom: 22,
               }}>
                 {award.ribbon} · {award.category}
               </div>
@@ -722,7 +722,7 @@ function AwardsRecognitionSection() {
         <Rv>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
             <div style={{ width: 24, height: 1, background: SAND }} />
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>
               {c.awardsKicker}
             </div>
           </div>
@@ -787,7 +787,7 @@ function AwardsRecognitionSection() {
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(64px,7vw,96px)", fontWeight: 200, color: WHITE, lineHeight: 1, marginBottom: 4 }}>
                 {hero.year}
               </div>
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: SAND, marginBottom: 22 }}>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "#CD1719", marginBottom: 22 }}>
                 {hero.ribbon} · {hero.category}
               </div>
               <h3 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.4vw,34px)", fontWeight: 300, color: WHITE, lineHeight: 1.2, marginBottom: 14, letterSpacing: "-0.01em" }}>
@@ -1008,7 +1008,7 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
             position: "absolute", top: 14, right: 14, zIndex: 3,
             fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
             fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase",
-            color: SAND, padding: "5px 10px",
+            color: "#CD1719", padding: "5px 10px",
             background: "rgba(29,29,27,0.55)", backdropFilter: "blur(4px)",
             border: `1px solid rgba(197,168,130,0.35)`,
           }}>
@@ -1138,7 +1138,7 @@ export function TowerAwards() {
         {/* Text overlay */}
         <div className="awards-hero-text">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND, marginBottom: 14 }}>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 14 }}>
               {c.heroKicker}
             </div>
             <h1 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(28px,5vw,72px)", fontWeight: 100, letterSpacing: "-0.03em", lineHeight: 1, color: WHITE, marginBottom: 16 }}>
@@ -1171,7 +1171,7 @@ export function TowerAwards() {
             style={{ background: WHITE, padding: "clamp(24px,3vw,40px) clamp(18px,2.5vw,32px)", borderRight: `1px solid ${STONE}` }}
           >
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(28px,4vw,44px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
-              {n}{u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1.5vw,16px)", fontWeight: 200, color: SAND }}>{u}</span>}
+              {n}{u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1.5vw,16px)", fontWeight: 200, color: "#CD1719" }}>{u}</span>}
             </div>
             <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: MUTED, marginTop: 8 }}>{l}</div>
           </motion.div>
@@ -1184,7 +1184,7 @@ export function TowerAwards() {
           <Rv>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: SAND }} />
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>
                 {c.engKicker}
               </div>
             </div>
@@ -1221,7 +1221,7 @@ export function TowerAwards() {
               {/* Text side */}
               <div className="eng-card-text" style={{ background: WHITE, display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(48px,7vw,88px)", fontWeight: 300, color: CREAM, lineHeight: 1, marginBottom: 4 }}>{stat}</div>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: SAND, marginBottom: 20 }}>{label}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719", marginBottom: 20 }}>{label}</div>
                 <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(13px,1.2vw,14.5px)", fontWeight: 300, color: MUTED, lineHeight: 1.9 }}>{body}</p>
               </div>
             </div>
@@ -1237,11 +1237,11 @@ export function TowerAwards() {
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div className="awards-lobby-text">
             <Rv>
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND, marginBottom: 16 }}>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 16 }}>
                 {c.lobbyKicker}
               </div>
               <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(24px,4vw,56px)", fontWeight: 100, color: WHITE, lineHeight: 1.08, marginBottom: 20 }}>
-                {c.lobbyTitleA}<br /><span style={{ fontWeight: 400, color: SAND }}>{c.lobbyTitleB}</span><br />{c.lobbyTitleC}
+                {c.lobbyTitleA}<br /><span style={{ fontWeight: 400, color: "#CD1719" }}>{c.lobbyTitleB}</span><br />{c.lobbyTitleC}
               </h2>
               <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.65, maxWidth: 480 }}>
                 {c.lobbyBody}
@@ -1258,7 +1258,7 @@ export function TowerAwards() {
             <Rv>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
                 <div style={{ width: 24, height: 1, background: SAND }} />
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>{c.ctbuhKicker}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>{c.ctbuhKicker}</div>
               </div>
               <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.8vw,40px)", fontWeight: 100, letterSpacing: "-0.02em", color: DARK, lineHeight: 1.15, marginBottom: 24 }}>
                 {c.ctbuhTitleA}<br /><span style={{ fontWeight: 400 }}>{c.ctbuhTitleB}</span>
@@ -1327,7 +1327,7 @@ export function TowerAwards() {
         <Rv>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
             <div style={{ width: 24, height: 1, background: SAND }} />
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: SAND }}>{c.collabKicker}</div>
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>{c.collabKicker}</div>
           </div>
         </Rv>
         <Rv delay={0.1}><H2>{c.collabTitle}</H2></Rv>
@@ -1335,7 +1335,7 @@ export function TowerAwards() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 1, background: STONE, marginTop: 40 }}>
             {COLLABORATORS.map(({ role, org }) => (
               <div key={org} style={{ background: WHITE, padding: "clamp(24px,2.5vw,32px) clamp(20px,2vw,28px)" }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: SAND, marginBottom: 12 }}>{role}</div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#CD1719", marginBottom: 12 }}>{role}</div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(13px,1.2vw,15px)", fontWeight: 400, color: DARK }}>{org}</div>
               </div>
             ))}

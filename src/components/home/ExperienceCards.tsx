@@ -118,7 +118,7 @@ function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t
           <div style={{
             fontFamily: CG, fontSize: "10px",
             letterSpacing: "0.38em", textTransform: "uppercase",
-            color: PEARL, marginBottom: 14,
+            color: "#CD1719", marginBottom: 14,
           }}>
             <Editable id={`section_fields:experience:${card.keyPrefix.replace("experience.","")}.kicker`}>{t(card.keyPrefix + ".kicker")}</Editable>
           </div>
@@ -191,7 +191,7 @@ export function ExperienceCards() {
           <span style={{ width: 32, height: 1, background: PEARL, flexShrink: 0 }} />
           <span style={{
             fontFamily: CG, fontSize: "11px", letterSpacing: "0.4em",
-            textTransform: "uppercase", color: PEARL,
+            textTransform: "uppercase", color: "#CD1719",
           }}>
             <Editable id="section_fields:experience:kicker">{t("experience.kicker")}</Editable>
           </span>

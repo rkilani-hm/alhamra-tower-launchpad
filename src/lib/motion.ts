@@ -145,7 +145,7 @@ export const hoverLift = {
 };
 
 export const hoverGold = {
-  whileHover: { color: "#C8B99A", transition: { duration: 0.2 } },
+  whileHover: { color: "#CD1719", transition: { duration: 0.2 } },
 };
 
 /* ── Count-up utility ────────────────────────────────────────────────── */

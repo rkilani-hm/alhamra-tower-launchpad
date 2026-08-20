@@ -37,7 +37,7 @@ export function AdminLogin() {
       <div style={{ width: "100%", maxWidth: 380 }}>
         {/* Wordmark */}
         <div style={{ marginBottom: 40, textAlign: "center" }}>
-          <div style={{ letterSpacing: "0.28em", fontSize: 11, color: "#C8B99A", textTransform: "uppercase" }}>
+          <div style={{ letterSpacing: "0.28em", fontSize: 11, color: "#CD1719", textTransform: "uppercase" }}>
             Al Hamra Business Tower
           </div>
           <h1 style={{ fontSize: 26, fontWeight: 400, margin: "14px 0 0", letterSpacing: "0.02em" }}>

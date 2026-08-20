@@ -357,7 +357,7 @@ export function EditableImage({
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
@@ -523,7 +523,7 @@ export function SlotImage({
           onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
           style={{
             position: "absolute", top: 10, right: 10, zIndex: 50,
-            background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+            background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
             padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
             letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
           }}
@@ -540,7 +540,7 @@ export function SlotImage({
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
@@ -646,7 +646,7 @@ export function SlotVideo({
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
@@ -674,7 +674,7 @@ export function SlotVideoEditButton({ slot, fallback }: { slot: string; fallback
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}

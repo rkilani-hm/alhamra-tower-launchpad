@@ -94,7 +94,7 @@ export default function TowerRising() {
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                         style={{
                           display: "block", width: 14, height: 14, flexShrink: 0,
-                          color: isOpen ? PEARL : "#c0bdb8",
+                          color: isOpen ? "#CD1719" : "#c0bdb8",
                           fontSize: 20, lineHeight: "14px", userSelect: "none",
                         }}
                       >+</motion.span>
@@ -277,7 +277,7 @@ export default function TowerRising() {
                 position: "absolute", bottom: 20, left: 20,
                 fontFamily: FONT, fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
-                color: PEARL,
+                color: "#CD1719",
               }}>
                 <Editable id="page_prose:towerRising:lamella.caption">{c.lamella.caption}</Editable>
               </div>

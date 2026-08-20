@@ -226,7 +226,7 @@ export function Services() {
           <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px,5vh,56px) clamp(28px,6vw,96px)" }}>
             <Rv>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 12 }}>
+              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 12 }}>
                 <Editable id="page_prose:services:skyKicker">{c.skyKicker}</Editable>
               </div>
               <h2 style={{ fontFamily: FONT, fontWeight: 200, letterSpacing: "0.04em", fontSize: "clamp(26px,4vw,58px)", color: "#fff", lineHeight: 1.1, marginBottom: 16 }}>
@@ -287,7 +287,7 @@ export function Services() {
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
               background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A" }}>
+            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719" }}>
               <Editable id="page_prose:services:atriumCap">{c.atriumCap}</Editable>
             </div>
           </div>
@@ -299,7 +299,7 @@ export function Services() {
             <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
               background: "linear-gradient(to top, rgba(12,11,9,0.8), transparent)", pointerEvents: "none" }} />
             <div style={{ position: "absolute", bottom: 16, left: 20 }}>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C8B99A", marginBottom: 6 }}><Editable id="page_prose:services:cinemaCap">{c.cinemaCap}</Editable></div>
+              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719", marginBottom: 6 }}><Editable id="page_prose:services:cinemaCap">{c.cinemaCap}</Editable></div>
               <div style={{ fontFamily: FONT, fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, whiteSpace: "pre-line" }}><Editable id="page_prose:services:cinemaSub">{c.cinemaSub}</Editable></div>
             </div>
           </div>
@@ -311,7 +311,7 @@ export function Services() {
             <div key={label} style={{ background: "#FAFAFA",
               padding: "clamp(20px,2.5vw,28px)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
               <div style={{ fontFamily: FONT,
-                fontSize: 20, color: "#C8B99A", marginBottom: 8 }}>◆</div>
+                fontSize: 20, color: "#CD1719", marginBottom: 8 }}>◆</div>
               <div style={{ fontFamily: FONT, fontSize: "12px",
                 fontWeight: 500, color: "#1D1D1B", marginBottom: 6,
                 letterSpacing: "0.04em" }}><Editable id={`page_prose:services:amenities.${i}.label`}>{label}</Editable></div>

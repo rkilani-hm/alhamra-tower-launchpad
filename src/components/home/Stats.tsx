@@ -115,7 +115,7 @@ function StatColumn({
       <div style={{
         fontFamily: CG, fontSize: "10px",
         letterSpacing: "0.32em", textTransform: "uppercase",
-        color: PEARL, marginBottom: 6,
+        color: "#CD1719", marginBottom: 6,
       }}>
         <EditableRow id={`stat_counters:home:${statKey}`}>{label}</EditableRow>
       </div>
@@ -140,7 +140,7 @@ function StatColumn({
           <span style={{
             fontFamily: CG,
             fontSize: "clamp(13px,1.4vw,22px)",
-            fontWeight: 200, color: PEARL,
+            fontWeight: 200, color: "#CD1719",
             letterSpacing: "-0.01em",
             marginInlineStart: 4,
           }}>{unit.trim()}</span>
@@ -201,7 +201,7 @@ export function Stats() {
           <span style={{ width: 32, height: 1, background: PEARL }} />
           <span style={{
             fontFamily: CG, fontSize: "11px", letterSpacing: "0.4em",
-            textTransform: "uppercase", color: PEARL,
+            textTransform: "uppercase", color: "#CD1719",
           }}>
             <Editable id="section_fields:stats:kicker">{t("stats.kicker")}</Editable>
           </span>

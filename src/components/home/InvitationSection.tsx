@@ -73,7 +73,7 @@ export function InvitationSection() {
               fontFamily: FONT,
               fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase",
-              color: PEARL,
+              color: "#CD1719",
             }}
           >
             <span style={{
@@ -158,7 +158,7 @@ export function InvitationSection() {
                 fontFamily: FONT,
                 fontSize: "10.5px", fontWeight: 400,
                 letterSpacing: "0.3em", textTransform: "uppercase",
-                color: PEARL, textDecoration: "none",
+                color: "#CD1719", textDecoration: "none",
                 transition: "background 0.25s ease, border-color 0.25s ease, color 0.25s ease",
                 position: "relative", overflow: "hidden",
               }}
@@ -169,7 +169,7 @@ export function InvitationSection() {
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.borderColor = "rgba(200,185,154,0.35)";
-                e.currentTarget.style.color = PEARL;
+                e.currentTarget.style.color = "#CD1719";
                 e.currentTarget.style.background = "transparent";
               }}
             >
@@ -262,7 +262,7 @@ export function InvitationSection() {
                   {n}
                   {u && <span style={{
                     fontFamily: FONT,
-                    fontSize: "0.45em", color: PEARL,
+                    fontSize: "0.45em", color: "#CD1719",
                     marginLeft: 2, fontWeight: 200,
                   }}>{u}</span>}
                 </div>

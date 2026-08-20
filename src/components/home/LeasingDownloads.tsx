@@ -73,7 +73,7 @@ export function LeasingDownloads() {
               fontFamily: FONT,
               fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase",
-              color: PEARL,
+              color: "#CD1719",
             }}
           >
             <span style={{
@@ -158,7 +158,7 @@ export function LeasingDownloads() {
                 fontFamily: FONT,
                 fontSize: "10.5px", fontWeight: 400,
                 letterSpacing: "0.3em", textTransform: "uppercase",
-                color: PEARL, textDecoration: "none",
+                color: "#CD1719", textDecoration: "none",
                 transition: "background 0.25s ease, border-color 0.25s ease, color 0.25s ease",
                 position: "relative", overflow: "hidden",
               }}
@@ -169,7 +169,7 @@ export function LeasingDownloads() {
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.borderColor = "rgba(200,185,154,0.35)";
-                e.currentTarget.style.color = PEARL;
+                e.currentTarget.style.color = "#CD1719";
                 e.currentTarget.style.background = "transparent";
               }}
             >
@@ -230,7 +230,7 @@ export function LeasingDownloads() {
                   gap: 20, textDecoration: "none",
                   transition: "padding-inline-start 0.25s ease",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget.querySelector(".dl-title") as HTMLElement).style.color = PEARL; }}
+                onMouseEnter={(e) => { (e.currentTarget.querySelector(".dl-title") as HTMLElement).style.color = "#CD1719"; }}
                 onMouseLeave={(e) => { (e.currentTarget.querySelector(".dl-title") as HTMLElement).style.color = "#fff"; }}
               >
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>

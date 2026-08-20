@@ -96,7 +96,7 @@ export default function TowerOverview() {
             transition={{ delay: 0.4, duration: 0.8 }}
             style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20, pointerEvents: "auto",
               fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL }}>
+              letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>
             <span style={{ width: 32, height: 1, background: `linear-gradient(to right,${PEARL},#D4CFC9)`, flexShrink: 0 }} />
             <Editable id="page_prose:towerOverview:heroKicker">{c.heroKicker}</Editable>
           </motion.div>
@@ -136,13 +136,13 @@ export default function TowerOverview() {
                 borderBottom: i < 3 ? "1px solid rgba(29,29,27,0.07)" : "none",
                 display: "flex", flexDirection: "column", gap: 6 }}>
               <div aria-hidden="true" style={{ fontFamily: FONT, fontSize: "10px",
-                color: PEARL, letterSpacing: "0.3em", marginBottom: 4 }}>{icon}</div>
+                color: "#CD1719", letterSpacing: "0.3em", marginBottom: 4 }}>{icon}</div>
               <div style={{ fontFamily: FONT,
                 fontSize: "clamp(22px,3vw,42px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                 <EditableRow id={`stat_counters:towerOverview:towerOverview_${i}`}>
                 <CountUp value={n} delay={i * 0.1} />
                 {u && <span style={{ fontFamily: FONT,
-                  fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: PEARL, marginLeft: 4 }}>{u}</span>}
+                  fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: "#CD1719", marginLeft: 4 }}>{u}</span>}
                 </EditableRow>
               </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
@@ -210,7 +210,7 @@ export default function TowerOverview() {
                   "<Editable id={`page_prose:towerOverview:tabs.${activeIdx}.quote`}>{activeContent.quote}</Editable>"
                 </p>
                 <div style={{ fontFamily: FONT, fontSize: "10px",
-                  letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL }}>
+                  letterSpacing: "0.28em", textTransform: "uppercase", color: "#CD1719" }}>
                   <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.credit`}>{activeContent.credit}</Editable>
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function TowerOverview() {
       <div style={{ background: "#fff", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)",
         borderTop: "1px solid rgba(29,29,27,0.07)" }}>
         <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-          letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 36 }}>
+          letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 36 }}>
           <Editable id="page_prose:towerOverview:awardsKicker">{c.awardsKicker}</Editable>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 40 }}>
@@ -269,12 +269,12 @@ export default function TowerOverview() {
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
           <Link to="/tower/design" style={{ display: "inline-flex", alignItems: "center", gap: 12,
-            background: "none", border: `1px solid rgba(200,185,154,0.4)`, color: PEARL,
+            background: "none", border: `1px solid rgba(200,185,154,0.4)`, color: "#CD1719",
             fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.25em",
             textTransform: "uppercase", padding: "15px 32px", textDecoration: "none",
             transition: "border-color 0.3s ease, color 0.3s ease" }}
             onMouseEnter={e=>{e.currentTarget.style.borderColor=PEARL;e.currentTarget.style.color="#fff";}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(200,185,154,0.4)";e.currentTarget.style.color=PEARL;}}>
+            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(200,185,154,0.4)";e.currentTarget.style.color="#CD1719";}}>
             <Editable id="page_prose:towerOverview:ctaPrimary">{c.ctaPrimary}</Editable>
           </Link>
           <Link to="/leasing/inquiry#inquiry-form" style={{ display: "inline-flex", alignItems: "center", gap: 12,

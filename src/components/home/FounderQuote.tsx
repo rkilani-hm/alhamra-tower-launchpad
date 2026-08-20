@@ -68,7 +68,7 @@ export function FounderQuote() {
             style={{
               fontFamily: "Georgia, 'Times New Roman', serif",
               fontSize: "clamp(120px,14vw,180px)", fontWeight: 300,
-              color: PEARL, lineHeight: 0.6,
+              color: "#CD1719", lineHeight: 0.6,
               marginBottom: "-12px",
               marginLeft: "-4px",
               userSelect: "none",
@@ -170,7 +170,7 @@ export function FounderQuote() {
             position: "absolute", bottom: 20, left: 20,
             fontFamily: CG, fontSize: "10px",
             letterSpacing: "0.3em", textTransform: "uppercase",
-            color: PEARL,
+            color: "#CD1719",
           }}>
             <Editable id="section_fields:founderQuote:caption">{t("founderQuote.caption")}</Editable>
           </div>

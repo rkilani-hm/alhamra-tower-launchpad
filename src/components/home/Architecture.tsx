@@ -73,7 +73,7 @@ export function Architecture() {
             <div style={{
               display: "flex", alignItems: "center", gap: 14, marginBottom: 28,
               fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL,
+              letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719",
             }}>
               <span style={{ width: 32, height: 1,
                 background: `linear-gradient(to right, ${PEARL}, #D4CFC9)`, flexShrink: 0 }} />
@@ -122,7 +122,7 @@ export function Architecture() {
               <div style={{
                 fontFamily: FONT, fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
-                color: PEARL, marginTop: 12,
+                color: "#CD1719", marginTop: 12,
               }}>
                 <Editable id="page_prose:architecture:credit">{c.credit}</Editable>
               </div>
@@ -202,7 +202,7 @@ export function Architecture() {
               {u && <span style={{
                 fontFamily: FONT,
                 fontSize: "clamp(12px,1.2vw,16px)", fontWeight: 200,
-                color: PEARL, marginLeft: 4,
+                color: "#CD1719", marginLeft: 4,
               }}>{u}</span>}
             </div>
             <div style={{
@@ -235,7 +235,7 @@ export function Architecture() {
             <div style={{
               fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.4em", textTransform: "uppercase",
-              color: PEARL, marginBottom: 20,
+              color: "#CD1719", marginBottom: 20,
             }}>
               <Editable id="page_prose:architecture:facadeKicker">{c.facadeKicker}</Editable>
             </div>

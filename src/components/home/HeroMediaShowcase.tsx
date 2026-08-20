@@ -257,7 +257,7 @@ export function HeroMediaShowcase({
           onClick={() => setManageOpen(true)}
           style={{
             position: "absolute", top: 84, right: 20, zIndex: 40,
-            background: "rgba(29,29,27,0.85)", color: "#C8B99A", border: "1px solid #C8B99A",
+            background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
             padding: "8px 14px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
             letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
           }}

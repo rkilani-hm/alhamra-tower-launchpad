@@ -69,7 +69,7 @@ export default function TowerDesign() {
             <motion.div initial={{ opacity: 0, x: 20 }} animate={facadeInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-                letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+                letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 20 }}>
                 <Editable id="page_prose:towerDesign:facadeKicker">{c.facadeKicker}</Editable>
               </div>
               <h2 style={{ fontFamily: FONT,
@@ -93,7 +93,7 @@ export default function TowerDesign() {
                     <div style={{ fontFamily: FONT,
                       fontSize: "clamp(24px,3vw,38px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                       <EditableRow id={`stat_counters:towerDesign:towerDesign_${i}`}>{n}{u && <span style={{ fontFamily: FONT,
-                        fontSize: "0.4em", color: PEARL, marginLeft: 3, fontWeight: 200 }}>{u}</span>}</EditableRow>
+                        fontSize: "0.4em", color: "#CD1719", marginLeft: 3, fontWeight: 200 }}>{u}</span>}</EditableRow>
                     </div>
                     <div style={{ fontFamily: FONT, fontSize: "10px",
                       letterSpacing: "0.2em", textTransform: "uppercase",
@@ -112,7 +112,7 @@ export default function TowerDesign() {
           className="design-grid-2">
           <div>
             <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 20 }}>
+              letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 20 }}>
               <Editable id="page_prose:towerDesign:lamellaKicker">{c.lamellaKicker}</Editable>
             </div>
             <h2 style={{ fontFamily: FONT,
@@ -139,7 +139,7 @@ export default function TowerDesign() {
                 <Editable id="page_prose:towerDesign:lamellaQuote">{c.lamellaQuote}</Editable>
               </p>
               <div style={{ fontFamily: FONT, fontSize: "10px",
-                letterSpacing: "0.28em", textTransform: "uppercase", color: PEARL, marginTop: 10 }}>
+                letterSpacing: "0.28em", textTransform: "uppercase", color: "#CD1719", marginTop: 10 }}>
                 <Editable id="page_prose:towerDesign:lamellaQuoteCredit">{c.lamellaQuoteCredit}</Editable>
               </div>
             </div>
@@ -176,7 +176,7 @@ export default function TowerDesign() {
       <div style={{ background: "#fff", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-            letterSpacing: "0.45em", textTransform: "uppercase", color: PEARL, marginBottom: 16 }}>
+            letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 16 }}>
             <Editable id="page_prose:towerDesign:specKicker">{c.specKicker}</Editable>
           </div>
           <h2 style={{ fontFamily: FONT,
@@ -205,7 +205,7 @@ export default function TowerDesign() {
 
         <div style={{ fontFamily: FONT,
           fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em",
-          textTransform: "uppercase", color: PEARL, marginBottom: 48 }}>
+          textTransform: "uppercase", color: "#CD1719", marginBottom: 48 }}>
           <Editable id="page_prose:towerDesign:drawingsKicker">{c.drawingsKicker}</Editable>
         </div>
 
@@ -227,7 +227,7 @@ export default function TowerDesign() {
               <Editable id="page_prose:towerDesign:drawingsPlanLabel">{c.drawingsPlanLabel}</Editable>
             </div>
             <div style={{ fontFamily: FONT,
-              fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: PEARL }}>
+              fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#CD1719" }}>
               <Editable id="page_prose:towerDesign:drawingsPlanNote">{c.drawingsPlanNote}</Editable>
             </div>
           </div>

@@ -149,7 +149,7 @@ export function GulfSection() {
                 fontSize: "clamp(10px,0.9vw,12px)",
                 letterSpacing: "0.35em",
                 textTransform: "uppercase",
-                color: PEARL,
+                color: "#CD1719",
                 marginTop: 8,
               }}>
                 <Editable id="section_fields:gulf:coordLabel">{t("gulf.coordLabel")}</Editable>

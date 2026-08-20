@@ -51,7 +51,7 @@ export default function AlHamraHotel() {
         <div style={{ position: "absolute", bottom: "clamp(32px,5vh,56px)", left: "clamp(24px,5vw,80px)", right: "clamp(24px,5vw,80px)" }}>
           <div style={{
             fontFamily: CG, fontSize: "10px", letterSpacing: "0.4em",
-            textTransform: "uppercase", color: PEARL, marginBottom: 12,
+            textTransform: "uppercase", color: "#CD1719", marginBottom: 12,
           }}>
             <Editable id="page_prose:alHamraHotel:heroKicker">{c.heroKicker}</Editable>
           </div>
@@ -187,7 +187,7 @@ export default function AlHamraHotel() {
                 <div style={{
                   position: "absolute", top: 16, left: 16,
                   background: "rgba(29,29,27,0.82)",
-                  color: PEARL, padding: "6px 12px",
+                  color: "#CD1719", padding: "6px 12px",
                   fontFamily: CG, fontSize: "10px", letterSpacing: "0.28em",
                   backdropFilter: "blur(8px)",
                 }}>

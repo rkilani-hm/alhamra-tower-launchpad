@@ -34,7 +34,7 @@ function Frame({ children }: { children: ReactNode }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-          <span style={{ letterSpacing: "0.24em", fontSize: 10, color: "#C8B99A", textTransform: "uppercase" }}>
+          <span style={{ letterSpacing: "0.24em", fontSize: 10, color: "#CD1719", textTransform: "uppercase" }}>
             Al Hamra
           </span>
           <span style={{ fontSize: 15, letterSpacing: "0.02em" }}>Content Studio</span>
