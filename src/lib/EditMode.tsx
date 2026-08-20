@@ -106,15 +106,15 @@ export function Editable({
       onClick={(e: any) => { e.stopPropagation(); e.preventDefault(); setEditing(true); }}
     >
       {children}
-      {editing && <EditPopover id={id} onClose={() => setEditing(false)} />}
+      {editing && <EditPopover id={id} fallback={typeof children === "string" ? children : (typeof children === "number" ? String(children) : "")} onClose={() => setEditing(false)} />}
     </Tag>
   );
 }
 
 /* The inline edit popover — loads current value, saves + publishes on confirm. */
-function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
+function EditPopover({ id, fallback = "", onClose }: { id: string; fallback?: string; onClose: () => void }) {
   const [table, group, field] = id.split(":");
-  const [valEn, setValEn] = useState("");
+  const [valEn, setValEn] = useState(fallback);
   const [valAr, setValAr] = useState("");
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -136,12 +136,24 @@ function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
   }, [table, group, field]);
 
   async function save(publish: boolean) {
-    if (!rowId) return;
     setBusy(true);
     const { data: u } = await supabase.auth.getUser();
-    const patch: any = { value_en: valEn, value_ar: valAr, updated_by: u.user?.id ?? null, updated_at: new Date().toISOString() };
-    if (publish) patch.status = "published";
-    await (supabase.from(table as any) as any).update(patch).eq("id", rowId);
+    if (rowId) {
+      const patch: any = { value_en: valEn, value_ar: valAr, updated_by: u.user?.id ?? null, updated_at: new Date().toISOString() };
+      if (publish) patch.status = "published";
+      await (supabase.from(table as any) as any).update(patch).eq("id", rowId);
+    } else {
+      // No row yet — create it so any wrapped field is editable without seeding.
+      const groupCol = table === "section_fields" ? "section_key" : "page_key";
+      const insert: any = {
+        [groupCol]: group, field_key: field,
+        value_en: valEn, value_ar: valAr,
+        status: publish ? "published" : "draft",
+        updated_by: u.user?.id ?? null, updated_at: new Date().toISOString(),
+      };
+      const { data } = await (supabase.from(table as any) as any).insert(insert).select("id").maybeSingle();
+      if (data?.id) setRowId(data.id);
+    }
     setBusy(false);
     onClose();
     if (publish) window.location.reload(); // reflect published change
@@ -149,7 +161,7 @@ function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
 
   return (
     <PopoverShell title="Edit text" onClose={onClose}>
-      {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : !rowId ? (
+      {loading ? <div style={{ fontSize: 13, color: "#6E6456" }}>Loading…</div> : (!rowId && table !== "page_prose" && table !== "section_fields") ? (
         <div style={{ fontSize: 13, color: "#B05050" }}>This text isn't editable yet ({id}).</div>
       ) : (
         <>
