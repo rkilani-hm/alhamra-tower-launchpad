@@ -5,10 +5,9 @@ import { Editable } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ──────────────────────────────────────────────────────────────────────────
-   HeroStatsBar — tenant-facing metrics under the hero, styled to match the
-   original homepage "By the Numbers" section: a dark cinematic plate with an
-   ambient glow, red labels + units, white count-up numbers, and muted-grey
-   descriptors. Numeric values count up on entry; non-numeric ("24/7") hold.
+   HeroStatsBar — tenant-facing metrics under the hero on a light grey plate:
+   red labels + units, dark count-up numbers, and muted-grey descriptors.
+   Numeric values count up on entry; non-numeric ("24/7") hold.
 
    Content is a self-contained bilingual object for now; it can be lifted into
    the CMS (section_fields) after the new homepage direction is approved.
@@ -16,9 +15,9 @@ import { usePageContent } from "@/lib/useCmsContent";
 
 const FONT   = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 const RED    = "#CD1719"; // Al Hamra CI red
-const WHITE  = "#fff";
-const SUB    = "rgba(255,255,255,0.5)";
-const DIVIDER = "rgba(200,185,154,0.15)";
+const DARK   = "#1D1D1B"; // numbers
+const SUB    = "#6B6B6B";  // muted descriptors
+const DIVIDER = "rgba(29,29,27,0.10)";
 const HAIR   = "#C8B99A";
 
 type Stat = { label: string; n: string; u?: string; sub: string };
@@ -91,7 +90,7 @@ function StatColumn({ s, index, active }: { s: Stat; index: number; active: bool
 
       <div style={{
         fontFamily: FONT, fontWeight: 200,
-        fontSize: "clamp(30px,3.6vw,54px)", color: WHITE,
+        fontSize: "clamp(30px,3.6vw,54px)", color: DARK,
         lineHeight: 1, letterSpacing: "-0.03em",
         fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap",
       }}>
@@ -120,13 +119,7 @@ export function HeroStatsBar() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section style={{ background: "#0F0E0C", position: "relative", overflow: "hidden" }}>
-      {/* Ambient glow — centre */}
-      <div aria-hidden="true" style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse at 50% 50%, rgba(200,185,154,0.06) 0%, transparent 60%)",
-      }} />
-
+    <section style={{ background: "#F4F3F0", position: "relative", overflow: "hidden" }}>
       <div
         ref={ref}
         style={{
