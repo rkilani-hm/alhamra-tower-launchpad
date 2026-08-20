@@ -338,7 +338,7 @@ export function OfficeSpaces() {
         </div>
       </Section>
 
-      <div style={{ position: "relative", height: "clamp(300px,42vw,560px)", overflow: "hidden" }}>
+      <div style={{ position: "relative", height: "clamp(330px,46.2vw,616px)", overflow: "hidden" }}>
         <SlotImage loading="lazy" slot="officeSpaces.arrival" fallback="/assets/office-arrival-lobby.jpg" alt={c.arrivalAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
