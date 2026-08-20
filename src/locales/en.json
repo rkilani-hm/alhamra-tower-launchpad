@@ -263,7 +263,7 @@
       },
       "retail": {
         "label": "Luxury Retail",
-        "desc": "Hermès, Gucci, Bottega Veneta and the world's leading maisons"
+        "desc": "Bally, Cole Haan, Montblanc, Al Ostoura and the world's leading maisons"
       },
       "financial": {
         "label": "Financial & Professional",
@@ -357,22 +357,22 @@
       "kicker": "Leasing Opportunities",
       "eyebrow": "The address that",
       "headlineA": "needs no\nintroduction.",
-      "body": "Home to Kuwait's leading ministries, Hermès, Gucci, Bottega Veneta and the world's most recognised luxury houses. Now welcoming a select group of new tenants.",
+      "body": "Home to celebrated luxury houses, signature dining and entertainment — from Montblanc and Bally to Angelina and Grand Cinemas. Now welcoming a select group of new tenants.",
       "cta": "Enquire by appointment",
       "responseTime": "Responses within 24 hours",
       "tenantsLabel": "Distinguished tenants",
       "tenants": [
         {
-          "label": "Government & Sovereign",
-          "desc": "Kuwait's leading ministries, sovereign wealth funds, and GCC institutions"
-        },
-        {
           "label": "Luxury Retail",
-          "desc": "Hermès, Gucci, Bottega Veneta and the world's leading maisons"
+          "desc": "Bally · Cole Haan · Montblanc · Al Ostoura · Aston Martin"
         },
         {
-          "label": "Financial & Professional",
-          "desc": "Regional and international financial institutions and professional services firms"
+          "label": "Food & Beverage",
+          "desc": "Angelina · L'eto · Paul · Em Sherif Deli · Pret A Manger"
+        },
+        {
+          "label": "Entertainment",
+          "desc": "Grand Cinemas · House of X · Game Over Escape Rooms"
         }
       ],
       "stats": [
