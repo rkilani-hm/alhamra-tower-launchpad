@@ -336,7 +336,7 @@ export function OfficeSpaces() {
       </Section>
 
       <div style={{ position: "relative", height: "clamp(300px,42vw,560px)", overflow: "hidden" }}>
-        <SlotImage loading="lazy" slot="officeSpaces.arrival" fallback="/assets/lobby-elevator-corridor-2.jpg" alt={c.arrivalAlt}
+        <SlotImage loading="lazy" slot="officeSpaces.arrival" fallback="/assets/office-arrival-lobby.jpg" alt={c.arrivalAlt}
           style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.75) 0%, rgba(29,29,27,0.2) 60%, transparent 100%)" }} />
         <div className="ah-section" style={{ position: "absolute", top: 0, bottom: 0, left: 0, display: "flex", flexDirection: "column", justifyContent: "center", background: "transparent" }}>
