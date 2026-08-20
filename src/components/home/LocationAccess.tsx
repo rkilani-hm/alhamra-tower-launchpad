@@ -87,36 +87,36 @@ export function LocationAccess() {
       {/* Intro: title above a full-width low banner with the slogan overlaid */}
       <section style={{ background: "#fff", padding: "clamp(80px,12vh,140px) clamp(28px,6vw,96px) clamp(56px,8vh,96px)" }}>
         <div ref={ref} style={{ maxWidth: 1360, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: "clamp(22px,3.2vh,38px)" }}>
-            <span style={{ width: 34, height: 1, background: "rgba(139,110,62,0.45)" }} />
+          {/* Eyebrow (left-aligned) */}
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+            <span style={{ width: 32, height: 1, background: "#C8B99A", flexShrink: 0 }} />
             <span style={{ fontFamily: FONT, fontSize: "11px", fontWeight: 500, letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
               <Editable id="page_prose:home2loc:eyebrow">{c.eyebrow}</Editable>
             </span>
-            <span style={{ width: 34, height: 1, background: "rgba(139,110,62,0.45)" }} />
           </div>
 
+          {/* Title (left-aligned, above the image) */}
+          <h2 style={{
+            fontFamily: FONT, fontWeight: 200, fontSize: "clamp(24px,3vw,48px)",
+            color: DARK, lineHeight: 1.16, letterSpacing: "-0.018em", margin: 0,
+            textWrap: "balance", maxWidth: 780,
+          }}><Editable id="page_prose:home2loc:heading">{c.heading}</Editable></h2>
+
+          {/* Full-width banner image */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="la-banner"
-            style={{ position: "relative", aspectRatio: "24 / 7", overflow: "hidden", background: "#0c0b09" }}
+            style={{ position: "relative", aspectRatio: "24 / 7", overflow: "hidden", background: "#0c0b09", marginTop: "clamp(36px,5vh,56px)" }}
           >
             <img src={c.topImg} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(12,11,9,0.30) 0%, rgba(12,11,9,0.10) 42%, rgba(12,11,9,0.44) 100%)" }} />
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 clamp(24px,5vw,80px)" }}>
-              <h2 style={{
-                fontFamily: FONT, fontWeight: 300, fontSize: "clamp(28px,4vw,60px)",
-                color: "#fff", lineHeight: 1.12, letterSpacing: "-0.015em", margin: 0,
-                textAlign: "center", textWrap: "balance", textShadow: "0 2px 34px rgba(0,0,0,0.4)",
-              }}><Editable id="page_prose:home2loc:heading">{c.heading}</Editable></h2>
-            </div>
           </motion.div>
 
           <p style={{
             fontFamily: FONT, fontSize: "clamp(14px,1.1vw,16px)", fontWeight: 300,
-            color: MUTED, lineHeight: 1.8, maxWidth: 560, margin: "clamp(28px,4vh,44px) auto 0",
-            textAlign: "center", textWrap: "pretty",
+            color: MUTED, lineHeight: 1.8, maxWidth: 560, margin: "clamp(28px,4vh,44px) 0 0",
+            textWrap: "pretty",
           }}><Editable id="page_prose:home2loc:intro">{c.intro}</Editable></p>
 
           <div className="la-facts" style={{
