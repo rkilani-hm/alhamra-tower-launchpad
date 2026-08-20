@@ -1,23 +1,23 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 
 /* ──────────────────────────────────────────────────────────────────────────
-   HeroStatsBar — tenant-facing metrics under the hero, in the three-tier
-   "By the Numbers" layout (label above, big number, descriptor below) on a
-   grey ground, using the site's gold label / dark number / muted-grey subtitle
-   treatment.
+   HeroStatsBar — tenant-facing metrics under the hero, styled to match the
+   original homepage "By the Numbers" section: a dark cinematic plate with an
+   ambient glow, red labels + units, white count-up numbers, and muted-grey
+   descriptors. Numeric values count up on entry; non-numeric ("24/7") hold.
 
    Content is a self-contained bilingual object for now; it can be lifted into
    the CMS (section_fields) after the new homepage direction is approved.
 ────────────────────────────────────────────────────────────────────────────── */
 
-const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
-const GOLD  = "#CD1719"; // accessible Al Hamra gold (reads as gold on light grey)
-const BLACK = "#1D1D1B"; // Al Hamra CI black
-const MUTED = "#6B6B6B";
-const GREY_BG = "#EAEAEA";
-const DIVIDER = "rgba(29,29,27,0.14)";
+const FONT   = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
+const RED    = "#CD1719"; // Al Hamra CI red
+const WHITE  = "#fff";
+const SUB    = "rgba(255,255,255,0.5)";
+const DIVIDER = "rgba(200,185,154,0.15)";
+const HAIR   = "#C8B99A";
 
 type Stat = { label: string; n: string; u?: string; sub: string };
 
@@ -44,19 +44,92 @@ const CONTENT: Record<string, { eyebrow: string; stats: Stat[] }> = {
   },
 };
 
+/* Expo-out count-up for pure-integer values; non-numeric strings hold as-is. */
+function useCountUp(nStr: string, active: boolean, delay: number) {
+  const target = /^\d+$/.test(nStr) ? parseInt(nStr, 10) : null;
+  const [val, setVal] = useState<string>(target === null ? nStr : "0");
+  useEffect(() => {
+    if (target === null) { setVal(nStr); return; }
+    if (!active) { setVal("0"); return; }
+    let raf = 0; let start: number | null = null;
+    const timer = setTimeout(() => {
+      const dur = 1600;
+      const step = (ts: number) => {
+        if (start === null) start = ts;
+        const p = Math.min((ts - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 4);
+        setVal(String(Math.round(eased * target)));
+        if (p < 1) raf = requestAnimationFrame(step); else setVal(String(target));
+      };
+      raf = requestAnimationFrame(step);
+    }, delay);
+    return () => { clearTimeout(timer); cancelAnimationFrame(raf); };
+  }, [active, nStr, delay, target]);
+  return val;
+}
+
+function StatColumn({ s, index, active }: { s: Stat; index: number; active: boolean }) {
+  const shown = useCountUp(s.n, active, index * 120);
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={active ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      style={{
+        flex: 1, textAlign: "center",
+        padding: "clamp(26px,3.4vh,40px) clamp(12px,1.8vw,28px)",
+        borderInlineStart: index === 0 ? "none" : `1px solid ${DIVIDER}`,
+      }}
+    >
+      <div style={{
+        fontFamily: FONT, fontSize: "10.5px", fontWeight: 500,
+        letterSpacing: "0.2em", textTransform: "uppercase", color: RED,
+        marginBottom: 16, textWrap: "balance",
+      }}>{s.label}</div>
+
+      <div style={{
+        fontFamily: FONT, fontWeight: 200,
+        fontSize: "clamp(30px,3.6vw,54px)", color: WHITE,
+        lineHeight: 1, letterSpacing: "-0.03em",
+        fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap",
+      }}>
+        {shown}
+        {s.u && (
+          <span style={{
+            fontFamily: FONT, fontSize: "0.42em", fontWeight: 200,
+            color: RED, marginInlineStart: 3, letterSpacing: "0",
+          }}>{s.u}</span>
+        )}
+      </div>
+
+      <div style={{
+        fontFamily: FONT, fontSize: "12px", fontWeight: 300,
+        color: SUB, lineHeight: 1.6, marginTop: 14,
+        letterSpacing: "0.01em", textWrap: "pretty",
+      }}>{s.sub}</div>
+    </motion.div>
+  );
+}
+
 export function HeroStatsBar() {
   const { lang } = useI18n();
   const c = CONTENT[lang] ?? CONTENT.en;
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section style={{ background: GREY_BG }}>
+    <section style={{ background: "#0F0E0C", position: "relative", overflow: "hidden" }}>
+      {/* Ambient glow — centre */}
+      <div aria-hidden="true" style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse at 50% 50%, rgba(200,185,154,0.06) 0%, transparent 60%)",
+      }} />
+
       <div
         ref={ref}
         style={{
-          maxWidth: 1360, margin: "0 auto",
-          padding: "clamp(44px,6vh,72px) clamp(20px,4vw,64px) clamp(40px,5vh,64px)",
+          maxWidth: 1360, margin: "0 auto", position: "relative",
+          padding: "clamp(56px,8vh,96px) clamp(20px,4vw,64px) clamp(52px,7vh,84px)",
         }}
       >
         {/* Centred eyebrow */}
@@ -66,75 +139,23 @@ export function HeroStatsBar() {
           transition={{ duration: 0.6 }}
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
-            gap: 16, marginBottom: "clamp(30px,4vh,44px)",
+            gap: 16, marginBottom: "clamp(36px,5vh,56px)",
           }}
         >
-          <span style={{ width: 34, height: 1, background: "rgba(139,110,62,0.45)" }} />
+          <span style={{ width: 32, height: 1, background: HAIR }} />
           <span style={{
             fontFamily: FONT, fontSize: "11px", fontWeight: 500,
-            letterSpacing: "0.4em", textTransform: "uppercase", color: GOLD,
-          }}>
-            {c.eyebrow}
-          </span>
-          <span style={{ width: 34, height: 1, background: "rgba(139,110,62,0.45)" }} />
+            letterSpacing: "0.4em", textTransform: "uppercase", color: RED,
+          }}>{c.eyebrow}</span>
+          <span style={{ width: 32, height: 1, background: HAIR }} />
         </motion.div>
 
-        {/* Three-tier stat row */}
-        <div
-          className="hs-row"
-          style={{
-            display: "flex", alignItems: "stretch",
-            borderTop: `1px solid ${DIVIDER}`,
-            borderBottom: `1px solid ${DIVIDER}`,
-          }}
-        >
-          {c.stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                flex: 1, textAlign: "center",
-                padding: "clamp(26px,3.4vh,40px) clamp(12px,1.8vw,28px)",
-                borderInlineStart: i === 0 ? "none" : `1px solid ${DIVIDER}`,
-              }}
-            >
-              {/* Label — gold */}
-              <div style={{
-                fontFamily: FONT, fontSize: "10.5px", fontWeight: 500,
-                letterSpacing: "0.2em", textTransform: "uppercase", color: GOLD,
-                marginBottom: 16, textWrap: "balance",
-              }}>
-                {s.label}
-              </div>
-
-              {/* Number — black */}
-              <div style={{
-                fontFamily: FONT, fontWeight: 300,
-                fontSize: "clamp(30px,3.6vw,54px)", color: BLACK,
-                lineHeight: 1, letterSpacing: "-0.03em",
-                fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap",
-              }}>
-                {s.n}
-                {s.u && (
-                  <span style={{
-                    fontFamily: FONT, fontSize: "0.42em", fontWeight: 300,
-                    color: BLACK, marginInlineStart: 3, letterSpacing: "0",
-                  }}>{s.u}</span>
-                )}
-              </div>
-
-              {/* Subtitle — muted grey */}
-              <div style={{
-                fontFamily: FONT, fontSize: "12px", fontWeight: 300,
-                color: MUTED, lineHeight: 1.6, marginTop: 14,
-                letterSpacing: "0.01em", textWrap: "pretty",
-              }}>
-                {s.sub}
-              </div>
-            </motion.div>
-          ))}
+        {/* Row */}
+        <div className="hs-row" style={{
+          display: "flex", alignItems: "stretch",
+          borderTop: `1px solid ${DIVIDER}`, borderBottom: `1px solid ${DIVIDER}`,
+        }}>
+          {c.stats.map((s, i) => <StatColumn key={s.label} s={s} index={i} active={inView} />)}
         </div>
       </div>
 
