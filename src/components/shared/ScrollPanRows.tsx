@@ -35,8 +35,11 @@ function useSlideAnim(index: number, n: number, progress: MotionValue<number>) {
 
 function SlideText({ row, index, n, progress, idBase }: { row: PanRow; index: number; n: number; progress: MotionValue<number>; idBase?: string }) {
   const { opacity, y } = useSlideAnim(index, n, progress);
+  // Only the visible slide should capture clicks — otherwise the stacked, faded
+  // slides overlap and edit-mode clicks always land on the top (last) slide.
+  const pointerEvents = useTransform(opacity, (o) => (o > 0.5 ? "auto" : "none")) as unknown as "auto" | "none";
   return (
-    <motion.div style={{ position: "absolute", insetInlineStart: 0, insetInlineEnd: 0, top: "50%", translateY: "-50%", opacity, y }}>
+    <motion.div style={{ position: "absolute", insetInlineStart: 0, insetInlineEnd: 0, top: "50%", translateY: "-50%", opacity, y, pointerEvents }}>
       <h3 style={{
         fontFamily: FONT, fontWeight: 300, fontSize: "clamp(30px,3.6vw,54px)",
         color: DARK, lineHeight: 1.12, letterSpacing: "-0.02em", margin: 0,
@@ -58,8 +61,9 @@ function SlideText({ row, index, n, progress, idBase }: { row: PanRow; index: nu
 
 function SlideImage({ row, index, n, progress, idBase }: { row: PanRow; index: number; n: number; progress: MotionValue<number>; idBase?: string }) {
   const { opacity, y } = useSlideAnim(index, n, progress);
+  const pointerEvents = useTransform(opacity, (o) => (o > 0.5 ? "auto" : "none")) as unknown as "auto" | "none";
   return (
-    <motion.div style={{ position: "absolute", inset: 0, opacity, y, overflow: "hidden", background: "#0c0b09" }}>
+    <motion.div style={{ position: "absolute", inset: 0, opacity, y, overflow: "hidden", background: "#0c0b09", pointerEvents }}>
       {idBase
         ? <SlotImage motion slot={`${idBase}.row${index}`} fallback={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
         : <img src={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}

@@ -143,7 +143,7 @@ export function WorkplaceExperience() {
               </div>
               <div style={{ position: "relative", overflow: "hidden" }}>
                 <SlotImage loading="lazy" slot="workplace.lounge" fallback="/assets/lounge-at-window.jpg" alt={c.loungeAlt}
-                  style={{ width: "100%", height: 200, objectFit: "cover", objectPosition: "center 30%", display: "block" }} />
+                  style={{ width: "100%", height: 360, objectFit: "cover", objectPosition: "center center", display: "block" }} />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.4))", padding: "12px 20px 12px" }}>
                   <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)" }}>
                     <Editable id="page_prose:workplace:loungeCap">{c.loungeCap}</Editable>

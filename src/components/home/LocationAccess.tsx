@@ -78,7 +78,14 @@ const CONTENT: Record<string, {
 
 export function LocationAccess() {
   const { lang } = useI18n();
-  const c = usePageContent<any>("home2loc", CONTENT[lang] ?? CONTENT.en, lang);
+  const base = CONTENT[lang] ?? CONTENT.en;
+  const c = usePageContent<any>("home2loc", base, lang);
+  // The two pinned row-sets are edited under their OWN page keys (home2access /
+  // home2exp) via ScrollPanRows' idBase. They must therefore READ from those
+  // same keys, each with a { rows } base so the "rows.N.heading" overlay lands.
+  // (Reading them from c.accessRows/home2loc would never see those edits.)
+  const accessData = usePageContent<any>("home2access", { rows: base.accessRows }, lang);
+  const expData = usePageContent<any>("home2exp", { rows: base.experienceRows }, lang);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -157,8 +164,8 @@ export function LocationAccess() {
       </section>
 
       {/* Two sub-sections of rows as pinned horizontal pans */}
-      <ScrollPanRows rows={c.accessRows} title={c.accessTitle} idBase="home2access" titleId="page_prose:home2loc:accessTitle" titleSize={c.accessTitleSize} titleSizeId="page_prose:home2loc:accessTitleSize" />
-      <ScrollPanRows rows={c.experienceRows} title={c.experienceTitle} idBase="home2exp" titleId="page_prose:home2loc:experienceTitle" titleSize={c.experienceTitleSize} titleSizeId="page_prose:home2loc:experienceTitleSize" />
+      <ScrollPanRows rows={accessData.rows} title={c.accessTitle} idBase="home2access" titleId="page_prose:home2loc:accessTitle" titleSize={c.accessTitleSize} titleSizeId="page_prose:home2loc:accessTitleSize" />
+      <ScrollPanRows rows={expData.rows} title={c.experienceTitle} idBase="home2exp" titleId="page_prose:home2loc:experienceTitle" titleSize={c.experienceTitleSize} titleSizeId="page_prose:home2loc:experienceTitleSize" />
 
       <style>{`
         @media (max-width: 860px) {

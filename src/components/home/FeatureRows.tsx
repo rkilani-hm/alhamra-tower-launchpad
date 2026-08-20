@@ -53,6 +53,10 @@ const CONTENT: Record<string, PanRow[]> = {
 
 export function FeatureRows() {
   const { lang } = useI18n();
-  const rows = usePageContent<any>("home2feature", CONTENT[lang] ?? CONTENT.en, lang);
-  return <ScrollPanRows rows={rows} idBase="home2feature" />;
+  // Wrap the rows array under a `rows` key so the CMS overlay path
+  // "rows.N.heading" (written by the Editable ids in ScrollPanRows) lands on the
+  // same array the component renders. Passing a bare array here silently drops
+  // every published edit (it writes to out.rows while render reads out[N]).
+  const data = usePageContent<any>("home2feature", { rows: CONTENT[lang] ?? CONTENT.en }, lang);
+  return <ScrollPanRows rows={data.rows} idBase="home2feature" />;
 }
