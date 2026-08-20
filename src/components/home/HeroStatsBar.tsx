@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ──────────────────────────────────────────────────────────────────────────
    HeroStatsBar — tenant-facing metrics under the hero, styled to match the
@@ -85,7 +87,7 @@ function StatColumn({ s, index, active }: { s: Stat; index: number; active: bool
         fontFamily: FONT, fontSize: "10.5px", fontWeight: 500,
         letterSpacing: "0.2em", textTransform: "uppercase", color: RED,
         marginBottom: 16, textWrap: "balance",
-      }}>{s.label}</div>
+      }}><Editable id={`page_prose:home2stats:stats.${index}.label`}>{s.label}</Editable></div>
 
       <div style={{
         fontFamily: FONT, fontWeight: 200,
@@ -106,14 +108,14 @@ function StatColumn({ s, index, active }: { s: Stat; index: number; active: bool
         fontFamily: FONT, fontSize: "12px", fontWeight: 300,
         color: SUB, lineHeight: 1.6, marginTop: 14,
         letterSpacing: "0.01em", textWrap: "pretty",
-      }}>{s.sub}</div>
+      }}><Editable id={`page_prose:home2stats:stats.${index}.sub`}>{s.sub}</Editable></div>
     </motion.div>
   );
 }
 
 export function HeroStatsBar() {
   const { lang } = useI18n();
-  const c = CONTENT[lang] ?? CONTENT.en;
+  const c = usePageContent<any>("home2stats", CONTENT[lang] ?? CONTENT.en, lang);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -146,7 +148,7 @@ export function HeroStatsBar() {
           <span style={{
             fontFamily: FONT, fontSize: "11px", fontWeight: 500,
             letterSpacing: "0.4em", textTransform: "uppercase", color: RED,
-          }}>{c.eyebrow}</span>
+          }}><Editable id="page_prose:home2stats:eyebrow">{c.eyebrow}</Editable></span>
           <span style={{ width: 32, height: 1, background: HAIR }} />
         </motion.div>
 

@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ═════════════════════════════════════════════════════════════════════════
    HOME — PRIZES & AWARDS
@@ -69,7 +71,7 @@ const CONTENT: Record<"en" | "ar", AwardsContent> = {
 
 export function HomeAwards() {
   const { lang } = useI18n();
-  const c = CONTENT[lang];
+  const c = usePageContent<any>("home2awards", CONTENT[lang] ?? CONTENT.en, lang);
 
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -104,7 +106,7 @@ export function HomeAwards() {
               color: PEARL_TEXT,
             }}
           >
-            {c.eyebrow}
+            <Editable id="page_prose:home2awards:eyebrow">{c.eyebrow}</Editable>
           </span>
         </motion.div>
 
@@ -124,7 +126,7 @@ export function HomeAwards() {
             textWrap: "balance",
           }}
         >
-          {c.heading}
+          <Editable id="page_prose:home2awards:heading">{c.heading}</Editable>
         </motion.h2>
 
         {/* Intro */}
@@ -143,7 +145,7 @@ export function HomeAwards() {
             textWrap: "pretty",
           }}
         >
-          {c.intro}
+          <Editable id="page_prose:home2awards:intro">{c.intro}</Editable>
         </motion.p>
 
         {/* Award card grid */}
@@ -180,7 +182,7 @@ export function HomeAwards() {
                   color: PEARL_TEXT,
                 }}
               >
-                {card.year}
+                <Editable id={`page_prose:home2awards:cards.${i}.year`}>{card.year}</Editable>
               </div>
 
               {/* Title */}
@@ -194,7 +196,7 @@ export function HomeAwards() {
                   marginTop: 8,
                 }}
               >
-                {card.title}
+                <Editable id={`page_prose:home2awards:cards.${i}.title`}>{card.title}</Editable>
               </div>
 
               {/* Descriptor */}
@@ -209,7 +211,7 @@ export function HomeAwards() {
                   textWrap: "pretty",
                 }}
               >
-                {card.desc}
+                <Editable id={`page_prose:home2awards:cards.${i}.desc`}>{card.desc}</Editable>
               </div>
             </motion.div>
           ))}
@@ -237,7 +239,7 @@ export function HomeAwards() {
               marginBottom: 12,
             }}
           >
-            {c.isoLabel}
+            <Editable id="page_prose:home2awards:isoLabel">{c.isoLabel}</Editable>
           </div>
           <p
             style={{
@@ -251,7 +253,7 @@ export function HomeAwards() {
               textWrap: "pretty",
             }}
           >
-            {c.isoText}
+            <Editable id="page_prose:home2awards:isoText">{c.isoText}</Editable>
           </p>
         </motion.div>
       </div>

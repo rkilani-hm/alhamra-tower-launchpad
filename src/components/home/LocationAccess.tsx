@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { ScrollPanRows, type PanRow } from "@/components/shared/ScrollPanRows";
+import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ──────────────────────────────────────────────────────────────────────────
    LocationAccess — "Location, Access and Experience".
@@ -76,7 +78,7 @@ const CONTENT: Record<string, {
 
 export function LocationAccess() {
   const { lang } = useI18n();
-  const c = CONTENT[lang] ?? CONTENT.en;
+  const c = usePageContent<any>("home2loc", CONTENT[lang] ?? CONTENT.en, lang);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -88,7 +90,7 @@ export function LocationAccess() {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 16, marginBottom: "clamp(22px,3.2vh,38px)" }}>
             <span style={{ width: 34, height: 1, background: "rgba(139,110,62,0.45)" }} />
             <span style={{ fontFamily: FONT, fontSize: "11px", fontWeight: 500, letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
-              {c.eyebrow}
+              <Editable id="page_prose:home2loc:eyebrow">{c.eyebrow}</Editable>
             </span>
             <span style={{ width: 34, height: 1, background: "rgba(139,110,62,0.45)" }} />
           </div>
@@ -107,7 +109,7 @@ export function LocationAccess() {
                 fontFamily: FONT, fontWeight: 300, fontSize: "clamp(28px,4vw,60px)",
                 color: "#fff", lineHeight: 1.12, letterSpacing: "-0.015em", margin: 0,
                 textAlign: "center", textWrap: "balance", textShadow: "0 2px 34px rgba(0,0,0,0.4)",
-              }}>{c.heading}</h2>
+              }}><Editable id="page_prose:home2loc:heading">{c.heading}</Editable></h2>
             </div>
           </motion.div>
 
@@ -115,7 +117,7 @@ export function LocationAccess() {
             fontFamily: FONT, fontSize: "clamp(14px,1.1vw,16px)", fontWeight: 300,
             color: MUTED, lineHeight: 1.8, maxWidth: 560, margin: "clamp(28px,4vh,44px) auto 0",
             textAlign: "center", textWrap: "pretty",
-          }}>{c.intro}</p>
+          }}><Editable id="page_prose:home2loc:intro">{c.intro}</Editable></p>
 
           <div className="la-facts" style={{
             marginTop: "clamp(44px,6vh,72px)",
@@ -136,11 +138,11 @@ export function LocationAccess() {
                 <div style={{
                   fontFamily: FONT, fontWeight: 300, fontSize: "clamp(22px,2.4vw,34px)",
                   color: DARK, letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums",
-                }}>{f.n}</div>
+                }}><Editable id={`page_prose:home2loc:facts.${i}.n`}>{f.n}</Editable></div>
                 <div style={{
                   fontFamily: FONT, fontSize: "11px", fontWeight: 300, color: MUTED,
                   lineHeight: 1.6, marginTop: 8, textWrap: "pretty",
-                }}>{f.l}</div>
+                }}><Editable id={`page_prose:home2loc:facts.${i}.l`}>{f.l}</Editable></div>
               </motion.div>
             ))}
           </div>

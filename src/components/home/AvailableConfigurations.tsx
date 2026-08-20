@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ──────────────────────────────────────────────────────────────────────────
    AvailableConfigurations — "Premium Office Spaces", moved high on the homepage
@@ -59,7 +61,7 @@ const CONTENT: Record<string, {
 
 export function AvailableConfigurations() {
   const { lang } = useI18n();
-  const c = CONTENT[lang] ?? CONTENT.en;
+  const c = usePageContent<any>("home2configs", CONTENT[lang] ?? CONTENT.en, lang);
   const isAr = lang === "ar";
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -76,7 +78,7 @@ export function AvailableConfigurations() {
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
           <span style={{ width: 32, height: 1, background: PEARL, flexShrink: 0 }} />
           <span style={{ fontFamily: FONT, fontSize: "11px", letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
-            {c.eyebrow}
+            <Editable id="page_prose:home2configs:eyebrow">{c.eyebrow}</Editable>
           </span>
         </div>
         <h2 style={{
@@ -84,7 +86,7 @@ export function AvailableConfigurations() {
           color: DARK, lineHeight: 1.16, letterSpacing: "-0.018em", margin: 0,
           textWrap: "balance", maxWidth: 780,
         }}>
-          {c.heading}
+          <Editable id="page_prose:home2configs:heading">{c.heading}</Editable>
         </h2>
 
         {/* Sunset banner with headline */}
@@ -115,8 +117,8 @@ export function AvailableConfigurations() {
             fontSize: "clamp(18px,2.2vw,34px)", lineHeight: 1.28,
             letterSpacing: "0.01em", textShadow: "0 2px 30px rgba(0,0,0,0.45)",
           }}>
-            {c.bannerLines.map((line) => (
-              <div key={line}>{line}</div>
+            {c.bannerLines.map((line, i) => (
+              <div key={line}><Editable id={`page_prose:home2configs:bannerLines.${i}`}>{line}</Editable></div>
             ))}
           </div>
         </motion.div>
@@ -142,30 +144,30 @@ export function AvailableConfigurations() {
                 fontFamily: FONT, fontSize: "11px", fontWeight: 400,
                 letterSpacing: "0.22em", textTransform: "uppercase", color: MUTED,
               }}>
-                {cfg.tier}
+                <Editable id={`page_prose:home2configs:configs.${i}.tier`}>{cfg.tier}</Editable>
               </div>
               <div style={{
                 fontFamily: FONT, fontSize: "clamp(16px,1.4vw,19px)", fontWeight: 400,
                 color: DARK, marginTop: 14, letterSpacing: "0.01em",
               }}>
-                {cfg.title}
+                <Editable id={`page_prose:home2configs:configs.${i}.title`}>{cfg.title}</Editable>
               </div>
               <div style={{
                 fontFamily: FONT, fontSize: "clamp(28px,3vw,44px)", fontWeight: 200,
                 color: DARK, lineHeight: 1.05, letterSpacing: "-0.02em", marginTop: 12,
                 fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap",
               }}>
-                {cfg.size}
+                <Editable id={`page_prose:home2configs:configs.${i}.size`}>{cfg.size}</Editable>
               </div>
 
               <ul style={{ listStyle: "none", margin: "28px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-                {cfg.points.map((p) => (
+                {cfg.points.map((p, j) => (
                   <li key={p} style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
                     <span aria-hidden="true" style={{ width: 18, height: 1, flexShrink: 0, background: PEARL, transform: "translateY(-4px)" }} />
                     <span style={{
                       fontFamily: FONT, fontSize: "13.5px", fontWeight: 300, color: MUTED,
                       lineHeight: 1.6, textWrap: "pretty",
-                    }}>{p}</span>
+                    }}><Editable id={`page_prose:home2configs:configs.${i}.points.${j}`}>{p}</Editable></span>
                   </li>
                 ))}
               </ul>
@@ -180,7 +182,7 @@ export function AvailableConfigurations() {
                   textTransform: "uppercase", color: DARK, textDecoration: "none",
                 }}
               >
-                <span>{c.plan}</span>
+                <span><Editable id="page_prose:home2configs:plan">{c.plan}</Editable></span>
                 <svg width="18" height="8" viewBox="0 0 18 8" fill="none" aria-hidden="true"
                      style={{ transform: isAr ? "scaleX(-1)" : "none" }}>
                   <path d="M1 4H17M13 1L17 4L13 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── Beyond the Office ─────────────────────────────────────────────────
    Full-width editorial band pairing a luxury shopping-centre image with
@@ -32,7 +34,7 @@ const CONTENT = {
 
 export function BeyondTheOffice() {
   const { lang } = useI18n();
-  const c = CONTENT[lang];
+  const c = usePageContent<any>("home2beyond", CONTENT[lang] ?? CONTENT.en, lang);
   const isAr = lang === "ar";
   const [hover, setHover] = useState(false);
 
@@ -124,7 +126,7 @@ export function BeyondTheOffice() {
                 color: PEARL_TEXT,
               }}
             >
-              {c.eyebrow}
+              <Editable id="page_prose:home2beyond:eyebrow">{c.eyebrow}</Editable>
             </span>
           </div>
 
@@ -141,7 +143,7 @@ export function BeyondTheOffice() {
               textWrap: "balance",
             }}
           >
-            {c.heading}
+            <Editable id="page_prose:home2beyond:heading">{c.heading}</Editable>
           </h2>
 
           <p
@@ -158,7 +160,7 @@ export function BeyondTheOffice() {
               textWrap: "pretty",
             }}
           >
-            {c.body}
+            <Editable id="page_prose:home2beyond:body">{c.body}</Editable>
           </p>
 
           {/* Outbound CTA — bordered pill */}
@@ -186,7 +188,7 @@ export function BeyondTheOffice() {
               transition: "background 0.35s ease, color 0.35s ease, border-color 0.35s ease",
             }}
           >
-            <span>{c.cta}</span>
+            <span><Editable id="page_prose:home2beyond:cta">{c.cta}</Editable></span>
             <svg
               width="16"
               height="10"
