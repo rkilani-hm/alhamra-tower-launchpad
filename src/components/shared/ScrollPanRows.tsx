@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
-import { Editable, SlotImage } from "@/lib/EditMode";
+import { Editable, SlotImage, useEditMode } from "@/lib/EditMode";
 
 /* ──────────────────────────────────────────────────────────────────────────
    ScrollPanRows — a pinned "Experiences Nearby" story section. The layout frame
@@ -67,8 +67,9 @@ function SlideImage({ row, index, n, progress, idBase }: { row: PanRow; index: n
   );
 }
 
-export function ScrollPanRows({ rows, title, idBase }: { rows: PanRow[]; title?: string; idBase?: string }) {
+export function ScrollPanRows({ rows, title, idBase, titleId, titleSize, titleSizeId }: { rows: PanRow[]; title?: string; idBase?: string; titleId?: string; titleSize?: string; titleSizeId?: string }) {
   const reduce = useReducedMotion();
+  const { enabled } = useEditMode();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const n = Math.max(rows.length, 1);
@@ -78,7 +79,7 @@ export function ScrollPanRows({ rows, title, idBase }: { rows: PanRow[]; title?:
     return (
       <section style={{ background: "#fff", padding: "clamp(64px,9vh,110px) clamp(28px,6vw,96px)" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", flexDirection: "column", gap: "clamp(48px,7vh,88px)" }}>
-          {title && <h2 style={{ fontFamily: FONT, fontWeight: 300, fontSize: "clamp(20px,2.4vw,34px)", color: DARK, margin: 0 }}>{title}</h2>}
+          {title && <h2 style={{ fontFamily: FONT, fontWeight: 300, fontSize: "clamp(20px,2.4vw,34px)", color: DARK, margin: 0 }}>{titleId ? <Editable id={titleId}>{title}</Editable> : title}</h2>}
           {rows.map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,72px)", alignItems: "center" }} className="pan-panel-grid">
               <div className="pan-img" style={{ position: "relative", aspectRatio: "4 / 3", overflow: "hidden", background: "#0c0b09", gridColumn: i % 2 === 1 ? 2 : 1, gridRow: 1 }}>
@@ -116,9 +117,18 @@ export function ScrollPanRows({ rows, title, idBase }: { rows: PanRow[]; title?:
           width: "min(40%, 500px)", display: "flex", flexDirection: "column", justifyContent: "center",
         }}>
           {title && (
-            <div style={{ position: "absolute", top: "calc(50% - min(30vh, 250px))", insetInlineStart: 0, display: "flex", alignItems: "center", gap: 14 }}>
-              <span style={{ width: 30, height: 1, background: PEARL }} />
-              <span style={{ fontFamily: FONT, fontSize: "11px", fontWeight: 500, letterSpacing: "0.32em", textTransform: "uppercase", color: PEARL_TEXT }}>{title}</span>
+            <div style={{ position: "absolute", top: "calc(50% - min(30vh, 250px))", insetInlineStart: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <span style={{ width: 30, height: 1, background: PEARL }} />
+                <span style={{ fontFamily: FONT, fontSize: titleSize || "11px", fontWeight: 500, letterSpacing: "0.32em", textTransform: "uppercase", color: PEARL_TEXT }}>
+                  {titleId ? <Editable id={titleId}>{title}</Editable> : title}
+                </span>
+              </div>
+              {enabled && titleSizeId && (
+                <div style={{ fontFamily: FONT, fontSize: "10px", color: "#8a857b", letterSpacing: "0.05em" }}>
+                  text size:&nbsp;<Editable id={titleSizeId}>{titleSize || "11px"}</Editable>
+                </div>
+              )}
             </div>
           )}
           <div style={{ position: "relative", height: "min(48vh, 380px)" }}>

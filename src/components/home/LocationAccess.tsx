@@ -157,8 +157,8 @@ export function LocationAccess() {
       </section>
 
       {/* Two sub-sections of rows as pinned horizontal pans */}
-      <ScrollPanRows rows={c.accessRows} title={c.accessTitle} idBase="home2access" />
-      <ScrollPanRows rows={c.experienceRows} title={c.experienceTitle} idBase="home2exp" />
+      <ScrollPanRows rows={c.accessRows} title={c.accessTitle} idBase="home2access" titleId="page_prose:home2loc:accessTitle" titleSize={c.accessTitleSize} titleSizeId="page_prose:home2loc:accessTitleSize" />
+      <ScrollPanRows rows={c.experienceRows} title={c.experienceTitle} idBase="home2exp" titleId="page_prose:home2loc:experienceTitle" titleSize={c.experienceTitleSize} titleSizeId="page_prose:home2loc:experienceTitleSize" />
 
       <style>{`
         @media (max-width: 860px) {
