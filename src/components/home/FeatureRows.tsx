@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useI18n } from "@/lib/i18n";
 import { ScrollPanRows, type PanRow } from "@/components/shared/ScrollPanRows";
 import { usePageContent } from "@/lib/useCmsContent";
@@ -57,6 +58,9 @@ export function FeatureRows() {
   // "rows.N.heading" (written by the Editable ids in ScrollPanRows) lands on the
   // same array the component renders. Passing a bare array here silently drops
   // every published edit (it writes to out.rows while render reads out[N]).
-  const data = usePageContent<any>("home2feature", { rows: CONTENT[lang] ?? CONTENT.en }, lang);
+  // MUST be memoised — a fresh object each render makes usePageContent re-run
+  // its effect and reset to the static base before the DB overlay can stick.
+  const staticBase = useMemo(() => ({ rows: CONTENT[lang] ?? CONTENT.en }), [lang]);
+  const data = usePageContent<any>("home2feature", staticBase, lang);
   return <ScrollPanRows rows={data.rows} idBase="home2feature" />;
 }

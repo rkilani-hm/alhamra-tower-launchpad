@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { ScrollPanRows, type PanRow } from "@/components/shared/ScrollPanRows";
@@ -84,8 +84,12 @@ export function LocationAccess() {
   // home2exp) via ScrollPanRows' idBase. They must therefore READ from those
   // same keys, each with a { rows } base so the "rows.N.heading" overlay lands.
   // (Reading them from c.accessRows/home2loc would never see those edits.)
-  const accessData = usePageContent<any>("home2access", { rows: base.accessRows }, lang);
-  const expData = usePageContent<any>("home2exp", { rows: base.experienceRows }, lang);
+  // Memoise the wrapped bases — a fresh object each render would make
+  // usePageContent reset to static before the DB overlay applies.
+  const accessBase = useMemo(() => ({ rows: base.accessRows }), [base]);
+  const expBase = useMemo(() => ({ rows: base.experienceRows }), [base]);
+  const accessData = usePageContent<any>("home2access", accessBase, lang);
+  const expData = usePageContent<any>("home2exp", expBase, lang);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
