@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -100,8 +100,10 @@ export function AvailableConfigurations() {
             aspectRatio: "16 / 5", overflow: "hidden", background: "#0c0b09",
           }}
         >
-          <img
-            src="/assets/config-horizon.jpg"
+          <SlotImage
+            motion
+            slot="home2configs.banner"
+            fallback="/assets/config-horizon.jpg"
             alt=""
             loading="lazy"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}

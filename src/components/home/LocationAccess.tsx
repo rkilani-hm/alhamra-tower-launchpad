@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { ScrollPanRows, type PanRow } from "@/components/shared/ScrollPanRows";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -110,7 +110,14 @@ export function LocationAccess() {
             className="la-banner"
             style={{ position: "relative", aspectRatio: "24 / 7", overflow: "hidden", background: "#0c0b09", marginTop: "clamp(36px,5vh,56px)" }}
           >
-            <img src={c.topImg} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
+            <SlotImage
+              motion
+              slot="home2loc.banner"
+              fallback={c.topImg}
+              alt=""
+              loading="lazy"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+            />
           </motion.div>
 
           <p style={{
@@ -150,8 +157,8 @@ export function LocationAccess() {
       </section>
 
       {/* Two sub-sections of rows as pinned horizontal pans */}
-      <ScrollPanRows rows={c.accessRows} title={c.accessTitle} />
-      <ScrollPanRows rows={c.experienceRows} title={c.experienceTitle} />
+      <ScrollPanRows rows={c.accessRows} title={c.accessTitle} idBase="home2access" />
+      <ScrollPanRows rows={c.experienceRows} title={c.experienceTitle} idBase="home2exp" />
 
       <style>{`
         @media (max-width: 860px) {

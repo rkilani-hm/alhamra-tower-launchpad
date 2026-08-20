@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
+import { Editable, SlotImage } from "@/lib/EditMode";
 
 /* ──────────────────────────────────────────────────────────────────────────
    ScrollPanRows — a pinned "Experiences Nearby" story section. The layout frame
@@ -32,7 +33,7 @@ function useSlideAnim(index: number, n: number, progress: MotionValue<number>) {
   return { opacity, y };
 }
 
-function SlideText({ row, index, n, progress }: { row: PanRow; index: number; n: number; progress: MotionValue<number> }) {
+function SlideText({ row, index, n, progress, idBase }: { row: PanRow; index: number; n: number; progress: MotionValue<number>; idBase?: string }) {
   const { opacity, y } = useSlideAnim(index, n, progress);
   return (
     <motion.div style={{ position: "absolute", insetInlineStart: 0, insetInlineEnd: 0, top: "50%", translateY: "-50%", opacity, y }}>
@@ -40,31 +41,33 @@ function SlideText({ row, index, n, progress }: { row: PanRow; index: number; n:
         fontFamily: FONT, fontWeight: 300, fontSize: "clamp(30px,3.6vw,54px)",
         color: DARK, lineHeight: 1.12, letterSpacing: "-0.02em", margin: 0,
         textWrap: "balance", maxWidth: 460,
-      }}>{row.heading}</h3>
+      }}>{idBase ? <Editable id={`page_prose:${idBase}:rows.${index}.heading`}>{row.heading}</Editable> : row.heading}</h3>
       {row.eyebrow && (
         <div style={{ fontFamily: FONT, fontSize: "clamp(16px,1.5vw,21px)", fontWeight: 400, color: DARK, marginTop: 20, letterSpacing: "0.01em" }}>
-          {row.eyebrow}
+          {idBase ? <Editable id={`page_prose:${idBase}:rows.${index}.eyebrow`}>{row.eyebrow}</Editable> : row.eyebrow}
         </div>
       )}
       <p style={{
         fontFamily: FONT, fontSize: "clamp(14px,1.05vw,16px)", fontWeight: 300,
         color: MUTED, lineHeight: 1.85, marginTop: 22, marginBottom: 0,
         maxWidth: 420, textWrap: "pretty",
-      }}>{row.body}</p>
+      }}>{idBase ? <Editable id={`page_prose:${idBase}:rows.${index}.body`}>{row.body}</Editable> : row.body}</p>
     </motion.div>
   );
 }
 
-function SlideImage({ row, index, n, progress }: { row: PanRow; index: number; n: number; progress: MotionValue<number> }) {
+function SlideImage({ row, index, n, progress, idBase }: { row: PanRow; index: number; n: number; progress: MotionValue<number>; idBase?: string }) {
   const { opacity, y } = useSlideAnim(index, n, progress);
   return (
     <motion.div style={{ position: "absolute", inset: 0, opacity, y, overflow: "hidden", background: "#0c0b09" }}>
-      <img src={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+      {idBase
+        ? <SlotImage motion slot={`${idBase}.row${index}`} fallback={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        : <img src={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}
     </motion.div>
   );
 }
 
-export function ScrollPanRows({ rows, title }: { rows: PanRow[]; title?: string }) {
+export function ScrollPanRows({ rows, title, idBase }: { rows: PanRow[]; title?: string; idBase?: string }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
@@ -79,12 +82,14 @@ export function ScrollPanRows({ rows, title }: { rows: PanRow[]; title?: string 
           {rows.map((row, i) => (
             <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,72px)", alignItems: "center" }} className="pan-panel-grid">
               <div className="pan-img" style={{ position: "relative", aspectRatio: "4 / 3", overflow: "hidden", background: "#0c0b09", gridColumn: i % 2 === 1 ? 2 : 1, gridRow: 1 }}>
-                <img src={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                {idBase
+                  ? <SlotImage motion slot={`${idBase}.row${i}`} fallback={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+                  : <img src={row.img} alt="" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />}
               </div>
               <div className="pan-text" style={{ gridColumn: i % 2 === 1 ? 1 : 2, gridRow: 1 }}>
-                <h3 style={{ fontFamily: FONT, fontWeight: 300, fontSize: "clamp(24px,3vw,42px)", color: DARK, margin: 0, lineHeight: 1.14, textWrap: "balance" }}>{row.heading}</h3>
-                {row.eyebrow && <div style={{ fontFamily: FONT, fontSize: "18px", color: DARK, marginTop: 14 }}>{row.eyebrow}</div>}
-                <p style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 300, color: MUTED, lineHeight: 1.85, marginTop: 16, textWrap: "pretty", maxWidth: 460 }}>{row.body}</p>
+                <h3 style={{ fontFamily: FONT, fontWeight: 300, fontSize: "clamp(24px,3vw,42px)", color: DARK, margin: 0, lineHeight: 1.14, textWrap: "balance" }}>{idBase ? <Editable id={`page_prose:${idBase}:rows.${i}.heading`}>{row.heading}</Editable> : row.heading}</h3>
+                {row.eyebrow && <div style={{ fontFamily: FONT, fontSize: "18px", color: DARK, marginTop: 14 }}>{idBase ? <Editable id={`page_prose:${idBase}:rows.${i}.eyebrow`}>{row.eyebrow}</Editable> : row.eyebrow}</div>}
+                <p style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 300, color: MUTED, lineHeight: 1.85, marginTop: 16, textWrap: "pretty", maxWidth: 460 }}>{idBase ? <Editable id={`page_prose:${idBase}:rows.${i}.body`}>{row.body}</Editable> : row.body}</p>
               </div>
             </div>
           ))}
@@ -102,7 +107,7 @@ export function ScrollPanRows({ rows, title }: { rows: PanRow[]; title?: string 
           position: "absolute", top: "clamp(24px,6vh,72px)", bottom: "clamp(24px,6vh,72px)",
           insetInlineEnd: 0, width: "50%", overflow: "hidden", background: "#0c0b09",
         }}>
-          {rows.map((row, i) => <SlideImage key={i} row={row} index={i} n={n} progress={scrollYProgress} />)}
+          {rows.map((row, i) => <SlideImage key={i} row={row} index={i} n={n} progress={scrollYProgress} idBase={idBase} />)}
         </div>
 
         {/* Left — fixed eyebrow + crossfading text, constant size */}
@@ -117,7 +122,7 @@ export function ScrollPanRows({ rows, title }: { rows: PanRow[]; title?: string 
             </div>
           )}
           <div style={{ position: "relative", height: "min(48vh, 380px)" }}>
-            {rows.map((row, i) => <SlideText key={i} row={row} index={i} n={n} progress={scrollYProgress} />)}
+            {rows.map((row, i) => <SlideText key={i} row={row} index={i} n={n} progress={scrollYProgress} idBase={idBase} />)}
           </div>
         </div>
       </div>

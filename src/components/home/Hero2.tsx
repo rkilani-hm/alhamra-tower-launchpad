@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useT, useI18n } from "@/lib/i18n";
-import { useSlotVideoSrc } from "@/lib/EditMode";
+import { useSlotVideoSrc, Editable, useEditMode } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 import { HeroMediaShowcase } from "@/components/home/HeroMediaShowcase";
 
 const SAND = "#C5A882";
@@ -36,7 +37,8 @@ const HERO_OVERLAY = {
 export function Hero2() {
   const t = useT();
   const { lang } = useI18n();
-  const ov = (HERO_OVERLAY as any)[lang] ?? HERO_OVERLAY.en;
+  const { enabled } = useEditMode();
+  const ov = usePageContent<any>("home2hero", (HERO_OVERLAY as any)[lang] ?? HERO_OVERLAY.en, lang);
   const isAr = lang === "ar";
   // Three hero lines forced to the same width via SVG textLength. EN is
   // uppercased and letter-spacing auto-stretches each line to match; AR keeps
@@ -153,6 +155,14 @@ export function Hero2() {
             ))}
           </svg>
         </motion.h1>
+
+        {enabled && (
+          <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 6, alignItems: "center", pointerEvents: "auto" }}>
+            <Editable id="page_prose:home2hero:line1"><span style={{ color: "#fff", fontFamily: "var(--font-brand)", fontSize: 14 }}>{ov.line1}</span></Editable>
+            <Editable id="page_prose:home2hero:line2"><span style={{ color: "#fff", fontFamily: "var(--font-brand)", fontSize: 14 }}>{ov.line2}</span></Editable>
+            <Editable id="page_prose:home2hero:subtitle"><span style={{ color: "#fff", fontFamily: "var(--font-brand)", fontSize: 14 }}>{ov.subtitle}</span></Editable>
+          </div>
+        )}
       </div>
 
       <style>{`

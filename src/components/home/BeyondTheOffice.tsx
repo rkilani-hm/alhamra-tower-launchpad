@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── Beyond the Office ─────────────────────────────────────────────────
@@ -66,8 +66,10 @@ export function BeyondTheOffice() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           style={{ position: "relative", overflow: "hidden" }}
         >
-          <img
-            src="/assets/mall-atrium-luxury-centre.jpg"
+          <SlotImage
+            motion
+            slot="home2beyond.image"
+            fallback="/assets/mall-atrium-luxury-centre.jpg"
             alt="The luxury shopping centre beneath Al Hamra Business Tower"
             loading="lazy"
             style={{

@@ -1,5 +1,6 @@
 import { useI18n } from "@/lib/i18n";
 import { ScrollPanRows, type PanRow } from "@/components/shared/ScrollPanRows";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ──────────────────────────────────────────────────────────────────────────
    FeatureRows — three image + text rows presented as a pinned horizontal pan
@@ -52,6 +53,6 @@ const CONTENT: Record<string, PanRow[]> = {
 
 export function FeatureRows() {
   const { lang } = useI18n();
-  const rows = CONTENT[lang] ?? CONTENT.en;
-  return <ScrollPanRows rows={rows} />;
+  const rows = usePageContent<any>("home2feature", CONTENT[lang] ?? CONTENT.en, lang);
+  return <ScrollPanRows rows={rows} idBase="home2feature" />;
 }
