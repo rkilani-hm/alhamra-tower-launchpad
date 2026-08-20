@@ -12,7 +12,7 @@ import { usePageContent } from "@/lib/useCmsContent";
 ──────────────────────────────────────────────────────────────────────── */
 
 const PEARL = "#C8B99A";
-const GULF  = "#8B6E3E";  /* accent discipline: gulf-blue demoted to the single gold accent */
+const GULF  = "#CD1719";  /* accent discipline: gulf-blue demoted to the single gold accent */
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 

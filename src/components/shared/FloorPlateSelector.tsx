@@ -12,7 +12,7 @@ import { Editable } from "@/lib/EditMode";
    Pure SVG (no image assets), on-brand, CMS-editable suite labels/areas.
 ──────────────────────────────────────────────────────────────────────────── */
 
-const GOLD = "#8B6E3E";
+const GOLD = "#CD1719";
 const DARK = "#1D1D1B";
 const STONE = "#EFEAE2";
 const CORE = "#D9D3C8";

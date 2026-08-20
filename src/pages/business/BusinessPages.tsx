@@ -428,7 +428,7 @@ export function OfficeSpaces() {
               .ff-card:hover::before{transform:scaleX(1);}
               .ff-icon{display:block;color:#C8B99A;margin-bottom:16px;
                 transition:color .3s ease,transform .4s cubic-bezier(.16,1,.3,1);}
-              .ff-card:hover .ff-icon{color:#8B6E3E;transform:translateY(-2px);}
+              .ff-card:hover .ff-icon{color:#CD1719;transform:translateY(-2px);}
               .ff-num{position:absolute;top:12px;right:16px;font-family:var(--font-brand);
                 font-size:34px;font-weight:200;line-height:1;letter-spacing:-.02em;
                 color:rgba(200,185,154,.30);pointer-events:none;}
@@ -678,7 +678,7 @@ export function VerticalTransportation() {
             <style>{`
               .route-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; align-items:start; }
               .route-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(24px,2.2vw,34px) clamp(20px,1.8vw,30px); }
-              .route-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#8B6E3E; padding-bottom:16px; margin-bottom:4px; border-bottom:1px solid rgba(200,185,154,0.35); }
+              .route-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#CD1719; padding-bottom:16px; margin-bottom:4px; border-bottom:1px solid rgba(200,185,154,0.35); }
               .rc-row{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:14px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
               .rc-row:last-child{ border-bottom:none; padding-bottom:2px; }
               .rc-l{ font-family:var(--font-brand); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#9a938a; }

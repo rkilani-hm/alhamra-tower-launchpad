@@ -24,7 +24,7 @@ export const MUTE = "#6E6456";
 
 /* Headings / structure */
 export const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ letterSpacing: "0.2em", fontSize: 11, textTransform: "uppercase", color: "#9A7550" }}>{children}</div>
+  <div style={{ letterSpacing: "0.2em", fontSize: 11, textTransform: "uppercase", color: "#CD1719" }}>{children}</div>
 );
 export const H1 = ({ children }: { children: React.ReactNode }) => (
   <h1 style={{ fontSize: 28, fontWeight: 400, margin: "12px 0 0", color: DARK }}>{children}</h1>

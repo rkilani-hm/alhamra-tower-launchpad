@@ -14,7 +14,7 @@ import { ScrollPanRows, type PanRow } from "@/components/shared/ScrollPanRows";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 const DARK  = "#1D1D1B";
 const MUTED = "#6B6B6B";
-const PEARL_TEXT = "#8B6E3E";
+const PEARL_TEXT = "#CD1719";
 
 type Fact = { n: string; l: string };
 

@@ -18,7 +18,7 @@ const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,
 const DARK  = "#1D1D1B";
 const MUTED = "#6B6B6B";
 const PEARL = "#C8B99A";
-const PEARL_TEXT = "#8B6E3E";
+const PEARL_TEXT = "#CD1719";
 
 const PLANS_HREF = "/business/office-spaces";
 

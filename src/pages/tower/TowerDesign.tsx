@@ -191,7 +191,7 @@ export default function TowerDesign() {
         <style>{`
           .spec-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; align-items:start; }
           .spec-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(26px,2.3vw,38px) clamp(22px,1.9vw,32px); }
-          .spec-card-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8B6E3E; padding-bottom:16px; margin-bottom:6px; border-bottom:1px solid rgba(200,185,154,0.35); }
+          .spec-card-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#CD1719; padding-bottom:16px; margin-bottom:6px; border-bottom:1px solid rgba(200,185,154,0.35); }
           .spec-row{ padding:16px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
           .spec-row:last-child{ border-bottom:none; padding-bottom:2px; }
           .spec-row-label{ display:block; font-family:var(--font-brand); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#9a938a; margin-bottom:6px; }

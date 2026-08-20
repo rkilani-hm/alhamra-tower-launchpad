@@ -60,7 +60,7 @@ export function HistoryView({ onBack }: { onBack: () => void }) {
             <div key={v.id} style={{ background: "#fff", padding: "14px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
               <div style={{ minWidth: 0 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
-                  <span style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550", border: "1px solid #E4D8C2", padding: "1px 7px" }}>
+                  <span style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#CD1719", border: "1px solid #E4D8C2", padding: "1px 7px" }}>
                     {TABLE_TITLES[v.table_name] ?? v.table_name}
                   </span>
                   <span style={{ fontSize: 12, color: MUTE }}>{fmt(v.published_at)}</span>

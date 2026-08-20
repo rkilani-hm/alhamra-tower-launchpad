@@ -7,7 +7,7 @@ import { Editable, EditableRow } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 import { DarkBand } from "@/components/shared/ui";
 
-const PEARL_TEXT = "#8B6E3E";
+const PEARL_TEXT = "#CD1719";
 const DARK  = "#1D1D1B";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";

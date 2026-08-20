@@ -7,7 +7,7 @@ import { Editable, EditableRow, EditableImage, SlotImage } from "@/lib/EditMode"
 import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL      = "#C8B99A";
-const PEARL_TEXT = "#8B6E3E";
+const PEARL_TEXT = "#CD1719";
 const DARK       = "#1D1D1B";
 const CG         = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 

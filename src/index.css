@@ -20,7 +20,7 @@
   /* Arabic font stack — applied via [dir="rtl"] / [data-lang="ar"] selectors */
   --font-brand-ar: 'Noto Sans Arabic','Tajawal','Cairo','IBM Plex Sans Arabic','Segoe UI','Helvetica Neue',Arial,sans-serif;
   --color-pearl: #C8B99A;         /* decorative use only — fails AA on white */
-  --color-pearl-text: #8B6E3E;   /* accessible text variant — 4.78:1 on white */
+  --color-pearl-text: #CD1719;   /* accessible text variant — 4.78:1 on white */
   --color-dark:  #1D1D1B;
   --color-muted: #767676;
 }
@@ -61,11 +61,11 @@ html[lang="ar"] {
   --color-muted:     #767676;   /* 4.54:1 on white — AA ✅ (was #B2B2B2 at 2.12:1) */
   --color-muted-mid: #6B6B6B;   /* 5.33:1 on white — AA ✅ */
   --color-sand:      #C5A882;   /* 8.71:1 on #0c0b09 — use only on DARK backgrounds */
-  --color-sand-aa:   #9A7550;   /* 4.58:1 on white — use on LIGHT backgrounds */
+  --color-sand-aa:   #CD1719;   /* 4.58:1 on white — use on LIGHT backgrounds */
   --color-red:       #CD1719;   /* kept for bg use only */
   --color-pearl:     #C8B99A;   /* warm pearl — accent on dark */
   --color-pearl-mid: #D4CFC9;   /* cool silver pearl */
-  --color-pearl-aa:  #9A7550;   /* accessible pearl for text */
+  --color-pearl-aa:  #CD1719;   /* accessible pearl for text */
   --color-gulf:      #2A5F7A;   /* Arabian Gulf blue — dusk */
   --color-gulf-mid:  #3D7A96;   /* Gulf highlight */
   --color-mashrabiya: rgba(197,168,130,0.04); /* geometric texture tint */
@@ -128,7 +128,7 @@ select:focus-visible,
 textarea:focus-visible,
 summary:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid var(--color-pearl-text, #8B6E3E);
+  outline: 2px solid var(--color-pearl-text, #CD1719);
   outline-offset: 2px;
   border-radius: 1px;
 }
@@ -664,7 +664,7 @@ summary:focus-visible,
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: #8B6E3E; /* single gold accent (was gulf blue) */
+  color: #CD1719; /* single gold accent (was gulf blue) */
   font-weight: 300;
 }
 

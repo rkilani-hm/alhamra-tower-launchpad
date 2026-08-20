@@ -367,7 +367,7 @@ function HeroGalleryManager({ onClose }: { onClose: () => void }) {
                   : <img src={it.url} alt={it.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: it.isVideo ? "#9A7550" : "#6E6456" }}>
+                <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: it.isVideo ? "#CD1719" : "#6E6456" }}>
                   {it.isVideo ? "Video" : "Image"} · #{i + 1}
                 </div>
                 <div style={{ fontSize: 10, color: it.status === "published" ? "#3B7A57" : "#B0862F" }}>

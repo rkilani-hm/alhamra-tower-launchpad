@@ -97,7 +97,7 @@ const TA_CONTENT = {
 
 /* ─── Brand tokens ───────────────────────── */
 const SAND    = "#C5A882";   /* use only on dark backgrounds */
-const SAND_AA = "#9A7550";   /* 4.58:1 on white — WCAG AA ✅ */
+const SAND_AA = "#CD1719";   /* 4.58:1 on white — WCAG AA ✅ */
 const CREAM = "#F5F0E8";
 const STONE = "#E8E0D4";
 const DARK  = "#1D1D1B";

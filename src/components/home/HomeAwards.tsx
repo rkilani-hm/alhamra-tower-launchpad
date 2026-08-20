@@ -16,7 +16,7 @@ import { useI18n } from "@/lib/i18n";
 
 const FONT =
   "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
-const PEARL_TEXT = "#8B6E3E";
+const PEARL_TEXT = "#CD1719";
 const DARK = "#1D1D1B";
 const MUTED = "#6B6B6B";
 

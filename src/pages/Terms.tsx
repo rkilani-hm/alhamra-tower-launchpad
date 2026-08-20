@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 
-const PEARL_TEXT = "#8B6E3E";
+const PEARL_TEXT = "#CD1719";
 const DARK       = "#1D1D1B";
 const CG         = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 

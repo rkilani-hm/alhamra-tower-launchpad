@@ -153,7 +153,7 @@ function EditPopover({ id, onClose }: { id: string; onClose: () => void }) {
         <div style={{ fontSize: 13, color: "#B05050" }}>This text isn't editable yet ({id}).</div>
       ) : (
         <>
-          <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9A7550", marginBottom: 10 }}>
+          <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#CD1719", marginBottom: 10 }}>
             {group} · {field}
           </div>
           <Label>English</Label>
@@ -308,7 +308,7 @@ function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
         <div style={{ fontSize: 13, color: "#B05050" }}>This item isn't editable yet ({id}).</div>
       ) : (
         <>
-          <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9A7550", marginBottom: 10 }}>
+          <div style={{ fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#CD1719", marginBottom: 10 }}>
             {table.replace("_", " ")} · {group || key}
           </div>
           {fields.map((f) => f.bilingual ? (
@@ -399,7 +399,7 @@ export function PopoverShell({ title, onClose, children }: { title: string; onCl
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9A7550" }}>{title}</span>
+          <span style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#CD1719" }}>{title}</span>
           <button onClick={onClose} style={{ border: "none", background: "none", cursor: "pointer", fontSize: 20, color: "#6E6456", lineHeight: 1 }}>×</button>
         </div>
         {children}

@@ -13,7 +13,7 @@ import { useI18n } from "@/lib/i18n";
 ────────────────────────────────────────────────────────────────────────────── */
 
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
-const GOLD  = "#8B6E3E"; // accessible Al Hamra gold (reads as gold on light grey)
+const GOLD  = "#CD1719"; // accessible Al Hamra gold (reads as gold on light grey)
 const BLACK = "#1D1D1B"; // Al Hamra CI black
 const MUTED = "#6B6B6B";
 const GREY_BG = "#EAEAEA";
