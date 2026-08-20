@@ -314,19 +314,22 @@ export function OfficeSpaces() {
       </div>
 
       <Section>
-        <Rv><Tag>{c.configTag}</Tag></Rv>
-        <Rv delay={0.1}><H2>{c.configH2}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:officeSpaces:configTag">{c.configTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:officeSpaces:configH2">{c.configH2}</Editable></H2></Rv>
         <div className="grid-3col feature-grid" style={{ marginTop: 48 }}>
           {c.configs.map(({ code, title, size, bullets }, i) => (
-            <Rv key={code} delay={i * 0.1}>
+            <Rv key={i} delay={i * 0.1}>
               <div style={{ background: "#fff", padding: "48px 40px", height: "100%" }}>
-                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>{c.configLabel} {code}</div>
-                <div style={{ fontFamily: FONT, fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}>{title}</div>
-                <div style={{ fontFamily: FONT, fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}>{size}</div>
-                {bullets.map(b => (
-                  <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
+                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}>
+                  <Editable id="page_prose:officeSpaces:configLabel">{c.configLabel}</Editable>{" "}
+                  <Editable id={`page_prose:officeSpaces:configs.${i}.code`}>{code}</Editable>
+                </div>
+                <div style={{ fontFamily: FONT, fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}><Editable id={`page_prose:officeSpaces:configs.${i}.title`}>{title}</Editable></div>
+                <div style={{ fontFamily: FONT, fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}><Editable id={`page_prose:officeSpaces:configs.${i}.size`}>{size}</Editable></div>
+                {bullets.map((b, j) => (
+                  <div key={j} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
                     <span style={{ color: "#6B6B6B" }}>—</span>
-                    <span style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}>{b}</span>
+                    <span style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:officeSpaces:configs.${i}.bullets.${j}`}>{b}</Editable></span>
                   </div>
                 ))}
               </div>
