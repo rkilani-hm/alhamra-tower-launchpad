@@ -43,6 +43,14 @@ export default function TowerDesign() {
   const facadeRef = useRef<HTMLDivElement>(null);
   const facadeInView = useInView(facadeRef, { once: true, margin: "-80px" });
 
+  // The "Engineering Team" group is a credits list (role → firm), not numeric
+  // specs — pull it out of the spec-card grid and give it its own full-width
+  // credits layout so it doesn't render as one tall, narrow card. Matched in
+  // both EN and AR by category name.
+  const isTeam = (cat: string) => /engineering team|الفريق الهندس/i.test(cat || "");
+  const techSpecs = (c.specs ?? []).filter((s: any) => !isTeam(s.cat));
+  const teamGroup = (c.specs ?? []).find((s: any) => isTeam(s.cat));
+
   return (
     <PageLayout>
       <PageHero
@@ -186,10 +194,32 @@ export default function TowerDesign() {
           </h2>
         </div>
         <div className="spec-grid">
-          {c.specs.map(s => <SpecTable key={s.cat} cat={s.cat} rows={s.rows as readonly (readonly [string, string])[]} />)}
+          {techSpecs.map((s: any) => <SpecTable key={s.cat} cat={s.cat} rows={s.rows as readonly (readonly [string, string])[]} />)}
         </div>
+
+        {teamGroup && (
+          <div style={{ marginTop: "clamp(52px,7vh,88px)", paddingTop: "clamp(40px,5vh,56px)", borderTop: "1px solid rgba(29,29,27,0.10)" }}>
+            <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
+              letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 32 }}>
+              {teamGroup.cat}
+            </div>
+            <div className="team-credit-grid">
+              {teamGroup.rows.map(([role, firm]: readonly [string, string]) => (
+                <div key={role} className="team-credit">
+                  <div className="team-credit-role">{role}</div>
+                  <div className="team-credit-firm"><EditableRow id={`spec_rows::${role}`}>{firm}</EditableRow></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <style>{`
           .spec-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; align-items:start; }
+          .team-credit-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px; background:rgba(29,29,27,0.09); border:1px solid rgba(29,29,27,0.09); }
+          .team-credit{ background:#fff; padding:clamp(20px,1.8vw,28px) clamp(18px,1.6vw,26px); }
+          .team-credit-role{ font-family:var(--font-brand); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#9a938a; margin-bottom:8px; }
+          .team-credit-firm{ font-family:var(--font-brand); font-size:clamp(14px,1.05vw,16px); color:#1D1D1B; font-weight:300; line-height:1.45; }
+          @media (max-width:560px){ .team-credit-grid{ grid-template-columns:1fr 1fr; } }
           .spec-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(26px,2.3vw,38px) clamp(22px,1.9vw,32px); }
           .spec-card-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#CD1719; padding-bottom:16px; margin-bottom:6px; border-bottom:1px solid rgba(200,185,154,0.35); }
           .spec-row{ padding:16px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
