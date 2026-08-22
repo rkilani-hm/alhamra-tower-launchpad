@@ -215,8 +215,8 @@ export default function TowerDesign() {
         )}
         <style>{`
           .spec-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; align-items:start; }
-          .team-credit-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px; background:rgba(29,29,27,0.09); border:1px solid rgba(29,29,27,0.09); }
-          .team-credit{ background:#fff; padding:clamp(20px,1.8vw,28px) clamp(18px,1.6vw,26px); }
+          .team-credit-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); border-top:1px solid rgba(29,29,27,0.09); border-left:1px solid rgba(29,29,27,0.09); }
+          .team-credit{ background:#fff; padding:clamp(20px,1.8vw,28px) clamp(18px,1.6vw,26px); border-right:1px solid rgba(29,29,27,0.09); border-bottom:1px solid rgba(29,29,27,0.09); }
           .team-credit-role{ font-family:var(--font-brand); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#9a938a; margin-bottom:8px; }
           .team-credit-firm{ font-family:var(--font-brand); font-size:clamp(14px,1.05vw,16px); color:#1D1D1B; font-weight:300; line-height:1.45; }
           @media (max-width:560px){ .team-credit-grid{ grid-template-columns:1fr 1fr; } }
