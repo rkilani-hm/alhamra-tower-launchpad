@@ -159,7 +159,7 @@ export default function TowerOverview() {
       </PatternBackground>
 
       {/* ── Architecture tabs ──────────────────────────────────────── */}
-      <div style={{ background: CREAM, padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
+      <div style={{ background: "#F1F1F0", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
         {/* Tab bar */}
         <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(29,29,27,0.1)",
           marginBottom: 56, overflowX: "auto" }}>
@@ -215,7 +215,7 @@ export default function TowerOverview() {
                 </div>
               </div>
               <TiltCard>
-                <div style={{ background: STONE, padding: "clamp(24px,3vh,36px) clamp(20px,3vw,36px)" }}>
+                <div style={{ background: "#E3E3E2", padding: "clamp(24px,3vh,36px) clamp(20px,3vw,36px)" }}>
                   <div style={{ fontFamily: FONT,
                     fontSize: "clamp(36px,5vw,68px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                     <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.statN`}>{activeContent.statN}</Editable>
