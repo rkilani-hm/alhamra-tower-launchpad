@@ -176,7 +176,7 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
       try {
         const pick = (en: any, ar: any) => (lang === "ar" ? (ar ?? en) : en);
 
-        const [prose, stats, cards, timeline, specs] = await Promise.all([
+        const [prose, stats, cards, timeline, specs, media] = await Promise.all([
           supabase.from("page_prose")
             .select("field_key,value_en,value_ar,sort_order,status,page_key")
             .eq("page_key", pageKey).eq("status", "published")
@@ -197,9 +197,14 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
             .select("category_en,category_ar,label_en,label_ar,value_en,value_ar,sort_order,status")
             .eq("status", "published")
             .order("sort_order", { ascending: true }),
+          supabase.from("media_assets").select("id,public_url"),
         ]);
 
         if (cancelled) return;
+
+        // id → public_url map so structured rows can resolve their image_id.
+        const mediaMap: Record<string, string> = {};
+        for (const m of media.data ?? []) if (m.id && m.public_url) mediaMap[m.id] = m.public_url;
 
         // Deep clone the static base so we never mutate the JSON import.
         const out: AnyObj = JSON.parse(JSON.stringify(base ?? {}));
@@ -281,20 +286,27 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
         // 4. timeline_entries → milestones / eras. Overlay by index.
         for (const map of PAGE_TIMELINE_FIELDS[pageKey] ?? []) {
           const rows = (timeline.data ?? []).filter((c) => c.collection === map.collection);
+          // Align each published row to the static entry at the SAME sort_order —
+          // not by filtered-array index. Otherwise, when only some rows are
+          // published (drafts excluded), the survivors shift onto the wrong
+          // entries. sort_order matches the static array index by construction.
+          const byOrder = new Map<number, AnyObj>();
+          rows.forEach((r, idx) => byOrder.set(r.sort_order ?? idx, r));
           if (rows.length && Array.isArray(out[map.field])) {
             out[map.field] = out[map.field].map((orig: AnyObj, i: number) => {
-              const r = rows[i];
+              const r = byOrder.get(i);
               if (!r) return orig;
               const next = { ...orig };
               const title = pick(r.title_en, r.title_ar);
               const body  = pick(r.body_en, r.body_ar);
-              const year  = r.year;
-              // milestones use {y,e}; eras use {year,title,body,img}
+              const imgUrl = r.image_id ? mediaMap[r.image_id] : null;
+              // milestones use {y,e}; eras use {year,title,body,img}. The `year`
+              // column is single-value (not bilingual), so we keep the localized
+              // static year and never overlay it — otherwise EN shows AR digits.
               if ("e" in orig && title != null) next.e = title;
-              if ("y" in orig && year != null) next.y = year;
               if ("title" in orig && title != null) next.title = title;
-              if ("year" in orig && year != null) next.year = year;
               if ("body" in orig && body != null) next.body = body;
+              if (imgUrl && "img" in orig) next.img = imgUrl;
               return next;
             });
             changed = true;

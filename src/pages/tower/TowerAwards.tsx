@@ -1266,7 +1266,7 @@ export function TowerAwards() {
               <Body>{c.ctbuhBody}</Body>
             </Rv>
             <Rv delay={0.15}>
-              <div style={{ marginTop: 36, padding: "28px 28px 28px 24px", borderLeft: `3px solid ${SAND}`, background: CREAM }}>
+              <div style={{ marginTop: 36, padding: "28px 28px 28px 24px", borderLeft: "3px solid #C4C4C2", background: "#F1F1F0" }}>
                 <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(15px,1.5vw,18px)", fontStyle: "italic", fontWeight: 300, color: DARK, lineHeight: 1.7, marginBottom: 16 }}>
                   {c.ctbuhQuote}
                 </p>
