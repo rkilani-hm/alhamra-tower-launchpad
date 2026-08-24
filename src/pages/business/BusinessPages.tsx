@@ -470,6 +470,21 @@ export function OfficeSpaces() {
         </div>
       </div>
 
+      {/* Typical office floor plan — white keyed out so it blends on the grey plate */}
+      <div style={{ background: "#EEEDEA", padding: "clamp(56px,8vh,100px) clamp(28px,6vw,96px)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#CD1719", marginBottom: 14, textAlign: "center" }}>
+            {lang === "ar" ? "طابق مكتبي نموذجي" : "Typical Office Floor"}
+          </div>
+          <img
+            src="/assets/office-typical-floor-plan.webp"
+            alt={lang === "ar" ? "مخطط طابق مكتبي نموذجي في برج الحمراء" : "Al Hamra Tower typical office floor plan"}
+            loading="lazy"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      </div>
+
       <DarkBand title={c.darkTitle} subtitle={c.darkSubtitle} ctaLabel={c.darkCta} ctaHref="/leasing/inquiry#inquiry-form" />
 
       <style>{`
