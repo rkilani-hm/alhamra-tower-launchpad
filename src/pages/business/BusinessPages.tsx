@@ -1,5 +1,4 @@
 import { PageLayout }  from "@/components/layout/PageLayout";
-import { FloorPlateSelector } from "@/components/shared/FloorPlateSelector";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n }     from "@/lib/i18n";
@@ -468,12 +467,6 @@ export function OfficeSpaces() {
               <Editable id="page_prose:officeSpaces:boardroomCap">{c.boardroomCap}</Editable>
             </span>
           </div>
-        </div>
-      </div>
-
-      <div>
-        <div className="ah-section">
-          <FloorPlateSelector />
         </div>
       </div>
 
