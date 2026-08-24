@@ -96,7 +96,7 @@ const TA_CONTENT = {
 } as const;
 
 /* ─── Brand tokens ───────────────────────── */
-const SAND    = "#C5A882";   /* use only on dark backgrounds */
+const SAND    = "#AEAEAC";   /* use only on dark backgrounds */
 const SAND_AA = "#CD1719";   /* 4.58:1 on white — WCAG AA ✅ */
 const CREAM = "#F5F0E8";
 const STONE = "#E8E0D4";
@@ -290,7 +290,7 @@ type ViewMode = "grid" | "timeline";
 
 /* Small crest SVG used on image-less "certificate" cards + lightbox.
    Fits the existing sand/dark palette — no external icon libs.       */
-function AwardCrest({ color = "#C5A882" }: { color?: string }) {
+function AwardCrest({ color = "#AEAEAC" }: { color?: string }) {
   return (
     <svg viewBox="0 0 64 64" width="54" height="54" fill="none" stroke={color} strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
       <circle cx="32" cy="26" r="16" />
@@ -447,18 +447,18 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
                 position: "absolute", top: 14, right: 14, zIndex: 10,
                 width: 40, height: 40, borderRadius: "50%",
                 background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(197,168,130,0.3)",
+                border: "1px solid rgba(174,174,172,0.3)",
                 color: WHITE, cursor: "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 transition: "background 0.2s ease, border-color 0.2s ease",
               }}
               onMouseEnter={e => {
-                (e.currentTarget.style.background = "rgba(197,168,130,0.18)");
+                (e.currentTarget.style.background = "rgba(174,174,172,0.18)");
                 (e.currentTarget.style.borderColor = SAND);
               }}
               onMouseLeave={e => {
                 (e.currentTarget.style.background = "rgba(255,255,255,0.06)");
-                (e.currentTarget.style.borderColor = "rgba(197,168,130,0.3)");
+                (e.currentTarget.style.borderColor = "rgba(174,174,172,0.3)");
               }}
             >
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
@@ -475,7 +475,7 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
             }}>
               <div style={{
                 position: "absolute", inset: 0,
-                background: `radial-gradient(ellipse at center, rgba(197,168,130,0.22) 0%, transparent 60%)`,
+                background: `radial-gradient(ellipse at center, rgba(174,174,172,0.22) 0%, transparent 60%)`,
               }} />
               {award.image ? (
                 <SlotImage
@@ -527,7 +527,7 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
             {/* Text side — full citation */}
             <div className="award-lightbox-text" style={{
               padding: "clamp(28px,3vw,52px)",
-              borderLeft: `1px solid rgba(197,168,130,0.18)`,
+              borderLeft: `1px solid rgba(174,174,172,0.18)`,
               display: "flex", flexDirection: "column", justifyContent: "center",
               overflowY: "auto",
             }}>
@@ -642,7 +642,7 @@ function TimelineView({ awards, onCardClick }: { awards: Award[]; onCardClick: (
             {/* Image / certificate */}
             {a.image ? (
               <div className="timeline-card-visual" style={{ background: DARK }}>
-                <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 50% 55%, rgba(197,168,130,0.16) 0%, transparent 60%)` }} />
+                <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 50% 55%, rgba(174,174,172,0.16) 0%, transparent 60%)` }} />
                 <SlotImage motion slot={trophySlot(a.title)} fallback={a.image} alt={a.title} loading="lazy"
                   style={{ position: "relative", width: "100%", height: "100%", objectFit: "contain", padding: "clamp(14px,2vw,24px)" }} />
               </div>
@@ -763,7 +763,7 @@ function AwardsRecognitionSection() {
               {/* Radial spotlight to lift the crystal trophy off pure black */}
               <div style={{
                 position: "absolute", inset: 0,
-                background: `radial-gradient(ellipse at center, rgba(197,168,130,0.18) 0%, transparent 55%)`,
+                background: `radial-gradient(ellipse at center, rgba(174,174,172,0.18) 0%, transparent 55%)`,
                 zIndex: 1,
               }} />
               <SlotImage
@@ -782,7 +782,7 @@ function AwardsRecognitionSection() {
             <div style={{
               padding: "clamp(36px,4vw,64px)",
               display: "flex", flexDirection: "column", justifyContent: "center",
-              borderLeft: `1px solid rgba(197,168,130,0.18)`,
+              borderLeft: `1px solid rgba(174,174,172,0.18)`,
             }}>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(64px,7vw,96px)", fontWeight: 200, color: WHITE, lineHeight: 1, marginBottom: 4 }}>
                 {hero.year}
@@ -989,7 +989,7 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
           {/* Subtle warm spotlight behind the crystal */}
           <div style={{
             position: "absolute", inset: 0,
-            background: `radial-gradient(ellipse at 50% 55%, rgba(197,168,130,0.16) 0%, transparent 58%)`,
+            background: `radial-gradient(ellipse at 50% 55%, rgba(174,174,172,0.16) 0%, transparent 58%)`,
             zIndex: 1,
           }} />
           <SlotImage
@@ -1010,7 +1010,7 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
             fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase",
             color: "#CD1719", padding: "5px 10px",
             background: "rgba(29,29,27,0.55)", backdropFilter: "blur(4px)",
-            border: `1px solid rgba(197,168,130,0.35)`,
+            border: `1px solid rgba(174,174,172,0.35)`,
           }}>
             {award.year}
           </div>
@@ -1133,7 +1133,7 @@ export function TowerAwards() {
         />
         {/* Gradient overlays */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, rgba(29,29,27,0.1) 0%, transparent 40%, rgba(29,29,27,0.75) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `linear-gradient(to right, rgba(197,168,130,0.15) 0%, transparent 60%)` }} />
+        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `linear-gradient(to right, rgba(174,174,172,0.15) 0%, transparent 60%)` }} />
 
         {/* Text overlay */}
         <div className="awards-hero-text">

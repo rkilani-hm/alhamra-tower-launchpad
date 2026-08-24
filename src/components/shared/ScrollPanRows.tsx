@@ -16,7 +16,7 @@ import { Editable, SlotImage, useEditMode } from "@/lib/EditMode";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 const DARK  = "#1D1D1B";
 const MUTED = "#6B6B6B";
-const PEARL = "#C8B99A";
+const PEARL = "#B9B9B7";
 const PEARL_TEXT = "#CD1719";
 
 export type PanRow = { img: string; eyebrow?: string; heading: string; body: string };

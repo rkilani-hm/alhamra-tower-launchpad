@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MediaAsset, listMedia, uploadMedia, setRowImage } from "./adminData";
 
-const PEARL = "#C8B99A", DARK = "#1D1D1B", MUTE = "#6E6456";
+const PEARL = "#B9B9B7", DARK = "#1D1D1B", MUTE = "#6E6456";
 
 export function ImagePicker({
   table, rowId, currentImageId, onChanged,

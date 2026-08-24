@@ -11,7 +11,7 @@ import { usePageContent } from "@/lib/useCmsContent";
    with luxury MSA register (not literal translation).
 ──────────────────────────────────────────────────────────────────────── */
 
-const PEARL = "#C8B99A";
+const PEARL = "#B9B9B7";
 const GULF  = "#CD1719";  /* accent discipline: gulf-blue demoted to the single gold accent */
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
@@ -151,8 +151,8 @@ export function Architecture() {
                       // In LTR, year sits left of event with right separator.
                       // In RTL, the visual order reverses naturally;
                       // the separator must move to the opposite edge.
-                      borderRight: isAr ? "none" : `1px solid rgba(197,168,130,0.28)`,
-                      borderLeft: isAr ? `1px solid rgba(197,168,130,0.28)` : "none",
+                      borderRight: isAr ? "none" : `1px solid rgba(174,174,172,0.28)`,
+                      borderLeft: isAr ? `1px solid rgba(174,174,172,0.28)` : "none",
                       paddingRight: isAr ? 0 : 18,
                       paddingLeft: isAr ? 18 : 0,
                     }}>

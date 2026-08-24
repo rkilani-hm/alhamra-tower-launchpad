@@ -4,8 +4,8 @@ import { useT } from "@/lib/i18n";
 import { useSlotVideoSrc } from "@/lib/EditMode";
 import { HeroMediaShowcase } from "@/components/home/HeroMediaShowcase";
 
-const SAND = "#C5A882";
-const PEARL = "#C8B99A";
+const SAND = "#AEAEAC";
+const PEARL = "#B9B9B7";
 
 /* Honour data-saver / reduced-motion: skip the autoplay hero video (a heavy
    .mp4 download + continuous motion) and show the high-quality poster still
@@ -65,7 +65,7 @@ export function Hero() {
         background: "linear-gradient(to right, rgba(12,11,9,0.38) 0%, rgba(12,11,9,0.1) 35%, transparent 60%)",
         pointerEvents: "none" }} />
       <div style={{ position: "absolute", inset: 0,
-        background: `linear-gradient(to top right, rgba(197,168,130,0.1) 0%, transparent 60%)`,
+        background: `linear-gradient(to top right, rgba(174,174,172,0.1) 0%, transparent 60%)`,
         pointerEvents: "none" }} />
 
       {/* Scan line */}

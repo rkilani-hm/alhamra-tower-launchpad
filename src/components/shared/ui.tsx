@@ -133,7 +133,7 @@ export function Tag({ children }: { children: ReactNode }) {
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : {}}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        style={{ display: "block", width: 24, height: 1, background: "#C8B99A", transformOrigin: "left", flexShrink: 0 }}
+        style={{ display: "block", width: 24, height: 1, background: "#B9B9B7", transformOrigin: "left", flexShrink: 0 }}
         aria-hidden="true"
       />
       <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B" }}>

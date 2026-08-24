@@ -61,8 +61,8 @@ function EditModeToggle({ enabled, setEnabled }: { enabled: boolean; setEnabled:
       onClick={() => setEnabled(!enabled)}
       style={{
         position: "fixed", bottom: 20, right: 20, zIndex: 9999,
-        background: enabled ? "#C8B99A" : "#1D1D1B", color: enabled ? "#1D1D1B" : "#F5F2EE",
-        border: "1px solid #C8B99A", padding: "10px 16px", cursor: "pointer",
+        background: enabled ? "#B9B9B7" : "#1D1D1B", color: enabled ? "#1D1D1B" : "#F5F2EE",
+        border: "1px solid #B9B9B7", padding: "10px 16px", cursor: "pointer",
         fontFamily: "'Century Gothic',sans-serif", fontSize: 11, letterSpacing: "0.14em",
         textTransform: "uppercase", boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
       }}
@@ -98,7 +98,7 @@ export function Editable({
       style={{
         ...style,
         position: "relative", cursor: "pointer",
-        outline: hover ? "2px dashed #C8B99A" : "1px dashed rgba(200,185,154,0.5)",
+        outline: hover ? "2px dashed #B9B9B7" : "1px dashed rgba(184,184,182,0.5)",
         outlineOffset: 2, borderRadius: 2,
       }}
       onMouseEnter={() => setHover(true)}
@@ -191,7 +191,7 @@ const Label = ({ children }: { children: ReactNode }) =>
   <div style={{ fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#6E6456", margin: "8px 0 4px" }}>{children}</div>;
 const inp: CSSProperties = { width: "100%", padding: "8px 10px", border: "1px solid #D8D2C7", fontFamily: "inherit", fontSize: 14, background: "#FCFBF9", color: "#1D1D1B", caretColor: "#1D1D1B", outline: "none", WebkitTextFillColor: "#1D1D1B" } as CSSProperties;
 const ta: CSSProperties = { ...inp, resize: "vertical", lineHeight: 1.6 };
-const solid: CSSProperties = { padding: "8px 16px", background: "#C8B99A", color: "#1D1D1B", border: "none", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" };
+const solid: CSSProperties = { padding: "8px 16px", background: "#B9B9B7", color: "#1D1D1B", border: "none", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" };
 const ghost: CSSProperties = { padding: "8px 16px", background: "transparent", color: "#3A3733", border: "1px solid #C5BCA9", fontFamily: "inherit", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" };
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -258,7 +258,7 @@ export function EditableRow({
   return (
     <Tag
       style={{ ...style, position: "relative", cursor: "pointer",
-        outline: hover ? "2px dashed #C8B99A" : "1px dashed rgba(200,185,154,0.5)", outlineOffset: 2, borderRadius: 2 }}
+        outline: hover ? "2px dashed #B9B9B7" : "1px dashed rgba(184,184,182,0.5)", outlineOffset: 2, borderRadius: 2 }}
       onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       onClick={(e: any) => { e.stopPropagation(); e.preventDefault(); setEditing(true); }}
     >
@@ -369,7 +369,7 @@ export function EditableImage({
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #B9B9B7",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
@@ -406,7 +406,7 @@ export function PopoverShell({ title, onClose, children }: { title: string; onCl
         onClick={(e) => e.stopPropagation()}
         style={{
           width: 420, maxWidth: "92vw", maxHeight: "85vh", overflowY: "auto",
-          background: "#fff", border: "1px solid #C8B99A", boxShadow: "0 20px 70px rgba(0,0,0,0.45)",
+          background: "#fff", border: "1px solid #B9B9B7", boxShadow: "0 20px 70px rgba(0,0,0,0.45)",
           padding: 18, fontFamily: "'Century Gothic',sans-serif", textAlign: "left",
         }}
       >
@@ -470,7 +470,7 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
         <div style={{ fontSize: 13, color: "#B05050" }}>This image isn't editable yet.</div>
       ) : (
         <>
-          <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#C8B99A", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
+          <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#B9B9B7", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
             {busy ? "Working…" : "Upload new"}
             <input type="file" accept="image/*" onChange={upload} style={{ display: "none" }} disabled={busy} />
           </label>
@@ -535,7 +535,7 @@ export function SlotImage({
           onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
           style={{
             position: "absolute", top: 10, right: 10, zIndex: 50,
-            background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
+            background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #B9B9B7",
             padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
             letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
           }}
@@ -552,7 +552,7 @@ export function SlotImage({
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #B9B9B7",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
@@ -604,7 +604,7 @@ function SlotSwapPopover({ slot, fallback, onClose }: { slot: string; fallback: 
   return (
     <PopoverShell title="Change media" onClose={onClose}>
       <div style={{ fontSize: 11, color: "#6E6456", marginBottom: 10, lineHeight: 1.5 }}>Pick an image or a video — either can replace what is here now.</div>
-      <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#C8B99A", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
+      <label style={{ display: "inline-block", marginBottom: 10, padding: "7px 14px", background: "#B9B9B7", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
         {busy ? "Working…" : "Upload new"}
         <input type="file" accept="image/*,video/*" onChange={upload} style={{ display: "none" }} disabled={busy} />
       </label>
@@ -658,7 +658,7 @@ export function SlotVideo({
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #B9B9B7",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}
@@ -686,7 +686,7 @@ export function SlotVideoEditButton({ slot, fallback }: { slot: string; fallback
         onClick={(e) => { e.stopPropagation(); e.preventDefault(); setOpen(true); }}
         style={{
           position: "absolute", top: 10, right: 10, zIndex: 50,
-          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
+          background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #B9B9B7",
           padding: "6px 12px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
           letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
         }}

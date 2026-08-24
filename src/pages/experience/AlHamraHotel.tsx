@@ -6,7 +6,7 @@ import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow, EditableImage, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
-const PEARL      = "#C8B99A";
+const PEARL      = "#B9B9B7";
 const PEARL_TEXT = "#CD1719";
 const DARK       = "#1D1D1B";
 const CG         = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
@@ -117,7 +117,7 @@ export default function AlHamraHotel() {
                 style={{
                   padding: "clamp(22px,3vh,32px) clamp(20px,2vw,28px)",
                   background: "#fff",
-                  borderTop: `1px solid rgba(200,185,154,0.4)`,
+                  borderTop: `1px solid rgba(184,184,182,0.4)`,
                   display: "flex", flexDirection: "column", gap: 14,
                 }}
               >
@@ -218,7 +218,7 @@ export default function AlHamraHotel() {
                   color: PEARL_TEXT,
                   marginTop: 14,
                   paddingTop: 14,
-                  borderTop: "1px solid rgba(200,185,154,0.25)",
+                  borderTop: "1px solid rgba(184,184,182,0.25)",
                 }}>
                   {s.imageCaption}
                 </div>

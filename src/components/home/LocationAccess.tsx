@@ -100,7 +100,7 @@ export function LocationAccess() {
         <div ref={ref} style={{ maxWidth: 1360, margin: "0 auto" }}>
           {/* Eyebrow (left-aligned) */}
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-            <span style={{ width: 32, height: 1, background: "#C8B99A", flexShrink: 0 }} />
+            <span style={{ width: 32, height: 1, background: "#B9B9B7", flexShrink: 0 }} />
             <span style={{ fontFamily: FONT, fontSize: "11px", fontWeight: 500, letterSpacing: "0.4em", textTransform: "uppercase", color: PEARL_TEXT }}>
               <Editable id="page_prose:home2loc:eyebrow">{c.eyebrow}</Editable>
             </span>

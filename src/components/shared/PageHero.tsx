@@ -47,7 +47,7 @@ export function PageHero({ tag, title, subtitle, crumbs, editKey }: Props) {
         transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         style={{
           position: "absolute", left: 0, top: "15%", bottom: "15%", width: 2,
-          background: "linear-gradient(to bottom, #C8B99A, #D4CFC9 50%, #C8B99A)",
+          background: "linear-gradient(to bottom, #B9B9B7, #D4CFC9 50%, #B9B9B7)",
           transformOrigin: "top",
         }}
         aria-hidden="true"
@@ -106,7 +106,7 @@ export function PageHero({ tag, title, subtitle, crumbs, editKey }: Props) {
 
         {/* Gold underline accent */}
         <motion.div variants={fadeUp}>
-          <GoldLineDraw width={64} delay={0} color="linear-gradient(to right, #C8B99A, transparent)" height={1} />
+          <GoldLineDraw width={64} delay={0} color="linear-gradient(to right, #B9B9B7, transparent)" height={1} />
         </motion.div>
 
         {/* Subtitle */}

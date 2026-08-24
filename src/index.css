@@ -19,7 +19,7 @@
   --font-brand: 'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif;
   /* Arabic font stack — applied via [dir="rtl"] / [data-lang="ar"] selectors */
   --font-brand-ar: 'Noto Sans Arabic','Tajawal','Cairo','IBM Plex Sans Arabic','Segoe UI','Helvetica Neue',Arial,sans-serif;
-  --color-pearl: #C8B99A;         /* decorative use only — fails AA on white */
+  --color-pearl: #B9B9B7;         /* decorative use only — fails AA on white */
   --color-pearl-text: #CD1719;   /* accessible text variant — 4.78:1 on white */
   --color-dark:  #1D1D1B;
   --color-muted: #767676;
@@ -52,7 +52,7 @@ html[lang="ar"] {
 
 /* ── Design Tokens ──────────────────────────────────────────────────
    Single source of truth for all brand colours.
-   Use --color-muted (not #B2B2B2) and --color-sand-aa (not #C5A882)
+   Use --color-muted (not #B2B2B2) and --color-sand-aa (not #AEAEAC)
    for text on light backgrounds to pass WCAG AA.
    ─────────────────────────────────────────────────────────────────── */
 :root {
@@ -60,15 +60,15 @@ html[lang="ar"] {
   --color-dark:      #1D1D1B;
   --color-muted:     #767676;   /* 4.54:1 on white — AA ✅ (was #B2B2B2 at 2.12:1) */
   --color-muted-mid: #6B6B6B;   /* 5.33:1 on white — AA ✅ */
-  --color-sand:      #C5A882;   /* 8.71:1 on #0c0b09 — use only on DARK backgrounds */
+  --color-sand:      #AEAEAC;   /* 8.71:1 on #0c0b09 — use only on DARK backgrounds */
   --color-sand-aa:   #CD1719;   /* 4.58:1 on white — use on LIGHT backgrounds */
   --color-red:       #CD1719;   /* kept for bg use only */
-  --color-pearl:     #C8B99A;   /* warm pearl — accent on dark */
+  --color-pearl:     #B9B9B7;   /* warm pearl — accent on dark */
   --color-pearl-mid: #D4CFC9;   /* cool silver pearl */
   --color-pearl-aa:  #CD1719;   /* accessible pearl for text */
   --color-gulf:      #2A5F7A;   /* Arabian Gulf blue — dusk */
   --color-gulf-mid:  #3D7A96;   /* Gulf highlight */
-  --color-mashrabiya: rgba(197,168,130,0.04); /* geometric texture tint */
+  --color-mashrabiya: rgba(174,174,172,0.04); /* geometric texture tint */
   --color-cream:     #F5F0E8;
   --color-stone:     #E8E0D4;
   --color-white:     #FFFFFF;
@@ -739,7 +739,7 @@ summary:focus-visible,
   position: absolute;
   left: 0; bottom: -6px;
   width: 100%; height: 1px;
-  background: linear-gradient(to right, #C8B99A 0%, transparent 100%);
+  background: linear-gradient(to right, #B9B9B7 0%, transparent 100%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
@@ -810,7 +810,7 @@ summary:focus-visible,
 .ah-gold-rule {
   display: block;
   height: 1px;
-  background: linear-gradient(to right, #C8B99A 0%, rgba(200,185,154,0.3) 60%, transparent 100%);
+  background: linear-gradient(to right, #B9B9B7 0%, rgba(184,184,182,0.3) 60%, transparent 100%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
@@ -856,7 +856,7 @@ summary:focus-visible,
   position: absolute;
   left: 0; bottom: -2px;
   width: 100%; height: 1px;
-  background: #C8B99A;
+  background: #B9B9B7;
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);

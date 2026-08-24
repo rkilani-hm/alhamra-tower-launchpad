@@ -269,7 +269,7 @@ export function Services() {
           marginBottom: 48 }} className="grid-3col">
           {c.brands.map(({ category, brands }, i) => (
             <div key={category} style={{ background: "#FAFAFA",
-              padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #C8B99A" }}>
+              padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #B9B9B7" }}>
               <div style={{ fontFamily: FONT, fontSize: "10px",
                 letterSpacing: "0.3em", textTransform: "uppercase",
                 color: "#CD1719", marginBottom: 12 }}><Editable id={`page_prose:services:brands.${i}.category`}>{category}</Editable></div>
@@ -913,7 +913,7 @@ export function Downloads() {
       <style>{`
         .dl-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; align-items:stretch; }
         .dl-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(28px,2.4vw,38px) clamp(24px,2vw,32px); display:flex; flex-direction:column; height:100%; transition:background .25s ease, border-color .25s ease; }
-        .dl-card:hover{ background:#FAFAFA; border-color:rgba(200,185,154,0.5); }
+        .dl-card:hover{ background:#FAFAFA; border-color:rgba(184,184,182,0.5); }
         .dl-format{ font-family:var(--font-brand); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#CD1719; }
         .dl-title{ font-family:var(--font-brand); font-size:17px; font-weight:400; color:#1D1D1B; margin:16px 0 10px; line-height:1.3; }
         .dl-desc{ font-family:var(--font-brand); font-size:13px; color:#6B6B6B; line-height:1.7; margin-bottom:24px; }

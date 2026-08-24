@@ -49,8 +49,8 @@ function Frame({ children }: { children: ReactNode }) {
                   fontSize: 10,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  color: role === "manager" ? "#C8B99A" : "#9A8B73",
-                  border: `1px solid ${role === "manager" ? "#C8B99A" : "#4A453E"}`,
+                  color: role === "manager" ? "#B9B9B7" : "#9A8B73",
+                  border: `1px solid ${role === "manager" ? "#B9B9B7" : "#4A453E"}`,
                   padding: "2px 8px",
                 }}
               >

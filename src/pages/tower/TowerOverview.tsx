@@ -10,7 +10,7 @@ import { usePageContent } from "@/lib/useCmsContent";
 const CREAM  = "#F5F0E8";
 const STONE  = "#E8E0D4";
 const DARK   = "#1D1D1B";
-const PEARL  = "#C8B99A";
+const PEARL  = "#B9B9B7";
 
 /* ── Bilingual content dictionary ─────────────────────────────────────
    English copy preserved verbatim. Arabic copy sourced from
@@ -243,7 +243,7 @@ export default function TowerOverview() {
             <motion.div key={year + title}
               initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.06 }}
-              style={{ borderLeft: `1px solid rgba(200,185,154,0.4)`, paddingLeft: 24 }}>
+              style={{ borderLeft: `1px solid rgba(184,184,182,0.4)`, paddingLeft: 24 }}>
               <div style={{ fontFamily: FONT,
                 fontSize: "clamp(20px,2vw,28px)", fontWeight: 300, color: DARK, lineHeight: 1, marginBottom: 6 }}>
                 {year}
@@ -269,12 +269,12 @@ export default function TowerOverview() {
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
           <Link to="/tower/design" style={{ display: "inline-flex", alignItems: "center", gap: 12,
-            background: "none", border: `1px solid rgba(200,185,154,0.4)`, color: "#CD1719",
+            background: "none", border: `1px solid rgba(184,184,182,0.4)`, color: "#CD1719",
             fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.25em",
             textTransform: "uppercase", padding: "15px 32px", textDecoration: "none",
             transition: "border-color 0.3s ease, color 0.3s ease" }}
             onMouseEnter={e=>{e.currentTarget.style.borderColor=PEARL;e.currentTarget.style.color="#fff";}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(200,185,154,0.4)";e.currentTarget.style.color="#CD1719";}}>
+            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(184,184,182,0.4)";e.currentTarget.style.color="#CD1719";}}>
             <Editable id="page_prose:towerOverview:ctaPrimary">{c.ctaPrimary}</Editable>
           </Link>
           <Link to="/leasing/inquiry#inquiry-form" style={{ display: "inline-flex", alignItems: "center", gap: 12,

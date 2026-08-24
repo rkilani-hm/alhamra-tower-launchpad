@@ -5,7 +5,7 @@
    and could later be wired to the CMS the same way as the rest of the site. */
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
-const PEARL = "#C8B99A";
+const PEARL = "#B9B9B7";
 const PEARL_TEXT = "#CD1719";
 const DARK = "#1D1D1B";
 const MUTE = "#6B6B6B";

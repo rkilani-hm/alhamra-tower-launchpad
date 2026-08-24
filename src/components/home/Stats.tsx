@@ -40,7 +40,7 @@ interface Counter {
      2011        provenance (engineering by SOM San Francisco)
 ═════════════════════════════════════════════════════════════════════════ */
 
-const PEARL = "#C8B99A";
+const PEARL = "#B9B9B7";
 const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
 /* Expo-out count-up hook — animates `start`→`end` quantised to `step`,
@@ -106,7 +106,7 @@ function StatColumn({
       style={{
         flex: 1,
         padding: "clamp(28px,4vh,48px) clamp(16px,2vw,32px)",
-        borderRight: index < total - 1 ? "1px solid rgba(200,185,154,0.15)" : "none",
+        borderRight: index < total - 1 ? "1px solid rgba(184,184,182,0.15)" : "none",
         display: "flex", flexDirection: "column", gap: 6,
         textAlign: "center",
       }}
@@ -183,7 +183,7 @@ export function Stats() {
       {/* Ambient gold glow — centre */}
       <div aria-hidden="true" style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse at 50% 50%, rgba(200,185,154,0.06) 0%, transparent 60%)",
+        background: "radial-gradient(ellipse at 50% 50%, rgba(184,184,182,0.06) 0%, transparent 60%)",
       }} />
 
       <div ref={ref} style={{ maxWidth: 1360, margin: "0 auto", position: "relative" }}>
@@ -212,8 +212,8 @@ export function Stats() {
         <div className="stats-monuments-row" style={{
           display: "flex",
           alignItems: "stretch",
-          borderTop: "1px solid rgba(200,185,154,0.15)",
-          borderBottom: "1px solid rgba(200,185,154,0.15)",
+          borderTop: "1px solid rgba(184,184,182,0.15)",
+          borderBottom: "1px solid rgba(184,184,182,0.15)",
         }}>
           {list.map((c, i) => (
             <StatColumn
@@ -239,8 +239,8 @@ export function Stats() {
           .stats-monuments-row > * {
             flex: 1 1 33%;
             min-width: 33%;
-            border-right: 1px solid rgba(200,185,154,0.15) !important;
-            border-bottom: 1px solid rgba(200,185,154,0.15);
+            border-right: 1px solid rgba(184,184,182,0.15) !important;
+            border-bottom: 1px solid rgba(184,184,182,0.15);
           }
           .stats-monuments-row > *:nth-child(3n) {
             border-right: none !important;
@@ -255,7 +255,7 @@ export function Stats() {
             min-width: 50%;
           }
           .stats-monuments-row > *:nth-child(3n) {
-            border-right: 1px solid rgba(200,185,154,0.15) !important;
+            border-right: 1px solid rgba(184,184,182,0.15) !important;
           }
           .stats-monuments-row > *:nth-child(2n) {
             border-right: none !important;

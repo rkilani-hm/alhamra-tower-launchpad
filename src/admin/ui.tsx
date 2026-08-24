@@ -17,7 +17,7 @@ export function toEasternArabic(s: string): string {
   return s;
 }
 
-export const PEARL = "#C8B99A";
+export const PEARL = "#B9B9B7";
 export const DARK = "#1D1D1B";
 export const INK = "#3A3733";
 export const MUTE = "#6E6456";

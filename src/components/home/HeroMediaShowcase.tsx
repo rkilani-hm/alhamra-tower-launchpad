@@ -214,7 +214,7 @@ export function HeroMediaShowcase({
                 style={{
                   pointerEvents: "auto", width: i === safeIndex ? 26 : 9, height: 4,
                   padding: 0, border: "none", cursor: "pointer", borderRadius: 2,
-                  background: i === safeIndex ? "#C8B99A" : "rgba(255,255,255,0.45)",
+                  background: i === safeIndex ? "#B9B9B7" : "rgba(255,255,255,0.45)",
                   transition: "width 0.4s ease, background 0.3s ease",
                 }}
               />
@@ -257,7 +257,7 @@ export function HeroMediaShowcase({
           onClick={() => setManageOpen(true)}
           style={{
             position: "absolute", top: 84, right: 20, zIndex: 40,
-            background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #C8B99A",
+            background: "rgba(29,29,27,0.85)", color: "#CD1719", border: "1px solid #B9B9B7",
             padding: "8px 14px", fontFamily: "'Century Gothic',sans-serif", fontSize: 10,
             letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", backdropFilter: "blur(6px)",
           }}
@@ -348,7 +348,7 @@ function HeroGalleryManager({ onClose }: { onClose: () => void }) {
       <div style={{ fontSize: 11, color: "#6E6456", marginBottom: 12, lineHeight: 1.5 }}>
         Add as many videos and images as you like — they rotate in the hero, in this order. Newly added items are published (live) immediately.
       </div>
-      <label style={{ display: "inline-block", marginBottom: 14, padding: "8px 16px", background: "#C8B99A", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
+      <label style={{ display: "inline-block", marginBottom: 14, padding: "8px 16px", background: "#B9B9B7", color: "#1D1D1B", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer" }}>
         {busy ? "Working…" : "+ Add video or image"}
         <input type="file" accept="image/*,video/*" onChange={addFile} style={{ display: "none" }} disabled={busy} />
       </label>

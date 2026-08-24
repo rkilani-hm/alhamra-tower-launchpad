@@ -6,7 +6,7 @@ import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
-const PEARL  = "#C8B99A";
+const PEARL  = "#B9B9B7";
 const DARK   = "#1D1D1B";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
@@ -173,7 +173,7 @@ export default function TowerDesign() {
               loading="lazy" slot="towerDesign.trencadis" fallback="/assets/facade-trencadis-detail.jpg"
                   alt={lang === "ar" ? "واجهةُ برج الحمراء — تفصيلُ الحجر الجيريّ والترِنكاديس" : "Al Hamra Tower facade — limestone and trencadis mosaic detail"}
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,185,154,0.8)" }}><Editable id="page_prose:towerDesign:lobbyCaption2">{c.lobbyCaption2}</Editable></div>
+                <div style={{ position: "absolute", bottom: 8, left: 10, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(184,184,182,0.8)" }}><Editable id="page_prose:towerDesign:lobbyCaption2">{c.lobbyCaption2}</Editable></div>
               </div>
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function TowerDesign() {
           .team-credit-firm{ font-family:var(--font-brand); font-size:clamp(14px,1.05vw,16px); color:#1D1D1B; font-weight:300; line-height:1.45; }
           @media (max-width:560px){ .team-credit-grid{ grid-template-columns:1fr 1fr; } }
           .spec-card{ background:#fff; border:1px solid rgba(29,29,27,0.09); padding:clamp(26px,2.3vw,38px) clamp(22px,1.9vw,32px); }
-          .spec-card-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#CD1719; padding-bottom:16px; margin-bottom:6px; border-bottom:1px solid rgba(200,185,154,0.35); }
+          .spec-card-name{ display:block; font-family:var(--font-brand); font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#CD1719; padding-bottom:16px; margin-bottom:6px; border-bottom:1px solid rgba(184,184,182,0.35); }
           .spec-row{ padding:16px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
           .spec-row:last-child{ border-bottom:none; padding-bottom:2px; }
           .spec-row-label{ display:block; font-family:var(--font-brand); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#9a938a; margin-bottom:6px; }
@@ -306,7 +306,7 @@ export default function TowerDesign() {
         }
         .massing-scroll::-webkit-scrollbar { height: 2px; }
         .massing-scroll::-webkit-scrollbar-track { background: rgba(29,29,27,0.05); }
-        .massing-scroll::-webkit-scrollbar-thumb { background: rgba(200,185,154,0.5); border-radius: 1px; }
+        .massing-scroll::-webkit-scrollbar-thumb { background: rgba(184,184,182,0.5); border-radius: 1px; }
         .massing-item {
           flex: 0 0 auto;
           height: 340px;

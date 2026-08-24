@@ -66,7 +66,7 @@ export function FloorPlateSelector() {
               onMouseEnter={() => setActive(z)}
               style={{
                 cursor: "pointer",
-                fill: hot(z) ? "rgba(200,185,154,0.55)" : STONE,
+                fill: hot(z) ? "rgba(184,184,182,0.55)" : STONE,
                 stroke: "#fff",
                 strokeWidth: 2,
                 transition: "fill 0.3s ease",

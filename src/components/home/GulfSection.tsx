@@ -9,7 +9,7 @@ import { useT } from "@/lib/i18n";
    Beat 2 of the homepage journey.
 ──────────────────────────────────────────────────────────────────────── */
 
-const PEARL  = "#C8B99A";
+const PEARL  = "#B9B9B7";
 
 export function GulfSection() {
   const t = useT();
@@ -160,7 +160,7 @@ export function GulfSection() {
             <div
               style={{
                 textAlign: "right", maxWidth: 280,
-                borderLeft: `1px solid rgba(197,168,130,0.25)`,
+                borderLeft: `1px solid rgba(174,174,172,0.25)`,
                 paddingLeft: 24,
               }}
               className="gulf-fact-right"

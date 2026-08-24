@@ -15,7 +15,7 @@ import { Editable, SlotImage } from "@/lib/EditMode";
    Each card: full-bleed image, subtle dark overlay, label on hover.
 ──────────────────────────────────────────────────────────────────────── */
 
-const PEARL = "#C8B99A";
+const PEARL = "#B9B9B7";
 const DARK  = "#1D1D1B";
 const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -155,7 +155,7 @@ function Card({ card, index, t }: { card: typeof CARDS[number]; index: number; t
             letterSpacing: "0.25em", textTransform: "uppercase",
             color: "#fff",
             paddingTop: 4,
-            borderTop: `1px solid rgba(200,185,154,${hover ? 0.6 : 0.2})`,
+            borderTop: `1px solid rgba(184,184,182,${hover ? 0.6 : 0.2})`,
             transition: "border-color 0.3s ease",
           }}>
             <span><Editable id={`section_fields:experience:${card.keyPrefix.replace("experience.","")}.cta`}>{t(card.keyPrefix + ".cta")}</Editable></span>

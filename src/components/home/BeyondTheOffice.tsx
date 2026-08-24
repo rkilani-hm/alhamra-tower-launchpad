@@ -12,7 +12,7 @@ import { usePageContent } from "@/lib/useCmsContent";
 
 const FONT =
   "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
-const PEARL = "#C8B99A";
+const PEARL = "#B9B9B7";
 const PEARL_TEXT = "#CD1719";
 const DARK = "#1D1D1B";
 const MUTED = "#6B6B6B";
@@ -180,7 +180,7 @@ export function BeyondTheOffice() {
               gap: 12,
               padding: "16px 34px",
               border: `1px solid ${hover ? PEARL_TEXT : PEARL}`,
-              background: hover ? "rgba(200,185,154,0.16)" : "transparent",
+              background: hover ? "rgba(184,184,182,0.16)" : "transparent",
               color: hover ? DARK : PEARL_TEXT,
               fontFamily: FONT,
               fontSize: "10.5px",

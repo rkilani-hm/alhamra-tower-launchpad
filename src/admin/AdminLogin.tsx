@@ -43,7 +43,7 @@ export function AdminLogin() {
           <h1 style={{ fontSize: 26, fontWeight: 400, margin: "14px 0 0", letterSpacing: "0.02em" }}>
             Content Studio
           </h1>
-          <div style={{ height: 1, width: 48, background: "#C8B99A", margin: "18px auto 0", opacity: 0.6 }} />
+          <div style={{ height: 1, width: 48, background: "#B9B9B7", margin: "18px auto 0", opacity: 0.6 }} />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
@@ -85,7 +85,7 @@ export function AdminLogin() {
             style={{
               marginTop: 8,
               padding: "13px 16px",
-              background: busy ? "#7A6E58" : "#C8B99A",
+              background: busy ? "#7A6E58" : "#B9B9B7",
               color: "#1D1D1B",
               border: "none",
               fontFamily: "inherit",

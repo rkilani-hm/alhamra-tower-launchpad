@@ -18,7 +18,7 @@ const RED    = "#CD1719"; // Al Hamra CI red
 const DARK   = "#1D1D1B"; // numbers
 const SUB    = "#6B6B6B";  // muted descriptors
 const DIVIDER = "rgba(29,29,27,0.10)";
-const HAIR   = "#C8B99A";
+const HAIR   = "#B9B9B7";
 
 type Stat = { label: string; n: string; u?: string; sub: string };
 

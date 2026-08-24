@@ -11,7 +11,7 @@ import { usePageContent } from "@/lib/useCmsContent";
    MSA marketing register.
 ──────────────────────────────────────────────────────────────────────── */
 
-const PEARL = "#C8B99A";
+const PEARL = "#B9B9B7";
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -48,7 +48,7 @@ export function LeasingDownloads() {
       <div style={{
         position: "absolute", top: 0, right: 0,
         width: "40%", height: "60%", pointerEvents: "none",
-        background: `radial-gradient(ellipse at top right, rgba(197,168,130,0.12) 0%, transparent 70%)`,
+        background: `radial-gradient(ellipse at top right, rgba(174,174,172,0.12) 0%, transparent 70%)`,
       }} />
 
       <div style={{
@@ -153,7 +153,7 @@ export function LeasingDownloads() {
               to="/leasing/inquiry#inquiry-form"
               style={{
                 display: "inline-flex", alignItems: "center", gap: 16,
-                border: `1px solid rgba(200,185,154,0.35)`,
+                border: `1px solid rgba(184,184,182,0.35)`,
                 padding: "18px 36px",
                 fontFamily: FONT,
                 fontSize: "10.5px", fontWeight: 400,
@@ -165,10 +165,10 @@ export function LeasingDownloads() {
               onMouseEnter={e => {
                 e.currentTarget.style.borderColor = PEARL;
                 e.currentTarget.style.color = "#fff";
-                e.currentTarget.style.background = "rgba(200,185,154,0.08)";
+                e.currentTarget.style.background = "rgba(184,184,182,0.08)";
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.borderColor = "rgba(200,185,154,0.35)";
+                e.currentTarget.style.borderColor = "rgba(184,184,182,0.35)";
                 e.currentTarget.style.color = "#CD1719";
                 e.currentTarget.style.background = "transparent";
               }}

@@ -8,7 +8,7 @@ import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow, EditableImage, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
 
-const PEARL      = "#C8B99A";
+const PEARL      = "#B9B9B7";
 const PEARL_TEXT = "#CD1719";
 const DARK  = "#1D1D1B";
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
@@ -232,7 +232,7 @@ export default function TowerRising() {
                   {(c.lamella?.facts ?? []).map(({ n, l }, fi) => (
                     <EditableRow key={l} id={`stat_counters:towerRising:towerRising_${fi}`}>
                     <div style={{
-                      borderTop: "1px solid rgba(200,185,154,0.2)",
+                      borderTop: "1px solid rgba(184,184,182,0.2)",
                       paddingTop: 16,
                     }}>
                       <div style={{ fontFamily: FONT,

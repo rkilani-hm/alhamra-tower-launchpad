@@ -87,7 +87,7 @@ export default function TowerSustainability() {
                 </p>
                 <div style={{ fontFamily: FONT, fontSize: "10px",
                   letterSpacing: "0.2em", textTransform: "uppercase", color: PEARL_TEXT,
-                  paddingTop: 16, borderTop: "1px solid rgba(200,185,154,0.3)" }}><Editable id={`page_prose:towerSustain:pillars.${i}.stat`}>{stat}</Editable></div>
+                  paddingTop: 16, borderTop: "1px solid rgba(184,184,182,0.3)" }}><Editable id={`page_prose:towerSustain:pillars.${i}.stat`}>{stat}</Editable></div>
               </motion.div>
             );
           })}

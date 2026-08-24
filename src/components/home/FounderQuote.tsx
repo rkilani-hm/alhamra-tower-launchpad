@@ -13,7 +13,7 @@ import { Editable, SlotVideo } from "@/lib/EditMode";
    Not a "section" in our brochure sense — a literary interlude.
 ──────────────────────────────────────────────────────────────────────── */
 
-const PEARL      = "#C8B99A";
+const PEARL      = "#B9B9B7";
 const PEARL_TEXT = "#CD1719";
 const DARK       = "#1D1D1B";
 const CG         = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";

@@ -151,7 +151,7 @@ interface GoldLineDrawProps {
 export function GoldLineDraw({
   width   = 48,
   delay   = 0.15,
-  color   = "#C8B99A",
+  color   = "#B9B9B7",
   height  = 1,
   origin  = "left",
   margin  = "-40px",
@@ -202,7 +202,7 @@ export function SectionLabel({ children, delay = 0, color = "#6B6B6B", style }: 
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay }}
         style={{
           display: "block", width: 28, height: 1,
-          background: "#C8B99A", transformOrigin: "left", flexShrink: 0,
+          background: "#B9B9B7", transformOrigin: "left", flexShrink: 0,
         }}
         aria-hidden="true"
       />
