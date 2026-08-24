@@ -1,5 +1,4 @@
 import { PageLayout }  from "@/components/layout/PageLayout";
-import { FloorPlanViewer } from "@/components/shared/FloorPlanViewer";
 import { FloorPlateSelector } from "@/components/shared/FloorPlateSelector";
 import { PageHero }    from "@/components/shared/PageHero";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
@@ -473,22 +472,8 @@ export function OfficeSpaces() {
       </div>
 
       <div>
-        <div className="ah-section" style={{ paddingBottom: 0 }}>
-          <div style={{ fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 16 }}>
-            {c.floorPlansKicker}
-          </div>
-          <h2 style={{ fontFamily: FONT, fontSize: "clamp(22px,2.5vw,38px)", fontWeight: 200, letterSpacing: "-0.015em", color: "#1D1D1B", lineHeight: 1.2, marginBottom: 8 }}>
-            {c.floorPlansH2}
-          </h2>
-          <p style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1.65, maxWidth: 560 }}>
-            {c.floorPlansBody}
-          </p>
-        </div>
-        <div style={{ marginTop: 44 }}>
+        <div className="ah-section">
           <FloorPlateSelector />
-        </div>
-        <div style={{ marginTop: "clamp(56px,8vh,96px)" }}>
-          <FloorPlanViewer />
         </div>
       </div>
 
