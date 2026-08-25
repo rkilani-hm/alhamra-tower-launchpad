@@ -769,18 +769,23 @@ export function LeasingInquiry() {
     e.preventDefault();
     if (busy) return;
     setBusy(true); setError(false);
+    const payload = { name: form.name, email: form.email, subject: form.subject, message: form.message, lang };
     try {
-      // 1. Capture the lead — the submission is stored so it can never be lost.
-      const { error: insErr } = await supabase.from("leasing_inquiries" as any).insert({
-        name: form.name, email: form.email, subject: form.subject, message: form.message, lang,
+      // 1. Capture the lead so it can never be lost. Uses a raw REST call with
+      //    ONLY the apikey header — the new publishable key must NOT be sent as a
+      //    Bearer token for writes (that resolves a non-anon role and RLS blocks it).
+      const SUPA_URL = import.meta.env.VITE_SUPABASE_URL as string;
+      const SUPA_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
+      const res = await fetch(`${SUPA_URL}/rest/v1/leasing_inquiries`, {
+        method: "POST",
+        headers: { apikey: SUPA_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+        body: JSON.stringify(payload),
       });
-      if (insErr) throw insErr;
-      // 2. Best-effort notification + auto-reply. Runs once the `send-inquiry`
-      //    edge function is deployed with an email provider; the lead is already
-      //    saved above, so this never blocks the confirmation.
-      supabase.functions.invoke("send-inquiry", {
-        body: { name: form.name, email: form.email, subject: form.subject, message: form.message, lang },
-      }).catch(() => {});
+      if (!res.ok) throw new Error(`capture failed: ${res.status} ${await res.text()}`);
+      // 2. Best-effort notification + auto-reply via the send-inquiry edge
+      //    function. The lead is already saved, so this never blocks the
+      //    confirmation and is a no-op until the function is deployed.
+      supabase.functions.invoke("send-inquiry", { body: payload }).catch(() => {});
       setSent(true);
     } catch (err) {
       console.error("Leasing inquiry submit failed:", err);
