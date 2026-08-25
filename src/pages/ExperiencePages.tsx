@@ -475,7 +475,7 @@ export function Location() {
           <h2 style={{ fontFamily: FONT, fontWeight: 200, fontSize: "clamp(24px,3vw,44px)", color: "#1D1D1B", lineHeight: 1.15, letterSpacing: "-0.015em", margin: 0 }}>
             {lang === "ar" ? "موقعنا على الخريطة" : "Find Us on the Map"}
           </h2>
-          <div style={{ position: "relative", overflow: "hidden", marginTop: "clamp(28px,4vh,40px)", border: "1px solid rgba(29,29,27,0.09)" }}>
+          <div className="map-embed" style={{ position: "relative", overflow: "hidden", marginTop: "clamp(28px,4vh,40px)", border: "1px solid rgba(29,29,27,0.12)" }}>
             <iframe
               title={lang === "ar" ? "خريطة موقع برج الحمرا" : "Al Hamra Tower location map"}
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13906.804899724413!2d47.9932889!3d29.3790362!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa814d6b5243fa3a8!2sAl%20Hamra%20Shopping%20Center!5e0!3m2!1sen!2sin!4v1602055397093!5m2!1sen!2sin"
@@ -485,6 +485,11 @@ export function Location() {
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
+          <style>{`
+            /* Mute the map to the site's refined, low-chroma palette; restore full colour on hover so it stays usable. */
+            .map-embed iframe { filter: grayscale(0.62) contrast(1.02) brightness(1.03); transition: filter 0.55s ease; }
+            .map-embed:hover iframe { filter: grayscale(0); }
+          `}</style>
         </div>
       </div>
 
