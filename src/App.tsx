@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { MotionConfig, AnimatePresence, motion } from "framer-motion";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 import { Toaster }         from "@/components/ui/toaster";
@@ -66,8 +66,12 @@ function AnimatedRoutes() {
           <Route path="/admin/*"                        element={<AdminApp />} />
 
           {/* Homepage */}
-          <Route path="/"                               element={<Index />} />
-          <Route path="/home2"                          element={<Home2 />} />
+          {/* Home2 is now the live home page. The original home is kept but
+              hidden at /home-original (renamed, not deleted). /home2 redirects
+              to / so any existing links keep working. */}
+          <Route path="/"                               element={<Home2 />} />
+          <Route path="/home-original"                  element={<Index />} />
+          <Route path="/home2"                          element={<Navigate to="/" replace />} />
 
           {/* Tower */}
           <Route path="/tower"                          element={<TowerOverview />} />
