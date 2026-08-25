@@ -1,1 +1,7 @@
 project_id = "iiraesegeucbkjlqttxx"
+
+# Public website calls this function without a logged-in user, so JWT
+# verification must be off. Secrets (MS_TENANT_ID, MS_CLIENT_ID,
+# MS_CLIENT_SECRET, LEASING_MAILBOX) are set in the Lovable/Supabase backend.
+[functions.send-inquiry]
+verify_jwt = false
