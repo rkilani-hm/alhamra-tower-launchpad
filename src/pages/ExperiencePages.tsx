@@ -7,6 +7,7 @@ import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/c
 import { useI18n } from "@/lib/i18n";
 import { usePageContent } from "@/lib/useCmsContent";
 import { SlotImage, Editable } from "@/lib/EditMode";
+import { supabase } from "@/integrations/supabase/client";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -761,10 +762,32 @@ export function LeasingInquiry() {
   const c = usePageContent<any>("inquiry", INQUIRY_CONTENT[lang], lang);
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    if (busy) return;
+    setBusy(true); setError(false);
+    try {
+      // 1. Capture the lead — the submission is stored so it can never be lost.
+      const { error: insErr } = await supabase.from("leasing_inquiries" as any).insert({
+        name: form.name, email: form.email, subject: form.subject, message: form.message, lang,
+      });
+      if (insErr) throw insErr;
+      // 2. Best-effort notification + auto-reply. Runs once the `send-inquiry`
+      //    edge function is deployed with an email provider; the lead is already
+      //    saved above, so this never blocks the confirmation.
+      supabase.functions.invoke("send-inquiry", {
+        body: { name: form.name, email: form.email, subject: form.subject, message: form.message, lang },
+      }).catch(() => {});
+      setSent(true);
+    } catch (err) {
+      console.error("Leasing inquiry submit failed:", err);
+      setError(true);
+    } finally {
+      setBusy(false);
+    }
   };
 
   const inputStyle: React.CSSProperties = {
@@ -838,16 +861,24 @@ export function LeasingInquiry() {
                     style={{ ...inputStyle, resize: "none" }}
                   />
                 </div>
-                <button type="submit" style={{
+                <button type="submit" disabled={busy} style={{
                   alignSelf: "flex-start", marginTop: 8,
                   background: "#1D1D1B", color: "#fff",
                   fontFamily: FONT, fontSize: "10.5px", fontWeight: 500,
                   letterSpacing: "0.22em", textTransform: "uppercase",
-                  padding: "15px 40px", border: "none", cursor: "pointer",
-                  transition: "opacity 0.3s",
+                  padding: "15px 40px", border: "none", cursor: busy ? "default" : "pointer",
+                  opacity: busy ? 0.6 : 1, transition: "opacity 0.3s",
                 }}>
-                  <Editable id="page_prose:inquiry:submitLabel">{c.submitLabel}</Editable>
+                  {busy ? (lang === "ar" ? "جارٍ الإرسال…" : "Sending…")
+                        : <Editable id="page_prose:inquiry:submitLabel">{c.submitLabel}</Editable>}
                 </button>
+                {error && (
+                  <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#CD1719", lineHeight: 1.7 }}>
+                    {lang === "ar"
+                      ? "تعذّر إرسال الطلب. يُرجى المحاولة مرة أخرى أو مراسلتنا مباشرةً على leasing@alhamra.com.kw."
+                      : "We couldn’t submit your request. Please try again, or email us directly at leasing@alhamra.com.kw."}
+                  </div>
+                )}
               </form>
               </>
             )}
