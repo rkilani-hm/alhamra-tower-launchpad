@@ -465,6 +465,28 @@ export function Location() {
         </div>
       </Section>
 
+      {/* How to reach us — embedded Google Map */}
+      <div style={{ background: "#FAFAFA", padding: "clamp(56px,8vh,100px) clamp(28px,6vw,96px)" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto" }}>
+          <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 16 }}>
+            {lang === "ar" ? "كيفية الوصول" : "How to Reach Us"}
+          </div>
+          <h2 style={{ fontFamily: FONT, fontWeight: 200, fontSize: "clamp(24px,3vw,44px)", color: "#1D1D1B", lineHeight: 1.15, letterSpacing: "-0.015em", margin: 0 }}>
+            {lang === "ar" ? "موقعنا على الخريطة" : "Find Us on the Map"}
+          </h2>
+          <div style={{ position: "relative", overflow: "hidden", marginTop: "clamp(28px,4vh,40px)", border: "1px solid rgba(29,29,27,0.09)" }}>
+            <iframe
+              title={lang === "ar" ? "خريطة موقع برج الحمرا" : "Al Hamra Tower location map"}
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13906.804899724413!2d47.9932889!3d29.3790362!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa814d6b5243fa3a8!2sAl%20Hamra%20Shopping%20Center!5e0!3m2!1sen!2sin!4v1602055397093!5m2!1sen!2sin"
+              style={{ width: "100%", height: "clamp(320px,45vw,520px)", border: 0, display: "block" }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </div>
+
       <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="location" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
       <style>{`
         @media (max-width: 640px) {
