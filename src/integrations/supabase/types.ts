@@ -227,6 +227,42 @@ export type Database = {
           },
         ]
       }
+      leasing_inquiries: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          lang: string | null
+          message: string
+          name: string
+          source: string
+          status: string
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          lang?: string | null
+          message: string
+          name: string
+          source?: string
+          status?: string
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          lang?: string | null
+          message?: string
+          name?: string
+          source?: string
+          status?: string
+          subject?: string | null
+        }
+        Relationships: []
+      }
       media_assets: {
         Row: {
           alt_ar: string | null
