@@ -39,7 +39,6 @@ const NAV = [
     links: [
       { labelKey: "nav.sub.opportunities", href: "/leasing"                      },
       { labelKey: "nav.sub.inquiry",       href: "/leasing/inquiry#inquiry-form" },
-      { labelKey: "nav.sub.downloads",     href: "/leasing/downloads"            },
       { labelKey: "nav.sub.contact",       href: "/leasing/contact"              },
     ],
   },
