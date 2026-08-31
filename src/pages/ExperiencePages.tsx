@@ -735,7 +735,7 @@ const INQUIRY_CONTENT = {
     submitLabel: "Submit Inquiry",
     contactTag: "Contact Details",
     contactRows: [
-      { label: "Phone",   value: "+965 2227 5000" },
+      { label: "Phone",   value: "+965 182 9000" },
       { label: "Email",   value: "leasing@alhamratower.com" },
       { label: "Address", value: "Al Hamra Tower, Jaber Al Mubarak Street, Sharq, Kuwait City, Kuwait" },
       { label: "Hours",   value: "Sunday – Thursday · 8:00 AM – 6:00 PM" },
@@ -754,7 +754,7 @@ const INQUIRY_CONTENT = {
     submitLabel: "إرسال الاستفسار",
     contactTag: "تفاصيل التواصل",
     contactRows: [
-      { label: "الهاتف",          value: "+٩٦٥ ٢٢٢٧ ٥٠٠٠" },
+      { label: "الهاتف",          value: "+٩٦٥ ١٨٢ ٩٠٠٠" },
       { label: "البريد الإلكتروني", value: "leasing@alhamratower.com" },
       { label: "العنوان",          value: "برج الحمراء، شارع جابر المبارك، منطقة شرق، مدينة الكويت، الكويت" },
       { label: "ساعات العمل",       value: "الأحد – الخميس · ٨:٠٠ صباحاً – ٦:٠٠ مساءً" },
@@ -898,12 +898,22 @@ export function LeasingInquiry() {
           <Rv delay={0.15}>
             <div>
               <Tag><Editable id="page_prose:inquiry:contactTag">{c.contactTag}</Editable></Tag>
-              {c.contactRows.map(({ label, value }, i) => (
+              {c.contactRows.map(({ label, value }, i) => {
+                // Phone rows (only phone-like characters) become a tel: link so
+                // mobile opens the dialer. Arabic-Indic digits are converted to
+                // ASCII for the dial string while the displayed value stays localized.
+                const isPhone = /^[+\s\d()\-٠-٩]{6,}$/.test(String(value).trim());
+                const telHref = "tel:" + String(value).replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d))).replace(/[^\d+]/g, "");
+                const editable = <Editable id={`page_prose:inquiry:contactRows.${i}.value`}>{value}</Editable>;
+                return (
                 <div key={label} style={{ padding: "18px 0", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
                   <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 6 }}><Editable id={`page_prose:inquiry:contactRows.${i}.label`}>{label}</Editable></div>
-                  <div style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}><Editable id={`page_prose:inquiry:contactRows.${i}.value`}>{value}</Editable></div>
+                  <div style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}>
+                    {isPhone ? <a href={telHref} style={{ color: "inherit", textDecoration: "none" }}>{editable}</a> : editable}
+                  </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </Rv>
         </div>
