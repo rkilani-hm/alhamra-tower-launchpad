@@ -909,7 +909,7 @@ export function LeasingInquiry() {
                 <div key={label} style={{ padding: "18px 0", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
                   <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 6 }}><Editable id={`page_prose:inquiry:contactRows.${i}.label`}>{label}</Editable></div>
                   <div style={{ fontFamily: FONT, fontSize: "14px", fontWeight: 300, color: "#1D1D1B" }}>
-                    {isPhone ? <a href={telHref} style={{ color: "inherit", textDecoration: "none" }}>{editable}</a> : editable}
+                    {isPhone ? <a href={telHref} dir="ltr" style={{ color: "inherit", textDecoration: "none", direction: "ltr", unicodeBidi: "isolate", display: "inline-block" }}>{editable}</a> : editable}
                   </div>
                 </div>
                 );
