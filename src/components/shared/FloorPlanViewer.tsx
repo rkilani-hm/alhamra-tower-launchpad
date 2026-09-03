@@ -15,6 +15,9 @@ const PLANS = [
 
 export function FloorPlanViewer() {
   const t = useT();
+  /* Cursor-follow magnify: hovering the plan scales it up with the transform
+     origin tracking the pointer, so visitors can focus on part of the plan. */
+  const [zoom, setZoom] = useState({ x: 50, y: 50, on: false });
   /* t() returns the key itself when a string is missing/unpublished; tf falls
      back to the structural default so the level badge never shows a raw key. */
   const tf = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
@@ -142,18 +145,29 @@ export function FloorPlanViewer() {
               </div>
             </div>
 
-            {/* Right — floor plan image */}
+            {/* Right — floor plan image (hover to magnify / focus) */}
             <div
               role="tabpanel"
               id={`floorplan-panel-${active}`}
               aria-labelledby={`floorplan-tab-${active}`}
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect();
+                setZoom({
+                  x: ((e.clientX - r.left) / r.width) * 100,
+                  y: ((e.clientY - r.top) / r.height) * 100,
+                  on: true,
+                });
+              }}
+              onMouseLeave={() => setZoom((z) => ({ ...z, on: false }))}
               style={{
                 background: "#F7F6F4",
-                padding: "40px",
+                padding: "34px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                minHeight: 560,
+                minHeight: 476,
+                overflow: "hidden",
+                cursor: "zoom-in",
               }}>
               <SlotImage
                 slot={`floorplan.${plan.id}`}
@@ -163,9 +177,13 @@ export function FloorPlanViewer() {
                 style={{
                   width: "100%",
                   height: "auto",
-                  maxHeight: "min(600px, 70vw)",
+                  maxHeight: "min(510px, 60vw)",
                   objectFit: "contain",
                   display: "block",
+                  transform: zoom.on ? "scale(2.4)" : "scale(1)",
+                  transformOrigin: `${zoom.x}% ${zoom.y}%`,
+                  transition: "transform 0.12s ease-out",
+                  willChange: "transform",
                 }}
               />
             </div>

@@ -189,7 +189,7 @@ export default function BusinessCentre() {
                 <div style={{
                   position: "absolute", top: 16, left: 16,
                   background: "rgba(29,29,27,0.82)",
-                  color: "#CD1719", padding: "6px 12px",
+                  color: "#fff", padding: "6px 12px",
                   fontFamily: CG, fontSize: "10px", letterSpacing: "0.28em",
                   backdropFilter: "blur(8px)",
                 }}>
@@ -230,15 +230,7 @@ export default function BusinessCentre() {
         </div>
       </Section>
 
-      {/* ── CTA ───────────────────────────────────────────────────── */}
-      <DarkBand
-        title={c.ctaTitle}
-        subtitle={c.ctaSubtitle}
-        ctaLabel={c.ctaLabel}
-        ctaHref="/leasing/inquiry#inquiry-form"
-        editKey="businessCentre"
-        editFields={{ title: "ctaTitle", subtitle: "ctaSubtitle", cta: "ctaLabel" }}
-      />
+      {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
 
       {/* Direct contact detail strip */}
       <div style={{

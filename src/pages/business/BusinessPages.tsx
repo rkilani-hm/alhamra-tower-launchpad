@@ -4,6 +4,8 @@ import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/c
 import { useI18n }     from "@/lib/i18n";
 import { usePageContent } from "@/lib/useCmsContent";
 import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
+import { FloorPlateSelector } from "@/components/shared/FloorPlateSelector";
+import { HeroImageCentered } from "@/components/shared/HeroImageCentered";
 
 /* Minimal line icons for the Flexibility & Fit-Out feature cards, index-mapped:
    open floor plate · ceiling clearance · fit-out plan · modular partitions.
@@ -89,13 +91,14 @@ export function WorkplaceExperience() {
   const c = usePageContent<any>("workplace", WORKPLACE_CONTENT[lang], lang);
   return (
     <PageLayout>
-      <PageHero
-        editKey="workplace"
-        tag={c.tag}
-        title={c.title}
-        subtitle={c.subtitle}
-        crumbs={[{ label: c.crumbHome, href: "/" }, { label: c.crumbBusiness, href: "/business" }]}
-      />
+      <HeroImageCentered
+        slot="workplace.hero"
+        image="/assets/sky-lobby-panoramic.jpg"
+        alt={lang === "ar" ? "تجربة العمل في برج الحمراء" : "The workplace experience at Al Hamra Tower"}
+        editId="page_prose:workplace:title"
+      >
+        {c.title}
+      </HeroImageCentered>
 
       <div style={{ maxWidth: 1360, margin: "0 auto" }}>
         <StatsBar stats={[...c.stats]} editKey="workplace" />
@@ -153,7 +156,16 @@ export function WorkplaceExperience() {
         </div>
       </Section>
 
-      <DarkBand title={c.darkTitle} ctaLabel={c.darkCta} ctaHref="/business/office-spaces" editKey="workplace" />
+      {/* ── Floor map — interactive typical-floor selector (merged from Business) ── */}
+      <Section>
+        <div style={{ textAlign: "center", maxWidth: 720, margin: "0 auto clamp(36px,5vh,60px)" }}>
+          <Rv><Tag><Editable id="page_prose:workplace:floorMapTag">{c.floorMapTag ?? (lang === "ar" ? "مخطط الطابق" : "The Floor Plate")}</Editable></Tag></Rv>
+          <Rv delay={0.1}><H2><Editable id="page_prose:workplace:floorMapH2">{c.floorMapH2 ?? (lang === "ar" ? "طابقٌ نموذجيّ، أربعة أجنحة" : "One typical floor, four suites")}</Editable></H2></Rv>
+        </div>
+        <FloorPlateSelector />
+      </Section>
+
+      {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
     </PageLayout>
   );
 }

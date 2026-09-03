@@ -48,7 +48,10 @@ export default function TowerDesign() {
   // credits layout so it doesn't render as one tall, narrow card. Matched in
   // both EN and AR by category name.
   const isTeam = (cat: string) => /engineering team|الفريق الهندس/i.test(cat || "");
-  const techSpecs = (c.specs ?? []).filter((s: any) => !isTeam(s.cat));
+  // Spec table reduced to three columns — the Floors and Services groups leave,
+  // as those belong with the leasing transaction (deck slide 6).
+  const isDropped = (cat: string) => /^floors$|^services$|الطوابق|الخدمات/i.test(cat || "");
+  const techSpecs = (c.specs ?? []).filter((s: any) => !isTeam(s.cat) && !isDropped(s.cat));
   const teamGroup = (c.specs ?? []).find((s: any) => isTeam(s.cat));
 
   return (
@@ -263,6 +266,7 @@ export default function TowerDesign() {
           </div>
         </motion.div>
 
+        {/* ── Engineering blueprints gallery — six drawings ─────────── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.15 }}
@@ -270,22 +274,31 @@ export default function TowerDesign() {
           <div style={{ fontFamily: FONT,
             fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase",
             color: "#6B6B6B", marginBottom: 20 }}>
-            <Editable id="page_prose:towerDesign:drawingsElevKicker">{c.drawingsElevKicker}</Editable>
+            <Editable id="page_prose:towerDesign:blueprintsKicker">{c.blueprintsKicker ?? (lang === "ar" ? "المخططات الهندسية" : "Engineering Blueprints")}</Editable>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}
-            className="elevation-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}
+            className="blueprint-grid">
             {[
-              { src: "/assets/drawings/south-wall-elevation.jpg", label: c.drawingsLabelSouth, fld: "drawingsLabelSouth" },
-              { src: "/assets/drawings/massing-05-elevation.jpg", label: c.drawingsLabelContext, fld: "drawingsLabelContext" },
-            ].map(({ src, label, fld }) => (
-              <div key={label}>
-                <SlotImage slot={`towerDesign.drawing.${fld}`} fallback={src} alt={label} loading="lazy"
-                  style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }} />
-                <div style={{ fontFamily: FONT,
-                  fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
-                  color: "#6B6B6B", marginTop: 12 }}><Editable id={`page_prose:towerDesign:${fld}`}>{label}</Editable></div>
-              </div>
-            ))}
+              { fld: "blueprint1", src: "/assets/drawings/south-wall-elevation.jpg", en: "South Wall Elevation",   ar: "مسقط الجدار الجنوبي" },
+              { fld: "blueprint2", src: "/assets/drawings/massing-05-elevation.jpg", en: "Massing Study",          ar: "دراسة الكتلة" },
+              { fld: "blueprint3", src: "/assets/drawings/floor-plan-typical.jpg",   en: "Typical Floor Plate",    ar: "مخطط الطابق النموذجي" },
+              { fld: "blueprint4", src: "/assets/drawings/south-wall-elevation.jpg", en: "Structural Section",     ar: "المقطع الإنشائي" },
+              { fld: "blueprint5", src: "/assets/drawings/massing-05-elevation.jpg", en: "Curtain Wall Detail",    ar: "تفصيل الجدار الستائري" },
+              { fld: "blueprint6", src: "/assets/drawings/floor-plan-typical.jpg",   en: "Core & Circulation",     ar: "النواة والحركة" },
+            ].map(({ fld, src, en, ar }) => {
+              const label = lang === "ar" ? ar : en;
+              return (
+                <div key={fld}>
+                  <div style={{ overflow: "hidden", background: "#fff", border: "1px solid rgba(29,29,27,0.07)", aspectRatio: "4/3" }}>
+                    <SlotImage slot={`towerDesign.${fld}`} fallback={src} alt={label} loading="lazy"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </div>
+                  <div style={{ fontFamily: FONT,
+                    fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase",
+                    color: "#6B6B6B", marginTop: 12 }}><Editable id={`page_prose:towerDesign:${fld}`}>{label}</Editable></div>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
@@ -315,12 +328,18 @@ export default function TowerDesign() {
         }
         .massing-item img { object-fit: contain; }
 
+        @media (max-width: 900px) {
+          .blueprint-grid { grid-template-columns: 1fr 1fr !important; }
+        }
         @media (max-width: 768px) {
           .design-grid-1, .design-grid-2 { grid-template-columns: 1fr !important; }
           .spec-table-grid { grid-template-columns: 1fr !important; }
           .design-drawing-grid { grid-template-columns: 1fr !important; }
           .elevation-grid { grid-template-columns: 1fr !important; }
           .massing-item { height: 240px; }
+        }
+        @media (max-width: 540px) {
+          .blueprint-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </PageLayout>

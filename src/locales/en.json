@@ -21,8 +21,12 @@
       "overview": "Overview",
       "rising": "Rising with Purpose",
       "design": "Design & Engineering",
+      "engineering": "Engineering",
       "awards": "Awards & Recognition",
       "sustainability": "Sustainability",
+      "experienceOverview": "The Experience",
+      "experience2": "Experience-2",
+      "businessSupport": "Business Support",
       "workplace": "Workplace Experience",
       "offices": "Office Spaces",
       "vertical": "Vertical Transportation",
@@ -323,6 +327,13 @@
     "hoursValue": "Sun – Thu · 8:00 AM – 6:00 PM",
     "address": "Address",
     "addressValue": "Sharq, Kuwait City, Kuwait"
+  },
+  "closingBand": {
+    "kicker": "The Address",
+    "headline": "Secure Your Position in Sharq",
+    "sub": "A limited number of floors remain in Kuwait's most recognised business address. Enquire to review availability, floor plates and terms.",
+    "ctaPrimary": "Enquire Now",
+    "ctaSecondary": "View Opportunities"
   },
   "footer": {
     "copyright": "© 2026 Al Hamra Real Estate Company. All rights reserved.",
@@ -635,7 +646,7 @@
           "l": "South-facing offices"
         }
       ],
-      "lamellaKicker": "The Lamella Structure",
+      "lamellaKicker": "The Engineering Feat",
       "lamellaHeadingLine1": "24 metres. No columns.\nEngineered to be impossible.",
       "lamellaP1": "The main lobby rises 24 metres without a single column — achieved through the lamella bracing system. The north tower columns, vertical from Level 12 upward, slope outward following a circular arch from 60 metres high, intercepting the ground slab 7.6 metres further north than a vertical column would.",
       "lamellaP2": "Five interlocking element types — A, B, C, D, E — form a three-dimensional web. Non-linear buckling analysis confirmed the system: adding the D elements alone increased buckling resistance by a factor of two. All fiberglass formwork moulds were fabricated directly from parametric 3D models — an early milestone in computational construction.",

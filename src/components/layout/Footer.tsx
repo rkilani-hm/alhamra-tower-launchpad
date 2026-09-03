@@ -13,25 +13,18 @@ const NAV = [
     links: [
       { labelKey: "nav.sub.overview",       href: "/tower"                  },
       { labelKey: "nav.sub.rising",         href: "/tower/rising"           },
-      { labelKey: "nav.sub.design",         href: "/tower/design"           },
-      { labelKey: "nav.sub.awards",         href: "/tower/recognition"      },
+      { labelKey: "nav.sub.engineering",    href: "/tower/engineering"      },
+      { labelKey: "nav.sub.awards",         href: "/tower/awards"           },
       { labelKey: "nav.sub.sustainability", href: "/tower/sustainability"   },
-    ],
-  },
-  {
-    titleKey: "nav.business",
-    links: [
-      { labelKey: "nav.sub.workplace",    href: "/business"                         },
-      { labelKey: "nav.sub.offices",      href: "/business/office-spaces"           },
-      { labelKey: "nav.sub.vertical",     href: "/business/vertical-transportation" },
-      { labelKey: "nav.sub.connectivity", href: "/business/connectivity"            },
     ],
   },
   {
     titleKey: "nav.experience",
     links: [
-      { labelKey: "nav.sub.servicesFull", href: "/services" },
-      { labelKey: "nav.sub.locationFull", href: "/location" },
+      { labelKey: "nav.sub.experienceOverview", href: "/experience/overview"         },
+      { labelKey: "nav.sub.servicesFull",       href: "/experience/services"         },
+      { labelKey: "nav.sub.businessSupport",    href: "/experience/business-support" },
+      { labelKey: "nav.sub.locationFull",       href: "/experience/location"         },
     ],
   },
   {
@@ -39,7 +32,6 @@ const NAV = [
     links: [
       { labelKey: "nav.sub.opportunities", href: "/leasing"                      },
       { labelKey: "nav.sub.inquiry",       href: "/leasing/inquiry#inquiry-form" },
-      { labelKey: "nav.sub.contact",       href: "/leasing/contact"              },
     ],
   },
 ];

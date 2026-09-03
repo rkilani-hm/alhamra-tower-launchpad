@@ -36,6 +36,7 @@ import Terms   from "./pages/Terms";
 /* Experience pages (separate files) */
 import BusinessCentre from "./pages/experience/BusinessCentre";
 import AlHamraHotel   from "./pages/experience/AlHamraHotel";
+import Experience2    from "./pages/experience/Experience2";
 
 /* i18n */
 import { I18nProvider } from "@/lib/i18n";
@@ -73,30 +74,40 @@ function AnimatedRoutes() {
           <Route path="/home-original"                  element={<Index />} />
           <Route path="/home2"                          element={<Navigate to="/" replace />} />
 
-          {/* Tower */}
-          <Route path="/tower"                          element={<TowerOverview />} />
-          <Route path="/tower/rising"                   element={<TowerRising />} />
-          <Route path="/tower/design"                   element={<TowerDesign />} />
-          <Route path="/tower/recognition"              element={<TowerAwards />} />
-          <Route path="/tower/sustainability"           element={<TowerSustainability />} />
+          {/* ── The Tower ─────────────────────────────────────────── */}
+          <Route path="/tower"                element={<TowerOverview />} />
+          <Route path="/tower/rising"         element={<TowerRising />} />
+          <Route path="/tower/engineering"    element={<TowerDesign />} />
+          <Route path="/tower/awards"         element={<TowerAwards />} />
+          <Route path="/tower/sustainability" element={<TowerSustainability />} />
+          {/* renamed — keep old URLs working */}
+          <Route path="/tower/design"         element={<Navigate to="/tower/engineering" replace />} />
+          <Route path="/tower/recognition"    element={<Navigate to="/tower/awards" replace />} />
 
-          {/* Business */}
-          <Route path="/business"                       element={<WorkplaceExperience />} />
-          <Route path="/business/office-spaces"         element={<OfficeSpaces />} />
-          <Route path="/business/vertical-transportation" element={<VerticalTransportation />} />
-          <Route path="/business/connectivity"          element={<Connectivity />} />
+          {/* ── Experience (Business dissolved into here + Leasing) ── */}
+          <Route path="/experience/overview"         element={<WorkplaceExperience />} />
+          <Route path="/experience/services"         element={<Services />} />
+          <Route path="/experience/business-support" element={<BusinessCentre />} />
+          <Route path="/experience/experience-2"     element={<Experience2 />} />
+          <Route path="/experience/location"         element={<Location />} />
+          {/* moved/renamed — redirect old URLs */}
+          <Route path="/services"        element={<Navigate to="/experience/services" replace />} />
+          <Route path="/business-centre" element={<Navigate to="/experience/business-support" replace />} />
+          <Route path="/location"        element={<Navigate to="/experience/location" replace />} />
+          <Route path="/hotel"           element={<Navigate to="/experience/services" replace />} />
 
-          {/* Experience */}
-          <Route path="/services"                       element={<Services />} />
-          <Route path="/location"                       element={<Location />} />
-          <Route path="/business-centre"                element={<BusinessCentre />} />
-          <Route path="/hotel"                          element={<AlHamraHotel />} />
+          {/* ── Business — dissolved; every old URL redirects ──────── */}
+          <Route path="/business"                         element={<Navigate to="/experience/overview" replace />} />
+          <Route path="/business/office-spaces"           element={<Navigate to="/leasing" replace />} />
+          <Route path="/business/vertical-transportation" element={<Navigate to="/tower/engineering" replace />} />
+          <Route path="/business/connectivity"            element={<Navigate to="/experience/overview" replace />} />
 
-          {/* Leasing */}
-          <Route path="/leasing"                        element={<LeasingOpportunities />} />
-          <Route path="/leasing/inquiry"                element={<LeasingInquiry />} />
-          <Route path="/leasing/downloads"              element={<Downloads />} />
-          <Route path="/leasing/contact"                element={<Contact />} />
+          {/* ── Leasing ───────────────────────────────────────────── */}
+          <Route path="/leasing"          element={<LeasingOpportunities />} />
+          <Route path="/leasing/inquiry"  element={<LeasingInquiry />} />
+          {/* Contact merged into Inquiry; Downloads now a section on Opportunities */}
+          <Route path="/leasing/contact"   element={<Navigate to="/leasing/inquiry" replace />} />
+          <Route path="/leasing/downloads" element={<Navigate to="/leasing" replace />} />
 
           {/* Legal */}
           <Route path="/privacy"                        element={<Privacy />} />

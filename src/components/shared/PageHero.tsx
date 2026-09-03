@@ -40,32 +40,20 @@ export function PageHero({ tag, title, subtitle, crumbs, editKey }: Props) {
         overflow: "hidden",
       }}
     >
-      {/* Animated left pearl rule */}
-      <motion.div
-        initial={{ scaleY: 0, opacity: 0 }}
-        animate={{ scaleY: 1, opacity: 1 }}
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        style={{
-          position: "absolute", left: 0, top: "15%", bottom: "15%", width: 2,
-          background: "linear-gradient(to bottom, #B9B9B7, #D4CFC9 50%, #B9B9B7)",
-          transformOrigin: "top",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Stagger container */}
+      {/* Stagger container — title only, centred (tag line + subtitle removed) */}
       <motion.div
         variants={staggerSlow}
         initial="hidden"
         animate="visible"
-        style={{ position: "relative", zIndex: 1 }}
+        style={{ position: "relative", zIndex: 1,
+          display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}
       >
         {/* Breadcrumb */}
         {crumbs && crumbs.length > 0 && (
           <motion.div
             variants={fadeUp}
             style={{
-              display: "flex", alignItems: "center", gap: 8, marginBottom: 40,
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 32,
               fontFamily: CG, fontSize: "10px", letterSpacing: "0.25em",
               textTransform: "uppercase",
             }}
@@ -84,15 +72,7 @@ export function PageHero({ tag, title, subtitle, crumbs, editKey }: Props) {
           </motion.div>
         )}
 
-        {/* Tag line with animated gold rule */}
-        <motion.div variants={fadeLeft} style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-          <GoldLineDraw width={28} delay={0.2} />
-          <span style={{ fontFamily: CG, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#6B6B6B" }}>
-            {E("tag", tag)}
-          </span>
-        </motion.div>
-
-        {/* H1 */}
+        {/* H1 — title only, same font/size/weight, centred */}
         <motion.h1
           variants={fadeUp}
           style={{
@@ -104,23 +84,10 @@ export function PageHero({ tag, title, subtitle, crumbs, editKey }: Props) {
           {E("title", title)}
         </motion.h1>
 
-        {/* Gold underline accent */}
-        <motion.div variants={fadeUp}>
+        {/* Gold underline accent — centred */}
+        <motion.div variants={fadeUp} style={{ display: "flex", justifyContent: "center" }}>
           <GoldLineDraw width={64} delay={0} color="linear-gradient(to right, #B9B9B7, transparent)" height={1} />
         </motion.div>
-
-        {/* Subtitle */}
-        {subtitle && (
-          <motion.p
-            variants={fadeUp}
-            style={{
-              fontFamily: CG, fontSize: "15px", fontWeight: 300,
-              color: "#6B6B6B", lineHeight: 1.65, maxWidth: 640, marginTop: 20,
-            }}
-          >
-            {E("subtitle", subtitle)}
-          </motion.p>
-        )}
       </motion.div>
     </PatternBackground>
   );

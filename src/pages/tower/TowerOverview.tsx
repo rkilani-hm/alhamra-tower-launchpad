@@ -6,6 +6,7 @@ import { PatternBackground } from "@/components/shared/PatternBand";
 import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
+import { HeroImageCentered } from "@/components/shared/HeroImageCentered";
 
 const CREAM  = "#F5F0E8";
 const STONE  = "#E8E0D4";
@@ -16,7 +17,30 @@ const PEARL  = "#B9B9B7";
    English copy preserved verbatim. Arabic copy sourced from
    the Al Hamra V01 Arabic translation sheet.
 ──────────────────────────────────────────────────────────────────────── */
-;
+
+/* "What makes it singular" — three grey pillars distilled from the tower's
+   defining architectural qualities (Form · Façade · Lobby). Replaces the old
+   four-tab component that duplicated the Engineering page. Editable via
+   page_prose:towerOverview:pillars.N.* */
+const PILLARS: Record<string, { kicker: string; title: string; body: string; statN: string; statL: string }[]> = {
+  en: [
+    { kicker: "01 — The Form",   title: "Born from a single sculptural act.",       body: "A spiralling quarter subtracted from a prismatic volume, then rotated at every level — the world's first asymmetrical skyscraper.", statN: "1st",     statL: "Asymmetrical skyscraper in the world" },
+    { kicker: "02 — The Façade", title: "Glass toward the Gulf. Stone toward the desert.", body: "Three glazed faces open onto Kuwait Bay; a single limestone wall shields the south — the largest area of stone cladding on any building.", statN: "258,000", statL: "m² of Jura limestone cladding" },
+    { kicker: "03 — The Lobby",  title: "Twenty-four metres, and not one column.",  body: "A ground-floor volume engineered to feel impossible — clear, open and uninterrupted from end to end.", statN: "900", statL: "m² column-free lobby area" },
+  ],
+  ar: [
+    { kicker: "٠١ — الشكل",    title: "وُلد من فعلٍ نحتيٍّ واحد.",              body: "رُبعٌ حلزونيٌّ اقتُطع من كتلةٍ منشوريّة ثمّ دُوِّر عند كلّ مستوى — أوّل ناطحة سحابٍ غير متماثلة في العالم.", statN: "الأولى", statL: "ناطحة سحابٍ غير متماثلة في العالم" },
+    { kicker: "٠٢ — الواجهة", title: "زجاجٌ نحو الخليج. حجرٌ نحو الصحراء.",     body: "ثلاث واجهاتٍ زجاجيّة تُطلّ على جون الكويت، وجدارٌ حجريٌّ واحد يحمي الجهة الجنوبيّة — أكبر مساحة كسوةٍ حجريّة على أيّ مبنى.", statN: "٢٥٨٬٠٠٠", statL: "م² من حجر الجورا الكلسي" },
+    { kicker: "٠٣ — البهو",   title: "أربعةٌ وعشرون متراً، دون عمودٍ واحد.",   body: "بهوٌ أرضيٌّ صُمِّم ليبدو مستحيلاً — واضحٌ ومفتوحٌ ومتّصلٌ من طرفٍ إلى طرف.", statN: "٩٠٠", statL: "م² مساحة بهوٍ خالية من الأعمدة" },
+  ],
+};
+
+/* Condensed awards block — total + latest award image + link to the full page.
+   Replaces the eight-card award grid that used to repeat under every tab. */
+const AWARDS_CONDENSED: Record<string, { kicker: string; total: string; totalLabel: string; latestYear: string; latestTitle: string; latestSub: string; cta: string }> = {
+  en: { kicker: "Awards & Recognition", total: "12", totalLabel: "International awards, ten institutions", latestYear: "2019", latestTitle: "World Architecture Festival", latestSub: "Completed Buildings — Office", cta: "View all awards" },
+  ar: { kicker: "الجوائز والتقدير",     total: "١٢", totalLabel: "جائزة دوليّة من عشر مؤسّسات",        latestYear: "٢٠١٩", latestTitle: "مهرجان العمارة العالمي", latestSub: "المباني المكتملة — المكاتب", cta: "عرض جميع الجوائز" },
+};
 
 /* ── CountUp ── */
 function CountUp({ value, delay = 0 }: { value: string; delay?: number }) {
@@ -67,62 +91,22 @@ export default function TowerOverview() {
   const imgY = useSpring(useTransform(scrollYProgress, [0, 1], ["0%", "22%"]), { stiffness: 50, damping: 18 });
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
-  const [activeTab, setActiveTab] = useState(c.tabs[0].id);
-  const activeIdx = Math.max(0, c.tabs.findIndex(t => t.id === activeTab));
-  const activeContent = c.tabs.find(t => t.id === activeTab) ?? c.tabs[0];
+  const pillars = PILLARS[lang] ?? PILLARS.en;
+  const awardsC = AWARDS_CONDENSED[lang] ?? AWARDS_CONDENSED.en;
 
   const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
   return (
     <PageLayout>
-      {/* ── Hero ──────────────────────────────────────────────────── */}
-      <div ref={heroRef} style={{ position: "relative", height: "90vh", minHeight: 520, overflow: "hidden", background: "#0c0b09" }}>
-        <SlotImage
-          motion
-          slot="towerOverview.banner"
-          fallback="/assets/tower-overview-banner.jpg"
-          alt={lang === "ar" ? "برج الحمراء — رسم SOM المعماري الرسمي عند الغسق، مدينة الكويت" : "Al Hamra Tower — official SOM architectural render at dusk, Kuwait City"}
-          style={{ y: imgY, position: "absolute", inset: 0, width: "100%", height: "115%",
-            objectFit: "cover", objectPosition: "center top" }}
-        />
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
-          background: "linear-gradient(to bottom, rgba(12,11,9,0.3) 0%, transparent 30%, rgba(12,11,9,0.25) 65%, rgba(12,11,9,0.9) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none",
-          background: "linear-gradient(to right, rgba(12,11,9,0.6) 0%, transparent 60%)" }} />
-        <motion.div style={{ opacity: fade, position: "absolute", inset: 0, zIndex: 4, pointerEvents: "none",
-          display: "flex", flexDirection: "column", justifyContent: "flex-end",
-          padding: "0 clamp(28px,6vw,96px) clamp(48px,7vh,80px)" }}>
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20, pointerEvents: "auto",
-              fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>
-            <span style={{ width: 32, height: 1, background: `linear-gradient(to right,${PEARL},#D4CFC9)`, flexShrink: 0 }} />
-            <Editable id="page_prose:towerOverview:heroKicker">{c.heroKicker}</Editable>
-          </motion.div>
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.9, ease: [0.16,1,0.3,1] }}
-            style={{ fontFamily: FONT, pointerEvents: "auto",
-              fontWeight: 300, fontSize: "clamp(36px,6vw,88px)", color: "#fff",
-              letterSpacing: "-0.02em", lineHeight: 1.0, margin: "0 0 12px" }}>
-            <Editable id="page_prose:towerOverview:heroTitle">{c.heroTitle}</Editable>
-          </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.75, duration: 0.8 }}
-            style={{ fontFamily: FONT, fontWeight: 200, pointerEvents: "auto",
-              fontSize: "clamp(13px,1.3vw,18px)", color: "rgba(255,255,255,0.6)",
-              maxWidth: 480, lineHeight: 1.7, margin: 0 }}>
-            <Editable id="page_prose:towerOverview:heroSub.0">{c.heroSub[0]}</Editable><br />
-            <Editable id="page_prose:towerOverview:heroSub.1">{c.heroSub[1]}</Editable>
-          </motion.p>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.6 }}
-            style={{ marginTop: 8, fontFamily: FONT, fontSize: "10px",
-              letterSpacing: "0.2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase" }}>
-            <Editable id="page_prose:towerOverview:heroCredit">{c.heroCredit}</Editable>
-          </motion.div>
-        </motion.div>
-      </div>
+      {/* ── Hero — image overlaid with one bold centred line ──────── */}
+      <HeroImageCentered
+        slot="towerOverview.banner"
+        image="/assets/tower-overview-banner.jpg"
+        alt={lang === "ar" ? "برج الحمراء — مدينة الكويت" : "Al Hamra Tower — Kuwait City"}
+        editId="page_prose:towerOverview:heroTitle"
+      >
+        {c.heroTitle}
+      </HeroImageCentered>
 
       {/* ── Stats grid ─────────────────────────────────────────────── */}
       <PatternBackground opacity={0.3} style={{ background: "#fff", borderBottom: "1px solid rgba(29,29,27,0.07)" }}>
@@ -158,142 +142,132 @@ export default function TowerOverview() {
         </div>
       </PatternBackground>
 
-      {/* ── Architecture tabs ──────────────────────────────────────── */}
+      {/* ── What makes it singular — three grey pillars ─────────────── */}
       <div style={{ background: "#F1F1F0", padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)" }}>
-        {/* Tab bar */}
-        <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(29,29,27,0.1)",
-          marginBottom: 56, overflowX: "auto" }}>
-          {c.tabs.map(tab => (
-            <button type="button" key={tab.id} onClick={() => setActiveTab(tab.id)}
-              style={{ position: "relative", background: "none", border: "none",
-                padding: "14px 28px", minHeight: 44, cursor: "pointer",
-                fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-                letterSpacing: "0.3em", textTransform: "uppercase", whiteSpace: "nowrap",
-                color: activeTab === tab.id ? DARK : "#6B6B6B",
-                fontWeight: activeTab === tab.id ? 500 : 300,
-                transition: "color 0.3s" }}>
-              {tab.label}
-              {activeTab === tab.id && (
-                <motion.div layoutId="tab-line"
-                  style={{ position: "absolute", bottom: -1, left: 0, right: 0, height: 2,
-                    background: `linear-gradient(to right,${PEARL},#D4CFC9)` }} />
-              )}
-            </button>
-          ))}
-        </div>
+        <div style={{ maxWidth: 1360, margin: "0 auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 18 }}>
+            <span style={{ width: 32, height: 1, background: PEARL, flexShrink: 0 }} />
+            <span style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
+              letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>
+              <Editable id="page_prose:towerOverview:singularKicker">{c.singularKicker ?? "What makes it singular"}</Editable>
+            </span>
+          </div>
+          <h2 style={{ fontFamily: FONT, fontWeight: 200,
+            fontSize: "clamp(26px,3.4vw,46px)", color: DARK, lineHeight: 1.1,
+            letterSpacing: "-0.015em", margin: "0 0 clamp(40px,5vh,64px)", maxWidth: 760 }}>
+            <Editable id="page_prose:towerOverview:singularTitle">{c.singularTitle ?? "Three things no other tower in the region can claim."}</Editable>
+          </h2>
 
-        {/* Tab content */}
-        <AnimatePresence mode="wait">
-          <motion.div key={activeTab}
-            initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.45, ease: "easeOut" }}
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(40px,6vw,100px)" }}
-            className="tab-content-grid">
-            <div>
-              <h2 style={{ fontFamily: FONT,
-                fontWeight: 300, fontSize: "clamp(24px,3vw,42px)", color: DARK,
-                lineHeight: 1.1, marginBottom: 28, letterSpacing: "-0.01em" }}>
-                <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.heading`}>{activeContent.heading}</Editable>
-              </h2>
-              {activeContent.body.map((p, i) => (
-                <p key={i} style={{ fontFamily: FONT, fontWeight: 300,
-                  fontSize: "clamp(13px,1.05vw,15px)", color: "#5a5a58",
-                  lineHeight: 1.9, marginBottom: 16, maxWidth: "62ch" }}>
-                  <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.body.${i}`}>{p}</Editable>
-                </p>
-              ))}
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", gap: "clamp(40px,5vh,64px)" }}>
-              <div style={{ borderLeft: `2px solid ${PEARL}`, paddingLeft: 24 }}>
-                <p style={{ fontFamily: FONT, fontStyle: "italic",
-                  fontSize: "clamp(15px,1.4vw,19px)", color: DARK, lineHeight: 1.7, margin: "0 0 12px" }}>
-                  "<Editable id={`page_prose:towerOverview:tabs.${activeIdx}.quote`}>{activeContent.quote}</Editable>"
-                </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(16px,2vw,28px)" }}
+            className="singular-grid">
+            {pillars.map((p, i) => (
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16,1,0.3,1] }}
+                style={{ background: "#E3E3E2", padding: "clamp(28px,3vw,40px)",
+                  display: "flex", flexDirection: "column", minHeight: 340 }}>
                 <div style={{ fontFamily: FONT, fontSize: "10px",
-                  letterSpacing: "0.28em", textTransform: "uppercase", color: "#CD1719" }}>
-                  <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.credit`}>{activeContent.credit}</Editable>
+                  letterSpacing: "0.32em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 20 }}>
+                  <Editable id={`page_prose:towerOverview:pillars.${i}.kicker`}>{p.kicker}</Editable>
                 </div>
-              </div>
-              <TiltCard>
-                <div style={{ background: "#E3E3E2", padding: "clamp(24px,3vh,36px) clamp(20px,3vw,36px)" }}>
-                  <div style={{ fontFamily: FONT,
-                    fontSize: "clamp(36px,5vw,68px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
-                    <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.statN`}>{activeContent.statN}</Editable>
+                <h3 style={{ fontFamily: FONT, fontWeight: 300,
+                  fontSize: "clamp(19px,1.7vw,24px)", color: DARK, lineHeight: 1.25,
+                  letterSpacing: "-0.01em", margin: "0 0 16px" }}>
+                  <Editable id={`page_prose:towerOverview:pillars.${i}.title`}>{p.title}</Editable>
+                </h3>
+                <p style={{ fontFamily: FONT, fontWeight: 300,
+                  fontSize: "clamp(13px,1.05vw,14.5px)", color: "#5a5a58",
+                  lineHeight: 1.8, margin: "0 0 28px" }}>
+                  <Editable id={`page_prose:towerOverview:pillars.${i}.body`}>{p.body}</Editable>
+                </p>
+                <div style={{ marginTop: "auto", paddingTop: 20, borderTop: `1px solid ${PEARL}` }}>
+                  <div style={{ fontFamily: FONT, fontSize: "clamp(28px,3vw,40px)",
+                    fontWeight: 300, color: DARK, lineHeight: 1 }}>
+                    <Editable id={`page_prose:towerOverview:pillars.${i}.statN`}>{p.statN}</Editable>
                   </div>
-                  <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-                    letterSpacing: "0.2em", textTransform: "uppercase", color: "#6B6B6B", marginTop: 8 }}>
-                    <Editable id={`page_prose:towerOverview:tabs.${activeIdx}.statL`}>{activeContent.statL}</Editable>
+                  <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.8vw,11px)",
+                    letterSpacing: "0.14em", textTransform: "uppercase", color: "#6B6B6B", marginTop: 8 }}>
+                    <Editable id={`page_prose:towerOverview:pillars.${i}.statL`}>{p.statL}</Editable>
                   </div>
                 </div>
-              </TiltCard>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* ── Awards strip ───────────────────────────────────────────── */}
-      <div style={{ background: "#fff", padding: "clamp(48px,7vh,80px) clamp(28px,6vw,96px)",
+      {/* ── Awards, condensed ──────────────────────────────────────── */}
+      <div style={{ background: "#fff", padding: "clamp(56px,8vh,96px) clamp(28px,6vw,96px)",
         borderTop: "1px solid rgba(29,29,27,0.07)" }}>
-        <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
-          letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 36 }}>
-          <Editable id="page_prose:towerOverview:awardsKicker">{c.awardsKicker}</Editable>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 40 }}>
-          {c.awards.map(({ year, title, sub }, i) => (
-            <motion.div key={year + title}
-              initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.06 }}
-              style={{ borderLeft: `1px solid rgba(184,184,182,0.4)`, paddingLeft: 24 }}>
-              <div style={{ fontFamily: FONT,
-                fontSize: "clamp(20px,2vw,28px)", fontWeight: 300, color: DARK, lineHeight: 1, marginBottom: 6 }}>
-                {year}
+        <div style={{ maxWidth: 1360, margin: "0 auto",
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px,5vw,72px)", alignItems: "center" }}
+          className="awards-condensed-grid">
+          {/* Left — total + link */}
+          <div>
+            <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
+              letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 28 }}>
+              <Editable id="page_prose:towerOverview:awardsKicker">{c.awardsKicker ?? awardsC.kicker}</Editable>
+            </div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 12 }}>
+              <span style={{ fontFamily: FONT, fontSize: "clamp(56px,9vw,120px)",
+                fontWeight: 200, color: DARK, lineHeight: 0.9, letterSpacing: "-0.03em" }}>
+                <Editable id="page_prose:towerOverview:awardsTotal">{awardsC.total}</Editable>
+              </span>
+            </div>
+            <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,15px)",
+              color: "#5a5a58", lineHeight: 1.6, maxWidth: 340, marginBottom: 36 }}>
+              <Editable id="page_prose:towerOverview:awardsTotalLabel">{awardsC.totalLabel}</Editable>
+            </div>
+            <Link to="/tower/awards" style={{ display: "inline-flex", alignItems: "center", gap: 12,
+              background: DARK, color: "#fff", fontFamily: FONT,
+              fontSize: "10.5px", letterSpacing: "0.25em", textTransform: "uppercase",
+              padding: "15px 32px", textDecoration: "none", transition: "background 0.3s ease" }}
+              onMouseEnter={e=>{e.currentTarget.style.background="#000";}}
+              onMouseLeave={e=>{e.currentTarget.style.background=DARK;}}>
+              <Editable id="page_prose:towerOverview:awardsCta">{awardsC.cta}</Editable>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          {/* Right — latest award image + caption */}
+          <div>
+            <div style={{ position: "relative", aspectRatio: "4/3", overflow: "hidden", background: "#0c0b09" }}>
+              <SlotImage
+                slot="towerOverview.latestAward"
+                fallback="/assets/facade-dual-glass-stone.jpg"
+                alt={lang === "ar" ? "أحدث جائزة نالها برج الحمراء" : "Al Hamra Tower — latest award"}
+                loading="lazy"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                onError={(e: any) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+              />
+            </div>
+            <div style={{ display: "flex", gap: 16, alignItems: "baseline", marginTop: 20,
+              borderLeft: `1px solid ${PEARL}`, paddingLeft: 20 }}>
+              <div style={{ fontFamily: FONT, fontSize: "clamp(20px,2vw,28px)",
+                fontWeight: 300, color: DARK, lineHeight: 1 }}>
+                <Editable id="page_prose:towerOverview:latestAwardYear">{awardsC.latestYear}</Editable>
               </div>
-              <div style={{ fontFamily: FONT, fontSize: "clamp(11px,0.9vw,13px)",
-                fontWeight: 400, color: DARK, marginBottom: 4 }}>
-                <EditableRow id={`awards::${i}`}>{title}</EditableRow>
+              <div>
+                <div style={{ fontFamily: FONT, fontSize: "clamp(13px,1.05vw,15px)",
+                  fontWeight: 400, color: DARK }}>
+                  <Editable id="page_prose:towerOverview:latestAwardTitle">{awardsC.latestTitle}</Editable>
+                </div>
+                <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.82vw,11.5px)", color: "#6B6B6B", marginTop: 3 }}>
+                  <Editable id="page_prose:towerOverview:latestAwardSub">{awardsC.latestSub}</Editable>
+                </div>
               </div>
-              <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.8vw,11px)",
-                color: "#6B6B6B" }}>{sub}</div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── CTA ────────────────────────────────────────────────────── */}
-      <div style={{ background: DARK, padding: "clamp(60px,9vh,100px) clamp(28px,6vw,96px)",
-        textAlign: "center" }}>
-        <div style={{ fontFamily: FONT,
-          fontWeight: 300, fontSize: "clamp(28px,4vw,56px)", color: "#fff",
-          letterSpacing: "-0.01em", maxWidth: 640, margin: "0 auto 48px" }}>
-          <Editable id="page_prose:towerOverview:ctaHeadline">{c.ctaHeadline}</Editable>
-        </div>
-        <div style={{ display: "flex", justifyContent: "center", gap: 24, flexWrap: "wrap" }}>
-          <Link to="/tower/design" style={{ display: "inline-flex", alignItems: "center", gap: 12,
-            background: "none", border: `1px solid rgba(184,184,182,0.4)`, color: "#CD1719",
-            fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.25em",
-            textTransform: "uppercase", padding: "15px 32px", textDecoration: "none",
-            transition: "border-color 0.3s ease, color 0.3s ease" }}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor=PEARL;e.currentTarget.style.color="#fff";}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(184,184,182,0.4)";e.currentTarget.style.color="#CD1719";}}>
-            <Editable id="page_prose:towerOverview:ctaPrimary">{c.ctaPrimary}</Editable>
-          </Link>
-          <Link to="/leasing/inquiry#inquiry-form" style={{ display: "inline-flex", alignItems: "center", gap: 12,
-            background: "#fff", color: DARK, fontFamily: FONT,
-            fontSize: "10.5px", letterSpacing: "0.25em", textTransform: "uppercase",
-            padding: "15px 32px", textDecoration: "none", transition: "background 0.3s ease, color 0.3s ease" }}
-            onMouseEnter={e=>{e.currentTarget.style.background=PEARL;e.currentTarget.style.color="#fff";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="#fff";e.currentTarget.style.color=DARK;}}>
-            <Editable id="page_prose:towerOverview:ctaSecondary">{c.ctaSecondary}</Editable>
-          </Link>
+            </div>
+          </div>
         </div>
       </div>
 
       <style>{`
         .overview-stats-grid { grid-template-columns: repeat(3,1fr) !important; }
-        .tab-content-grid { grid-template-columns: 1fr 1fr !important; }
+        .singular-grid { grid-template-columns: repeat(3,1fr) !important; }
+        .awards-condensed-grid { grid-template-columns: 1fr 1fr !important; }
         @media (max-width: 900px) {
           .overview-stats-grid { grid-template-columns: 1fr 1fr !important; }
-          .tab-content-grid { grid-template-columns: 1fr !important; }
+          .singular-grid { grid-template-columns: 1fr !important; }
+          .awards-condensed-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 560px) {
           .overview-stats-grid { grid-template-columns: 1fr !important; }

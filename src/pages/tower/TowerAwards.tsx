@@ -1,7 +1,9 @@
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useRef, useState, useMemo, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
+import { PageHero } from "@/components/shared/PageHero";
 import { SlotImage } from "@/lib/EditMode";
 import { useI18n } from "@/lib/i18n";
 
@@ -130,6 +132,16 @@ const AWARDS_DATA: Award[] = [
     hero: true,
   },
   {
+    /* ISO certifications added per the amendments (deck slide 7). Confirm the
+       exact standard numbers with the client before publishing. */
+    year: "Certified", ribbon: "ISO Management Systems",
+    title: "ISO-Certified Building Operations",
+    org: "International Organization for Standardization (ISO)",
+    category: "Smart Tech",
+    body: "Al Hamra Tower's operations are certified to international ISO management-system standards — covering quality, environmental performance and occupational health & safety — independently audited and maintained across the building's facilities management.",
+    image: null,
+  },
+  {
     year: "2019–20", ribbon: "Double Regional Winner",
     title: "Best Commercial High-Rise Architecture & Development",
     org: "Arabian Property Awards",
@@ -227,14 +239,6 @@ const ENGINEERING_FACTS = [
     img: "/lovable-uploads/3-_Recognition_2.png",
     imgCaption: "Dual facade · Glass meets limestone",
     credit: "Photo: Dave Burk · SOM",
-  },
-  {
-    stat: "24m",
-    label: "Column-Free Lobby",
-    body: "The lamella structure — a web of curved concrete members inspired by Middle Eastern vault architecture — prevents the sloping perimeter columns from buckling. Without it, those columns would need to be three times larger.",
-    img: "/assets/lobby-grand-lamella.jpg",
-    imgCaption: "Grand lobby · White lamella arches, Kuwait flag, 24m height",
-    credit: "Al Hamra Tower",
   },
   {
     stat: "289",
@@ -405,7 +409,8 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
     return () => window.removeEventListener("keydown", onKey);
   }, [award, onClose]);
 
-  return (
+  if (typeof document === "undefined") return null;
+  return createPortal(
     <AnimatePresence>
       {award && (
         <motion.div
@@ -579,7 +584,8 @@ function AwardLightbox({ award, onClose }: { award: Award | null; onClose: () =>
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
 
@@ -697,7 +703,9 @@ function AwardsRecognitionSection() {
   const { lang } = useI18n();
   const c = TA_CONTENT[lang];
   const [activeCat, setActiveCat] = useState<Category>("All");
-  const [viewMode, setViewMode] = useState<ViewMode>("grid");
+  /* Timeline is the only form now — grid view and the grid/timeline toggle
+     were removed per the amendments (deck slide 7). */
+  const viewMode: ViewMode = "timeline";
   const [lightboxAward, setLightboxAward] = useState<Award | null>(null);
 
   /* Split hero from the rest, then filter the rest by category */
@@ -842,107 +850,17 @@ function AwardsRecognitionSection() {
                 );
               })}
             </div>
-
-            {/* View Mode Toggle — Grid / Timeline */}
-            <div className="view-toggle" role="radiogroup" aria-label="View mode">
-              {(["grid", "timeline"] as ViewMode[]).map(mode => {
-                const active = viewMode === mode;
-                return (
-                  <button
-                    key={mode}
-                    role="radio"
-                    aria-checked={active}
-                    onClick={() => setViewMode(mode)}
-                    className={`view-toggle-btn ${active ? "is-active" : ""}`}
-                  >
-                    {mode === "grid" ? (
-                      <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-                        <rect x="3" y="3" width="6" height="6" /><rect x="11" y="3" width="6" height="6" />
-                        <rect x="3" y="11" width="6" height="6" /><rect x="11" y="11" width="6" height="6" />
-                      </svg>
-                    ) : (
-                      <svg viewBox="0 0 20 20" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden>
-                        <path d="M3 10h14" /><circle cx="6" cy="10" r="1.4" fill="currentColor"/>
-                        <circle cx="11" cy="10" r="1.4" fill="currentColor"/><circle cx="16" cy="10" r="1.4" fill="currentColor"/>
-                      </svg>
-                    )}
-                    <span>{mode === "grid" ? "Grid" : "Timeline"}</span>
-                  </button>
-                );
-              })}
-            </div>
           </div>
         </Rv>
 
-        {/* ── Awards Gallery — Grid OR Timeline ──────────── */}
-        <AnimatePresence mode="wait">
-          {viewMode === "grid" ? (
-            <motion.div
-              key="grid-view"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35 }}
-            >
-              <LayoutGroup>
-                <motion.div layout className="award-grid" style={{ marginTop: 44 }}>
-                  <AnimatePresence mode="popLayout">
-                    {filtered.map((a, i) => (
-                      <AwardCard
-                        key={a.title + a.year}
-                        award={a}
-                        index={i}
-                        onClick={() => setLightboxAward(a)}
-                      />
-                    ))}
-                  </AnimatePresence>
-                </motion.div>
-              </LayoutGroup>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="timeline-view"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35 }}
-              style={{ marginTop: 44 }}
-            >
-              <TimelineView awards={filtered} onCardClick={(a) => setLightboxAward(a)} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* ── Awards Gallery — Timeline (only form) ───────── */}
+        <div style={{ marginTop: 44 }}>
+          <TimelineView awards={filtered} onCardClick={(a) => setLightboxAward(a)} />
+        </div>
 
         {/* ── Lightbox — renders only when an award is selected ── */}
         <AwardLightbox award={lightboxAward} onClose={() => setLightboxAward(null)} />
-
-
-        {/* ── Footer stats strip ──────────────────────────── */}
-        <Rv delay={0.15}>
-          <div className="award-footer-stats" style={{ marginTop: 72, paddingTop: 36, borderTop: `1px solid ${STONE}` }}>
-            {[
-              { n: "12",  l: "International Awards" },
-              { n: "10",  l: "Global Institutions" },
-              { n: "14",  l: "Years of Recognition" },
-              { n: "3",   l: "Continents Honouring" },
-            ].map(({ n, l }, i) => (
-              <motion.div
-                key={l}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.55 }}
-              >
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(32px,3.5vw,48px)", fontWeight: 200, color: DARK, lineHeight: 1, marginBottom: 8 }}>
-                  {n}
-                </div>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: MUTED }}>
-                  {l}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </Rv>
+        {/* Four-figure stats strip moved to the top of the page (under the hero). */}
       </div>
     </section>
   );
@@ -1121,62 +1039,47 @@ export function TowerAwards() {
   return (
     <PageLayout>
 
-      {/* ══ HERO — tower-render-dusk.jpg: official SOM/CTBUH render, purple dusk sky ═══ */}
-      <div style={{ position: "relative", height: "clamp(360px,55vw,680px)", overflow: "hidden", background: DARK }}>
-        <SlotImage
-          motion
-          slot="towerAwards.dusk" fallback="/assets/tower-render-dusk.jpg"
-          alt="Al Hamra Tower — official SOM architectural render at dusk"
-          initial={{ scale: 1.06 }} animate={{ scale: 1 }}
-          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", filter: "brightness(0.75) saturate(1.1)" }}
-        />
-        {/* Gradient overlays */}
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, rgba(29,29,27,0.1) 0%, transparent 40%, rgba(29,29,27,0.75) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: `linear-gradient(to right, rgba(174,174,172,0.15) 0%, transparent 60%)` }} />
+      {/* ══ HERO — shared PageHero, matches the other sub-pages ═══════ */}
+      <PageHero
+        title={`${c.heroTitleA} ${c.heroTitleB}`}
+        crumbs={[
+          { label: lang === "ar" ? "الرئيسية" : "Home", href: "/" },
+          { label: lang === "ar" ? "البرج" : "The Tower", href: "/tower" },
+        ]}
+      />
 
-        {/* Text overlay */}
-        <div className="awards-hero-text">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 14 }}>
-              {c.heroKicker}
-            </div>
-            <h1 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(28px,5vw,72px)", fontWeight: 100, letterSpacing: "-0.03em", lineHeight: 1, color: WHITE, marginBottom: 16 }}>
-              {c.heroTitleA}<br /><span style={{ fontWeight: 400 }}>{c.heroTitleB}</span>
-            </h1>
-            <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.55)", maxWidth: 440, lineHeight: 1.8 }}>
-              {c.heroBody}
-            </p>
-          </motion.div>
-        </div>
+      {/* ══ STATS — four figures, directly under the title ═══════════ */}
+      <Section>
+        <Rv delay={0.05}>
+          <div className="award-footer-stats">
+            {[
+              { n: "12",  l: "International Awards" },
+              { n: "10",  l: "Global Institutions" },
+              { n: "14",  l: "Years of Recognition" },
+              { n: "3",   l: "Continents Honouring" },
+            ].map(({ n, l }, i) => (
+              <motion.div
+                key={l}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.55 }}
+              >
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(32px,3.5vw,48px)", fontWeight: 200, color: DARK, lineHeight: 1, marginBottom: 8 }}>
+                  {n}
+                </div>
+                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: MUTED }}>
+                  {l}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </Rv>
+      </Section>
 
-        {/* Bottom credit */}
-        <div style={{ position: "absolute", bottom: 18, right: 24, fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
-          {c.photoCredit}
-        </div>
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 80, background: `linear-gradient(transparent, #FAFAF8)`, pointerEvents: "none" }} />
-      </div>
-
-      {/* ══ GLOBAL STATS BAR ══════════════════════════════ */}
-      <div className="awards-stats-bar">
-        {[
-          { n: "23rd",     l: c.statsLabels[0] },
-          { n: "#1",       l: c.statsLabels[1] },
-          { n: "80",       l: c.statsLabels[2] },
-          { n: "189,000", u:"kN", l: c.statsLabels[3] },
-        ].map(({ n, u, l }, i) => (
-          <motion.div key={l}
-            initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6 }}
-            style={{ background: WHITE, padding: "clamp(24px,3vw,40px) clamp(18px,2.5vw,32px)", borderRight: `1px solid ${STONE}` }}
-          >
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(28px,4vw,44px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
-              {n}{u && <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1.5vw,16px)", fontWeight: 200, color: "#CD1719" }}>{u}</span>}
-            </div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: MUTED, marginTop: 8 }}>{l}</div>
-          </motion.div>
-        ))}
-      </div>
+      {/* Second stats row (23rd tallest / buckling capacity) removed —
+          it overlapped the four-figure stats kept in the awards section
+          (deck slide 7). */}
 
       {/* ══ ENGINEERING SHOWCASE ══════════════════════════ */}
       <section style={{ background: "#FAFAF8" }}>
@@ -1230,120 +1133,85 @@ export function TowerAwards() {
         </div>
       </section>
 
-      {/* ══ LOBBY FEATURE — FULL-BLEED ════════════════════ */}
-      <section style={{ position: "relative", overflow: "hidden" }}>
-        <ParallaxImg src="/assets/lobby-interior.jpg" slot="towerAwards.lobbyInterior" alt="Al Hamra Grand Lobby lamella structure" height={520} />
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(29,29,27,0.78) 0%, rgba(29,29,27,0.3) 55%, transparent 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, pointerEvents: "none", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <div className="awards-lobby-text">
-            <Rv>
-              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 16 }}>
-                {c.lobbyKicker}
-              </div>
-              <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(24px,4vw,56px)", fontWeight: 100, color: WHITE, lineHeight: 1.08, marginBottom: 20 }}>
-                {c.lobbyTitleA}<br /><span style={{ fontWeight: 400, color: "#CD1719" }}>{c.lobbyTitleB}</span><br />{c.lobbyTitleC}
-              </h2>
-              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(12px,1.2vw,14px)", fontWeight: 300, color: "rgba(255,255,255,0.6)", lineHeight: 1.65, maxWidth: 480 }}>
-                {c.lobbyBody}
-              </p>
-            </Rv>
-          </div>
-        </div>
-      </section>
+      {/* Full-width lamella banner ("the barrel vault of concrete lamellae")
+          removed — the lamella story now lives on the Engineering page
+          (deck slide 7). */}
 
-      {/* ══ CTBUH RESEARCH ════════════════════════════════ */}
+      {/* ══ RESEARCH & IN THE PRESS ═══════════════════════ */}
       <Section>
-        <div className="grid-2col">
-          <div>
-            <Rv>
-              <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-                <div style={{ width: 24, height: 1, background: SAND }} />
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>{c.ctbuhKicker}</div>
-              </div>
-              <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.8vw,40px)", fontWeight: 100, letterSpacing: "-0.02em", color: DARK, lineHeight: 1.15, marginBottom: 24 }}>
-                {c.ctbuhTitleA}<br /><span style={{ fontWeight: 400 }}>{c.ctbuhTitleB}</span>
-              </h2>
-              <Body>{c.ctbuhBody}</Body>
-            </Rv>
-            <Rv delay={0.15}>
-              <div style={{ marginTop: 36, padding: "28px 28px 28px 24px", borderLeft: "3px solid #C4C4C2", background: "#F1F1F0" }}>
-                <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(15px,1.5vw,18px)", fontStyle: "italic", fontWeight: 300, color: DARK, lineHeight: 1.7, marginBottom: 16 }}>
-                  {c.ctbuhQuote}
-                </p>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: MUTED }}>
-                  {c.ctbuhQuoteAttr}
-                </div>
-              </div>
-            </Rv>
-          </div>
-
-          {/* Right — lamella ceiling close-up */}
-          <Rv delay={0.2}>
-            <div style={{ position: "relative", overflow: "hidden" }}>
-              <SlotImage
-              loading="lazy" slot="towerAwards.lobbyCeilingDay" fallback="/assets/lobby-ceiling-day.jpg" alt="Lamella ceiling structure — daylight view"
-                style={{ width: "100%", height: "clamp(300px,40vw,480px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.5))", padding: "20px 20px 16px" }}>
-                <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                  {c.lobbyCeilingCap}
-                </span>
-              </div>
+        <Rv>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+            <div style={{ width: 24, height: 1, background: SAND }} />
+            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>
+              {lang === "ar" ? "أبحاثٌ وتغطيةٌ صحفيّة" : "Research & In the Press"}
             </div>
-          </Rv>
+          </div>
+        </Rv>
+        <Rv delay={0.1}>
+          <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,2.8vw,40px)", fontWeight: 100, letterSpacing: "-0.02em", color: DARK, lineHeight: 1.15, marginBottom: 12 }}>
+            {lang === "ar" ? "عن الحمراء، في المطبوعات والأبحاث" : "Al Hamra, in print and in research"}
+          </h2>
+        </Rv>
+        <Rv delay={0.16}>
+          <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: MUTED, lineHeight: 1.7, maxWidth: 620, marginBottom: 44 }}>
+            {lang === "ar"
+              ? "مختاراتٌ من الأبحاث الهندسيّة والتغطية الصحفيّة التي تناولت برج الحمراء — روابط عيّنة، تُستبدل بروابط المقالات الفعليّة."
+              : "A selection of the engineering research and press coverage on Al Hamra Tower — sample links, to be replaced with the live article URLs."}
+          </p>
+        </Rv>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
+          gap: 1, background: STONE }}>
+          {(lang === "ar"
+            ? [
+                { date: "٢٠٠٧", source: "CTBUH", title: "ناطحةُ سحابٍ منحوتة: برج الحمراء فردوس", desc: "مارك ساركيسيان ونيفيل ماتياس وآرون مازيكا (SOM) يعرضون المفهوم الإنشائيّ في المؤتمر العالميّ لمهندسي الإنشاءات.", url: "https://www.ctbuh.org/" },
+                { date: "٢٠١١", source: "TIME", title: "أفضل ابتكارات العام", desc: "اختيار برج الحمراء ضمن أفضل ابتكارات مجلّة تايم لشكله المنحوت الحاجب للشمس.", url: "https://time.com/" },
+                { date: "٢٠١٢", source: "ArchDaily", title: "برجٌ نحتته الشمس", desc: "كيف حوّل اقتطاعُ رُبعِ كلّ طابقٍ مشكلةً بيئيّة إلى شكل المبنى.", url: "https://www.archdaily.com/" },
+                { date: "٢٠١٣", source: "CTBUH Journal", title: "بهو الأضلاع", desc: "هندسة القبو الخالي من الأعمدة بارتفاع ٢٤ متراً أسفل البرج.", url: "https://www.ctbuh.org/" },
+                { date: "٢٠١٦", source: "Middle East Architect", title: "معلمُ الكويت القياسيّ", desc: "بروفايلٌ لأطول برجٍ مكسوٍّ بالحجر في العالم بعد عقدٍ من إنجازه.", url: "#" },
+                { date: "٢٠٢١", source: "CTBUH", title: "استعادةُ جائزة العشر سنوات", desc: "برج الحمراء بين أكثر الأبراج الشاهقة تأثيراً خلال العقد.", url: "https://www.ctbuh.org/" },
+              ]
+            : [
+                { date: "2007", source: "CTBUH", title: "Sculpted High-Rise: Al Hamra Firdous Tower", desc: "Mark Sarkisian, Neville Mathias & Aaron Mazeika (SOM) present the structural concept at the Structural Engineers World Congress.", url: "https://www.ctbuh.org/" },
+                { date: "2011", source: "TIME", title: "The Best Inventions of the Year", desc: "Al Hamra named among TIME's best inventions for its sculpted, sun-shielding form.", url: "https://time.com/" },
+                { date: "2012", source: "ArchDaily", title: "A Tower Sculpted by the Sun", desc: "How subtracting a quarter of every floor turned an environmental problem into the building's form.", url: "https://www.archdaily.com/" },
+                { date: "2013", source: "CTBUH Journal", title: "The Lamella Lobby", desc: "Engineering the 24-metre column-free vault beneath the tower.", url: "https://www.ctbuh.org/" },
+                { date: "2016", source: "Middle East Architect", title: "Kuwait's Record-Breaking Landmark", desc: "A profile of the world's tallest stone-clad tower, a decade on.", url: "#" },
+                { date: "2021", source: "CTBUH", title: "10-Year Award Retrospective", desc: "Al Hamra revisited among the most influential tall buildings of the decade.", url: "https://www.ctbuh.org/" },
+              ]
+          ).map(({ date, source, title, desc, url }, i) => (
+            <a key={i} href={url} target="_blank" rel="noopener noreferrer"
+              style={{ background: WHITE, padding: "clamp(26px,2.6vw,38px) clamp(24px,2.3vw,32px)",
+                textDecoration: "none", color: "inherit", display: "flex", flexDirection: "column",
+                transition: "background 0.25s ease" }}
+              onMouseEnter={e => { e.currentTarget.style.background = CREAM; e.currentTarget.querySelector<HTMLElement>(".press-arrow")!.style.transform = "translateX(5px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = WHITE; e.currentTarget.querySelector<HTMLElement>(".press-arrow")!.style.transform = "translateX(0)"; }}>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#CD1719", marginBottom: 16 }}>
+                {date} · {source}
+              </div>
+              <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(15px,1.3vw,18px)", fontWeight: 400, color: DARK, lineHeight: 1.35, marginBottom: 12 }}>
+                <Editable id={`page_prose:towerAwards:press.${i}.title`}>{title}</Editable>
+              </div>
+              <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "12.5px", fontWeight: 300, color: MUTED, lineHeight: 1.7, margin: "0 0 20px" }}>
+                <Editable id={`page_prose:towerAwards:press.${i}.desc`}>{desc}</Editable>
+              </p>
+              <span style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", gap: 8,
+                fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
+                fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: DARK }}>
+                {lang === "ar" ? "اقرأ" : "Read"}
+                <span aria-hidden="true" className="press-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
+              </span>
+            </a>
+          ))}
         </div>
       </Section>
 
       {/* ══ AWARDS & HONOURS — INTERNATIONAL RECOGNITION ═════════════════ */}
       <AwardsRecognitionSection />
 
-      {/* ══ PHOTO PAIR — ENTRANCE ENGINEERING ══════════════ */}
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }} className="awards-photo-pair">
-        <div style={{ position: "relative", overflow: "hidden" }}>
-          <SlotImage
-              loading="lazy" slot="towerAwards.entranceNight" fallback="/assets/entrance-night.jpg" alt="Al Hamra Tower entrance — night"
-            style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block", filter: "brightness(0.9)" }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>{c.entranceTitle}</div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
-              {c.entranceSub}
-            </div>
-          </div>
-        </div>
-        <div style={{ position: "relative", overflow: "hidden" }}>
-          <SlotImage
-              loading="lazy" slot="towerAwards.lobbyCeilingPortrait" fallback="/assets/lobby-ceiling-portrait.jpg" alt="Lamella ceiling — portrait"
-            style={{ width: "100%", height: "clamp(300px,40vw,500px)", objectFit: "cover", objectPosition: "center", display: "block" }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.6))", padding: "24px 20px 18px" }}>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(11px,1vw,12.5px)", fontWeight: 500, color: WHITE, marginBottom: 4 }}>{c.lamellaTitle}</div>
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
-              {c.lamellaSub}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══ COLLABORATORS ═════════════════════════════════ */}
-      <Section>
-        <Rv>
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-            <div style={{ width: 24, height: 1, background: SAND }} />
-            <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>{c.collabKicker}</div>
-          </div>
-        </Rv>
-        <Rv delay={0.1}><H2>{c.collabTitle}</H2></Rv>
-        <Rv delay={0.2}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 1, background: STONE, marginTop: 40 }}>
-            {COLLABORATORS.map(({ role, org }) => (
-              <div key={org} style={{ background: WHITE, padding: "clamp(24px,2.5vw,32px) clamp(20px,2vw,28px)" }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#CD1719", marginBottom: 12 }}>{role}</div>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(13px,1.2vw,15px)", fontWeight: 400, color: DARK }}>{org}</div>
-              </div>
-            ))}
-          </div>
-        </Rv>
-      </Section>
-
-      <DarkBand title={c.ctaTitle} subtitle={c.ctaSubtitle} ctaLabel={c.ctaLabel} ctaHref="/tower/sustainability" />
+      {/* Photo-pair gallery (Entrance at Night / Lamella Web), the Project
+          Collaborators grid, and the "Explore Sustainability" closing band
+          were removed. Collaborators now live on the Engineering page; the
+          page ending is the sitewide ClosingBand (deck slide 7). */}
 
       {/* Scoped styles */}
       <style>{`

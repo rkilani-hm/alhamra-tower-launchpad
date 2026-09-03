@@ -3,6 +3,8 @@ import { FloorPlanViewer } from "@/components/shared/FloorPlanViewer";
 import { SocialIcons } from "@/components/shared/SocialIcons";
 import { PageLayout }  from "@/components/layout/PageLayout";
 import { PageHero }    from "@/components/shared/PageHero";
+import { HeroImageCentered } from "@/components/shared/HeroImageCentered";
+import { LeasingStory } from "@/components/shared/LeasingStory";
 import { StatsBar, FeatureGrid, Section, Tag, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { useI18n } from "@/lib/i18n";
 import { usePageContent } from "@/lib/useCmsContent";
@@ -185,10 +187,54 @@ export function Services() {
         <Rv delay={0.3}><FeatureGrid features={[...c.systems]} editKey="services" editField="systems" /></Rv>
       </Section>
 
-      <Section bg="#FAFAFA">
-        <Rv><Tag><Editable id="page_prose:services:facilityTag">{c.facilityTag}</Editable></Tag></Rv>
-        <Rv delay={0.1}><H2><Editable id="page_prose:services:facilityHeading">{c.facilityHeading}</Editable></H2></Rv>
-        <Rv delay={0.2}><div style={{ marginTop: 40 }}><FeatureGrid features={[...c.facility]} editKey="services" editField="facility" /></div></Rv>
+      {/* ── Luxury Centre — moved under Operational Excellence, before Premium Additional Services ── */}
+      <Section>
+        <Rv><Tag><Editable id="page_prose:services:mallTag">{c.mallTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:services:mallTitle">{c.mallTitle}</Editable></H2></Rv>
+        <p style={{ fontFamily: FONT, fontWeight: 300,
+          fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9,
+          maxWidth: 720, marginBottom: 40 }}>
+          <Editable id="page_prose:services:mallBody">{c.mallBody}</Editable>
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2,
+          marginBottom: 48 }} className="grid-3col">
+          {c.brands.map(({ category, brands }, i) => (
+            <div key={category} style={{ background: "#FAFAFA",
+              padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #B9B9B7" }}>
+              <div style={{ fontFamily: FONT, fontSize: "10px",
+                letterSpacing: "0.3em", textTransform: "uppercase",
+                color: "#CD1719", marginBottom: 12 }}><Editable id={`page_prose:services:brands.${i}.category`}>{category}</Editable></div>
+              <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,13px)",
+                color: "#6B6B6B", lineHeight: 1.9 }}><Editable id={`page_prose:services:brands.${i}.brands`}>{brands}</Editable></div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, marginBottom: 2 }}>
+          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
+            <SlotImage
+              loading="lazy" slot="services.mallAtrium" fallback="/assets/mall-atrium-skylight.jpg"
+              alt={lang === "ar" ? "مركز الحمراء التجاري — بهو دائري بقبّة هندسية" : "Al Hamra Luxury Centre — circular atrium with geometric skylight"}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
+              background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719" }}>
+              <Editable id="page_prose:services:atriumCap">{c.atriumCap}</Editable>
+            </div>
+          </div>
+          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
+            <SlotImage
+              loading="lazy" slot="services.entrance" fallback="/assets/tower-entrance-lit.jpg"
+              alt={lang === "ar" ? "غراند سينما الحمراء — مجمع سينمائي من ٩ شاشات بمقاعد جلدية قابلة للإمالة" : "Al Hamra Grand Cinema — 9-screen multiplex, leather recliners"}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
+              background: "linear-gradient(to top, rgba(12,11,9,0.8), transparent)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: 16, left: 20 }}>
+              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719", marginBottom: 6 }}><Editable id="page_prose:services:cinemaCap">{c.cinemaCap}</Editable></div>
+              <div style={{ fontFamily: FONT, fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, whiteSpace: "pre-line" }}><Editable id="page_prose:services:cinemaSub">{c.cinemaSub}</Editable></div>
+            </div>
+          </div>
+        </div>
       </Section>
 
       {/* Interior photo gallery */}
@@ -259,73 +305,95 @@ export function Services() {
         </div>
       </div>
 
-      {/* ── Luxury Centre ──────────────────────────────────── */}
-      <Section>
-        <Rv><Tag><Editable id="page_prose:services:mallTag">{c.mallTag}</Editable></Tag></Rv>
-        <Rv delay={0.1}><H2><Editable id="page_prose:services:mallTitle">{c.mallTitle}</Editable></H2></Rv>
-        <p style={{ fontFamily: FONT, fontWeight: 300,
-          fontSize: "clamp(13px,1.1vw,15px)", color: "#5a5a58", lineHeight: 1.9,
-          maxWidth: 720, marginBottom: 40 }}>
-          <Editable id="page_prose:services:mallBody">{c.mallBody}</Editable>
-        </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2,
-          marginBottom: 48 }} className="grid-3col">
-          {c.brands.map(({ category, brands }, i) => (
-            <div key={category} style={{ background: "#FAFAFA",
-              padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #B9B9B7" }}>
-              <div style={{ fontFamily: FONT, fontSize: "10px",
-                letterSpacing: "0.3em", textTransform: "uppercase",
-                color: "#CD1719", marginBottom: 12 }}><Editable id={`page_prose:services:brands.${i}.category`}>{category}</Editable></div>
-              <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,13px)",
-                color: "#6B6B6B", lineHeight: 1.9 }}><Editable id={`page_prose:services:brands.${i}.brands`}>{brands}</Editable></div>
+      {/* ── Beyond the Tower — dark pillar-style cards ─────────────────── */}
+      <section style={{ background: "#1D1D1B", padding: "clamp(72px,10vh,120px) clamp(24px,5vw,80px)" }}>
+        <div style={{ maxWidth: 1360, margin: "0 auto clamp(40px,6vh,64px)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+            <span style={{ width: 32, height: 1, background: "#B9B9B7", flexShrink: 0 }} />
+            <span style={{ fontFamily: FONT, fontSize: "11px", letterSpacing: "0.4em",
+              textTransform: "uppercase", color: "#CD1719" }}>
+              {lang === "ar" ? "ما وراء البرج" : "Beyond the Tower"}
+            </span>
+          </div>
+          <h2 style={{ fontFamily: FONT, fontWeight: 200, fontSize: "clamp(28px,4vw,52px)",
+            color: "#fff", margin: 0, lineHeight: 1.08, letterSpacing: "-0.015em", maxWidth: 720 }}>
+            {lang === "ar" ? "عالمٌ كاملٌ خارج مكتبك مباشرة" : "A whole world just outside your office"}
+          </h2>
+          <p style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 300,
+            color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: "18px 0 0", maxWidth: 520 }}>
+            {lang === "ar"
+              ? "تسوّقٌ وطعامٌ وحدائقُ وضيافةٌ — كلّها ضمن مجمّع الحمراء."
+              : "Retail, dining, gardens and hospitality — all within the Al Hamra complex."}
+          </p>
+        </div>
+        <div style={{ maxWidth: 1360, margin: "0 auto", display: "grid",
+          gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(12px,1.5vw,20px)" }} className="beyond-grid">
+          {(lang === "ar"
+            ? [
+                { fld: "shopping",   kicker: "التجزئة",  title: "مركز الحمراء التجاري", sub: "تسوّقٌ وطعامٌ وترفيهٌ فاخر داخل المجمّع.", src: "/assets/mall-atrium-skylight.jpg" },
+                { fld: "roofgarden", kicker: "الترفيه",  title: "الحديقة المُعلَّقة",     sub: "مساحةٌ خضراء في الهواء الطلق للاستراحة والالتقاء.", src: "/assets/sky-lobby-panoramic.jpg" },
+                { fld: "hotel",      kicker: "الضيافة",  title: "الفندق",                sub: "إقامةٌ وضيافةٌ راقية على بُعد خطوات.", src: "/assets/lounge-at-window.jpg" },
+              ]
+            : [
+                { fld: "shopping",   kicker: "Retail",      title: "Shopping Center", sub: "Luxury retail, dining and entertainment inside the complex.", src: "/assets/mall-atrium-skylight.jpg" },
+                { fld: "roofgarden", kicker: "Leisure",     title: "Roof Garden",     sub: "An open-air green space to step away, meet and breathe.", src: "/assets/sky-lobby-panoramic.jpg" },
+                { fld: "hotel",      kicker: "Hospitality", title: "The Hotel",       sub: "Refined stays and hospitality, moments from your office.", src: "/assets/lounge-at-window.jpg" },
+              ]
+          ).map(({ fld, kicker, title, sub, src }) => (
+            <div key={fld} className="beyond-card"
+              style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden", background: "#0c0b09" }}>
+              <SlotImage slot={`services.beyond.${fld}`} fallback={src} alt={title} loading="lazy"
+                className="beyond-img"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
+                  objectFit: "cover", display: "block", filter: "brightness(0.55)",
+                  transition: "filter 0.5s ease, transform 0.7s ease" }} />
+              <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none",
+                background: "linear-gradient(to top, rgba(12,11,9,0.85) 0%, rgba(12,11,9,0.3) 55%, transparent 100%)" }} />
+              <span aria-hidden="true" className="beyond-accent" />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0,
+                padding: "clamp(22px,3vw,32px)", color: "#fff" }}>
+                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.38em",
+                  textTransform: "uppercase", color: "#CD1719", marginBottom: 14 }}>
+                  <Editable id={`page_prose:services:beyond.${fld}.kicker`}>{kicker}</Editable>
+                </div>
+                <div style={{ fontFamily: FONT, fontSize: "clamp(16px,1.5vw,22px)", fontWeight: 300,
+                  lineHeight: 1.25, color: "#fff", marginBottom: 12, letterSpacing: "-0.005em" }}>
+                  <Editable id={`page_prose:services:beyond.${fld}.title`}>{title}</Editable>
+                </div>
+                <div className="beyond-desc">
+                  <p style={{ fontFamily: FONT, fontSize: "12px", fontWeight: 300,
+                    color: "rgba(255,255,255,0.75)", lineHeight: 1.6, margin: "0 0 16px", maxWidth: 320 }}>
+                    <Editable id={`page_prose:services:beyond.${fld}.sub`}>{sub}</Editable>
+                  </p>
+                </div>
+                <div className="beyond-cta" style={{ display: "inline-flex", alignItems: "center", gap: 10,
+                  fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase",
+                  color: "#fff", paddingTop: 4, borderTop: "1px solid rgba(184,184,182,0.2)",
+                  transition: "border-color 0.3s ease" }}>
+                  <span>{lang === "ar" ? "استكشف" : "Explore"}</span>
+                  <span aria-hidden="true" className="beyond-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
+        <style>{`
+          .beyond-card:hover .beyond-img { filter: brightness(0.7); transform: scale(1.04); }
+          .beyond-card .beyond-desc { max-height: 0; opacity: 0; overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease; }
+          .beyond-card:hover .beyond-desc { max-height: 140px; opacity: 1; }
+          .beyond-card .beyond-accent { position: absolute; top: 28px; left: 28px; width: 48px; height: 1px;
+            background: #B9B9B7; transform: scaleX(0.4); transform-origin: left; opacity: 0.6;
+            transition: transform 0.5s ease, opacity 0.5s ease; }
+          .beyond-card:hover .beyond-accent { transform: scaleX(1); opacity: 1; }
+          .beyond-card:hover .beyond-cta { border-top-color: rgba(184,184,182,0.6); }
+          .beyond-card:hover .beyond-arrow { transform: translateX(4px); }
+          @media (max-width: 1024px) { .beyond-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+          @media (max-width: 540px) { .beyond-grid { grid-template-columns: 1fr !important; } }
+        `}</style>
+      </section>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, marginBottom: 2 }}>
-          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <SlotImage
-              loading="lazy" slot="services.mallAtrium" fallback="/assets/mall-atrium-skylight.jpg"
-              alt={lang === "ar" ? "مركز الحمراء التجاري — بهو دائري بقبّة هندسية" : "Al Hamra Luxury Centre — circular atrium with geometric skylight"}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
-              background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719" }}>
-              <Editable id="page_prose:services:atriumCap">{c.atriumCap}</Editable>
-            </div>
-          </div>
-          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <SlotImage
-              loading="lazy" slot="services.entrance" fallback="/assets/tower-entrance-lit.jpg"
-              alt={lang === "ar" ? "غراند سينما الحمراء — مجمع سينمائي من ٩ شاشات بمقاعد جلدية قابلة للإمالة" : "Al Hamra Grand Cinema — 9-screen multiplex, leather recliners"}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
-              background: "linear-gradient(to top, rgba(12,11,9,0.8), transparent)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 16, left: 20 }}>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719", marginBottom: 6 }}><Editable id="page_prose:services:cinemaCap">{c.cinemaCap}</Editable></div>
-              <div style={{ fontFamily: FONT, fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, whiteSpace: "pre-line" }}><Editable id="page_prose:services:cinemaSub">{c.cinemaSub}</Editable></div>
-            </div>
-          </div>
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)",
-          gap: 1, marginTop: "clamp(32px,5vh,56px)" }} className="grid-4col">
-          {c.amenities.map(({ label, desc }, i) => (
-            <div key={label} style={{ background: "#FAFAFA",
-              padding: "clamp(20px,2.5vw,28px)", borderTop: "1px solid rgba(29,29,27,0.09)" }}>
-              <div style={{ fontFamily: FONT,
-                fontSize: 20, color: "#CD1719", marginBottom: 8 }}>◆</div>
-              <div style={{ fontFamily: FONT, fontSize: "12px",
-                fontWeight: 500, color: "#1D1D1B", marginBottom: 6,
-                letterSpacing: "0.04em" }}><Editable id={`page_prose:services:amenities.${i}.label`}>{label}</Editable></div>
-              <div style={{ fontFamily: FONT, fontSize: "11px",
-                color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:services:amenities.${i}.desc`}>{desc}</Editable></div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="services" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
+      {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
     </PageLayout>
   );
 }
@@ -493,7 +561,7 @@ export function Location() {
         </div>
       </div>
 
-      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="location" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
+      {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
       <style>{`
         @media (max-width: 640px) {
           .location-banner-caption {
@@ -638,13 +706,14 @@ export function LeasingOpportunities() {
   const c = usePageContent<any>("leasing", LEASING_CONTENT[lang], lang);
   return (
     <PageLayout>
-      <PageHero
-        editKey="leasing"
-        tag={c.tag}
-        title={c.title}
-        subtitle={c.subtitle}
-        crumbs={[...c.crumbs]}
-      />
+      <HeroImageCentered
+        slot="leasing.hero"
+        image="/assets/boardroom-gulf-view.jpg"
+        alt={lang === "ar" ? "فرص التأجير في برج الحمراء" : "Leasing opportunities at Al Hamra Tower"}
+        editId="page_prose:leasing:title"
+      >
+        {c.title}
+      </HeroImageCentered>
       <StatsBar stats={[...c.stats]} editKey="leasing" />
 
       <div style={{ position: "relative", height:"clamp(220px,32vw,400px)", overflow: "hidden" }}>
@@ -660,40 +729,8 @@ export function LeasingOpportunities() {
         </div>
       </div>
 
-      <Section>
-        <Rv><Tag><Editable id="page_prose:leasing:configsTag">{c.configsTag}</Editable></Tag></Rv>
-        <Rv delay={0.1}><H2><Editable id="page_prose:leasing:configsHeading">{c.configsHeading}</Editable></H2></Rv>
-        <div className="grid-3col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:48 }}>
-          {c.configs.map(({ code, title, size, bullets }, i) => (
-            <Rv key={code} delay={i * 0.1}>
-              <div style={{ background: "#fff", padding: "44px 36px", height: "100%" }}>
-                <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 14 }}><Editable id="page_prose:leasing:configLabel">{c.configLabel}</Editable> {code}</div>
-                <div style={{ fontFamily: FONT, fontSize: "16px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}><Editable id={`page_prose:leasing:configs.${i}.title`}>{title}</Editable></div>
-                <div style={{ fontFamily: FONT, fontSize: "36px", fontWeight: 300, color: "#6B6B6B", lineHeight: 1, marginBottom: 20 }}><Editable id={`page_prose:leasing:configs.${i}.size`}>{size}</Editable></div>
-                {bullets.map((b, bi) => (
-                  <div key={b} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
-                    <span style={{ color: "#6B6B6B" }}>—</span>
-                    <span style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:leasing:configs.${i}.bullets.${bi}`}>{b}</Editable></span>
-                  </div>
-                ))}
-              </div>
-            </Rv>
-          ))}
-        </div>
-      </Section>
-
-      <Section bg="#FAFAFA">
-        <Rv><Tag><Editable id="page_prose:leasing:amenitiesTag">{c.amenitiesTag}</Editable></Tag></Rv>
-        <Rv delay={0.1}><H2><Editable id="page_prose:leasing:amenitiesHeading">{c.amenitiesHeading}</Editable></H2></Rv>
-        <div className="grid-4col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:40 }}>
-          {c.amenities.map(({ label, desc }, i) => (
-            <div key={label} style={{ background: "#fff", padding: "32px 28px" }}>
-              <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}><Editable id={`page_prose:leasing:amenities.${i}.label`}>{label}</Editable></div>
-              <div style={{ fontFamily: FONT, fontSize: "11.5px", color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:leasing:amenities.${i}.desc`}>{desc}</Editable></div>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* ── Scroll-driven video story (home-style pinned section) ─────── */}
+      <LeasingStory />
 
       {/* Floor Plan Viewer */}
       <div>
@@ -713,7 +750,60 @@ export function LeasingOpportunities() {
         </div>
       </div>
 
-      <DarkBand title={c.cta.title} subtitle={c.cta.subtitle} ctaLabel={c.cta.label} ctaHref="/leasing/inquiry#inquiry-form" editKey="leasing" editFields={{ title: "cta.title", subtitle: "cta.subtitle", cta: "cta.label" }} />
+      {/* Luxury Amenities — moved under the Floor Plans section */}
+      <Section bg="#FAFAFA">
+        <Rv><Tag><Editable id="page_prose:leasing:amenitiesTag">{c.amenitiesTag}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:leasing:amenitiesHeading">{c.amenitiesHeading}</Editable></H2></Rv>
+        <div className="grid-4col" style={{ gap:1, background:"rgba(29,29,27,0.09)", marginTop:40 }}>
+          {c.amenities.map(({ label, desc }, i) => (
+            <div key={label} style={{ background: "#fff", padding: "32px 28px" }}>
+              <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8 }}><Editable id={`page_prose:leasing:amenities.${i}.label`}>{label}</Editable></div>
+              <div style={{ fontFamily: FONT, fontSize: "11.5px", color: "#6B6B6B", lineHeight: 1.7 }}><Editable id={`page_prose:leasing:amenities.${i}.desc`}>{desc}</Editable></div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── Downloads — brochure & floor plans (from the home page) ───── */}
+      <Section bg="#FAFAFA">
+        <Rv><Tag>{lang === "ar" ? "التنزيلات" : "Downloads"}</Tag></Rv>
+        <Rv delay={0.1}><H2>{lang === "ar" ? "خذ الأرقام معك" : "Take the numbers with you"}</H2></Rv>
+        <Rv delay={0.2}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 40 }}
+            className="grid-2col">
+            {(lang === "ar"
+              ? [
+                  { fld: "brochure", title: "كتيّب التأجير", meta: "PDF · نظرة عامة على البرج والمساحات المتاحة", href: "/assets/docs/al-hamra-leasing-brochure.pdf" },
+                  { fld: "plans",    title: "مخططات الطوابق", meta: "PDF · مخططات الطوابق النموذجية", href: "/assets/docs/al-hamra-floor-plans.pdf" },
+                ]
+              : [
+                  { fld: "brochure", title: "Leasing Brochure", meta: "PDF · Tower & availability overview", href: "/assets/docs/al-hamra-leasing-brochure.pdf" },
+                  { fld: "plans",    title: "Floor Plans",      meta: "PDF · Typical floor plates", href: "/assets/docs/al-hamra-floor-plans.pdf" },
+                ]
+            ).map(({ fld, title, meta, href }) => (
+              <a key={fld} href={href} target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16,
+                  background: "#fff", border: "1px solid rgba(29,29,27,0.10)",
+                  padding: "clamp(24px,3vw,36px)", textDecoration: "none",
+                  transition: "border-color 0.25s ease, box-shadow 0.25s ease" }}
+                onMouseEnter={e=>{e.currentTarget.style.borderColor="#B9B9B7";e.currentTarget.style.boxShadow="0 20px 50px -30px rgba(29,29,27,0.25)";}}
+                onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(29,29,27,0.10)";e.currentTarget.style.boxShadow="none";}}>
+                <div>
+                  <div style={{ fontFamily: FONT, fontSize: "clamp(15px,1.4vw,19px)", fontWeight: 400, color: "#1D1D1B", marginBottom: 6 }}>
+                    <Editable id={`page_prose:leasing:downloads.${fld}.title`}>{title}</Editable>
+                  </div>
+                  <div style={{ fontFamily: FONT, fontSize: "11.5px", letterSpacing: "0.04em", color: "#6B6B6B" }}>
+                    <Editable id={`page_prose:leasing:downloads.${fld}.meta`}>{meta}</Editable>
+                  </div>
+                </div>
+                <span aria-hidden="true" style={{ fontFamily: FONT, fontSize: "18px", color: "#CD1719", flexShrink: 0 }}>↓</span>
+              </a>
+            ))}
+          </div>
+        </Rv>
+      </Section>
+
+      {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
     </PageLayout>
   );
 }
@@ -809,7 +899,7 @@ export function LeasingInquiry() {
   };
 
   return (
-    <PageLayout>
+    <PageLayout closingBand={false}>
       <PageHero
         editKey="inquiry"
         tag={c.tag}

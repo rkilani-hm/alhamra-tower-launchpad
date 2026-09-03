@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
@@ -88,6 +89,20 @@ export default function TowerSustainability() {
                 <div style={{ fontFamily: FONT, fontSize: "10px",
                   letterSpacing: "0.2em", textTransform: "uppercase", color: PEARL_TEXT,
                   paddingTop: 16, borderTop: "1px solid rgba(184,184,182,0.3)" }}><Editable id={`page_prose:towerSustain:pillars.${i}.stat`}>{stat}</Editable></div>
+                {/* Smart Building Infrastructure — cross-link to Leasing specs
+                    rather than restating substation data (deck slide 8). */}
+                {i === 4 && (
+                  <Link to="/leasing" style={{ display: "inline-flex", alignItems: "center", gap: 8,
+                    marginTop: 16, fontFamily: FONT, fontSize: "10px",
+                    letterSpacing: "0.2em", textTransform: "uppercase", color: DARK,
+                    textDecoration: "none", borderBottom: `1px solid ${DARK}`, paddingBottom: 3,
+                    transition: "opacity 0.2s" }}
+                    onMouseEnter={e=>{e.currentTarget.style.opacity="0.6";}}
+                    onMouseLeave={e=>{e.currentTarget.style.opacity="1";}}>
+                    {lang === "ar" ? "مواصفات التأجير" : "Leasing specifications"}
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                )}
               </motion.div>
             );
           })}
@@ -109,12 +124,7 @@ export default function TowerSustainability() {
         </div>
       </div>
 
-      <DarkBand
-        title={c.ctaTitle ?? "Discover the engineering behind the tower"}
-        subtitle={c.ctaSubtitle ?? "Explore the design, structure and awards that make Al Hamra Tower a global landmark."}
-        ctaLabel="Leasing Inquiry"
-        ctaHref="/leasing/inquiry#inquiry-form"
-      />
+      {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
 
       <style>{`
         .sust-intro-grid { grid-template-columns: 1fr 1fr; }
