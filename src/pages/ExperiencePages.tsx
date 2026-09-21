@@ -765,6 +765,9 @@ export function LeasingOpportunities() {
       </Section>
 
       {/* ── Downloads — brochure & floor plans (from the home page) ───── */}
+      {/* The PDF files are not hosted on the site; each card routes to the
+          inquiry form so the leasing team can share the document directly. */}
+      <div id="downloads">
       <Section bg="#FAFAFA">
         <Rv><Tag>{lang === "ar" ? "التنزيلات" : "Downloads"}</Tag></Rv>
         <Rv delay={0.1}><H2>{lang === "ar" ? "خذ الأرقام معك" : "Take the numbers with you"}</H2></Rv>
@@ -773,15 +776,15 @@ export function LeasingOpportunities() {
             className="grid-2col">
             {(lang === "ar"
               ? [
-                  { fld: "brochure", title: "كتيّب التأجير", meta: "PDF · نظرة عامة على البرج والمساحات المتاحة", href: "/assets/docs/al-hamra-leasing-brochure.pdf" },
-                  { fld: "plans",    title: "مخططات الطوابق", meta: "PDF · مخططات الطوابق النموذجية", href: "/assets/docs/al-hamra-floor-plans.pdf" },
+                  { fld: "brochure", title: "كتيّب التأجير", meta: "متاح عند الطلب · يشاركه فريق التأجير", href: "/leasing/inquiry#inquiry-form" },
+                  { fld: "plans",    title: "مخططات الطوابق", meta: "متاح عند الطلب · يشاركه فريق التأجير", href: "/leasing/inquiry#inquiry-form" },
                 ]
               : [
-                  { fld: "brochure", title: "Leasing Brochure", meta: "PDF · Tower & availability overview", href: "/assets/docs/al-hamra-leasing-brochure.pdf" },
-                  { fld: "plans",    title: "Floor Plans",      meta: "PDF · Typical floor plates", href: "/assets/docs/al-hamra-floor-plans.pdf" },
+                  { fld: "brochure", title: "Leasing Brochure", meta: "Available on request · shared by our leasing team", href: "/leasing/inquiry#inquiry-form" },
+                  { fld: "plans",    title: "Floor Plans",      meta: "Available on request · shared by our leasing team", href: "/leasing/inquiry#inquiry-form" },
                 ]
             ).map(({ fld, title, meta, href }) => (
-              <a key={fld} href={href} target="_blank" rel="noopener noreferrer"
+              <a key={fld} href={href}
                 style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16,
                   background: "#fff", border: "1px solid rgba(29,29,27,0.10)",
                   padding: "clamp(24px,3vw,36px)", textDecoration: "none",
