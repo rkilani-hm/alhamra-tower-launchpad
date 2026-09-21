@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { PageHero } from "@/components/shared/PageHero";
-import { SlotImage } from "@/lib/EditMode";
+import { SlotImage, Editable } from "@/lib/EditMode";
 import { useI18n } from "@/lib/i18n";
 
 /* Bilingual top-level strings only — deep awards data stays in English
