@@ -244,8 +244,14 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
         const statKey = sp[sp.length - 1];
         const statArr = statTarget ? statTarget[statKey] : null;
         if (statRows.length && Array.isArray(statArr)) {
+          // Align each published stat to the static entry at the SAME sort_order —
+          // not by filtered-array index. Otherwise a missing/reordered row (e.g.
+          // only 5 of 6 stats seeded) shifts the survivors onto the wrong stats,
+          // so the last one (Tower Overview's 351 Sky Lounge) never overlays.
+          const byOrder = new Map<number, AnyObj>();
+          statRows.forEach((r, idx) => byOrder.set(r.sort_order ?? idx, r));
           statTarget![statKey] = statArr.map((orig: AnyObj, i: number) => {
-            const r = statRows[i];
+            const r = byOrder.get(i);
             if (!r) return orig;
             const next = { ...orig };
             const n = pick(r.display_en, r.display_ar);

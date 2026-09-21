@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
@@ -83,16 +83,36 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 
 export default function TowerOverview() {
   const { lang } = useI18n();
+  const isAr = lang === "ar";
   const cStatic = useContent<any>("content.towerOverview");
-  const c = usePageContent<any>("towerOverview", cStatic, lang);
+  // Seed the pillars + condensed-awards defaults into the overlay base so
+  // published page_prose edits actually land on the fields the page renders.
+  // Must be memoised — a fresh object each render would reset usePageContent.
+  const base = useMemo(() => {
+    const P = PILLARS[lang] ?? PILLARS.en;
+    const A = AWARDS_CONDENSED[lang] ?? AWARDS_CONDENSED.en;
+    return {
+      ...(cStatic ?? {}),
+      singularKicker: cStatic?.singularKicker ?? (isAr ? "ما الذي يجعله فريداً" : "What makes it singular"),
+      singularTitle: cStatic?.singularTitle ?? (isAr ? "ثلاثة أمورٍ لا يدّعيها أيّ برجٍ آخر في المنطقة." : "Three things no other tower in the region can claim."),
+      pillars: P,
+      awardsKicker: cStatic?.awardsKicker ?? A.kicker,
+      awardsTotal: A.total,
+      awardsTotalLabel: A.totalLabel,
+      awardsCta: A.cta,
+      latestAwardYear: A.latestYear,
+      latestAwardTitle: A.latestTitle,
+      latestAwardSub: A.latestSub,
+    };
+  }, [cStatic, lang, isAr]);
+  const c = usePageContent<any>("towerOverview", base, lang);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const imgY = useSpring(useTransform(scrollYProgress, [0, 1], ["0%", "22%"]), { stiffness: 50, damping: 18 });
   const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
-  const pillars = PILLARS[lang] ?? PILLARS.en;
-  const awardsC = AWARDS_CONDENSED[lang] ?? AWARDS_CONDENSED.en;
+  const pillars = (Array.isArray(c.pillars) && c.pillars.length ? c.pillars : (PILLARS[lang] ?? PILLARS.en));
 
   const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -206,17 +226,17 @@ export default function TowerOverview() {
           <div>
             <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 28 }}>
-              <Editable id="page_prose:towerOverview:awardsKicker">{c.awardsKicker ?? awardsC.kicker}</Editable>
+              <Editable id="page_prose:towerOverview:awardsKicker">{c.awardsKicker}</Editable>
             </div>
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 12 }}>
               <span style={{ fontFamily: FONT, fontSize: "clamp(56px,9vw,120px)",
                 fontWeight: 200, color: DARK, lineHeight: 0.9, letterSpacing: "-0.03em" }}>
-                <Editable id="page_prose:towerOverview:awardsTotal">{awardsC.total}</Editable>
+                <Editable id="page_prose:towerOverview:awardsTotal">{c.awardsTotal}</Editable>
               </span>
             </div>
             <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,15px)",
               color: "#5a5a58", lineHeight: 1.6, maxWidth: 340, marginBottom: 36 }}>
-              <Editable id="page_prose:towerOverview:awardsTotalLabel">{awardsC.totalLabel}</Editable>
+              <Editable id="page_prose:towerOverview:awardsTotalLabel">{c.awardsTotalLabel}</Editable>
             </div>
             <Link to="/tower/awards" style={{ display: "inline-flex", alignItems: "center", gap: 12,
               background: DARK, color: "#fff", fontFamily: FONT,
@@ -224,7 +244,7 @@ export default function TowerOverview() {
               padding: "15px 32px", textDecoration: "none", transition: "background 0.3s ease" }}
               onMouseEnter={e=>{e.currentTarget.style.background="#000";}}
               onMouseLeave={e=>{e.currentTarget.style.background=DARK;}}>
-              <Editable id="page_prose:towerOverview:awardsCta">{awardsC.cta}</Editable>
+              <Editable id="page_prose:towerOverview:awardsCta">{c.awardsCta}</Editable>
               <span aria-hidden="true">→</span>
             </Link>
           </div>
@@ -244,15 +264,15 @@ export default function TowerOverview() {
               borderLeft: `1px solid ${PEARL}`, paddingLeft: 20 }}>
               <div style={{ fontFamily: FONT, fontSize: "clamp(20px,2vw,28px)",
                 fontWeight: 300, color: DARK, lineHeight: 1 }}>
-                <Editable id="page_prose:towerOverview:latestAwardYear">{awardsC.latestYear}</Editable>
+                <Editable id="page_prose:towerOverview:latestAwardYear">{c.latestAwardYear}</Editable>
               </div>
               <div>
                 <div style={{ fontFamily: FONT, fontSize: "clamp(13px,1.05vw,15px)",
                   fontWeight: 400, color: DARK }}>
-                  <Editable id="page_prose:towerOverview:latestAwardTitle">{awardsC.latestTitle}</Editable>
+                  <Editable id="page_prose:towerOverview:latestAwardTitle">{c.latestAwardTitle}</Editable>
                 </div>
                 <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.82vw,11.5px)", color: "#6B6B6B", marginTop: 3 }}>
-                  <Editable id="page_prose:towerOverview:latestAwardSub">{awardsC.latestSub}</Editable>
+                  <Editable id="page_prose:towerOverview:latestAwardSub">{c.latestAwardSub}</Editable>
                 </div>
               </div>
             </div>
