@@ -222,7 +222,7 @@ export function LeasingDownloads() {
               transition={{ duration: 0.8, delay: 0.4 + i * 0.12, ease: [0.16,1,0.3,1] }}
             >
               <Link
-                to="/leasing/downloads"
+                to="/leasing#downloads"
                 style={{
                   borderTop: "1px solid rgba(255,255,255,0.1)",
                   padding: "clamp(22px,3vh,30px) 0",

@@ -805,6 +805,7 @@ export function LeasingOpportunities() {
           </div>
         </Rv>
       </Section>
+      </div>
 
       {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
     </PageLayout>
