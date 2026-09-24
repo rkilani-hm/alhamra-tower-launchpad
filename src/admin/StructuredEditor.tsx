@@ -116,7 +116,7 @@ function RowEditor({ def, row, onChanged }: { def: TableDef; row: any; onChanged
 
       <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         {def.fields.map((f) => <FieldRow key={f.col} f={f} vals={vals} setVals={setVals} />)}
-        {(def.table === "feature_cards" || def.table === "timeline_entries") && (
+        {(def.table === "feature_cards" || def.table === "timeline_entries" || def.table === "awards") && (
           <ImagePicker
             table={def.table}
             rowId={row.id}

@@ -230,15 +230,18 @@ const ROW_FIELDS: Record<string, RowFieldDef[]> = {
   ],
   awards: [
     { col: "year", label: "Year", bilingual: false },
+    { col: "ribbon", label: "Distinction", bilingual: true },
     { col: "title", label: "Title", bilingual: true },
-    { col: "sub", label: "Subtitle", bilingual: true },
+    { col: "organization", label: "Organisation", bilingual: true },
+    { col: "category", label: "Category", bilingual: false },
+    { col: "body", label: "Description", bilingual: true },
   ],
 };
 // How to locate a row by its natural key, per table.
 function rowMatch(table: string, group: string, key: string) {
   if (table === "stat_counters") return [{ c: "group_key", v: group }, { c: "stat_key", v: key }];
   if (table === "spec_rows") return [{ c: "__or_label__", v: key }];
-  if (table === "awards") return [{ c: "sort_order", v: Number(key) }];
+  if (table === "awards") return [{ c: "page_key", v: group }, { c: "sort_order", v: Number(key) }];
   // feature_cards / timeline_entries: collection + sort_order
   return [{ c: "collection", v: group }, { c: "sort_order", v: Number(key) }];
 }
