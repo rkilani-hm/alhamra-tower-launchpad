@@ -126,7 +126,7 @@ export default function BusinessCentre() {
                   fontFamily: CG, fontSize: "11px", letterSpacing: "0.28em",
                   color: PEARL_TEXT, fontWeight: 300,
                 }}>
-                  {a.num}
+                  <EditableRow id={`feature_cards:businessCentre.advantages:${i}`}>{a.num}</EditableRow>
                 </div>
                 <div style={{
                   fontFamily: CG, fontSize: "clamp(13px,1.1vw,15px)",
