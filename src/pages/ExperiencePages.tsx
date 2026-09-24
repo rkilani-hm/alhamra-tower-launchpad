@@ -75,6 +75,15 @@ const SERVICES_CONTENT = {
     atriumCap: "Luxury Centre · Circular Atrium",
     cinemaCap: "Grand Cinema · 9 Screens",
     cinemaSub: "Premium recliners on the\nuppermost mall level",
+    beyond: {
+      kicker: "Beyond the Tower",
+      title: "A whole world just outside your office",
+      body: "Retail, dining, gardens and hospitality — all within the Al Hamra complex.",
+      explore: "Explore",
+      shopping: { kicker: "Retail", title: "Shopping Center", sub: "Luxury retail, dining and entertainment inside the complex." },
+      roofgarden: { kicker: "Leisure", title: "Roof Garden", sub: "An open-air green space to step away, meet and breathe." },
+      hotel: { kicker: "Hospitality", title: "The Hotel", sub: "Refined stays and hospitality, moments from your office." },
+    },
     amenities: [
       { label: "9-Screen Cinema",    desc: "Grand Cinemas on the uppermost level" },
       { label: "Health Club & Spa",  desc: "Al Hamra Thermae between tower and mall" },
@@ -141,6 +150,15 @@ const SERVICES_CONTENT = {
     atriumCap: "المركز التجاري · البهو الدائري",
     cinemaCap: "السينما الكبرى · ٩ شاشات",
     cinemaSub: "مقاعد قابلة للإمالة من فئة بريميوم\nفي المستوى الأعلى من المركز التجاري",
+    beyond: {
+      kicker: "ما وراء البرج",
+      title: "عالمٌ كاملٌ خارج مكتبك مباشرة",
+      body: "تسوّقٌ وطعامٌ وحدائقُ وضيافةٌ — كلّها ضمن مجمّع الحمراء.",
+      explore: "استكشف",
+      shopping: { kicker: "التجزئة", title: "مركز الحمراء التجاري", sub: "تسوّقٌ وطعامٌ وترفيهٌ فاخر داخل المجمّع." },
+      roofgarden: { kicker: "الترفيه", title: "الحديقة المُعلَّقة", sub: "مساحةٌ خضراء في الهواء الطلق للاستراحة والالتقاء." },
+      hotel: { kicker: "الضيافة", title: "الفندق", sub: "إقامةٌ وضيافةٌ راقية على بُعد خطوات." },
+    },
     amenities: [
       { label: "سينما من ٩ شاشات",    desc: "غراند سينما في المستوى الأعلى" },
       { label: "نادٍ صحّي ومنتجع",  desc: "حمّامات الحمراء بين البرج والمركز" },
@@ -254,34 +272,25 @@ export function Services() {
             <span style={{ width: 32, height: 1, background: "#B9B9B7", flexShrink: 0 }} />
             <span style={{ fontFamily: FONT, fontSize: "11px", letterSpacing: "0.4em",
               textTransform: "uppercase", color: "#CD1719" }}>
-              {lang === "ar" ? "ما وراء البرج" : "Beyond the Tower"}
+              <Editable id="page_prose:services:beyond.kicker">{c.beyond.kicker}</Editable>
             </span>
           </div>
           <h2 style={{ fontFamily: FONT, fontWeight: 200, fontSize: "clamp(28px,4vw,52px)",
             color: "#fff", margin: 0, lineHeight: 1.08, letterSpacing: "-0.015em", maxWidth: 720 }}>
-            {lang === "ar" ? "عالمٌ كاملٌ خارج مكتبك مباشرة" : "A whole world just outside your office"}
+            <Editable id="page_prose:services:beyond.title">{c.beyond.title}</Editable>
           </h2>
           <p style={{ fontFamily: FONT, fontSize: "15px", fontWeight: 300,
             color: "rgba(255,255,255,0.6)", lineHeight: 1.7, margin: "18px 0 0", maxWidth: 520 }}>
-            {lang === "ar"
-              ? "تسوّقٌ وطعامٌ وحدائقُ وضيافةٌ — كلّها ضمن مجمّع الحمراء."
-              : "Retail, dining, gardens and hospitality — all within the Al Hamra complex."}
+            <Editable id="page_prose:services:beyond.body">{c.beyond.body}</Editable>
           </p>
         </div>
         <div style={{ maxWidth: 1360, margin: "0 auto", display: "grid",
           gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(12px,1.5vw,20px)" }} className="beyond-grid">
-          {(lang === "ar"
-            ? [
-                { fld: "shopping",   kicker: "التجزئة",  title: "مركز الحمراء التجاري", sub: "تسوّقٌ وطعامٌ وترفيهٌ فاخر داخل المجمّع.", src: "/assets/mall-atrium-skylight.jpg" },
-                { fld: "roofgarden", kicker: "الترفيه",  title: "الحديقة المُعلَّقة",     sub: "مساحةٌ خضراء في الهواء الطلق للاستراحة والالتقاء.", src: "/assets/sky-lobby-panoramic.jpg" },
-                { fld: "hotel",      kicker: "الضيافة",  title: "الفندق",                sub: "إقامةٌ وضيافةٌ راقية على بُعد خطوات.", src: "/assets/lounge-at-window.jpg" },
-              ]
-            : [
-                { fld: "shopping",   kicker: "Retail",      title: "Shopping Center", sub: "Luxury retail, dining and entertainment inside the complex.", src: "/assets/mall-atrium-skylight.jpg" },
-                { fld: "roofgarden", kicker: "Leisure",     title: "Roof Garden",     sub: "An open-air green space to step away, meet and breathe.", src: "/assets/sky-lobby-panoramic.jpg" },
-                { fld: "hotel",      kicker: "Hospitality", title: "The Hotel",       sub: "Refined stays and hospitality, moments from your office.", src: "/assets/lounge-at-window.jpg" },
-              ]
-          ).map(({ fld, kicker, title, sub, src }) => (
+          {([
+            { fld: "shopping", ...c.beyond.shopping, src: "/assets/mall-atrium-skylight.jpg" },
+            { fld: "roofgarden", ...c.beyond.roofgarden, src: "/assets/sky-lobby-panoramic.jpg" },
+            { fld: "hotel", ...c.beyond.hotel, src: "/assets/lounge-at-window.jpg" },
+          ]).map(({ fld, kicker, title, sub, src }) => (
             <div key={fld} className="beyond-card"
               style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden", background: "#0c0b09" }}>
               <SlotImage slot={`services.beyond.${fld}`} fallback={src} alt={title} loading="lazy"
@@ -312,7 +321,7 @@ export function Services() {
                   fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase",
                   color: "#fff", paddingTop: 4, borderTop: "1px solid rgba(184,184,182,0.2)",
                   transition: "border-color 0.3s ease" }}>
-                  <span>{lang === "ar" ? "استكشف" : "Explore"}</span>
+                  <span><Editable id="page_prose:services:beyond.explore">{c.beyond.explore}</Editable></span>
                   <span aria-hidden="true" className="beyond-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
                 </div>
               </div>
