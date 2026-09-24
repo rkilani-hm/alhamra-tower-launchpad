@@ -25,6 +25,63 @@ export interface Counter {
   unit: string;
 }
 
+export interface CmsAward {
+  year: string;
+  ribbon: string;
+  title: string;
+  org: string;
+  category: string;
+  body: string;
+  image: string | null;
+  hero?: boolean;
+}
+
+/** Overlay the published Awards CMS rows onto the complete static collection. */
+export function useAwardsContent(pageKey: string, base: CmsAward[], lang: Lang): CmsAward[] {
+  const [awards, setAwards] = useState<CmsAward[]>(base);
+
+  useEffect(() => {
+    let cancelled = false;
+    setAwards(base);
+    (async () => {
+      const { data: rows, error } = await supabase
+        .from("awards")
+        .select("year,ribbon_en,ribbon_ar,title_en,title_ar,organization_en,organization_ar,category,body_en,body_ar,image_id,is_featured,sort_order,status,page_key")
+        .eq("page_key", pageKey)
+        .eq("status", "published")
+        .order("sort_order", { ascending: true });
+      if (cancelled || error || !rows?.length) return;
+
+      const mediaIds = rows.map((row) => row.image_id).filter((id): id is string => Boolean(id));
+      const mediaMap = new Map<string, string>();
+      if (mediaIds.length) {
+        const { data: media } = await supabase.from("media_assets").select("id,public_url").in("id", mediaIds);
+        for (const item of media ?? []) if (item.public_url) mediaMap.set(item.id, item.public_url);
+      }
+      const pick = (en: string | null, ar: string | null) => lang === "ar" ? (ar || en || "") : (en || "");
+      const byOrder = new Map(rows.map((row) => [row.sort_order, row]));
+      setAwards(base.map((original, index) => {
+        const row = byOrder.get(index);
+        if (!row) return original;
+        return {
+          ...original,
+          year: row.year ?? original.year,
+          ribbon: pick(row.ribbon_en, row.ribbon_ar) || original.ribbon,
+          title: pick(row.title_en, row.title_ar) || original.title,
+          org: pick(row.organization_en, row.organization_ar) || original.org,
+          category: row.category || original.category,
+          body: pick(row.body_en, row.body_ar) || original.body,
+          image: (row.image_id && mediaMap.get(row.image_id)) || original.image,
+          hero: row.is_featured ?? original.hero,
+        };
+      }));
+    })();
+    return () => { cancelled = true; };
+  }, [pageKey, lang, base]);
+
+  return awards;
+}
+
 /* Fetch published stat_counters for a given group (e.g. "home") and map them
    into the Counter[] shape the component already uses. Returns `null` until
    loaded OR if anything fails — caller falls back to its static list on null. */
