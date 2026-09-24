@@ -1,115 +1,111 @@
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
-import { Editable } from "@/lib/EditMode";
+import { Editable, SlotImage } from "@/lib/EditMode";
 
 /* ──────────────────────────────────────────────────────────────────────────
    FloorPlateSelector — interactive typical-office-floor selector.
 
-   A vector top-down floor plate (Al Hamra's square slab with a central core,
-   divided into four perimeter suites) paired with a suite list. Hovering /
-   focusing a suite — in the list OR on the plate — lights its zone in pearl
-   gold while the rest stays pale stone. "Full Floor" lights the whole ring.
-   Pure SVG (no image assets), on-brand, CMS-editable suite labels/areas.
+   Renders the real Al Hamra typical-floor plan (image) with three selectable
+   leasable units + Full Floor. Hovering / focusing a unit — in the list OR on
+   the plan — lights its region in CI red while the rest stays neutral. "Full
+   Floor" lights all three.
+
+   The plan image is CMS-swappable via the `workplace.floorplan` slot; drop the
+   file at public/assets/typical-floor-plan.png. The three REGION polygons are
+   percentage coordinates over the image (0–100 on each axis) — tune them to
+   line up with the plan once the final image is in place.
 ──────────────────────────────────────────────────────────────────────────── */
 
-const GOLD = "#CD1719";
+const RED  = "#CD1719";
 const DARK = "#1D1D1B";
-const STONE = "#EFEAE2";
-const CORE = "#D9D3C8";
 
-// Slab corners (outer) and core corners (inner) — the ring between them is the
-// leasable office space, split into four trapezoids by the corner diagonals.
-const O = { tl: [40, 40], tr: [480, 40], br: [480, 480], bl: [40, 480] };
-const I = { tl: [200, 200], tr: [320, 200], br: [320, 320], bl: [200, 320] };
-const pts = (...p: number[][]) => p.map(([x, y]) => `${x},${y}`).join(" ");
+type Unit = { id: string; label: string; area: string; region: number[][] | null };
 
-const ZONES: Record<string, { poly: number[][]; cx: number; cy: number }> = {
-  A: { poly: [O.tl, O.tr, I.tr, I.tl], cx: 260, cy: 122 }, // top
-  B: { poly: [O.tr, O.br, I.br, I.tr], cx: 398, cy: 262 }, // right
-  C: { poly: [O.br, O.bl, I.bl, I.br], cx: 260, cy: 402 }, // bottom
-  D: { poly: [O.bl, O.tl, I.tl, I.bl], cx: 122, cy: 262 }, // left
-};
-const ZONE_KEYS = ["A", "B", "C", "D"] as const;
-
-const SUITES = {
+const UNITS: Record<string, Unit[]> = {
   en: [
-    { id: "A", label: "Suite A", area: "420 m²" },
-    { id: "B", label: "Suite B", area: "510 m²" },
-    { id: "C", label: "Suite C", area: "385 m²" },
-    { id: "D", label: "Suite D", area: "435 m²" },
-    { id: "FULL", label: "Full Floor", area: "1,750 m²" },
+    { id: "U1", label: "Unit 1", area: "580 m²", region: [[14, 8], [38, 8], [38, 92], [14, 92]] },
+    { id: "U2", label: "Unit 2", area: "590 m²", region: [[38, 8], [62, 8], [62, 92], [38, 92]] },
+    { id: "U3", label: "Unit 3", area: "580 m²", region: [[62, 8], [86, 8], [86, 92], [62, 92]] },
+    { id: "FULL", label: "Full Floor", area: "1,750 m²", region: null },
   ],
   ar: [
-    { id: "A", label: "الجناح A", area: "420 م²" },
-    { id: "B", label: "الجناح B", area: "510 م²" },
-    { id: "C", label: "الجناح C", area: "385 م²" },
-    { id: "D", label: "الجناح D", area: "435 م²" },
-    { id: "FULL", label: "طابق كامل", area: "1,750 م²" },
+    { id: "U1", label: "الوحدة ١", area: "٥٨٠ م²", region: [[14, 8], [38, 8], [38, 92], [14, 92]] },
+    { id: "U2", label: "الوحدة ٢", area: "٥٩٠ م²", region: [[38, 8], [62, 8], [62, 92], [38, 92]] },
+    { id: "U3", label: "الوحدة ٣", area: "٥٨٠ م²", region: [[62, 8], [86, 8], [86, 92], [62, 92]] },
+    { id: "FULL", label: "طابق كامل", area: "١٬٧٥٠ م²", region: null },
   ],
 };
 
 export function FloorPlateSelector() {
   const { lang } = useI18n();
-  const suites = (SUITES as any)[lang] ?? SUITES.en;
-  const [active, setActive] = useState<string>("A");
-  const hot = (z: string) => active === z || active === "FULL";
+  const units = UNITS[lang] ?? UNITS.en;
+  const [active, setActive] = useState<string>("U1");
+  const [imgOk, setImgOk] = useState(true);
+  const isHot = (id: string) => active === id || active === "FULL";
 
   return (
     <div className="fps">
       <div className="fps-plan">
-        <svg viewBox="0 0 520 520" role="img" aria-label="Typical office floor plate with selectable suites">
-          <rect x="40" y="40" width="440" height="440" fill="none" stroke="rgba(29,29,27,0.12)" />
-          {ZONE_KEYS.map((z) => (
-            <polygon
-              key={z}
-              points={pts(...ZONES[z].poly)}
-              onMouseEnter={() => setActive(z)}
-              style={{
-                cursor: "pointer",
-                fill: hot(z) ? "rgba(184,184,182,0.55)" : STONE,
-                stroke: "#fff",
-                strokeWidth: 2,
-                transition: "fill 0.3s ease",
-              }}
+        <div style={{ position: "relative", width: "100%", background: "#fff" }}>
+          {imgOk ? (
+            <SlotImage
+              slot="workplace.floorplan"
+              fallback="/assets/typical-floor-plan.png"
+              alt={lang === "ar" ? "مخطط الطابق النموذجي لبرج الحمراء" : "Al Hamra typical floor plan"}
+              onError={() => setImgOk(false)}
+              style={{ width: "100%", height: "auto", display: "block" }}
             />
-          ))}
-          {ZONE_KEYS.map((z) => (
-            <text
-              key={z}
-              x={ZONES[z].cx}
-              y={ZONES[z].cy + 6}
-              textAnchor="middle"
-              style={{
-                fontFamily: "var(--font-brand)", fontSize: 22, fontWeight: 300,
-                letterSpacing: "2px", pointerEvents: "none",
-                fill: hot(z) ? GOLD : "#b7b1a6", transition: "fill 0.3s ease",
-              }}
-            >{z}</text>
-          ))}
-          <rect x="200" y="200" width="120" height="120" fill={CORE} stroke="#fff" strokeWidth="2" />
-          <text x="260" y="264" textAnchor="middle" style={{ fontFamily: "var(--font-brand)", fontSize: 10, letterSpacing: "3px", fill: "#8a857b" }}>CORE</text>
-        </svg>
+          ) : (
+            // Placeholder until the plan image is added at the path above.
+            <div aria-hidden="true" style={{ width: "100%", aspectRatio: "1 / 1",
+              background: "repeating-linear-gradient(45deg,#f3f1ec,#f3f1ec 10px,#efeae2 10px,#efeae2 20px)" }} />
+          )}
+
+          {/* Highlight overlay — percentage coordinates over the image */}
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+            {units.filter((u) => u.region).map((u) => {
+              const on = isHot(u.id);
+              return (
+                <polygon
+                  key={u.id}
+                  points={u.region!.map((p) => p.join(",")).join(" ")}
+                  onMouseEnter={() => setActive(u.id)}
+                  onClick={() => setActive(u.id)}
+                  style={{
+                    cursor: "pointer",
+                    pointerEvents: "auto",
+                    fill: on ? "rgba(205,23,25,0.26)" : "rgba(205,23,25,0)",
+                    stroke: on ? RED : "rgba(29,29,27,0.16)",
+                    strokeWidth: 0.4,
+                    transition: "fill 0.3s ease, stroke 0.3s ease",
+                  }}
+                />
+              );
+            })}
+          </svg>
+        </div>
       </div>
 
       <div className="fps-list">
-        {suites.map((s: { id: string; label: string; area: string }, i: number) => {
-          const on = active === s.id;
+        {units.map((u, i) => {
+          const on = active === u.id;
           return (
             <button
-              key={s.id}
+              key={u.id}
               type="button"
               className="fps-item"
-              onMouseEnter={() => setActive(s.id)}
-              onFocus={() => setActive(s.id)}
+              onMouseEnter={() => setActive(u.id)}
+              onFocus={() => setActive(u.id)}
               aria-pressed={on}
             >
-              <span className="fps-rule" style={{ background: on ? GOLD : "rgba(29,29,27,0.15)", height: on ? 46 : 26 }} />
+              <span className="fps-rule" style={{ background: on ? RED : "rgba(29,29,27,0.15)", height: on ? 46 : 26 }} />
               <span>
                 <span className="fps-label" style={{ color: on ? DARK : "#6B6B6B" }}>
-                  <Editable id={`page_prose:officeSpaces:suites.${i}.label`}>{s.label}</Editable>
+                  <Editable id={`page_prose:workplace:units.${i}.label`}>{u.label}</Editable>
                 </span>
-                <span className="fps-area" style={{ color: on ? GOLD : "#9a938a" }}>
-                  <Editable id={`page_prose:officeSpaces:suites.${i}.area`}>{s.area}</Editable>
+                <span className="fps-area" style={{ color: on ? RED : "#9a938a" }}>
+                  <Editable id={`page_prose:workplace:units.${i}.area`}>{u.area}</Editable>
                 </span>
               </span>
             </button>
@@ -119,7 +115,7 @@ export function FloorPlateSelector() {
 
       <style>{`
         .fps{ display:grid; grid-template-columns:1.25fr 1fr; gap:clamp(32px,5vw,72px); align-items:center; }
-        .fps-plan svg{ width:100%; height:auto; display:block; max-width:560px; margin:0 auto; }
+        .fps-plan{ max-width:620px; margin:0 auto; width:100%; }
         .fps-list{ display:flex; flex-direction:column; }
         .fps-item{ display:flex; align-items:center; gap:22px; background:none; border:none; cursor:pointer;
           text-align:start; padding:18px 0; border-bottom:1px solid rgba(29,29,27,0.06); }
