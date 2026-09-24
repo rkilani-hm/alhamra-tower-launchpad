@@ -37,7 +37,16 @@ export type Database = {
       }
       awards: {
         Row: {
+          body_ar: string | null
+          body_en: string | null
+          category: string | null
           id: string
+          image_id: string | null
+          is_featured: boolean
+          organization_ar: string | null
+          organization_en: string | null
+          ribbon_ar: string | null
+          ribbon_en: string | null
           sort_order: number
           status: string
           sub_ar: string | null
@@ -49,7 +58,16 @@ export type Database = {
           year: string | null
         }
         Insert: {
+          body_ar?: string | null
+          body_en?: string | null
+          category?: string | null
           id?: string
+          image_id?: string | null
+          is_featured?: boolean
+          organization_ar?: string | null
+          organization_en?: string | null
+          ribbon_ar?: string | null
+          ribbon_en?: string | null
           sort_order?: number
           status?: string
           sub_ar?: string | null
@@ -61,7 +79,16 @@ export type Database = {
           year?: string | null
         }
         Update: {
+          body_ar?: string | null
+          body_en?: string | null
+          category?: string | null
           id?: string
+          image_id?: string | null
+          is_featured?: boolean
+          organization_ar?: string | null
+          organization_en?: string | null
+          ribbon_ar?: string | null
+          ribbon_en?: string | null
           sort_order?: number
           status?: string
           sub_ar?: string | null
@@ -73,6 +100,13 @@ export type Database = {
           year?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "awards_image_id_fkey"
+            columns: ["image_id"]
+            isOneToOne: false
+            referencedRelation: "media_assets"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "awards_updated_by_fkey"
             columns: ["updated_by"]
