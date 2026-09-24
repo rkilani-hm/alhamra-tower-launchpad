@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotImage } from "@/lib/EditMode";
+import floorPlanAsset from "@/assets/al-hamra-typical-floor-plan.png.asset.json";
 
 /* ──────────────────────────────────────────────────────────────────────────
    FloorPlateSelector — interactive typical-office-floor selector.
@@ -50,7 +51,7 @@ export function FloorPlateSelector() {
           {imgOk ? (
             <SlotImage
               slot="workplace.floorplan"
-              fallback="/assets/typical-floor-plan.png"
+              fallback={floorPlanAsset.url}
               alt={lang === "ar" ? "مخطط الطابق النموذجي لبرج الحمراء" : "Al Hamra typical floor plan"}
               onError={() => setImgOk(false)}
               style={{ width: "100%", height: "auto", display: "block" }}
