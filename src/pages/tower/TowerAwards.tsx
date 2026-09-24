@@ -16,6 +16,7 @@ const TA_CONTENT = {
     heroKicker: "The Tower · Awards & Recognition",
     heroTitleA: "Global",
     heroTitleB: "Acknowledgement",
+    title: "Global Acknowledgement",
     heroBody: "The world's tallest stone-clad tower and first asymmetrical skyscraper — recognised by leading engineering, architecture, and sustainability institutions for over a decade.",
     photoCredit: "Photo: Dave Burk · SOM Architecture",
     statsLabels: [
@@ -59,11 +60,13 @@ const TA_CONTENT = {
     certificateLabel: "Certificate of Honour",
     lightboxHint: "Press Esc or click outside to close",
     timelineHint: "Scroll, drag, or use arrow keys",
+    categoryLabels: ["All", "Architecture", "Tall Buildings", "Development", "Concrete", "Smart Tech"],
   },
   ar: {
     heroKicker: "البرج · التكريم والتقدير",
     heroTitleA: "إشادة",
     heroTitleB: "عالمية",
+    title: "إشادة عالمية",
     heroBody: "أعلى برج مكسوّ بالحجر في العالم، وأوّل ناطحة سحاب غير متماثلة — حظي بتقدير أبرز المؤسسات الهندسية والمعمارية والمعنية بالاستدامة لأكثر من عقد.",
     photoCredit: "تصوير: ديف بِرك · SOM للعمارة",
     statsLabels: [
@@ -107,6 +110,7 @@ const TA_CONTENT = {
     certificateLabel: "شهادة تكريم",
     lightboxHint: "اضغط Esc أو انقر خارج النافذة للإغلاق",
     timelineHint: "مرّر أو اسحب أو استخدم مفاتيح الأسهم",
+    categoryLabels: ["الكل", "العمارة", "المباني الشاهقة", "التطوير", "الخرسانة", "التقنيات الذكية"],
   },
 } as const;
 
@@ -263,6 +267,32 @@ const ENGINEERING_FACTS = [
     credit: "Photo: Dave Burk · SOM",
   },
 ];
+
+const AWARDS_STATS = [
+  { n: "12", l: "International Awards" },
+  { n: "10", l: "Global Institutions" },
+  { n: "14", l: "Years of Recognition" },
+  { n: "3", l: "Continents Honouring" },
+];
+
+const PRESS_DATA = {
+  en: [
+    { date: "2007", source: "CTBUH", title: "Sculpted High-Rise: Al Hamra Firdous Tower", desc: "Mark Sarkisian, Neville Mathias & Aaron Mazeika (SOM) present the structural concept at the Structural Engineers World Congress.", url: "https://www.ctbuh.org/" },
+    { date: "2011", source: "TIME", title: "The Best Inventions of the Year", desc: "Al Hamra named among TIME's best inventions for its sculpted, sun-shielding form.", url: "https://time.com/" },
+    { date: "2012", source: "ArchDaily", title: "A Tower Sculpted by the Sun", desc: "How subtracting a quarter of every floor turned an environmental problem into the building's form.", url: "https://www.archdaily.com/" },
+    { date: "2013", source: "CTBUH Journal", title: "The Lamella Lobby", desc: "Engineering the 24-metre column-free vault beneath the tower.", url: "https://www.ctbuh.org/" },
+    { date: "2016", source: "Middle East Architect", title: "Kuwait's Record-Breaking Landmark", desc: "A profile of the world's tallest stone-clad tower, a decade on.", url: "#" },
+    { date: "2021", source: "CTBUH", title: "10-Year Award Retrospective", desc: "Al Hamra revisited among the most influential tall buildings of the decade.", url: "https://www.ctbuh.org/" },
+  ],
+  ar: [
+    { date: "٢٠٠٧", source: "CTBUH", title: "ناطحةُ سحابٍ منحوتة: برج الحمراء فردوس", desc: "مارك ساركيسيان ونيفيل ماتياس وآرون مازيكا (SOM) يعرضون المفهوم الإنشائيّ في المؤتمر العالميّ لمهندسي الإنشاءات.", url: "https://www.ctbuh.org/" },
+    { date: "٢٠١١", source: "TIME", title: "أفضل ابتكارات العام", desc: "اختيار برج الحمراء ضمن أفضل ابتكارات مجلّة تايم لشكله المنحوت الحاجب للشمس.", url: "https://time.com/" },
+    { date: "٢٠١٢", source: "ArchDaily", title: "برجٌ نحتته الشمس", desc: "كيف حوّل اقتطاعُ رُبعِ كلّ طابقٍ مشكلةً بيئيّة إلى شكل المبنى.", url: "https://www.archdaily.com/" },
+    { date: "٢٠١٣", source: "CTBUH Journal", title: "بهو الأضلاع", desc: "هندسة القبو الخالي من الأعمدة بارتفاع ٢٤ متراً أسفل البرج.", url: "https://www.ctbuh.org/" },
+    { date: "٢٠١٦", source: "Middle East Architect", title: "معلمُ الكويت القياسيّ", desc: "بروفايلٌ لأطول برجٍ مكسوٍّ بالحجر في العالم بعد عقدٍ من إنجازه.", url: "#" },
+    { date: "٢٠٢١", source: "CTBUH", title: "استعادةُ جائزة العشر سنوات", desc: "برج الحمراء بين أكثر الأبراج الشاهقة تأثيراً خلال العقد.", url: "https://www.ctbuh.org/" },
+  ],
+} as const;
 
 const COLLABORATORS = [
   { role: "Lead Architect & Engineer", org: "SOM — Skidmore, Owings & Merrill" },
@@ -717,7 +747,7 @@ function TimelineView({ awards, onCardClick, certificateLabel, timelineHint }: {
 
 function AwardsRecognitionSection() {
   const { lang } = useI18n();
-  const c = usePageContent("towerAwards", TA_CONTENT[lang], lang);
+  const c = usePageContent("towerAwards", { ...TA_CONTENT[lang], stats: AWARDS_STATS, engFacts: ENGINEERING_FACTS, press: PRESS_DATA[lang] }, lang);
   const cmsAwards = useAwardsContent("towerAwards", AWARDS_DATA, lang).map((award, cmsIndex) => ({ ...award, cmsIndex }));
   const [activeCat, setActiveCat] = useState<Category>("All");
   /* Timeline is the only form now — grid view and the grid/timeline toggle
@@ -852,7 +882,7 @@ function AwardsRecognitionSection() {
                       display: "inline-flex", alignItems: "center", gap: 10,
                     }}
                   >
-                    {cat}
+                     <Editable id={`page_prose:towerAwards:categoryLabels.${CATEGORIES.indexOf(cat)}`}>{c.categoryLabels[CATEGORIES.indexOf(cat)]}</Editable>
                     <span style={{
                       fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                       fontSize: "9px", fontWeight: 400,
@@ -1052,13 +1082,13 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
 
 export function TowerAwards() {
   const { lang } = useI18n();
-  const c = usePageContent("towerAwards", TA_CONTENT[lang], lang);
+  const c = usePageContent("towerAwards", { ...TA_CONTENT[lang], stats: AWARDS_STATS, engFacts: ENGINEERING_FACTS, press: PRESS_DATA[lang] }, lang);
   return (
     <PageLayout>
 
       {/* ══ HERO — shared PageHero, matches the other sub-pages ═══════ */}
       <PageHero
-        title={`${c.heroTitleA} ${c.heroTitleB}`}
+        title={c.title}
         editKey="towerAwards"
         crumbs={[
           { label: lang === "ar" ? "الرئيسية" : "Home", href: "/" },
@@ -1070,12 +1100,7 @@ export function TowerAwards() {
       <Section>
         <Rv delay={0.05}>
           <div className="award-footer-stats">
-            {[
-              { n: "12",  l: "International Awards" },
-              { n: "10",  l: "Global Institutions" },
-              { n: "14",  l: "Years of Recognition" },
-              { n: "3",   l: "Continents Honouring" },
-            ].map(({ n, l }, i) => (
+            {c.stats.map(({ n, l }, i) => (
               <motion.div
                 key={l}
                 initial={{ opacity: 0, y: 12 }}
@@ -1084,10 +1109,10 @@ export function TowerAwards() {
                 transition={{ delay: i * 0.08, duration: 0.55 }}
               >
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(32px,3.5vw,48px)", fontWeight: 200, color: DARK, lineHeight: 1, marginBottom: 8 }}>
-                  {n}
+                  <Editable id={`page_prose:towerAwards:stats.${i}.n`}>{n}</Editable>
                 </div>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: MUTED }}>
-                  {l}
+                  <Editable id={`page_prose:towerAwards:stats.${i}.l`}>{l}</Editable>
                 </div>
               </motion.div>
             ))}
@@ -1106,25 +1131,25 @@ export function TowerAwards() {
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
               <div style={{ width: 28, height: 1, background: SAND }} />
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10.5px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719" }}>
-                {c.engKicker}
+                 <Editable id="page_prose:towerAwards:engKicker">{c.engKicker}</Editable>
               </div>
             </div>
           </Rv>
           <Rv delay={0.1}>
             <h2 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(22px,3vw,44px)", fontWeight: 100, letterSpacing: "-0.025em", lineHeight: 1.1, color: DARK, marginBottom: 8 }}>
-              {c.engTitleA}<br /><span style={{ fontWeight: 400 }}>{c.engTitleB}</span>
+               <Editable id="page_prose:towerAwards:engTitleA">{c.engTitleA}</Editable><br /><span style={{ fontWeight: 400 }}><Editable id="page_prose:towerAwards:engTitleB">{c.engTitleB}</Editable></span>
             </h2>
           </Rv>
           <Rv delay={0.2}>
             <p style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 300, color: MUTED, lineHeight: 1.65, maxWidth: 560, marginBottom: 56 }}>
-              {c.engBody}
+               <Editable id="page_prose:towerAwards:engBody">{c.engBody}</Editable>
             </p>
           </Rv>
         </div>
 
         {/* Engineering cards — alternating layout */}
         <div style={{ maxWidth: 1360, margin: "0 auto" }}>
-        {ENGINEERING_FACTS.map(({ stat, label, body, img, imgCaption, credit }, i) => (
+        {c.engFacts.map(({ stat, label, body, img, imgCaption, credit }, i) => (
           <Rv key={stat} delay={i * 0.08}>
             <div className={`eng-card ${i % 2 === 1 ? "eng-card-flip" : ""}`}
               style={{ borderTop: `1px solid ${STONE}` }}>
@@ -1177,24 +1202,7 @@ export function TowerAwards() {
         </Rv>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
           gap: 1, background: STONE }}>
-          {(lang === "ar"
-            ? [
-                { date: "٢٠٠٧", source: "CTBUH", title: "ناطحةُ سحابٍ منحوتة: برج الحمراء فردوس", desc: "مارك ساركيسيان ونيفيل ماتياس وآرون مازيكا (SOM) يعرضون المفهوم الإنشائيّ في المؤتمر العالميّ لمهندسي الإنشاءات.", url: "https://www.ctbuh.org/" },
-                { date: "٢٠١١", source: "TIME", title: "أفضل ابتكارات العام", desc: "اختيار برج الحمراء ضمن أفضل ابتكارات مجلّة تايم لشكله المنحوت الحاجب للشمس.", url: "https://time.com/" },
-                { date: "٢٠١٢", source: "ArchDaily", title: "برجٌ نحتته الشمس", desc: "كيف حوّل اقتطاعُ رُبعِ كلّ طابقٍ مشكلةً بيئيّة إلى شكل المبنى.", url: "https://www.archdaily.com/" },
-                { date: "٢٠١٣", source: "CTBUH Journal", title: "بهو الأضلاع", desc: "هندسة القبو الخالي من الأعمدة بارتفاع ٢٤ متراً أسفل البرج.", url: "https://www.ctbuh.org/" },
-                { date: "٢٠١٦", source: "Middle East Architect", title: "معلمُ الكويت القياسيّ", desc: "بروفايلٌ لأطول برجٍ مكسوٍّ بالحجر في العالم بعد عقدٍ من إنجازه.", url: "#" },
-                { date: "٢٠٢١", source: "CTBUH", title: "استعادةُ جائزة العشر سنوات", desc: "برج الحمراء بين أكثر الأبراج الشاهقة تأثيراً خلال العقد.", url: "https://www.ctbuh.org/" },
-              ]
-            : [
-                { date: "2007", source: "CTBUH", title: "Sculpted High-Rise: Al Hamra Firdous Tower", desc: "Mark Sarkisian, Neville Mathias & Aaron Mazeika (SOM) present the structural concept at the Structural Engineers World Congress.", url: "https://www.ctbuh.org/" },
-                { date: "2011", source: "TIME", title: "The Best Inventions of the Year", desc: "Al Hamra named among TIME's best inventions for its sculpted, sun-shielding form.", url: "https://time.com/" },
-                { date: "2012", source: "ArchDaily", title: "A Tower Sculpted by the Sun", desc: "How subtracting a quarter of every floor turned an environmental problem into the building's form.", url: "https://www.archdaily.com/" },
-                { date: "2013", source: "CTBUH Journal", title: "The Lamella Lobby", desc: "Engineering the 24-metre column-free vault beneath the tower.", url: "https://www.ctbuh.org/" },
-                { date: "2016", source: "Middle East Architect", title: "Kuwait's Record-Breaking Landmark", desc: "A profile of the world's tallest stone-clad tower, a decade on.", url: "#" },
-                { date: "2021", source: "CTBUH", title: "10-Year Award Retrospective", desc: "Al Hamra revisited among the most influential tall buildings of the decade.", url: "https://www.ctbuh.org/" },
-              ]
-          ).map(({ date, source, title, desc, url }, i) => (
+          {c.press.map(({ date, source, title, desc, url }, i) => (
             <a key={i} href={url} target="_blank" rel="noopener noreferrer"
               style={{ background: WHITE, padding: "clamp(26px,2.6vw,38px) clamp(24px,2.3vw,32px)",
                 textDecoration: "none", color: "inherit", display: "flex", flexDirection: "column",
