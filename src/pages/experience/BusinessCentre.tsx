@@ -232,37 +232,6 @@ export default function BusinessCentre() {
 
       {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
 
-      {/* Direct contact detail strip */}
-      <div style={{
-        background: "#0F0E0C",
-        borderTop: "1px solid rgba(184,184,182,0.1)",
-        padding: "clamp(48px,7vh,72px) clamp(28px,6vw,96px) clamp(32px,5vh,48px)",
-      }}>
-        <div style={{
-          maxWidth: 1200, margin: "0 auto",
-          display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px,1fr))",
-          gap: "clamp(20px,3vw,48px)",
-        }}>
-          {c.contactRows.map((item, i) => (
-            <div key={item.label}>
-              <div style={{
-                fontFamily: CG, fontSize: "10px", letterSpacing: "0.32em",
-                textTransform: "uppercase", color: "#CD1719",
-                marginBottom: 8,
-              }}>
-                <Editable id={`page_prose:businessCentre:contactRows.${i}.label`}>{item.label}</Editable>
-              </div>
-              <div style={{
-                fontFamily: CG, fontSize: "clamp(13px,1.1vw,15px)",
-                color: "#fff", fontWeight: 300,
-              }}>
-                <Editable id={`page_prose:businessCentre:contactRows.${i}.value`}>{item.value}</Editable>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <style>{`
         @media (max-width: 900px) {
           .bc-overview-grid {
