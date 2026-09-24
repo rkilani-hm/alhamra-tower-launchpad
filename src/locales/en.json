@@ -631,17 +631,17 @@
       "facadeP2": "The south wall is 258,000 m² of Jura limestone — the world's largest area of stone cladding on any single building. Deep angled windows carved into the stone frame oblique city and peninsula views while completely blocking direct solar radiation.",
       "facadeStats": [
         {
-          "n": "258,000",
+          "n": "",
           "u": "m²",
           "l": "World record limestone cladding"
         },
         {
-          "n": "55,000",
+          "n": "",
           "u": "m²",
           "l": "Low-E curtain wall glass"
         },
         {
-          "n": "0",
+          "n": "",
           "u": "",
           "l": "South-facing offices"
         }
