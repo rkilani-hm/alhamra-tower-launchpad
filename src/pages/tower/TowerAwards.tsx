@@ -578,6 +578,7 @@ function AwardLightbox({ award, onClose, certificateLabel, lightboxHint }: { awa
             </div>
 
             {/* Text side — full citation */}
+            <EditableRow id={`awards:towerAwards:${award.cmsIndex ?? 0}`} as="div" style={{ display: "block" }}>
             <div className="award-lightbox-text" style={{
               padding: "clamp(28px,3vw,52px)",
               borderLeft: `1px solid rgba(174,174,172,0.18)`,
@@ -629,6 +630,7 @@ function AwardLightbox({ award, onClose, certificateLabel, lightboxHint }: { awa
                  <Editable id="page_prose:towerAwards:lightboxHint">{lightboxHint}</Editable>
               </div>
             </div>
+            </EditableRow>
           </motion.div>
         </motion.div>
       )}
