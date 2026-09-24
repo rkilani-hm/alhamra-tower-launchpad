@@ -46,11 +46,14 @@ export const TABLE_DEFS: Record<StructuredTable, TableDef> = {
   awards: {
     table: "awards",
     title: "Awards & Recognition",
-    groupCol: null,
+    groupCol: "page_key",
     fields: [
       { col: "year", label: "Year", kind: "text" },
+      { col: "ribbon", label: "Distinction", kind: "bilingual" },
       { col: "title", label: "Title", kind: "bilingual" },
-      { col: "sub", label: "Subtitle", kind: "bilingual" },
+      { col: "organization", label: "Organisation", kind: "bilingual" },
+      { col: "category", label: "Category", kind: "text" },
+      { col: "body", label: "Description", kind: "bilingual-long" },
     ],
     rowLabel: (r, l) => `${r.year ?? ""} — ${(l === "ar" ? r.title_ar : r.title_en) || ""}`,
   },

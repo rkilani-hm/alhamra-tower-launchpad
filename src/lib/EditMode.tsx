@@ -230,15 +230,18 @@ const ROW_FIELDS: Record<string, RowFieldDef[]> = {
   ],
   awards: [
     { col: "year", label: "Year", bilingual: false },
+    { col: "ribbon", label: "Distinction", bilingual: true },
     { col: "title", label: "Title", bilingual: true },
-    { col: "sub", label: "Subtitle", bilingual: true },
+    { col: "organization", label: "Organisation", bilingual: true },
+    { col: "category", label: "Category", bilingual: false },
+    { col: "body", label: "Description", bilingual: true },
   ],
 };
 // How to locate a row by its natural key, per table.
 function rowMatch(table: string, group: string, key: string) {
   if (table === "stat_counters") return [{ c: "group_key", v: group }, { c: "stat_key", v: key }];
   if (table === "spec_rows") return [{ c: "__or_label__", v: key }];
-  if (table === "awards") return [{ c: "sort_order", v: Number(key) }];
+  if (table === "awards") return [{ c: "page_key", v: group }, { c: "sort_order", v: Number(key) }];
   // feature_cards / timeline_entries: collection + sort_order
   return [{ c: "collection", v: group }, { c: "sort_order", v: Number(key) }];
 }
@@ -430,8 +433,9 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
 
   useEffect(() => {
     (async () => {
-      const { data: row } = await (supabase.from(table as any) as any)
-        .select("id").eq("collection", collection).eq("sort_order", Number(index)).maybeSingle();
+      let rowQuery = (supabase.from(table as any) as any).select("id").eq("sort_order", Number(index));
+      rowQuery = table === "awards" ? rowQuery.eq("page_key", collection) : rowQuery.eq("collection", collection);
+      const { data: row } = await rowQuery.maybeSingle();
       if (row) setRowId(row.id);
       const { data: m } = await supabase.from("media_assets").select("id,public_url,alt_en").order("created_at", { ascending: false });
       setMedia(m ?? []);
