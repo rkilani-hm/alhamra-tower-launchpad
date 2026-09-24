@@ -99,8 +99,12 @@ export default function TowerDesign() {
                 <Editable id="page_prose:towerDesign:facadeP2">{c.facadeP2}</Editable>
               </p>
               <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
-                {c.facadeStats.map(({ n, u, l }, i) => (
-                  <div key={l}>
+                {c.facadeStats.map(({ n, u, l }, i) => {
+                  // Hide a stat entirely when its number is cleared in the CMS
+                  // (empty / blank). A real "0" is kept.
+                  if (String(n ?? "").trim() === "") return null;
+                  return (
+                  <div key={i}>
                     <div style={{ fontFamily: FONT,
                       fontSize: "clamp(24px,3vw,38px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                       <EditableRow id={`stat_counters:towerDesign:towerDesign_${i}`}>{n}{u && <span style={{ fontFamily: FONT,
@@ -110,7 +114,8 @@ export default function TowerDesign() {
                       letterSpacing: "0.2em", textTransform: "uppercase",
                       color: "#6B6B6B", marginTop: 6 }}><EditableRow id={`stat_counters:towerDesign:towerDesign_${i}`}>{l}</EditableRow></div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </motion.div>
           </div>

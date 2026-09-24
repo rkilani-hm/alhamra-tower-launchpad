@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/shared/PageHero";
 import { PatternBand } from "@/components/shared/PatternBand";
+import { ClosingBand } from "@/components/shared/ClosingBand";
 import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow, EditableImage, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
@@ -458,6 +459,7 @@ export default function TowerRising() {
         }
       `}</style>
 
+      <ClosingBand />
       <PatternBand />
       <Footer />
     </>
