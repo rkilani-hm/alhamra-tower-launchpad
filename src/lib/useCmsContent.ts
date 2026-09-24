@@ -319,17 +319,34 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
           }
         }
 
-        // 5. spec_rows → towerDesign.specs (grouped by category → {cat,rows:[[label,value]]})
+        // 5. spec_rows → towerDesign.specs. OVERLAY published values onto the
+        //    static grouped specs BY CATEGORY + row position — never rebuild &
+        //    replace. A partial DB set (one inline edit, or a category whose
+        //    rows were cleared) must not wipe the un-edited static rows.
         if (pageKey === "towerDesign" && (specs.data ?? []).length && Array.isArray(out.specs)) {
-          // Rebuild grouped specs from flat rows, preserving category order.
-          const groups: AnyObj[] = [];
-          const byCat = new Map<string, AnyObj>();
+          const rowsByCat = new Map<string, any[]>();
           for (const r of specs.data!) {
             const cat = pick(r.category_en, r.category_ar) ?? "";
-            if (!byCat.has(cat)) { const g = { cat, rows: [] as any[] }; byCat.set(cat, g); groups.push(g); }
-            byCat.get(cat)!.rows.push([pick(r.label_en, r.label_ar), pick(r.value_en, r.value_ar)]);
+            if (!rowsByCat.has(cat)) rowsByCat.set(cat, []);
+            rowsByCat.get(cat)!.push(r);
           }
-          if (groups.length) { out.specs = groups; changed = true; }
+          out.specs = out.specs.map((g: AnyObj) => {
+            const drows = rowsByCat.get(g.cat);
+            if (!drows || !Array.isArray(g.rows)) return g;
+            const sorted = [...drows].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+            const rows = g.rows.map((pair: any[], i: number) => {
+              const r = sorted[i];
+              if (!r) return pair;                       // keep static row (no DB override)
+              const label = pick(r.label_en, r.label_ar);
+              const value = pick(r.value_en, r.value_ar);
+              return [
+                (label != null && String(label).trim() !== "") ? label : pair[0],
+                (value != null) ? value : pair[1],
+              ];
+            });
+            return { ...g, rows };
+          });
+          changed = true;
         }
 
         if (!cancelled && changed) setMerged(out as T);
