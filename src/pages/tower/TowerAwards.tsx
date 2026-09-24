@@ -531,7 +531,7 @@ function AwardLightbox({ award, onClose, certificateLabel, lightboxHint }: { awa
               {award.image ? (
                 <SlotImage
                   motion
-                  slot={trophySlot(award.title)}
+                   slot={`towerAwards.trophy.${award.cmsIndex ?? 0}`}
                   fallback={award.image}
                   alt={`${award.title} — ${award.org}`}
                   style={{ position: "relative", maxWidth: "100%", maxHeight: "min(70vh, 620px)", objectFit: "contain" }}
@@ -718,7 +718,6 @@ function TimelineView({ awards, onCardClick, certificateLabel, timelineHint }: {
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: SAND_AA, marginBottom: 8 }}>
                 {a.ribbon}
               </div>
-              </EditableRow>
               <h4 style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "14px", fontWeight: 400, color: DARK, lineHeight: 1.35, marginBottom: 6, letterSpacing: "-0.005em" }}>
                 {a.title}
               </h4>
@@ -726,6 +725,7 @@ function TimelineView({ awards, onCardClick, certificateLabel, timelineHint }: {
                 {a.org}
               </div>
             </div>
+            </EditableRow>
 
             {/* Year tick on card */}
             <div className="timeline-card-year">
@@ -831,7 +831,7 @@ function AwardsRecognitionSection() {
               }} />
               <SlotImage
                 motion
-                slot={trophySlot(hero.title)}
+                 slot={`towerAwards.trophy.${hero.cmsIndex ?? 0}`}
                  fallback={hero.image ?? ""}
                 alt={`${hero.title} — ${hero.org}`}
                 loading="lazy"
@@ -851,7 +851,6 @@ function AwardsRecognitionSection() {
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(64px,7vw,96px)", fontWeight: 200, color: WHITE, lineHeight: 1, marginBottom: 4 }}>
                 {hero.year}
               </div>
-             </EditableRow>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "#CD1719", marginBottom: 22 }}>
                 {hero.ribbon} · {hero.category}
               </div>
@@ -865,6 +864,7 @@ function AwardsRecognitionSection() {
                 {hero.body}
               </p>
             </div>
+            </EditableRow>
           </motion.article>
         </Rv>
 
