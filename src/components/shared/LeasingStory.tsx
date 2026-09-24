@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotVideo } from "@/lib/EditMode";
@@ -101,7 +101,8 @@ function TextSlide({ row, index, n, progress }: { row: StoryRow; index: number; 
 export function LeasingStory() {
   const { lang } = useI18n();
   const reduce = useReducedMotion();
-  const content = usePageContent<{ rows: StoryRow[] }>("leasingStory", { rows: ROWS[lang] ?? ROWS.en }, lang);
+  const baseContent = useMemo(() => ({ rows: ROWS[lang] ?? ROWS.en }), [lang]);
+  const content = usePageContent<{ rows: StoryRow[] }>("leasingStory", baseContent, lang);
   const rows = content.rows;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
