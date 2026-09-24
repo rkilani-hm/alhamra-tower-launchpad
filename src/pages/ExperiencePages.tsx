@@ -199,43 +199,43 @@ export function Services() {
           <Editable id="page_prose:services:mallBody">{c.mallBody}</Editable>
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2,
-          marginBottom: 48 }} className="grid-3col">
-          {c.brands.map(({ category, brands }, i) => (
-            <div key={category} style={{ background: "#FAFAFA",
-              padding: "clamp(24px,3vw,36px)", borderTop: "2px solid #B9B9B7" }}>
-              <div style={{ fontFamily: FONT, fontSize: "10px",
-                letterSpacing: "0.3em", textTransform: "uppercase",
-                color: "#CD1719", marginBottom: 12 }}><Editable id={`page_prose:services:brands.${i}.category`}>{category}</Editable></div>
-              <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,13px)",
-                color: "#6B6B6B", lineHeight: 1.9 }}><Editable id={`page_prose:services:brands.${i}.brands`}>{brands}</Editable></div>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, marginBottom: 2 }}>
-          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <SlotImage
-              loading="lazy" slot="services.mallAtrium" fallback="/assets/mall-atrium-skylight.jpg"
-              alt={lang === "ar" ? "مركز الحمراء التجاري — بهو دائري بقبّة هندسية" : "Al Hamra Luxury Centre — circular atrium with geometric skylight"}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "40%",
-              background: "linear-gradient(to top, rgba(12,11,9,0.7), transparent)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 16, left: 20, fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719" }}>
-              <Editable id="page_prose:services:atriumCap">{c.atriumCap}</Editable>
-            </div>
-          </div>
-          <div style={{ position: "relative", height: "clamp(220px,28vw,380px)", overflow: "hidden", background: "#0c0b09" }}>
-            <SlotImage
-              loading="lazy" slot="services.entrance" fallback="/assets/tower-entrance-lit.jpg"
-              alt={lang === "ar" ? "غراند سينما الحمراء — مجمع سينمائي من ٩ شاشات بمقاعد جلدية قابلة للإمالة" : "Al Hamra Grand Cinema — 9-screen multiplex, leather recliners"}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%",
-              background: "linear-gradient(to top, rgba(12,11,9,0.8), transparent)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", bottom: 16, left: 20 }}>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719", marginBottom: 6 }}><Editable id="page_prose:services:cinemaCap">{c.cinemaCap}</Editable></div>
-              <div style={{ fontFamily: FONT, fontSize: "12px", fontWeight: 300, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, whiteSpace: "pre-line" }}><Editable id="page_prose:services:cinemaSub">{c.cinemaSub}</Editable></div>
-            </div>
-          </div>
+          marginBottom: 2 }} className="grid-3col">
+          {c.brands.map(({ category, brands }, i) => {
+            const images = [
+              { slot: "services.mallAtrium", fallback: "/assets/mall-atrium-skylight.jpg", alt: lang === "ar" ? "مركز الحمراء التجاري" : "Al Hamra Luxury Centre", caption: c.atriumCap },
+              { slot: "services.entrance", fallback: "/assets/tower-entrance-lit.jpg", alt: lang === "ar" ? "غراند سينما الحمراء" : "Al Hamra Grand Cinema", caption: c.cinemaCap },
+              { slot: "services.premiumThird", fallback: "/assets/lobby-executive-lounge.jpg", alt: category, caption: "" },
+            ];
+            const image = images[i];
+            return (
+              <div key={category} style={{ display: "flex", flexDirection: "column", minWidth: 0 }}>
+                <div style={{ background: "#FAFAFA", padding: "clamp(24px,3vw,36px)",
+                  borderTop: "2px solid #B9B9B7", flex: 1 }}>
+                  <div style={{ fontFamily: FONT, fontSize: "10px",
+                    letterSpacing: "0.3em", textTransform: "uppercase",
+                    color: "#CD1719", marginBottom: 12 }}><Editable id={`page_prose:services:brands.${i}.category`}>{category}</Editable></div>
+                  <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,13px)",
+                    color: "#6B6B6B", lineHeight: 1.9 }}><Editable id={`page_prose:services:brands.${i}.brands`}>{brands}</Editable></div>
+                </div>
+                {image && (
+                  <div style={{ position: "relative", height: "clamp(220px,24vw,340px)", overflow: "hidden", background: "#0c0b09" }}>
+                    <SlotImage loading="lazy" slot={image.slot} fallback={image.fallback} alt={image.alt}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block" }} />
+                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "45%",
+                      background: "linear-gradient(to top, rgba(12,11,9,0.75), transparent)", pointerEvents: "none" }} />
+                    {image.caption && (
+                      <div style={{ position: "absolute", bottom: 16, left: 20, right: 20, fontFamily: FONT,
+                        fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#CD1719" }}>
+                        {i === 0
+                          ? <Editable id="page_prose:services:atriumCap">{image.caption}</Editable>
+                          : <Editable id="page_prose:services:cinemaCap">{image.caption}</Editable>}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </Section>
 
