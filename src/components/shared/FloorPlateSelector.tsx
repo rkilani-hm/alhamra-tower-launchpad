@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotImage } from "@/lib/EditMode";
-import floorPlanAsset from "@/assets/al-hamra-typical-floor-plan.png.asset.json";
 
 /* ──────────────────────────────────────────────────────────────────────────
    FloorPlateSelector — interactive typical-office-floor selector.
@@ -20,20 +19,28 @@ import floorPlanAsset from "@/assets/al-hamra-typical-floor-plan.png.asset.json"
 const RED  = "#CD1719";
 const DARK = "#1D1D1B";
 
-type Unit = { id: string; label: string; area: string; region: number[][] | null };
+type Unit = { id: string; label: string; area: string };
+
+// Highlight regions as percentage polygons over the isometric floor plan,
+// following the plate's three office wings. Tune the points to taste.
+const REGIONS: Record<string, number[][]> = {
+  U1: [[3, 48], [22, 36], [30, 58], [37, 88], [16, 70]],  // left / front-left offices
+  U2: [[22, 36], [38, 4], [72, 20], [52, 32]],            // top / back offices
+  U3: [[60, 42], [72, 20], [97, 33], [88, 60]],           // right offices + wing
+};
 
 const UNITS: Record<string, Unit[]> = {
   en: [
-    { id: "U1", label: "Unit 1", area: "580 m²", region: [[14, 8], [38, 8], [38, 92], [14, 92]] },
-    { id: "U2", label: "Unit 2", area: "590 m²", region: [[38, 8], [62, 8], [62, 92], [38, 92]] },
-    { id: "U3", label: "Unit 3", area: "580 m²", region: [[62, 8], [86, 8], [86, 92], [62, 92]] },
-    { id: "FULL", label: "Full Floor", area: "1,750 m²", region: null },
+    { id: "U1", label: "Unit 1", area: "580 m²" },
+    { id: "U2", label: "Unit 2", area: "590 m²" },
+    { id: "U3", label: "Unit 3", area: "580 m²" },
+    { id: "FULL", label: "Full Floor", area: "1,750 m²" },
   ],
   ar: [
-    { id: "U1", label: "الوحدة ١", area: "٥٨٠ م²", region: [[14, 8], [38, 8], [38, 92], [14, 92]] },
-    { id: "U2", label: "الوحدة ٢", area: "٥٩٠ م²", region: [[38, 8], [62, 8], [62, 92], [38, 92]] },
-    { id: "U3", label: "الوحدة ٣", area: "٥٨٠ م²", region: [[62, 8], [86, 8], [86, 92], [62, 92]] },
-    { id: "FULL", label: "طابق كامل", area: "١٬٧٥٠ م²", region: null },
+    { id: "U1", label: "الوحدة ١", area: "٥٨٠ م²" },
+    { id: "U2", label: "الوحدة ٢", area: "٥٩٠ م²" },
+    { id: "U3", label: "الوحدة ٣", area: "٥٨٠ م²" },
+    { id: "FULL", label: "طابق كامل", area: "١٬٧٥٠ م²" },
   ],
 };
 
@@ -51,7 +58,7 @@ export function FloorPlateSelector() {
           {imgOk ? (
             <SlotImage
               slot="workplace.floorplan"
-              fallback={floorPlanAsset.url}
+              fallback="/assets/office-typical-floor-plan.webp"
               alt={lang === "ar" ? "مخطط الطابق النموذجي لبرج الحمراء" : "Al Hamra typical floor plan"}
               onError={() => setImgOk(false)}
               style={{ width: "100%", height: "auto", display: "block" }}
@@ -65,12 +72,12 @@ export function FloorPlateSelector() {
           {/* Highlight overlay — percentage coordinates over the image */}
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
-            {units.filter((u) => u.region).map((u) => {
+            {units.filter((u) => REGIONS[u.id]).map((u) => {
               const on = isHot(u.id);
               return (
                 <polygon
                   key={u.id}
-                  points={u.region!.map((p) => p.join(",")).join(" ")}
+                  points={REGIONS[u.id].map((p) => p.join(",")).join(" ")}
                   onMouseEnter={() => setActive(u.id)}
                   onClick={() => setActive(u.id)}
                   style={{
