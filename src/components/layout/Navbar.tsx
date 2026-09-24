@@ -27,7 +27,8 @@ const NAV = [
     children: [
       { labelKey: "nav.sub.servicesFull",       href: "/experience/services"         },
       { labelKey: "nav.sub.businessSupport",    href: "/experience/business-support" },
-      { labelKey: "nav.sub.experience2",        href: "/experience/experience-2"     },
+      // Experience-2 is hidden on the published site while it's being fixed; visible in preview only.
+      ...(import.meta.env.DEV ? [{ labelKey: "nav.sub.experience2", href: "/experience/experience-2" }] : []),
       { labelKey: "nav.sub.locationFull",       href: "/experience/location"         },
     ],
   },

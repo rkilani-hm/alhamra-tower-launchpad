@@ -88,7 +88,7 @@ function AnimatedRoutes() {
           <Route path="/experience/overview"         element={<WorkplaceExperience />} />
           <Route path="/experience/services"         element={<Services />} />
           <Route path="/experience/business-support" element={<BusinessCentre />} />
-          <Route path="/experience/experience-2"     element={<Experience2 />} />
+          <Route path="/experience/experience-2"     element={import.meta.env.DEV ? <Experience2 /> : <Navigate to="/experience/services" replace />} />
           <Route path="/experience/location"         element={<Location />} />
           {/* moved/renamed — redirect old URLs */}
           <Route path="/services"        element={<Navigate to="/experience/services" replace />} />
