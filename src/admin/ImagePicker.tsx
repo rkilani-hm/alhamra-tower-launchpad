@@ -10,7 +10,7 @@ const PEARL = "#B9B9B7", DARK = "#1D1D1B", MUTE = "#6E6456";
 export function ImagePicker({
   table, rowId, currentImageId, onChanged,
 }: {
-  table: "feature_cards" | "timeline_entries";
+  table: "feature_cards" | "timeline_entries" | "awards";
   rowId: string;
   currentImageId: string | null;
   onChanged: () => void;

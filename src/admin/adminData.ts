@@ -229,9 +229,9 @@ export async function uploadMedia(file: File): Promise<{ id: string | null; erro
   }
 }
 
-/* Set the image_id on a feature_cards or timeline_entries row. */
+/* Set the image_id on a structured content row that supports media. */
 export async function setRowImage(
-  table: "feature_cards" | "timeline_entries", id: string, imageId: string | null
+  table: "feature_cards" | "timeline_entries" | "awards", id: string, imageId: string | null
 ): Promise<{ error: string | null }> {
   const { data: u } = await supabase.auth.getUser();
   const { error } = await (supabase.from(table) as any)
