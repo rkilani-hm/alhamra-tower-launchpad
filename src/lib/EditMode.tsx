@@ -216,6 +216,7 @@ const ROW_FIELDS: Record<string, RowFieldDef[]> = {
     { col: "sub", label: "Sub-label", bilingual: true },
   ],
   feature_cards: [
+    { col: "num", label: "Number", bilingual: false },
     { col: "title", label: "Title", bilingual: true },
     { col: "body", label: "Body", bilingual: true },
     { col: "image_caption", label: "Image caption", bilingual: true },

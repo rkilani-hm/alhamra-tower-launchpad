@@ -325,12 +325,15 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
         }
 
         // 3. feature_cards → page's array fields (tenants/advantages/facilities/
-        //    services/pillars). Overlay onto existing entries by index.
+        //    services/pillars). Align published rows to their saved sort_order so
+        //    an unpublished row cannot shift every later card into the wrong box.
         for (const map of PAGE_CARD_FIELDS[pageKey] ?? []) {
           const rows = (cards.data ?? []).filter((c) => c.collection === map.collection);
+          const byOrder = new Map<number, AnyObj>();
+          rows.forEach((r, idx) => byOrder.set(r.sort_order ?? idx, r));
           if (rows.length && Array.isArray(out[map.field])) {
             out[map.field] = out[map.field].map((orig: AnyObj, i: number) => {
-              const r = rows[i];
+              const r = byOrder.get(i);
               if (!r) return orig;
               const next = { ...orig };
               const title = pick(r.title_en, r.title_ar);
