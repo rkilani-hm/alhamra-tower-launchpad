@@ -433,8 +433,9 @@ function ImageSwapPopover({ id, onClose }: { id: string; onClose: () => void }) 
 
   useEffect(() => {
     (async () => {
-      const { data: row } = await (supabase.from(table as any) as any)
-        .select("id").eq("collection", collection).eq("sort_order", Number(index)).maybeSingle();
+      let rowQuery = (supabase.from(table as any) as any).select("id").eq("sort_order", Number(index));
+      rowQuery = table === "awards" ? rowQuery.eq("page_key", collection) : rowQuery.eq("collection", collection);
+      const { data: row } = await rowQuery.maybeSingle();
       if (row) setRowId(row.id);
       const { data: m } = await supabase.from("media_assets").select("id,public_url,alt_en").order("created_at", { ascending: false });
       setMedia(m ?? []);

@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Section, H2, Body, Rv, DarkBand } from "@/components/shared/ui";
 import { PageHero } from "@/components/shared/PageHero";
-import { SlotImage, Editable, EditableRow } from "@/lib/EditMode";
+import { SlotImage, Editable, EditableRow, EditableImage } from "@/lib/EditMode";
 import { useAwardsContent, usePageContent } from "@/lib/useCmsContent";
 import { useI18n } from "@/lib/i18n";
 
@@ -535,6 +535,7 @@ function AwardLightbox({ award, onClose, certificateLabel, lightboxHint }: { awa
                   style={{ position: "relative", maxWidth: "100%", maxHeight: "min(70vh, 620px)", objectFit: "contain" }}
                 />
               ) : (
+                <EditableImage id={`awards:towerAwards:${award.cmsIndex ?? 0}`}>
                 <div style={{
                   position: "relative", zIndex: 1,
                   width: "min(420px, 100%)", aspectRatio: "3/4",
@@ -570,6 +571,7 @@ function AwardLightbox({ award, onClose, certificateLabel, lightboxHint }: { awa
                     {award.ribbon}
                   </div>
                 </div>
+                </EditableImage>
               )}
             </div>
 
@@ -697,6 +699,7 @@ function TimelineView({ awards, onCardClick, certificateLabel, timelineHint }: {
                   style={{ position: "relative", width: "100%", height: "100%", objectFit: "contain", padding: "clamp(14px,2vw,24px)" }} />
               </div>
             ) : (
+              <EditableImage id={`awards:towerAwards:${a.cmsIndex ?? i}`}>
               <div className="timeline-card-visual" style={{ background: CREAM, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 24 }}>
                 <div style={{ position: "absolute", inset: 16, border: `1px solid ${SAND_AA}`, opacity: 0.3, pointerEvents: "none" }} />
                 <AwardCrest color={SAND_AA} />
@@ -704,6 +707,7 @@ function TimelineView({ awards, onCardClick, certificateLabel, timelineHint }: {
                   <Editable id="page_prose:towerAwards:certificateLabel">{certificateLabel}</Editable>
                 </div>
               </div>
+              </EditableImage>
             )}
 
             {/* Text */}
@@ -770,6 +774,8 @@ function AwardsRecognitionSection() {
     return c;
   }, [cmsAwards]);
 
+  if (!hero) return null;
+
   return (
     <section style={{ background: "#FAFAF8" }}>
       <div className="ah-section" style={{ background: "transparent" }}>
@@ -824,7 +830,7 @@ function AwardsRecognitionSection() {
               <SlotImage
                 motion
                 slot={trophySlot(hero.title)}
-                fallback={hero.image!}
+                 fallback={hero.image ?? ""}
                 alt={`${hero.title} — ${hero.org}`}
                 loading="lazy"
                 style={{ position: "relative", zIndex: 2, width: "100%", height: "100%", objectFit: "contain", objectPosition: "center", padding: "clamp(24px,4vw,60px)" }}
@@ -834,7 +840,8 @@ function AwardsRecognitionSection() {
             </div>
 
             {/* Text side */}
-            <div style={{
+             <EditableRow id={`awards:towerAwards:${hero.cmsIndex ?? 0}`} as="div" style={{ display: "block" }}>
+             <div style={{
               padding: "clamp(36px,4vw,64px)",
               display: "flex", flexDirection: "column", justifyContent: "center",
               borderLeft: `1px solid rgba(174,174,172,0.18)`,
@@ -842,6 +849,7 @@ function AwardsRecognitionSection() {
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "clamp(64px,7vw,96px)", fontWeight: 200, color: WHITE, lineHeight: 1, marginBottom: 4 }}>
                 {hero.year}
               </div>
+             </EditableRow>
               <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "#CD1719", marginBottom: 22 }}>
                 {hero.ribbon} · {hero.category}
               </div>
@@ -960,7 +968,7 @@ function AwardCard({ award, index, onClick }: { award: Award; index: number; onC
           <SlotImage
             motion
             slot={trophySlot(award.title)}
-            fallback={award.image!}
+            fallback={award.image ?? ""}
             alt={`${award.title} — ${award.org}`}
             loading="lazy"
             initial={{ scale: 1.02 }}
