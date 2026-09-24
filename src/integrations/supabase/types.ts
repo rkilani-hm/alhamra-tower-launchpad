@@ -45,6 +45,7 @@ export type Database = {
           is_featured: boolean
           organization_ar: string | null
           organization_en: string | null
+          page_key: string | null
           ribbon_ar: string | null
           ribbon_en: string | null
           sort_order: number
@@ -66,6 +67,7 @@ export type Database = {
           is_featured?: boolean
           organization_ar?: string | null
           organization_en?: string | null
+          page_key?: string | null
           ribbon_ar?: string | null
           ribbon_en?: string | null
           sort_order?: number
@@ -87,6 +89,7 @@ export type Database = {
           is_featured?: boolean
           organization_ar?: string | null
           organization_en?: string | null
+          page_key?: string | null
           ribbon_ar?: string | null
           ribbon_en?: string | null
           sort_order?: number
