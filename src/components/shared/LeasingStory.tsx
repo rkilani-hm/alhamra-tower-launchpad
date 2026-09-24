@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotVideo } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── LeasingStory ──────────────────────────────────────────────────────
    A pinned, scroll-driven story section modelled on the home ScrollPanRows:
@@ -100,7 +101,8 @@ function TextSlide({ row, index, n, progress }: { row: StoryRow; index: number; 
 export function LeasingStory() {
   const { lang } = useI18n();
   const reduce = useReducedMotion();
-  const rows = ROWS[lang] ?? ROWS.en;
+  const content = usePageContent<{ rows: StoryRow[] }>("leasingStory", { rows: ROWS[lang] ?? ROWS.en }, lang);
+  const rows = content.rows;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const n = Math.max(rows.length, 1);
