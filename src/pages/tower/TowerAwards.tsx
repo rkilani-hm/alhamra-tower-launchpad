@@ -1215,8 +1215,12 @@ export function TowerAwards() {
             <Editable id="page_prose:towerAwards:researchBody">{c.researchBody}</Editable>
           </p>
         </Rv>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-          gap: 1, background: STONE }}>
+        <div className="press-grid-3" style={{ display: "grid", gap: 1, background: STONE }}>
+          <style>{`
+            .press-grid-3 { grid-template-columns: 1fr; }
+            @media (min-width: 640px) { .press-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+            @media (min-width: 1024px) { .press-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+          `}</style>
           {c.press.map(({ date, source, title, desc, url }, i) => (
             <a key={i} href={url} target="_blank" rel="noopener noreferrer"
               style={{ background: WHITE, padding: "clamp(26px,2.6vw,38px) clamp(24px,2.3vw,32px)",
