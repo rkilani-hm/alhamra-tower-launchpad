@@ -21,7 +21,6 @@ const NAV = [
   {
     titleKey: "nav.experience",
     links: [
-      { labelKey: "nav.sub.experienceOverview", href: "/experience/overview"         },
       { labelKey: "nav.sub.servicesFull",       href: "/experience/services"         },
       { labelKey: "nav.sub.businessSupport",    href: "/experience/business-support" },
       { labelKey: "nav.sub.locationFull",       href: "/experience/location"         },
