@@ -23,9 +23,8 @@ const NAV = [
   },
   {
     labelKey: "nav.experience",
-    href:  "/experience/overview",
+    href:  "/experience/services",
     children: [
-      { labelKey: "nav.sub.experienceOverview", href: "/experience/overview"         },
       { labelKey: "nav.sub.servicesFull",       href: "/experience/services"         },
       { labelKey: "nav.sub.businessSupport",    href: "/experience/business-support" },
       { labelKey: "nav.sub.experience2",        href: "/experience/experience-2"     },
