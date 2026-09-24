@@ -60,6 +60,7 @@ const TA_CONTENT = {
     certificateLabel: "Certificate of Honour",
     lightboxHint: "Press Esc or click outside to close",
     timelineHint: "Scroll, drag, or use arrow keys",
+    readLabel: "Read",
     categoryLabels: ["All", "Architecture", "Tall Buildings", "Development", "Concrete", "Smart Tech"],
   },
   ar: {
@@ -110,6 +111,7 @@ const TA_CONTENT = {
     certificateLabel: "شهادة تكريم",
     lightboxHint: "اضغط Esc أو انقر خارج النافذة للإغلاق",
     timelineHint: "مرّر أو اسحب أو استخدم مفاتيح الأسهم",
+    readLabel: "اقرأ",
     categoryLabels: ["الكل", "العمارة", "المباني الشاهقة", "التطوير", "الخرسانة", "التقنيات الذكية"],
   },
 } as const;
@@ -752,7 +754,7 @@ function TimelineView({ awards, onCardClick, certificateLabel, timelineHint }: {
 function AwardsRecognitionSection() {
   const { lang } = useI18n();
   const c = usePageContent("towerAwards", { ...TA_CONTENT[lang], stats: AWARDS_STATS, engFacts: ENGINEERING_FACTS, press: PRESS_DATA[lang] }, lang);
-  const cmsAwards = useAwardsContent("towerAwards", AWARDS_DATA, lang).map((award, cmsIndex) => ({ ...award, cmsIndex }));
+  const cmsAwards = (useAwardsContent("towerAwards", AWARDS_DATA, lang) as Award[]).map((award, cmsIndex) => ({ ...award, cmsIndex }));
   const [activeCat, setActiveCat] = useState<Category>("All");
   /* Timeline is the only form now — grid view and the grid/timeline toggle
      were removed per the amendments (deck slide 7). */
@@ -1229,7 +1231,7 @@ export function TowerAwards() {
               <span style={{ marginTop: "auto", display: "inline-flex", alignItems: "center", gap: 8,
                 fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif",
                 fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: DARK }}>
-                {lang === "ar" ? "اقرأ" : "Read"}
+                <Editable id="page_prose:towerAwards:readLabel">{c.readLabel}</Editable>
                 <span aria-hidden="true" className="press-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
               </span>
             </a>
