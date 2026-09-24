@@ -1190,6 +1190,9 @@ export function TowerAwards() {
           removed — the lamella story now lives on the Engineering page
           (deck slide 7). */}
 
+      {/* ══ AWARDS & HONOURS — INTERNATIONAL RECOGNITION ═════════════════ */}
+      <AwardsRecognitionSection />
+
       {/* ══ RESEARCH & IN THE PRESS ═══════════════════════ */}
       <Section>
         <Rv>
@@ -1238,9 +1241,6 @@ export function TowerAwards() {
           ))}
         </div>
       </Section>
-
-      {/* ══ AWARDS & HONOURS — INTERNATIONAL RECOGNITION ═════════════════ */}
-      <AwardsRecognitionSection />
 
       {/* Photo-pair gallery (Entrance at Night / Lamella Web), the Project
           Collaborators grid, and the "Explore Sustainability" closing band
