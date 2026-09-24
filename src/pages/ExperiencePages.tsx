@@ -239,26 +239,6 @@ export function Services() {
         </div>
       </Section>
 
-      {/* Interior photo gallery */}
-      <div className="grid-3col-photo">
-        {[
-          { src: "/assets/lobby-elevator-hall.jpg",   alt: lang === "ar" ? "ردهة مصاعد كبار الشخصيات" : "VIP elevator hall",        cap: c.galleryCaps[0] },
-          { src: "/assets/lobby-ceiling-day.jpg",     alt: lang === "ar" ? "هيكل سقف اللوبي" : "Lobby ceiling structure",  cap: c.galleryCaps[1] },
-          { src: "/assets/lobby-ceiling-portrait.jpg",alt: lang === "ar" ? "السقف الإنشائي للوبي" : "Lobby ceiling portrait",   cap: c.galleryCaps[2] },
-        ].map(({ src, alt, cap }, i) => (
-          <div key={src} style={{ position: "relative", overflow: "hidden", height: "clamp(220px,40vw,300px)" }}>
-            <SlotImage slot={`services.gallery.${i}`} fallback={src} alt={alt}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", display: "block", transition: "transform 0.6s ease" }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.transform = "scale(1.04)")}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.transform = "scale(1)")}
-            />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(29,29,27,0.55))", padding: "14px 18px 12px" }}>
-              <span style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}><Editable id={`page_prose:services:galleryCaps.${i}`}>{cap}</Editable></span>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <Section>
         <Rv>
           <p style={{ fontFamily: FONT, fontSize: "clamp(18px,2vw,26px)", fontWeight: 200, letterSpacing: "0.04em", color: "#1D1D1B", lineHeight: 1.65, maxWidth: 720 }}>
@@ -266,46 +246,6 @@ export function Services() {
           </p>
         </Rv>
       </Section>
-
-      {/* ── Sky Lounge ─────────────────────────────────────── */}
-      <div style={{ position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "relative", height: "clamp(320px,45vw,580px)", overflow: "hidden", background: "#0c0b09" }}>
-          <SlotImage
-              loading="lazy" slot="services.skyPanoramic" fallback="/assets/sky-lobby-panoramic.jpg"
-            alt={lang === "ar" ? "صالة الحمراء السماوية — مطعم بانورامي على ارتفاع ٣٥١ متراً يطلّ على الكويت" : "Al Hamra Sky Lounge — 351m dining with panoramic Kuwait views"}
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", filter: "brightness(0.75)" }} />
-          <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, transparent 30%, rgba(29,29,27,0.85) 100%)" }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "clamp(32px,5vh,56px) clamp(28px,6vw,96px)" }}>
-            <Rv>
-              <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 12 }}>
-                <Editable id="page_prose:services:skyKicker">{c.skyKicker}</Editable>
-              </div>
-              <h2 style={{ fontFamily: FONT, fontWeight: 200, letterSpacing: "0.04em", fontSize: "clamp(26px,4vw,58px)", color: "#fff", lineHeight: 1.1, marginBottom: 16 }}>
-                <Editable id="page_prose:services:skyTitle">{c.skyTitle}</Editable><br /><Editable id="page_prose:services:skyTitle2">{c.skyTitle2}</Editable>
-              </h2>
-              <p style={{ fontFamily: FONT, fontWeight: 300, fontSize: "clamp(12px,1.1vw,14px)", color: "rgba(255,255,255,0.6)", maxWidth: 560, lineHeight: 1.65 }}>
-                <Editable id="page_prose:services:skyBody">{c.skyBody}</Editable>
-              </p>
-            </Rv>
-          </div>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2, background: "#0c0b09" }}>
-          <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <SlotImage
-              loading="lazy" slot="services.skyLounge" fallback="/assets/sky-lobby-lounge.jpg"
-              alt={lang === "ar" ? "قاعة طعام صالة السماء — ثريا وطاولات مستديرة وبار بيانو" : "Sky Lounge dining room — chandelier, round tables, piano bar"}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }} />
-            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}><Editable id="page_prose:services:skyCap1">{c.skyCap1}</Editable></div>
-          </div>
-          <div style={{ position: "relative", height: "clamp(160px,20vw,260px)", overflow: "hidden" }}>
-            <SlotImage
-              loading="lazy" slot="services.lounge" fallback="/assets/lounge-at-window.jpg"
-              alt={lang === "ar" ? "صالة لوبي السماء — أرائك كريمية وإطلالة على مدينة الكويت" : "Sky Lobby lounge — cream sofas, Kuwait City through full-height windows"}
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%" }} />
-            <div style={{ position: "absolute", bottom: 10, left: 14, fontFamily: FONT, fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}><Editable id="page_prose:services:skyCap2">{c.skyCap2}</Editable></div>
-          </div>
-        </div>
-      </div>
 
       {/* ── Beyond the Tower — dark pillar-style cards ─────────────────── */}
       <section style={{ background: "#1D1D1B", padding: "clamp(72px,10vh,120px) clamp(24px,5vw,80px)" }}>
