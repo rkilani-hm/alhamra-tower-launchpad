@@ -21,12 +21,12 @@ const DARK = "#1D1D1B";
 
 type Unit = { id: string; label: string; area: string };
 
-// Highlight regions as percentage polygons over the isometric floor plan,
-// following the plate's three office wings. Tune the points to taste.
+// Highlight regions as percentage polygons over the architectural floor plan,
+// following its upper, lower-left, and lower-right office wings.
 const REGIONS: Record<string, number[][]> = {
-  U1: [[3, 48], [22, 36], [30, 58], [37, 88], [16, 70]],  // left / front-left offices
-  U2: [[22, 36], [38, 4], [72, 20], [52, 32]],            // top / back offices
-  U3: [[60, 42], [72, 20], [97, 33], [88, 60]],           // right offices + wing
+  U1: [[31, 19], [69, 19], [66, 44], [52, 44], [52, 38], [31, 38]],
+  U2: [[31, 39], [50, 39], [50, 80], [31, 80]],
+  U3: [[51, 46], [66, 46], [66, 66], [76, 79], [51, 79]],
 };
 
 const UNITS: Record<string, Unit[]> = {
