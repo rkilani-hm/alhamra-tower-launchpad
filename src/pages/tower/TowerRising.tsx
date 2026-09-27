@@ -339,7 +339,7 @@ export default function TowerRising() {
               { src: "/assets/facade-limestone-south-wall.jpg",   cls: "gi-wide",
                 alt: lang === "ar" ? "واجهة حجر جورا الجيريّ — الجدار الجنوبيّ الحجريّ" : "Jura limestone facade — the stone south wall",
                 title: lang === "ar" ? "الواجهة" : "The Façade",
-                desc: lang === "ar" ? "٢٥٨٬٠٠٠ م² من حجر الجورا تحمي الجدار الجنوبي." : "258,000 m² of Jura limestone shielding the south wall.",
+                 desc: lang === "ar" ? "حجر الجورا يحمي الجدار الجنوبي." : "Jura limestone shields the south wall.",
                 href: "/tower/engineering" },
               { src: "/assets/tower-entrance-night.jpg",          cls: "gi-wide",
                 alt: lang === "ar" ? "مدخل البرج مضاءً في الليل" : "Tower entrance lit at night",
