@@ -924,14 +924,14 @@ export function LeasingInquiry() {
                   padding: "15px 40px", border: "none", cursor: busy ? "default" : "pointer",
                   opacity: busy ? 0.6 : 1, transition: "opacity 0.3s",
                 }}>
-                  {busy ? (lang === "ar" ? "جارٍ الإرسال…" : "Sending…")
+                  {busy ? <Editable id="page_prose:inquiry:sendingLabel">{c.sendingLabel ?? (lang === "ar" ? "جارٍ الإرسال…" : "Sending…")}</Editable>
                         : <Editable id="page_prose:inquiry:submitLabel">{c.submitLabel}</Editable>}
                 </button>
                 {error && (
                   <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#CD1719", lineHeight: 1.7 }}>
-                    {lang === "ar"
+                    <Editable id="page_prose:inquiry:errorMessage">{c.errorMessage ?? (lang === "ar"
                       ? "تعذّر إرسال الطلب. يُرجى المحاولة مرة أخرى أو مراسلتنا مباشرةً على leasing@alhamra.com.kw."
-                      : "We couldn’t submit your request. Please try again, or email us directly at leasing@alhamra.com.kw."}
+                      : "We couldn’t submit your request. Please try again, or email us directly at leasing@alhamra.com.kw.")}</Editable>
                   </div>
                 )}
               </form>

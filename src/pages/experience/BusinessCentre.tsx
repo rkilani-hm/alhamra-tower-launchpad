@@ -193,7 +193,7 @@ export default function BusinessCentre() {
                   fontFamily: CG, fontSize: "10px", letterSpacing: "0.28em",
                   backdropFilter: "blur(8px)",
                 }}>
-                  {f.num}
+                   <EditableRow id={`feature_cards:businessCentre.facilities:${i}`}>{f.num}</EditableRow>
                 </div>
               </div>
 
@@ -222,7 +222,7 @@ export default function BusinessCentre() {
                   paddingTop: 14,
                   borderTop: "1px solid rgba(184,184,182,0.25)",
                 }}>
-                  {f.imageCaption}
+                   <EditableRow id={`feature_cards:businessCentre.facilities:${i}`}>{f.imageCaption}</EditableRow>
                 </div>
               </div>
             </motion.article>

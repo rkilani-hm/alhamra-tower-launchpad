@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
@@ -61,7 +61,8 @@ const CONTENT: Record<string, {
 
 export function AvailableConfigurations() {
   const { lang } = useI18n();
-  const c = usePageContent<any>("home2configs", CONTENT[lang] ?? CONTENT.en, lang);
+  const base = useMemo(() => CONTENT[lang] ?? CONTENT.en, [lang]);
+  const c = usePageContent<any>("home2configs", base, lang);
   const isAr = lang === "ar";
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });

@@ -145,8 +145,8 @@ export default function TowerOverview() {
                 fontSize: "clamp(22px,3vw,42px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                 <EditableRow id={`stat_counters:towerOverview:towerOverview_${i}`}>
                 <CountUp value={n} delay={i * 0.1} />
-                {u && <span style={{ fontFamily: FONT,
-                  fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: "#CD1719", marginLeft: 4 }}>{u}</span>}
+                 {u && <span style={{ fontFamily: FONT,
+                   fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: "#CD1719", marginLeft: 4 }}><Editable id={`page_prose:towerOverview:stats.${i}.u`}>{u}</Editable></span>}
                 </EditableRow>
               </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",

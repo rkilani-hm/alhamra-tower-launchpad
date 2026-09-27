@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { PatternBackground } from "../shared/PatternBand";
 import { useI18n, useT } from "@/lib/i18n";
 import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const FONT = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
@@ -118,7 +119,7 @@ const LEASING_BAND_CONTENT = {
 
 export function LeasingBand() {
   const { lang } = useI18n();
-  const c = LEASING_BAND_CONTENT[lang];
+  const c = usePageContent<any>("leasingBand", LEASING_BAND_CONTENT[lang], lang);
   return (
     <section
       id="leasing"
@@ -127,14 +128,14 @@ export function LeasingBand() {
       <ScrollReveal>
         <div style={{ maxWidth: 500 }}>
           <p style={{ fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 24 }}>
-            {c.kicker}
+             <Editable id="page_prose:leasingBand:kicker">{c.kicker}</Editable>
           </p>
           <h3 style={{ fontFamily: FONT, fontSize: "clamp(24px, 2.5vw, 42px)", fontWeight: 200, color: "#fff", lineHeight: 1.25, marginBottom: 0 }}>
-            {c.h1}<br />{c.h2}<br />
-            <strong style={{ fontWeight: 500 }}>{c.h3}</strong>
+             <Editable id="page_prose:leasingBand:h1">{c.h1}</Editable><br /><Editable id="page_prose:leasingBand:h2">{c.h2}</Editable><br />
+             <strong style={{ fontWeight: 500 }}><Editable id="page_prose:leasingBand:h3">{c.h3}</Editable></strong>
           </h3>
           <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 300, color: "rgba(255,255,255,0.45)", lineHeight: 1.6, marginTop: 16 }}>
-            {c.body}
+             <Editable id="page_prose:leasingBand:body">{c.body}</Editable>
           </p>
         </div>
       </ScrollReveal>
@@ -154,7 +155,7 @@ export function LeasingBand() {
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
           >
-            {c.primary}
+             <Editable id="page_prose:leasingBand:primary">{c.primary}</Editable>
           </Link>
           <Link
             to="/leasing/downloads"
@@ -177,7 +178,7 @@ export function LeasingBand() {
             }}
           >
             <span className="dl-line" style={{ width: 36, height: 1, background: "currentColor", transformOrigin: "left", transform: "scaleX(1)", transition: "transform 0.22s ease" }} />
-            {c.secondary}
+             <Editable id="page_prose:leasingBand:secondary">{c.secondary}</Editable>
           </Link>
         </div>
       </ScrollReveal>
