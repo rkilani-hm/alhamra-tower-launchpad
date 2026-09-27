@@ -40,7 +40,15 @@ import Experience2    from "./pages/experience/Experience2";
 
 /* i18n */
 import { I18nProvider } from "@/lib/i18n";
-import { EditModeProvider } from "@/lib/EditMode";
+import { EditModeProvider, useEditMode } from "@/lib/EditMode";
+
+/* Hidden page gate: Experience-2 stays invisible to the public (redirects to
+   Services), but signed-in staff (admins) can open it to keep working on it. */
+function Experience2Gate() {
+  const { canEdit } = useEditMode();
+  if (import.meta.env.DEV || canEdit) return <Experience2 />;
+  return <Navigate to="/experience/services" replace />;
+}
 
 const qc = new QueryClient();
 
