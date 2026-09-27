@@ -11,7 +11,7 @@
    anon visitors). Draft content stays invisible until a manager publishes.
 ────────────────────────────────────────────────────────────────────────── */
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Lang } from "@/lib/i18n";
 
@@ -221,13 +221,19 @@ const PAGE_STAT_TARGET: Record<string, string> = {
 };
 
 export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base: T, lang: Lang): T {
-  const [merged, setMerged] = useState<T>(base);
+  // Some page components assemble their fallback object inline. Depending on
+  // that object by reference restarts this effect after every setMerged call,
+  // briefly (or continuously) replacing published CMS values with fallbacks.
+  // Use a content fingerprint so equivalent fallback objects remain stable.
+  const baseFingerprint = JSON.stringify(base ?? {});
+  const stableBase = useMemo<T>(() => JSON.parse(baseFingerprint) as T, [baseFingerprint]);
+  const [merged, setMerged] = useState<T>(stableBase);
 
   useEffect(() => {
     let cancelled = false;
     // Re-seed from base whenever base/lang changes, so language switches show
     // the right static content immediately while the DB overlay reloads.
-    setMerged(base);
+    setMerged(stableBase);
 
     (async () => {
       try {
@@ -264,7 +270,7 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
         for (const m of media.data ?? []) if (m.id && m.public_url) mediaMap[m.id] = m.public_url;
 
         // Deep clone the static base so we never mutate the JSON import.
-        const out: AnyObj = JSON.parse(JSON.stringify(base ?? {}));
+        const out: AnyObj = JSON.parse(JSON.stringify(stableBase ?? {}));
         let changed = false;
 
         // 1. Prose fields — support dot-notation field_key (e.g. "hero.title",
@@ -416,7 +422,7 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
     })();
 
     return () => { cancelled = true; };
-  }, [pageKey, lang, base]);
+  }, [pageKey, lang, stableBase]);
 
   return merged;
 }
