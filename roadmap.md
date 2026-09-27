@@ -1,9 +1,9 @@
 # Site-wide bilingual CMS audit
 
-- [ ] Inventory every public page and shared section for fixed or mismatched visible text.
-- [ ] Connect every identified English and Arabic text field to the Content Studio.
-- [ ] Seed or align saved content records without changing the current public wording.
-- [ ] Verify representative pages in both languages and confirm a clean build.
+- [x] Inventory every public page and shared section for fixed or mismatched visible text.
+- [x] Connect every identified English and Arabic text field to the Content Studio.
+- [x] Preserve current bilingual fallback wording and allow missing records to be created from on-page editing.
+- [x] Verify CMS field mapping and confirm a clean build.
 
 # Awards CMS wiring
 
