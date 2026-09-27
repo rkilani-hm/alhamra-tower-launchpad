@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotVideo } from "@/lib/EditMode";
@@ -152,7 +152,7 @@ function TowerDiagram({ tiers, active }: { tiers: Tier[]; active: string }) {
 export function AlHamraFloors() {
   const { lang } = useI18n();
   const isAr = lang === "ar";
-  const base = { tiers: TIERS[lang] ?? TIERS.en, ...(FLOOR_LABELS[lang as keyof typeof FLOOR_LABELS] ?? FLOOR_LABELS.en) };
+  const base = useMemo(() => ({ tiers: TIERS[lang] ?? TIERS.en, ...(FLOOR_LABELS[lang as keyof typeof FLOOR_LABELS] ?? FLOOR_LABELS.en) }), [lang]);
   const content = usePageContent<{ tiers: Tier[]; learnMore: string }>("alhamraFloors", base, lang);
   const tiers = content.tiers;
   const [active, setActive] = useState(tiers[0].id);

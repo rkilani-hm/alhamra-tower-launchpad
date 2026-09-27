@@ -57,6 +57,7 @@ export default function TowerDesign() {
   return (
     <PageLayout>
       <PageHero
+        editKey="towerDesign"
         title={c.heroTitle}
         subtitle={c.heroSubtitle}
         image="/assets/tower-facade-up.jpg"

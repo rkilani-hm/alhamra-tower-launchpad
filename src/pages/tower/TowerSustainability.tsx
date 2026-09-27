@@ -22,6 +22,7 @@ export default function TowerSustainability() {
   return (
     <PageLayout>
       <PageHero
+        editKey="towerSustain"
         title={c.heroTitle}
         subtitle={c.heroSubtitle}
         image="/assets/tower-foggy.jpg"
@@ -76,7 +77,7 @@ export default function TowerSustainability() {
                 style={{ background: "#fff", padding: "clamp(36px,4.5vh,52px) clamp(24px,3vw,36px)" }}>
                 <div style={{ fontFamily: FONT,
                   fontSize: "clamp(28px,3vw,44px)", fontWeight: 300,
-                  color: "rgba(29,29,27,0.1)", lineHeight: 1, marginBottom: 20 }}>{n}</div>
+                   color: "rgba(29,29,27,0.1)", lineHeight: 1, marginBottom: 20 }}><EditableRow id={`feature_cards:towerSustain.pillars:${i}`}>{n}</EditableRow></div>
                 <div style={{ fontFamily: FONT, fontSize: "clamp(12px,1vw,14px)",
                   fontWeight: 500, color: DARK, marginBottom: 16, letterSpacing: "0.03em" }}>
                   <EditableRow id={`feature_cards:towerSustain.pillars:${i}`}>{title}</EditableRow>
@@ -99,7 +100,7 @@ export default function TowerSustainability() {
                     transition: "opacity 0.2s" }}
                     onMouseEnter={e=>{e.currentTarget.style.opacity="0.6";}}
                     onMouseLeave={e=>{e.currentTarget.style.opacity="1";}}>
-                    {lang === "ar" ? "مواصفات التأجير" : "Leasing specifications"}
+                    <Editable id="page_prose:towerSustain:leasingLink">{c.leasingLink ?? (lang === "ar" ? "مواصفات التأجير" : "Leasing specifications")}</Editable>
                     <span aria-hidden="true">→</span>
                   </Link>
                 )}
