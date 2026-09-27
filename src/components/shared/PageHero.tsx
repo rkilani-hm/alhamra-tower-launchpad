@@ -66,7 +66,7 @@ export function PageHero({ tag, title, subtitle, crumbs, editKey }: Props) {
                   style={{ color: "#6B6B6B", textDecoration: "none", transition: "color 0.2s" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
                   onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
-                >{c.label}</Link>
+                >{editKey ? <Editable id={`page_prose:${editKey}:crumbs.${i}.label`}>{c.label}</Editable> : c.label}</Link>
               </span>
             ))}
           </motion.div>

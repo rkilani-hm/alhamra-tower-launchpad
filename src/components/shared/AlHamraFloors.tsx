@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotVideo } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── AlHamraFloors ─────────────────────────────────────────────────────
    Floor-by-floor explorer: a sticky vertical tower diagram (left) whose
@@ -90,6 +91,11 @@ const TIERS: Record<string, Tier[]> = {
   ],
 };
 
+const FLOOR_LABELS = {
+  en: { learnMore: "Learn More" },
+  ar: { learnMore: "اعرف المزيد" },
+};
+
 /* ── Sticky tower diagram ──────────────────────────────────────────────
    A stylised tapering stack of floor bands. The bands of the active tier
    fill Al Hamra red; the rest are muted. Tier labels sit to the left. */
@@ -146,7 +152,9 @@ function TowerDiagram({ tiers, active }: { tiers: Tier[]; active: string }) {
 export function AlHamraFloors() {
   const { lang } = useI18n();
   const isAr = lang === "ar";
-  const tiers = TIERS[lang] ?? TIERS.en;
+  const base = { tiers: TIERS[lang] ?? TIERS.en, ...(FLOOR_LABELS[lang as keyof typeof FLOOR_LABELS] ?? FLOOR_LABELS.en) };
+  const content = usePageContent<{ tiers: Tier[]; learnMore: string }>("alhamraFloors", base, lang);
+  const tiers = content.tiers;
   const [active, setActive] = useState(tiers[0].id);
   const [imgOk, setImgOk] = useState(true);
   const panelRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -234,17 +242,17 @@ export function AlHamraFloors() {
 
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
                 letterSpacing: "0.35em", textTransform: "uppercase", color: RED, marginBottom: 16 }}>
-                <Editable id={`section_fields:alhamraFloors:${t.id}.range`}>{t.range}</Editable>
+                 <Editable id={`page_prose:alhamraFloors:tiers.${tiers.indexOf(t)}.range`}>{t.range}</Editable>
               </div>
               <h3 style={{ fontFamily: FONT, fontWeight: 300,
                 fontSize: "clamp(26px,3.2vw,46px)", color: DARK, lineHeight: 1.12,
                 letterSpacing: "0.14em", textTransform: "uppercase", margin: "0 0 22px" }}>
-                <Editable id={`section_fields:alhamraFloors:${t.id}.tier`}>{t.tier}</Editable>
+                 <Editable id={`page_prose:alhamraFloors:tiers.${tiers.indexOf(t)}.tier`}>{t.tier}</Editable>
               </h3>
               <p style={{ fontFamily: FONT, fontWeight: 300,
                 fontSize: "clamp(14px,1.1vw,16px)", color: MUTED,
                 lineHeight: 1.85, margin: "0 0 30px", maxWidth: 540 }}>
-                <Editable id={`section_fields:alhamraFloors:${t.id}.blurb`}>{t.blurb}</Editable>
+                 <Editable id={`page_prose:alhamraFloors:tiers.${tiers.indexOf(t)}.blurb`}>{t.blurb}</Editable>
               </p>
 
               <Link to="/leasing/inquiry#inquiry-form"
@@ -255,7 +263,7 @@ export function AlHamraFloors() {
                   transition: "border-color 0.3s ease, background 0.3s ease, color 0.3s ease" }}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor=RED;e.currentTarget.style.color=RED;}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(29,29,27,0.35)";e.currentTarget.style.color=DARK;}}>
-                {isAr ? "اعرف المزيد" : "Learn More"}
+                <Editable id="page_prose:alhamraFloors:learnMore">{content.learnMore}</Editable>
                 <span aria-hidden="true">→</span>
               </Link>
 
@@ -268,7 +276,7 @@ export function AlHamraFloors() {
                 <div style={{ position: "absolute", top: 14, insetInlineStart: 14,
                   background: "rgba(12,11,9,0.75)", color: "#fff", fontFamily: FONT,
                   fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", padding: "6px 12px" }}>
-                  <Editable id={`section_fields:alhamraFloors:${t.id}.range2`}>{t.range}</Editable>
+                   <Editable id={`page_prose:alhamraFloors:tiers.${tiers.indexOf(t)}.range`}>{t.range}</Editable>
                 </div>
               </div>
 
@@ -280,7 +288,7 @@ export function AlHamraFloors() {
                     fontFamily: FONT, fontSize: "clamp(13px,1.05vw,15px)", fontWeight: 300,
                     color: BODY, lineHeight: 1.6 }}>
                     <span aria-hidden="true" style={{ color: RED, flexShrink: 0, marginTop: 2 }}>◆</span>
-                    <Editable id={`section_fields:alhamraFloors:${t.id}.features.${fi}`}>{f}</Editable>
+                     <Editable id={`page_prose:alhamraFloors:tiers.${tiers.indexOf(t)}.features.${fi}`}>{f}</Editable>
                   </li>
                 ))}
               </ul>

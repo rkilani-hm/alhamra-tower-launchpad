@@ -3,6 +3,8 @@ import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { useI18n } from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 /* ── 404 — Not Found ──────────────────────────────────────────────────
    On-brand Al Hamra error page: dark cinematic tower backdrop, CI red
@@ -53,7 +55,7 @@ const CONTENT: Record<string, Content> = {
 export default function NotFound() {
   const location = useLocation();
   const { lang } = useI18n();
-  const c = CONTENT[lang] ?? CONTENT.en;
+  const c = usePageContent<Content>("notFound", CONTENT[lang] ?? CONTENT.en, lang);
   const isAr = lang === "ar";
 
   useEffect(() => {
@@ -97,7 +99,7 @@ export default function NotFound() {
               <span style={{ width: 32, height: 1, background: GREY, flexShrink: 0 }} />
               <span style={{ fontFamily: FONT, fontSize: "11px", fontWeight: 500,
                 letterSpacing: "0.4em", textTransform: "uppercase", color: RED }}>
-                {c.eyebrow}
+                <Editable id="page_prose:notFound:eyebrow">{c.eyebrow}</Editable>
               </span>
             </div>
 
@@ -105,21 +107,21 @@ export default function NotFound() {
             <div style={{ fontFamily: FONT, fontWeight: 200,
               fontSize: "clamp(96px,18vw,240px)", color: "#fff", lineHeight: 0.9,
               letterSpacing: "-0.03em", marginBottom: "clamp(16px,3vh,28px)" }}>
-              {c.code}
+              <Editable id="page_prose:notFound:code">{c.code}</Editable>
             </div>
 
             {/* Heading */}
             <h1 style={{ fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(22px,3vw,40px)", color: "#fff", lineHeight: 1.15,
               letterSpacing: "-0.01em", margin: "0 0 16px", textWrap: "balance" }}>
-              {c.heading}
+              <Editable id="page_prose:notFound:heading">{c.heading}</Editable>
             </h1>
 
             {/* Body */}
             <p style={{ fontFamily: FONT, fontWeight: 300,
               fontSize: "clamp(14px,1.2vw,16px)", color: "rgba(255,255,255,0.6)",
               lineHeight: 1.8, maxWidth: 460, margin: "0 0 clamp(36px,5vh,48px)" }}>
-              {c.body}
+              <Editable id="page_prose:notFound:body">{c.body}</Editable>
             </p>
 
             {/* Primary CTA */}
@@ -134,7 +136,7 @@ export default function NotFound() {
               onMouseEnter={e => { e.currentTarget.style.borderColor = GREY; e.currentTarget.style.color = "#fff"; e.currentTarget.style.background = "rgba(255,255,255,0.06)"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(185,185,183,0.4)"; e.currentTarget.style.color = RED; e.currentTarget.style.background = "transparent"; }}
             >
-              {c.primary}
+              <Editable id="page_prose:notFound:primary">{c.primary}</Editable>
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"
                 style={{ transform: isAr ? "scaleX(-1)" : "none" }}>
                 <path d="M1 5H13M9 1L13 5L9 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -145,10 +147,10 @@ export default function NotFound() {
             <div style={{ marginTop: "clamp(32px,5vh,44px)" }}>
               <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.3em",
                 textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 14 }}>
-                {c.more}
+                <Editable id="page_prose:notFound:more">{c.more}</Editable>
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 28px" }}>
-                {c.links.map(l => (
+                {c.links.map((l, i) => (
                   <Link key={l.href} to={l.href} style={{
                     fontFamily: FONT, fontSize: "12px", fontWeight: 300,
                     letterSpacing: "0.06em", color: "rgba(255,255,255,0.75)",
@@ -158,7 +160,7 @@ export default function NotFound() {
                     onMouseEnter={e => { e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = RED; }}
                     onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.75)"; e.currentTarget.style.borderColor = "rgba(185,185,183,0.3)"; }}
                   >
-                    {l.label}
+                    <Editable id={`page_prose:notFound:links.${i}.label`}>{l.label}</Editable>
                   </Link>
                 ))}
               </div>

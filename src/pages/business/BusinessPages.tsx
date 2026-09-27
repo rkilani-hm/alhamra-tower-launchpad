@@ -229,6 +229,7 @@ const OFFICE_CONTENT = {
     floorPlansKicker: "Floor Plans · Al Hamra Complex",
     floorPlansH2: "Retail & Ground Level Plans",
     floorPlansBody: "Detailed floor plans for the Al Hamra complex — Ground, Mezzanine, and basement levels featuring retail, dining, parking, and service infrastructure.",
+    typicalFloorLabel: "Typical Office Floor",
     darkTitle: "Ready to Secure Your Space?",
     darkSubtitle: "Contact our leasing team for availability and pricing aligned to your requirements.",
     darkCta: "Leasing Inquiry",
@@ -288,6 +289,7 @@ const OFFICE_CONTENT = {
     floorPlansKicker: "مخططاتُ الطوابق · مَجمَّع الحمراء",
     floorPlansH2: "مخططاتُ التجزئة والطوابق الأرضية",
     floorPlansBody: "مخططاتُ طوابق تفصيلية لمجمَّع الحمراء — الطوابق الأرضية والميزانين والقبوية، شاملةً مرافق التجزئة والمطاعم والمواقف والبنية الخدميّة.",
+    typicalFloorLabel: "طابق مكتبي نموذجي",
     darkTitle: "هل أنت مستعدٌّ لحجز مساحتِك؟",
     darkSubtitle: "تواصل مع فريق التأجير للحصول على التوافر والتسعير وفق متطلباتك.",
     darkCta: "استفسارُ التأجير",
@@ -315,7 +317,7 @@ export function OfficeSpaces() {
           {c.heroStats.map(({ n, u, l }, i) => (
             <div key={l}>
               <div style={{ fontFamily: FONT, fontSize: "clamp(28px,4vw,40px)", fontWeight: 300, color: "#fff", lineHeight: 1 }}>
-                <Editable id={`page_prose:officeSpaces:heroStats.${i}.n`}>{n}</Editable><span style={{ fontFamily: FONT, fontSize: "clamp(11px,1.3vw,14px)", fontWeight: 200, color: "rgba(255,255,255,0.55)" }}>{u}</span>
+                <Editable id={`page_prose:officeSpaces:heroStats.${i}.n`}>{n}</Editable><span style={{ fontFamily: FONT, fontSize: "clamp(11px,1.3vw,14px)", fontWeight: 200, color: "rgba(255,255,255,0.55)" }}><Editable id={`page_prose:officeSpaces:heroStats.${i}.u`}>{u}</Editable></span>
               </div>
               <div style={{ fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 6 }}><Editable id={`page_prose:officeSpaces:heroStats.${i}.l`}>{l}</Editable></div>
             </div>
@@ -407,7 +409,7 @@ export function OfficeSpaces() {
               {c.flexFeatures.map((f: { number: string; title: string; body: string }, i: number) => (
                 <Rv key={f.number} delay={0.16 + i * 0.08} className="ff-card">
                   <span className="ff-icon" aria-hidden="true">{FLEX_ICONS[i % FLEX_ICONS.length]}</span>
-                  <span className="ff-num" aria-hidden="true">{f.number}</span>
+                  <span className="ff-num"><Editable id={`page_prose:officeSpaces:flexFeatures.${i}.number`}>{f.number}</Editable></span>
                   <h3 className="ff-title"><Editable id={`page_prose:officeSpaces:flexFeatures.${i}.title`}>{f.title}</Editable></h3>
                   <p className="ff-body"><Editable id={`page_prose:officeSpaces:flexFeatures.${i}.body`}>{f.body}</Editable></p>
                 </Rv>
@@ -486,7 +488,7 @@ export function OfficeSpaces() {
       <div style={{ background: "#EEEDEA", padding: "clamp(56px,8vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ fontFamily: FONT, fontSize: "10.5px", letterSpacing: "0.4em", textTransform: "uppercase", color: "#CD1719", marginBottom: 14, textAlign: "center" }}>
-            {lang === "ar" ? "طابق مكتبي نموذجي" : "Typical Office Floor"}
+             <Editable id="page_prose:officeSpaces:typicalFloorLabel">{c.typicalFloorLabel}</Editable>
           </div>
           <img
             src="/assets/office-typical-floor-plan.webp"
@@ -497,7 +499,7 @@ export function OfficeSpaces() {
         </div>
       </div>
 
-      <DarkBand title={c.darkTitle} subtitle={c.darkSubtitle} ctaLabel={c.darkCta} ctaHref="/leasing/inquiry#inquiry-form" />
+      <DarkBand title={c.darkTitle} subtitle={c.darkSubtitle} ctaLabel={c.darkCta} ctaHref="/leasing/inquiry#inquiry-form" editKey="officeSpaces" />
 
       <style>{`
         .office-hero-stats {
@@ -678,9 +680,9 @@ export function VerticalTransportation() {
             {c.routes.map(({ name, floors, speed, cap }, i) => (
               <div key={name} className="route-card">
                 <span className="route-name"><Editable id={`page_prose:verticalTransport:routes.${i}.name`}>{name}</Editable></span>
-                <div className="rc-row"><span className="rc-l">{c.routesCols[1]}</span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.floors`}>{floors}</Editable></span></div>
-                <div className="rc-row"><span className="rc-l">{c.routesCols[2]}</span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.speed`}>{speed}</Editable></span></div>
-                <div className="rc-row"><span className="rc-l">{c.routesCols[3]}</span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.cap`}>{cap}</Editable></span></div>
+                 <div className="rc-row"><span className="rc-l"><Editable id="page_prose:verticalTransport:routesCols.1">{c.routesCols[1]}</Editable></span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.floors`}>{floors}</Editable></span></div>
+                 <div className="rc-row"><span className="rc-l"><Editable id="page_prose:verticalTransport:routesCols.2">{c.routesCols[2]}</Editable></span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.speed`}>{speed}</Editable></span></div>
+                 <div className="rc-row"><span className="rc-l"><Editable id="page_prose:verticalTransport:routesCols.3">{c.routesCols[3]}</Editable></span><span className="rc-v"><Editable id={`page_prose:verticalTransport:routes.${i}.cap`}>{cap}</Editable></span></div>
               </div>
             ))}
             <style>{`
@@ -790,7 +792,7 @@ export function Connectivity() {
                 onMouseEnter={e => ((e.currentTarget as HTMLDivElement).style.background = "#FAFAFA")}
                 onMouseLeave={e => ((e.currentTarget as HTMLDivElement).style.background = "#fff")}
               >
-                <div style={{ fontFamily: FONT, fontSize: "10px", color: "#6B6B6B", letterSpacing: "0.2em", marginBottom: 10 }}>{number}</div>
+                 <div style={{ fontFamily: FONT, fontSize: "10px", color: "#6B6B6B", letterSpacing: "0.2em", marginBottom: 10 }}><Editable id={`page_prose:connectivity:features.${i}.number`}>{number}</Editable></div>
                 <div style={{ fontFamily: FONT, fontSize: "13px", fontWeight: 500, color: "#1D1D1B", marginBottom: 8, letterSpacing: "0.04em" }}><Editable id={`page_prose:connectivity:features.${i}.title`}>{title}</Editable></div>
                 <div style={{ fontFamily: FONT, fontSize: "12px", color: "#6B6B6B", lineHeight: 1.6, marginBottom: url ? 14 : 0 }}><Editable id={`page_prose:connectivity:features.${i}.body`}>{body}</Editable></div>
                 {url && (
