@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotImage } from "@/lib/EditMode";
+import floorPlanAsset from "@/assets/al-hamra-typical-floor-plan.png.asset.json";
 
 /* ──────────────────────────────────────────────────────────────────────────
    FloorPlateSelector — interactive typical-office-floor selector.
@@ -10,8 +11,7 @@ import { Editable, SlotImage } from "@/lib/EditMode";
    the plan — lights its region in CI red while the rest stays neutral. "Full
    Floor" lights all three.
 
-   The plan image is CMS-swappable via the `workplace.floorplan` slot; drop the
-   file at public/assets/typical-floor-plan.png. The three REGION polygons are
+   The plan image is CMS-swappable via the `workplace.floorplan` slot. The three REGION polygons are
    percentage coordinates over the image (0–100 on each axis) — tune them to
    line up with the plan once the final image is in place.
 ──────────────────────────────────────────────────────────────────────────── */
@@ -58,7 +58,7 @@ export function FloorPlateSelector() {
           {imgOk ? (
             <SlotImage
               slot="workplace.floorplan"
-              fallback="/assets/office-typical-floor-plan.webp"
+              fallback={floorPlanAsset.url}
               alt={lang === "ar" ? "مخطط الطابق النموذجي لبرج الحمراء" : "Al Hamra typical floor plan"}
               onError={() => setImgOk(false)}
               style={{ width: "100%", height: "auto", display: "block" }}
