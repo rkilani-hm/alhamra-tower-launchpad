@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Editable, SlotImage } from "@/lib/EditMode";
+import floorPlanAsset from "@/assets/al-hamra-typical-floor-plan.png.asset.json";
 
 /* ──────────────────────────────────────────────────────────────────────────
    FloorPlateSelector — interactive typical-office-floor selector.
@@ -10,8 +11,7 @@ import { Editable, SlotImage } from "@/lib/EditMode";
    the plan — lights its region in CI red while the rest stays neutral. "Full
    Floor" lights all three.
 
-   The plan image is CMS-swappable via the `workplace.floorplan` slot; drop the
-   file at public/assets/typical-floor-plan.png. The three REGION polygons are
+   The plan image is CMS-swappable via the `workplace.floorplan` slot. The three REGION polygons are
    percentage coordinates over the image (0–100 on each axis) — tune them to
    line up with the plan once the final image is in place.
 ──────────────────────────────────────────────────────────────────────────── */
@@ -21,12 +21,12 @@ const DARK = "#1D1D1B";
 
 type Unit = { id: string; label: string; area: string };
 
-// Highlight regions as percentage polygons over the isometric floor plan,
-// following the plate's three office wings. Tune the points to taste.
+// Highlight regions as percentage polygons over the architectural floor plan,
+// following its upper, lower-left, and lower-right office wings.
 const REGIONS: Record<string, number[][]> = {
-  U1: [[3, 48], [22, 36], [30, 58], [37, 88], [16, 70]],  // left / front-left offices
-  U2: [[22, 36], [38, 4], [72, 20], [52, 32]],            // top / back offices
-  U3: [[60, 42], [72, 20], [97, 33], [88, 60]],           // right offices + wing
+  U1: [[31, 19], [69, 19], [66, 44], [52, 44], [52, 38], [31, 38]],
+  U2: [[31, 39], [50, 39], [50, 80], [31, 80]],
+  U3: [[51, 46], [66, 46], [66, 66], [76, 79], [51, 79]],
 };
 
 const UNITS: Record<string, Unit[]> = {
@@ -58,7 +58,7 @@ export function FloorPlateSelector() {
           {imgOk ? (
             <SlotImage
               slot="workplace.floorplan"
-              fallback="/assets/office-typical-floor-plan.webp"
+              fallback={floorPlanAsset.url}
               alt={lang === "ar" ? "مخطط الطابق النموذجي لبرج الحمراء" : "Al Hamra typical floor plan"}
               onError={() => setImgOk(false)}
               style={{ width: "100%", height: "auto", display: "block" }}
