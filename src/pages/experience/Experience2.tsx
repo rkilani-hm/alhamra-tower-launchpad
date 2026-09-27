@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero } from "@/components/shared/PageHero";
 import { AlHamraFloors } from "@/components/shared/AlHamraFloors";
@@ -8,7 +9,8 @@ import { usePageContent } from "@/lib/useCmsContent";
    pattern, rebuilt in Al Hamra identity). Working name for now. */
 export default function Experience2() {
   const { lang } = useI18n();
-  const c = usePageContent("experience2", { title: lang === "ar" ? "التجربة-٢" : "Experience-2" }, lang);
+  const base = useMemo(() => ({ title: lang === "ar" ? "التجربة-٢" : "Experience-2" }), [lang]);
+  const c = usePageContent("experience2", base, lang);
   return (
     <PageLayout>
       <PageHero
