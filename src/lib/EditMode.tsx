@@ -120,6 +120,7 @@ function EditPopover({ id, fallback = "", onClose }: { id: string; fallback?: st
   const [busy, setBusy] = useState(false);
   const [rowId, setRowId] = useState<string | null>(null);
   const [longText, setLongText] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -137,11 +138,14 @@ function EditPopover({ id, fallback = "", onClose }: { id: string; fallback?: st
 
   async function save(publish: boolean) {
     setBusy(true);
+    setErrorMessage("");
     const { data: u } = await supabase.auth.getUser();
+    let error: { message: string } | null = null;
     if (rowId) {
       const patch: any = { value_en: valEn, value_ar: valAr, updated_by: u.user?.id ?? null, updated_at: new Date().toISOString() };
       if (publish) patch.status = "published";
-      await (supabase.from(table as any) as any).update(patch).eq("id", rowId);
+      const result = await (supabase.from(table as any) as any).update(patch).eq("id", rowId);
+      error = result.error;
     } else {
       // No row yet — create it so any wrapped field is editable without seeding.
       const groupCol = table === "section_fields" ? "section_key" : "page_key";
@@ -151,10 +155,15 @@ function EditPopover({ id, fallback = "", onClose }: { id: string; fallback?: st
         status: publish ? "published" : "draft",
         updated_by: u.user?.id ?? null, updated_at: new Date().toISOString(),
       };
-      const { data } = await (supabase.from(table as any) as any).insert(insert).select("id").maybeSingle();
+      const { data, error: insertError } = await (supabase.from(table as any) as any).insert(insert).select("id").maybeSingle();
+      error = insertError;
       if (data?.id) setRowId(data.id);
     }
     setBusy(false);
+    if (error) {
+      setErrorMessage(error.message || "The change could not be saved.");
+      return;
+    }
     onClose();
     if (publish) window.location.reload(); // reflect published change
   }
@@ -181,6 +190,7 @@ function EditPopover({ id, fallback = "", onClose }: { id: string; fallback?: st
             <button onClick={() => save(false)} disabled={busy} style={ghost}>Save draft</button>
             <button onClick={onClose} disabled={busy} style={ghost}>Cancel</button>
           </div>
+          {errorMessage && <div style={{ marginTop: 10, fontSize: 12, color: "#B05050" }}>{errorMessage}</div>}
         </>
       )}
     </PopoverShell>
@@ -279,6 +289,7 @@ function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
   const [rowId, setRowId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -307,11 +318,17 @@ function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
   async function save(publish: boolean) {
     if (!rowId) return;
     setBusy(true);
+    setErrorMessage("");
     const { data: u } = await supabase.auth.getUser();
     const patch: any = { ...vals, updated_by: u.user?.id ?? null, updated_at: new Date().toISOString() };
     if (publish) patch.status = "published";
-    await (supabase.from(table as any) as any).update(patch).eq("id", rowId);
-    setBusy(false); onClose();
+    const { error } = await (supabase.from(table as any) as any).update(patch).eq("id", rowId);
+    setBusy(false);
+    if (error) {
+      setErrorMessage(error.message || "The change could not be saved.");
+      return;
+    }
+    onClose();
     if (publish) window.location.reload();
   }
 
@@ -345,6 +362,7 @@ function RowPopover({ id, onClose }: { id: string; onClose: () => void }) {
             <button onClick={() => save(false)} disabled={busy} style={ghost}>Save draft</button>
             <button onClick={onClose} disabled={busy} style={ghost}>Cancel</button>
           </div>
+          {errorMessage && <div style={{ marginTop: 10, fontSize: 12, color: "#B05050" }}>{errorMessage}</div>}
         </>
       )}
       </div>
