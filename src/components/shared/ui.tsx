@@ -55,7 +55,7 @@ export function FeatureGrid({ features, editKey, editField = "features" }: { fea
           onMouseEnter={e=>((e.currentTarget as HTMLDivElement).style.background="#FAFAFA")}
           onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
         >
-          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color:"#6B6B6B", letterSpacing:"0.2em", marginBottom:10 }}>{number}</div>
+          <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color:"#6B6B6B", letterSpacing:"0.2em", marginBottom:10 }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.number`}>{number}</Editable> : number}</div>
           <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"13px", fontWeight:500, color:"#1D1D1B", marginBottom:8, letterSpacing:"0.04em" }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.title`}>{title}</Editable> : title}</div>
           <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"12px", color:"#6B6B6B", lineHeight:1.8 }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.body`}>{body}</Editable> : body}</div>
         </div>
@@ -167,15 +167,16 @@ export function Body({ children, style }: { children: ReactNode; style?: React.C
 
 /* ── DARK BAND ───────────────────────────── */
 interface DarkBandProps { title: string; subtitle?: string; ctaLabel: string; ctaHref: string; }
-export function DarkBand({ title, subtitle, ctaLabel, ctaHref, editKey, editFields }: DarkBandProps & { editKey?: string; editFields?: { title?: string; subtitle?: string; cta?: string } }) {
+export function DarkBand({ title, subtitle, ctaLabel, ctaHref, editKey, editFields }: DarkBandProps & { editKey?: string; editFields?: { title?: string; subtitle?: string; cta?: string; kicker?: string } }) {
   const kTitle = editFields?.title ?? "darkTitle";
   const kSub   = editFields?.subtitle ?? "darkSubtitle";
   const kCta   = editFields?.cta ?? "darkCta";
+  const kKicker = editFields?.kicker ?? "darkKicker";
   const h3Style = { fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(20px,2.5vw,38px)", fontWeight:200, color:"#fff", lineHeight:1.3 } as React.CSSProperties;
   return (
     <section className="dark-band" style={{ background:"#1D1D1B" }}>
       <div>
-        <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", marginBottom:16 }}>Next Step</div>
+        <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.4em", textTransform:"uppercase", color:"rgba(255,255,255,0.35)", marginBottom:16 }}>{editKey ? <Editable id={`page_prose:${editKey}:${kKicker}`}>Next Step</Editable> : "Next Step"}</div>
         {editKey
           ? <h3 style={h3Style}><Editable id={`page_prose:${editKey}:${kTitle}`}><span dangerouslySetInnerHTML={{ __html:title }} /></Editable></h3>
           : <h3 style={h3Style} dangerouslySetInnerHTML={{ __html:title }} />}

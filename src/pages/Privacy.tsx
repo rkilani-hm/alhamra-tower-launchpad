@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero }   from "@/components/shared/PageHero";
 import { useI18n }    from "@/lib/i18n";
+import { Editable } from "@/lib/EditMode";
+import { usePageContent } from "@/lib/useCmsContent";
 
 const PEARL_TEXT = "#CD1719";
 const DARK       = "#1D1D1B";
@@ -126,11 +128,12 @@ const CONTENT: Record<string, Content> = {
 
 export default function PrivacyPolicy() {
   const { lang } = useI18n();
-  const c = CONTENT[lang] ?? CONTENT.en;
+  const c = usePageContent<Content>("privacy", CONTENT[lang] ?? CONTENT.en, lang);
 
   return (
     <PageLayout>
       <PageHero
+        editKey="privacy"
         tag={c.tag}
         title={c.title}
         subtitle={c.subtitle}
@@ -151,12 +154,12 @@ export default function PrivacyPolicy() {
             letterSpacing: "0.3em", textTransform: "uppercase",
             color: PEARL_TEXT,
           }}>
-            {c.effLabel}
+            <Editable id="page_prose:privacy:effLabel">{c.effLabel}</Editable>
           </div>
           <div style={{
             fontFamily: CG, fontSize: "11px", color: "#6B6B6B", letterSpacing: "0.04em",
           }}>
-            {c.effNote}
+            <Editable id="page_prose:privacy:effNote">{c.effNote}</Editable>
           </div>
         </div>
       </div>
@@ -178,7 +181,7 @@ export default function PrivacyPolicy() {
               fontSize: "clamp(15px,1.25vw,18px)",
               color: DARK, lineHeight: 1.75, margin: 0, maxWidth: 720,
             }}>
-              {c.intro}
+              <Editable id="page_prose:privacy:intro">{c.intro}</Editable>
             </p>
           </motion.div>
 
@@ -206,7 +209,7 @@ export default function PrivacyPolicy() {
                 letterSpacing: "0.2em",
                 paddingTop: 8,
               }}>
-                {s.n}
+                <Editable id={`page_prose:privacy:sections.${i}.n`}>{s.n}</Editable>
               </div>
 
               {/* Content */}
@@ -217,7 +220,7 @@ export default function PrivacyPolicy() {
                   color: DARK, lineHeight: 1.25,
                   margin: "0 0 16px", letterSpacing: "-0.005em",
                 }}>
-                  {s.title}
+                  <Editable id={`page_prose:privacy:sections.${i}.title`}>{s.title}</Editable>
                 </h2>
                 {s.body.map((paragraph, j) => (
                   <p key={j} style={{
@@ -227,7 +230,7 @@ export default function PrivacyPolicy() {
                     margin: j < s.body.length - 1 ? "0 0 16px" : 0,
                     maxWidth: 680,
                   }}>
-                    {paragraph}
+                    <Editable id={`page_prose:privacy:sections.${i}.body.${j}`}>{paragraph}</Editable>
                   </p>
                 ))}
               </div>

@@ -15,11 +15,29 @@ const PEARL = "#B9B9B7";
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
+const DOWNLOADS = {
+  en: {
+    label: "Downloads",
+    items: [
+      { title: "Leasing Brochure", meta: "PDF · Tower & availability overview" },
+      { title: "Floor Plans", meta: "PDF · Typical floor plates" },
+    ],
+  },
+  ar: {
+    label: "التنزيلات",
+    items: [
+      { title: "الكتيّب", meta: "PDF · نظرة عامة على البرج والمساحات" },
+      { title: "المخططات", meta: "PDF · مخططات الطوابق النموذجية" },
+    ],
+  },
+};
+
 
 export function LeasingDownloads() {
   const { lang } = useI18n();
   const cStatic = useContent<any>("content.invitation");
   const c = usePageContent<any>("invitation", cStatic, lang);
+  const downloads = usePageContent<any>("home2downloads", DOWNLOADS[lang as keyof typeof DOWNLOADS] ?? DOWNLOADS.en, lang);
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const isAr = lang === "ar";
@@ -208,13 +226,10 @@ export function LeasingDownloads() {
               marginBottom: 12,
             }}
           >
-            {isAr ? "التنزيلات" : "Downloads"}
+             <Editable id="page_prose:home2downloads:label">{downloads.label}</Editable>
           </motion.div>
 
-          {[
-            { title: isAr ? "الكتيّب" : "Leasing Brochure", meta: isAr ? "PDF · نظرة عامة على البرج والمساحات" : "PDF · Tower & availability overview" },
-            { title: isAr ? "المخططات" : "Floor Plans", meta: isAr ? "PDF · مخططات الطوابق النموذجية" : "PDF · Typical floor plates" },
-          ].map((d, i) => (
+          {downloads.items.map((d: { title: string; meta: string }, i: number) => (
             <motion.div
               key={d.title}
               initial={{ opacity: 0, x: isAr ? -30 : 30 }}
@@ -239,13 +254,13 @@ export function LeasingDownloads() {
                     fontWeight: 300, letterSpacing: "0.02em", color: "#fff",
                     transition: "color 0.25s ease",
                   }}>
-                    {d.title}
+                     <Editable id={`page_prose:home2downloads:items.${i}.title`}>{d.title}</Editable>
                   </div>
                   <div style={{
                     fontFamily: FONT, fontSize: "11px", fontWeight: 300,
                     letterSpacing: "0.08em", color: "rgba(255,255,255,0.4)",
                   }}>
-                    {d.meta}
+                     <Editable id={`page_prose:home2downloads:items.${i}.meta`}>{d.meta}</Editable>
                   </div>
                 </div>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"

@@ -25,10 +25,10 @@ function SpecTable({ cat, rows }: SpecTableProps) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
-      <span className="spec-card-name">{cat}</span>
+      <span className="spec-card-name"><EditableRow id={`spec_rows::${rows[0]?.[0] ?? cat}`}>{cat}</EditableRow></span>
       {rows.map(([label, value]) => (
         <div key={label} className="spec-row">
-          <span className="spec-row-label">{label}</span>
+          <span className="spec-row-label"><EditableRow id={`spec_rows::${label}`}>{label}</EditableRow></span>
           <span className="spec-row-value"><EditableRow id={`spec_rows::${label}`}>{value}</EditableRow></span>
         </div>
       ))}
@@ -57,6 +57,7 @@ export default function TowerDesign() {
   return (
     <PageLayout>
       <PageHero
+        editKey="towerDesign"
         title={c.heroTitle}
         subtitle={c.heroSubtitle}
         image="/assets/tower-facade-up.jpg"
@@ -209,12 +210,12 @@ export default function TowerDesign() {
           <div style={{ marginTop: "clamp(52px,7vh,88px)", paddingTop: "clamp(40px,5vh,56px)", borderTop: "1px solid rgba(29,29,27,0.10)" }}>
             <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
               letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 32 }}>
-              {teamGroup.cat}
+               <EditableRow id={`spec_rows::${teamGroup.rows[0]?.[0] ?? teamGroup.cat}`}>{teamGroup.cat}</EditableRow>
             </div>
             <div className="team-credit-grid">
               {teamGroup.rows.map(([role, firm]: readonly [string, string]) => (
                 <div key={role} className="team-credit">
-                  <div className="team-credit-role">{role}</div>
+                   <div className="team-credit-role"><EditableRow id={`spec_rows::${role}`}>{role}</EditableRow></div>
                   <div className="team-credit-firm"><EditableRow id={`spec_rows::${role}`}>{firm}</EditableRow></div>
                 </div>
               ))}

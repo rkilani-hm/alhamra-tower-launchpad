@@ -489,10 +489,10 @@ export function Location() {
       <div style={{ background: "#FAFAFA", padding: "clamp(56px,8vh,100px) clamp(28px,6vw,96px)" }}>
         <div style={{ maxWidth: 1360, margin: "0 auto" }}>
           <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)", letterSpacing: "0.45em", textTransform: "uppercase", color: "#CD1719", marginBottom: 16 }}>
-            {lang === "ar" ? "كيفية الوصول" : "How to Reach Us"}
+            <Editable id="page_prose:location:reachUsTag">{c.reachUsTag ?? (lang === "ar" ? "كيفية الوصول" : "How to Reach Us")}</Editable>
           </div>
           <h2 style={{ fontFamily: FONT, fontWeight: 200, fontSize: "clamp(24px,3vw,44px)", color: "#1D1D1B", lineHeight: 1.15, letterSpacing: "-0.015em", margin: 0 }}>
-            {lang === "ar" ? "موقعنا على الخريطة" : "Find Us on the Map"}
+            <Editable id="page_prose:location:reachUsHeading">{c.reachUsHeading ?? (lang === "ar" ? "موقعنا على الخريطة" : "Find Us on the Map")}</Editable>
           </h2>
           <div className="map-embed" style={{ position: "relative", overflow: "hidden", marginTop: "clamp(28px,4vh,40px)", border: "1px solid rgba(29,29,27,0.12)" }}>
             <iframe
@@ -720,8 +720,8 @@ export function LeasingOpportunities() {
           inquiry form so the leasing team can share the document directly. */}
       <div id="downloads">
       <Section bg="#FAFAFA">
-        <Rv><Tag>{lang === "ar" ? "التنزيلات" : "Downloads"}</Tag></Rv>
-        <Rv delay={0.1}><H2>{lang === "ar" ? "خذ الأرقام معك" : "Take the numbers with you"}</H2></Rv>
+        <Rv><Tag><Editable id="page_prose:leasing:downloadsSectionTag">{c.downloadsSectionTag ?? (lang === "ar" ? "التنزيلات" : "Downloads")}</Editable></Tag></Rv>
+        <Rv delay={0.1}><H2><Editable id="page_prose:leasing:downloadsSectionHeading">{c.downloadsSectionHeading ?? (lang === "ar" ? "خذ الأرقام معك" : "Take the numbers with you")}</Editable></H2></Rv>
         <Rv delay={0.2}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 40 }}
             className="grid-2col">
@@ -924,14 +924,14 @@ export function LeasingInquiry() {
                   padding: "15px 40px", border: "none", cursor: busy ? "default" : "pointer",
                   opacity: busy ? 0.6 : 1, transition: "opacity 0.3s",
                 }}>
-                  {busy ? (lang === "ar" ? "جارٍ الإرسال…" : "Sending…")
+                  {busy ? <Editable id="page_prose:inquiry:sendingLabel">{c.sendingLabel ?? (lang === "ar" ? "جارٍ الإرسال…" : "Sending…")}</Editable>
                         : <Editable id="page_prose:inquiry:submitLabel">{c.submitLabel}</Editable>}
                 </button>
                 {error && (
                   <div style={{ fontFamily: FONT, fontSize: "12.5px", color: "#CD1719", lineHeight: 1.7 }}>
-                    {lang === "ar"
+                    <Editable id="page_prose:inquiry:errorMessage">{c.errorMessage ?? (lang === "ar"
                       ? "تعذّر إرسال الطلب. يُرجى المحاولة مرة أخرى أو مراسلتنا مباشرةً على leasing@alhamra.com.kw."
-                      : "We couldn’t submit your request. Please try again, or email us directly at leasing@alhamra.com.kw."}
+                      : "We couldn’t submit your request. Please try again, or email us directly at leasing@alhamra.com.kw.")}</Editable>
                   </div>
                 )}
               </form>

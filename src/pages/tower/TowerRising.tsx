@@ -56,6 +56,7 @@ export default function TowerRising() {
     <>
       <Navbar />
       <PageHero
+        editKey="towerRising"
         title={c.hero.title}
         subtitle={c.hero.subtitle}
         tag={c.hero.tag}
@@ -108,7 +109,7 @@ export default function TowerRising() {
                         color: isOpen ? DARK : "#6B6B6B",
                         minWidth: 64, transition: "color 0.3s ease",
                       }}>
-                        {era.year}
+                        <EditableRow id={`timeline_entries:towerRising.eras:${i}`}>{era.year}</EditableRow>
                       </span>
                       <span style={{
                         fontFamily: FONT,
@@ -116,7 +117,7 @@ export default function TowerRising() {
                         color: isOpen ? DARK : "#6B6B6B",
                         flex: 1, transition: "color 0.3s ease",
                       }}>
-                        {era.title}
+                        <EditableRow id={`timeline_entries:towerRising.eras:${i}`}>{era.title}</EditableRow>
                       </span>
                       <motion.span
                         animate={{ rotate: isOpen ? 45 : 0 }}
@@ -338,7 +339,7 @@ export default function TowerRising() {
               { src: "/assets/facade-limestone-south-wall.jpg",   cls: "gi-wide",
                 alt: lang === "ar" ? "واجهة حجر جورا الجيريّ — الجدار الجنوبيّ الحجريّ" : "Jura limestone facade — the stone south wall",
                 title: lang === "ar" ? "الواجهة" : "The Façade",
-                desc: lang === "ar" ? "٢٥٨٬٠٠٠ م² من حجر الجورا تحمي الجدار الجنوبي." : "258,000 m² of Jura limestone shielding the south wall.",
+                 desc: lang === "ar" ? "حجر الجورا يحمي الجدار الجنوبي." : "Jura limestone shields the south wall.",
                 href: "/tower/engineering" },
               { src: "/assets/tower-entrance-night.jpg",          cls: "gi-wide",
                 alt: lang === "ar" ? "مدخل البرج مضاءً في الليل" : "Tower entrance lit at night",
@@ -397,7 +398,7 @@ export default function TowerRising() {
                     <span className="gallery-cta" style={{ display: "inline-flex", alignItems: "center", gap: 8,
                       fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em",
                       textTransform: "uppercase", color: "#fff" }}>
-                      {lang === "ar" ? "استكشف" : "Explore"}
+                      <Editable id="page_prose:towerRising:galleryExplore">{c.galleryExplore ?? (lang === "ar" ? "استكشف" : "Explore")}</Editable>
                       <span aria-hidden="true" className="gallery-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
                     </span>
                   </div>

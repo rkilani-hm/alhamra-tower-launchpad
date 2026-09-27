@@ -125,7 +125,7 @@ export default function AlHamraHotel() {
                   fontFamily: CG, fontSize: "11px", letterSpacing: "0.28em",
                   color: PEARL_TEXT, fontWeight: 300,
                 }}>
-                  {a.num}
+                   <EditableRow id={`feature_cards:alHamraHotel.advantages:${i}`}>{a.num}</EditableRow>
                 </div>
                 <div style={{
                   fontFamily: CG, fontSize: "clamp(13px,1.1vw,15px)",
@@ -191,7 +191,7 @@ export default function AlHamraHotel() {
                   fontFamily: CG, fontSize: "10px", letterSpacing: "0.28em",
                   backdropFilter: "blur(8px)",
                 }}>
-                  {s.num}
+                   <EditableRow id={`feature_cards:alHamraHotel.services:${i}`}>{s.num}</EditableRow>
                 </div>
               </div>
 
@@ -220,7 +220,7 @@ export default function AlHamraHotel() {
                   paddingTop: 14,
                   borderTop: "1px solid rgba(184,184,182,0.25)",
                 }}>
-                  {s.imageCaption}
+                   <EditableRow id={`feature_cards:alHamraHotel.services:${i}`}>{s.imageCaption}</EditableRow>
                 </div>
               </div>
             </motion.article>

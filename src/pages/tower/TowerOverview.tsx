@@ -25,12 +25,12 @@ const PEARL  = "#B9B9B7";
 const PILLARS: Record<string, { kicker: string; title: string; body: string; statN: string; statL: string }[]> = {
   en: [
     { kicker: "01 — The Form",   title: "Born from a single sculptural act.",       body: "A spiralling quarter subtracted from a prismatic volume, then rotated at every level — the world's first asymmetrical skyscraper.", statN: "1st",     statL: "Asymmetrical skyscraper in the world" },
-    { kicker: "02 — The Façade", title: "Glass toward the Gulf. Stone toward the desert.", body: "Three glazed faces open onto Kuwait Bay; a single limestone wall shields the south — the largest area of stone cladding on any building.", statN: "258,000", statL: "m² of Jura limestone cladding" },
+    { kicker: "02 — The Façade", title: "Glass toward the Gulf. Stone toward the desert.", body: "Three glazed faces open onto Kuwait Bay; a single limestone wall shields the south — the largest area of stone cladding on any building.", statN: "", statL: "" },
     { kicker: "03 — The Lobby",  title: "Twenty-four metres, and not one column.",  body: "A ground-floor volume engineered to feel impossible — clear, open and uninterrupted from end to end.", statN: "900", statL: "m² column-free lobby area" },
   ],
   ar: [
     { kicker: "٠١ — الشكل",    title: "وُلد من فعلٍ نحتيٍّ واحد.",              body: "رُبعٌ حلزونيٌّ اقتُطع من كتلةٍ منشوريّة ثمّ دُوِّر عند كلّ مستوى — أوّل ناطحة سحابٍ غير متماثلة في العالم.", statN: "الأولى", statL: "ناطحة سحابٍ غير متماثلة في العالم" },
-    { kicker: "٠٢ — الواجهة", title: "زجاجٌ نحو الخليج. حجرٌ نحو الصحراء.",     body: "ثلاث واجهاتٍ زجاجيّة تُطلّ على جون الكويت، وجدارٌ حجريٌّ واحد يحمي الجهة الجنوبيّة — أكبر مساحة كسوةٍ حجريّة على أيّ مبنى.", statN: "٢٥٨٬٠٠٠", statL: "م² من حجر الجورا الكلسي" },
+    { kicker: "٠٢ — الواجهة", title: "زجاجٌ نحو الخليج. حجرٌ نحو الصحراء.",     body: "ثلاث واجهاتٍ زجاجيّة تُطلّ على جون الكويت، وجدارٌ حجريٌّ واحد يحمي الجهة الجنوبيّة — أكبر مساحة كسوةٍ حجريّة على أيّ مبنى.", statN: "", statL: "" },
     { kicker: "٠٣ — البهو",   title: "أربعةٌ وعشرون متراً، دون عمودٍ واحد.",   body: "بهوٌ أرضيٌّ صُمِّم ليبدو مستحيلاً — واضحٌ ومفتوحٌ ومتّصلٌ من طرفٍ إلى طرف.", statN: "٩٠٠", statL: "م² مساحة بهوٍ خالية من الأعمدة" },
   ],
 };
@@ -145,8 +145,8 @@ export default function TowerOverview() {
                 fontSize: "clamp(22px,3vw,42px)", fontWeight: 300, color: DARK, lineHeight: 1 }}>
                 <EditableRow id={`stat_counters:towerOverview:towerOverview_${i}`}>
                 <CountUp value={n} delay={i * 0.1} />
-                {u && <span style={{ fontFamily: FONT,
-                  fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: "#CD1719", marginLeft: 4 }}>{u}</span>}
+                 {u && <span style={{ fontFamily: FONT,
+                   fontSize: "clamp(11px,1.3vw,17px)", fontWeight: 200, color: "#CD1719", marginLeft: 4 }}><Editable id={`page_prose:towerOverview:stats.${i}.u`}>{u}</Editable></span>}
                 </EditableRow>
               </div>
               <div style={{ fontFamily: FONT, fontSize: "clamp(10px,0.85vw,11px)",
