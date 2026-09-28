@@ -23,12 +23,14 @@ import { toEasternArabic } from "@/admin/ui";
 interface EditContextValue {
   enabled: boolean;          // edit mode actively on
   canEdit: boolean;          // user is authenticated staff
+  authReady: boolean;        // initial session lookup has completed
   setEnabled: (v: boolean) => void;
 }
-const EditCtx = createContext<EditContextValue>({ enabled: false, canEdit: false, setEnabled: () => {} });
+const EditCtx = createContext<EditContextValue>({ enabled: false, canEdit: false, authReady: false, setEnabled: () => {} });
 
 export function EditModeProvider({ children }: { children: ReactNode }) {
   const [canEdit, setCanEdit] = useState(false);
+  const [authReady, setAuthReady] = useState(false);
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
@@ -39,13 +41,16 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
       // Auto-enable if ?edit=1 is present and the user is staff.
       const params = new URLSearchParams(window.location.search);
       if (has && params.get("edit") === "1") setEnabled(true);
+    }).finally(() => setAuthReady(true));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, sess) => {
+      setCanEdit(!!sess);
+      setAuthReady(true);
     });
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, sess) => setCanEdit(!!sess));
     return () => sub.subscription.unsubscribe();
   }, []);
 
   return (
-    <EditCtx.Provider value={{ enabled: enabled && canEdit, canEdit, setEnabled }}>
+    <EditCtx.Provider value={{ enabled: enabled && canEdit, canEdit, authReady, setEnabled }}>
       {children}
       {canEdit && <EditModeToggle enabled={enabled && canEdit} setEnabled={setEnabled} />}
     </EditCtx.Provider>
