@@ -361,50 +361,54 @@ export default function TowerRising() {
                 title: lang === "ar" ? "البهو السماوي" : "Sky Lobby",
                 desc: lang === "ar" ? "ترافرتين وحلقات إضاءة وإطلالاتٌ على الخليج في الأعالي." : "Travertine, chandelier rings and Gulf views on high.",
                 href: "/experience/overview" },
-            ].map(({ src, alt, cls, title, desc, href }, i) => (
-              <motion.div
-                key={src}
-                className={cls}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.7, delay: i * 0.07 }}
-                style={{ overflow: "hidden", background: "#0c0b09", position: "relative" }}
-              >
-                <Link to={href} className="gallery-tile"
-                  aria-label={`${title} — ${desc}`}
-                  style={{ display: "block", width: "100%", height: "100%",
-                    position: "relative", textDecoration: "none", color: "inherit" }}>
-                  <SlotImage
-                    slot={`towerRising.gallery.${i}`} fallback={src} alt={alt}
-                    loading="lazy"
-                    className="gallery-img"
-                    style={{ width: "100%", height: "100%",
-                      objectFit: "cover", display: "block",
-                      transition: "transform 0.6s ease" }}
-                  />
-                  <div aria-hidden="true" className="gallery-shade" style={{ position: "absolute", inset: 0,
-                    background: "linear-gradient(to top, rgba(12,11,9,0.88) 0%, rgba(12,11,9,0.15) 48%, transparent 72%)" }} />
-                  <div className="gallery-caption" style={{ position: "absolute", left: 0, right: 0, bottom: 0,
-                    padding: "clamp(18px,1.8vw,26px)" }}>
-                    <div style={{ fontFamily: FONT, fontSize: "clamp(15px,1.3vw,19px)",
-                      fontWeight: 500, color: "#fff", marginBottom: 6 }}>
-                      <Editable id={`page_prose:towerRising:gallery.${i}.title`}>{title}</Editable>
+            ].map(({ src, alt, cls, title: fallbackTitle, desc: fallbackDesc, href }, i) => {
+              const title = c.gallery?.[i]?.title ?? fallbackTitle;
+              const desc = c.gallery?.[i]?.desc ?? fallbackDesc;
+              return (
+                <motion.div
+                  key={src}
+                  className={cls}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.7, delay: i * 0.07 }}
+                  style={{ overflow: "hidden", background: "#0c0b09", position: "relative" }}
+                >
+                  <Link to={href} className="gallery-tile"
+                    aria-label={`${title} — ${desc}`}
+                    style={{ display: "block", width: "100%", height: "100%",
+                      position: "relative", textDecoration: "none", color: "inherit" }}>
+                    <SlotImage
+                      slot={`towerRising.gallery.${i}`} fallback={src} alt={alt}
+                      loading="lazy"
+                      className="gallery-img"
+                      style={{ width: "100%", height: "100%",
+                        objectFit: "cover", display: "block",
+                        transition: "transform 0.6s ease" }}
+                    />
+                    <div aria-hidden="true" className="gallery-shade" style={{ position: "absolute", inset: 0,
+                      background: "linear-gradient(to top, rgba(12,11,9,0.88) 0%, rgba(12,11,9,0.15) 48%, transparent 72%)" }} />
+                    <div className="gallery-caption" style={{ position: "absolute", left: 0, right: 0, bottom: 0,
+                      padding: "clamp(18px,1.8vw,26px)" }}>
+                      <div style={{ fontFamily: FONT, fontSize: "clamp(15px,1.3vw,19px)",
+                        fontWeight: 500, color: "#fff", marginBottom: 6 }}>
+                        <Editable id={`page_prose:towerRising:gallery.${i}.title`}>{title}</Editable>
+                      </div>
+                      <div className="gallery-desc" style={{ fontFamily: FONT, fontSize: "12px",
+                        fontWeight: 300, color: "rgba(255,255,255,0.78)", lineHeight: 1.55, marginBottom: 12 }}>
+                        <Editable id={`page_prose:towerRising:gallery.${i}.desc`}>{desc}</Editable>
+                      </div>
+                      <span className="gallery-cta" style={{ display: "inline-flex", alignItems: "center", gap: 8,
+                        fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em",
+                        textTransform: "uppercase", color: "#fff" }}>
+                        <Editable id="page_prose:towerRising:galleryExplore">{c.galleryExplore ?? (lang === "ar" ? "استكشف" : "Explore")}</Editable>
+                        <span aria-hidden="true" className="gallery-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
+                      </span>
                     </div>
-                    <div className="gallery-desc" style={{ fontFamily: FONT, fontSize: "12px",
-                      fontWeight: 300, color: "rgba(255,255,255,0.78)", lineHeight: 1.55, marginBottom: 12 }}>
-                      <Editable id={`page_prose:towerRising:gallery.${i}.desc`}>{desc}</Editable>
-                    </div>
-                    <span className="gallery-cta" style={{ display: "inline-flex", alignItems: "center", gap: 8,
-                      fontFamily: FONT, fontSize: "10px", letterSpacing: "0.25em",
-                      textTransform: "uppercase", color: "#fff" }}>
-                      <Editable id="page_prose:towerRising:galleryExplore">{c.galleryExplore ?? (lang === "ar" ? "استكشف" : "Explore")}</Editable>
-                      <span aria-hidden="true" className="gallery-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
