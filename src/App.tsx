@@ -45,8 +45,9 @@ import { EditModeProvider, useEditMode } from "@/lib/EditMode";
 /* Hidden page gate: Experience-2 stays invisible to the public (redirects to
    Services), but signed-in staff (admins) can open it to keep working on it. */
 function Experience2Gate() {
-  const { canEdit } = useEditMode();
+  const { canEdit, authReady } = useEditMode();
   if (import.meta.env.DEV || canEdit) return <Experience2 />;
+  if (!authReady) return null;
   return <Navigate to="/experience/services" replace />;
 }
 
