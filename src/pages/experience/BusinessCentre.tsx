@@ -66,37 +66,6 @@ export default function BusinessCentre() {
         </div>
       </div>
 
-      {/* ── OVERVIEW ──────────────────────────────────────────────── */}
-      <Section>
-        <div style={{
-          display: "grid", gridTemplateColumns: "0.85fr 1.5fr",
-          gap: "clamp(48px,6vw,96px)",
-        }} className="bc-overview-grid">
-          <div>
-            <Rv><Tag><Editable id="page_prose:businessCentre:overviewTag">{c.overviewTag}</Editable></Tag></Rv>
-            <Rv delay={0.1}>
-              <H2>
-                <Editable id="page_prose:businessCentre:overviewLine1">{c.overviewLine1}</Editable><br />
-                <Editable id="page_prose:businessCentre:overviewLine2">{c.overviewLine2}</Editable><br />
-                <em style={{ color: PEARL_TEXT, fontStyle: "normal" }}><Editable id="page_prose:businessCentre:overviewLine3">{c.overviewLine3}</Editable></em>
-              </H2>
-            </Rv>
-          </div>
-          <div>
-            <Rv delay={0.2}>
-              <Body style={{ marginBottom: 20 }}>
-                <Editable id="page_prose:businessCentre:overviewBody1">{c.overviewBody1}</Editable>
-              </Body>
-            </Rv>
-            <Rv delay={0.3}>
-              <Body>
-                <Editable id="page_prose:businessCentre:overviewBody2">{c.overviewBody2}</Editable>
-              </Body>
-            </Rv>
-          </div>
-        </div>
-      </Section>
-
       {/* ── STRATEGIC ADVANTAGE ────────────────────────────────────── */}
       <Section bg="#FAFAFA">
         <Rv><Tag><Editable id="page_prose:businessCentre:strategicTag">{c.strategicTag}</Editable></Tag></Rv>
@@ -232,14 +201,6 @@ export default function BusinessCentre() {
 
       {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
 
-      <style>{`
-        @media (max-width: 900px) {
-          .bc-overview-grid {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-          }
-        }
-      `}</style>
     </PageLayout>
   );
 }
