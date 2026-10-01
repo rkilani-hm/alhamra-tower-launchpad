@@ -349,6 +349,10 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
               if (title != null) { if ("title" in orig) next.title = title; else if ("label" in orig) next.label = title; }
               if (body != null)  { if ("body" in orig) next.body = body; else if ("text" in orig) next.text = body; else if ("desc" in orig) next.desc = body; }
               if (cap != null && "imageCaption" in orig) next.imageCaption = cap;
+              // Resolve the card's edited image (feature_cards.image_id → URL) so
+              // changing a card image in the CMS actually shows on the page.
+              const imgUrl = r.image_id ? mediaMap[r.image_id] : null;
+              if (imgUrl) { if ("image" in orig) next.image = imgUrl; else if ("img" in orig) next.img = imgUrl; }
               return next;
             });
             changed = true;
