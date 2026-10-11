@@ -9,7 +9,6 @@ import { Editable, SlotImage } from "@/lib/EditMode";
 const PLANS = [
   { id: "ground",    level: "G",  src: "/assets/plan-ground.jpg" },
   { id: "mezzanine", level: "M",  src: "/assets/plan-mezzanine.jpg" },
-  { id: "basement1", level: "B1", src: "/assets/plan-basement-1.jpg" },
 ];
 
 export function FloorPlanViewer() {
