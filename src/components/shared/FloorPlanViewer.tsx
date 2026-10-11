@@ -10,7 +10,6 @@ const PLANS = [
   { id: "ground",    level: "G",  src: "/assets/plan-ground.jpg" },
   { id: "mezzanine", level: "M",  src: "/assets/plan-mezzanine.jpg" },
   { id: "basement1", level: "B1", src: "/assets/plan-basement-1.jpg" },
-  { id: "basement2", level: "B2", src: "/assets/plan-basement-2.jpg" },
 ];
 
 export function FloorPlanViewer() {
