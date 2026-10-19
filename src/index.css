@@ -62,6 +62,19 @@ html[dir="rtl"] * {
   font-size: clamp(13px, 1.05vw, 15px) !important;
 }
 
+/* Narrower-tracked labels: stat column headers (الارتفاع / الأدوار …),
+   award year badges (2019, 2014 …) and small uppercase labels use ~0.2–0.28em.
+   Bumped a touch less than the main kickers so a subtle hierarchy remains.
+   (Also lifts a few button/CTA labels slightly — intended.) */
+[style*="letter-spacing: 0.2em"],
+[style*="letter-spacing: 0.22em"],
+[style*="letter-spacing: 0.24em"],
+[style*="letter-spacing: 0.25em"],
+[style*="letter-spacing: 0.26em"],
+[style*="letter-spacing: 0.28em"] {
+  font-size: clamp(12.5px, 0.95vw, 14px) !important;
+}
+
 /* Arabic numerals: force Latin (Western) digits everywhere for consistency
    with the luxury real-estate convention used in Gulf business content */
 html[lang="ar"] {
