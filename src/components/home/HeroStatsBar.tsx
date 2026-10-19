@@ -137,8 +137,8 @@ export function HeroStatsBar() {
         >
           <span style={{ width: 32, height: 1, background: HAIR }} />
           <span style={{
-            fontFamily: FONT, fontSize: "11px", fontWeight: 500,
-            letterSpacing: "0.4em", textTransform: "uppercase", color: RED,
+            fontFamily: FONT, fontSize: "clamp(14px,1.3vw,17px)", fontWeight: 500,
+            letterSpacing: "0.3em", textTransform: "uppercase", color: RED,
           }}><Editable id="page_prose:home2stats:eyebrow">{c.eyebrow}</Editable></span>
           <span style={{ width: 32, height: 1, background: HAIR }} />
         </motion.div>
