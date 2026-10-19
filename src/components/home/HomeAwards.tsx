@@ -100,7 +100,7 @@ export function HomeAwards() {
           <span
             style={{
               fontFamily: FONT,
-              fontSize: "11px",
+              fontSize: "13px",
               letterSpacing: "0.32em",
               textTransform: "uppercase",
               color: PEARL_TEXT,
@@ -176,7 +176,7 @@ export function HomeAwards() {
               <div
                 style={{
                   fontFamily: FONT,
-                  fontSize: "11px",
+                  fontSize: "13px",
                   fontWeight: 400,
                   letterSpacing: "0.2em",
                   color: PEARL_TEXT,
@@ -231,7 +231,7 @@ export function HomeAwards() {
           <div
             style={{
               fontFamily: FONT,
-              fontSize: "11px",
+              fontSize: "13px",
               fontWeight: 400,
               letterSpacing: "0.24em",
               textTransform: "uppercase",
