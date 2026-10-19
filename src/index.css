@@ -75,6 +75,17 @@ html[dir="rtl"] * {
   font-size: clamp(12.5px, 0.95vw, 14px) !important;
 }
 
+/* Home awards block — the section kicker ("Awards" / "الجوائز"), the award
+   year badges (2012, 2011 …) and the "Certified Operations" label are read
+   here at a size above the two global label defaults above. Scoped by
+   .home-awards so the site-wide letter-spacing rules keep their values
+   everywhere else. */
+.home-awards [style*="letter-spacing: 0.32em"],
+.home-awards [style*="letter-spacing: 0.2em"],
+.home-awards [style*="letter-spacing: 0.24em"] {
+  font-size: clamp(15px, 1.2vw, 17px) !important;
+}
+
 /* Arabic numerals: force Latin (Western) digits everywhere for consistency
    with the luxury real-estate convention used in Gulf business content */
 html[lang="ar"] {

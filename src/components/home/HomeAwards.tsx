@@ -78,6 +78,7 @@ export function HomeAwards() {
 
   return (
     <section
+      className="home-awards"
       style={{
         background: "#FAFAFA",
         padding: "clamp(80px,12vh,140px) clamp(28px,6vw,96px)",
