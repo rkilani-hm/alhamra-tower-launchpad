@@ -103,6 +103,15 @@ export function Footer() {
               onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
             ><Editable id={`section_fields:footer:${labelKey.replace(/^footer\./, "")}`}>{t(labelKey)}</Editable></Link>
           ))}
+          {/* Careers — external HRMS online application portal (opens new tab) */}
+          <a
+            href="https://hrms.alhamra.com.kw/Alhamra/OnlineApp/Home/Index?ReturnPage=None"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", color: "#6B6B6B", textDecoration: "none", transition: "color 0.2s" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#1D1D1B")}
+            onMouseLeave={e => (e.currentTarget.style.color = "#6B6B6B")}
+          ><Editable id="section_fields:footer:careers">{t("footer.careers")}</Editable></a>
         </div>
       </div>
     </footer>

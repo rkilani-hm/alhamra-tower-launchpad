@@ -324,7 +324,7 @@
     "email": "Email",
     "emailValue": "leasing@alhamratower.com",
     "hours": "Hours",
-    "hoursValue": "Sun – Thu · 8:00 AM – 6:00 PM",
+    "hoursValue": "Sun – Thu · 8:30 AM – 4:00 PM",
     "address": "Address",
     "addressValue": "Sharq, Kuwait City, Kuwait"
   },
@@ -349,6 +349,7 @@
     "legalTitle": "Legal",
     "privacyPolicy": "Privacy Policy",
     "termsOfUse": "Terms of Use",
+    "careers": "Careers",
     "contactTitle": "Contact us",
     "contactBody": "Our leasing team responds to inquiries within one business day.",
     "contactCta": "Begin your inquiry",

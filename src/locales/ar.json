@@ -310,7 +310,7 @@
     "email": "البريد الإلكتروني",
     "emailValue": "leasing@alhamratower.com",
     "hours": "ساعات العمل",
-    "hoursValue": "الأحد – الخميس · 8:00 ص – 6:00 م",
+    "hoursValue": "الأحد – الخميس · 8:30 ص – 4:00 م",
     "address": "العنوان",
     "addressValue": "الشرق، مدينة الكويت، الكويت"
   },
@@ -335,6 +335,7 @@
     "legalTitle": "الشؤون القانونيّة",
     "privacyPolicy": "سياسة الخصوصيّة",
     "termsOfUse": "شروط الاستخدام",
+    "careers": "الوظائف",
     "contactTitle": "تواصل معنا",
     "contactBody": "يردّ فريق التأجير على الاستفسارات خلال يوم عمل واحد.",
     "contactCta": "ابدأ استفسارك",
