@@ -291,8 +291,9 @@ export function Services() {
             { fld: "roofgarden", ...c.beyond.roofgarden, src: "/assets/sky-lobby-panoramic.jpg" },
             { fld: "hotel", ...c.beyond.hotel, src: "/assets/lounge-at-window.jpg" },
           ]).map(({ fld, kicker, title, sub, src }) => (
-            <div key={fld} className="beyond-card"
-              style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden", background: "#0c0b09" }}>
+            <a key={fld} className="beyond-card"
+              href="https://www.alhamra.com.kw" target="_blank" rel="noopener noreferrer"
+              style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden", background: "#0c0b09", display: "block", textDecoration: "none", color: "inherit" }}>
               <SlotImage slot={`services.beyond.${fld}`} fallback={src} alt={title} loading="lazy"
                 className="beyond-img"
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
@@ -325,7 +326,7 @@ export function Services() {
                   <span aria-hidden="true" className="beyond-arrow" style={{ transition: "transform 0.3s ease" }}>→</span>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
         <style>{`
