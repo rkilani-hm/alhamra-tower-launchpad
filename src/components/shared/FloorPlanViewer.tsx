@@ -117,25 +117,6 @@ export function FloorPlanViewer() {
                 </Editable>
               </div>
 
-              {/* Legend */}
-              <div style={{ marginTop: 36 }}>
-                <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.3em", textTransform: "uppercase", color: "#6B6B6B", marginBottom: 12 }}>
-                  <Editable id="section_fields:floorplan:legendTitle">{t("floorplan.legendTitle")}</Editable>
-                </div>
-                {[
-                  { color: "#F5C842", border: undefined },
-                  { color: "#5BB8E8", border: undefined },
-                  { color: "#fff",    border: "1px solid rgba(29,29,27,0.2)" },
-                ].map(({ color, border }, li) => (
-                  <div key={li} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                    <div style={{ width: 16, height: 12, background: color, border: border ?? "none", flexShrink: 0 }} />
-                    <span style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "11px", color: "#6B6B6B" }}>
-                      <Editable id={`section_fields:floorplan:legend.${li}`}>{t(`floorplan.legend.${li}`)}</Editable>
-                    </span>
-                  </div>
-                ))}
-              </div>
-
               <div style={{ marginTop: "auto", paddingTop: 32 }}>
                 <div style={{ fontFamily: "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#6B6B6B" }}>
                   <Editable id="section_fields:floorplan:footer">{t("floorplan.footer")}</Editable>
