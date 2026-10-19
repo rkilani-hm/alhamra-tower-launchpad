@@ -78,6 +78,7 @@ export function HomeAwards() {
 
   return (
     <section
+      className="home-awards"
       style={{
         background: "#FAFAFA",
         padding: "clamp(80px,12vh,140px) clamp(28px,6vw,96px)",
@@ -100,7 +101,7 @@ export function HomeAwards() {
           <span
             style={{
               fontFamily: FONT,
-              fontSize: "13px",
+              fontSize: "11px",
               letterSpacing: "0.32em",
               textTransform: "uppercase",
               color: PEARL_TEXT,
@@ -176,7 +177,7 @@ export function HomeAwards() {
               <div
                 style={{
                   fontFamily: FONT,
-                  fontSize: "13px",
+                  fontSize: "11px",
                   fontWeight: 400,
                   letterSpacing: "0.2em",
                   color: PEARL_TEXT,
@@ -231,7 +232,7 @@ export function HomeAwards() {
           <div
             style={{
               fontFamily: FONT,
-              fontSize: "13px",
+              fontSize: "11px",
               fontWeight: 400,
               letterSpacing: "0.24em",
               textTransform: "uppercase",
