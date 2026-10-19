@@ -12,7 +12,7 @@
     "services": "الخدمات",
     "location": "الموقع",
     "leasing": "التأجير",
-    "cta": "استفسار التأجير",
+    "cta": "استفسارات التأجير",
     "menu": "القائمة",
     "openMenu": "فتح قائمة التنقّل",
     "closeMenu": "إغلاق قائمة التنقّل",
@@ -21,7 +21,7 @@
       "overview": "نظرة عامة",
       "rising": "نشأة المعلم",
       "design": "التصميم والهندسة",
-      "engineering": "الهندسة",
+      "engineering": "العمارة والهندسة",
       "awards": "الجوائز والتقدير",
       "sustainability": "الاستدامة",
       "experienceOverview": "التجربة",
@@ -36,7 +36,7 @@
       "businessCenter": "مركز الأعمال",
       "hotel": "فندق الحمراء",
       "opportunities": "الفرص المتاحة",
-      "inquiry": "استفسار",
+      "inquiry": "تواصل معنا",
       "downloads": "المستندات",
       "contact": "تواصل معنا"
     }
