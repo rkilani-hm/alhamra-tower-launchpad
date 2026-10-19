@@ -83,7 +83,7 @@ html[dir="rtl"] * {
 .home-awards [style*="letter-spacing: 0.32em"],
 .home-awards [style*="letter-spacing: 0.2em"],
 .home-awards [style*="letter-spacing: 0.24em"] {
-  font-size: clamp(15px, 1.2vw, 17px) !important;
+  font-size: 17px !important;
 }
 
 /* Arabic numerals: force Latin (Western) digits everywhere for consistency
