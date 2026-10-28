@@ -10,6 +10,10 @@ const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,
 export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dark" }) {
   const { lang, setLang, t } = useI18n();
 
+  /* Arabic is disabled on the front end — hide the toggle entirely.
+     Re-enable by removing this early return together with ARABIC_ENABLED in i18n.tsx. */
+  return null;
+
   const isDark = variant === "dark";
   const textOff = isDark ? "rgba(255,255,255,0.55)" : "#6B6B6B";
   const border = isDark ? "rgba(255,255,255,0.2)" : "rgba(29,29,27,0.15)";

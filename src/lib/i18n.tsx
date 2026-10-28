@@ -66,7 +66,13 @@ function resolveNode(dict: Dict, key: string): unknown {
   return cur;
 }
 
+/* Arabic is currently disabled on the front end — the site always renders
+   English. To re-enable, restore the stored/browser detection below and the
+   Arabic button in LanguageToggle. */
+const ARABIC_ENABLED = false;
+
 function getInitialLang(): Lang {
+  if (!ARABIC_ENABLED) return "en";
   if (typeof window === "undefined") return "en";
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === "en" || stored === "ar") return stored;
@@ -131,8 +137,9 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }, [lang, dir]);
 
   const setLang = (next: Lang) => {
-    setLangState(next);
-    try { localStorage.setItem(STORAGE_KEY, next); } catch {}
+    const effective: Lang = ARABIC_ENABLED ? next : "en";
+    setLangState(effective);
+    try { localStorage.setItem(STORAGE_KEY, effective); } catch {}
   };
 
   const t = (key: string): string => {
