@@ -26,7 +26,7 @@ import {
 import {
   Services, Location,
   LeasingOpportunities, LeasingInquiry,
-  Downloads, Contact,
+  Contact,
 } from "./pages/ExperiencePages";
 
 /* Legal pages */
