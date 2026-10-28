@@ -192,11 +192,6 @@ export function LeasingDownloads() {
 
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .invitation-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }
