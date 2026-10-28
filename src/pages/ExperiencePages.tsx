@@ -287,12 +287,12 @@ export function Services() {
         <div style={{ maxWidth: 1360, margin: "0 auto", display: "grid",
           gridTemplateColumns: "repeat(3,1fr)", gap: "clamp(12px,1.5vw,20px)" }} className="beyond-grid">
           {([
-            { fld: "shopping", ...c.beyond.shopping, src: "/assets/mall-atrium-skylight.jpg" },
-            { fld: "roofgarden", ...c.beyond.roofgarden, src: "/assets/sky-lobby-panoramic.jpg" },
-            { fld: "hotel", ...c.beyond.hotel, src: "/assets/lounge-at-window.jpg" },
-          ]).map(({ fld, kicker, title, sub, src }) => (
+            { fld: "shopping", href: "https://www.alhamracenter.com", ...c.beyond.shopping, src: "/assets/mall-atrium-skylight.jpg" },
+            { fld: "roofgarden", href: "https://www.alhamra.com.kw", ...c.beyond.roofgarden, src: "/assets/sky-lobby-panoramic.jpg" },
+            { fld: "hotel", href: "https://www.alhamra.com.kw", ...c.beyond.hotel, src: "/assets/lounge-at-window.jpg" },
+          ]).map(({ fld, kicker, title, sub, src, href }) => (
             <a key={fld} className="beyond-card"
-              href="https://www.alhamra.com.kw" target="_blank" rel="noopener noreferrer"
+              href={href} target="_blank" rel="noopener noreferrer"
               style={{ position: "relative", aspectRatio: "4/5", overflow: "hidden", background: "#0c0b09", display: "block", textDecoration: "none", color: "inherit" }}>
               <SlotImage slot={`services.beyond.${fld}`} fallback={src} alt={title} loading="lazy"
                 className="beyond-img"
