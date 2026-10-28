@@ -716,48 +716,6 @@ export function LeasingOpportunities() {
         </div>
       </Section>
 
-      {/* ── Downloads — brochure & floor plans (from the home page) ───── */}
-      {/* The PDF files are not hosted on the site; each card routes to the
-          inquiry form so the leasing team can share the document directly. */}
-      <div id="downloads">
-      <Section bg="#FAFAFA">
-        <Rv><Tag><Editable id="page_prose:leasing:downloadsSectionTag">{c.downloadsSectionTag ?? (lang === "ar" ? "التنزيلات" : "Downloads")}</Editable></Tag></Rv>
-        <Rv delay={0.1}><H2><Editable id="page_prose:leasing:downloadsSectionHeading">{c.downloadsSectionHeading ?? (lang === "ar" ? "خذ الأرقام معك" : "Take the numbers with you")}</Editable></H2></Rv>
-        <Rv delay={0.2}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 40 }}
-            className="grid-2col">
-            {(lang === "ar"
-              ? [
-                  { fld: "brochure", title: "كتيّب التأجير", meta: "متاح عند الطلب · يشاركه فريق التأجير", href: "/leasing/inquiry#inquiry-form" },
-                  { fld: "plans",    title: "مخططات الطوابق", meta: "متاح عند الطلب · يشاركه فريق التأجير", href: "/leasing/inquiry#inquiry-form" },
-                ]
-              : [
-                  { fld: "brochure", title: "Leasing Brochure", meta: "Available on request · shared by our leasing team", href: "/leasing/inquiry#inquiry-form" },
-                  { fld: "plans",    title: "Floor Plans",      meta: "Available on request · shared by our leasing team", href: "/leasing/inquiry#inquiry-form" },
-                ]
-            ).map(({ fld, title, meta, href }) => (
-              <a key={fld} href={href}
-                style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16,
-                  background: "#fff", border: "1px solid rgba(29,29,27,0.10)",
-                  padding: "clamp(24px,3vw,36px)", textDecoration: "none",
-                  transition: "border-color 0.25s ease, box-shadow 0.25s ease" }}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor="#B9B9B7";e.currentTarget.style.boxShadow="0 20px 50px -30px rgba(29,29,27,0.25)";}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(29,29,27,0.10)";e.currentTarget.style.boxShadow="none";}}>
-                <div>
-                  <div style={{ fontFamily: FONT, fontSize: "clamp(15px,1.4vw,19px)", fontWeight: 400, color: "#1D1D1B", marginBottom: 6 }}>
-                    <Editable id={`page_prose:leasing:downloads.${fld}.title`}>{title}</Editable>
-                  </div>
-                  <div style={{ fontFamily: FONT, fontSize: "11.5px", letterSpacing: "0.04em", color: "#6B6B6B" }}>
-                    <Editable id={`page_prose:leasing:downloads.${fld}.meta`}>{meta}</Editable>
-                  </div>
-                </div>
-                <span aria-hidden="true" style={{ fontFamily: FONT, fontSize: "18px", color: "#CD1719", flexShrink: 0 }}>↓</span>
-              </a>
-            ))}
-          </div>
-        </Rv>
-      </Section>
-      </div>
 
       {/* Page ending is now the sitewide ClosingBand (rendered by PageLayout). */}
     </PageLayout>
