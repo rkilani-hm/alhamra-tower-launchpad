@@ -14,6 +14,6 @@
 
 # Header website search
 
-- [ ] Add a header search field and linked page results.
-- [ ] Index all public page text and published CMS changes, excluding hidden and admin pages.
-- [ ] Test search matching and verify searching and opening a result.
+- [x] Add a header search field and linked page results.
+- [x] Index all public page text and published CMS changes, excluding hidden and admin pages.
+- [x] Test search matching and verify searching and opening a result.
