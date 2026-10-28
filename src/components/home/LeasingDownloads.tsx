@@ -54,10 +54,7 @@ export function LeasingDownloads() {
 
       <div style={{
         maxWidth: 1360, margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "clamp(48px,8vw,120px)",
-        alignItems: "start",
+        position: "relative",
       }}
         className="invitation-grid"
       >
