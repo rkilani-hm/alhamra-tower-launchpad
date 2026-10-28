@@ -167,7 +167,7 @@ export function BeyondTheOffice() {
 
           {/* Outbound CTA — bordered pill */}
           <a
-            href="https://www.alhamra.com.kw"
+            href="https://www.alhamracenter.com"
             target="_blank"
             rel="noopener noreferrer"
             onMouseEnter={() => setHover(true)}
