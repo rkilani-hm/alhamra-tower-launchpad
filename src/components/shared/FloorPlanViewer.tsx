@@ -7,8 +7,8 @@ import { Editable, SlotImage } from "@/lib/EditMode";
    via t("floorplan.<id>.<field>"). This shared component is used by multiple
    pages; all read the same section_fields:floorplan rows. */
 const PLANS = [
-  { id: "ground",    level: "G",  src: "/assets/plan-ground.jpg" },
   { id: "mezzanine", level: "M",  src: "/assets/plan-mezzanine.jpg" },
+  { id: "ground",    level: "G",  src: "/assets/plan-ground.jpg" },
 ];
 
 export function FloorPlanViewer() {
@@ -19,7 +19,7 @@ export function FloorPlanViewer() {
   /* t() returns the key itself when a string is missing/unpublished; tf falls
      back to the structural default so the level badge never shows a raw key. */
   const tf = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
-  const [active, setActive] = useState("ground");
+  const [active, setActive] = useState("mezzanine");
   const plan = PLANS.find(p => p.id === active)!;
   const planLabel = t(`floorplan.${plan.id}.label`);
   const planDesc  = t(`floorplan.${plan.id}.desc`);
