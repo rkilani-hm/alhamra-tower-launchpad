@@ -15,29 +15,12 @@ const PEARL = "#B9B9B7";
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
-const DOWNLOADS = {
-  en: {
-    label: "Downloads",
-    items: [
-      { title: "Leasing Brochure", meta: "PDF · Tower & availability overview" },
-      { title: "Floor Plans", meta: "PDF · Typical floor plates" },
-    ],
-  },
-  ar: {
-    label: "التنزيلات",
-    items: [
-      { title: "الكتيّب", meta: "PDF · نظرة عامة على البرج والمساحات" },
-      { title: "المخططات", meta: "PDF · مخططات الطوابق النموذجية" },
-    ],
-  },
-};
 
 
 export function LeasingDownloads() {
   const { lang } = useI18n();
   const cStatic = useContent<any>("content.invitation");
   const c = usePageContent<any>("invitation", cStatic, lang);
-  const downloads = usePageContent<any>("home2downloads", DOWNLOADS[lang as keyof typeof DOWNLOADS] ?? DOWNLOADS.en, lang);
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const isAr = lang === "ar";
@@ -71,10 +54,7 @@ export function LeasingDownloads() {
 
       <div style={{
         maxWidth: 1360, margin: "0 auto",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "clamp(48px,8vw,120px)",
-        alignItems: "start",
+        position: "relative",
       }}
         className="invitation-grid"
       >
@@ -210,75 +190,8 @@ export function LeasingDownloads() {
           </motion.div>
         </div>
 
-        {/* Right — Downloads (brochure + floor plans). A tenant's last step
-            before shortlisting is grabbing the material; keep it one click away
-            here rather than buried in the footer. */}
-        <div style={{ paddingTop: 8 }}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            style={{
-              fontFamily: FONT,
-              fontSize: "clamp(10px,0.85vw,11px)",
-              letterSpacing: "0.35em", textTransform: "uppercase",
-              color: "rgba(255,255,255,0.35)",
-              marginBottom: 12,
-            }}
-          >
-             <Editable id="page_prose:home2downloads:label">{downloads.label}</Editable>
-          </motion.div>
-
-          {downloads.items.map((d: { title: string; meta: string }, i: number) => (
-            <motion.div
-              key={d.title}
-              initial={{ opacity: 0, x: isAr ? -30 : 30 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 + i * 0.12, ease: [0.16,1,0.3,1] }}
-            >
-              <Link
-                to="/leasing"
-                style={{
-                  borderTop: "1px solid rgba(255,255,255,0.1)",
-                  padding: "clamp(22px,3vh,30px) 0",
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  gap: 20, textDecoration: "none",
-                  transition: "padding-inline-start 0.25s ease",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget.querySelector(".dl-title") as HTMLElement).style.color = "#CD1719"; }}
-                onMouseLeave={(e) => { (e.currentTarget.querySelector(".dl-title") as HTMLElement).style.color = "#fff"; }}
-              >
-                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <div className="dl-title" style={{
-                    fontFamily: FONT, fontSize: "clamp(15px,1.4vw,20px)",
-                    fontWeight: 300, letterSpacing: "0.02em", color: "#fff",
-                    transition: "color 0.25s ease",
-                  }}>
-                     <Editable id={`page_prose:home2downloads:items.${i}.title`}>{d.title}</Editable>
-                  </div>
-                  <div style={{
-                    fontFamily: FONT, fontSize: "11px", fontWeight: 300,
-                    letterSpacing: "0.08em", color: "rgba(255,255,255,0.4)",
-                  }}>
-                     <Editable id={`page_prose:home2downloads:items.${i}.meta`}>{d.meta}</Editable>
-                  </div>
-                </div>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"
-                     style={{ flexShrink: 0 }}>
-                  <path d="M10 3v11m0 0l-4-4m4 4l4-4M4 17h12" stroke={PEARL} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-            </motion.div>
-          ))}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }} />
-        </div>
       </div>
 
-      <style>{`
-        @media (max-width: 768px) {
-          .invitation-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }
