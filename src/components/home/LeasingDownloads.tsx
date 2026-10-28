@@ -15,29 +15,12 @@ const PEARL = "#B9B9B7";
 const DARK  = "#1D1D1B";
 const FONT  = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
 
-const DOWNLOADS = {
-  en: {
-    label: "Downloads",
-    items: [
-      { title: "Leasing Brochure", meta: "PDF · Tower & availability overview" },
-      { title: "Floor Plans", meta: "PDF · Typical floor plates" },
-    ],
-  },
-  ar: {
-    label: "التنزيلات",
-    items: [
-      { title: "الكتيّب", meta: "PDF · نظرة عامة على البرج والمساحات" },
-      { title: "المخططات", meta: "PDF · مخططات الطوابق النموذجية" },
-    ],
-  },
-};
 
 
 export function LeasingDownloads() {
   const { lang } = useI18n();
   const cStatic = useContent<any>("content.invitation");
   const c = usePageContent<any>("invitation", cStatic, lang);
-  const downloads = usePageContent<any>("home2downloads", DOWNLOADS[lang as keyof typeof DOWNLOADS] ?? DOWNLOADS.en, lang);
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const isAr = lang === "ar";
