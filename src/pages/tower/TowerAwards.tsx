@@ -139,6 +139,7 @@ type Award = {
   image:    string | null;
   hero?:    boolean;  /* top-of-page featured award */
   cmsIndex?: number;
+  hidden?:  boolean;  /* kept in the array for CMS sort_order alignment, but not rendered in the scroll */
 };
 
 const AWARDS_DATA: Award[] = [
@@ -156,6 +157,7 @@ const AWARDS_DATA: Award[] = [
        occupies index 1 so the published CMS rows (sort_order 2…12) align with
        their awards; removing it shifts every later award by one, duplicating
        the Arabian Property card and dropping the final MIPIM 2008 award. */
+    hidden: true,  /* not shown in the awards scroll; occupies index 1 only to keep CMS alignment */
     year: "Certified", ribbon: "ISO Management Systems",
     title: "ISO-Certified Building Operations",
     org: "International Organization for Standardization (ISO)",
@@ -766,8 +768,11 @@ function AwardsRecognitionSection() {
   const [lightboxAward, setLightboxAward] = useState<Award | null>(null);
 
   /* Split hero from the rest, then filter the rest by category */
-  const hero = cmsAwards.find(a => a.hero) ?? cmsAwards[0];
-  const rest = cmsAwards.filter(a => a !== hero);
+  /* ISO (and any other hidden entry) stays in cmsAwards for index/CMS alignment
+     but is excluded from the visible scroll, hero slot and category counts. */
+  const visibleAwards = cmsAwards.filter(a => !a.hidden);
+  const hero = visibleAwards.find(a => a.hero) ?? visibleAwards[0];
+  const rest = visibleAwards.filter(a => a !== hero);
   const filtered = useMemo(
     () => activeCat === "All" ? rest : rest.filter(a => a.category === activeCat),
     [activeCat, rest]
@@ -775,10 +780,10 @@ function AwardsRecognitionSection() {
 
   /* Count per-category badge numbers (used on pills) */
   const counts = useMemo(() => {
-    const c: Record<Category, number> = { All: cmsAwards.length, Architecture: 0, "Tall Buildings": 0, Development: 0, Concrete: 0, "Smart Tech": 0 };
-    cmsAwards.forEach(a => { if (a.category in c) c[a.category as Category]++; });
+    const c: Record<Category, number> = { All: visibleAwards.length, Architecture: 0, "Tall Buildings": 0, Development: 0, Concrete: 0, "Smart Tech": 0 };
+    visibleAwards.forEach(a => { if (a.category in c) c[a.category as Category]++; });
     return c;
-  }, [cmsAwards]);
+  }, [visibleAwards]);
 
   if (!hero) return null;
 
