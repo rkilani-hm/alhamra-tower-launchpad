@@ -5,6 +5,7 @@ import { PageHero }    from "@/components/shared/PageHero";
 import { useI18n, useContent } from "@/lib/i18n";
 import { Editable, EditableRow, SlotImage } from "@/lib/EditMode";
 import { usePageContent } from "@/lib/useCmsContent";
+import floorPlanSomAsset from "@/assets/al-hamra-som-typical-floor-plan.png.asset.json";
 
 const PEARL  = "#B9B9B7";
 const DARK   = "#1D1D1B";
@@ -254,7 +255,7 @@ export default function TowerDesign() {
           style={{ marginBottom: 64 }}
         >
           <SlotImage
-            slot="towerDesign.floorPlan" fallback="/assets/drawings/floor-plan-typical.jpg"
+            slot="towerDesign.floorPlan" fallback={floorPlanSomAsset.url}
             alt={lang === "ar" ? "SOM — مخطّط طابق المكاتب النموذجيّ لبرج الحمراء، نحو 2,300م² صافي" : "SOM — Al Hamra Tower typical office floor plan, ~2,300 m² NLA per floor"}
             loading="lazy"
             style={{ width: "100%", display: "block", border: "1px solid rgba(29,29,27,0.07)" }}
