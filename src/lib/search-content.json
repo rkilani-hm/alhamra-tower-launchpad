@@ -1182,21 +1182,6 @@
         "value_en": "Share your requirements and timeline. Our leasing team will respond with options aligned to your business needs."
       },
       {
-        "page_key": "downloads",
-        "field_key": "tag",
-        "value_en": "Leasing · Downloads"
-      },
-      {
-        "page_key": "downloads",
-        "field_key": "title",
-        "value_en": "Downloads"
-      },
-      {
-        "page_key": "downloads",
-        "field_key": "subtitle",
-        "value_en": "Download brochures, floor plans, and media materials for Al Hamra Tower."
-      },
-      {
         "page_key": "contact",
         "field_key": "tag",
         "value_en": "Leasing · Contact"
@@ -2152,11 +2137,6 @@
         "value_en": "BUILT TO ADAPT"
       },
       {
-        "page_key": "leasing",
-        "field_key": "downloads.brochure.title",
-        "value_en": "Leasing brochure"
-      },
-      {
         "page_key": "inquiry",
         "field_key": "formTag",
         "value_en": "Get in touch"
@@ -2175,11 +2155,6 @@
         "page_key": "leasingStory",
         "field_key": "rows.1.body",
         "value_en": "A space designed to support different approaches to health and wellbeingAl Hamra’s spaces offer the flexibility to accommodate a range of healthcare and wellness concepts from clinics and consultation rooms to therapy rehabilitation and treatment environments allowing each space to be shaped around the needs of the practice and the people it serves"
-      },
-      {
-        "page_key": "leasing",
-        "field_key": "downloads.plans.title",
-        "value_en": "Floor plans"
       },
       {
         "page_key": "services",
