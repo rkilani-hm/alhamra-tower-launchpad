@@ -152,6 +152,18 @@ const AWARDS_DATA: Award[] = [
     hero: true,
   },
   {
+    /* ISO certifications added per the amendments (deck slide 7). This entry
+       occupies index 1 so the published CMS rows (sort_order 2…12) align with
+       their awards; removing it shifts every later award by one, duplicating
+       the Arabian Property card and dropping the final MIPIM 2008 award. */
+    year: "Certified", ribbon: "ISO Management Systems",
+    title: "ISO-Certified Building Operations",
+    org: "International Organization for Standardization (ISO)",
+    category: "Smart Tech",
+    body: "Al Hamra Tower's operations are certified to international ISO management-system standards — covering quality, environmental performance and occupational health & safety — independently audited and maintained across the building's facilities management.",
+    image: null,
+  },
+  {
     year: "2019–20", ribbon: "Double Regional Winner",
     title: "Best Commercial High-Rise Architecture & Development",
     org: "Arabian Property Awards",

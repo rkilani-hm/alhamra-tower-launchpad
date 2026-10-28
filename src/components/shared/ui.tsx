@@ -34,7 +34,7 @@ export function StatsBar({ stats, editKey, editField = "stats" }: { stats: Stat[
             onMouseEnter={e=>((e.currentTarget as HTMLDivElement).style.background="#FAFAFA")}
             onMouseLeave={e=>((e.currentTarget as HTMLDivElement).style.background="#fff")}
           >
-            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(36px,4vw,52px)", fontWeight:300, lineHeight:1, color:"#1D1D1B", marginBottom:8 }}>
+            <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: ((v: string) => { const l = v.replace(/\s+/g, "").length; return l <= 4 ? "clamp(36px,4vw,52px)" : l <= 9 ? "clamp(26px,2.8vw,40px)" : "clamp(19px,2.1vw,30px)"; })(String(number ?? "")), fontWeight:300, lineHeight:1.1, color:"#1D1D1B", marginBottom:8 }}>
               {editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.number`}>{number}</Editable> : number}{unit && <span style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize:"clamp(14px,2vw,20px)", fontWeight:200, color:"#6B6B6B" }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.unit`}>{unit}</Editable> : unit}</span>}
             </div>
             <div style={{ fontFamily:"'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif", fontSize: "10px", letterSpacing:"0.3em", textTransform:"uppercase", color:"#6B6B6B" }}>{editKey ? <Editable id={`page_prose:${editKey}:${editField}.${i}.label`}>{label}</Editable> : label}</div>
