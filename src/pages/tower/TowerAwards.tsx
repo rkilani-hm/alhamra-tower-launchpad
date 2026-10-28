@@ -152,16 +152,6 @@ const AWARDS_DATA: Award[] = [
     hero: true,
   },
   {
-    /* ISO certifications added per the amendments (deck slide 7). Confirm the
-       exact standard numbers with the client before publishing. */
-    year: "Certified", ribbon: "ISO Management Systems",
-    title: "ISO-Certified Building Operations",
-    org: "International Organization for Standardization (ISO)",
-    category: "Smart Tech",
-    body: "Al Hamra Tower's operations are certified to international ISO management-system standards — covering quality, environmental performance and occupational health & safety — independently audited and maintained across the building's facilities management.",
-    image: null,
-  },
-  {
     year: "2019–20", ribbon: "Double Regional Winner",
     title: "Best Commercial High-Rise Architecture & Development",
     org: "Arabian Property Awards",
