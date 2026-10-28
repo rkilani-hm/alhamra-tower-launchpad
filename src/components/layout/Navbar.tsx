@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useT } from "@/lib/i18n";
 import { Editable, useEditMode, SlotImage } from "@/lib/EditMode";
 import { LanguageToggle } from "@/components/shared/LanguageToggle";
+import { SiteSearch } from "@/components/layout/SiteSearch";
 
 /* nav.tower → section_fields:nav:tower ; nav.sub.overview → section_fields:nav:sub.overview */
 const navEditId = (labelKey: string) => `section_fields:nav:${labelKey.replace(/^nav\./, "")}`;
@@ -236,6 +237,7 @@ export function Navbar() {
 
         {/* Right — CTA + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <SiteSearch />
           <Link to="/leasing/inquiry#inquiry-form" className="nav-cta-desktop" style={{
             fontFamily: "var(--font-brand)", fontSize: "12px", letterSpacing: "0.2em",
             textTransform: "uppercase", color: "#1D1D1B", textDecoration: "none",

@@ -11,3 +11,9 @@
 - [x] Seed the current visible Awards page content without altering the public page.
 - [x] Connect all Awards page text, statistics, repeated records, and images to CMS data.
 - [x] Verify admin editing and the public Awards page.
+
+# Header website search
+
+- [x] Add a header search field and linked page results.
+- [x] Index all public page text and published CMS changes, excluding hidden and admin pages.
+- [x] Test search matching and verify searching and opening a result.
