@@ -22,7 +22,7 @@ const MAPS: Record<number, Record<string, string>> = {
 };
 
 /* Labels shown on the preview switcher. */
-export const VARIANT_LABELS: Record<Variant, string> = { 1: "AR1", 2: "AR2", 3: "AR3" };
+export const VARIANT_LABELS: Record<Variant, string> = { 1: "AR1", 2: "AR2-WS", 3: "AR3" };
 
 const PREVIEW_SS_KEY = "ah-preview";
 

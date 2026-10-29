@@ -1,5 +1,5 @@
 import { useI18n } from "@/lib/i18n";
-import type { Variant } from "@/lib/previewVariants";
+import { VARIANT_LABELS, type Variant } from "@/lib/previewVariants";
 
 /* ── LanguageToggle (preview only) ───────────────────────────────────────
    The public site is English only, so this renders NOTHING for normal
@@ -72,7 +72,7 @@ export function LanguageToggle({ variant: theme = "light" }: { variant?: "light"
       >
         {btn(lang === "en", "EN", false, () => setLang("en"), "en")}
         {([1, 2, 3] as Variant[]).map((v) =>
-          btn(lang === "ar" && variant === v, `AR${v}`, false, () => setVariant(v), `ar${v}`),
+          btn(lang === "ar" && variant === v, VARIANT_LABELS[v], false, () => setVariant(v), `ar${v}`),
         )}
       </div>
       <button
