@@ -14,7 +14,7 @@ const CG = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Tr
 const AR_FONT = "'Noto Sans Arabic','Tajawal',sans-serif";
 
 export function LanguageToggle({ variant: theme = "light" }: { variant?: "light" | "dark" }) {
-  const { lang, variant, preview, setLang, setVariant } = useI18n();
+  const { lang, variant, preview, setLang, setVariant, exitPreview } = useI18n();
 
   /* Public: no language UI at all. */
   if (!preview) return null;
@@ -75,6 +75,22 @@ export function LanguageToggle({ variant: theme = "light" }: { variant?: "light"
           btn(lang === "ar" && variant === v, `AR${v}`, false, () => setVariant(v), `ar${v}`),
         )}
       </div>
+      <button
+        type="button"
+        className="ah-hit"
+        onClick={exitPreview}
+        aria-label="Exit preview"
+        title="Return to the public (English) site"
+        style={{
+          fontFamily: CG, fontSize: "8px", letterSpacing: "0.18em", textTransform: "uppercase",
+          color: isDark ? "rgba(255,255,255,0.55)" : "#6B6B6B",
+          background: "transparent", border: `1px solid ${border}`, borderRadius: 1,
+          padding: "5px 8px", minHeight: 26, cursor: "pointer", lineHeight: 1,
+          transition: "color 0.2s ease, border-color 0.2s ease",
+        }}
+      >
+        Exit
+      </button>
     </div>
   );
 }

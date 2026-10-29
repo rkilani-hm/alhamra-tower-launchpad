@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import enDict from "@/locales/en.json";
 import arDict from "@/locales/ar.json";
 import { supabase } from "@/integrations/supabase/client";
-import { detectPreview, applyVariant, type Variant } from "./previewVariants";
+import { detectPreview, clearPreview, applyVariant, type Variant } from "./previewVariants";
 
 /* ── Lightweight i18n ─────────────────────────────────────────────────
    No external dependencies. Supports:
@@ -32,6 +32,8 @@ interface I18nContextValue {
   preview: boolean;
   /* Switch to an Arabic variant — only effective inside a preview session. */
   setVariant: (v: Variant) => void;
+  /* Leave preview and return to the public English view. */
+  exitPreview: () => void;
   t: (key: string) => string;
   /* Returns a non-string node (object/array) by dot-notation key, with
      EN fallback. Used for content blocks migrated out of components into
@@ -168,6 +170,21 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     } catch {}
   };
 
+  /* Leave preview: clear session flags, reset to English, and reload to the
+     public URL (without ?preview) so the preview switcher does not re-arm. */
+  const exitPreview = () => {
+    try {
+      clearPreview();
+      sessionStorage.removeItem(PREVIEW_LANG_KEY);
+      sessionStorage.removeItem(PREVIEW_VAR_KEY);
+    } catch {}
+    setLangState("en");
+    setVariantState(1);
+    if (typeof window !== "undefined") {
+      window.location.assign(window.location.pathname + window.location.hash);
+    }
+  };
+
   const t = (key: string): string => {
     /* CMS override first: published DB content wins over static JSON. */
     const ov = overrides[key];
@@ -198,7 +215,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <I18nContext.Provider value={{ lang, dir, setLang, variant, preview, setVariant, t, tNode }}>
+    <I18nContext.Provider value={{ lang, dir, setLang, variant, preview, setVariant, exitPreview, t, tNode }}>
       {children}
     </I18nContext.Provider>
   );

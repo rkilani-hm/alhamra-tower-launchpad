@@ -41,6 +41,11 @@ export function detectPreview(): boolean {
   }
 }
 
+/* Leave preview: clears the session flag so the next load is the public view. */
+export function clearPreview(): void {
+  try { sessionStorage.removeItem(PREVIEW_SS_KEY); } catch { /* ignore */ }
+}
+
 /* Resolve the Arabic string for the active variant. For AR1 (or a missing
    Ref / undefined overlay entry) this returns the base Arabic unchanged. */
 export function applyVariant(
