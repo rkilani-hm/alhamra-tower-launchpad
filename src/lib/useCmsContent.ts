@@ -45,7 +45,9 @@ export function useAwardsContent(pageKey: string, base: CmsAward[], lang: Lang):
 
   useEffect(() => {
     let cancelled = false;
-    setAwards(base);
+    // Do NOT reset to `base` here: on a language/variant switch that would flash
+    // the static fallback before the overlay re-applies. Keep the current value
+    // until the fresh overlay lands below.
     (async () => {
       const { data: rows, error } = await supabase
         .from("awards")
@@ -247,9 +249,10 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
 
   useEffect(() => {
     let cancelled = false;
-    // Re-seed from base whenever base/lang changes, so language switches show
-    // the right static content immediately while the DB overlay reloads.
-    setMerged(stableBase);
+    // Do NOT re-seed to `stableBase` here. On a language/variant switch that
+    // flashes the static fallback before the overlay re-applies (the "old text
+    // reappears" glitch). Keep the current merged value until the freshly built
+    // overlay is applied at the end of this effect.
 
     (async () => {
       try {
@@ -443,7 +446,12 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
           changed = true;
         }
 
-        if (!cancelled && changed) setMerged(out as T);
+        // Always apply the freshly built object (even if no DB overlay changed
+        // anything) so a language/variant switch resolves to the correct base
+        // without first flashing it mid-fetch. `out` starts as a clone of the
+        // current-language base, so this is safe when nothing was overlaid.
+        if (!cancelled) setMerged(out as T);
+        void changed;
       } catch {
         /* any failure → keep static base (already set) */
       }
