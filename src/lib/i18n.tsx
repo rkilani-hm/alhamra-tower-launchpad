@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import enDict from "@/locales/en.json";
 import arDict from "@/locales/ar.json";
 import { supabase } from "@/integrations/supabase/client";
+import { detectPreview, applyVariant, type Variant } from "./previewVariants";
 
 /* ── Lightweight i18n ─────────────────────────────────────────────────
    No external dependencies. Supports:
@@ -21,12 +22,16 @@ const DICTIONARIES: Record<Lang, Dict> = {
   ar: arDict as unknown as Dict,
 };
 
-const STORAGE_KEY = "alhamra-lang";
-
 interface I18nContextValue {
   lang: Lang;
   dir: "ltr" | "rtl";
   setLang: (lang: Lang) => void;
+  /* Preview-only Arabic variant (1=AR1 DB, 2=AR2, 3=AR3). Always 1 in public. */
+  variant: Variant;
+  /* True only when the secret ?preview link unlocked this browser session. */
+  preview: boolean;
+  /* Switch to an Arabic variant — only effective inside a preview session. */
+  setVariant: (v: Variant) => void;
   t: (key: string) => string;
   /* Returns a non-string node (object/array) by dot-notation key, with
      EN fallback. Used for content blocks migrated out of components into
@@ -66,23 +71,26 @@ function resolveNode(dict: Dict, key: string): unknown {
   return cur;
 }
 
-/* Arabic is currently disabled on the front end — the site always renders
-   English. To re-enable, restore the stored/browser detection below and the
-   Arabic button in LanguageToggle. */
-const ARABIC_ENABLED = false;
+/* Arabic is never shown on the public frontend. It is available only inside a
+   preview session unlocked by the secret `?preview` link (see previewVariants).
+   Public visitors always get English — there is no browser/stored auto-detect.
+   The selected preview language/variant persist in sessionStorage so a reload
+   within the same session keeps the chosen view. */
+const PREVIEW_LANG_KEY = "ah-preview-lang";     // "en" | "ar" (session only)
+const PREVIEW_VAR_KEY  = "ah-preview-variant";  // "1" | "2" | "3" (session only)
 
-function getInitialLang(): Lang {
-  if (!ARABIC_ENABLED) return "en";
-  if (typeof window === "undefined") return "en";
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored === "en" || stored === "ar") return stored;
-  // Detect browser language — default AR if the browser prefers Arabic
-  const browserLang = navigator.language?.slice(0, 2).toLowerCase();
-  return browserLang === "ar" ? "ar" : "en";
+function readSession(key: string): string | null {
+  try { return typeof window !== "undefined" ? sessionStorage.getItem(key) : null; } catch { return null; }
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(getInitialLang);
+  const [preview] = useState<boolean>(detectPreview);
+  const [lang, setLangState] = useState<Lang>(() =>
+    preview && readSession(PREVIEW_LANG_KEY) === "ar" ? "ar" : "en");
+  const [variant, setVariantState] = useState<Variant>(() => {
+    const v = preview ? Number(readSession(PREVIEW_VAR_KEY)) : 1;
+    return (v === 2 || v === 3 ? v : 1) as Variant;
+  });
   const dir: "ltr" | "rtl" = lang === "ar" ? "rtl" : "ltr";
 
   /* ── CMS override map ──────────────────────────────────────────────────
@@ -92,7 +100,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
      isn't published, t() falls through to the locale files. Both languages are
      stored so switching language never needs a refetch. Empty until loaded —
      the site renders static content first, then swaps in published overrides. */
-  const [overrides, setOverrides] = useState<Record<string, { en: string; ar: string | null }>>({});
+  const [overrides, setOverrides] = useState<Record<string, { en: string; ar: string | null; ref: string }>>({});
 
   useEffect(() => {
     let cancelled = false;
@@ -109,15 +117,21 @@ export function I18nProvider({ children }: { children: ReactNode }) {
             .eq("status", "published"),
         ]);
         if (cancelled) return;
-        const map: Record<string, { en: string; ar: string | null }> = {};
+        const map: Record<string, { en: string; ar: string | null; ref: string }> = {};
         for (const r of sf.data ?? []) {
           if (r.section_key && r.field_key && r.value_en != null) {
-            map[`${r.section_key}.${r.field_key}`] = { en: r.value_en, ar: r.value_ar };
+            map[`${r.section_key}.${r.field_key}`] = {
+              en: r.value_en, ar: r.value_ar,
+              ref: `section_fields|${r.section_key}|${r.field_key}|value_ar`,
+            };
           }
         }
         for (const r of pp.data ?? []) {
           if (r.page_key && r.field_key && r.value_en != null) {
-            map[`${r.page_key}.${r.field_key}`] = { en: r.value_en, ar: r.value_ar };
+            map[`${r.page_key}.${r.field_key}`] = {
+              en: r.value_en, ar: r.value_ar,
+              ref: `page_prose|${r.page_key}|${r.field_key}|value_ar`,
+            };
           }
         }
         if (!cancelled) setOverrides(map);
@@ -136,17 +150,30 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     document.documentElement.setAttribute("data-lang", lang);
   }, [lang, dir]);
 
+  /* English is always allowed. Arabic only inside a preview session. */
   const setLang = (next: Lang) => {
-    const effective: Lang = ARABIC_ENABLED ? next : "en";
+    const effective: Lang = next === "ar" && preview ? "ar" : "en";
     setLangState(effective);
-    try { localStorage.setItem(STORAGE_KEY, effective); } catch {}
+    try { sessionStorage.setItem(PREVIEW_LANG_KEY, effective); } catch {}
+  };
+
+  /* Pick an Arabic variant (AR1/AR2/AR3). No-op for the public (non-preview). */
+  const setVariant = (v: Variant) => {
+    if (!preview) return;
+    setVariantState(v);
+    setLangState("ar");
+    try {
+      sessionStorage.setItem(PREVIEW_VAR_KEY, String(v));
+      sessionStorage.setItem(PREVIEW_LANG_KEY, "ar");
+    } catch {}
   };
 
   const t = (key: string): string => {
     /* CMS override first: published DB content wins over static JSON. */
     const ov = overrides[key];
     if (ov) {
-      const v = lang === "ar" ? (ov.ar ?? ov.en) : ov.en;
+      const ar = lang === "ar" ? applyVariant(variant, ov.ref, ov.ar) : null;
+      const v = lang === "ar" ? (ar ?? ov.ar ?? ov.en) : ov.en;
       if (v !== undefined && v !== null) return v;
     }
     const val = resolve(DICTIONARIES[lang], key);
@@ -171,7 +198,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <I18nContext.Provider value={{ lang, dir, setLang, t, tNode }}>
+    <I18nContext.Provider value={{ lang, dir, setLang, variant, preview, setVariant, t, tNode }}>
       {children}
     </I18nContext.Provider>
   );

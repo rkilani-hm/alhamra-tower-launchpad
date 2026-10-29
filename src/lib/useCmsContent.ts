@@ -14,6 +14,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Lang } from "@/lib/i18n";
+import { useI18n } from "@/lib/i18n";
+import { applyVariant } from "@/lib/previewVariants";
 
 /* Shape the Stats component already consumes (see components/home/Stats.tsx) */
 export interface Counter {
@@ -39,6 +41,7 @@ export interface CmsAward {
 /** Overlay the published Awards CMS rows onto the complete static collection. */
 export function useAwardsContent(pageKey: string, base: CmsAward[], lang: Lang): CmsAward[] {
   const [awards, setAwards] = useState<CmsAward[]>(base);
+  const { variant } = useI18n();
 
   useEffect(() => {
     let cancelled = false;
@@ -58,26 +61,28 @@ export function useAwardsContent(pageKey: string, base: CmsAward[], lang: Lang):
         const { data: media } = await supabase.from("media_assets").select("id,public_url").in("id", mediaIds);
         for (const item of media ?? []) if (item.public_url) mediaMap.set(item.id, item.public_url);
       }
-      const pick = (en: string | null, ar: string | null) => lang === "ar" ? (ar || en || "") : (en || "");
+      const pick = (ref: string, en: string | null, ar: string | null) =>
+        lang === "ar" ? (applyVariant(variant, ref, ar) || en || "") : (en || "");
       const byOrder = new Map(rows.map((row) => [row.sort_order, row]));
       setAwards(base.map((original, index) => {
         const row = byOrder.get(index);
         if (!row) return original;
+        const r = `awards|${pageKey}|${row.sort_order}`;
         return {
           ...original,
           year: row.year ?? original.year,
-          ribbon: pick(row.ribbon_en, row.ribbon_ar) || original.ribbon,
-          title: pick(row.title_en, row.title_ar) || original.title,
-          org: pick(row.organization_en, row.organization_ar) || original.org,
+          ribbon: pick(`${r}|ribbon_ar`, row.ribbon_en, row.ribbon_ar) || original.ribbon,
+          title: pick(`${r}|title_ar`, row.title_en, row.title_ar) || original.title,
+          org: pick(`${r}|organization_ar`, row.organization_en, row.organization_ar) || original.org,
           category: row.category || original.category,
-          body: pick(row.body_en, row.body_ar) || original.body,
+          body: pick(`${r}|body_ar`, row.body_en, row.body_ar) || original.body,
           image: (row.image_id && mediaMap.get(row.image_id)) || original.image,
           hero: row.is_featured ?? original.hero,
         };
       }));
     })();
     return () => { cancelled = true; };
-  }, [pageKey, lang, base]);
+  }, [pageKey, lang, base, variant]);
 
   return awards;
 }
@@ -87,6 +92,7 @@ export function useAwardsContent(pageKey: string, base: CmsAward[], lang: Lang):
    loaded OR if anything fails — caller falls back to its static list on null. */
 export function useStatCounters(groupKey: string, lang: Lang): Counter[] | null {
   const [data, setData] = useState<Counter[] | null>(null);
+  const { variant } = useI18n();
 
   useEffect(() => {
     let cancelled = false;
@@ -113,8 +119,12 @@ export function useStatCounters(groupKey: string, lang: Lang): Counter[] | null 
           start: r.start ?? 0,
           end: r.end ?? 0,
           step: r.step ?? 1,
-          display: (lang === "ar" ? r.display_ar : r.display_en) ?? "",
-          unit: (lang === "ar" ? r.unit_ar : r.unit_en) ?? "",
+          display: (lang === "ar"
+            ? (applyVariant(variant, `stat_counters|${groupKey}|${r.stat_key}|display_ar`, r.display_ar) ?? r.display_en)
+            : r.display_en) ?? "",
+          unit: (lang === "ar"
+            ? (applyVariant(variant, `stat_counters|${groupKey}|${r.stat_key}|unit_ar`, r.unit_ar) ?? r.unit_en)
+            : r.unit_en) ?? "",
         }));
 
         setData(mapped);
@@ -126,7 +136,7 @@ export function useStatCounters(groupKey: string, lang: Lang): Counter[] | null 
     return () => {
       cancelled = true;
     };
-  }, [groupKey, lang]);
+  }, [groupKey, lang, variant]);
 
   return data;
 }
@@ -139,6 +149,7 @@ export function useStatLabels(
   lang: Lang
 ): Record<string, { label: string; sub: string }> {
   const [labels, setLabels] = useState<Record<string, { label: string; sub: string }>>({});
+  const { variant } = useI18n();
 
   useEffect(() => {
     let cancelled = false;
@@ -157,8 +168,12 @@ export function useStatLabels(
         for (const r of rows) {
           if (!r.stat_key) continue;
           map[r.stat_key] = {
-            label: (lang === "ar" ? r.label_ar : r.label_en) ?? "",
-            sub: (lang === "ar" ? r.sub_ar : r.sub_en) ?? "",
+            label: (lang === "ar"
+              ? (applyVariant(variant, `stat_counters|${groupKey}|${r.stat_key}|label_ar`, r.label_ar) ?? r.label_en)
+              : r.label_en) ?? "",
+            sub: (lang === "ar"
+              ? (applyVariant(variant, `stat_counters|${groupKey}|${r.stat_key}|sub_ar`, r.sub_ar) ?? r.sub_en)
+              : r.sub_en) ?? "",
           };
         }
         if (!cancelled) setLabels(map);
@@ -170,7 +185,7 @@ export function useStatLabels(
     return () => {
       cancelled = true;
     };
-  }, [groupKey, lang]);
+  }, [groupKey, lang, variant]);
 
   return labels;
 }
@@ -228,6 +243,7 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
   const baseFingerprint = JSON.stringify(base ?? {});
   const stableBase = useMemo<T>(() => JSON.parse(baseFingerprint) as T, [baseFingerprint]);
   const [merged, setMerged] = useState<T>(stableBase);
+  const { variant } = useI18n();
 
   useEffect(() => {
     let cancelled = false;
@@ -238,6 +254,10 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
     (async () => {
       try {
         const pick = (en: any, ar: any) => (lang === "ar" ? (ar ?? en) : en);
+        /* Ref-aware pick: in a preview Arabic variant (AR2/AR3), an overlay entry
+           for this field's Ref wins; otherwise falls back to the DB Arabic. */
+        const pickV = (ref: string, en: any, ar: any) =>
+          (lang === "ar" ? (applyVariant(variant, ref, ar) ?? en) : en);
 
         const [prose, stats, cards, timeline, specs, media] = await Promise.all([
           supabase.from("page_prose")
@@ -277,7 +297,7 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
         //    "heroSub.0") by walking/creating the path.
         for (const r of prose.data ?? []) {
           if (!r.field_key || r.value_en == null) continue;
-          const val = pick(r.value_en, r.value_ar);
+          const val = pickV(`page_prose|${pageKey}|${r.field_key}|value_ar`, r.value_en, r.value_ar);
           const parts = r.field_key.split(".");
           let node = out;
           for (let i = 0; i < parts.length - 1; i++) {
@@ -317,10 +337,11 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
             const r = byOrder.get(i);
             if (!r) return orig;
             const next = { ...orig };
-            const n = pick(r.display_en, r.display_ar);
-            const u = pick(r.unit_en, r.unit_ar);
-            const l = pick(r.label_en, r.label_ar);
-            const sub = pick(r.sub_en, r.sub_ar);
+            const sref = `stat_counters|${pageKey}|${r.stat_key}`;
+            const n = pickV(`${sref}|display_ar`, r.display_en, r.display_ar);
+            const u = pickV(`${sref}|unit_ar`, r.unit_en, r.unit_ar);
+            const l = pickV(`${sref}|label_ar`, r.label_en, r.label_ar);
+            const sub = pickV(`${sref}|sub_ar`, r.sub_en, r.sub_ar);
             if ("n" in orig) next.n = n; else if ("number" in orig) next.number = n;
             if ("u" in orig && u != null) next.u = u;
             if ("l" in orig) next.l = l; else if ("label" in orig) next.label = l;
@@ -342,9 +363,10 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
               const r = byOrder.get(i);
               if (!r) return orig;
               const next = { ...orig };
-              const title = pick(r.title_en, r.title_ar);
-              const body  = pick(r.body_en, r.body_ar);
-              const cap   = pick(r.image_caption_en, r.image_caption_ar);
+              const cref = `feature_cards|${map.collection}|${r.num ?? i}`;
+              const title = pickV(`${cref}|title_ar`, r.title_en, r.title_ar);
+              const body  = pickV(`${cref}|body_ar`, r.body_en, r.body_ar);
+              const cap   = pickV(`${cref}|image_caption_ar`, r.image_caption_en, r.image_caption_ar);
               if (r.num != null && "num" in orig) next.num = r.num;
               if (title != null) { if ("title" in orig) next.title = title; else if ("label" in orig) next.label = title; }
               if (body != null)  { if ("body" in orig) next.body = body; else if ("text" in orig) next.text = body; else if ("desc" in orig) next.desc = body; }
@@ -373,8 +395,9 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
               const r = byOrder.get(i);
               if (!r) return orig;
               const next = { ...orig };
-              const title = pick(r.title_en, r.title_ar);
-              const body  = pick(r.body_en, r.body_ar);
+              const tref = `timeline_entries|${map.collection}|${i}`;
+              const title = pickV(`${tref}|title_ar`, r.title_en, r.title_ar);
+              const body  = pickV(`${tref}|body_ar`, r.body_en, r.body_ar);
               const imgUrl = r.image_id ? mediaMap[r.image_id] : null;
               // milestones use {y,e}; eras use {year,title,body,img}. The `year`
               // column is single-value (not bilingual), so we keep the localized
@@ -407,8 +430,9 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
             const rows = g.rows.map((pair: any[], i: number) => {
               const r = sorted[i];
               if (!r) return pair;                       // keep static row (no DB override)
-              const label = pick(r.label_en, r.label_ar);
-              const value = pick(r.value_en, r.value_ar);
+              const pref = `spec_rows|${g.cat}|${r.sort_order}`;
+              const label = pickV(`${pref}|label_ar`, r.label_en, r.label_ar);
+              const value = pickV(`${pref}|value_ar`, r.value_en, r.value_ar);
               return [
                 (label != null && String(label).trim() !== "") ? label : pair[0],
                 (value != null) ? value : pair[1],
@@ -426,7 +450,7 @@ export function usePageContent<T extends AnyObj = AnyObj>(pageKey: string, base:
     })();
 
     return () => { cancelled = true; };
-  }, [pageKey, lang, stableBase]);
+  }, [pageKey, lang, stableBase, variant]);
 
   return merged;
 }

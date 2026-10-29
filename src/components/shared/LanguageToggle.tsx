@@ -1,81 +1,80 @@
 import { useI18n } from "@/lib/i18n";
+import type { Variant } from "@/lib/previewVariants";
 
-/* ── LanguageToggle ──────────────────────────────────────────────────
-   Minimal pill toggle: EN · ع
-   Sits in the navbar, auto-switches document direction via I18nProvider.
-──────────────────────────────────────────────────────────────────────── */
+/* ── LanguageToggle (preview only) ───────────────────────────────────────
+   The public site is English only, so this renders NOTHING for normal
+   visitors. When a session is unlocked with the secret `?preview` link, it
+   shows a review switcher — EN · AR1 · AR2 · AR3 — where:
+     AR1 = Arabic saved in the database
+     AR2 / AR3 = draft Arabic variants fed from Excel
+   Arabic is never published to the public frontend.
+──────────────────────────────────────────────────────────────────────────── */
 
-const CG    = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
+const CG = "'Century Gothic','AppleGothic','Gill Sans MT','Gill Sans',Futura,'Trebuchet MS',sans-serif";
+const AR_FONT = "'Noto Sans Arabic','Tajawal',sans-serif";
 
-export function LanguageToggle({ variant = "light" }: { variant?: "light" | "dark" }) {
-  const { lang, setLang, t } = useI18n();
+export function LanguageToggle({ variant: theme = "light" }: { variant?: "light" | "dark" }) {
+  const { lang, variant, preview, setLang, setVariant } = useI18n();
 
-  /* Arabic is disabled on the front end — hide the toggle entirely.
-     Re-enable by removing this early return together with ARABIC_ENABLED in i18n.tsx. */
-  return null;
+  /* Public: no language UI at all. */
+  if (!preview) return null;
 
-  const isDark = variant === "dark";
+  const isDark = theme === "dark";
   const textOff = isDark ? "rgba(255,255,255,0.55)" : "#6B6B6B";
   const border = isDark ? "rgba(255,255,255,0.2)" : "rgba(29,29,27,0.15)";
+  const onBg = isDark ? "rgba(255,255,255,0.1)" : "#1D1D1B";
 
-  return (
-    <div
-      role="group"
-      aria-label={t("nav.changeLanguage")}
+  const btn = (active: boolean, label: string, arabic: boolean, onClick: () => void, key: string) => (
+    <button
+      key={key}
+      type="button"
+      className="ah-hit"
+      onClick={onClick}
+      aria-pressed={active}
       style={{
-        display: "inline-flex",
-        alignItems: "center",
-        border: `1px solid ${border}`,
-        borderRadius: 1,
-        padding: 2,
-        gap: 1,
+        background: active ? onBg : "transparent",
+        color: active ? "#fff" : textOff,
+        fontFamily: arabic ? AR_FONT : CG,
+        fontSize: arabic ? "10px" : "9px",
+        fontWeight: arabic ? 500 : 400,
+        letterSpacing: arabic ? "0.02em" : "0.15em",
+        padding: "0 8px",
+        minWidth: 32, minHeight: 26,
+        display: "inline-flex", alignItems: "center", justifyContent: "center",
+        border: "none",
+        cursor: "pointer",
+        transition: "background 0.22s ease, color 0.22s ease",
+        lineHeight: 1,
       }}
     >
-      <button
-        type="button"
-        className="ah-hit"
-        onClick={() => setLang("en")}
-        aria-pressed={lang === "en"}
-        aria-label={t("language.en")}
+      {label}
+    </button>
+  );
+
+  return (
+    <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+      <span
+        aria-hidden
         style={{
-          background: lang === "en" ? (isDark ? "rgba(255,255,255,0.1)" : "#1D1D1B") : "transparent",
-          color: lang === "en" ? (isDark ? "#fff" : "#fff") : textOff,
-          fontFamily: CG, fontSize: "9px",
-          letterSpacing: "0.15em",
-          padding: "0 8px",
-          minWidth: 30, minHeight: 26,
-          display: "inline-flex", alignItems: "center", justifyContent: "center",
-          border: "none",
-          cursor: "pointer",
-          transition: "background 0.22s ease, color 0.22s ease",
-          lineHeight: 1,
+          fontFamily: CG, fontSize: "8px", letterSpacing: "0.22em", textTransform: "uppercase",
+          color: isDark ? "rgba(255,255,255,0.45)" : "#9A9A97",
         }}
       >
-        EN
-      </button>
-      <button
-        type="button"
-        className="ah-hit"
-        onClick={() => setLang("ar")}
-        aria-pressed={lang === "ar"}
-        aria-label={t("language.ar")}
+        Preview
+      </span>
+      <div
+        role="group"
+        aria-label="Preview language variant"
         style={{
-          background: lang === "ar" ? (isDark ? "rgba(255,255,255,0.1)" : "#1D1D1B") : "transparent",
-          color: lang === "ar" ? (isDark ? "#fff" : "#fff") : textOff,
-          fontFamily: "'Noto Sans Arabic','Tajawal',sans-serif",
-          fontSize: "11px",
-          fontWeight: 500,
-          padding: "0 8px",
-          minWidth: 30, minHeight: 26,
-          display: "inline-flex", alignItems: "center", justifyContent: "center",
-          border: "none",
-          cursor: "pointer",
-          transition: "background 0.22s ease, color 0.22s ease",
-          lineHeight: 1,
+          display: "inline-flex", alignItems: "center",
+          border: `1px solid ${border}`, borderRadius: 1, padding: 2, gap: 1,
         }}
       >
-        ع
-      </button>
+        {btn(lang === "en", "EN", false, () => setLang("en"), "en")}
+        {([1, 2, 3] as Variant[]).map((v) =>
+          btn(lang === "ar" && variant === v, `AR${v}`, false, () => setVariant(v), `ar${v}`),
+        )}
+      </div>
     </div>
   );
 }
