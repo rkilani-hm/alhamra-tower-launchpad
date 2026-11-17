@@ -33,7 +33,6 @@ const CONTENT: Record<string, {
     topImg: "/assets/kuwait-waterfront.jpg",
     facts: [
       { n: "5 min", l: "To the government & ministries district" },
-      { n: "2,000+", l: "Structured parking spaces" },
       { n: "Valet", l: "Arrival at the main entrance" },
       { n: "Floor 55", l: "Sky-lobby event hall" },
       { n: "Floor 36", l: "Al Hamra Business Centre" },
@@ -57,7 +56,6 @@ const CONTENT: Record<string, {
     topImg: "/assets/kuwait-waterfront.jpg",
     facts: [
       { n: "5 دقائق", l: "إلى منطقة الحكومة والوزارات" },
-      { n: "+2,000", l: "موقف سيارات منظّم" },
       { n: "خدمة صف", l: "استقبال عند المدخل الرئيسي" },
       { n: "الطابق 55", l: "قاعة فعاليات في البهو السماوي" },
       { n: "الطابق 36", l: "مركز الحمرا للأعمال" },
